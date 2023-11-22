@@ -1,0 +1,93 @@
+/** @file
+  String definitions for TPM 2.0 physical presence confirm text.
+
+Copyright (c) 2013 - 2018, Intel Corporation. All rights reserved.<BR>
+SPDX-License-Identifier: BSD-2-Clause-Patent
+
+**/
+
+#langdef en-US "English"
+#langdef zh-Hans "\wide中文\narrow"
+
+#string TPM_HEAD_STR                  #language en-US    "A configuration change was requested to %s\n\n"
+                                      #language zh-Hans   "\wide请求更改配置以\narrow%s\n\n"
+
+#string TPM_PPI_HEAD_STR              #language en-US    "A configuration change was requested to allow the Operating System to %s without asking for user confirmation in the future.\n\n"
+                                      #language zh-Hans   "\wide请求更改配置以允许操作系统以后\narrow%s\wide时不必征得用户同意\narrow\n\n"
+
+#string TPM_ACCEPT_KEY                #language en-US    "Press F10 "
+                                      #language zh-Hans   "\wide点击F10键\narrow"
+#string TPM_CAUTION_KEY               #language en-US    "Press F12 "
+                                      #language zh-Hans   "\wide点击F12键\narrow"
+#string TPM_REJECT_KEY                #language en-US    "to %s \nPress ESC to reject this change request and continue\n"
+                                      #language zh-Hans   "\wide以\narrow%s\wide\n点击ESC键可拒绝此更改请求并继续\n\narrow"
+#string TPM_ENABLE                    #language en-US    "enable this computer's TPM (Trusted Platform Module)"
+                                      #language zh-Hans   "\wide允许此电脑TPM（可信平台模块）\narrow"
+#string TPM_DISABLE                   #language en-US    "disable this computer's TPM (Trusted Platform Module)"
+                                      #language zh-Hans   "\wide禁用此电脑TPM（可信平台模块）\narrow"
+#string TPM_CLEAR                     #language en-US    "clear this computer's TPM (Trusted Platform Module)"
+                                      #language zh-Hans   "\wide清除此电脑TPM（可信平台模块）\narrow"
+#string TPM_SET_PCR_BANKS                       #language en-US    "change the boot measurements to use PCR bank(s) of this computer's TPM (Trusted Platform Module)"
+                                                #language zh-Hans  "\wide更改此电脑上TPM（可信平台模块）计算引导度量值使用的PCR算法库\narrow"
+#string TPM_CHANGE_EPS                          #language en-US    "clear and change identity of this computer's TPM (Trusted Platform Module)"
+                                                #language zh-Hans  "\wide清除并改变此电脑TPM（可信平台模块）的身份\narrow"
+#string TPM_DISABLE_ENDORSEMENT_ENABLE_STORAGE  #language en-US    "disable access to some secrets stored in this computer's TPM (Trusted Platform Module)"
+                                                #language zh-Hans  "\wide禁止访问一些机密，它存储在此电脑的TPM（可信平台模块）\narrow"
+
+#string TPM_NO_PPI_MAINTAIN           #language en-US    "maintain"
+                                      #language zh-Hans   "\wide保持\narrow"
+#string TPM_NO_PPI_TURN_ON            #language en-US    "turn on"
+                                      #language zh-Hans   "\wide打开\narrow"
+#string TPM_NO_PPI_TURN_OFF           #language en-US    "turn off"
+                                      #language zh-Hans   "\wide关闭\narrow"
+#string TPM_NO_PPI_INFO               #language en-US    "to approve future Operating System requests "
+                                      #language zh-Hans   "\wide以使得操作系统请求总是被允许\narrow"
+
+#string TPM_WARNING_DISABLE           #language en-US    "WARNING: Doing so might prevent security applications that rely on the TPM from functioning as expected.\n\n"
+                                      #language zh-Hans   "\wide警告：此做法可能会使得依赖于TPM模式的安全应用无法正常运行。\narrow\n\n"
+#string TPM_WARNING_CLEAR             #language en-US    "WARNING: Clearing erases information stored on the TPM. You will lose all created keys and access to data encrypted by these keys. "
+                                      #language zh-Hans   "\wide警告：清除储存在TPM上的信息。你将会丢失所有被创建的密码以及无法访问由这些密码加密的数据。\narrow"
+#string TPM_NOTE_CLEAR                #language en-US    "NOTE: This action does not clear the TPM, but by approving this configuration change, future actions to clear the TPM will not require user confirmation.\n\n"
+                                      #language zh-Hans   "\wide提示：此行为不会清除TPM,但由于允许配置变更，以后清除TPM时将不再征得用户同意\narrow\n\n"
+#string TPM_WARNING_SET_PCR_BANKS_1                     #language en-US    "WARNING: Changing the PCR bank(s) of the boot measurements may prevent the Operating System from properly processing the measurements. Please check if your Operating System supports the new PCR bank(s).\n\n"
+                                                        #language zh-Hans   "\wide警告：更改引导度量值使用的PCR库可能阻碍操作系统正确地处理度量值。请确认您的操作系统是否支持这些新的PCR库。\narrow\n\n"
+#string TPM_WARNING_SET_PCR_BANKS_2                     #language en-US    "WARNING: Secrets in the TPM that are bound to the boot state of your machine may become unusable.\n\n"
+                                                        #language zh-Hans   "\wide警告：TPM里与机器启动状态相关的的私密数据可能将会无法使用。\narrow\n\n"
+#string TPM_WARNING_CHANGE_EPS_1                        #language en-US    "WARNING: Clearing erases information stored on the TPM. You will lose all created keys and access to data encrypted with these keys.\n\n"
+                                                        #language zh-Hans   "\wide警告：清除储存在TPM上的信息。你将会丢失所有被创建的密码以及无法访问由这些密码加密的数据。\narrow\n\n"
+#string TPM_WARNING_CHANGE_EPS_2                        #language en-US    "WARNING: Changing the identity of the TPM may require additional steps to establish trust into the new identity.\n\n"
+                                                        #language zh-Hans   "\wide警告：改变TPM身份可能需要额外操作以建立对新身份的信任。\narrow\n\n"
+#string TPM_WARNING_PP_CHANGE_PCRS_FALSE                #language en-US    "WARNING: Allowing future changes to format of the boot measurement log may affect the Operating System.\n\n"
+                                                        #language zh-Hans   "\wide警告：永久允许改变启动措施可能会影响操作系统。\narrow\n\n"
+#string TPM_WARNING_PP_CHANGE_EPS_FALSE_1               #language en-US    "WARNING: Allowing future changes to the TPM's firmware may affect the operation of the TPM and may erase information stored on the TPM.\n\n"
+                                                        #language zh-Hans   "\wide警告：永久允许改变TPM固件可能会影响TPM操作且可能会擦除储存在TPM上的信息。\narrow\n\n"
+#string TPM_WARNING_PP_CHANGE_EPS_FALSE_2               #language en-US    "You may lose all created keys and access to data encrypted by these keys.\n\n"
+                                                        #language zh-Hans   "\wide你将会丢失所有被创建的密码以及无法访问由这些密码加密的数据。\narrow\n\n"
+#string TPM_WARNING_DISABLE_ENDORSEMENT_ENABLE_STORAGE  #language en-US    "WARNING: Doing so might prevent security applications that rely on the TPM from functioning as expected.\n\n"
+                                                        #language zh-Hans  "\wide警告：此做法可能会使得依赖于TPM模式的安全应用无法正常运行。\narrow\n\n"
+
+#string TCG_STORAGE_HEAD_STR                  #language en-US    "A configuration change was requested to %s on subsequent boots\n\n"
+                                              #language zh-Hans   "\wide请求更改配置以%s之后的启动\narrow"
+#string TCG_STORAGE_PPI_HEAD_STR              #language en-US    "A configuration change was requested to allow the Operating System to %s without asking for user confirmation in the future.\n\n"
+                                              #language zh-Hans   "\wide请求更改配置以允许操作系统以后%s这台电脑的TPM时不必征得用户同意\narrow\n\n"
+#string TCG_STORAGE_ACCEPT_KEY                #language en-US    "Press F10 "
+                                              #language zh-Hans   "\wide点击F10键\narrow"
+#string TCG_STORAGE_CAUTION_KEY               #language en-US    "Press F12 "
+                                              #language zh-Hans   "\wide点击F12键\narrow"
+#string TCG_STORAGE_REJECT_KEY                #language en-US    "to %s\nPress ESC to reject this change request and continue\n"
+                                              #language zh-Hans   "\wide以\narrow%s\n\wide点击ESC键可拒绝此更改请求并继续\n\narrow"
+#string TCG_STORAGE_NO_PPI_INFO               #language en-US    "to approve future Operating System requests "
+                                              #language zh-Hans   "\wide以永久允许操作系统请求\narrow"
+
+#string TCG_STORAGE_ENABLE_BLOCK_SID          #language en-US    "issue a Block SID authentication command"
+                                              #language zh-Hans   "\wide发送SID块的身份验证请求\narrow"
+#string TCG_STORAGE_DISABLE_BLOCK_SID         #language en-US    "disable issuing a Block SID authentication command"
+                                              #language zh-Hans   "\wide禁止发送SID块的身份验证请求\narrow"
+
+#string TCG_STORAGE_PP_ENABLE_BLOCK_SID       #language en-US    "enable blocking SID authentication"
+                                              #language zh-Hans   "\wide允许SID块的身份验证\narrow"
+#string TCG_STORAGE_PP_DISABLE_BLOCK_SID      #language en-US    "disable blocking SID authentication"
+                                              #language zh-Hans   "\wide禁止SID块的身份验证\narrow"
+
+#string TPM_RESET_SYSTEM_PROMPT_STR           #language en-US    "Rebooting system to make TPM2 settings in effect\n"
+                                              #language zh-Hans   "\wide重启系统使\narrowTPM2\wide设置生效\narrow\n"

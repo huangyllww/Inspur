@@ -1,0 +1,57 @@
+## @file
+#  Display backup and recovery.
+#
+#  Copyright (c) 2016 - 2022, Byosoft Corporation. All rights reserved.<BR>
+#
+#  This software and associated documentation (if any)
+#  is furnished under a license and may only be used or copied in
+#  accordance with the terms of the license. Except as permitted by such
+#  license, no part of this software or documentation may be reproduced,
+#  stored in a retrieval system, or transmitted in any form or by any
+#  means without the express written consent of Byosoft Corporation.
+
+#
+#
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = DisplayBackupRecoveryDxe
+  FILE_GUID                      = 08DD1B3D-C17D-4E46-885A-19BFD8E4C543
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = InitializeDisplayBackupRecovery
+
+[Sources]
+  DisplayBackupRecovery.c
+
+[Packages]
+  MdeModulePkg/MdeModulePkg.dec
+  MdePkg/MdePkg.dec
+  ByoModulePkg/ByoModulePkg.dec
+
+[LibraryClasses]
+  BaseLib
+  UefiBootServicesTableLib
+  UefiDriverEntryPoint
+  BaseMemoryLib
+  MemoryAllocationLib
+  DebugLib
+  UefiLib
+  DevicePathLib
+
+[Pcd]
+
+[Guids]
+  gEventAfterConnectConsoleDeviceGuid
+  gEfiConsoleOutDeviceGuid
+
+[Protocols]
+  gEfiGraphicsOutputProtocolGuid
+  gDisplayBackupRecoverProtocolGuid
+  gEfiSimpleTextOutProtocolGuid
+  gEfiSerialIoProtocolGuid
+  gTerminalDataBackupProtocolGuid
+
+[Depex]
+  TRUE

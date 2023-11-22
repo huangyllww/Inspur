@@ -1,0 +1,70 @@
+/** @file
+
+Copyright (c) 2023, Byosoft Corporation.<BR>
+All rights reserved.This software and associated documentation (if any)
+is furnished under a license and may only be used or copied in
+accordance with the terms of the license. Except as permitted by such
+license, no part of this software or documentation may be reproduced,
+stored in a retrieval system, or transmitted in any form or by any
+means without the express written consent of Byosoft Corporation.
+
+File Name:
+  SetupBrowser.vfr
+
+Abstract:
+
+Revision History:
+
+**/
+#include "SetupBrowser.h"
+
+
+formset
+  guid     = FORMSET_GUID_SEARCH,
+  title    = STRING_TOKEN(FORMSET_TITLE_SEARCH),
+  help     = STRING_TOKEN(FORMSET_TITLE_SEARCH_HELP),
+  classguid = FORMSET_GUID_SEARCH,
+
+  efivarstore SEARCH_SAVE_DATA,
+    attribute = 0x3,
+    name  = ByoSetupSearch,
+    guid  = SETUP_SEARCH_GUID;
+
+  form formid = SEARCH_OPTION_ID,
+    title    = STRING_TOKEN(FORMSET_TITLE_SEARCH);
+
+    subtitle text = STRING_TOKEN(STR_EMPTY);
+
+    string  varid    = ByoSetupSearch.SearchInputData,
+            prompt   = STRING_TOKEN(INPUT_SEARCH_STRING),
+            help     = STRING_TOKEN(INPUT_SEARCH_STRING_HELP),
+            flags    = INTERACTIVE|RESET_REQUIRED,
+            key      = KEY_SEARCH_OPTION,
+            minsize  = 0,
+            maxsize  = 30,
+    endstring;
+
+    oneof  varid  = ByoSetupSearch.MatchingAlgorithm,
+           questionid = KEY_SEARCH_ALGORITHM,
+           prompt = STRING_TOKEN(SEARCH_MATCHING_ALGORITHM),
+           help   = STRING_TOKEN(SEARCH_MATCHING_ALGORITHM_HELP),
+           flags  = INTERACTIVE,
+           option text = STRING_TOKEN(MATCHING_ALGORITHM_ANY), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+           option text = STRING_TOKEN(MATCHING_ALGORITHM_FIRST),  value = 1, flags = RESET_REQUIRED;
+           option text = STRING_TOKEN(MATCHING_ALGORITHM_FINAL),  value = 2, flags = RESET_REQUIRED;
+    endoneof;
+
+    subtitle text = STRING_TOKEN(STR_EMPTY);
+
+    label LABEL_UPDATE_SEARCH_FORM;
+    label LABEL_END;
+
+    subtitle text = STRING_TOKEN(STR_EMPTY);
+    subtitle text = STRING_TOKEN(INPUT_SEARCH_NOT_OPTIONAL);
+
+    label LABEL_UPDATE_UNOPTIONAL_SEARCH_FORM;
+    label LABEL_UNOPTIONAL_END;
+
+  endform;
+
+endformset;

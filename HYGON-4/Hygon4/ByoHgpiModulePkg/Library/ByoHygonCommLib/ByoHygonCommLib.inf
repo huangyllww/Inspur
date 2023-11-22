@@ -1,0 +1,50 @@
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = ByoHygonCommLib
+  FILE_GUID                      = 9B30ABEC-5562-4635-A904-DFA5B930418A
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = ByoHygonCommLib
+
+
+#
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           = IA32 X64 IPF EBC
+#
+
+[Sources]
+  ByoHygonCommLib.c
+
+
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  ByoModulePkg/ByoModulePkg.dec
+  ByoHgpiModulePkg/ByoHgpiModulePkg.dec
+  HgpiModulePkg/Fch/FchTaishan.dec
+  HgpiModulePkg/HgpiCommonModulePkg.dec
+  
+
+[LibraryClasses]
+  IoLib
+  BaseLib
+  DebugLib
+  HygonSocBaseLib
+
+[Guids]
+
+
+
+[Protocols]
+
+
+[Pcd]
+  gEfiMdePkgTokenSpaceGuid.PcdPciExpressBaseAddress
+  gEfiByoModulePkgTokenSpaceGuid.AcpiIoPortBaseAddress
+
+
+
+

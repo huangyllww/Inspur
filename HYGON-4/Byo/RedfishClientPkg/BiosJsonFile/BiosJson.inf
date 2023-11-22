@@ -1,0 +1,30 @@
+## @file
+#  BIOS Json
+#  Copyright (c) 2022, Byosoft Corporation. All rights reserved.<BR>
+#
+#  This software and associated documentation (if any)
+#  is furnished under a license and may only be used or copied in
+#  accordance with the terms of the license. Except as permitted by such
+#  license, no part of this software or documentation may be reproduced,
+#  stored in a retrieval system, or transmitted in any form or by any
+#  means without the express written consent of Byosoft Corporation.
+#
+#
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = BiosJson
+  FILE_GUID                      = 79641365-2DE1-4DE9-AFB1-AF1A5FADD674
+  MODULE_TYPE                    = USER_DEFINED
+  VERSION_STRING                 = 1.0
+
+#
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           = IA32 X64 EBC ARM AARCH64 RISCV64
+#
+
+[Binaries]
+  BIN|BiosCurrentSetting.json|*
+  BIN|BiosAttributeRegistry.json|*

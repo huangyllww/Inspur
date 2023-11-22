@@ -1,0 +1,60 @@
+// *++
+//
+// Copyright (c) 2009 Intel Corporation. All rights reserved
+// This software and associated documentation (if any) is furnished
+// under a license and may only be used or copied in accordance
+// with the terms of the license. Except as permitted by such
+// license, no part of this software or documentation may be
+// reproduced, stored in a retrieval system, or transmitted in any
+// form or by any means without the express written consent of
+// Intel Corporation.
+// 
+// 
+// Module Name:
+//
+//   UqiList.uni
+// 
+// Abstract:
+// 
+//   UQI (Universal Question Identifier) allocation for setup options.
+//
+// --*/
+
+/=#
+
+//----------------------------------------------------------------------------
+//
+//   Purpose: The translations in this file are intended to be globally
+//   consistent.  All products should use the same translation for the
+//   same functional question.
+//
+//   Usage:
+//
+//   1. DO NOT OVERRIDE THIS FILE!
+//      The translations in this file should be globally consistent across
+//      all of our products.
+//
+//   2. Never delete tokens from this file
+//
+//   3. When adding a new question:
+//
+//      * Always do a thorough check of the tokens below to determine if
+//        a question is already represented.  This is important, because
+//        we want to generate scripts based on these tokens which will
+//        work on our entire product line.
+//
+//      * Always choose the first available new token number for your
+//        new token.  Do not worry about "grouping" your questions
+//        together.  That goal will only make it more difficult to manage
+//        the token numbering.  Always add your new token to the correct
+//        place to preserve numerical ordering.  This makes it easy to
+//        determine which token should be used next.
+//
+//----------------------------------------------------------------------------
+
+#langdef uqi "uqi"
+//
+// Keep in numerical order to prevent token reuse
+//
+//
+#string STR_PLATID_PROMPT             #language uqi  "\x0001"

@@ -1,0 +1,72 @@
+#
+# This file contains a 'Sample Driver' and is licensed as such
+# under the terms of your license agreement with Byosoft or your
+# vendor.  This file may be modified by the user, subject to
+# the additional terms of the license agreement
+#
+## @file
+#  JpegDecoder module provides JpegDecoder to support JPG image.
+#
+#  JPG image resolution can't exceed the video resolution specified
+#  in the current graphic output mode. And, JPG image format must be
+#  JPG File Interchange Format (JFIF). This format is mentioned in UEFI.
+#
+#  Caution: This module requires additional review when modified.
+#  This module will have external input - JPG image.
+#  This external input must be validated carefully to avoid security issue like
+#  buffer overflow, integer overflow.
+#
+# Copyright (c) 1999 - 2022, Byosoft Corporation. All rights reserved.<BR>
+# This software and associated documentation (if any)
+# is furnished under a license and may only be used or copied in
+# accordance with the terms of the license. Except as permitted by such
+# license, no part of this software or documentation may be reproduced,
+# stored in a retrieval system, or transmitted in any form or by any
+# means without the express written consent of Byosoft Corporation.
+##
+
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = JpegDecoderDxe
+  FILE_GUID                      = 2707E46D-DBD7-41c2-9C04-C9FDB8BAD86C
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = JpegDecoderInstall
+
+#
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           = IA32 X64 IPF EBC
+#
+
+[Sources]
+  JpegDecoder.c
+  JfifDecode.c
+  JfifDecode.h
+  McuDecode.c
+  McuDecode.h
+
+[Packages]
+  MdePkg/MdePkg.dec
+  ByoModulePkg/ByoModulePkg.dec
+
+[LibraryClasses]
+  MemoryAllocationLib
+  UefiBootServicesTableLib
+  BaseMemoryLib
+  DebugLib
+  UefiDriverEntryPoint
+  UefiLib
+  BaseLib
+
+[Protocols]
+  gEfiJpegDecoderProtocolGuid           ## PRODUCES
+  gEfiHiiImageDecoderProtocolGuid       ## PRODUCES
+  gEfiGraphicsOutputProtocolGuid        ## CONSUMES
+
+[Guids]
+  gEfiHiiImageDecoderNameJpegGuid       ## UNDEFINED
+
+[Depex]
+  TRUE

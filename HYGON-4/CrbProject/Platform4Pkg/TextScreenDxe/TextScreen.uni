@@ -1,0 +1,39 @@
+///*++
+//Copyright (c) 2006 Byosoft Corporation. All rights reserved.
+//This software and associated documentation (if any) is furnished
+//under a license and may only be used or copied in accordance
+//with the terms of the license. Except as permitted by such
+//license, no part of this software or documentation may be
+//reproduced, stored in a retrieval system, or transmitted in any
+//form or by any means without the express written consent of
+//Byosoft Corporation.
+//
+//Module Name:
+//
+//  TextScreen.uni
+//
+//Abstract:
+//
+//--*/
+/=#
+#langdef   en-US "English"
+#langdef   zh-Hans "\wide中文\narrow"
+
+#string STR_BIOS_VERSION_DATE                  #language en-US "BIOS Version and Date"
+                                               #language zh-Hans "BIOS \wide版本和日期\narrow"
+#string STR_BMC_IP                             #language en-US "BMC IP Address"
+                                               #language zh-Hans "BMC IP\wide地址\narrow"
+#string STR_BMC_IP_INVALID                     #language en-US   "Invalid"
+                                               #language zh-Hans "\wide无效\narrow"                                               
+#string STR_BMC_VERSION                        #language en-US "BMC Version"
+                                               #language zh-Hans "BMC \wide版本\narrow"
+#string STR_CPU_INFO                           #language en-US "CPU Info"
+                                               #language zh-Hans "CPU \wide信息\narrow"  
+#string STR_SYS_MEMORY                         #language en-US   "System Memory"
+                                               #language zh-Hans "\wide系统内存\narrow"
+#string STR_KEY_CONTINUE                       #language en-US   "Press ENTER key to continue..."
+                                               #language zh-Hans "\wide按回车键继续\narrow..."
+#string STR_MIXED_DIMM                         #language en-US   "Mixed Dimm"
+                                               #language zh-Hans "\wide混杂内存\narrow"
+#string STR_TOTAL                              #language en-US   "Total"
+                                               #language zh-Hans "\wide共有\narrow"

@@ -1,0 +1,71 @@
+﻿///** @file
+//
+// Copyright (c) 2007 - 2022, Byosoft Corporation.<BR>
+// 
+// All rights reserved.This software and associated documentation (if any)
+// is furnished under a license and may only be used or copied in
+// accordance with the terms of the license. Except as permitted by such
+// license, no part of this software or documentation may be reproduced,
+// stored in a retrieval system, or transmitted in any form or by any
+// means without the express written consent of Byosoft Corporation.
+// 
+// Module Name:
+//
+//   FileExplorerString.uni
+// 
+// Abstract:
+// 
+//   String definitions for file explorer library.
+// 
+// Revision History:
+// 
+// --*/
+/=#
+
+#langdef   en-US "English"
+#langdef   zh-Hans "\wide中文\narrow"
+
+#string STR_NULL_STRING                #language en-US    ""
+                                       #language zh-Hans  ""
+#string STR_FILE_EXPLORER_FORM_TITLE   #language en-US    "File Explorer"
+                                       #language zh-Hans  "\wide文件浏览\narrow"                                       
+#string STR_NEW_FILE                   #language en-US  "***NEW FILE***"
+                                       #language zh-Hans  "***\wide新文件\narrow***"
+#string STR_NEW_FILE_HELP              #language en-US  "This menu used to create a new file in current directory, jump to next page to name the new file"
+                                       #language zh-Hans  "\wide此菜单用于在当前目录中创建新文件，跳转到下一页以命名新文件\narrow"
+#string STR_ADD_NEW_FILE_TITLE         #language en-US  "Create a new file"
+                                       #language zh-Hans  "\wide创建一个新文件\narrow"
+#string STR_ADD_NEW_FOLDER_TITLE       #language en-US  "Create a new folder"
+                                       #language zh-Hans  "\wide创建一个新文件夹\narrow"
+#string STR_NEW_FILE_NAME_PROMPT       #language en-US  "File Name"
+                                       #language zh-Hans  "\wide文件名称\narrow"
+#string STR_NEW_FILE_NAME_HELP         #language en-US  "Please input a name for the new file"
+                                       #language zh-Hans  "\wide请输入新文件的名称\narrow"
+#string STR_CREATE_FILE_AND_EXIT       #language en-US  "Create File and Exit"
+                                       #language zh-Hans  "\wide创建文件并退出\narrow"
+#string STR_NO_CREATE_FILE_AND_EXIT    #language en-US  "Discard Create and Exit"
+                                       #language zh-Hans  "\wide放弃创建并退出\narrow"
+#string STR_NEW_FOLDER                 #language en-US  "***NEW FOLDER***"
+                                       #language zh-Hans  "***\wide新文件夹\narrow***"
+#string STR_NEW_FOLDER_HELP            #language en-US  "This menu used to create a new folder in current directory, jump to next page to name the new folder"
+                                       #language zh-Hans  "\wide此菜单用于在当前目录中创建新文件夹，跳转到下一页以命名新文件夹\narrow"
+#string STR_NEW_FOLDER_NAME_PROMPT     #language en-US  "Folder Name"
+                                       #language zh-Hans  "\wide文件夹名称\narrow"
+#string STR_NEW_FOLDER_NAME_HELP       #language en-US  "Please input a name for the new folder"
+                                       #language zh-Hans  "\wide请输入新文件夹的名称\narrow"
+#string STR_CREATE_FOLDER_AND_EXIT     #language en-US  "Create Folder and Exit"
+                                       #language zh-Hans  "\wide创建文件夹并退出\narrow"
+#string STR_NO_CREATE_FOLDER_AND_EXIT  #language en-US  "Discard Create and Exit"
+                                       #language zh-Hans  "\wide放弃创建并退出\narrow"
+                                       
+                                       
+#string STR_CHOICE_FILE                #language en-US    "Choice File:"                                     
+                                       #language zh-Hans  "\wide选择文件\narrow:"                    
+                                       
+#string STR_FILE_EXPLORER_FS_MISSING   #language en-US    "File System Missing !"
+                                       #language zh-Hans  "\wide文件系统丢失\narrow!"                                       
+                                       
+                                       
+                                       
+                                       
+                                       

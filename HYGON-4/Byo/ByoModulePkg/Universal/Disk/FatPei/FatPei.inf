@@ -1,0 +1,94 @@
+## @file
+#    Lite Fat driver only used in Pei Phase.
+#
+#  Copyright (c) 2006 - 2022, Byosoft Corporation. All rights reserved.<BR>
+#
+# This software and associated documentation (if any)
+# is furnished under a license and may only be used or copied in
+# accordance with the terms of the license. Except as permitted by such
+# license, no part of this software or documentation may be reproduced,
+# stored in a retrieval system, or transmitted in any form or by any
+# means without the express written consent of Byosoft Corporation.
+
+#
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = FatPei
+  MODULE_UNI_FILE                = FatPei.uni
+  FILE_GUID                      = 2DE6984F-76A0-4D5C-FFFF-FFFF38E48E8D
+  MODULE_TYPE                    = PEIM
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = FatPeimEntry
+
+#
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           = IA32 X64 EBC
+#
+
+[Sources]
+  Mbr.c
+  Gpt.c
+# Eltorito.c
+  Part.c
+  FatLiteApi.c
+  FatLiteLib.c
+  FatLiteAccess.c
+  FatLiteApi.h
+  FatLitePeim.h
+  FatLiteFmt.h
+  SignVerify.c
+
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  ByoModulePkg/ByoModulePkg.dec
+  CryptoPkg/CryptoPkg.dec
+
+[LibraryClasses]
+  PcdLib
+  BaseMemoryLib
+  MemoryAllocationLib
+  PeimEntryPoint
+  BaseLib
+  DebugLib
+  PeiServicesTablePointerLib
+  PeiServicesLib
+  PrintLib
+  BiosIdLib
+  ByoCommLib
+  BaseCryptLib
+  HobLib
+  ByoBiosSignInfoLib
+
+[Guids]
+  gRecoveryOnFatUsbDiskGuid                   ## SOMETIMES_CONSUMES   ## UNDEFINED
+  gRecoveryOnFatIdeDiskGuid                   ## SOMETIMES_CONSUMES   ## UNDEFINED
+  gRecoveryOnFatFloppyDiskGuid                ## SOMETIMES_CONSUMES   ## UNDEFINED
+  gRecoveryOnFatNvmeDiskGuid                  ## SOMETIMES_CONSUMES   ## UNDEFINED
+  gEfiPartTypeUnusedGuid                      ## SOMETIMES_CONSUMES   ## UNDEFINED
+  gByoBiosSignPubKeyFileGuid
+
+
+[Ppis]
+  gEfiPeiVirtualBlockIoPpiGuid                  ## SOMETIMES_CONSUMES PPI_NOTIFY
+  gEfiPeiVirtualBlockIo2PpiGuid                 ## SOMETIMES_CONSUMES PPI_NOTIFY
+  gEfiPeiDeviceRecoveryModulePpiGuid            ## SOMETIMES_PRODUCES
+  gByoBiosSignVerifyPpiGuid
+  
+[Pcd]
+  gEfiByoModulePkgTokenSpaceGuid.PcdBiosFileExt
+  gEfiByoModulePkgTokenSpaceGuid.PcdBiosRecoveryFileName
+  gEfiByoModulePkgTokenSpaceGuid.PcdFlashAreaSize
+  gEfiByoModulePkgTokenSpaceGuid.PcdByoSecureFlashSupport
+  gEfiByoModulePkgTokenSpaceGuid.PcdFlashAreaBaseAddress
+  gEfiByoModulePkgTokenSpaceGuid.PcdFlashFvRecoveryBackUpBase
+
+[Depex]
+  gEfiPeiMemoryDiscoveredPpiGuid AND gEfiPeiBootInRecoveryModePpiGuid
+
+[UserExtensions.TianoCore."ExtraFiles"]
+  FatPeiExtra.uni

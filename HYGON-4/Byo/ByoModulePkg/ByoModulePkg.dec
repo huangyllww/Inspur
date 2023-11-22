@@ -1,0 +1,946 @@
+## @file
+# EFI/PI Reference Module Package for All Architectures
+#
+# Copyright (c) 2006 - 2020, Byosoft Corporation.<BR>
+# All rights reserved.This software and associated documentation (if any)
+# is furnished under a license and may only be used or copied in
+# accordance with the terms of the license. Except as permitted by such
+# license, no part of this software or documentation may be reproduced,
+# stored in a retrieval system, or transmitted in any form or by any
+# means without the express written consent of Byosoft Corporation.
+#
+#   File Name:
+#   ByoModulePkg.dec
+#
+#   Abstract:
+#   ByoSoft Core Module Package Configuration File
+#
+##
+
+[Defines]
+  DEC_SPECIFICATION              = 0x00010005
+  PACKAGE_NAME                   = ByoModulePkg
+  PACKAGE_GUID                   = EFE1EC80-3C8C-4BA4-88D0-BB8974BA0506
+  PACKAGE_VERSION                = 0.1
+
+[Includes]
+  Include
+
+[LibraryClasses]
+  ##  @libraryclass    Provides platform specific display interface.
+  #
+  CustomizedDisplayLib|Include/Library/CustomizedDisplayLib.h
+
+  ByoRtcLib|Include/Library/ByoRtcLib.h
+
+  StatusCodeBeepLib|Include/Library/StatusCodeBeepLib.h
+
+  PostCodeMapLib|Include/Library/PostCodeMapLib.h
+
+  TpmPlatformHierarchyLib|Include/Library/TpmPlatformHierarchyLib.h
+  
+  BiosIdLib|Include/Library/BiosIdLib.h
+  TMIoLib|Include/Library/TMIoLib.h
+  ByoBiosSignInfoLib|Include/Library/ByoBiosSignInfoLib.h
+  ByoBootManagerLib|Include/Library/ByoBootManagerLib.h
+  ByoCommLib|Include/Library/ByoCommLib.h
+  ByoUefiBootManagerLib|Include/Library/ByoUefiBootManagerLib.h
+  MultiPlatSupportLib|Include/Library/MultiPlatSupportLib.h
+  OpalPasswordSupportLib|Include/Library/OpalPasswordSupportLib.h
+  PlatformLanguageLib|Include/Library/PlatformLanguageLib.h
+  SafeMemLib|Include/Library/SafeMemLib.h
+  SafePrintLib|Include/Library/SafePrintLib.h
+  SecureBootRestoreLib|Include/Library/SecureBootRestoreLib.h
+  SetMemAttributeSmmLib|Include/Library/SetMemAttributeSmmLib.h
+  SetupUiLib|Include/Library/SetupUiLib.h
+  SpiDeviceLib|Include/Library/SpiDeviceLib.h
+  SystemPasswordLib|Include/Library/SystemPasswordLib.h
+  TcmCommLib|Include/Library/TcmCommLib.h
+  UefiVariableDefaultHobLib|Include/Library/UefiVariableDefaultHobLib.h
+  UefiVariableHelperLib|Include/Library/UefiVariableHelperLib.h
+  PlatformPciListFilterLib|Include/Library/PlatformPciListFilterLib.h
+  UsbListLib|Include/Library/UsbListLib.h
+[Guids]
+  gByoEarlyGopInforGuid = { 0xc29638b, 0x84c0, 0x4859, {0xbd, 0x87, 0x25, 0x55, 0xa2, 0xc9, 0xd6, 0x0 }}
+
+  # GUID for Password Network Auth Configuration
+  gByoPasswordNetworkAuthConfigGuid   = { 0xa4ab7812, 0xf4c6, 0x4652, { 0xad, 0x67, 0x73, 0x14, 0x10, 0x87, 0x5c, 0x7e }}
+
+  #GUID for Record Hdd Password Info after Security Enable(& Security Unlocked). 
+  gEfiHddPasswordEnableUnlockVariableGuid    = {0x50c0a256, 0xca99, 0x4115, { 0xa4, 0x2b, 0xa7, 0x95, 0xf9, 0xd7, 0xde, 0x87 }}
+  # GUID for HdpHashCfg Variable
+  gHddPasswordHashConfigGuid         = { 0x94968103, 0x3329, 0x4191, { 0xbf, 0x1e, 0x8f, 0x1, 0x75, 0xef, 0x87, 0xfa } }
+
+  gEfiSecureBootDefaultKey           = { 0x8f5142ee, 0x2933, 0x4336, { 0xbd, 0xc6, 0xfa, 0x64, 0x79, 0xca, 0x5a, 0x64 } }
+  #
+  # GUID for TempPlatformLang Variable
+  #
+  gTempPlatformLangVarGuid     = { 0x2e8b4ecc, 0xa333, 0x4c2c, { 0xbb, 0x91, 0x32, 0x21, 0xda, 0xbb, 0x1a, 0x20 }}
+
+  ## ByoModule package token space guid
+  gEfiByoModulePkgTokenSpaceGuid       = { 0x66F5976C, 0xFDA1, 0x4C50, { 0x8C, 0x94, 0x9B, 0xF2, 0x51, 0x8F, 0x21, 0xFF }}
+  ## HDD password variable guid
+  # Include/Guid/HddPasswordSecurityVariable.h
+  gEfiHddPasswordSecurityVariableGuid = { 0x5e22f4e2, 0x35ea, 0x421b, { 0x8f, 0xd1, 0xd4, 0xae, 0x85, 0x67, 0xa4, 0x51 }}
+
+  gByoSetupItemsDBGuid            = { 0xcee2ff3a, 0xa442, 0x4cb0, { 0xb9, 0x2d, 0xd4, 0xcd, 0xd2, 0x3f, 0x56, 0xaa}}
+
+
+  ## Include/Guid/RecoveryDevice.h
+  gRecoveryOnFatUsbDiskGuid          = { 0x0FFBCE19, 0x324C, 0x4690, { 0xA0, 0x09, 0x98, 0xC6, 0xAE, 0x2E, 0xB1, 0x86 }}
+
+  ## Include/Guid/RecoveryDevice.h
+  gRecoveryOnFatIdeDiskGuid          = { 0xB38573B6, 0x6200, 0x4AC5, { 0xB5, 0x1D, 0x82, 0xE6, 0x59, 0x38, 0xD7, 0x83 }}
+
+  ## Include/Guid/RecoveryDevice.h
+  gRecoveryOnFatFloppyDiskGuid       = { 0x2E3D2E75, 0x9B2E, 0x412D, { 0xB4, 0xB1, 0x70, 0x41, 0x6B, 0x87, 0x00, 0xFF }}
+
+  ## Include/Guid/RecoveryDevice.h
+  gRecoveryOnDataCdGuid              = { 0x5CAC0099, 0x0DC9, 0x48E5, { 0x80, 0x68, 0xBB, 0x95, 0xF5, 0x40, 0x0A, 0x9F }}
+
+  ## Include/Guid/CapsuleRecord.h
+  gRecoveryCapsuleRecordGuid = { 0x6260A830, 0x4A50, 0x43E7, { 0xFF, 0xFF, 0xFF, 0xFF, 0x65, 0x25, 0x09, 0x14 }}
+
+  ## Include/Guid/TcmEventHob.h
+  gTcmEventEntryHobGuid      = {0x62186492, 0x30bc, 0x421a, {0xa5, 0x71, 0x82, 0xe4, 0xeb, 0x7, 0xfb, 0x7 }}
+
+  ## Include/Guid/TcmSetupCfgGuid.h
+  gTcmSetupConfigGuid = {0x9849bbe5, 0x5fb9, 0x4d55, {0xa2, 0xd3, 0xe4, 0x1e, 0x1b, 0xfe, 0x3c, 0x68}}
+
+  # Formset guid defined in platform setup.
+  gByoGlobalVariableGuid        = {0x97bf7a1b, 0x2ed2, 0x4f68, { 0x8f, 0xe0, 0x91, 0xf5, 0xbb, 0x6d, 0xeb, 0x15 }}  
+  gEfiMainByoFormsetGuid        = {0x985eee91, 0xbcac, 0x4238, { 0x87, 0x78, 0x57, 0xef, 0xdc, 0x93, 0xf2, 0x4e }}
+  gEfiAdvanceByoFormsetGuid     = {0xe14f04fa, 0x8706, 0x4353, { 0x92, 0xf2, 0x9c, 0x24, 0x24, 0x74, 0x6f, 0x9f }}
+  gEfiChipsetByoFormsetGuid     = {0xadfe34c8, 0x9ae1, 0x4f8f, { 0xbe, 0x13, 0xcf, 0x96, 0xa2, 0xcb, 0x2c, 0x5b }}
+  gEfiServerMgmtByoFormsetGuid  = {0xbb651963, 0xe710, 0x4006, { 0xb3, 0xef, 0xdc, 0x53, 0x60, 0x0a, 0x17, 0x5c }}
+  gEfiSecurityByoFormsetGuid    = {0x981ceaee, 0x931c, 0x4a17, { 0xb9, 0xc8, 0x66, 0xc7, 0xbc, 0xfd, 0x77, 0xe1 }}
+  gEfiExitByoFormsetGuid        = {0xa43b03dc, 0xc18a, 0x41b1, { 0x91, 0xc8, 0x3f, 0xf9, 0xaa, 0xa2, 0x57, 0x13 }}
+  gEfiPowerByoFormsetGuid          = {0x5b5eb989, 0x4702, 0x47c5, { 0xbb, 0xe0, 0x04, 0xb9, 0x99, 0xf6, 0x02, 0x1e }}
+  gPlatformSetupVariableGuid      = { 0xec87d643, 0xeba4, 0x4bb5, { 0xa1, 0xe5, 0x3f, 0x3e, 0x36, 0xb2, 0x0d, 0xa9 }}  
+  gPlatformTokenSpaceGuid        = { 0x07dfa0d2, 0x2ac5, 0x4cab, { 0xac, 0x14, 0x30, 0x5c, 0x62, 0x48, 0x87, 0xe4 } }
+
+  gEfiFormsetGuidMain           = {0x985eee91, 0xbcac, 0x4238, { 0x87, 0x78, 0x57, 0xef, 0xdc, 0x93, 0xf2, 0x4e }}
+  gEfiFormsetGuidAdvance        = {0xe14f04fa, 0x8706, 0x4353, { 0x92, 0xf2, 0x9c, 0x24, 0x24, 0x74, 0x6f, 0x9f }}
+  gEfiFormsetGuidDevices        = {0xadfe34c8, 0x9ae1, 0x4f8f, { 0xbe, 0x13, 0xcf, 0x96, 0xa2, 0xcb, 0x2c, 0x5b }}
+  gEfiFormsetGuidPower          = {0x5b5eb989, 0x4702, 0x47c5, { 0xbb, 0xe0, 0x04, 0xb9, 0x99, 0xf6, 0x02, 0x1e }}    
+  gEfiFormsetGuidBoot           = {0xff5f25d, 0x2804, 0x462a, { 0xa1, 0xd3, 0x32, 0x70, 0x5e, 0x6f, 0xb9, 0x25 }}
+  gEfiFormsetGuidSecurity       = {0x981ceaee, 0x931c, 0x4a17, { 0xb9, 0xc8, 0x66, 0xc7, 0xbc, 0xfd, 0x77, 0xe1 }}
+  gEfiFormsetGuidExit           = {0xa43b03dc, 0xc18a, 0x41b1, { 0x91, 0xc8, 0x3f, 0xf9, 0xaa, 0xa2, 0x57, 0x13 }}
+  gEfiFormsetGuidSearch         = {0xc4ce5982, 0x3f24, 0x9a1b, { 0x89, 0xf9, 0xb5, 0xf0, 0x77, 0xab, 0x0d, 0xd8 }}
+  gEfiBootByoFormsetGuid        = {0x642237c7, 0x35d4, 0x472d, { 0x83, 0x65, 0x12, 0xe0, 0xcc, 0xf2, 0x7a, 0x22 }}
+  gAppMenuFileGuid              = {0xf95bcd2e, 0x281c, 0x4564, { 0xa0, 0x8, 0xd9, 0xde, 0xd0, 0x5e, 0x6b, 0xc9  }}
+  gEfiSystemPasswordVariableGuid   = { 0x7d925a5d, 0x90c2, 0x4c85, { 0x90, 0x6d, 0x1, 0x3f, 0x56, 0x5e, 0x33, 0xee }}
+  gEfiFlashLockStatusVariableGuid = {0x1689a7c4, 0x353c, 0x4be2, {0xcc, 0xaf, 0x80, 0x6b, 0xed, 0x27, 0xb0, 0x4d}}
+
+  gEfiIfrFrontPageGuid            = { 0xe58809f8, 0xfbc1, 0x48e2, { 0x88, 0x3a, 0xa3, 0xf, 0xdc, 0x4b, 0x44, 0x1e } }
+  gEfiIfrByoBootUiPageGuid        = { 0xd6fc2e65, 0xbd6c, 0x4b79, { 0x9f, 0xfc, 0xd, 0x15, 0x36, 0x4e, 0x7, 0x73 } }
+  # {D7EDC7D9-5A9A-43DD-BE2B-C48FE840B4A7}
+  gIfrByoSecurityUiPageGuid       = { 0xd7edc7d9, 0x5a9a, 0x43dd, { 0xbe, 0x2b, 0xc4, 0x8f, 0xe8, 0x40, 0xb4, 0xa7 }}
+  # {E13513EE-84C7-475F-82D3-ADFFFD4DB06F}
+  gIfrByoDevicesUiPageGuid        = { 0xe13513ee, 0x84c7, 0x475f, { 0x82, 0xd3, 0xad, 0xff, 0xfd, 0x4d, 0xb0, 0x6f }}
+  # {AA0B824F-D457-4277-8719-A6D7FD60ED38}
+  gIfrByoHideUiPageGuid           = { 0xaa0b824f, 0xd457, 0x4277, { 0x87, 0x19, 0xa6, 0xd7, 0xfd, 0x60, 0xed, 0x38 }}
+  gIfrByoRedfishUiPageGuid        = { 0xfdb62c83, 0xba16, 0x482e, { 0xae, 0x27, 0x25, 0xe6, 0xa3, 0xb3, 0xa5, 0xea }}
+
+  # trigger a Event when user run byo formset manager.
+  gEfiSetupEnterGuid              = { 0x71202EEE, 0x5F53, 0x40d9, { 0xAB, 0x3D, 0x9E, 0x0C, 0x26, 0xD9, 0x66, 0x57 }}  
+
+  ## This is used as the GUID of BIOS ID file
+  gEfiBiosIdGuid                  = { 0xC3E36D09, 0x8294, 0x4b97, { 0xA8, 0x57, 0xD5, 0x28, 0x8F, 0xE3, 0x3E, 0x28 } }
+  
+  gSetupFileGuid                  = {0x462CAA21, 0x7614, 0x4503, {0x83, 0x6E, 0x8A, 0xB6, 0xF4, 0x66, 0x23, 0x31}}
+  
+  gBootMenuFileGuid               = {0xEEC25BDC, 0x67F2, 0x4D95, {0xB1, 0xD5, 0xF8, 0x1B, 0x20, 0x39, 0xD1, 0x1D}}
+  
+  
+  gPxeBootAppGuid                 = {0x80af95d2, 0xa9bc, 0x41ee, { 0x95, 0x18, 0x1c, 0xa7, 0xf9, 0xf7, 0x85, 0x8c }}
+  
+  gBiosIdHobGuid                  = { 0xd8700d55, 0x25e0, 0x4b19, { 0x80, 0x8a, 0xcf, 0xae, 0x32, 0xaf, 0xaa, 0x27 }}
+  
+  gByoSysCfgAndStsHobGuid         = { 0x44e6857f, 0xb1da, 0x470c, { 0x98, 0xb5, 0xc0, 0xe1, 0x2a, 0x1f, 0x85, 0x5d }}
+  
+  gByoCsmOnDpxGuid                = { 0xda811085, 0x3dcd, 0x4c51, { 0xbf, 0x60, 0x36, 0x64, 0x0b, 0x30, 0x49, 0xe6 }}
+  gByoCsmOffDpxGuid               = { 0x63cef4a6, 0xf865, 0x442d, { 0x80, 0xe1, 0x88, 0xa7, 0x26, 0xa8, 0x8e, 0x54 }}
+  
+  gByoPciIdDataFileGuid           = { 0x0951ca8d, 0x9fe7, 0x45ee, { 0xa6, 0xeb, 0xc3, 0xbc, 0x70, 0x10, 0xf7, 0x0f }}
+  
+  gByoUosDbKeyFileGuid            = { 0xb4e606d1, 0x4d39, 0x41cd, { 0x8d, 0x7c, 0x46, 0xf6, 0x1d, 0xcd, 0x7a, 0x7c }}
+  
+  gByoOemDbKeyFileGuid            = { 0x55706e13, 0x8fed, 0x4504, { 0x95, 0x72, 0x51, 0xf9, 0x13, 0xc0, 0xfb, 0x38 } }
+
+  gByoKylinDbKeyFileGuid          = { 0x43395dfa, 0x5920, 0x8a16, { 0xdf, 0x62, 0xb5, 0xb1, 0xbc, 0x24, 0xf1, 0x80 }}
+
+  gEfiTscFrequencyGuid            = { 0xdba6a7e3, 0xbb57, 0x4be7, { 0x8a, 0xf8, 0xd5, 0x78, 0xdb, 0x7e, 0x56, 0x87 }}  
+
+  gByoTpmDeviceInstanceTpm20HgfTpmGuid = { 0xfb326ae2, 0x4d25, 0x45e3, { 0xae, 0xd8, 0xc1, 0xa6, 0x6a, 0xba, 0xf9, 0x16 } }
+
+
+  gEfiFrb2WatchDogNotifyGuid       = { 0x2fa8d4ec, 0x6761, 0x4fd7, { 0xad, 0x8e, 0xc3, 0x8d, 0xef, 0x3a, 0x8f, 0x23 } }
+  gEfiFrb2WatchDogResetNotifyGuid =  { 0x2e22cde5, 0xbc7e, 0x41bf, { 0x82, 0xfb, 0x65, 0x0b, 0x61, 0xde, 0xce, 0xdb } }
+  gSignCapsuleHeaderGuild    = {0x8a841796, 0x27f1, 0x4045, { 0xb1, 0x5b, 0xd5, 0x60, 0xdd, 0xdc, 0xe3, 0xd8 }}
+
+  gEfiTpmDeviceInstanceTpm20ArmSpiDtpmGuid = { 0x6861f4e9, 0xc8b1, 0x4041, { 0x9a, 0xe4, 0xf7, 0x59, 0x2d, 0x33, 0x0b, 0x2d } }
+  gHddPasswordConfigGuid     = {0xd5fd1546, 0x22c5, 0x4c2e, { 0x96, 0x9f, 0x27, 0x3c, 0x0, 0x77, 0x10, 0x80 }}
+
+  gByoBiosSignPubKeyFileGuid      = { 0x8c3f0aa4, 0xa6dd, 0x463a, { 0xa8, 0x25, 0x19, 0xa0, 0x39, 0x87, 0x38, 0xca } }
+
+  gBiosInfoFileGuid = {0x02923561, 0xE750, 0x45b2, {0xA3, 0x91, 0x16, 0xD5, 0xF6, 0x82, 0x2D, 0x78}}
+  gEfiSetupExitGuid               = { 0xD6E335EC, 0x0336, 0x4CB1, { 0x87, 0xA2, 0xDA, 0x87, 0xD7, 0xE9, 0x99, 0x40 }}
+  
+  gByoSmiFlashModuleFileGuid      = {0x758631C0, 0xDA96, 0x4251, {0x85, 0xD2, 0x3A, 0x4F, 0x75, 0x41, 0xDA, 0xAE}}
+
+  gByoBiosCapsuleGuid             = { 0x8a841796, 0x27f1, 0x4045, { 0xb1, 0x5b, 0xd5, 0x60, 0xdd, 0xdc, 0xe3, 0xd8 }}
+  gByoIpmiBootMiscCfgVariableGuid = { 0x99BA5433, 0xDF5F, 0xA898, { 0xC8, 0xE0, 0x78, 0xB8, 0xBA, 0x55, 0xF2, 0x51 }}
+
+  gPciDevConfigDataVariableGuid   = { 0x10a314ac, 0xe42a, 0x4c8c, { 0x80, 0x7, 0x81, 0x7, 0xc1, 0xf0, 0xe1, 0x80 } }
+
+  gPreVarialeDefaultDataGuid = {0x17275f7b, 0x35d8, 0x45c6, { 0xbd, 0xd2, 0xf4, 0x9a, 0xe3, 0x95, 0x11, 0x72}}
+  gOpalSpStorageSignatureGuid = {0xad0a29f0, 0xe60c, 0x4dbb, {0x86, 0x8d, 0xed, 0xaf, 0xa2, 0xc4, 0xa8, 0xd9}}
+
+  # Gui Grid
+  gByoGridStartOpcodeGuid = { 0xb84e1a93, 0xb886, 0x432b, { 0xa5, 0xd9, 0xb8, 0xf5, 0x28, 0x21, 0x67, 0xdc } }
+  gByoGridEndOpcodeGuid   = { 0xb133741a, 0x5d07, 0x4ac1, { 0xa3, 0x0c, 0xc7, 0xd0, 0x5a, 0x23, 0x0d, 0xe5 } }
+
+  #
+  # GUID for L"DisabledGroupType" Variable
+  #
+  gByoDisableGroupTypeGuid = { 0xccdbc411, 0x3b37, 0x4a26, { 0x98, 0x87, 0xd6, 0xf7, 0x78, 0x15, 0x4b, 0xd6 } }
+
+  gByoUsbControllerGuid = { 0x70E12AC7, 0x04B9, 0xFFFE, { 0x44, 0x41, 0xCB, 0x5E, 0x99, 0xF6, 0x41, 0x0B }}
+
+  #GUID for BIOS integrity check
+  gObbSha256HashFileGuid = {0xf57757fc, 0x2603, 0x404f, {0xaa, 0xe2, 0x34, 0xc6, 0x23, 0x23, 0x88, 0xe8}}
+
+  gOSBackupRestoreFileGuid = {0x740e4dce, 0xf698, 0x4308, {0x94, 0xbf, 0xe2, 0x56, 0x4d, 0x1b, 0x7f, 0x77}}
+
+  gNetworkStackFvDpxGuid  = { 0x0dce7ec4, 0xb0fd, 0xe95c, { 0xf6, 0x11, 0x89, 0x08, 0x03, 0x5a, 0x5a, 0x60 }}
+[Protocols]
+  #Protocol GUID for Network Identifier Protocol
+  gByoNetworkIdentifierProtocolGuid     = { 0x1145c186, 0xe61b, 0x490a, { 0xb1, 0x8f, 0xe3, 0xf3, 0x9f, 0xa7, 0x53, 0xf }}
+
+  gByoSavePciDeviceConfigProtocolGuid  = { 0x41743a50, 0xe5db, 0x45cf, { 0xbf, 0xdb, 0x88, 0xb5, 0xd4, 0x2f, 0x20, 0x6b } }
+  ## Include/Protocol/ByoPlatformBootManager.h
+  gByoPlatformBootManagerProtocolGuid   = { 0x524c119, 0x6fe7, 0x4b24,  { 0x8d, 0x47, 0xbe, 0x37, 0xdc, 0xa7, 0x2a, 0x87 } }
+  gByoBeforeHotKeyBootProtocolGuid      = { 0xaa7cc0d6, 0x95ce, 0x490b, { 0x9e, 0xd9, 0x12, 0x47, 0x91, 0x5c, 0x27, 0x65 } }
+
+  ## Include/Protocol/DisplayProtocol.h
+  gEdkiiFormDisplayEngineProtocolGuid = { 0x9bbe29e9, 0xfda1, 0x41ec, { 0xad, 0x52, 0x45, 0x22, 0x13, 0x74, 0x2d, 0x2e } }
+
+  ## Include/Protocol/ByoFormSetManager.h
+  gEfiByoFormsetManagerProtocolGuid = { 0x65e4992f, 0xd77c, 0x494d, { 0x9a, 0xd1, 0x68, 0x77, 0x5b, 0xb9, 0x1a, 0xa1 } }
+
+  ## This protocol was used by legacy usb driver.
+  #  Include/Protocol/LegacyUsbInf.h
+  gEfiLegacyUsbInfProtocolGuid = { 0xc28ab52, 0xd2c8, 0x4009, {0xbb, 0x9, 0x98, 0xd5, 0xa2, 0x77, 0x32, 0xbd}}
+
+  #  Include/Protocol/LegacyUsbInf.h
+  gEfiUsbMouseCommunicationProtocolGuid = { 0xf34d1b7a, 0x990d, 0x40f6, { 0xab, 0xb4, 0xb4, 0x7, 0x8b, 0x1b, 0xcd, 0x4a } }
+
+  ## This protocol was used by legacy usb driver.
+  #  Include/Protocol/LegacyUsbInf.h
+  gUsbPolicyGuid = { 0xf617b358, 0x12cf, 0x414a, {0xa0, 0x69, 0x60, 0x67, 0x7b, 0xda, 0x13, 0xb4}}
+
+  gEfiByoPlatformSetupGuid = { 0xe37b667e, 0xbd0, 0x45b8, { 0xab, 0xf5, 0x7a, 0x8b, 0xc4, 0x7c, 0x8f, 0x8f } }
+
+  ## This is used as TCG INT 1Ah service protocol
+  ## Include/Protocol/TcgSmmInt1AReady.h
+  gTcgSmmInt1AReadyProtocolGuid   = { 0x41e8252a, 0x9859, 0x4584, { 0xa0, 0x83, 0x2b, 0x6,  0x3,  0x3b, 0x5,  0x5c } }
+
+  ## Include/Protocol/LegacyInterruptHandler.h
+  gEfiLegacyInterruptHandlerProtocolGuid         = { 0xd765bf98, 0x2f0b, 0x4e07, { 0xae, 0x77, 0x7e, 0x74, 0x1c, 0xb8, 0x9e, 0xff } }
+
+  ## Include/Protocol/TcmService.h
+  gEfiTcmProtocolGuid            = {0xf51d6c88, 0x60d4, 0x44be, {0x84, 0xdf, 0x50, 0xbc, 0xe7, 0x9b, 0x5a, 0xa5}}
+
+  ## Include/Protocol/SetupSaveNotify.h
+  gSetupSaveNotifyProtocolGuid   = {0xf49499cc, 0x867f, 0x47a8, {0x82, 0x11, 0x87, 0xb, 0xfb, 0xbe, 0x2d, 0xcd}}
+
+  ## Include/Protocol/JpegDecoder
+  gEfiJpegDecoderProtocolGuid    = {0xa9396a81, 0x6231, 0x4dd7, {0xbd, 0x9b, 0x2e, 0x6b, 0xf7, 0xec, 0x73, 0xc2}}
+
+  ## Include/Protocol/TcmSmmInt1AReady.h
+  gTcmSmmInt1AReadyProtocolGuid  = {0xea3bec1e, 0x9199, 0x4f2d, {0x8e, 0x3f, 0x9b, 0x75, 0x2e, 0x6c, 0x9b, 0x24}}
+
+  ## Include/Protocol/VirtualKbc.h
+  gEfiUsbVirtualKbcProtocolGuid            = {0x87d53dc2, 0x3e20, 0x459f, {0x88, 0x2d, 0x64, 0x34, 0x39, 0x44, 0x84, 0xb0}}
+
+  ## Include/Protocol/SystemPasswordProtocol.h
+  gEfiSystemPasswordProtocolGuid = { 0xa062211f, 0x7afd, 0x4724, { 0xba, 0xc7, 0xaf, 0x91, 0xbc, 0x7d, 0x8f, 0x6f }}
+
+  # Same as gBdsAllDriversConnectedProtocolGuid
+  gByoAllDriversConnectedProtocolGuid = { 0xdbc9fd21, 0xfad8, 0x45b0, { 0x9e, 0x78, 0x27, 0x15, 0x88, 0x67, 0xcc, 0x93 }}
+
+  ## Include/Protocol/LegacyOptionRomInfo.h
+  gLegacyOptionRomInfoProtocolGuid = { 0xeb1e3fd4, 0xb15f, 0x4870, { 0xac, 0x47, 0xa3, 0x18, 0x6f, 0x53, 0x1, 0x97 } }
+  
+  gBdsAllDriversConnectedProtocolGuid = { 0xdbc9fd21, 0xfad8, 0x45b0, { 0x9e, 0x78, 0x27, 0x15, 0x88, 0x67, 0xcc, 0x93 }}
+
+  ## Include/Library/SetupMouseProtocol.h
+  gEfiSetupMouseProtocolGuid = {0xa53d7284, 0xc9be, 0x4f8a, { 0xb6, 0x9e, 0x9a, 0xb7, 0x2d, 0x5f, 0x64, 0x36 }}
+
+  ##  Include/Protocol/SwSMIValuePolicyData.h
+  gSwSmiValuePolicyGuid = { 0xe443b5f7, 0x1cc1, 0x4e49, {0xa0, 0xe9, 0x42, 0x28, 0x1d, 0x61, 0x80, 0xc4}}  
+
+  ## Include/Protocol/FormBrowserEx.h
+  gEdkiiFormBrowserExProtocolGuid = { 0x1f73b18d, 0x4630, 0x43c1, { 0xa1, 0xde, 0x6f, 0x80, 0x85, 0x5d, 0x7d, 0xa4 } }
+
+  ## Include/Protocol/ByoFormBrowserEx.h
+  gEfiByoFormBrowserExProtocolGuid = { 0xcf49d6f3, 0x35bb, 0x488c, { 0x88, 0xab, 0x47, 0x0, 0x92, 0x2f, 0x3a, 0xc4 } }
+  
+  gSetupItemUpdateNotifyProtocolGuid = { 0xe4154cbf, 0xb17e, 0x44ec, { 0xa2, 0x33, 0x2c, 0xd7, 0xbf, 0xfc, 0xf7, 0x91 }}
+  
+  gPlatHostInfoProtocolGuid          = { 0x3e5bc54f, 0x7fed, 0x4ea1, { 0xb8, 0x56, 0x78, 0xb1, 0x03, 0x50, 0xb9, 0x7d }}
+
+gUefiBbsRelationProtocolGuid		 = { 0x3e5bc54f, 0x9fed, 0x4ea1, { 0xb8, 0x56, 0x88, 0xb1, 0x03, 0x50, 0xb9, 0x6d }}
+  gEfiBootManagerProtocolGuid        = { 0x4700ceff, 0x2fcb, 0x4c21, { 0x83, 0x93, 0xae, 0xc9, 0xa9, 0x05, 0xc0, 0x11 }}
+  
+  gPlatAfterConsoleStartProtocolGuid = { 0x322cff92, 0xcdf9, 0x4283, { 0xbe, 0xcc, 0xf6, 0x43, 0x8d, 0xd8, 0x6d, 0x3d }}
+  gPlatAfterConsoleEndProtocolGuid   = { 0x16c49e1b, 0x10fc, 0x4a67, { 0xb2, 0x3f, 0xf0, 0x0a, 0x6d, 0xe2, 0x04, 0x96 }}
+  gPlatBeforeBiosUpdateProtocolGuid  = { 0xde412a36, 0xf147, 0x4d5a, { 0xb8, 0x95, 0x2e, 0xb2, 0x4b, 0xa6, 0xd9, 0xa6 }}
+  gEfiBeforeConnectPciRootBridgeGuid = { 0xde3cab30, 0x31d4, 0x4729, { 0xbf, 0x4f, 0x26, 0x35, 0x3e, 0x31, 0xf1, 0x15 }}
+  gEfiAfterConnectPciRootBridgeGuid  = { 0x16d2270a, 0xbcb1, 0x4052, { 0xbd, 0x9d, 0x49, 0x9a, 0x73, 0x54, 0xf5, 0x6c }}
+  gEfiAfterAllPciIoGuid              = { 0x8e314b07, 0xe4d3, 0x414e, { 0x96, 0xfd, 0xfc, 0x02, 0x98, 0x8d, 0xe8, 0x59 }}
+  gEfiReadyToBootProtocolGuid        = { 0xedecbc6a, 0x58cd, 0x44bf, { 0x92, 0xbd, 0x4a, 0x36, 0xf1, 0x07, 0x88, 0x34 }}
+  gPlatBeforeExitPmAuthProtocolGuid  = { 0xeff525b2, 0x992e, 0x4a1f, { 0x90, 0xfd, 0xd7, 0xec, 0xba, 0xd8, 0xdb, 0x65 }}
+  gPlatCollectHiiResourceHookGuid    = { 0xe0c91f4a, 0x3b78, 0x42e9, { 0x90, 0xdf, 0xbf, 0x69, 0x60, 0x70, 0x3a, 0x1b }}
+  gPlatBeforeDefaultBootProtocolGuid = { 0x2c146054, 0xbc3b, 0x4113, { 0xb2, 0x69, 0x76, 0xa1, 0x7c, 0xcd, 0x05, 0x09 }}
+  gPlatBdsRecoveryStartProtocolGuid  = { 0x88b9608a, 0x4ecb, 0x4192, { 0x86, 0x86, 0x3b, 0xcb, 0x7b, 0x04, 0xe8, 0x42 }}
+  
+  gIsaAcpiDeviceListGuid             = { 0x51be9ea6, 0xc889, 0x4d00, {0xac, 0x22, 0xb4, 0x1, 0x9c, 0x69, 0x38, 0x52 }}
+  gEfiPnpSmbiosProtocolGuid          = { 0xb9b6f81f, 0xcd9e, 0x4f75, { 0xa0, 0xad, 0x95, 0x39, 0x2b, 0x2a, 0x67, 0x51 } }  
+  gByoSmiFlashProtocolGuid           = { 0x19fbb382, 0x5172, 0x4852, { 0xad, 0x24, 0xbf, 0xc1, 0x7d, 0x9a, 0x1e, 0xcb }}
+  
+  gPciPreprocessControllerHookProtocolGuid = { 0x797e0f4b, 0x3f1a, 0x4afd, { 0x9f, 0x32, 0x97, 0x22, 0x89, 0xb2, 0x6b, 0x6c }}
+  
+  gSaveHddPwdHookProtocolGuid        = { 0x36bf50fe, 0xe81e, 0x4bb6, { 0xa0, 0xa5, 0x98, 0x3f, 0xcc, 0x7f, 0xd3, 0xcc }}
+
+  gEnumLegacyBootOptionsHookGuid     = { 0x92031891, 0xc7f7, 0x42b8, { 0xa0, 0xb8, 0xc8, 0xfc, 0x93, 0x70, 0xba, 0x85 }}
+  
+  gAfterSetupSetConsoleModeHookGuid  = { 0xeb16ac3f, 0xf4c8, 0x40ce, { 0x96, 0xe4, 0x33, 0x77, 0xc7, 0x23, 0x31, 0x7d }}
+
+  gByoCustomStrProtocolGuid          = { 0x3b0af8f0, 0x967d, 0x4a40, { 0xab, 0xb5, 0x61, 0xa7, 0x68, 0xef, 0x04, 0xc7 } }
+  
+  gByoSmiFlashLockProtocolGuid       = { 0x032e7668, 0x45b8, 0x42ac, { 0x95, 0x24, 0x7c, 0xfe, 0x2e, 0xc6, 0xb5, 0x12 }}
+  
+  gByoCommSmiSvcProtocolGuid         = { 0x2a4944bc, 0xb6f3, 0x4de3, { 0xb4, 0xd0, 0x53, 0x74, 0x11, 0xd9, 0x37, 0xb1 }}
+  
+  gByoBdsWaitHookProtocolGuid        = { 0xcdbda282, 0x6fe3, 0x45dd, { 0x8f, 0x5a, 0x19, 0x8f, 0x79, 0x33, 0x74, 0x80 }}
+  
+  gBdsAfterConnectAllDefConsoleProtocolGuid = { 0x19dcd639, 0x8bc5, 0x4177, { 0x8d, 0x41, 0xa6, 0x14, 0x6f, 0x59, 0x98, 0x6e } }
+  
+  
+  gByoDiskInfoProtocolGuid           = {0xe1808282, 0x4dac, 0x40d5, { 0xa2, 0xce, 0xb4, 0xc, 0x97, 0xeb, 0xe9, 0x71 }}
+  
+  gPlatAfterConnectSequenceProtocolGuid = { 0xc87bd05e, 0x95c7, 0x4b7e, { 0x8d, 0x57, 0x3, 0x39, 0x3d, 0x16, 0x0e, 0x9d }}
+  
+  gByoLegacyUsbFilterProtocolGuid       = { 0xc23bc704, 0xde04, 0x4196, { 0x9b, 0x76, 0x2, 0x1e, 0x34, 0x98, 0xaa, 0x20 }}
+  gByoPlatformLanguageProtocolGuid      = { 0x2b1993d4, 0x6ade, 0x4550, { 0xa1, 0xea, 0xc6, 0x58, 0x00, 0x12, 0x67, 0x62 }}
+  gByoSecureBootViolationHookProtocolGuid = { 0xa93dbb79, 0xe866, 0x4466, { 0x8a, 0x36, 0xf3, 0xf2, 0x38, 0x07, 0x3d, 0x2b }}
+  gByoNoBootDeviceProtocolGuid             = { 0x21513527, 0x2f4f, 0x4940, { 0xa2, 0xb0, 0x24, 0xc4, 0xa8, 0x1b, 0x6b, 0xc0 }}
+  gByoConsoleOutDetectedProtocolGuid       = { 0x842e49eb, 0xb6f5, 0x4192, { 0xb3, 0x59, 0xb2, 0x1d, 0x6e, 0x3b, 0xf0, 0xb2 }}
+
+
+  gByoDymamicFormsetHiiListProtocolGuid    = { 0x306d2153, 0xd2ff, 0x4c71, { 0x8e, 0x1c, 0x6c, 0x6b, 0x6a, 0xd4, 0xc6, 0xd7 }}
+  gNvmeSscpHookProtocolGuid = { 0x3faafc02, 0xafb9, 0x4dba, { 0xa9, 0x1e, 0xf1, 0x16, 0x9f, 0x56, 0x39, 0xc7 } }
+  gByoBmBootHookProtocolGuid = { 0x45078b30, 0x584e, 0x4ccd, { 0xab, 0x84, 0xa0, 0xec, 0xc2, 0xc2, 0xe5, 0x23 } }
+  
+  gByoSetupBiosUpdateProtocolGuid       = { 0x10293f23, 0x41ec, 0x4b3a, { 0xb3, 0x24, 0xa9, 0x2b, 0x97, 0x7c, 0x5b, 0x28 } }
+
+  gByoSetupBiosUpdateAllProtocolGuid    = { 0xab832574, 0x11be, 0x2e8f, { 0x30, 0x87, 0xa9, 0x7c, 0x21, 0xf7, 0x56, 0x4d } }
+
+  gByoSetupBiosUpdateNetworkProtocolGuid = { 0x7e95b796, 0x5c0, 0x499f, { 0xab, 0xd0, 0x9, 0xc6, 0xa2, 0xd9, 0x1e, 0x76 } }
+
+  gByoSetupBiosUpdateAllNetworkProtocolGuid = { 0x68b32401, 0xfb63, 0x419b, { 0x95, 0xd8, 0xb4, 0xe4, 0x5f, 0x88, 0xa7, 0x7c } }
+
+  gEfiBootMenuEnterGuid                 = { 0xfaf3da9b, 0xc905, 0x4f08, { 0xb3, 0xf5, 0x13, 0xd3, 0x6, 0x30, 0xc5, 0x9b } }
+  
+  gByoBdsEnterHookGuid                  = { 0xb03259d7, 0x3e84, 0x4b0f, { 0x9c, 0x59, 0xa3, 0x8b, 0x90, 0x11, 0x5, 0x15 } }
+
+  gScreenshotProtocolGuid               = { 0xef8877fe, 0x1298, 0x49c2, { 0xa8, 0x4f, 0x41, 0x7c, 0x37, 0x88, 0xf3, 0xbe } }
+
+  gQrEncoderProtocolGuid                 = { 0x4eeff0a1, 0xc0c, 0x49f6, { 0xa7, 0xde, 0xa5, 0xa7, 0xbd, 0x32, 0x66, 0x32 } }
+  
+# wz200707 + >>
+# BIT0 - disable all but ESC.  
+  gByoSetupHotKeyDisableProtocolGuid    = { 0x232a127b, 0x1471, 0x4f4f, { 0x94, 0x1c, 0xa8, 0x71, 0x72, 0x78, 0x27, 0xaa } }
+# wz200707 + <<
+  
+  ## Include/Protocol/OpRomPnpName.h
+  gOpromPnpNameProtocolGuid      = { 0x5bd912e9, 0xe82e, 0x451f, {0xbc, 0xe9, 0x92, 0xe9, 0x3e, 0x74, 0x8b, 0xc9 }}
+
+  ## Include/Protocol/ByoLegacyOptionCheckProtocol.h
+  gByoLegacyOptionCheckProtocolGuid = { 0x838a2da3, 0xc605, 0x4d21, { 0xb7, 0x1c, 0xe0, 0xa2, 0xc1, 0x3d, 0xd, 0x5c }}
+
+  ## Include/Protocol/SpiFlash.h
+  gEfiSpiFlashProtocolGuid = { 0x1156efc6, 0xea32, 0x4396, { 0xb5, 0xd5, 0x26, 0x93, 0x2e, 0x83, 0xc3, 0x13}}
+
+  gExitPmAuthProtocolGuid        = { 0xd088a413, 0xa70, 0x4217, { 0xba, 0x55, 0x9a, 0x3c, 0xb6, 0x5c, 0x41, 0xb3 }}
+
+  gByoProjectPlatHostUpdatedProtocol    = { 0x12fadcb4, 0x9ade, 0x47da, { 0xbb, 0x52, 0xc7, 0xc4, 0xcb, 0x6a, 0x84, 0x34 } }
+  gByoSetupOemresetDataChangedHookGuid  = { 0x203b6b20, 0x5167, 0x4f66, { 0x98, 0x6b, 0xa3, 0x0d, 0xa0, 0x6b, 0x10, 0xbe } }
+
+  # Include/Protocol/ByoSmiFlashExtProtocol.h
+  gByoSmiFlashExtProtocolGuid = { 0xabf7e520, 0xa85e, 0x4a3a, { 0xa4, 0xca, 0x8c, 0xbb, 0x64, 0xe9, 0x59, 0x74 } }
+
+  gByoStatusCodeLevelOverrideProtocol = { 0x4261b918, 0x690f, 0x4378, { 0xa3, 0x8d, 0xf8, 0xa, 0xfe, 0x46, 0x11, 0xd6 } }
+
+  gByoEarlySimpleTextOutProtocolGuid  = { 0x8e2d62a2, 0x8e1f, 0x4ef9, { 0xb0, 0x8f, 0x65, 0x50, 0x25, 0x4b, 0x1b, 0xa1 } }
+
+  gEfiByoPnpSmbiosProtocolGuid       = { 0xe306d118, 0x45b8, 0x4764, { 0xaf, 0xdb, 0x6e, 0x13, 0x52, 0x6c, 0x8d, 0x10 } }
+  gByoUsbBusScanProtocolGuid         = { 0x45732653, 0xd9ce, 0x4f91, { 0xb9, 0x89, 0xaa, 0xc5, 0x5a, 0x31, 0xb4, 0x79 } }
+
+  gByoPcdAccessProtocolGuid          = { 0x813116d2, 0xc9e1, 0x4ce9, { 0x9b, 0x85, 0xf5, 0xff, 0xad, 0xd7, 0x75, 0xf } }
+
+  gByoBackupRecoveryProtocolGuid     = { 0x10293f23, 0x41ec, 0x4b3a, { 0xb3, 0x24, 0xa9, 0x2b, 0x97, 0x7c, 0x5b, 0x29 } }
+
+  gSetupItemUpdateProtocolGuid       = { 0xad49d841, 0xf622, 0x49d9, { 0x80, 0xb4, 0xcd, 0x82, 0x50, 0xb9, 0x6a, 0x8e } }
+  gByoHddPasswordHookProtocolGuid    = { 0x7b0b4270, 0xe8ff, 0x4653, { 0xba, 0x5e, 0x76, 0x2e, 0x7f, 0x33, 0xc8, 0xe4 } }
+  # Include\Protocol\GetSecurePPFlagProtocol.h
+  gGetSecurePPFlagProtocolGuid                   = { 0x2E33BE13, 0xB7AC, 0x4E0F, { 0x80, 0xA8, 0x9D, 0xAF, 0xDA, 0x9B, 0x9D, 0x7A } }
+
+  gByoSetupNetworkFormsetGuid         = { 0x521ca293, 0x385d, 0x584a, { 0x23, 0xd9, 0x25, 0x74, 0xbf, 0xf7, 0xd7, 0x57 }}
+
+[Ppis]
+
+  gByoEarlySimpleTextOutPpiGuid = { 0x8e2d62a2, 0x8e1f, 0x4ef9, { 0xb0, 0x8f, 0x65, 0x50, 0x25, 0x4b, 0x1b, 0xa1 } }
+  gByoRestorePciDeviceConfigPpiGuid  = { 0x1ad46d2e, 0x5563, 0x4eee, { 0x89, 0xf1, 0xc0, 0xe0, 0x55, 0xc0, 0x5d, 0xff } }
+
+  gPlatEarlyPeiDonePpiGuid  = { 0x6e782367, 0x9a86, 0x4c33, { 0x8b, 0xed, 0x54, 0x3e, 0xa0, 0x9d, 0xbe, 0x4c }}
+  
+  
+
+  gByoSetupDataReadyPpiGuid       = {0x09cb7edf, 0x8daf, 0x49fe, {0x94, 0xa1, 0xc3, 0xa7, 0x1b, 0xbf, 0x72, 0xde}}
+  
+  gByoEarlyGopInfoPpiGuid         = { 0xc29638b, 0x84c0, 0x4859, {0xbd, 0x87, 0x25, 0x55, 0xa2, 0xc9, 0xd6, 0x0 }}
+
+  gByoBiosSignVerifyPpiGuid       = { 0x176405ad, 0x425a, 0x4e39, { 0xa1, 0xc7, 0xd7, 0x18, 0x90, 0x8, 0xd5, 0x24 } }
+
+  gSetupDefaultSettingPatchPpiGuid   = { 0xa67e8fb8, 0xce17, 0x4cae, { 0xb6, 0x9e, 0x0, 0x26, 0x9a, 0xa4, 0x47, 0xe4 }}
+
+[PcdsFeatureFlag]
+
+  ## This PCD specifies whether StatusCode is reported via Port80
+  gEfiByoModulePkgTokenSpaceGuid.PcdStatusCodeUsePostCode|TRUE|BOOLEAN|0x00010201
+  
+  gEfiByoModulePkgTokenSpaceGuid.PcdShowPostCodeToScreen|FALSE|BOOLEAN|0x00020201
+
+  ## This PCD specifies whether StatusCode is reported via Beep
+  gEfiByoModulePkgTokenSpaceGuid.PcdStatusCodeUseBeep|TRUE|BOOLEAN|0x00010202
+
+  ## This PCD specifies whether StatusCode is reported via Oem
+  gEfiByoModulePkgTokenSpaceGuid.PcdStatusCodeUseOem|TRUE|BOOLEAN|0x00010203
+  
+  ## Show "PROGRESS CODE: V3040003 I0"
+  gEfiByoModulePkgTokenSpaceGuid.PcdStatusCodePrintProgressCode|TRUE|BOOLEAN|0x00010204
+
+  gEfiByoModulePkgTokenSpaceGuid.PcdKbcPresent|TRUE|BOOLEAN|0x00010205
+  
+  gEfiByoModulePkgTokenSpaceGuid.PcdSortSmbiosByType|FALSE|BOOLEAN|0x00010206
+
+  ## Indicates if PS2 keyboard does a extended verification during start.
+  #  Extended verification will take some performance. It can be set to FALSE for boot performance.<BR><BR>
+  #   TRUE  - Turn on PS2 keyboard extended verification.<BR>
+  #   FALSE - Turn off PS2 keyboard extended verification.<BR>
+  # @Prompt Turn on PS2 Keyboard Extended Verification
+
+  ## Enable it when Kbc is present and Ps2Mouse driver is not included.
+  ## We will receive and discard mouse data in keyboard driver to avoid mouse data blocks KBC.
+  gEfiByoModulePkgTokenSpaceGuid.PcdPs2KeyboardRxAndDiscardPs2MouseData|FALSE|BOOLEAN|0x00010049
+
+  gEfiByoModulePkgTokenSpaceGuid.PcdBdsSupportUefiOsIndication|TRUE|BOOLEAN|0x0001004A
+  
+  
+  
+  
+  
+[PcdsFixedAtBuild]
+  gEfiByoModulePkgTokenSpaceGuid.PcdFlashAreaBaseAddress|0x00000000|UINT32|0x00002012
+  gEfiByoModulePkgTokenSpaceGuid.PcdFlashAreaSize|0x00000000|UINT32|0x00002013
+
+  gEfiByoModulePkgTokenSpaceGuid.PcdFlashFvMainBase|0x00000000|UINT32|0x00002016
+  gEfiByoModulePkgTokenSpaceGuid.PcdFlashFvMainSize|0x00000000|UINT32|0x00002017
+  gEfiByoModulePkgTokenSpaceGuid.PcdFlashFvRecoveryBase|0x00000000|UINT32|0x00002018
+  gEfiByoModulePkgTokenSpaceGuid.PcdFlashFvRecoverySize|0x00000000|UINT32|0x00002019
+  gEfiByoModulePkgTokenSpaceGuid.PcdFlashFvSecBase|0x00000000|UINT32|0x00012018
+  gEfiByoModulePkgTokenSpaceGuid.PcdFlashFvSecSize|0x00000000|UINT32|0x00012019  
+  gEfiByoModulePkgTokenSpaceGuid.PcdFlashFvMain2Base|0x00000000|UINT32|0x0001201A
+  gEfiByoModulePkgTokenSpaceGuid.PcdFlashFvMain2Size|0x00000000|UINT32|0x0001201B  
+
+  gEfiByoModulePkgTokenSpaceGuid.PcdFlashFvMainBase64|0x00000000|UINT64|0x0001201C
+  gEfiByoModulePkgTokenSpaceGuid.PcdFlashBackFvMainBase64|0x00000000|UINT64|0x0001201D
+  gEfiByoModulePkgTokenSpaceGuid.PcdFlashFvNetworkBase64|0x00000000|UINT64|0x0001201E
+  gEfiByoModulePkgTokenSpaceGuid.PcdFlashNvStorageSmbiosBase64|0x00000000|UINT64|0x0001201F
+
+  gEfiByoModulePkgTokenSpaceGuid.PcdFlashNvStorageBase|0x00000000|UINT32|0x0000201A
+  gEfiByoModulePkgTokenSpaceGuid.PcdFlashNvStorageSize|0x00000000|UINT32|0x0000201B
+  gEfiByoModulePkgTokenSpaceGuid.PcdFlashNvStorageMicrocodeBase|0x00000000|UINT32|0x0000201C
+  gEfiByoModulePkgTokenSpaceGuid.PcdFlashNvStorageMicrocodeSize|0x00000000|UINT32|0x0000201D
+  gEfiByoModulePkgTokenSpaceGuid.PcdFlashFvRecoveryBackUpBase|0x00000000|UINT32|0x00003000
+  gEfiByoModulePkgTokenSpaceGuid.PcdFlashFvRecoveryBackUpSize|0x00000000|UINT32|0x00003001  
+
+  gEfiByoModulePkgTokenSpaceGuid.PcdFlashFvNetworkBase|0x00000000|UINT32|0x1000202A
+  gEfiByoModulePkgTokenSpaceGuid.PcdFlashFvNetworkSize|0x00000000|UINT32|0x1000202B  
+  
+  gEfiByoModulePkgTokenSpaceGuid.PcdFvOemBase|0x00000000|UINT32|0x00002029
+  gEfiByoModulePkgTokenSpaceGuid.PcdFvOemSize|0x00000000|UINT32|0x0000202A
+
+  gEfiByoModulePkgTokenSpaceGuid.PcdFlashNvStorageSmbiosBase|0x0|UINT32|0x0000202C
+  gEfiByoModulePkgTokenSpaceGuid.PcdFlashNvStorageSmbiosSize|0x0|UINT32|0x0000202D
+  
+  gEfiByoModulePkgTokenSpaceGuid.PcdFlashNvLogoBase|0x0|UINT32|0x00002100
+  gEfiByoModulePkgTokenSpaceGuid.PcdFlashNvLogoSize|0x0|UINT32|0x00002101  
+
+
+  gEfiByoModulePkgTokenSpaceGuid.PcdRomHoleBase|0x00000000|UINT32|0x10002040
+  gEfiByoModulePkgTokenSpaceGuid.PcdRomHoleSize|0x00000000|UINT32|0x10002041
+
+  gEfiByoModulePkgTokenSpaceGuid.PcdOa3HoleBase|0x00000000|UINT32|0x00002042
+  gEfiByoModulePkgTokenSpaceGuid.PcdOa3HoleSize|0x00000000|UINT32|0x00002043 
+
+  gEfiByoModulePkgTokenSpaceGuid.PcdEventLogBase|0x00000000|UINT32|0x00002044
+  gEfiByoModulePkgTokenSpaceGuid.PcdEventLogSize|0x00000000|UINT32|0x00002045
+  
+
+  gEfiByoModulePkgTokenSpaceGuid.PcdFlashFvMain3Base|0x00000000|UINT32|0x0000204A
+  gEfiByoModulePkgTokenSpaceGuid.PcdFlashFvMain3Size|0x00000000|UINT32|0x0000204B    
+  
+  
+  gEfiByoModulePkgTokenSpaceGuid.PcdFvSignRegionBase|0|UINT64|0x0000204E
+  gEfiByoModulePkgTokenSpaceGuid.PcdFvSignRegionSize|0|UINT64|0x0000204F
+
+  gEfiByoModulePkgTokenSpaceGuid.PcdFlashFvFastBootBase|0x00000000|UINT32|0x0000204C
+  gEfiByoModulePkgTokenSpaceGuid.PcdFlashFvFastBootSize|0x00000000|UINT32|0x0000204D
+
+#Bits 0-3   : 1st Group
+#Bits 4-7   : 2st Group
+#Bits 8-11  : 3rd group
+#Bits 12-15 : 4nd group
+#Bits 16-19 : 5nd group
+#Bits 20-31 : reserved
+#HDD        : 0
+#CD-ROM     : 1
+#NETWORK    : 2
+#BEV        : 3
+#FLOPPY     : 4
+  gEfiByoModulePkgTokenSpaceGuid.PcdBootDeviceGroupDefaultPriority|0x00043210|UINT32|0x00002025
+  gEfiByoModulePkgTokenSpaceGuid.PcdBootDeviceGroupDefaultCount|5|UINT32|0x00002026
+
+  gEfiByoModulePkgTokenSpaceGuid.PcdBiosRecoveryFileName|L""|VOID*|0x00002030
+  
+# 0xFFFF: No limit  
+  gEfiByoModulePkgTokenSpaceGuid.PcdBiosMaxRecoveryCapsuleCountSupport|0xFFFF|UINT16|0x00002031
+  
+  gEfiByoModulePkgTokenSpaceGuid.AcpiIoPortBaseAddress|0xFFFF|UINT16|0x00002032
+
+  gEfiByoModulePkgTokenSpaceGuid.PcdEbdaReservedMemorySize|0x20000|UINT32|0x00002036
+  gEfiByoModulePkgTokenSpaceGuid.PcdLowPmmMemorySize|0x40000|UINT32|0x00002037
+  gEfiByoModulePkgTokenSpaceGuid.PcdSwSmiCmdPort|0x00B2|UINT16|0x00002039
+
+  gEfiByoModulePkgTokenSpaceGuid.PcdOemCopyRightLineNumber|0|UINT8|0x000203C
+
+  ## Specify the foreground and background color for Popup.
+  ## If SetColorMagentaAsWhite is true,magenta will turn white.
+  #  0x00 (EFI_BLACK)<BR>
+  #  0x01 (EFI_BLUE)<BR>
+  #  0x02 (EFI_GREEN)<BR>
+  #  0x03 (EFI_CYAN)<BR>
+  #  0x04 (EFI_RED)<BR>
+  #  0x05 (EFI_MAGENTA)<BR>
+  #  0x06 (EFI_BROWN)<BR>
+  #  0x07 (EFI_LIGHTGRAY)<BR>
+  #  0x08 (EFI_DARKGRAY)<BR>
+  #  0x09 (EFI_LIGHTBLUE)<BR>
+  #  0x0A (EFI_LIGHTGREEN)<BR>
+  #  0x0B (EFI_LIGHTCYAN)<BR>
+  #  0x0C (EFI_LIGHTRED)<BR>
+  #  0x0D (EFI_LIGHTMAGENTA)<BR>
+  #  0x0E (EFI_YELLOW)<BR>
+  #  0x0F (EFI_WHITE)<BR>
+  #
+  #  0x00 (EFI_BACKGROUND_BLACK)<BR>
+  #  0x10 (EFI_BACKGROUND_BLUE)<BR>
+  #  0x20 (EFI_BACKGROUND_GREEN)<BR>
+  #  0x30 (EFI_BACKGROUND_CYAN)<BR>
+  #  0x40 (EFI_BACKGROUND_RED)<BR>
+  #  0x50 (EFI_BACKGROUND_MAGENTA)<BR>
+  #  0x60 (EFI_BACKGROUND_BROWN)<BR>
+  #  0x70 (EFI_BACKGROUND_LIGHTGRAY)<BR>
+  gEfiByoModulePkgTokenSpaceGuid.PcdConfirmPopupStringColor|0x1F|UINT8|0x0100000
+  gEfiByoModulePkgTokenSpaceGuid.PcdConfirmPopupFrameColor|0x12|UINT8|0x0100001
+  gEfiByoModulePkgTokenSpaceGuid.PcdConfirmPopupDisableColor|0x17|UINT8|0x0100002
+  gEfiByoModulePkgTokenSpaceGuid.PcdConfirmPopupSelectColor|0x3F|UINT8|0x0100003
+  gEfiByoModulePkgTokenSpaceGuid.PcdWarnPopupStringColor|0x4F|UINT8|0x0100004
+  gEfiByoModulePkgTokenSpaceGuid.PcdWarnPopupFrameColor|0x42|UINT8|0x0100005
+  gEfiByoModulePkgTokenSpaceGuid.PcdWarnPopupDisableColor|0x47|UINT8|0x0100006
+  gEfiByoModulePkgTokenSpaceGuid.PcdWarnPopupSelectColor|0x3F|UINT8|0x0100007
+  
+
+  # Setup Mouse control PCD.
+  gEfiByoModulePkgTokenSpaceGuid.PcdTextSetupMouseEnable|FALSE|BOOLEAN|0x00030060
+
+  ## This PCD points to the front page formset GUID
+  #  Compare the FormsetGuid or ClassGuid with this PCD value can detect whether in front page
+  # @Prompt Front Page Formset.
+  gEfiMdeModulePkgTokenSpaceGuid.PcdFrontPageFormSetGuid|{ 0xbc, 0x30, 0x0c, 0x9e,0x06, 0x3f, 0xa6, 0x4b, 0x82, 0x88, 0x9, 0x17, 0x9b, 0x85, 0x5d, 0xbe }|VOID*|0x0001006e
+
+  gEfiByoModulePkgTokenSpaceGuid.PcdSecureKeyPKFile| {0xdd, 0xa9, 0xb0, 0x43, 0x1f, 0xb8, 0x25, 0x47, 0xa0, 0x54, 0xec, 0x59, 0xe2, 0xff, 0x8b, 0x49}|VOID*|0x00004000
+# gEfiByoModulePkgTokenSpaceGuid.PcdSecureKeyKEKFile|{0xC8, 0x74, 0x78, 0x49, 0x23, 0x30, 0x04, 0x4D, 0xb9, 0x9a, 0x95, 0xf8, 0x28, 0xe3, 0x42, 0x69}|VOID*|0x00004001
+# gEfiByoModulePkgTokenSpaceGuid.PcdSecureKeyDBFile| {0xD3, 0x48, 0xDC, 0xF5, 0xDE, 0x68, 0x44, 0x42, 0x97, 0x77, 0xe0, 0x5f, 0x3f, 0x75, 0x00, 0xb3}|VOID*|0x00004002
+  gEfiByoModulePkgTokenSpaceGuid.PcdSecureKeyMSKEKFile|{0x5b, 0x18, 0x94, 0x4b, 0xcf, 0x8b, 0x34, 0x44, 0xa1, 0x8e, 0xcf, 0xfb, 0xb4, 0xd6, 0x70, 0x95}|VOID*|0x00004003
+  gEfiByoModulePkgTokenSpaceGuid.PcdSecureKeyMSProFile|{0x54, 0xa3, 0xeb, 0xbb, 0x0c, 0x5c, 0xad, 0x4d, 0xb7, 0xe1, 0x8e, 0x7e, 0xcc, 0xfc, 0x1a, 0x5b}|VOID*|0x00004004
+  gEfiByoModulePkgTokenSpaceGuid.PcdSecureKeyMSUEFFile|{0x77, 0xC4, 0xd6, 0xb5, 0x89, 0x6e, 0x75, 0x4e, 0x9c, 0x58, 0xef, 0xec, 0x37, 0x6d, 0x0e, 0xc2}|VOID*|0x00004005
+  gEfiByoModulePkgTokenSpaceGuid.PcdSecureKeyMSDBXFile|{0x5a, 0x55, 0x65, 0x40, 0x38, 0x52, 0xcc, 0x40, 0xad, 0x75, 0xdd, 0x22, 0xa, 0xba, 0x4b, 0x93}|VOID*|0x00004006
+
+  gEfiByoModulePkgTokenSpaceGuid.PcdLegacyUsbPciScanMaxBus|0x3F|UINT8|0x0000203D
+
+  gEfiByoModulePkgTokenSpaceGuid.PcdEfiBootOptionFlag|"_BYOBF_"|VOID*|0x000203F
+  
+  gEfiByoModulePkgTokenSpaceGuid.PcdEnableF4ForMeasure|FALSE|BOOLEAN|0x0002140
+  gEfiByoModulePkgTokenSpaceGuid.PcdGraphicsConsoleDeltaXPersent|0|UINT8|0x0002141
+  
+# 1 - old
+# 2 - new  
+  gEfiByoModulePkgTokenSpaceGuid.PcdBdsBootOrderUpdateMethod|1|UINT8|0x0002142
+  
+  gEfiByoModulePkgTokenSpaceGuid.PcdBoardSsid|0|UINT32|0x0002143
+  
+  
+  gEfiByoModulePkgTokenSpaceGuid.PcdSetupAddSubUseF5F6|FALSE|BOOLEAN|0x0002146
+  
+  
+  
+  
+  
+  gEfiByoModulePkgTokenSpaceGuid.PcdMtcCmosOffset|0xFF|UINT8|0x000214C  
+  gEfiByoModulePkgTokenSpaceGuid.PcdRecoveryStepCmosOffset|0xFF|UINT8|0x000214D  
+  
+  gEfiByoModulePkgTokenSpaceGuid.PcdByoUiAppFileGuid|{ 0x4a, 0xc0, 0xc9, 0xd0, 0x96, 0xe7, 0x48, 0x4c, 0x9d, 0x52, 0x9e, 0xc, 0xed, 0x39, 0x4f, 0x4b }|VOID*|0x00004106  
+
+  gEfiByoModulePkgTokenSpaceGuid.PcdCheckBmcPresentState|0x00|UINT8|0x000214E
+
+
+  ## FFS filename to find the shell application.
+  # @Prompt FFS Name of Shell Application
+  #gEfiByoModulePkgTokenSpaceGuid.PcdShellFile|{ 0xB7, 0xD6, 0x7A, 0xC5, 0x15, 0x05, 0xA8, 0x40, 0x9D, 0x21, 0x55, 0x16, 0x52, 0x85, 0x4E, 0x37 }|VOID*|0x40000004
+  gEfiByoModulePkgTokenSpaceGuid.PcdShellFile|{ 0x83, 0xA5, 0x04, 0x7C, 0x3E, 0x9E, 0x1C, 0x4F, 0xAD, 0x65, 0xE0, 0x52, 0x68, 0xD0, 0xB4, 0xD1 }|VOID*|0x40000004
+  
+  gEfiByoModulePkgTokenSpaceGuid.PcdCpuS3ApVectorAddress|0x9F000|UINT32|0x0000203A
+  gEfiByoModulePkgTokenSpaceGuid.PcdCpuS3ApVectorMaxSize|0x1000|UINT16|0x0000203B
+  gEfiByoModulePkgTokenSpaceGuid.PcdSetupDataVersionCheck|TRUE|BOOLEAN|0x0003502 
+  gEfiByoModulePkgTokenSpaceGuid.PcdSetupDataVersion|0|UINT8|0x1003502
+  gEfiByoModulePkgTokenSpaceGuid.PcdDebugLevelOem0|0x40000000|UINT32|0x1003503
+  gEfiByoModulePkgTokenSpaceGuid.PcdDebugLevelOem1|0xC0080046|UINT32|0x1003504
+  gEfiByoModulePkgTokenSpaceGuid.PcdDebugLevelOem2|0x80080046|UINT32|0x1003521
+  gEfiByoModulePkgTokenSpaceGuid.PcdDebugLevelOem3|0x80000002|UINT32|0x1003522
+
+  gEfiByoModulePkgTokenSpaceGuid.PcdSmiFlashOa3AcpiTableSupport|TRUE|BOOLEAN|0x1003505
+
+  gEfiByoModulePkgTokenSpaceGuid.PcdByoSecureFlashSupport|FALSE|BOOLEAN|0x1003506
+
+  gEfiByoModulePkgTokenSpaceGuid.PcdSmbiosBiosVersion|""|VOID*|0x1003507
+  gEfiByoModulePkgTokenSpaceGuid.PcdBiosFileBaseName|""|VOID*|0x1003508
+
+  gEfiByoModulePkgTokenSpaceGuid.PcdInternalShellDefaultEnable|1|UINT8|0x1003509
+  gEfiByoModulePkgTokenSpaceGuid.PcdDefaultBootTimeout|5|UINT8|0x100350A
+  gEfiByoModulePkgTokenSpaceGuid.PcdIgdNotPhysicalPresent|0|UINT8|0x100350B
+
+# invoke smi to read flash or directly read it by 4G MMIO.  
+  gEfiByoModulePkgTokenSpaceGuid.PcdSmiFlashDxeDirectRead|FALSE|BOOLEAN|0x100350C
+  
+  gEfiByoModulePkgTokenSpaceGuid.PcdKeepSysPasswordWhenLoadFCE|FALSE|BOOLEAN|0x100350D
+  
+  gEfiByoModulePkgTokenSpaceGuid.PcdSystemPasswordHashLength|12|UINT8|0x100350E
+  gEfiByoModulePkgTokenSpaceGuid.PcdSystemPasswordLength|20|UINT8|0x1003510
+  gEfiByoModulePkgTokenSpaceGuid.PcdSystemPasswordMinLength|8|UINT8|0x100351B
+  gEfiByoModulePkgTokenSpaceGuid.PcdEnterSetupWhenNoBootDevice|FALSE|BOOLEAN|0x100350F
+
+  ## This PCD specifies the minimal valid month in RTC.
+  # @Prompt Minimal valid month in RTC.
+  gEfiByoModulePkgTokenSpaceGuid.PcdMinimalValidMonth|1|UINT8|0x1003511
+  ## This PCD specifies the minimal valid day in RTC.
+  # @Prompt Minimal valid day in RTC.
+  gEfiByoModulePkgTokenSpaceGuid.PcdMinimalValidDay|1|UINT8|0x1003512
+
+  ## ByoTool Vendor Type
+  #  0: BY0
+  #  1: Lenovo
+  #  2: Hisilicon
+  #  3: Inspur
+  gEfiByoModulePkgTokenSpaceGuid.PcdSmbiosByoToolVendorType|0|UINT8|0x1003513
+
+  ## HddPasswordMaxLength
+  #  Default is 32
+  gEfiByoModulePkgTokenSpaceGuid.PcdHddPasswordMaxLength|32|UINT8|0x1003515
+
+  ## If TRUE, password will be kept after bios image is updated.
+  gEfiByoModulePkgTokenSpaceGuid.PcdSmiFlashUpdateReservePassword|FALSE|BOOLEAN|0x1003516
+
+# 1 - append 256 sig data to bios data. (16M + 256)
+# 2 - sig info and data at [0,4K].      (16M)
+# 3 - sig info and data at target FV    (16M)  
+  gEfiByoModulePkgTokenSpaceGuid.PcdBiosSignMethod|1|UINT8|0x1003517
+
+# language default value
+  gEfiByoModulePkgTokenSpaceGuid.PcdKeepCurrentLanagugeAsDefault|FALSE|BOOLEAN|0x1003518
+
+  gEfiByoModulePkgTokenSpaceGuid.PcdGuiEnable|FALSE|BOOLEAN|0x1003519
+  
+# If TRUE, enable OS backup and restore app
+  gEfiByoModulePkgTokenSpaceGuid.PcdOSBackupRestoreEnable|FALSE|BOOLEAN|0x0100352a
+
+# Check whether the Hisilicon platform is enabled
+  gEfiByoModulePkgTokenSpaceGuid.PcdByoKylinDbKeyEnable|FALSE|BOOLEAN|0x100351a
+
+# Check whether the OEM db key is enabled  
+  gEfiByoModulePkgTokenSpaceGuid.PcdByoOemDbKeyEnable|FALSE|BOOLEAN|0x200351b
+
+# Enable checking MBR of legacy device
+  gEfiByoModulePkgTokenSpaceGuid.PcdEnableCheckMbr|TRUE|BOOLEAN|0x1003520
+
+# System will reset after exit UiApp if this PCD is TRUE
+  gEfiByoModulePkgTokenSpaceGuid.PcdResetAfterExitUiApp|FALSE|BOOLEAN|0x1003523
+# System Password will reset if this PCD is TRUE
+  gEfiByoModulePkgTokenSpaceGuid.PcdEnableSystemPasswordReset|FALSE|BOOLEAN|0x1003526
+
+# Initial system password
+  gEfiByoModulePkgTokenSpaceGuid.PcdInitialSystemPassword|L""|VOID*|0x00005002
+
+# Backup
+  gEfiByoModulePkgTokenSpaceGuid.PcdFlashBackupBaseAddress|0|UINT32|0x1003524
+
+# SmbiosType251 version
+  gEfiByoModulePkgTokenSpaceGuid.PcdSmbiosType251Version|0|UINT16|0x1003525
+
+# 1:Displays a progress bar for saving and restoring default values
+  gEfiByoModulePkgTokenSpaceGuid.PcdDisplaySetupMessage|0|UINT8|0x1003527
+
+# Allow access to the system if you forget your password if this PCD is TRUE
+  gEfiByoModulePkgTokenSpaceGuid.PcdEnableBootWithoutSystemPassword|FALSE|BOOLEAN|0x1003528
+
+# Hash iteration of system password 1000 times if this PCD is TRUE
+  gEfiByoModulePkgTokenSpaceGuid.PcdSystemPasswordHashIteration|FALSE|BOOLEAN|0x1003529
+
+  # Record Whether add smbiostable to hide suppressif
+  gEfiByoModulePkgTokenSpaceGuid.PcdSmbiosTableAddSuppressIf|FALSE|BOOLEAN|0x50000122
+
+# TPM&TCM Setup Option Switch
+  gEfiByoModulePkgTokenSpaceGuid.PcdTpmAndTcmHasSetupWithoutDevice|TRUE|BOOLEAN|0x50000123
+
+# The maximum number of records for the system password
+  gEfiByoModulePkgTokenSpaceGuid.PcdPasswordMaxRecorderTime|5|UINT8|0x1003530
+
+  # PCD to specify efivarstore storage name whose setting will be directly got/set from efi variable.
+  # The skip efi varstore will not be processed with HII Config Block service for the parse time reduction.
+  # The skip efi varstore must be set/got by Setup. Its value can't be set in HII driver callback API.
+  # If more than one efi varstores are specified, they will be conjuction with ";".
+  gEfiByoModulePkgTokenSpaceGuid.PcdSkipStorageName|L""|VOID*|0x50000127
+
+# TRUE:Show Search form, FALSE:Hide Search form
+  gEfiByoModulePkgTokenSpaceGuid.PcdShowSearchForm|TRUE|BOOLEAN|0x1003531
+#TRUE:show weekday diaplay,FALSE:Hide weekday diaplay
+  gEfiByoModulePkgTokenSpaceGuid.PcdDisplayWeekdayCheck| TRUE | BOOLEAN | 0x0003104
+
+#
+# Control whether setup options of CSM are displayed on Byo boot formset(Byo\ByoModulePkg\Setup\PlatformSetupDxe)
+#
+  gEfiByoModulePkgTokenSpaceGuid.PcdPlatSupportCSM|FALSE|BOOLEAN|0x50000129
+
+[PcdsDynamic]
+  gEfiByoModulePkgTokenSpaceGuid.PcdBootState|TRUE|BOOLEAN|0x30000001
+  gEfiByoModulePkgTokenSpaceGuid.PcdKeepTrap64hEnable|0|UINT8|0x30000002
+  gEfiByoModulePkgTokenSpaceGuid.PcdUCREnable|0|UINT8|0x30000003
+  gEfiByoModulePkgTokenSpaceGuid.PcdDisableKBCtrlAltDelReset|FALSE|BOOLEAN|0x00002034
+  gEfiByoModulePkgTokenSpaceGuid.PcdEndOpromShadowAddress|0xEC000|UINT32|0x00002035
+  gEfiByoModulePkgTokenSpaceGuid.PcdLegacyBiosSupport|0|UINT8|0x3000000c
+  gEfiByoModulePkgTokenSpaceGuid.PcdDisplayOptionRomMessage|0x1|UINT8|0x00002038
+  gEfiByoModulePkgTokenSpaceGuid.PcdEnableSetupHotkeyF3F4|FALSE|BOOLEAN|0x30200004
+  gEfiByoModulePkgTokenSpaceGuid.PcdKeyboardNumberLockInitState|FALSE|BOOLEAN|0x30200005
+  gEfiByoModulePkgTokenSpaceGuid.PcdVideoOpRomLaunchPolicy|0|UINT8|0x30200006
+  gEfiByoModulePkgTokenSpaceGuid.PcdPxeOpRomLaunchPolicy|1|UINT8|0x30200007
+  gEfiByoModulePkgTokenSpaceGuid.PcdStorageOpRomLaunchPolicy|0|UINT8|0x30200008
+  gEfiByoModulePkgTokenSpaceGuid.PcdOtherOpRomLaunchPolicy|0|UINT8|0x30200009 
+  gEfiByoModulePkgTokenSpaceGuid.PcdHighPmmMemoryAddress|0|UINT32|0x3020000A
+  gEfiByoModulePkgTokenSpaceGuid.PcdEnableSimplifedSecureBootConfig|FALSE|BOOLEAN|0x30000010
+  gEfiByoModulePkgTokenSpaceGuid.PcdGrayOutSecureBootEnableOption|FALSE|BOOLEAN|0x30000011
+  gEfiByoModulePkgTokenSpaceGuid.PcdLangInited|FALSE|BOOLEAN|0x00003004
+  gEfiByoModulePkgTokenSpaceGuid.PcdSystemMiscConfig|0|UINT32|0x00003006
+  gEfiByoModulePkgTokenSpaceGuid.PcdBiosBootModeType|0|UINT8|0x00003007
+  
+
+# Usage1: Bit2 is set to 0, all:0, IPv4:1, IPv6:2
+# Usage2: Bit2 is set to 1, Bit3=1:PXE IPv4; Bit4=1:enable PXE IPv6; Bit5=1:enable HTTP IPv4; Bit6=1:enable HTTP IPv6
+# Priority: Usage2 > Usage1
+  gEfiByoModulePkgTokenSpaceGuid.PcdNetBootIp4Ip6|0|UINT8|0x00003009
+  
+  gEfiByoModulePkgTokenSpaceGuid.PcdLogoDataAddress|0x0|UINT32|0x0000300A
+  gEfiByoModulePkgTokenSpaceGuid.PcdLogoDataSize|0x0|UINT32|0x0000300B
+  
+  gEfiByoModulePkgTokenSpaceGuid.PcdPostPromptTimeOut|5|UINT16|0x0000300C
+  
+  gEfiByoModulePkgTokenSpaceGuid.PcdIsPlatformCmosBad|0x0|UINT8|0x00002028
+  gEfiByoModulePkgTokenSpaceGuid.PcdFirstVideoHostHandle|0x0|UINT64|0x0000300D
+  gEfiByoModulePkgTokenSpaceGuid.PcdCurrentFormSetGuid|{0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00}|VOID*|0x0000300E
+
+  gEfiByoModulePkgTokenSpaceGuid.PcdBiosSettingNeedLoadDefault|FALSE|BOOLEAN|0x0000300F
+  gEfiByoModulePkgTokenSpaceGuid.PcdFceLoadDefault|FALSE|BOOLEAN|0x00005000
+  gEfiByoModulePkgTokenSpaceGuid.PcdIsClearSystemPwd|0|UINT8|0x00005001
+  gEfiByoModulePkgTokenSpaceGuid.PcdPciVgaPaletteSnoopingSupport|TRUE|BOOLEAN|0x00003010 
+
+  gEfiByoModulePkgTokenSpaceGuid.PcdPasswordResetGpioActive|FALSE|BOOLEAN|0x00003011
+  
+  gEfiByoModulePkgTokenSpaceGuid.PcdUpdateNvVariableEnable|FALSE|BOOLEAN|0x00003013
+  
+  
+  gEfiByoModulePkgTokenSpaceGuid.PcdSecurePPMemAddress|0|UINT64|0x00003014
+  
+  gEfiByoModulePkgTokenSpaceGuid.PcdDisableKBCtrlAltDelResetDataPtr|0|UINT64|0x0000301
+  gEfiByoModulePkgTokenSpaceGuid.PcdSystemInLegacyPtr|0|UINT64|0x0000302
+
+
+  ## This PCD defines the feature whether we need restore setting other than customer to default.
+  #  If this setting is set to TRUE, then load default for non-customer settings.
+  #  If others, then skip to process the non-customer setting.
+  #
+  gEfiByoModulePkgTokenSpaceGuid.PcdPxeRetrylimites|0xFF|UINT16|0x00002202
+  gEfiByoModulePkgTokenSpaceGuid.PcdAUTCtrl |0x00|UINT8|0x30000043
+
+
+  gEfiByoModulePkgTokenSpaceGuid.PcdRetryPxeBoot|0x0|UINT8|0x30000045
+  gEfiByoModulePkgTokenSpaceGuid.PcdByoAfterPowerLoss|0|UINT8|0x10002028
+
+  gEfiByoModulePkgTokenSpaceGuid.PcdBootLoadOptionsAddress|0x0|UINT64|0x30000047
+  gEfiByoModulePkgTokenSpaceGuid.PcdBootOptionCount|0|UINT32|0x30000048
+  gEfiByoModulePkgTokenSpaceGuid.PcdMaxVerifyTimes|3|UINT8|0x30000091
+
+  #
+  # Tag if it's PxeBootApp
+  #
+  gEfiByoModulePkgTokenSpaceGuid.PcdIsPxeBootApp|FALSE|BOOLEAN|0x30000049
+
+  # Input password error countdown
+  # == 0xFFFF : CpuDeadLoop
+  # != 0 : Countdown
+  # == 0 :Continue validating passwords.
+  gEfiByoModulePkgTokenSpaceGuid.PcdPasswordUnlockTime|0xFFFF|UINT16|0x1003514
+
+  #patch for ipmi boot
+  #bit0-1: BiosBootType(0/1/2 : all/uefi/legacy)
+  #bit2  : Ipmi set boot only one time
+  #bit3  : When bit5 is 0 and this bit is 1, Set BiosBootType by bit0-1
+  #        When bit5 is 1 and this bit is 1, Set BiosBootType by bit6-7
+  #bit4  : Ipmi set persistent boot to setup
+  #bit5  : When bit2 is 1 , this bit is valid
+  #         0 - Need to back up BiosBootType in bit6-7
+  #         1 - Do not back up BiosBootType
+  #bit6-7: Back up BiosBootType before execute the command(0/1/2 : all/uefi/legacy)
+  gEfiByoModulePkgTokenSpaceGuid.PcdIpmiBootMiscConfig|0|UINT8|0x30000050
+  #
+  # Add for ByoFlash
+  #
+  gEfiByoModulePkgTokenSpaceGuid.PcdMeBase|0x00000000|UINT32|0x50000101
+  gEfiByoModulePkgTokenSpaceGuid.PcdMeSize|0x00000000|UINT32|0x50000102
+  gEfiByoModulePkgTokenSpaceGuid.PcdBiosBase|0x00000000|UINT32|0x50000103
+  gEfiByoModulePkgTokenSpaceGuid.PcdBiosSize|0x00000000|UINT32|0x50000104
+  gEfiByoModulePkgTokenSpaceGuid.PcdDescriptorBase|0x00000000|UINT32|0x50000105
+  gEfiByoModulePkgTokenSpaceGuid.PcdDescriptorSize|0x00000000|UINT32|0x50000106
+  gEfiByoModulePkgTokenSpaceGuid.PcdECBase|0x00000000|UINT32|0x50000107
+  gEfiByoModulePkgTokenSpaceGuid.PcdECSize|0x00000000|UINT32|0x50000108
+  gEfiByoModulePkgTokenSpaceGuid.PcdGBEBase|0x00000000|UINT32|0x50000109
+  gEfiByoModulePkgTokenSpaceGuid.PcdGBESize|0x00000000|UINT32|0x50000110
+  gEfiByoModulePkgTokenSpaceGuid.PcdNISBase|0x00000000|UINT32|0x50000111
+  gEfiByoModulePkgTokenSpaceGuid.PcdNISSize|0x00000000|UINT32|0x50000112
+  gEfiByoModulePkgTokenSpaceGuid.PcdiRCBase|0x00000000|UINT32|0x50000113
+  gEfiByoModulePkgTokenSpaceGuid.PcdiRCSize|0x00000000|UINT32|0x50000114
+
+  #
+  # Determines whether to create Net options in PlatformBootManagerDxe.
+  #
+  gEfiByoModulePkgTokenSpaceGuid.PcdAlwaysCreatNetOption|FALSE|BOOLEAN|0x50000115
+
+  #
+  # If HTTP booting enable
+  #
+  gEfiByoModulePkgTokenSpaceGuid.PcdNetBootHttpEnable|TRUE|BOOLEAN|0x50000116
+
+  #
+  # Determines whether to create PCIE Net options which not support Nii and SNP in PlatformBootManagerDxe.
+  #
+  gEfiByoModulePkgTokenSpaceGuid.PcdCreatePciNetOptionsWithNoOpRom|FALSE|BOOLEAN|0x50000117
+
+  #
+  # BIOS Recovery mode.
+  # 0:Normal start.  1:recovery form BackupFV.  2:recovery form USB.
+  #
+  gEfiByoModulePkgTokenSpaceGuid.PcdBiosBackupRecoveryMode|0|UINT8|0x50000118
+  ## This PCD value is used to pass the Debug Code address
+  gEfiMdeModulePkgTokenSpaceGuid.PcdDebugCodeHeaderPtr|0x0|UINT64|0x50000119
+  # Input box supports input of empty string if this PCD is TRUE
+  gEfiByoModulePkgTokenSpaceGuid.PcdAllowEmptySystemPassword|TRUE|BOOLEAN|0x50000120
+  # Record SmiFlashInfoAddress
+  gEfiByoModulePkgTokenSpaceGuid.PcdSmiFlashInfoAddress|0x00000000|UINT32|0x50000121
+  # Record the number of historical passwords
+  gEfiByoModulePkgTokenSpaceGuid.PcdRecorderPasswordTime|5|UINT8|0x50000124
+  # Setup Lock Screen Time, Minute
+  gEfiByoModulePkgTokenSpaceGuid.PcdLockScreenTime|0|UINT16|0x50000522
+  # Password is about to expire reminder days.
+  gEfiByoModulePkgTokenSpaceGuid.PcdPasswordReminderDays|0|UINT8|0x50000125
+  # Password Near Expiration Days
+  gEfiByoModulePkgTokenSpaceGuid.PcdPasswordNearExpirationDays|0|UINT8|0x50000126
+  # 0:Do not check the password complexity.  1:Check password complexity
+  gEfiByoModulePkgTokenSpaceGuid.PcdPasswordComplexity|1|UINT8|0x50000128
+
+[PcdsDynamic, PcdsDynamicEx]
+  # TPM PCD
+  ## The PCD is used to specify send HierarchyControl command to enable or disable Platform Hierarchy.
+  gEfiByoModulePkgTokenSpaceGuid.PcdTpm2HierarchyChangeAuthPlatform|FALSE|BOOLEAN|0x00010020
+  gEfiByoModulePkgTokenSpaceGuid.PcdTpm2ChangeEps|FALSE|BOOLEAN|0x00010021
+  gEfiByoModulePkgTokenSpaceGuid.PcdTpm2ChangePps|FALSE|BOOLEAN|0x00010022
+  gEfiByoModulePkgTokenSpaceGuid.PcdTpm2Clear|FALSE|BOOLEAN|0x00010023
+  gEfiByoModulePkgTokenSpaceGuid.PcdTpm2HierarchyControlPlatform|FALSE|BOOLEAN|0x00010024
+  gEfiByoModulePkgTokenSpaceGuid.PcdTpm2HierarchyControlEndorsement|FALSE|BOOLEAN|0x00010025
+  gEfiByoModulePkgTokenSpaceGuid.PcdTpm2HierarchyControlOwner|FALSE|BOOLEAN|0x00010026
+  gEfiByoModulePkgTokenSpaceGuid.PcdTpm2TxtProvisionSupport|FALSE|BOOLEAN|0x00010027
+  gEfiByoModulePkgTokenSpaceGuid.PcdTpm2TxtProvisionSHA384|FALSE|BOOLEAN|0x00010028
+  ## Record if Tpm2 Chip Present
+  gEfiByoModulePkgTokenSpaceGuid.PcdTpm2ChipPresent|FALSE|BOOLEAN|0x00010029
+
+  # TCM PCD
+  ## Record if TCM Chip Present
+  gEfiByoModulePkgTokenSpaceGuid.PcdTcmChipPresent|TRUE|BOOLEAN|0x00010030
+  
+  # Secure Boot Default Key PCD
+  # The PCD controls whether to configure the default SecureBoot Policy Variable during system startup
+  gEfiByoModulePkgTokenSpaceGuid.PcdPlatformDefaultKey|FALSE|UINT16|0x00010034
+  
+  gEfiByoModulePkgTokenSpaceGuid.PcdPlatformNvVariableSwUpdated|FALSE|BOOLEAN|0x00020030
+  
+[PcdsDynamicEx]
+  #
+  # UiAppState
+  # 0: Normal State 
+  # 1: Run Setup Page Only
+  #
+  gEfiByoModulePkgTokenSpaceGuid.PcdUiAppState|0|UINT8|0x00010031
+
+  #
+  # Gui Mode
+  # 0: Gui Mode
+  # 1: Text Mode
+  #
+  gEfiByoModulePkgTokenSpaceGuid.PcdDisplayMode|0|BOOLEAN|0x00010032
+
+[PcdsPatchableInModule]
+  ## BYO_BIOS_FILE_EXTENSION
+  gEfiByoModulePkgTokenSpaceGuid.PcdBiosFileExt|L"fd"|VOID*|0x00002027
+
+
+[PcdsFixedAtBuild, PcdsPatchableInModule,  PcdsDynamic]
+  gEfiByoModulePkgTokenSpaceGuid.PcdBiosIdVersionCheck | FALSE | BOOLEAN | 0x00010035
+  gEfiByoModulePkgTokenSpaceGuid.PcdAhciOrPortNameIndexBase0|FALSE|BOOLEAN|0x0002145
+
+[Pcd]
+  gEfiByoModulePkgTokenSpaceGuid.PcdSystemPasswordHashLength
+  gEfiByoModulePkgTokenSpaceGuid.PcdSystemPasswordLength
+  gEfiByoModulePkgTokenSpaceGuid.PcdSystemPasswordMinLength
+  gEfiByoModulePkgTokenSpaceGuid.PcdMaxVerifyTimes
+  gEfiByoModulePkgTokenSpaceGuid.PcdPasswordMaxRecorderTime

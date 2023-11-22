@@ -1,0 +1,27 @@
+## @file  
+# 
+# Copyright (c) 2023, Byosoft Corporation.<BR>
+# All rights reserved.This software and associated documentation (if any)
+# is furnished under a license and may only be used or copied in
+# accordance with the terms of the license. Except as permitted by such
+# license, no part of this software or documentation may be reproduced,
+# stored in a retrieval system, or transmitted in any form or by any
+# means without the express written consent of Byosoft Corporation.
+# 
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = QrEncoderDxe
+  FILE_GUID                      = 65A59DA5-4055-4AC7-8B46-A9E710C827FE
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = QrEncoderEntryPoint
+
+[Binaries.X64]
+  PE32|X64/QrEncoderDxe.efi
+  DXE_DEPEX|X64/QrEncoderDxe.depex
+
+[Binaries.AArch64]
+  PE32|AArch64/QrEncoderDxe.efi
+  DXE_DEPEX|AArch64/QrEncoderDxe.depex

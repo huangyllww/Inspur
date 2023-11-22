@@ -1,0 +1,64 @@
+## @file
+#
+#Copyright (c) 2006 - 2023, Byosoft Corporation.<BR>
+#All rights reserved.This software and associated documentation (if any)
+#is furnished under a license and may only be used or copied in
+#accordance with the terms of the license. Except as permitted by such
+#license, no part of this software or documentation may be reproduced,
+#stored in a retrieval system, or transmitted in any form or by any
+#means without the express written consent of Byosoft Corporation.
+#
+#File Name:
+#  RasElogEventLib.inf
+#
+#Abstract:
+#
+#Revision History:
+#
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = RasElogEventLib
+  FILE_GUID                      = BCE7D561-A7ED-4303-8F47-3AABC9400691
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = RasElogEventLib
+  CONSTRUCTOR                    = RasElogEventLibConstructor
+
+[Sources]
+  RasElogEventLib.c
+  RasToIpmi.c
+
+  
+[Packages]
+  HgpiPkg/HgpiPkg.dec
+  HgpiCpmPkg/HgpiCpmPkg.dec
+  MdePkg/MdePkg.dec
+  ByoServerPkg/ByoServerPkg.dec
+  ByoModulePkg/ByoModulePkg.dec
+  Platform4Pkg/Platform4Pkg.dec
+  HgpiModulePkg/HgpiCommonModulePkg.dec
+  HgpiModulePkg/HgpiModuleCcxPkg.dec
+
+[LibraryClasses]
+  DebugLib
+  IoLib
+  BaseMemoryLib
+  IpmiBaseLib
+  PlatformCommLib
+  TimestampLib
+  HobLib
+
+[Guids]
+  gHygonDimmMapInfoHobGuid
+
+[Pcd]
+  gPlatformModuleTokenSpaceGuid.PcdIpmiSelRecordGeneratorId
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdHygonCcxCfgPFEHEnable
+  gPlatformModuleTokenSpaceGuid.PcdMemLeakybucketMiniutesOrSeconds
+
+[Depex]
+  TRUE
+
+

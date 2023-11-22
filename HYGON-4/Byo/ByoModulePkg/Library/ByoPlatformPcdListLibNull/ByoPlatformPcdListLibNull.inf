@@ -1,0 +1,129 @@
+## @file
+#
+# Copyright (c) 2023, Byosoft Corporation.<BR>
+# All rights reserved.This software and associated documentation (if any)
+# is furnished under a license and may only be used or copied in
+# accordance with the terms of the license. Except as permitted by such
+# license, no part of this software or documentation may be reproduced,
+# stored in a retrieval system, or transmitted in any form or by any
+# means without the express written consent of Byosoft Corporation.
+#
+# Library instance to list all DynamicEx PCD .
+#
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010017
+  BASE_NAME                      = ByoPlatformPcdListLibNull
+  FILE_GUID                      = 4A85772D-75A9-4BD3-9DED-7015716482E1
+  VERSION_STRING                 = 1.0
+  MODULE_TYPE                    = BASE
+  LIBRARY_CLASS                  = NULL
+#
+# The following information is for reference only and not required by the build tools.
+#
+# VALID_ARCHITECTURES = IA32 X64 IPF EBC
+#
+
+[LibraryClasses]
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  ByoModulePkg/ByoModulePkg.dec
+  SecurityPkg/SecurityPkg.dec
+  ByoServerPkg/ByoServerPkg.dec
+  
+[Sources]
+  ByoPlatformPcdListLibNull.c
+
+[Pcd]
+
+  gEfiByoModulePkgTokenSpaceGuid.PcdBiosBootModeType
+  gEfiByoModulePkgTokenSpaceGuid.PcdEnableSimplifedSecureBootConfig
+  gEfiByoModulePkgTokenSpaceGuid.PcdGrayOutSecureBootEnableOption
+  gEfiByoModulePkgTokenSpaceGuid.PcdLangInited
+  gEfiByoModulePkgTokenSpaceGuid.PcdLegacyBiosSupport
+  gEfiByoModulePkgTokenSpaceGuid.PcdLogoDataAddress
+  gEfiByoModulePkgTokenSpaceGuid.PcdLogoDataSize
+  gEfiByoModulePkgTokenSpaceGuid.PcdMaxVerifyTimes
+  gEfiByoModulePkgTokenSpaceGuid.PcdPlatformDefaultKey
+  gEfiByoModulePkgTokenSpaceGuid.PcdPxeRetrylimites
+  gEfiByoModulePkgTokenSpaceGuid.PcdRetryPxeBoot
+  gEfiByoModulePkgTokenSpaceGuid.PcdSecurePPMemAddress
+  gEfiByoModulePkgTokenSpaceGuid.PcdSmiFlashInfoAddress
+  gEfiByoModulePkgTokenSpaceGuid.PcdUCREnable
+  gEfiByoModulePkgTokenSpaceGuid.PcdAlwaysCreatNetOption
+  gEfiByoModulePkgTokenSpaceGuid.PcdCreatePciNetOptionsWithNoOpRom
+  gEfiByoModulePkgTokenSpaceGuid.PcdFceLoadDefault
+  gEfiByoModulePkgTokenSpaceGuid.PcdIsPlatformCmosBad
+  gEfiByoModulePkgTokenSpaceGuid.PcdIsPxeBootApp
+  gEfiByoModulePkgTokenSpaceGuid.PcdLangInited
+  gEfiByoModulePkgTokenSpaceGuid.PcdNetBootHttpEnable
+  gEfiByoModulePkgTokenSpaceGuid.PcdNetBootIp4Ip6
+  gEfiByoModulePkgTokenSpaceGuid.PcdSystemMiscConfig
+  gEfiByoModulePkgTokenSpaceGuid.PcdUpdateNvVariableEnable
+  gEfiMdeModulePkgTokenSpaceGuid.PcdRecordUpdateLogoState
+
+  #
+  #Platform BIOS Update Support
+  #
+  gEfiByoModulePkgTokenSpaceGuid.PcdBiosBase
+  gEfiByoModulePkgTokenSpaceGuid.PcdBiosSize
+  gEfiByoModulePkgTokenSpaceGuid.PcdMeBase
+  gEfiByoModulePkgTokenSpaceGuid.PcdMeSize
+  gEfiByoModulePkgTokenSpaceGuid.PcdNISBase
+  gEfiByoModulePkgTokenSpaceGuid.PcdNISSize
+  gEfiByoModulePkgTokenSpaceGuid.PcdiRCBase
+  gEfiByoModulePkgTokenSpaceGuid.PcdiRCSize
+  gEfiByoModulePkgTokenSpaceGuid.PcdECBase
+  gEfiByoModulePkgTokenSpaceGuid.PcdECSize
+  gEfiByoModulePkgTokenSpaceGuid.PcdGBEBase
+  gEfiByoModulePkgTokenSpaceGuid.PcdGBESize
+  gEfiByoModulePkgTokenSpaceGuid.PcdDisableKBCtrlAltDelResetDataPtr
+
+  #
+  #TPM 2.0 Support
+  #
+  gEfiSecurityPkgTokenSpaceGuid.PcdTpmInstanceGuid
+  gEfiByoModulePkgTokenSpaceGuid.PcdTpm2HierarchyChangeAuthPlatform
+  gEfiByoModulePkgTokenSpaceGuid.PcdTpm2ChangeEps
+  gEfiByoModulePkgTokenSpaceGuid.PcdTpm2ChangePps
+  gEfiByoModulePkgTokenSpaceGuid.PcdTpm2Clear
+  gEfiByoModulePkgTokenSpaceGuid.PcdTpm2HierarchyControlPlatform
+  gEfiByoModulePkgTokenSpaceGuid.PcdTpm2HierarchyControlEndorsement
+  gEfiByoModulePkgTokenSpaceGuid.PcdTpm2HierarchyControlOwner
+  gEfiByoModulePkgTokenSpaceGuid.PcdTpm2ChipPresent
+  gEfiByoModulePkgTokenSpaceGuid.PcdTpm2TxtProvisionSupport
+  gEfiSecurityPkgTokenSpaceGuid.PcdTpm2InitializationPolicy
+  gEfiSecurityPkgTokenSpaceGuid.PcdTpm2SelfTestPolicy
+  gEfiSecurityPkgTokenSpaceGuid.PcdTpm2ScrtmPolicy
+  gEfiSecurityPkgTokenSpaceGuid.PcdTpmInitializationPolicy
+  gEfiSecurityPkgTokenSpaceGuid.PcdTpmScrtmPolicy
+  gEfiSecurityPkgTokenSpaceGuid.PcdTpm2HashMask
+  gEfiSecurityPkgTokenSpaceGuid.PcdTcg2HashAlgorithmBitmap
+  gEfiByoModulePkgTokenSpaceGuid.PcdTpm2TxtProvisionSHA384
+  #
+  #Platform Ipmi Support
+  #
+  gEfiByoModulePkgTokenSpaceGuid.PcdPlatformNvVariableSwUpdated
+  gEfiByoModulePkgTokenSpaceGuid.PcdIpmiBootMiscConfig
+  gEfiMdeModulePkgTokenSpaceGuid.PcdDebugCodeHeaderPtr
+  gServerCommonPkgModuleTokenSpaceGuid.PcdBmcAdminName
+  gEfiByoModulePkgTokenSpaceGuid.PcdBiosIdVersionCheck
+  gServerCommonPkgModuleTokenSpaceGuid.PcdBmcFwVerStr8
+
+  #
+  #Password and Setup lock Screen
+  #
+  gEfiByoModulePkgTokenSpaceGuid.PcdPasswordUnlockTime
+  gEfiByoModulePkgTokenSpaceGuid.PcdRecorderPasswordTime
+  gEfiByoModulePkgTokenSpaceGuid.PcdLockScreenTime
+  gEfiByoModulePkgTokenSpaceGuid.PcdPasswordReminderDays
+  gEfiByoModulePkgTokenSpaceGuid.PcdPasswordNearExpirationDays
+  gEfiByoModulePkgTokenSpaceGuid.PcdPasswordComplexity
+
+  #
+  #Gui Mode
+  #
+  gEfiByoModulePkgTokenSpaceGuid.PcdDisplayMode

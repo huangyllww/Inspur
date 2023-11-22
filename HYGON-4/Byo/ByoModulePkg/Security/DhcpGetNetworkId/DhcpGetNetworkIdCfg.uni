@@ -1,0 +1,49 @@
+/** @file
+
+Copyright (c) 2022, Byosoft Corporation.<BR>
+All rights reserved.This software and associated documentation (if any)
+is furnished under a license and may only be used or copied in
+accordance with the terms of the license. Except as permitted by such
+license, no part of this software or documentation may be reproduced,
+stored in a retrieval system, or transmitted in any form or by any
+means without the express written consent of Byosoft Corporation.
+
+File Name:
+  DhcpGetNetworkIdCfg.uni
+
+Abstract:
+  uni file for DhcpGetNetworkId driver.
+
+Revision History:
+
+**/
+
+//
+//Setup  Strings
+//
+/=#
+#langdef   zh-Hans "\wide中文\narrow"
+#langdef   en-US   "English"
+
+
+#string STR_EMPTY                                                     #language en-US   " "
+                                                                      #language zh-Hans " "
+                              
+#string STR_NETWORK_SECURITY_AUTH_TITLE                               #language en-US   "NetWork Security Auth"
+                                                                      #language zh-Hans "\wide网络安全验证\narrow"
+#string STR_NETWORK_SECURITY_AUTH_HELP                                #language en-US   "Enter to this page to configure the network security authentication function."
+                                                                      #language zh-Hans "\wide进入这一页面来进行网络安全验证功能的相关配置。"
+
+#string STR_PWD_NETWORK_AUTH_OPTION                                   #language en-US   "Password NetWork Auth"
+                                                                      #language zh-Hans "\wide密码网络认证\narrow"
+#string STR_PWD_NETWORK_AUTH_OPTION_HELP                              #language en-US   "Select this option to enable or disable the network authentication function for Password. \nAttention:\nTo enable this function, the system must Access and register with the correct network. And need to restart the system to make the Settings take effect."
+                                                                      #language zh-Hans "\wide选择这一选项来打开或关闭密码的网络验证功能。\narrow\n\n\wide注意\narrow:\n\wide启用该功能时系统需接入并注册到正确的网络，且更改设置以后需重启生效。\narrow"
+#string STR_PWD_NETWORK_AUTH_ENABLE                                   #language en-US   "Enabled"
+                                                                      #language zh-Hans "打开"
+#string STR_PWD_NETWORK_AUTH_DISABLE                                  #language en-US   "Disabled"
+                                                                      #language zh-Hans "关闭"
+
+#string STR_NETWORK_AUTH_PROMPT                                       #language en-US    "Prompt Message"
+                                                                      #language zh-Hans  "\wide提示信息\narrow"
+#string STR_PWD_NETWORK_AUTH_OPTION_CONFIRMATION                      #language en-US   "To modify this option, both the system and the Hdd must be unencrypted. \nIf not, clear the system password and the Hdd password before modifying this option."
+                                                                      #language zh-Hans "\wide修改此选项需要满足当前系统和硬盘都处于未加密状态。\narrow\n\wide如果不是，请先清除系统密码以及硬盘密码再修改此选项。\narrow"

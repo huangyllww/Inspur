@@ -1,0 +1,298 @@
+///** @file
+//
+//Copyright (c) 2023, Byosoft Corporation.<BR> 
+//All rights reserved.This software and associated documentation (if any)
+//is furnished under a license and may only be used or copied in 
+//accordance with the terms of the license. Except as permitted by such
+//license, no part of this software or documentation may be reproduced, 
+//stored in a retrieval system, or transmitted in any form or by any 
+//means without the express written consent of Byosoft Corporation.
+//
+//File Name:
+//  SetupSioCfg.vfr
+//
+//Abstract: 
+//  vfr file for SETUP SIO DXE driver.
+//
+//Revision History:
+//
+
+#include <Guid/SioSetupDataStruct.h>
+
+
+formset
+  guid      = SETUP_SIO_CFG_GUID,
+  title     = STRING_TOKEN(STR_SIO_CFG_FORM_TITLE),
+  help      = STRING_TOKEN(STR_SIO_CFG_FORM_TITLE_HELP),
+  class     = 0,
+  subclass  = 0,
+
+  efivarstore SIO_SETUP_CONFIG,
+     varid = 0xf,
+     attribute = 7,
+     name  = SIO_SETUP_CONFIG,
+     guid  = SETUP_SIO_CFG_GUID;
+
+  form formid = SIO_CONFIG_FORM_ID,
+    title = STRING_TOKEN(STR_SIO_CFG_FORM_TITLE);
+
+    oneof varid  = SIO_SETUP_CONFIG.UartAEn,
+        prompt = STRING_TOKEN(STR_UART_1_ENABLE),
+        help   = STRING_TOKEN(STR_UART_1_ENABLE_HELP),       
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLED),  value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+    endoneof;
+    
+    oneof varid  = SIO_SETUP_CONFIG.UartBEn,
+        prompt = STRING_TOKEN(STR_UART_2_ENABLE),
+        help   = STRING_TOKEN(STR_UART_2_ENABLE_HELP),       
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_ENABLED),  value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+    endoneof;
+    //
+    // WatchDog
+    //
+    oneof
+      varid       = SIO_SETUP_CONFIG.WtdEn,
+      prompt      = STRING_TOKEN (STR_WTD),
+      help        = STRING_TOKEN (STR_WTD_HELP),
+      option text = STRING_TOKEN (STR_DISABLED),        value = 0,    flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+      option text = STRING_TOKEN (STR_ENABLED),         value = 1,    flags = 0 | RESET_REQUIRED;
+    endoneof;
+    suppressif ideqval SIO_SETUP_CONFIG.WtdEn == 0;
+      numeric varid   = SIO_SETUP_CONFIG.WatchDogTime,
+              prompt  = STRING_TOKEN(STR_WTD_TIMER),
+              help    = STRING_TOKEN(STR_WTD_TIMER_HELP),
+              flags   = RESET_REQUIRED,
+              minimum = 5,
+              maximum = 255,
+              step    = 5,
+              default = 120,
+      endnumeric;
+    endif;
+    subtitle text = STRING_TOKEN(STR_EMPTY);
+    goto HEALTH_MONITOR_FORM_ID,
+      prompt = STRING_TOKEN(STR_HEALTH_MONITOR_FORM),
+      help   = STRING_TOKEN(STR_HEALTH_MONITOR_FORM);
+    goto FAN_CONTROL_FORM_ID,
+      prompt = STRING_TOKEN(STR_FAN_CONTROL_FORM),
+      help   = STRING_TOKEN(STR_FAN_CONTROL_FORM);
+
+  endform;
+
+
+
+  form formid = HEALTH_MONITOR_FORM_ID,
+    title = STRING_TOKEN(STR_HEALTH_MONITOR_FORM);
+
+   subtitle text = STRING_TOKEN(STR_EMPTY);  
+   INTERACTIVE_ONEOF_REFRESH(STRING_TOKEN(STR_SYSTIN_HELP),STRING_TOKEN(STR_SYSTIN_TEXT),STRING_TOKEN(STR_SYSTIN_VALUE),AUTO_ID(SYSTIN_TEMP_KEY))
+   INTERACTIVE_ONEOF_REFRESH(STRING_TOKEN(STR_CPUTIN_HELP),STRING_TOKEN(STR_CPUTIN_TEXT),STRING_TOKEN(STR_CPUTIN_VALUE),AUTO_ID(CPUTIN_TEMP_KEY))
+   INTERACTIVE_ONEOF_REFRESH(STRING_TOKEN(STR_AUXTIN_HELP),STRING_TOKEN(STR_AUXTIN_TEXT),STRING_TOKEN(STR_AUXTIN_VALUE),AUTO_ID(AUXTIN_TEMP_KEY))
+  //  INTERACTIVE_ONEOF_REFRESH(STRING_TOKEN(STR_TSI_HELP),STRING_TOKEN(STR_TSI_TEXT),STRING_TOKEN(STR_TSI_VALUE),AUTO_ID(TSI_TEMP_KEY))
+
+   subtitle text = STRING_TOKEN(STR_EMPTY);
+   INTERACTIVE_ONEOF_REFRESH(STRING_TOKEN(STR_EMPTY),STRING_TOKEN(STR_CPUVCORE),STRING_TOKEN(STR_CPUVCORE_VALUE),AUTO_ID(VOLTAGE_CPUVCORE_KEY))
+   INTERACTIVE_ONEOF_REFRESH(STRING_TOKEN(STR_EMPTY),STRING_TOKEN(STR_VBAT),STRING_TOKEN(STR_VBAT_VALUE),AUTO_ID(VOLTAGE_VBAT_KEY))
+   INTERACTIVE_ONEOF_REFRESH(STRING_TOKEN(STR_EMPTY),STRING_TOKEN(STR_3VSB),STRING_TOKEN(STR_3VSB_VALUE),AUTO_ID(VOLTAGE_3VSB_KEY))
+   INTERACTIVE_ONEOF_REFRESH(STRING_TOKEN(STR_EMPTY),STRING_TOKEN(STR_3VCC),STRING_TOKEN(STR_3VCC_VALUE),AUTO_ID(VOLTAGE_3VCC_KEY))
+   INTERACTIVE_ONEOF_REFRESH(STRING_TOKEN(STR_EMPTY),STRING_TOKEN(STR_AVCC),STRING_TOKEN(STR_AVCC_VALUE),AUTO_ID(VOLTAGE_AVCC_KEY))
+   INTERACTIVE_ONEOF_REFRESH(STRING_TOKEN(STR_EMPTY),STRING_TOKEN(STR_VIN0),STRING_TOKEN(STR_VIN0_VALUE),AUTO_ID(VOLTAGE_VIN0_KEY))
+   INTERACTIVE_ONEOF_REFRESH(STRING_TOKEN(STR_EMPTY),STRING_TOKEN(STR_VIN1),STRING_TOKEN(STR_VIN1_VALUE),AUTO_ID(VOLTAGE_VIN1_KEY))
+   INTERACTIVE_ONEOF_REFRESH(STRING_TOKEN(STR_EMPTY),STRING_TOKEN(STR_VIN2),STRING_TOKEN(STR_VIN2_VALUE),AUTO_ID(VOLTAGE_VIN2_KEY))
+   INTERACTIVE_ONEOF_REFRESH(STRING_TOKEN(STR_EMPTY),STRING_TOKEN(STR_VIN3),STRING_TOKEN(STR_VIN3_VALUE),AUTO_ID(VOLTAGE_VIN3_KEY))
+   subtitle text = STRING_TOKEN(STR_EMPTY); 
+   //CPU FANOUT SPEED  
+   INTERACTIVE_ONEOF_REFRESH(STRING_TOKEN(STR_CPUFANIN_HELP),STRING_TOKEN(STR_CPUFANIN_TEXT),STRING_TOKEN(STR_CPUFANIN_VALUE),AUTO_ID(CPUFANIN_KEY))
+   INTERACTIVE_ONEOF_REFRESH(STRING_TOKEN(STR_SYSFANIN_HELP),STRING_TOKEN(STR_SYSFANIN_TEXT),STRING_TOKEN(STR_SYSFANIN_VALUE),AUTO_ID(SYSFANIN_KEY))
+   INTERACTIVE_ONEOF_REFRESH(STRING_TOKEN(STR_AUXFANIN0_HELP),STRING_TOKEN(STR_AUXFANIN0_TEXT),STRING_TOKEN(STR_AUXFANIN0_VALUE),AUTO_ID(AUXFANIN0_KEY))
+   INTERACTIVE_ONEOF_REFRESH(STRING_TOKEN(STR_AUXFANIN1_HELP),STRING_TOKEN(STR_AUXFANIN1_TEXT),STRING_TOKEN(STR_AUXFANIN1_VALUE),AUTO_ID(AUXFANIN1_KEY))
+   INTERACTIVE_ONEOF_REFRESH(STRING_TOKEN(STR_AUXFANIN2_HELP),STRING_TOKEN(STR_AUXFANIN2_TEXT),STRING_TOKEN(STR_AUXFANIN2_VALUE),AUTO_ID(AUXFANIN2_KEY))
+
+
+  endform;
+   
+  form formid = FAN_CONTROL_FORM_ID,
+    title = STRING_TOKEN(STR_FAN_CONTROL_FORM);
+    oneof varid  = SIO_SETUP_CONFIG.SysFanmode,
+        prompt = STRING_TOKEN(STR_SYSFAN_MODE),
+        help   = STRING_TOKEN(STR_SYSFAN_MODE_HELP),
+        option text = STRING_TOKEN(STR_SMART_FAN_IV),  value = 4, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+    endoneof;
+
+    oneof varid  = SIO_SETUP_CONFIG.SysFanTempSource,
+        prompt = STRING_TOKEN(STR_TEMP_SOURCE),
+        help   = STRING_TOKEN(STR_TEMP_SOURCE_HELP),
+        option text = STRING_TOKEN(STR_SMBUSMASTER_0),  value = 4, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+    endoneof;
+    
+    suppressif NOT ideqval SIO_SETUP_CONFIG.SysFanmode == 4;
+
+      numeric varid = SIO_SETUP_CONFIG.SysFanCriticalTemp,
+        prompt    = STRING_TOKEN(STR_CRITICAL_TEMP_TEXT),
+        help      = STRING_TOKEN(STR_CRITICAL_TEMP_HELP),
+        minimum   = 0x0,
+        maximum   = 127,
+        step      = 1,
+        default   = 90,
+      endnumeric;
+      
+      numeric varid = SIO_SETUP_CONFIG.SysFanTemp1,
+        prompt    = STRING_TOKEN(STR_TEMP1_TEXT),
+        help      = STRING_TOKEN(STR_TEMP1_HELP),
+        minimum   = 0x0,
+        maximum   = 127,
+        step      = 1,
+        default   = 30,
+      endnumeric;
+      numeric varid = SIO_SETUP_CONFIG.SysFanDcPwm1,
+        prompt    = STRING_TOKEN(STR_FAN_DC_PWM1_TEXT),
+        help      = STRING_TOKEN(STR_FAN_DC_PWM1_HELP),
+        minimum   = 0x0,
+        maximum   = 100,
+        step      = 1,
+        default   = 30,
+      endnumeric;
+      numeric varid = SIO_SETUP_CONFIG.SysFanTemp2,
+        prompt    = STRING_TOKEN(STR_TEMP2_TEXT),
+        help      = STRING_TOKEN(STR_TEMP2_HELP),
+        minimum   = 0x0,
+        maximum   = 127,
+        step      = 1,
+        default   = 45,
+      endnumeric;
+      numeric varid = SIO_SETUP_CONFIG.SysFanDcPwm2,
+        prompt    = STRING_TOKEN(STR_FAN_DC_PWM2_TEXT),
+        help      = STRING_TOKEN(STR_FAN_DC_PWM2_HELP),
+        minimum   = 0x0,
+        maximum   = 100,
+        step      = 1,
+        default   = 50,
+      endnumeric;
+      numeric varid = SIO_SETUP_CONFIG.SysFanTemp3,
+        prompt    = STRING_TOKEN(STR_TEMP3_TEXT),
+        help      = STRING_TOKEN(STR_TEMP3_HELP),
+        minimum   = 0x0,
+        maximum   = 127,
+        step      = 1,
+        default   = 60,
+      endnumeric;
+      numeric varid = SIO_SETUP_CONFIG.SysFanDcPwm3,
+        prompt    = STRING_TOKEN(STR_FAN_DC_PWM3_TEXT),
+        help      = STRING_TOKEN(STR_FAN_DC_PWM3_HELP),
+        minimum   = 0x0,
+        maximum   = 100,
+        step      = 1,
+        default   = 65,
+      endnumeric;
+      numeric varid = SIO_SETUP_CONFIG.SysFanTemp4,
+        prompt    = STRING_TOKEN(STR_TEMP4_TEXT),
+        help      = STRING_TOKEN(STR_TEMP4_HELP),
+        minimum   = 0x0,
+        maximum   = 127,
+        step      = 1,
+        default   = 75,
+      endnumeric;
+      numeric varid = SIO_SETUP_CONFIG.SysFanDcPwm4,
+        prompt    = STRING_TOKEN(STR_FAN_DC_PWM4_TEXT),
+        help      = STRING_TOKEN(STR_FAN_DC_PWM4_HELP),
+        minimum   = 0x0,
+        maximum   = 100,
+        step      = 1,
+        default   = 75,
+      endnumeric;
+    endif;
+    
+    subtitle text = STRING_TOKEN(STR_EMPTY);
+    
+    oneof varid  = SIO_SETUP_CONFIG.CpuFanmode,
+        prompt = STRING_TOKEN(STR_CPUFAN_MODE),
+        help   = STRING_TOKEN(STR_CPUFAN_MODE_HELP),
+        option text = STRING_TOKEN(STR_SMART_FAN_IV),  value = 4, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+    endoneof;
+
+    oneof varid  = SIO_SETUP_CONFIG.CpuFanTempSource,
+        prompt = STRING_TOKEN(STR_TEMP_SOURCE),
+        help   = STRING_TOKEN(STR_TEMP_SOURCE_HELP),
+        option text = STRING_TOKEN(STR_SMBUSMASTER_0),  value = 4, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+    endoneof;
+    
+    suppressif NOT ideqval SIO_SETUP_CONFIG.CpuFanmode == 4;
+
+      numeric varid = SIO_SETUP_CONFIG.CpuFanCriticalTemp,
+        prompt    = STRING_TOKEN(STR_CRITICAL_TEMP_TEXT),
+        help      = STRING_TOKEN(STR_CRITICAL_TEMP_HELP),
+        minimum   = 0x0,
+        maximum   = 127,
+        step      = 1,
+        default   = 90,
+      endnumeric;
+      
+      numeric varid = SIO_SETUP_CONFIG.CpuFanTemp1,
+        prompt    = STRING_TOKEN(STR_TEMP1_TEXT),
+        help      = STRING_TOKEN(STR_TEMP1_HELP),
+        minimum   = 0x0,
+        maximum   = 127,
+        step      = 1,
+        default   = 30,
+      endnumeric;
+      numeric varid = SIO_SETUP_CONFIG.CpuFanDcPwm1,
+        prompt    = STRING_TOKEN(STR_FAN_DC_PWM1_TEXT),
+        help      = STRING_TOKEN(STR_FAN_DC_PWM1_HELP),
+        minimum   = 0x0,
+        maximum   = 100,
+        step      = 1,
+        default   = 30,
+      endnumeric;
+      numeric varid = SIO_SETUP_CONFIG.CpuFanTemp2,
+        prompt    = STRING_TOKEN(STR_TEMP2_TEXT),
+        help      = STRING_TOKEN(STR_TEMP2_HELP),
+        minimum   = 0x0,
+        maximum   = 127,
+        step      = 1,
+        default   = 45,
+      endnumeric;
+      numeric varid = SIO_SETUP_CONFIG.CpuFanDcPwm2,
+        prompt    = STRING_TOKEN(STR_FAN_DC_PWM2_TEXT),
+        help      = STRING_TOKEN(STR_FAN_DC_PWM2_HELP),
+        minimum   = 0x0,
+        maximum   = 100,
+        step      = 1,
+        default   = 45,
+      endnumeric;
+      numeric varid = SIO_SETUP_CONFIG.CpuFanTemp3,
+        prompt    = STRING_TOKEN(STR_TEMP3_TEXT),
+        help      = STRING_TOKEN(STR_TEMP3_HELP),
+        minimum   = 0x0,
+        maximum   = 127,
+        step      = 1,
+        default   = 60,
+      endnumeric;
+      numeric varid = SIO_SETUP_CONFIG.CpuFanDcPwm3,
+        prompt    = STRING_TOKEN(STR_FAN_DC_PWM3_TEXT),
+        help      = STRING_TOKEN(STR_FAN_DC_PWM3_HELP),
+        minimum   = 0x0,
+        maximum   = 100,
+        step      = 1,
+        default   = 60,
+      endnumeric;
+      numeric varid = SIO_SETUP_CONFIG.CpuFanTemp4,
+        prompt    = STRING_TOKEN(STR_TEMP4_TEXT),
+        help      = STRING_TOKEN(STR_TEMP4_HELP),
+        minimum   = 0x0,
+        maximum   = 127,
+        step      = 1,
+        default   = 70,
+      endnumeric;
+      numeric varid = SIO_SETUP_CONFIG.CpuFanDcPwm4,
+        prompt    = STRING_TOKEN(STR_FAN_DC_PWM4_TEXT),
+        help      = STRING_TOKEN(STR_FAN_DC_PWM4_HELP),
+        minimum   = 0x0,
+        maximum   = 100,
+        step      = 1,
+        default   = 70,
+      endnumeric;
+    endif;
+  endform;
+
+endformset;

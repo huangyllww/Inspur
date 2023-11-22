@@ -1,0 +1,88 @@
+
+#include <BmcConfig.h>
+
+form formid = FRU_FORM_ID,
+    title  = STRING_TOKEN (STR_SRVRMGMT_FRU_FORM_TITLE);
+    subtitle text = STRING_TOKEN (STR_SRVRMGMT_FRU_FORM_TITLE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+    
+  text help  = STRING_TOKEN (STR_CHA_TYPE_HELP),
+       text  = STRING_TOKEN (STR_CHA_TYPE),
+       text  = STRING_TOKEN (STR_CHA_TYPE_VAL),
+       flags = 0,
+       key   = 0;
+       
+  text help  = STRING_TOKEN (STR_CHA_PART_NUM_HELP),
+       text  = STRING_TOKEN (STR_CHA_PART_NUM),
+       text  = STRING_TOKEN (STR_CHA_PART_NUM_VAL),
+       flags = 0,
+       key   = 0;
+
+  text help  = STRING_TOKEN (STR_CHA_SERIAL_NUM_HELP),
+       text  = STRING_TOKEN (STR_CHA_SERIAL_NUM),
+       text  = STRING_TOKEN (STR_CHA_SERIAL_NUM_VAL),
+       flags = 0,
+       key   = 0;
+
+  text help  = STRING_TOKEN (STR_BRD_MANUFACTURER_HELP),
+       text  = STRING_TOKEN (STR_BRD_MANUFACTURER),
+       text  = STRING_TOKEN (STR_BRD_MANUFACTURER_VAL),
+       flags = 0,
+       key   = 0;
+
+  text help  = STRING_TOKEN (STR_BRD_PROD_NAME_HELP),
+       text  = STRING_TOKEN (STR_BRD_PROD_NAME),
+       text  = STRING_TOKEN (STR_BRD_PROD_NAME_VAL),
+       flags = 0,
+       key   = 0;
+
+  text help  = STRING_TOKEN (STR_BRD_SERIAL_NUM_HELP),
+       text  = STRING_TOKEN (STR_BRD_SERIAL_NUM),
+       text  = STRING_TOKEN (STR_BRD_SERIAL_NUM_VAL),
+       flags = 0,
+       key   = 0;
+
+  text help  = STRING_TOKEN (STR_BRD_PART_NUM_HELP),
+       text  = STRING_TOKEN (STR_BRD_PART_NUM),
+       text  = STRING_TOKEN (STR_BRD_PART_NUM_VAL),
+       flags = 0,
+       key   = 0;
+
+       
+  text help  = STRING_TOKEN (STR_SYS_MANUFACTURER_HELP),
+       text  = STRING_TOKEN (STR_SYS_MANUFACTURER),
+       text  = STRING_TOKEN (STR_SYS_MANUFACTURER_VAL),
+       flags = 0,
+       key   = 0;
+
+  text help  = STRING_TOKEN (STR_SYS_PROD_NAME_HELP),
+       text  = STRING_TOKEN (STR_SYS_PROD_NAME),
+       text  = STRING_TOKEN (STR_SYS_PROD_NAME_VAL),
+       flags = 0,
+       key   = 0;
+
+  text help  = STRING_TOKEN (STR_SYS_PART_NUM_HELP),
+       text  = STRING_TOKEN (STR_SYS_PART_NUM),
+       text  = STRING_TOKEN (STR_SYS_PART_NUM_VAL),
+       flags = 0,
+       key   = 0;
+
+  text help  = STRING_TOKEN (STR_SYS_VERSION_HELP),
+       text  = STRING_TOKEN (STR_SYS_VERSION),
+       text  = STRING_TOKEN (STR_SYS_VERSION_VAL),
+       flags = 0,
+       key   = 0;
+
+  text help  = STRING_TOKEN (STR_SYS_SERIAL_NUM_HELP),
+       text  = STRING_TOKEN (STR_SYS_SERIAL_NUM),
+       text  = STRING_TOKEN (STR_SYS_SERIAL_NUM_VAL),
+       flags = 0,
+       key   = 0;
+
+  text help  = STRING_TOKEN (STR_SYSTEM_UUID_HELP),
+       text  = STRING_TOKEN (STR_SYSTEM_UUID),
+       text  = STRING_TOKEN (STR_SYSTEM_UUID_VAL),
+       flags = 0,
+       key   = 0;
+
+  endform;

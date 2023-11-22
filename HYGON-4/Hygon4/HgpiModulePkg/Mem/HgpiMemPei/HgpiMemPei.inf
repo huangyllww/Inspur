@@ -1,0 +1,47 @@
+
+#
+# This file contains code for HGPI initialization in the Pei stage.
+#
+
+[Defines]
+    INF_VERSION    = 0x00010005
+    VERSION_STRING = 1.0
+    BASE_NAME      = HgpiMemPei
+    FILE_GUID      = 586032e3-1386-4ecc-b547-eb285e21066d
+    MODULE_TYPE    = PEIM
+    ENTRY_POINT    = HgpiMemPeiEntry
+
+[Sources]
+    HgpiMemPei.c
+    HgpiMemPei.h
+
+[Packages]
+    MdePkg/MdePkg.dec
+    HgpiModulePkg/HgpiCommonModulePkg.dec
+    HgpiModulePkg/HgpiModuleDfPkg.dec
+    HgpiPkg/HgpiPkg.dec
+    HgpiCpmPkg/HgpiCpmPkg.dec
+
+[LibraryClasses]
+    PeimEntryPoint
+    HygonBaseLib
+    IdsLib
+    BaseLib
+    PcdLib
+    HobLib
+    HygonSocBaseLib
+    BaseFabricTopologyLib
+    IoLib
+
+[Guids]
+
+[Ppis]
+    gEfiPeiSmbus2PpiGuid					#Consumed
+    gHygonPlatformDimmSpdPpiGuid   				#Produced
+
+[Pcd]
+    gHgpiCpmPkgTokenSpaceGuid.PcdPlatformSelect
+
+[Depex]
+#    gEfiPeiReadOnlyVariable2PpiGuid AND
+    gEfiPeiSmbus2PpiGuid

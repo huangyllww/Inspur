@@ -1,0 +1,98 @@
+/** @file
+
+Copyright (c) 2006 - 2014, Byosoft Corporation.<BR>
+All rights reserved.This software and associated documentation (if any)
+is furnished under a license and may only be used or copied in
+accordance with the terms of the license. Except as permitted by such
+license, no part of this software or documentation may be reproduced,
+stored in a retrieval system, or transmitted in any form or by any
+means without the express written consent of Byosoft Corporation.
+
+File Name:
+  SystemPasswordLib.uni
+
+Abstract:
+  
+Revision History:
+
+$END--------------------------------------------------------------------
+
+**/
+
+/=#
+#langdef   en-US "English"
+#langdef   zh-Hans "\wide中文\narrow"
+
+#string STR_PASSWD_INFO0              #language zh-Hans  "\wide系统安全:进入\narrowSetup\wide需要密码,管理员密码已设,\n  用户密码未设时,按\narrow<Enter>\wide以用户权限进\narrowSetup"
+                                      #language en-US    "System Security: Setup Password Required,When the administrator password is set\n  the user password is not set,Press <Enter> to enter Setup with user privileges" 
+#string STR_PASSWD_INFO1              #language zh-Hans  "\wide系统安全:需要开机密码\narrow"
+                                      #language en-US    "System Security: Power-On Password Required." 
+                                      
+#string STR_PASSWD_INFO2              #language zh-Hans  "\wide输入开机密码，然后按\narrow<Enter>:" 
+                                      #language en-US    "Enter Power-On Password and Press <Enter>:"
+#string STR_PASSWD_INFO3              #language zh-Hans  "\wide输入\narrowSetup\wide密码，然后按\narrow<Enter>:" 
+                                      #language en-US    "Enter Setup Password and Press <Enter>:"
+
+#string STR_PASSWD_INVALID            #language zh-Hans  "\wide密码错误\narrow" 
+                                      #language en-US    "Invalid Password"  
+
+#string STR_PASSWD_INVALID_LENGTH     #language en-US  "Please enter enough characters"
+                                      #language zh-Hans  "\wide请输入足够的字符\narrow"
+
+#string STR_PASSWORD_FATAL_ERROR      #language zh-Hans  "\wide密码错误，系统挂起\narrow" 
+                                      #language en-US    "Fatal Error... System Halted."
+#string STR_ERROR                     #language zh-Hans  "\wide错误\narrow" 
+                                      #language en-US    "ERROR" 
+#string STR_OUT_TIME_PASSWORD_STRING      #language    en-US "Password expired, Please change it as soon as possible! Press ENTER to continue"
+                                          #language    zh-Hans "\wide密码已经过期，请尽快修改! 按\narrowEnter\wide键继续\narrow"
+
+#string STR_PASSWORD_ERROR_COUNTDOWN  #language zh-Hans  "\wide密码错误，屏幕锁定, 请重启或等待\narrow%3d\wide秒。\narrow" 
+                                      #language en-US    "The password is incorrect and the screen is locked.\nPlease Reset or Wait %3d seconds."
+
+#string STR_ENTER_PASSWORD            #language en-US    "Enter Password"
+                                      #language zh-Hans  "\wide请输入密码\narrow"
+
+#string STR_PASSWORD_NULL_INVALID     #language en-US    "An empty password is not allowed"
+                                      #language zh-Hans  "\wide不允许输入空密码。\narrow"
+
+#string STR_GETNETWORKID_MSG          #language en-US    "Network authentication failed, unable to verify, please restart the system and try again"
+                                      #language zh-Hans  "\wide网络认证失败，无法进行校验，请重启系统再试\narrow"
+
+#string STR_GETNETWORKID_MSG2         #language en-US    "Network authentication failed, unable to verify"
+                                      #language zh-Hans  "\wide网络认证失败，无法进行校验\narrow"
+
+#string STR_NETWORK_AUTH_PROMPT       #language en-US    "Prompt Message"
+                                      #language zh-Hans  "\wide提示信息\narrow"
+
+#string STR_NETWORK_AUTH_RUNTIME      #language en-US    "Network auth is being performed..."
+                                      #language zh-Hans  "\wide正在进行网络认证...\narrow"
+
+#string STR_PASSWORD_RANDOM_CODE_MSG  #language en-US    "Setup Notice"
+                                      #language zh-Hans  "\wide设置提示\narrow"
+
+#string STR_PASSWORD_CLEAR_MESSAGE    #language en-US    "Successfully cleared  System Password!"
+                                      #language zh-Hans  "\wide清除系统密码成功\narrow"
+
+#string STR_PASSWORD_CODE_ERROR_MSG   #language en-US    "Reset code error!"
+                                      #language zh-Hans  "\wide重置码错误!\narrow"
+
+#string STR_INPUT_TRSET_CODE_MSG      #language en-US    "Please enter the reset code"
+                                      #language zh-Hans  "\wide请输入重置码\narrow"
+
+#string STR_INPUT_EMPTY_RESET_CODE    #language en-US    "The input reset code is empty"
+                                      #language zh-Hans  "\wide输入重置码为空\narrow"
+
+#string STR_PASSWORD_ALLOW_BOOT_MSG   #language en-US    "The boot code is correct, allowing normal startup!"
+                                      #language zh-Hans  "\wide启动码正确,允许正常启动!\narrow"
+
+#string STR_PASSWORD_INPUT_EMPTY      #language en-US    "The password entered cannot be empty"
+                                      #language zh-Hans  "\wide输入密码不能为空\narrow"
+
+#string STR_CONFIRM_INPUT_ENTER       #language en-US    "Are you sure to enter Setup with user privileges?"
+                                      #language zh-Hans  "\wide确认以用户权限进入Setup?\narrow"
+
+#string STR_QR_MSG                    #language en-US    "The password is wrong three times or the network connection is unsuccessful.\nPlease scan the QR code to obtain a random verification code,and send \nthe random code to the administrator to obtain a reset code"
+                                      #language zh-Hans  "\wide密码错误三次或网络连接不成功,请扫二维码获取随机验证码,\n并将随机码发送给管理员获得重置码\narrow"
+
+#string STR_PWD_NEAR_EXPIRATION_STR   #language    en-US "Password %d days overdue, Please change it as soon as possible! Press ENTER to continue"
+                                      #language    zh-Hans "\wide密码还有\narrow%d\wide天过期，请尽快修改! 按\narrowEnter\wide键继续\narrow"

@@ -1,0 +1,169 @@
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = PlatformPei
+  FILE_GUID                      = 064987B3-9780-4ce7-A55B-1ADCB3821205
+  MODULE_TYPE                    = PEIM
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = PlatformPeiEntry
+
+#
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           = IA32 X64 IPF EBC
+#
+
+[Sources]
+  PlatformPei.c
+  MemoryCallBack.c
+  Recovery.c
+  SmmAccess.c
+  SmmControl.c
+  PcieTrainingDone.c
+  DimmInfo.c
+
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  ByoModulePkg/ByoModulePkg.dec
+  ByoServerPkg/ByoServerPkg.dec
+  Platform4Pkg/Platform4Pkg.dec
+  ByoHgpiModulePkg/ByoHgpiModulePkg.dec
+  SecurityPkg/SecurityPkg.dec
+  HgpiPkg/HgpiPkg.dec
+  HgpiModulePkg/HgpiModuleNbioPkg.dec
+  HgpiModulePkg/Fch/FchTaishan.dec
+  HgpiModulePkg/HgpiModuleDfPkg.dec
+  HgpiCpmPkg/HgpiCpmPkg.dec
+
+
+[LibraryClasses]
+  HobLib
+  PeimEntryPoint
+  PeiServicesLib
+  BaseMemoryLib
+  DebugLib
+  IoLib
+  PeiServicesTablePointerLib
+  MtrrLib
+  TimerLib
+  MultiPlatSupportLib
+  ReportStatusCodeLib
+  PerformanceLib
+  PlatformCommLib
+  ByoCommLib
+  DebugPrintErrorLevelLib
+  PrintLib
+  PcdLib
+  ByoHygonCommLib
+  ByoHygonFabricLib
+  PcieConfigLib
+  HygonSocBaseLib
+  
+
+[Guids]
+  gEfiMemoryTypeInformationGuid
+  gPlatformSetupVariableGuid
+  gMtcVendorGuid
+  gEfiAcpiVariableGuid
+  gEfiCapsuleVendorGuid
+  gHygonReportRasUceVariableGuid
+  gByoPasswordNetworkAuthConfigGuid
+  gSmramDescTableGuid
+  gByoSetupDataHobReadyPpiGuid
+  gHygonDimmMapInfoHobGuid
+  
+
+[Ppis]
+  gEfiPeiMasterBootModePpiGuid                  # PPI ALWAYS_PRODUCED
+  gEfiPeiBootInRecoveryModePpiGuid              # PPI SOMETIMES_PRODUCED
+  gEfiPeiReadOnlyVariable2PpiGuid
+  gEfiPeiMemoryDiscoveredPpiGuid
+  gEfiEndOfPeiSignalPpiGuid
+  gPeiSmmAccessPpiGuid
+  gPeiSmmControlPpiGuid
+  gPeiCapsulePpiGuid
+  gPeiAtaControllerPpiGuid
+  gEfiPeiBootInRecoveryModePpiGuid
+  gEfiPeiReadOnlyVariable2PpiGuid
+  gByoSetupDataReadyPpiGuid
+  gByoAddOnGfxOnPpiGuid
+  gHygonNbioPcieTrainingDonePpiGuid
+  gHygonFabricTopologyServicesPpiGuid
+  gHygonNbioPcieServicesPpiGuid
+  gEfiEndOfPeiSignalPpiGuid
+  gHygonCpmTablePpiGuid
+  
+
+[Pcd]
+  gEfiMdePkgTokenSpaceGuid.PcdPciExpressBaseAddress
+  gEfiByoModulePkgTokenSpaceGuid.PcdFlashFvMainBase
+  gEfiByoModulePkgTokenSpaceGuid.PcdFlashFvMainSize
+  gEfiByoModulePkgTokenSpaceGuid.PcdFlashFvMain2Base
+  gEfiByoModulePkgTokenSpaceGuid.PcdFlashFvMain2Size
+  gEfiByoModulePkgTokenSpaceGuid.PcdFlashFvRecoveryBase
+  gEfiByoModulePkgTokenSpaceGuid.PcdFlashAreaBaseAddress
+  gEfiByoModulePkgTokenSpaceGuid.PcdFlashAreaSize
+  gEfiByoModulePkgTokenSpaceGuid.PcdFlashNvLogoBase
+  gEfiByoModulePkgTokenSpaceGuid.PcdFlashNvLogoSize
+  gEfiByoModulePkgTokenSpaceGuid.PcdFlashFvNetworkBase
+  gEfiByoModulePkgTokenSpaceGuid.PcdFlashFvNetworkSize
+  gEfiByoModulePkgTokenSpaceGuid.AcpiIoPortBaseAddress
+  gEfiByoModulePkgTokenSpaceGuid.PcdFlashNvStorageMicrocodeBase
+  gEfiByoModulePkgTokenSpaceGuid.PcdFlashNvStorageMicrocodeSize
+  gEfiByoModulePkgTokenSpaceGuid.PcdCpuS3ApVectorAddress
+  gEfiByoModulePkgTokenSpaceGuid.PcdCpuS3ApVectorMaxSize
+  gEfiByoModulePkgTokenSpaceGuid.PcdLogoDataAddress
+  gEfiByoModulePkgTokenSpaceGuid.PcdLogoDataSize
+  gEfiByoModulePkgTokenSpaceGuid.PcdHighPmmMemoryAddress
+  gEfiByoModulePkgTokenSpaceGuid.PcdIsPlatformCmosBad
+  gEfiByoModulePkgTokenSpaceGuid.PcdFceLoadDefault
+  gEfiByoModulePkgTokenSpaceGuid.PcdSwSmiCmdPort
+  gEfiByoModulePkgTokenSpaceGuid.PcdSetupDataVersionCheck
+  gEfiMdeModulePkgTokenSpaceGuid.PcdSrIovSupport
+  gEfiByoModulePkgTokenSpaceGuid.PcdUCREnable
+  gEfiByoModulePkgTokenSpaceGuid.PcdSetupDataVersion
+  gEfiByoModulePkgTokenSpaceGuid.PcdDebugLevelOem0
+  gEfiByoModulePkgTokenSpaceGuid.PcdDebugLevelOem1
+  gEfiByoModulePkgTokenSpaceGuid.PcdDebugLevelOem2
+  gEfiByoModulePkgTokenSpaceGuid.PcdDebugLevelOem3
+  gEfiByoModulePkgTokenSpaceGuid.PcdBiosSettingNeedLoadDefault
+  gPlatformModuleTokenSpaceGuid.PcdIgdRpBDF
+  gEfiMdeModulePkgTokenSpaceGuid.PcdAtaPhyDetectDelay
+  gEfiMdeModulePkgTokenSpaceGuid.PcdUsbWaitPortStableStall
+  gPlatformModuleTokenSpaceGuid.PcdCmosBadReason
+  gEfiByoModulePkgTokenSpaceGuid.PcdIpmiBootMiscConfig
+  gPlatformModuleTokenSpaceGuid.PcdCmosBadPolicy
+  gEfiMdePkgTokenSpaceGuid.PcdPciExpressBaseSize
+  gPlatformModuleTokenSpaceGuid.PcdSetupItemsFvBase
+  gEfiByoModulePkgTokenSpaceGuid.PcdPlatformNvVariableSwUpdated
+  gPlatformModuleTokenSpaceGuid.PcdNvVarSwSetCmosOffset
+  gPlatformModuleTokenSpaceGuid.PcdSetupHasCsmItem
+  gPlatformModuleTokenSpaceGuid.PcdPlatformCustomBmcFlag
+  gEfiByoModulePkgTokenSpaceGuid.PcdLegacyBiosSupport
+  gPlatformModuleTokenSpaceGuid.PcdPwdNetworkAuthEnable
+  gPlatformModuleTokenSpaceGuid.PcdRasMemTinyStormThresholdCount
+  gPlatformModuleTokenSpaceGuid.PcdRasMemTinyStormTimeIntervalSeconds
+  gEfiSecurityPkgTokenSpaceGuid.PcdTpmSelect
+  gPlatformModuleTokenSpaceGuid.PcdFtpmSupport
+  gPlatformModuleTokenSpaceGuid.PcdPostTextScreenEnable
+  gEfiByoModulePkgTokenSpaceGuid.PcdSystemMiscConfig  
+  gByoAgesaTokenSpaceGuid.PcdHygonCpuPstateMode
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdCfgMaxReadRequestSize
+# gByoAgesaTokenSpaceGuid.PcdCfgMaxPayloadValue
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonAcpiSrat
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonAcpiSlit
+  gByoAgesaTokenSpaceGuid.PcdHygonCpuAesInsSupport
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdCfgPcieAriSupport
+  gEfiMdeModulePkgTokenSpaceGuid.PcdResetOnMemoryTypeInformationChange
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonIdsDebugPrintEnable
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdResetCpuOnSyncFlood
+  gHgpiCpmPkgTokenSpaceGuid.PcdCpmSmiThreshold
+
+  
+[Depex]
+  gEfiPeiReadOnlyVariable2PpiGuid AND gEfiPeiMasterBootModePpiGuid
+
+
+

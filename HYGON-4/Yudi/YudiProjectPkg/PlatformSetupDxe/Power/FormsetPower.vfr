@@ -1,0 +1,54 @@
+/*++
+
+Copyright (c) 2010 - 2015, Byosoft Corporation.<BR>
+All rights reserved.This software and associated documentation (if any)
+is furnished under a license and may only be used or copied in
+accordance with the terms of the license. Except as permitted by such
+license, no part of this software or documentation may be reproduced,
+stored in a retrieval system, or transmitted in any form or by any
+means without the express written consent of Byosoft Corporation.
+
+File Name:
+
+Abstract:
+  Platform configuration setup.
+
+Revision History:
+
+
+--*/
+
+#include "FormsetConfiguration.h"
+
+#define POWER_FORM_SET
+
+
+formset
+  guid     = FORMSET_GUID_POWER,
+  title    = STRING_TOKEN(FORMSET_TITLE_POWER),
+  help     = STRING_TOKEN(FORMSET_TITLE_POWER_HELP),
+  class    = BYO_FORMSET_CLASS,
+  subclass = BYO_FORMSET_SUB_CLASS,
+
+  #define FORM_SET_VARSTORE
+    #include <SetupDefinitions.h>
+  #undef FORM_SET_VARSTORE
+
+  SYSTEM_PASSWORD_VARSTORE
+
+  form formid = POWER_MAIN_FORM_ID,
+    title = STRING_TOKEN(FORMSET_TITLE_POWER);
+
+    LOGIN_TYPE_ADMIN;
+
+    END_LOGIN_TYPE;
+
+  endform;//end POWER_MAIN_FORM_ID
+
+endformset;
+
+
+
+
+
+

@@ -1,0 +1,79 @@
+## @file  
+#
+# Copyright (c) 2023, Byosoft Corporation.<BR> 
+# All rights reserved.This software and associated documentation (if any)
+# is furnished under a license and may only be used or copied in 
+# accordance with the terms of the license. Except as permitted by such
+# license, no part of this software or documentation may be reproduced, 
+# stored in a retrieval system, or transmitted in any form or by any 
+# means without the express written consent of Byosoft Corporation.
+#
+# File Name:
+#   ByoBdsBootManagerDxeOnlyUefi.inf
+#
+# Abstract: 
+#   The platform installs gByoPlatformBootManagerProtocolGuid in BdsDxe of Edk2.
+#
+# Revision History:
+#
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = ByoBdsBootManagerDxeOnlyUefi
+  FILE_GUID                      = 9390A19C-A696-4F4D-B792-7D6EA8AEEF02
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  PI_SPECIFICATION_VERSION       = 0x0001000A
+  ENTRY_POINT                    = ByoBdsBootManagerDxeEntryPoint
+
+#
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           = IA32 X64 IPF
+#
+
+[Sources.common]
+  ByoBdsBootManagerDxe.c
+  ByoBdsBootManagerDxe.h
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  ByoModulePkg/ByoModulePkg.dec
+  
+[LibraryClasses]
+  UefiDriverEntryPoint
+  UefiBootServicesTableLib
+  UefiRuntimeServicesTableLib
+  DebugLib
+  UefiLib
+  ByoBootManagerLib
+  DevicePathLib
+  MemoryAllocationLib
+  BaseMemoryLib
+  PrintLib
+
+[Protocols]
+  gEfiBootManagerProtocolGuid
+  gPlatAfterConsoleEndProtocolGuid
+  gEfiBlockIoProtocolGuid
+  gEfiPciIoProtocolGuid
+  gByoDiskInfoProtocolGuid
+  gByoPlatformBootManagerProtocolGuid
+
+[Guids]
+  gEdkiiBdsVariableGuid
+  gEfiEndOfDxeEventGroupGuid
+  
+[Pcd]
+  gEfiByoModulePkgTokenSpaceGuid.PcdBiosBootModeType
+  gEfiByoModulePkgTokenSpaceGuid.PcdEfiBootOptionFlag
+  gEfiByoModulePkgTokenSpaceGuid.PcdBdsBootOrderUpdateMethod
+
+[Depex]
+  TRUE
+
+[BuildOptions]
+  *_*_*_CC_FLAGS = -D BYO_ONLY_UEFI
+  *_*_*_CLANG_FLAGS = -D BYO_ONLY_UEFI

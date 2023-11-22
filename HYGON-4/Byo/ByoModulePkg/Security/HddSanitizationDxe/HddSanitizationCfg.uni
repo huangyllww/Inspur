@@ -1,0 +1,107 @@
+///** @file
+//
+//Copyright (c) 2023, Byosoft Corporation.<BR> 
+//All rights reserved.This software and associated documentation (if any)
+//is furnished under a license and may only be used or copied in 
+//accordance with the terms of the license. Except as permitted by such
+//license, no part of this software or documentation may be reproduced, 
+//stored in a retrieval system, or transmitted in any form or by any
+//means without the express written consent of Byosoft Corporation.
+//
+//File Name:
+//  HddSanitizationStrings.uni
+//
+//Abstract:
+//  uni file for HDD Sanitization DXE driver.
+//
+//Revision History:
+//
+//**/
+/=#
+#langdef   zh-Hans "\wide中文\narrow"
+#langdef   en-US "English"
+#string STR_DRIVE_LOCK                                           #language en-US   "HDD Sanitization"
+                                                                 #language zh-Hans "\wide硬盘清理\narrow"
+#string STR_DRIVE_LOCK_HELP                                      #language en-US   "HDD Sanitization"
+                                                                 #language zh-Hans "\wide硬盘清理\narrow"
+#string STR_HDP_CHOICE_DRIVE                                     #language en-US   "Select a Hdd Drive"
+                                                                 #language zh-Hans "\wide选择硬盘驱动器\narrow"
+#string STR_HDD_NAME                                             #language en-US   ""
+                                                                 #language zh-Hans ""
+#string STR_HDD_LOCK_WARN1                                       #language en-US   "The hard drive cannot be Sanitize"
+                                                                 #language zh-Hans "\wide无法清理此驱动器。\narrow"
+#string STR_HDD_LOCK_WARN2                                       #language en-US   "Please Clear the hard disk password before the hard disk Sanitize"
+                                                                 #language zh-Hans "\wide请在清理驱动器之前清除硬盘密码\narrow"
+#string STR_HDP_WARN1                                            #language en-US   "Please exercise caution when using HDD Sanitize."
+                                                                 #language zh-Hans "\wide请谨慎使用硬盘清理功能，\narrow"
+#string STR_HDP_WARN2                                            #language en-US   "Please be aware these operations will take effect immediately without extra Save action"
+                                                                 #language zh-Hans "\wide操作立即生效，不需要保存。\narrow"
+#string STR_NULL                                                 #language en-US   ""
+                                                                 #language zh-Hans ""
+                                                                 
+//
+//Setup NVMe Sanitization Str
+//                                                                
+#string STR_HDD_SANITIZATION_METHOD_TYPE                         #language en-US   "Method Type"
+                                                                 #language zh-Hans "\wide方法类型\narrow"
+#string STR_HDD_SANITIZATION_METHOD_TYPE_HELP                    #language en-US   "Select method type for Hdd driver sanitize"
+                                                                 #language zh-Hans "\wide选择清理硬盘驱动器的清理方式。\narrow"
+#string STR_HDD_SANITIZATION_METHOD_PURGE                        #language en-US   "Purge"
+                                                                 #language zh-Hans "\wide清洗\narrow"
+
+#string STR_HDD_SANITIZATION_CMD_TYPE                            #language en-US   "Cmd Type"
+                                                                 #language zh-Hans "\wide命令类型\narrow"
+#string STR_HDD_SANITIZATION_CMD_TYPE_HELP                       #language en-US   "Select CMD type for Hdd driver sanitize."
+                                                                 #language zh-Hans "\wide选择清理硬盘驱动器的命令类型。\narrow"
+#string STR_HDD_SANITIZATION_CMD_NULL                            #language en-US   ""
+                                                                 #language zh-Hans "\wide\narrow"
+
+#string STR_HDD_SANITIZATION_ERASE_SETTING                       #language en-US   "Erase Setting"
+                                                                 #language zh-Hans "\wide擦除设置\narrow"
+#string STR_HDD_SANITIZATION_ERASE_SETTING_HELP                  #language en-US   "Select which Erase Type apply for this drive."
+                                                                 #language zh-Hans "\wide选择应用于此驱动器的擦除方式。\narrow"
+#string STR_HDD_SANITIZATION_ERASE_SETTING_NONE                  #language en-US   "None"
+                                                                 #language zh-Hans "\wide无\narrow"
+#string STR_HDD_SANITIZATION_ERASE_SETTING_USERDATA              #language en-US   "UserData"
+                                                                 #language zh-Hans "\wide用户数据\narrow"
+#string STR_HDD_SANITIZATION_ERASE_SETTING_CRYPTOGRAHPIC         #language en-US   "CryptoGraphic"
+                                                                 #language zh-Hans "\wide加密\narrow"
+
+#string STR_HDD_SANITIZATION_SANITIZE_METHOD                     #language en-US   "Sanitize Method"
+                                                                 #language zh-Hans "\wide清理方式\narrow"
+#string STR_HDD_SANITIZATION_SANITIZE_METHOD_HELP                #language en-US   "Select which Sanitize Method apply for this drive."
+                                                                 #language zh-Hans "\wide选择应用于此驱动器的清理方式。\narrow"
+#string STR_HDD_SANITIZATION_SANITIZE_METHOD_BLOCKERASE          #language en-US   "BlockErase"
+                                                                 #language zh-Hans "\wide块擦除\narrow"
+#string STR_HDD_SANITIZATION_SANITIZE_METHOD_OVERWRITE           #language en-US   "OverWrite"
+                                                                 #language zh-Hans "\wide写覆盖\narrow"
+#string STR_HDD_SANITIZATION_SANITIZE_METHOD_CRYTPOERASE         #language en-US   "CryptoErase"
+                                                                 #language zh-Hans "\wide加密擦除\narrow"
+#string STR_HDD_SANITIZATION_SANITIZE_METHOD_NONE                #language en-US   "None"
+                                                                 #language zh-Hans "\wide无\narrow"                                                               
+
+#string STR_HDD_SANITIZE_START                                   #language en-US   "Start This Device Sanitization"
+                                                                 #language zh-Hans "\wide开始硬盘清理\narrow"
+#string STR_HDD_SANITIZE_START_HELP                              #language en-US   "Executing hdd Sanitize Operation to erase user data.\n\nAfter Erase, all User data on the NVMe will be cleared.Erasing may take a long time. Please wait."
+                                                                 #language zh-Hans "\wide执行硬盘清理操作，清除用户数据。\narrow\n\n\wide擦除之后，硬盘内所有用户数据均被清除。擦除时间可能较长，请等待。\narrow"
+
+
+#string STR_SANITIZATION_WARNING                                 #language en-US   "Warning"
+                                                                 #language zh-Hans "\wide警告\narrow"
+#string STR_HDD_SANITIZE_OPERATION                               #language en-US   "Hdd Santization"
+                                                                 #language zh-Hans "\wide硬盘清理\narrow"
+#string STR_HDD_SANITIZE_OPERATION_HELP                          #language en-US   "Executing hdd Sanitize Operation to erase user data.\n\nAfter Erase, all User data on the NVMe will be cleared.Erasing may take a long time. Please wait."
+                                                                 #language zh-Hans "\wide执行硬盘清理操作，清除用户数据。\narrow\n\n\wide擦除之后，硬盘内所有用户数据均被清除。擦除时间可能较长，请等待。\narrow"
+
+#string STR_SANITIZATION_WARNING_NO_POWEROFF1                    #language en-US   "The Sanitize Operation is in progress,"
+                                                                 #language zh-Hans "\wide硬盘清理进行中\narrow"
+#string STR_SANITIZATION_WARNING_NO_POWEROFF2                    #language en-US   "please do not turn off the computer!"
+                                                                 #language zh-Hans "\wide请不要关闭电脑！\narrow"
+#string STR_HDD_SANITIZE_PROMPT                                  #language en-US    "Prompt Message"
+                                                                 #language zh-Hans  "\wide提示信息\narrow"
+#string STR_HDD_SANITIZE_HELP                                    #language en-US   "Select this to execute Hdd sanitize operation. "
+                                                                 #language zh-Hans "\wide选择此项执行硬盘清理操作。\narrow"
+#string STR_HDD_SANITIZATION_SUCCESS                             #language en-US   "Sanitize Succeed!"
+                                                                 #language zh-Hans "\wide清理完成！\narrow"
+#string STR_HDD_SANITIZATION_FAILED                              #language en-US   "Sanitize Failed!"
+                                                                 #language zh-Hans "\wide清理失败！\narrow"

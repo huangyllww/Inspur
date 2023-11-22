@@ -1,0 +1,9 @@
+## @file
+#  Platform Package Flash Description File
+#
+
+[FV.RECOVERYFV]
+!include HgpiCpmPkg/Addendum/Oem/NanHaiVtb3/HygonCpmNanHaiVtb3Pkg.pei.inc.fdf
+
+[FV.DXEFV]
+!include HgpiCpmPkg/Addendum/Oem/NanHaiVtb3/HygonCpmNanHaiVtb3Pkg.dxe.inc.fdf

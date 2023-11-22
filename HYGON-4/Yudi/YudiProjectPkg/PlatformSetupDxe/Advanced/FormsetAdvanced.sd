@@ -1,0 +1,605 @@
+
+
+  #ifdef ADVANCED_FORM_SET
+
+    #ifdef FORM_SET_ITEM
+    
+      subtitle text = STRING_TOKEN(STR_EMPTY);        
+    
+      oneof varid   = SETUP_DATA.SysDebugMode,
+        prompt      = STRING_TOKEN(STR_SYS_DEBUG_MODE),
+        help        = STRING_TOKEN(STR_SYS_DEBUG_MODE_HELP),
+        #ifdef TKN_TARGET_DEBUG
+	        #if FixedPcdGet8(PcdSetupSysDebugModeDefaultAll)  
+	        option text = STRING_TOKEN(STR_DEBUG_DISABLED),  value=0, flags = RESET_REQUIRED;
+	        option text = STRING_TOKEN(STR_DEBUG_TINY),      value=1, flags = RESET_REQUIRED;
+	        option text = STRING_TOKEN(STR_DEBUG_NORMAL),    value=2, flags = RESET_REQUIRED;
+	        option text = STRING_TOKEN(STR_DEBUG_ALL),       value=3, flags = RESET_REQUIRED | DEFAULT;
+	        #else
+	        option text = STRING_TOKEN(STR_DEBUG_DISABLED),  value=0, flags = RESET_REQUIRED;
+	        option text = STRING_TOKEN(STR_DEBUG_TINY),      value=1, flags = RESET_REQUIRED;
+	        option text = STRING_TOKEN(STR_DEBUG_NORMAL),    value=2, flags = RESET_REQUIRED | DEFAULT;
+	        option text = STRING_TOKEN(STR_DEBUG_ALL),       value=3, flags = RESET_REQUIRED;
+	        #endif	
+        #else
+	        option text = STRING_TOKEN(STR_DEBUG_DISABLED),  value=0, flags = RESET_REQUIRED | DEFAULT;
+	        option text = STRING_TOKEN(STR_DEBUG_TINY),      value=1, flags = RESET_REQUIRED;
+	        option text = STRING_TOKEN(STR_DEBUG_NORMAL),    value=2, flags = RESET_REQUIRED;
+	        option text = STRING_TOKEN(STR_DEBUG_ALL),       value=3, flags = RESET_REQUIRED;
+        #endif	
+      endoneof;
+
+      oneof varid   = SETUP_DATA.Above4GDecode,
+        prompt      = STRING_TOKEN(STR_ABOVE4GB),
+        help        = STRING_TOKEN(STR_ABOVE4GB_HELP),
+        option text = STRING_TOKEN(STR_ENABLED),  value=1, flags= DEFAULT | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_DISABLED), value=0, flags= RESET_REQUIRED;
+      endoneof;
+
+      subtitle text = STRING_TOKEN(STR_EMPTY);
+
+      oneof varid   = SETUP_DATA.CpuPstateEn,
+        prompt      = STRING_TOKEN(STR_P_STATE),
+        help        = STRING_TOKEN(STR_P_STATE_HELP),
+        option text = STRING_TOKEN(STR_ENABLED),   value=1, flags= DEFAULT | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_DISABLED),  value=0, flags= RESET_REQUIRED;
+      endoneof;
+
+      oneof varid   = SETUP_DATA.SriovDis,
+        prompt      = STRING_TOKEN(STR_SR_IOV),
+        help        = STRING_TOKEN(STR_SR_IOV_HELP),
+        option text = STRING_TOKEN(STR_ENABLED),  value=0, flags= DEFAULT | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_DISABLED), value=1, flags= RESET_REQUIRED;
+      endoneof;
+      
+      subtitle text = STRING_TOKEN(STR_EMPTY);
+
+      oneof varid   = SETUP_DATA.NumaDisable,
+        prompt      = STRING_TOKEN(STR_NUMA),
+        help        = STRING_TOKEN(STR_NUMA_HELP),
+        option text = STRING_TOKEN(STR_ENABLED),  value=0, flags= RESET_REQUIRED | DEFAULT;
+        option text = STRING_TOKEN(STR_DISABLED), value=1, flags= RESET_REQUIRED;
+      endoneof;
+      
+/*
+      oneof varid   = SETUP_DATA.NmiSyncFloodPinEn,
+        prompt      = STRING_TOKEN(STR_NMI_PIN_EN),
+        help        = STRING_TOKEN(STR_NMI_PIN_EN_HELP),
+        option text = STRING_TOKEN(STR_ENABLED),  value=1, flags= RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_DISABLED), value=0, flags= RESET_REQUIRED | DEFAULT;
+      endoneof;
+*/
+    #endif
+  
+    #ifdef FORM_SET_GOTO
+
+    goto BIOS_ACPI_FORM_ID,
+        prompt = STRING_TOKEN(STR_BIOS_ACPI),
+        help   = STRING_TOKEN(STR_BIOS_ACPI);
+
+    suppressif ideqval SETUP_VOLATILE_DATA.BmcPresent == 0;  
+      goto
+        formsetguid = SETUP_BMC_CFG_GUID,
+        formid   = SM_BMC_FORM_ID,
+        question = 0,
+        prompt   = STRING_TOKEN(STR_SERVER_MGMT),
+        help     = STRING_TOKEN(STR_SERVER_MGMT_HELP);     
+    endif;
+
+    goto BIOS_POWERON_FORM_ID,
+        prompt = STRING_TOKEN(STR_BIOS_POWERON),
+        help   = STRING_TOKEN(STR_BIOS_POWERON_HELP);
+  
+    #endif
+
+    #ifdef FORM_SET_FORM
+
+  form formid = BIOS_ACPI_FORM_ID,
+    title = STRING_TOKEN(STR_BIOS_ACPI);
+    
+    oneof varid   = SETUP_DATA.S4Support,
+      prompt      = STRING_TOKEN(STR_S4_SUPPORT),
+      help        = STRING_TOKEN(STR_S4_SUPPORT_HELP),
+      option text = STRING_TOKEN(STR_ENABLED),  value=1, flags= RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_DISABLED), value=0, flags= RESET_REQUIRED | DEFAULT;
+    endoneof; 
+
+    oneof varid   = SETUP_DATA.PcieWake,
+      prompt      = STRING_TOKEN(STR_PCIE_WAKE),
+      help        = STRING_TOKEN(STR_PCIE_WAKE_HELP),
+      option text = STRING_TOKEN(STR_ENABLED),  value = 1, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING;
+      option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+    endoneof;  
+      
+  endform;    
+  
+  form formid = BIOS_POWERON_FORM_ID,
+    title = STRING_TOKEN(STR_BIOS_POWERON);
+
+    oneof varid   = SETUP_DATA.UserDefSun,
+      prompt      = STRING_TOKEN(STR_SUNDAY),
+      help        = STRING_TOKEN(STR_BIOS_POWERON_EVERYDAY_HELP),
+      option text = STRING_TOKEN(STR_ENABLED),  value = 1, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING;
+    endoneof;
+
+    oneof varid   = SETUP_DATA.UserDefMon,
+      prompt      = STRING_TOKEN(STR_MONDAY),
+      help        = STRING_TOKEN(STR_BIOS_POWERON_EVERYDAY_HELP),
+      option text = STRING_TOKEN(STR_ENABLED),  value = 1, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING;
+    endoneof;
+
+    oneof varid   = SETUP_DATA.UserDefTue,
+      prompt      = STRING_TOKEN(STR_TUESDAY),
+      help        = STRING_TOKEN(STR_BIOS_POWERON_EVERYDAY_HELP),
+      option text = STRING_TOKEN(STR_ENABLED),  value = 1, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING;
+    endoneof;
+
+    oneof varid   = SETUP_DATA.UserDefWed,
+      prompt      = STRING_TOKEN(STR_WEDNESDAY),
+      help        = STRING_TOKEN(STR_BIOS_POWERON_EVERYDAY_HELP),
+      option text = STRING_TOKEN(STR_ENABLED),  value = 1, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING;
+    endoneof;
+
+    oneof varid   = SETUP_DATA.UserDefThu,
+      prompt      = STRING_TOKEN(STR_THURSDAY),
+      help        = STRING_TOKEN(STR_BIOS_POWERON_EVERYDAY_HELP),
+      option text = STRING_TOKEN(STR_ENABLED),  value = 1, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING;
+    endoneof;
+
+    oneof varid   = SETUP_DATA.UserDefFri,
+      prompt      = STRING_TOKEN(STR_FIRDAY),
+      help        = STRING_TOKEN(STR_BIOS_POWERON_EVERYDAY_HELP),
+      option text = STRING_TOKEN(STR_ENABLED),  value = 1, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING;
+    endoneof;
+
+    oneof varid   = SETUP_DATA.UserDefSat,
+      prompt      = STRING_TOKEN(STR_SATURDAY),
+      help        = STRING_TOKEN(STR_BIOS_POWERON_EVERYDAY_HELP),
+      option text = STRING_TOKEN(STR_ENABLED),  value = 1, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING;
+    endoneof;
+
+    time
+      varid   = SETUP_DATA.RTCWakeupTime,
+      prompt  = STRING_TOKEN(STR_RTC_TIME),
+      help    = STRING_TOKEN(STR_RTC_TIME_HELP),
+      flags   = STORAGE_NORMAL,
+      default = 00:00:00,
+    endtime;
+
+  endform;    
+
+  form formid = RAS_EVENT_FORM_ID,
+    title = STRING_TOKEN(STR_RAS_CONFIG);
+      
+    goto APEI_RAS_FORM_ID,
+      prompt = STRING_TOKEN(STR_APEI_FORM_TITLE),
+      help   = STRING_TOKEN(STR_APEI_FORM_HELP);
+
+    goto CPU_RAS_FORM_ID,
+      prompt = STRING_TOKEN(STR_CPU_RAS_FORM_TITLE),
+      help   = STRING_TOKEN(STR_CPU_RAS_FORM_HELP);
+
+    goto MEMORY_RAS_FORM_ID,
+      prompt = STRING_TOKEN(STR_MEMORY_RAS_FORM_TITLE),
+      help   = STRING_TOKEN(STR_MEMORY_RAS_FORM_HELP);
+
+    goto PCIE_RAS_FORM_ID,
+      prompt = STRING_TOKEN(STR_PCIE_RAS_FORM_TITLE),
+      help   = STRING_TOKEN(STR_PCIE_RAS_FORM_HELP);
+
+    subtitle text = STRING_TOKEN(STR_EMPTY);
+
+    oneof varid = SETUP_DATA.UceResetIso,
+      prompt    = STRING_TOKEN(STR_UCE_RESET_ISO),
+      help      = STRING_TOKEN(STR_UCE_RESET_ISO_HELP),
+      option text = STRING_TOKEN(STR_ENABLED),  value=1, flags= RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_DISABLED), value=0, flags= RESET_REQUIRED | DEFAULT;
+    endoneof;
+
+    suppressif ideqval SETUP_DATA.UceResetIso == 0;
+      oneof varid = SETUP_DATA.ClearUceIsoData,
+        prompt    = STRING_TOKEN(STR_CLEAR_UCE_ISO_DATA),
+        help      = STRING_TOKEN(STR_CLEAR_UCE_ISO_DATA_HELP),
+        option text = STRING_TOKEN(STR_ENABLED),  value=1, flags= RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_DISABLED), value=0, flags= RESET_REQUIRED | DEFAULT;
+      endoneof;
+    endif;
+
+    subtitle text = STRING_TOKEN(STR_EMPTY);
+
+    oneof varid = SETUP_DATA.ResetCpuOnSyncFloodDis,
+      prompt    = STRING_TOKEN(STR_RESET_CPU_ON_SYNC_FLOOD),
+      help      = STRING_TOKEN(STR_RESET_CPU_ON_SYNC_FLOOD),
+      option text = STRING_TOKEN(STR_ENABLED),  value=0, flags= RESET_REQUIRED | DEFAULT;
+      option text = STRING_TOKEN(STR_DISABLED), value=1, flags= RESET_REQUIRED;
+    endoneof;
+       
+  endform;
+
+
+  form formid = APEI_RAS_FORM_ID,
+    title = STRING_TOKEN(STR_APEI_FORM_TITLE);
+
+    oneof varid     = SETUP_DATA.ApeiSupportDis,
+        prompt      = STRING_TOKEN(STR_APEI_SUPPORT),
+        help        = STRING_TOKEN(STR_APEI_SUPPORT_HELP),
+        option text = STRING_TOKEN(STR_ENABLED) , value = 0, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING;
+        option text = STRING_TOKEN(STR_DISABLED), value = 1, flags = RESET_REQUIRED;
+    endoneof;
+
+    suppressif ideqval SETUP_DATA.ApeiSupportDis == 1;
+
+      oneof varid     = SETUP_DATA.ApeiEinjDis,
+          prompt      = STRING_TOKEN(STR_APEI_EINJ_SUPPORT),
+          help        = STRING_TOKEN(STR_APEI_EINJ_SUPPORT_HELP),
+          option text = STRING_TOKEN(STR_ENABLED),   value = 0, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING;
+          option text = STRING_TOKEN(STR_DISABLED) , value = 1, flags = RESET_REQUIRED;
+      endoneof;
+
+      suppressif ideqval SETUP_DATA.ApeiEinjDis == 1;
+        oneof varid   = SETUP_DATA.EinjCpuCeDis,
+        prompt      = STRING_TOKEN(STR_EINJ_CPU_CE),
+        help        = STRING_TOKEN(STR_EINJ_CPU_CE_HELP),
+        option text = STRING_TOKEN(STR_ENABLED),  value=0, flags= DEFAULT;
+        option text = STRING_TOKEN(STR_DISABLED), value=1, flags= 0;
+        endoneof;
+      endif;
+      
+    endif;
+    
+  endform;
+
+
+  form formid = CPU_RAS_FORM_ID,
+    title = STRING_TOKEN(STR_CPU_RAS_FORM_TITLE);
+
+    numeric varid = SETUP_DATA.McaNonMemErrThresh,
+      prompt    = STRING_TOKEN(STR_CPU_CE_THRESHOLD),
+      help      = STRING_TOKEN(STR_CPU_CE_THRESHOLD_HELP),
+      minimum   = 1,
+      maximum   = 4096,
+      step      = 1,
+      default   = 4096,
+    endnumeric;
+    
+    numeric varid = SETUP_DATA.RasCeSmiThreshold,
+      prompt    = STRING_TOKEN(STR_RAS_CE_SMI_THRESHOLD),
+      help      = STRING_TOKEN(STR_RAS_CE_SMI_THRESHOLD_HELP),
+      minimum   = 5,
+      maximum   = 20,
+      step      = 1,
+      default   = 5,
+    endnumeric;    
+    
+  endform;      
+
+  form formid = MEMORY_RAS_FORM_ID,
+      title = STRING_TOKEN(STR_MEMORY_RAS_FORM_TITLE);
+
+      numeric
+        varid       = SETUP_DATA.MemCeThresh,
+        prompt      = STRING_TOKEN(STR_MCA_ERROR_THRESH_COUNT),
+        help        = STRING_TOKEN(STR_MCA_ERROR_THRESH_COUNT_HELP),
+        flags       = RESET_REQUIRED,
+        minimum     = 0,
+        maximum     = 8000,
+        step        = 1,
+        default     = 4095,
+      endnumeric;
+
+      numeric varid = SETUP_DATA.LeakybucketMinites,
+        prompt    = STRING_TOKEN(STR_LEAKYBUCKET_MINITES),
+        help      = STRING_TOKEN(STR_LEAKYBUCKET_MINITES_HELP),
+        minimum   = 0,
+        maximum   = 1440,
+        step      = 1,
+        default   = 0,
+      endnumeric;
+        
+      suppressif ideqval SETUP_DATA.LeakybucketMinites == 0;
+      
+        numeric varid = SETUP_DATA.LeakybucketOnceCount,
+          prompt    = STRING_TOKEN(STR_LEAKYBUCKET_ONCE_COUNT),
+          help      = STRING_TOKEN(STR_LEAKYBUCKET_ONCE_COUNT_HELP),
+          minimum   = 1,
+          maximum   = 60,
+          step      = 1,
+          default   = 5,
+        endnumeric;      
+            
+        oneof varid   = SETUP_DATA.Leakybucket24HClear,
+          prompt      = STRING_TOKEN(STR_LEAKYBUCKET_24H_CLEAR),
+          help        = STRING_TOKEN(STR_LEAKYBUCKET_24H_CLEAR_HELP),
+          option text = STRING_TOKEN(STR_ENABLED),  value=1, flags= RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_DISABLED), value=0, flags= RESET_REQUIRED | DEFAULT;
+        endoneof;
+      endif;
+
+      subtitle text = STRING_TOKEN(STR_EMPTY);
+
+      numeric
+        varid       = SETUP_DATA.MemCeTinyStormSec,
+        prompt      = STRING_TOKEN(STR_MEM_CE_TINY_SOTRM_SECONDS),
+        help        = STRING_TOKEN(STR_MEM_CE_TINY_SOTRM_SECONDS_HELP),
+        flags       = RESET_REQUIRED,
+        minimum     = 0,
+        maximum     = 3600,
+        step        = 1,
+        default     = 0,
+      endnumeric;
+
+      suppressif ideqval SETUP_DATA.MemCeTinyStormSec == 0;
+        numeric
+          varid       = SETUP_DATA.MemCeTinyStormTC,
+          prompt      = STRING_TOKEN(STR_MEM_CE_TINY_SOTRM_TC),
+          help        = STRING_TOKEN(STR_MEM_CE_TINY_SOTRM_TC_HELP),
+          flags       = RESET_REQUIRED,
+          minimum     = 0,
+          maximum     = 10,
+          step        = 1,
+          default     = 0,
+        endnumeric;
+      endif;
+
+  endform;
+
+  form formid = PCIE_RAS_FORM_ID,
+      title = STRING_TOKEN(STR_PCIE_RAS_FORM_TITLE);
+
+      numeric varid = SETUP_DATA.PcieCeThreshold,
+        prompt    = STRING_TOKEN(STR_PCIE_CE_THRESHOLD),
+        help      = STRING_TOKEN(STR_PCIE_CE_THRESHOLD_HELP),
+        minimum   = 0,
+        maximum   = 10000,
+        step      = 1,
+        default   = 1,
+      endnumeric;
+      
+      subtitle text = STRING_TOKEN(STR_EMPTY);
+
+      oneof varid   = SETUP_DATA.PcieAerCeMaskSet,
+        prompt      = STRING_TOKEN(STR_PCIE_AER_CE_MASK_SET),
+        help        = STRING_TOKEN(STR_PCIE_AER_CE_MASK_SET),
+        option text = STRING_TOKEN(STR_ENABLED),  value=1, flags= RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_DISABLED), value=0, flags= RESET_REQUIRED | DEFAULT;
+      endoneof;      
+      
+      suppressif ideqval SETUP_DATA.PcieAerCeMaskSet == 0;
+      
+        oneof varid   = SETUP_DATA.PcieCeMaskBadTLP,
+          prompt      = STRING_TOKEN(STR_PCIE_CE_MASK_BAD_TLP),
+          help        = STRING_TOKEN(STR_PCIE_CE_MASK_BAD_TLP),
+          option text = STRING_TOKEN(STR_ENABLED),  value=1, flags= RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_DISABLED), value=0, flags= RESET_REQUIRED | DEFAULT;
+        endoneof;  
+
+        oneof varid   = SETUP_DATA.PcieCeMaskBadDll,
+          prompt      = STRING_TOKEN(STR_PCIE_CE_MASK_BAD_DLL),
+          help        = STRING_TOKEN(STR_PCIE_CE_MASK_BAD_DLL),
+          option text = STRING_TOKEN(STR_ENABLED),  value=1, flags= RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_DISABLED), value=0, flags= RESET_REQUIRED | DEFAULT;
+        endoneof;    
+
+        oneof varid   = SETUP_DATA.PcieCeMaskRollOver,
+          prompt      = STRING_TOKEN(STR_PCIE_CE_MASK_ROLL_OVER),
+          help        = STRING_TOKEN(STR_PCIE_CE_MASK_ROLL_OVER),
+          option text = STRING_TOKEN(STR_ENABLED),  value=1, flags= RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_DISABLED), value=0, flags= RESET_REQUIRED | DEFAULT;
+        endoneof; 
+
+        oneof varid   = SETUP_DATA.PcieCeMaskTimeOut,
+          prompt      = STRING_TOKEN(STR_PCIE_CE_MASK_ROLL_TIME_OUT),
+          help        = STRING_TOKEN(STR_PCIE_CE_MASK_ROLL_TIME_OUT),
+          option text = STRING_TOKEN(STR_ENABLED),  value=1, flags= RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_DISABLED), value=0, flags= RESET_REQUIRED | DEFAULT;
+        endoneof; 
+
+        oneof varid   = SETUP_DATA.PcieCeMaskNonFatal,
+          prompt      = STRING_TOKEN(STR_PCIE_CE_MASK_ROLL_NON_FATAL),
+          help        = STRING_TOKEN(STR_PCIE_CE_MASK_ROLL_NON_FATAL),
+          option text = STRING_TOKEN(STR_ENABLED),  value=1, flags= RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_DISABLED), value=0, flags= RESET_REQUIRED | DEFAULT;
+        endoneof; 
+        
+      endif;        
+
+      subtitle text = STRING_TOKEN(STR_EMPTY);
+      
+      oneof varid   = SETUP_DATA.ErrorActionCtrlMode,
+        prompt      = STRING_TOKEN(STR_ERROR_ACTION_CONTROL_MODE),
+        help        = STRING_TOKEN(STR_ERROR_ACTION_CONTROL_MODE),
+        option text = STRING_TOKEN(STR_USER_DEF),     value=1, flags= RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_USER_DEFAULT), value=0, flags= RESET_REQUIRED | DEFAULT;
+      endoneof;       
+
+      suppressif ideqval SETUP_DATA.ErrorActionCtrlMode == 0;
+      
+        numeric varid = SETUP_DATA.PcieSerrActionCtrl,
+          prompt    = STRING_TOKEN(STR_PCIE_SERR_ACTION_CTRL),
+          help      = STRING_TOKEN(STR_PCIE_SERR_ACTION_CTRL),
+          minimum   = 0,
+          maximum   = 31,
+          step      = 1,
+          default   = 0,
+        endnumeric; 
+
+        numeric varid = SETUP_DATA.PcieIntFatalActionCtrl,
+          prompt    = STRING_TOKEN(STR_PCIE_INT_FATAL_ACTION_CTRL),
+          help      = STRING_TOKEN(STR_PCIE_INT_FATAL_ACTION_CTRL),
+          minimum   = 0,
+          maximum   = 31,
+          step      = 1,
+          default   = 0,
+        endnumeric;   
+
+        numeric varid = SETUP_DATA.PcieIntCorrActionCtrl,
+          prompt    = STRING_TOKEN(STR_PCIE_INT_CORR_ACTION_CTRL),
+          help      = STRING_TOKEN(STR_PCIE_INT_CORR_ACTION_CTRL),
+          minimum   = 0,
+          maximum   = 31,
+          step      = 1,
+          default   = 0,
+        endnumeric; 
+
+        numeric varid = SETUP_DATA.PcieExtFatalActionCtrl,
+          prompt    = STRING_TOKEN(STR_PCIE_EXT_FATAL_ACTION_CTRL),
+          help      = STRING_TOKEN(STR_PCIE_EXT_FATAL_ACTION_CTRL),
+          minimum   = 0,
+          maximum   = 31,
+          step      = 1,
+          default   = 0,
+        endnumeric; 
+
+        numeric varid = SETUP_DATA.PcieExtNonFatalActionCtrl,
+          prompt    = STRING_TOKEN(STR_PCIE_EXT_NON_FATAL_ACTION_CTRL),
+          help      = STRING_TOKEN(STR_PCIE_EXT_NON_FATAL_ACTION_CTRL),
+          minimum   = 0,
+          maximum   = 31,
+          step      = 1,
+          default   = 0,
+        endnumeric; 
+
+        numeric varid = SETUP_DATA.PcieExtCorrActionCtrl,
+          prompt    = STRING_TOKEN(STR_PCIE_EXT_CORR_ACTION_CTRL),
+          help      = STRING_TOKEN(STR_PCIE_EXT_CORR_ACTION_CTRL),
+          minimum   = 0,
+          maximum   = 31,
+          step      = 1,
+          default   = 0,
+        endnumeric; 
+
+        numeric varid = SETUP_DATA.PcieParityErrActionCtrl,
+          prompt    = STRING_TOKEN(STR_PCIE_PARITY_ERR_ACTION_CTRL),
+          help      = STRING_TOKEN(STR_PCIE_PARITY_ERR_ACTION_CTRL),
+          minimum   = 0,
+          maximum   = 31,
+          step      = 1,
+          default   = 0,
+        endnumeric;
+
+        numeric varid = SETUP_DATA.NbifSerrActionCtrl,
+          prompt    = STRING_TOKEN(STR_NBIF_SERR_ACTION_CTRL),
+          help      = STRING_TOKEN(STR_NBIF_SERR_ACTION_CTRL),
+          minimum   = 0,
+          maximum   = 31,
+          step      = 1,
+          default   = 0,
+        endnumeric; 
+
+        numeric varid = SETUP_DATA.NbifIntFatalActionCtrl,
+          prompt    = STRING_TOKEN(STR_NBIF_INT_FATAL_ACTION_CTRL),
+          help      = STRING_TOKEN(STR_NBIF_INT_FATAL_ACTION_CTRL),
+          minimum   = 0,
+          maximum   = 31,
+          step      = 1,
+          default   = 0,
+        endnumeric;   
+
+        numeric varid = SETUP_DATA.NbifIntNonFatalActionCtrl,
+          prompt    = STRING_TOKEN(STR_NBIF_INT_NON_FATAL_ACTION_CTRL),
+          help      = STRING_TOKEN(STR_NBIF_INT_NON_FATAL_ACTION_CTRL),
+          minimum   = 0,
+          maximum   = 31,
+          step      = 1,
+          default   = 0,
+        endnumeric; 
+
+        numeric varid = SETUP_DATA.NbifIntCorrActionCtrl,
+          prompt    = STRING_TOKEN(STR_NBIF_INT_CORR_ACTION_CTRL),
+          help      = STRING_TOKEN(STR_NBIF_INT_CORR_ACTION_CTRL),
+          minimum   = 0,
+          maximum   = 31,
+          step      = 1,
+          default   = 0,
+        endnumeric; 
+
+        numeric varid = SETUP_DATA.NbifExtFatalActionCtrl,
+          prompt    = STRING_TOKEN(STR_NBIF_EXT_FATAL_ACTION_CTRL),
+          help      = STRING_TOKEN(STR_NBIF_EXT_FATAL_ACTION_CTRL),
+          minimum   = 0,
+          maximum   = 31,
+          step      = 1,
+          default   = 0,
+        endnumeric; 
+
+        numeric varid = SETUP_DATA.NbifExtNonFatalActionCtrl,
+          prompt    = STRING_TOKEN(STR_NBIF_EXT_NON_FATAL_ACTION_CTRL),
+          help      = STRING_TOKEN(STR_NBIF_EXT_NON_FATAL_ACTION_CTRL),
+          minimum   = 0,
+          maximum   = 31,
+          step      = 1,
+          default   = 0,
+        endnumeric; 
+
+        numeric varid = SETUP_DATA.NbifExtCorrActionCtrl,
+          prompt    = STRING_TOKEN(STR_NBIF_EXT_CORR_ACTION_CTRL),
+          help      = STRING_TOKEN(STR_NBIF_EXT_CORR_ACTION_CTRL),
+          minimum   = 0,
+          maximum   = 31,
+          step      = 1,
+          default   = 0,
+        endnumeric; 
+
+        numeric varid = SETUP_DATA.NbifParityErrActionCtrl,
+          prompt    = STRING_TOKEN(STR_NBIF_PARITY_ERR_ACTION_CTRL),
+          help      = STRING_TOKEN(STR_NBIF_PARITY_ERR_ACTION_CTRL),
+          minimum   = 0,
+          maximum   = 31,
+          step      = 1,
+          default   = 0,
+        endnumeric;
+        
+      endif;  
+
+
+
+
+
+
+/*
+      numeric varid = SETUP_DATA.PcieLeakybucketMinites,
+        prompt    = STRING_TOKEN(STR_PCIE_LEAKYBUCKET_MINITES),
+        help      = STRING_TOKEN(STR_PCIE_LEAKYBUCKET_MINITES_HELP),
+        minimum   = 0,
+        maximum   = 1440,
+        step      = 1,
+        default   = 0,
+      endnumeric;
+
+      suppressif ideqval SETUP_DATA.PcieLeakybucketMinites == 0;
+      numeric varid = SETUP_DATA.PcieLeakybucketOnceCount,
+        prompt    = STRING_TOKEN(STR_PCIE_LEAKYBUCKET_ONCE_COUNT),
+        help      = STRING_TOKEN(STR_PCIE_LEAKYBUCKET_ONCE_COUNT_HELP),
+        minimum   = 1,
+        maximum   = 60,
+        step      = 1,
+        default   = 5,
+      endnumeric;      
+
+      oneof varid   = SETUP_DATA.PcieLeakybucket24HClear,
+        prompt      = STRING_TOKEN(STR_PCIE_LEAKYBUCKET_24H_CLEAR),
+        help        = STRING_TOKEN(STR_PCIE_LEAKYBUCKET_24H_CLEAR_HELP),
+        option text = STRING_TOKEN(STR_ENABLED),  value=1, flags= RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_DISABLED), value=0, flags= RESET_REQUIRED | DEFAULT;
+      endoneof;
+      endif;
+    endif;
+*/
+  endform;
+
+
+
+
+
+
+#endif
+    
+#endif //ifdef ADVANCED_FORM_SET
+  

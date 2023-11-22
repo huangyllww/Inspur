@@ -1,0 +1,92 @@
+// /** @file
+// The DXE driver produces FORM BROWSER2 protocol defined in UEFI specification.
+//
+// It also produces FormBrowserEx(2) protocol to let user register the different Hot key service.
+//
+// Copyright (c) 2007 - 2022, Byosoft Corporation.<BR>
+// All rights reserved.This software and associated documentation (if any)
+// is furnished under a license and may only be used or copied in
+// accordance with the terms of the license. Except as permitted by such
+// license, no part of this software or documentation may be reproduced,
+// stored in a retrieval system, or transmitted in any form or by any
+// means without the express written consent of Byosoft Corporation.
+
+// **/
+/=#
+#langdef   en-US "English"
+#langdef   zh-Hans "\wide中文\narrow"
+
+#string STR_MODULE_ABSTRACT             #language en-US "Produces the FORM BROWSER2 protocol defined in the UEFI Specification"
+
+#string STR_MODULE_DESCRIPTION          #language en-US "This driver produces text display service. It can show HII Form package and interact with user. It also produces FormBrowserEx protocol to let user register the different Hot key service."
+
+#string FORMSET_TITLE_SEARCH            #language en-US "Search"
+                                        #language zh-Hans "\wide搜索\narrow"
+#string FORMSET_TITLE_SEARCH_HELP       #language en-US "Search Form"
+                                        #language zh-Hans "\wide搜索页面\narrow"
+#string INPUT_SEARCH_STRING             #language en-US "Searching for content"
+                                        #language zh-Hans "\wide搜索内容\narrow"
+#string INPUT_SEARCH_STRING_HELP        #language en-US "This option is used to match the user search options, support the input string length of 0-30. The matching keyword is the option title, support English input, case insensitive, partial matching. search results match the current language, if there is no corresponding language, display the supported language.\n\nNote: The "Search Form" option does not support searching."
+                                        #language zh-Hans "\wide该选项用于匹配用户搜索选项，支持输入字串长度为\narrow0-30\wide。匹配的关键字是选项标题，支持英文输入、不区分大小写、局部匹配。搜索结果与当前语言匹配，如没有对应的语言，则显示支持的语言。\n\n注:“搜索页面”的选项不支持搜索。\narrow"
+#string STR_EMPTY                       #language en-US ""
+                                        #language zh-Hans ""
+#string SEARCH_MATCHING_ALGORITHM       #language en-US "Search matching algorithm"
+                                        #language zh-Hans "\wide搜索匹配算法\narrow"
+#string SEARCH_MATCHING_ALGORITHM_HELP  #language en-US "This option allows you to modify the search to match any character, the first character, and the last character."
+                                        #language zh-Hans "\wide通过该选项可修改搜索匹配的方式，包括任意字符、首字符、末字符。\narrow"
+#string MATCHING_ALGORITHM_ANY          #language en-US "Any character"
+                                        #language zh-Hans "\wide任意字符\narrow"
+#string MATCHING_ALGORITHM_FIRST        #language en-US "First character"
+                                        #language zh-Hans "\wide首字符\narrow"
+#string MATCHING_ALGORITHM_FINAL        #language en-US "Last character"
+                                        #language zh-Hans "\wide末字符\narrow"
+#string SEARCH_ERROR_PROMPT             #language en-US "This option was not found"
+                                        #language zh-Hans "\wide未搜索到该选项\narrow"
+#string INPUT_SEARCH_UPDATE             #language en-US "Non-optional Options"
+                                        #language zh-Hans "\wide不可选选项\narrow"
+#string INPUT_SEARCH_NOT_OPTIONAL       #language en-US " "
+                                        #language zh-Hans " "
+#string INPUT_SEARCH_RESULT_TUTLE1      #language en-US "Current Search Results"
+                                        #language zh-Hans "\wide当前搜索结果\narrow"
+#string INPUT_SEARCH_RESULT_TUTLE2      #language en-US "Last Search Results"
+                                        #language zh-Hans "\wide上次搜索结果\narrow"
+#string INPUT_SEARCH_RESULT_TUTLE3      #language en-US "Current Search Results"
+                                        #language zh-Hans "\wide当前搜索结果\narrow"
+#string INPUT_SEARCH_OPTIONAL           #language en-US "Optional Options"
+                                        #language zh-Hans "\wide可选选项\narrow"
+
+#string STR_SAVE_EXIT_AND_RESET         #language en-US "Save Configuration Changes and Reset now?"
+                                        #language zh-Hans "\wide保存修改并且重启?\narrow"
+#string STR_DISCARD_EXIT_AND_RESET      #language en-US "Discard Configuration Changes and Reset now?"
+                                        #language zh-Hans "\wide放弃修改并且重启?\narrow"
+
+#string STR_UEFI_BOOT_ORDER                #language en-US   "UEFI Boot Order"
+                                           #language zh-Hans "UEFI\wide模式下的开机顺序\narrow" 
+#string STR_LEGACY_BOOT_ORDER              #language en-US   "Legacy Boot Order"
+                                           #language zh-Hans "\wide传统模式下的开机顺序\narrow"
+
+#string STR_LEGACY_HDD                     #language en-US   "Legacy Hard Drive"
+                                           #language zh-Hans "Legacy \wide硬盘驱动器\narrow"
+#string STR_LEGACY_ODD                     #language en-US   "Legacy CD/DVD ROM Drive"
+                                           #language zh-Hans "Legacy CD/DVD\wide光驱\narrow"
+#string STR_LEGACY_USB_DISK                #language en-US   "Legacy USB Flash Drive/USB Hard Disk"
+                                           #language zh-Hans "Legacy USB\wide闪存驱动器\narrow"
+#string STR_LEGACY_USB_ODD                 #language en-US   "Legacy USB CD/DVD ROM Drive"
+                                           #language zh-Hans "Legacy USB CD/DVD\wide光驱\narrow"
+#string STR_LEGACY_PXE                     #language en-US   "Legacy Network Adapter"
+                                           #language zh-Hans "Legacy \wide网络设备\narrow"
+#string STR_LEGACY_OTHERS                  #language en-US   "Legacy Others"
+                                           #language zh-Hans "Legacy \wide其它\narrow"
+
+#string STR_UEFI_HDD                       #language en-US   "UEFI Hard Drive"
+                                           #language zh-Hans "UEFI \wide硬盘驱动器\narrow"
+#string STR_UEFI_ODD                       #language en-US   "UEFI CD/DVD ROM Drive"
+                                           #language zh-Hans "UEFI CD/DVD\wide光驱\narrow"
+#string STR_UEFI_USB_DISK                  #language en-US   "UEFI USB Flash Drive/USB Hard Disk"
+                                           #language zh-Hans "UEFI USB\wide闪存驱动器\narrow"
+#string STR_UEFI_USB_ODD                   #language en-US   "UEFI USB CD/DVD ROM Drive"
+                                           #language zh-Hans "UEFI USB CD/DVD\wide光驱\narrow"
+#string STR_UEFI_PXE                       #language en-US   "UEFI Network Adapter"
+                                           #language zh-Hans "UEFI \wide网络设备\narrow"
+#string STR_UEFI_OTHERS                    #language en-US   "UEFI Others"
+                                           #language zh-Hans "UEFI \wide其它\narrow"

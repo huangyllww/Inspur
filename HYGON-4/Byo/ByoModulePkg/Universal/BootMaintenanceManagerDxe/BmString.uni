@@ -1,0 +1,185 @@
+///** @file
+//  Copyright (c) 2023, Byosoft Corporation.<BR>
+//  All rights reserved.This software and associated documentation (if any)
+//  is furnished under a license and may only be used or copied in
+//  accordance with the terms of the license. Except as permitted by such
+//  license, no part of this software or documentation may be reproduced,
+//  stored in a retrieval system, or transmitted in any form or by any
+//  means without the express written consent of Byosoft Corporation.
+//
+//**/
+
+
+/=#
+
+#langdef   en-US "English"
+#langdef   zh-Hans "\wide中文\narrow"
+
+#string STR_NULL_STRING                    #language en-US  " "
+                                           #language zh-Hans  " "
+
+#string STR_NONE                           #language en-US  "NONE"
+                                           #language zh-Hans  "NONE"
+
+#string FORMSET_TITLE_BOOT_MAINT           #language en-US "Boot Policy Manager"
+                                           #language zh-Hans "\wide启动策略管理器\narrow"
+#string FORMSET_TITLE_BOOT_MAINT_HELP      #language en-US "Boot Policy Manager"
+                                           #language zh-Hans "\wide启动策略管理器\narrow"
+
+#string STR_ENABLED                        #language en-US "Enabled"
+                                           #language zh-Hans "\wide打开\narrow"
+#string STR_DISABLED                       #language en-US "Disabled"
+                                           #language zh-Hans "\wide关闭\narrow"
+
+#string STR_UEFI_BOOT_ORDER                #language en-US   "UEFI Boot Order"
+                                           #language zh-Hans "UEFI\wide模式下的开机顺序\narrow" 
+#string STR_LEGACY_BOOT_ORDER              #language en-US   "Legacy Boot Order"
+                                           #language zh-Hans "\wide传统模式下的开机顺序\narrow"
+
+#string STR_LEGACY_HDD                     #language en-US   "  Legacy Hard Drive"
+                                           #language zh-Hans "  Legacy \wide硬盘驱动器\narrow"
+#string STR_LEGACY_ODD                     #language en-US   "  Legacy CD/DVD ROM Drive"
+                                           #language zh-Hans "  Legacy CD/DVD\wide光驱\narrow"
+#string STR_LEGACY_USB_DISK                #language en-US   "  Legacy USB Flash Drive/USB Hard Disk"
+                                           #language zh-Hans "  Legacy USB\wide闪存驱动器\narrow"
+#string STR_LEGACY_USB_ODD                 #language en-US   "  Legacy USB CD/DVD ROM Drive"
+                                           #language zh-Hans "  Legacy USB CD/DVD\wide光驱\narrow"
+#string STR_LEGACY_PXE                     #language en-US   "  Legacy Network Adapter"
+                                           #language zh-Hans "  Legacy \wide网络设备\narrow"
+#string STR_LEGACY_OTHERS                  #language en-US   "  Legacy Others"
+                                           #language zh-Hans "  Legacy \wide其它\narrow"
+
+#string STR_UEFI_HDD                       #language en-US   "  UEFI Hard Drive"
+                                           #language zh-Hans "  UEFI \wide硬盘驱动器\narrow"
+#string STR_UEFI_ODD                       #language en-US   "  UEFI CD/DVD ROM Drive"
+                                           #language zh-Hans "  UEFI CD/DVD\wide光驱\narrow"
+#string STR_UEFI_USB_DISK                  #language en-US   "  UEFI USB Flash Drive/USB Hard Disk"
+                                           #language zh-Hans "  UEFI USB\wide闪存驱动器\narrow"
+#string STR_UEFI_USB_ODD                   #language en-US   "  UEFI USB CD/DVD ROM Drive"
+                                           #language zh-Hans "  UEFI USB CD/DVD\wide光驱\narrow"
+#string STR_UEFI_PXE                       #language en-US   "  UEFI Network Adapter"
+                                           #language zh-Hans "  UEFI \wide网络设备\narrow"
+#string STR_UEFI_OTHERS                    #language en-US   "  UEFI Others"
+                                           #language zh-Hans "  UEFI \wide其它\narrow"
+
+#string STR_LEGACY_HDD_WITH_TRIANGLE       #language en-US   "  Legacy Hard Drive"
+                                           #language zh-Hans "  Legacy \wide硬盘驱动器\narrow"
+#string STR_LEGACY_ODD_WITH_TRIANGLE       #language en-US   "  Legacy CD/DVD ROM Drive"
+                                           #language zh-Hans "  Legacy CD/DVD\wide光驱\narrow"
+#string STR_LEGACY_USB_DISK_WITH_TRIANGLE  #language en-US   "  Legacy USB Flash Drive/USB Hard Disk"
+                                           #language zh-Hans "  Legacy USB\wide闪存驱动器\narrow"
+#string STR_LEGACY_USB_ODD_WITH_TRIANGLE   #language en-US   "  Legacy USB CD/DVD ROM Drive"
+                                           #language zh-Hans "  Legacy USB CD/DVD\wide光驱\narrow"
+#string STR_LEGACY_PXE_WITH_TRIANGLE       #language en-US   "  Legacy Network Adapter"
+                                           #language zh-Hans "  Legacy \wide网络设备\narrow"
+#string STR_LEGACY_OTHERS_WITH_TRIANGLE    #language en-US   "  Legacy Others"
+                                           #language zh-Hans "  Legacy \wide其它\narrow"
+
+#string STR_UEFI_HDD_WITH_TRIANGLE         #language en-US   "  UEFI Hard Drive"
+                                           #language zh-Hans "  UEFI \wide硬盘驱动器\narrow"
+#string STR_UEFI_ODD_WITH_TRIANGLE         #language en-US   "  UEFI CD/DVD ROM Drive"
+                                           #language zh-Hans "  UEFI CD/DVD\wide光驱\narrow"
+#string STR_UEFI_USB_DISK_WITH_TRIANGLE    #language en-US   "  UEFI USB Flash Drive/USB Hard Disk"
+                                           #language zh-Hans "  UEFI USB\wide闪存驱动器\narrow"
+#string STR_UEFI_USB_ODD_WITH_TRIANGLE     #language en-US   "  UEFI USB CD/DVD ROM Drive"
+                                           #language zh-Hans "  UEFI USB CD/DVD\wide光驱\narrow"
+#string STR_UEFI_PXE_WITH_TRIANGLE         #language en-US   "  UEFI Network Adapter"
+                                           #language zh-Hans "  UEFI \wide网络设备\narrow"
+#string STR_UEFI_OTHERS_WITH_TRIANGLE      #language en-US   "  UEFI Others"
+                                           #language zh-Hans "  UEFI \wide其它\narrow"
+
+#string STR_BOOT_ORDER_HELP                #language en-US   "Up and Down arrow keys select a device. <+> and <-> keys move the device up or down."
+                                           #language zh-Hans "\wide上下光标键选择设备。\narrow<+>\wide和\narrow<->\wide移动设备至较高或较低值。\narrow"
+
+#string STR_ADD_BOOT_OPTION                #language en-US   "Add Boot Option"
+                                           #language zh-Hans "\wide添加启动项\narrow"
+#string STR_ADD_BOOT_OPTION_HELP           #language en-US   "Add an EFI application or removable file system as a boot option"
+                                           #language zh-Hans "\wide添加\narrowEFI\wide应用程序或者可移动文件系统作为启动项\narrow"
+
+#string STR_SELECT_BOOT_FILE               #language en-US   "Select boot file"
+                                           #language zh-Hans "\wide选择启动文件\narrow"
+#string STR_SELECT_BOOT_FILE_HELP          #language en-US   "Select an EFI application or removable file system as a boot file"
+                                           #language zh-Hans "\wide选择\narrowEFI\wide应用程序或者可移动文件系统作为启动文件\narrow"
+
+#string STR_SELECT_BOOT_FILE_HELP_BACKUP   #language en-US   "Select an EFI application or removable file system as a boot file"
+                                           #language zh-Hans "\wide选择\narrowEFI\wide应用程序或者可移动文件系统作为启动文件\narrow"
+
+#string STR_LOAD_OPTION_DESC               #language en-US   "Boot Option Description"
+                                           #language zh-Hans "\wide启动项名称\narrow"
+#string STR_LOAD_OPTION_DESC_HELP          #language en-US   "Input Boot Option Description,Enter a range of characters:[6,75]"
+                                           #language zh-Hans "\wide输入启动项名称，输入字符个数范围\narrow:[6,75]"
+
+#string STR_BOOT_DESCRIPTION_SAME          #language en-US   "Boot Description is the same as the existing Boot Option"
+                                           #language zh-Hans "\wide启动项名称与现有启动项相同\narrow"
+
+#string STR_BOOT_FILE_PATH_SAME            #language en-US   "Boot File is the same as the existing Boot Option"
+                                           #language zh-Hans "\wide启动文件与现有启动项相同\narrow"
+
+#string STR_NO_SAVE_AND_EXIT               #language en-US   "Discard Changes and Exit"
+                                           #language zh-Hans "\wide不保存退出\narrow"
+#string STR_NO_SAVE_AND_EXIT_HELP          #language en-US   "Discard Changes and Exit"
+                                           #language zh-Hans "\wide不保存退出\narrow"
+
+#string STR_SAVE_AND_EXIT                  #language en-US   "Save and Exit"
+                                           #language zh-Hans "\wide保存退出\narrow"
+#string STR_SAVE_AND_EXIT_HELP             #language en-US   "Save changes and Exit"
+                                           #language zh-Hans "\wide保存改动并退出\narrow"
+
+#string STR_USER_INPUT_FILE_NULL           #language en-US   "File cannot be empty, please select file"
+                                           #language zh-Hans "\wide文件不能为空，请选择文件\narrow"
+
+#string STR_USER_INPUT_DESCRIPTION_NULL    #language en-US   "Boot description cannot be empty, please enter description"
+                                           #language zh-Hans "\wide启动项名称不能为空，请输入名称\narrow"
+
+#string STR_DELETE_BOOT_OPTION             #language en-US   "Delete Boot Option"
+                                           #language zh-Hans "\wide删除启动项\narrow"
+#string STR_DELETE_BOOT_OPTION_HELP        #language en-US   "Boot Option added manually by the user are deleted. Automatically created Boot Option cannot be deleted"
+                                           #language zh-Hans "\wide删除用户手动添加的启动项，自动创建的启动项无法删除\narrow"
+
+#string STR_DELETE_BOOT_OPTION1             #language en-US   "Whether to delete boot option"
+                                           #language zh-Hans "\wide是否删除启动项\narrow"
+
+#string STR_DISABLE_GROUP_TYPE             #language en-US   "Disable GroupType"
+                                           #language zh-Hans "\wide禁止启动项类型\narrow"
+#string STR_DISABLE_GROUP_TYPE_HELP        #language en-US   "Press <Enter> key to select the group type to be disabled."
+                                           #language zh-Hans "\wide按\narrow<Enter>\wide键选中需要禁用的启动项组类型。\narrow"
+
+#string STR_DISABLE_BOOT_OPTIONS           #language en-US   "Disable Boot Options"
+                                           #language zh-Hans "\wide禁止启动项\narrow"
+#string STR_DISABLE_BOOT_OPTIONS_HELP      #language en-US   "Press <Enter> key to select the boot option to be disabled."
+                                           #language zh-Hans "\wide按\narrow<Enter>\wide键选中需要禁用的启动项。\narrow"
+
+#string STR_DISABLE_UEFI_GROUP_TYPE        #language en-US   "Disable UEFI GroupType"
+                                           #language zh-Hans "\wide禁止\narrowUEFI\wide启动项类型\narrow"
+#string STR_DISABLE_LEGACY_GROUP_TYPE      #language en-US   "Disable Legacy GroupType"
+                                           #language zh-Hans "\wide禁止传统启动项类型\narrow"
+
+#string STR_DISABLE_UEFI_OPTIONS           #language en-US   "Disable UEFI Options"
+                                           #language zh-Hans "\wide禁止\narrowUEFI\wide启动项\narrow"
+#string STR_DISABLE_LEGACY_OPTIONS         #language en-US   "Disable Legacy Options"
+                                           #language zh-Hans "\wide禁止传统启动项\narrow"
+
+#string STR_PXE_WAIT_TIME                  #language en-US   "PXE Boot Wait Time"
+                                           #language zh-Hans "PXE\wide启动等待时间\narrow"
+#string STR_PXE_WAIT_TIME_HELP             #language en-US   "Value is the time in seconds that each PXE option waits before it starts, ranging from 0 to 5."
+                                           #language zh-Hans "\wide每个\narrowPXE\wide选项启动前的等待时间，单位为秒,取值范围为0-5。\narrow"
+
+#string STR_PXE_DETECT_MEDIA_TIME          #language en-US   "Detect Media Time"
+                                           #language zh-Hans "\wide介质检测次数\narrow"
+#string STR_PXE_DETECT_MEDIA_TIME_HELP     #language en-US   "The number of times to detect the connection status of each PXE or HTTP net options, ranging from 1 to 50."
+                                           #language zh-Hans "\wide检测每个\narrowPXE\wide网络启动项或者\narrowHTTP\wide网络启动项的连接状态的次数，取值范围为1-50。\narrow"
+
+#string STR_GROUP_RETRY_TIME               #language en-US   "Group Retry Time"
+                                           #language zh-Hans "\wide启动组重试次数\narrow"
+#string STR_GROUP_RETRY_TIME_HELP          #language en-US   "Group Retry Time, retrying each boot group according to GroupType order, and now PXE retrying policy is inactive.Notice if both UEFI and Legacy boot modes exist, perform this policy for all UEFI boot groups before processing Legacy boot groups.Ranging from 0 to 3."
+                                           #language zh-Hans "\wide启动组重试次数，按照启动项的GroupType先后顺序对每个启动组进行重试,此时\narrowPXE\wide重试失效。注意在\narrowUEFI\wide和\narrowLegacy\wide同时存在的启动模式，先对所有\narrowUEFI\wide启动项执行该策略，再处理\narrowLegacy\wide。取值范围为0-3。\narrow"
+
+#string STR_ALL_RETRY_TIME                 #language en-US   "All Retry Time"
+                                           #language zh-Hans "\wide整体重试次数\narrow"
+#string STR_ALL_RETRY_TIME_HELP            #language en-US   "The number of times all options retry, and now PXE retrying policy is inactive.Notice if both UEFI and Legacy boot modes exist, perform this policy for all UEFI boot optoins before processing Legacy options.Ranging from 0 to 3."
+                                           #language zh-Hans "\wide所有启动项的整体重试次数，此时\narrowPXE\wide重试失效。注意在\narrowUEFI\wide和\narrowLegacy\wide同时存在的启动模式，先对所有\narrowUEFI\wide启动项执行该策略，再处理\narrowLegacy\wide。取值范围为0-3。\narrow"
+
+#string STR_TEXT_NULL_HELP                 #language en-US   ""
+                                           #language zh-Hans ""
+#string STR_TEXT_PROMPT                    #language en-US   ""
+                                           #language zh-Hans ""

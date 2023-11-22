@@ -1,0 +1,84 @@
+## @file
+#  Instant Debug library instance.
+#
+#  Copyright (c) 2021 - 2022, Byosoft Corporation. All rights reserved.<BR>
+#
+#  This software and associated documentation (if any)
+#  is furnished under a license and may only be used or copied in
+#  accordance with the terms of the license. Except as permitted by such
+#  license, no part of this software or documentation may be reproduced,
+#  stored in a retrieval system, or transmitted in any form or by any
+#  means without the express written consent of Byosoft Corporation.
+#
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = PeiInstantDebugLib
+  MODULE_UNI_FILE                = InstantDebugLib.uni
+  FILE_GUID                      = 008D03C2-D752-40B8-A1AD-8E7A1711E2E8
+  MODULE_TYPE                    = PEIM
+  VERSION_STRING                 = 0.1
+  LIBRARY_CLASS                  = DebugAgentLib|SEC PEI_CORE PEIM
+
+#
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           = IA32 X64 AARCH64
+#
+
+[Binaries.Ia32]
+  LIB|Ia32/Pei/PeiInstantDebugLib.lib
+  
+[Binaries.AARCH64]
+  LIB|AArch64/Pei/PeiInstantDebugLib.lib
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  ByoInstantDebugPkg/ByoInstantDebugPkg.dec
+  
+[Packages.AARCH64]
+  ArmPkg/ArmPkg.dec
+  
+[Packages.Ia32, Packages.X64]
+  UefiCpuPkg/UefiCpuPkg.dec
+  
+[LibraryClasses]
+  BaseLib
+  BaseMemoryLib
+  SerialPortLib
+  PrintLib
+  PciSegmentLib
+  PeCoffLib
+  PeCoffGetEntryPointLib
+  PcdLib
+  SynchronizationLib
+  DebugLib
+  MemoryAllocationLib
+  PeiServicesLib
+  DebugCallStackLib
+  
+[LibraryClasses.AARCH64]
+  ArmLib
+  
+[LibraryClasses.Ia32, LibraryClasses.X64]
+  MtrrLib
+  LocalApicLib
+  
+[Ppis]
+  gEfiVectorHandoffInfoPpiGuid
+  gEfiPeiFirmwareVolumeInfoPpiGuid
+  gEfiPeiFirmwareVolumeInfo2PpiGuid
+
+[Guids]
+  gEfiInstantDebuggerGuid
+  gEfiDebugFvGuid
+
+[Pcd]
+  gEfiByoInstantDebugPkgTokenSpaceGuid.PcdExceptionsIgnoredByDebugger
+  gEfiByoInstantDebugPkgTokenSpaceGuid.PcdDebugPeiModuleCount
+  gEfiByoInstantDebugPkgTokenSpaceGuid.PcdBreakAtModuleEntryPoint
+
+
+

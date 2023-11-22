@@ -1,0 +1,41 @@
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = HygonPspTpcmDxe
+  FILE_GUID                      = 0336fb40-9130-4521-abf2-6b39b47ae3bb
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  PI_SPECIFICATION_VERSION       = 0x0001000A
+  ENTRY_POINT                    = HygonPspTpcmInitialize
+
+[Sources]
+  HygonPspTpcmDxe.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  HgpiModulePkg/HgpiCommonModulePkg.dec
+  HgpiModulePkg/HgpiModulePspPkg.dec
+
+[LibraryClasses]
+  BaseLib
+  DebugLib
+  PcdLib
+  UefiDriverEntryPoint
+  UefiBootServicesTableLib
+  DxeServicesLib
+  DevicePathLib
+  HygonPspTpcmLib
+  SecurityManagementLib
+  
+[Protocols]
+  gPspC2PmboxImageVerifyProtocolGuid #Publish
+  gEfiSecurity2ArchProtocolGuid
+  
+[Guids]
+#  gPspSmmCommHandleGuid  #Consume
+
+[Pcd]
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdHygonPspTpcmEnable
+
+[Depex]
+  TRUE

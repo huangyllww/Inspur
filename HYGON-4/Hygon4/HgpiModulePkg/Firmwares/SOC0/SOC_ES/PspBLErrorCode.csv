@@ -1,0 +1,195 @@
+0x00,General - Success
+0x01,Generic Error Code
+0x02,Generic Memory Error
+0x03,Buffer Overflow
+0x04,Invalid Parameter(s)
+0x05,Invalid Data Length
+0x06,Data Alignment Error
+0x07,Null Pointer Error
+0x08,Unsupported Function
+0x09,Invalid Service ID
+0x0A,Invalid Address
+0x0B,Out of Resource Error
+0x0C,Timeout 
+0x0D,data abort exception
+0x0E,prefetch abort exception
+0x0F,Out of Boundary Condition Reached
+0x10,Data corruption
+0x11,Invalid command
+0x12,The package type provided by BR is incorrect
+0x13,Failed to retrieve FW header during FW validation
+0x14,Key size not supported
+0x15,Hgpi0 verification error
+0x16,SMU FW verification error
+0x17,OEM SINGING KEY verification error
+0x18,Generic FW Validation error
+0x19,RSA operation fail - bootloader
+0x1A,CCP Passthrough operation failed - internal status
+0x1B,AES operation fail
+0x1C,CCP state save failed
+0x1D,CCP state restore failed
+0x1E,SHA256 operation fail - internal status
+0x1F,ZLib Decompression operation fail
+0x20,HMAC-SHA256 operation fail - internal status
+0x21,Booted from boot source not recognized by PSP
+0x22,PSP directory entry not found
+0x23,PSP failed to set the write enable latch
+0x24,PSP timed out because spirom took too long
+0x25,Cannot find BIOS directory
+0x26,SpiRom is not valid
+0x27,slave die has different security state from master
+0x28,SMI interface init failure
+0x29,SMI interface generic error
+0x2A,invalid die ID executes MCM related function
+0x2B,invalid MCM configuration table read from bootrom
+0x2C,Valid boot mode wasn't detected
+0x2D,NVStorage init failure
+0x2E,NVStorage generic error
+0x2F,MCM 'error' to indicate slave has more data to send
+0x30,MCM error if data size exceeds 32B
+0x31,Invalid client id for SVC MCM call
+0x32,MCM slave status register contains bad bits
+0x33,MCM call was made in a single die environment
+0x34,PSP secure mapped to invalid segment (should be 0x400_0000)
+0x35,No physical x86 cores were found on die 
+0x36,Insufficient space for secure OS (range of free SRAM to SVC stack base) 
+0x37,SYSHUB mapping memory target type is not supported
+0x38,Attempt to unmap permanently mapped TLB to PSP secure region
+0x39,Unable to map an SMN address to AXI space
+0x3A,Unable to map a SYSHUB address to AXI space
+0x3B,The count of CCXs or cores provided by bootrom is not consistent
+0x3C,Uncompressed image size doesn't match value in compressed header
+0x3D,Compressed option used in case where not supported
+0x3E,Fuse info on all dies don't match
+0x3F,PSP sent message to SMU; SMU reported an error
+0x40,Function RunPostX86ReleaseUnitTests failed in memcmp()
+0x41,Interface between PSP to SMU not available.
+0x42,Timer wait parameter too large
+0x43,Test harness module reported an error
+0x44,x86 wrote C2PMSG_0 interrupting PSP, but the command has an
+0x45,A write to an L3 register failed, as read-back did not match
+0x46,Mini-BL, validation of the PSP SRAM image failed on HMAC
+0x47,Mini-BL CCP HMAC Unit-test failed
+0x48,Potential stack corruption in jump to Mini BL
+0x49,Error in Validate and Loading HGPI HPOB SVC call
+0x4A,Correct fuse bits for DIAG_BL loading not set
+0x4B,The UmcProgramKeys() function was not called by HGPI
+0x4C,Secure unlock error
+0x4D,Syshub register programming mismatch during readback
+0x4E,Family ID in MP0_SFUSE_SEC[7:3] not correct
+0x4F,An operation was invoked that can only be performed by the GM
+0x50,Failed to acquire host controller semaphore to claim ownership of SMB
+0x51,Timed out waiting for host to complete pending transactions
+0x52,Timed out waiting for slave to complete pending transactions
+0x53,Unable to kill current transaction on host, to force idle
+0x54,One of: Illegal command, Unclaimed cycle, or Host time out
+0x55,An smbus transaction collision detected, operation restarted
+0x56,Transaction failed to be started or processed by host, or not completed
+0x57,An unsolicited smbus interrupt was received
+0x58,An attempt to send an unsupported PSP-SMU message was made 
+0x59,An error/data corruption detected on response from SMU for sent msg
+0x5A,MCM Steady-state unit test failed
+0x5B,S3 Enter failed
+0x5C,HGPI BL did not set PSP SMU reserved addresses via SVC call
+0x5E,CcxSecBisiEn not set in fuse RAM
+0x5F,Received an unexpected result
+0x60,VMG Storage Init failed
+0x61,failure in mbedTLS user app
+0x62,An error occured whilst attempting to SMN map a fuse register
+0x63,Fuse burn sequence/operation failed due to internal SOC error
+0x64,Fuse sense operation timed out
+0x65,Fuse burn sequence/operation timed out waiting for burn done
+0x66,Failure status indicating that the given SecureOS has been
+0x67,This PSP FW was revoked
+0x68,The platform model/vendor id fuse is not matching the BIOS public key token
+0x69,The BIOS OEM public key of the BIOS was revoked for this platform
+0x6A,PSP level 2 directory not match expected value.
+0x6B,BIOS level 2 directory not match expected value.
+0x6C,HVB validation failure for BIOS RTM volume (OEM public/signature failed to validate).
+0x6D,Generic error indicating the CCP HAL initialization failed
+0x6E,failure to copy NVRAM to DRAM.
+0x6F,Invalid key usage flag
+0x71,RSMU signaled a security violation
+0x72,Error programming the WAFL PCS registers
+0x73,Error setting wafl PCS threshold value
+0x74,Error loading OEM trustlets
+0x75,Recovery mode accross all dies is not sync'd
+0x94,Knoll failed to idle correctly after being reset
+0x95,Bad status returned by I2CKnollCheck
+0x96,NACK to general call (no device on Knoll I2C bus)
+0x97,Null pointer passed to I2CKnollCheck
+0x98,Invalid device-ID found during Knoll authentication
+0x99,Error during Knoll/Prom key derivation
+0x9A,Null pointer passed to Crypto function
+0x9B,Error in checksum from wrapped Knoll/Prom keys
+0x9C,Knoll returned an invalid response to a command
+0x9D,Bootloader failed in Knoll Send Command function
+0x9E,No Knoll device found by verifying MAC
+0xA0,Bootloader successfully entered C Main
+0xA1,Master initialized C2P / slave waited for master to init C2P
+0xA2,HMAC key successfully derived
+0xA3,Master got Boot Mode and sent boot mode to all slaves
+0xA4,SpiRom successfully initialized
+0xA5,BIOS Directory successfully read from SPI to SRAM
+0xA6,Early unlock check  
+0xA7,Inline Aes key successfully derived
+0xA8,Inline-AES key programming is done
+0xA9,Inline-AES key wrapper derivation is done
+0xAA,Bootloader successfully loaded HW IP configuration values
+0xAB,Bootloader successfully programmed MBAT table
+0xAC,Bootloader successfully loaded SMU FW
+0xAD,PSP and SMU configured WAFL
+0xAE,User mode test harness completed successfully
+0xAF,Bootloader loaded Hgpi0 from SpiRom
+0xB0,HGPI phase has completed
+0xB1,RunPostDramTrainingTests() completed successfully
+0xB2,SMU FW Successfully loaded to SMU Secure DRAM
+0xB3,Sent all required boot time messages to SMU
+0xB4,Validated and ran Security Gasket binary
+0xB5,UMC Keys generated and programmed
+0xB6,Inline AES key wrapper stored in DRAM
+0xB7,Completed FW Validation step
+0xB8,Completed FW Validation step
+0xB9,BIOS copy from SPI to DRAM complete
+0xBA,Completed FW Validation step
+0xBB,BIOS load process fully complete 
+0xBC,Bootloader successfully release x86
+0xBD,Early Secure Debug completed
+0xBE,GetFWVersion command received from BIOS is completed
+0xBF,SMIInfo command received from BIOS is completed
+0xC0,Successfully entered WarmBootResume()
+0xC1,Successfully copied SecureOS image to SRAM
+0xC2,Successfully copied trustlets to PSP Secure Memory
+0xC3,About to jump to Secure OS (SBL about to copy and jump)
+0xC4,Successfully restored CCP and UMC state on S3 resume
+0xC5,PSP SRAM HMAC validated by Mini BL
+0xC6,About to jump to <t-base in Mini BL
+0xC7,VMG ECDH unit test started
+0xC8,VMG ECDH unit test passed
+0xC9,VMG ECC CDH primitive unit test started
+0xCA,VMG ECC CDH primitive unit test passed
+0xCB,VMG SP800-108 KDF-CTR HMAC unit test started
+0xCC,VMG SP800-108 KDF-CTR HMAC unit test passed
+0xCD,VMG LAUNCH_* test started
+0xCE,VMG LAUNCH_* test passed
+0xCF,MP1 has been taken out of reset, and executing SMUFW
+0xD0,PSP and SMU Reserved Addresses correct
+0xD1,Reached steady-state WFI loop
+0xD2,Knoll device successfully initialized
+0xD3,32-byte RandOut successfully returned from Knoll
+0xD4,32-byte MAC successfully received from Knoll.
+0xD5,Knoll device verified successfully
+0xD6,Done enabling power for Knoll
+0xD7,Enter recovery mode due to trustlet validation fail.
+0xD8,Enter recovery mode due to OS validation fail.
+0xD9,Enter recovery mode due to OEM public key not found.
+0xDA,Enter recovery mode with header corruption
+0xDB,We should not treat this error as blocking
+0xDC,Bootloader successfully loaded OEM Truslet Key
+0xDD,Bootloader successfully hashed the OEM Truslet Key
+0xDE,Bootloader successfully loaded OEM Truslet Key
+0xDF,Bootloader detects BIOS request boot from SPI-ROM.
+0xE0,Bootloader failed to validate OEM signature in test mode.
+0xE1,Bootloader failed to validate OEM signature in test mode.
+0xE2,Bootloader success validated in test mode.
+0xE3,Bootloader failed no OEM key in directory entry in test mode.

@@ -1,0 +1,2 @@
+Build\ProjectPkg\RELEASE_VS2015x86\X64\CryptoPkg\Library\OpensslLib\OpensslLib\OUTPUT
+Build\ProjectPkg\RELEASE_VS2015x86\IA32\CryptoPkg\Library\OpensslLib\OpensslLib\OUTPUT

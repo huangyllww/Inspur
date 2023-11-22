@@ -1,0 +1,234 @@
+## @file  
+# 
+# Copyright (c) 2023, Byosoft Corporation.<BR>
+# All rights reserved.This software and associated documentation (if any)
+# is furnished under a license and may only be used or copied in
+# accordance with the terms of the license. Except as permitted by such
+# license, no part of this software or documentation may be reproduced,
+# stored in a retrieval system, or transmitted in any form or by any
+# means without the express written consent of Byosoft Corporation.
+# 
+##
+{
+    ## options defined .pytool/Plugin/LicenseCheck
+    "LicenseCheck": {
+    },
+    "EccCheck": {
+    },
+    ## options defined ci/Plugin/CompilerPlugin
+    "CompilerPlugin": {
+    },
+    ## options defined ci/Plugin/HostUnitTestCompilerPlugin
+    "HostUnitTestCompilerPlugin": {
+    },
+
+    ## options defined ci/Plugin/CharEncodingCheck
+    "CharEncodingCheck": {
+        "IgnoreFiles": []
+    },
+
+    ## options defined ci/Plugin/DependencyCheck
+    "DependencyCheck": {
+        "AcceptableDependencies": [
+            "MdePkg/MdePkg.dec",
+            "ByoModulePkg/ByoModulePkg.dec",
+            "ByoServerPkg/ByoServerPkg.dec",
+            "MdeModulePkg/MdeModulePkg.dec",
+            "ByoLegacyPkg/ByoLegacyPkg.dec",
+            "NetworkPkg/NetworkPkg.dec"
+        ]
+    },
+
+    ## options defined ci/Plugin/DscCompleteCheck
+    "DscCompleteCheck": {
+    },
+    ## options defined ci/Plugin/HostUnitTestDscCompleteCheck
+    "HostUnitTestDscCompleteCheck": {
+    },
+
+    ## options defined ci/Plugin/GuidCheck
+    "GuidCheck": {
+        "IgnoreFoldersAndFiles": ["ByoServerPkg"],
+    },
+
+    ## options defined ci/Plugin/LibraryClassCheck
+    "LibraryClassCheck": {
+        IgnoreHeaderFile: [
+        ]
+    },
+
+    "SpellCheck": {
+        "AuditOnly": True,           # Fails test but run in AuditOnly mode to collect log
+        "IgnoreStandardPaths": [     # Standard Plugin defined paths that should be ignore
+            "*.pdb", "**/*_extdep/**", "*.pdf", "*.exe", "*.jpg"
+        ],
+        "IgnoreFiles": [             # use gitignore syntax to ignore errors in matching files
+        ],
+        "ExtendWords": [           # words to extend to the dictionary for this package
+        "RDIMM",
+        "UDIMM",
+        "LDIMM",
+        "CAPBILITY",
+        "beore",
+        "configurataion",
+        "faild",
+        "frusdr",
+        "gatewayipv",
+        "illeagl",
+        "nicipv",
+        "selview",
+        "vlanid",
+        "Byosoft",
+        "actived",
+        "addrsss",
+        "aligin",
+        "boxdraw",
+        "enabale",
+        "exeeded",
+        "funtional",
+        "generaic",
+        "intenal",
+        "linerization",
+        "maximun",
+        "notsupported",
+        "opeartion",
+        "privelege",
+        "priviledge",
+        "recordt",
+        "reservd",
+        "resgisters",
+        "retore",
+        "spscified",
+        "userinfo",
+        "addin",
+        "addto",
+        "areainfo",
+        "authcode",
+        "bensley",
+        "biosid",
+        "biosupdate",
+        "bmcwatchdog",
+        "bootable",
+        "bootblock",
+        "bootflag",
+        "bootoption",
+        "bootwatchdog",
+        "bugbug",
+        "checkif",
+        "chipkil",
+        "chipkill",
+        "commanddata",
+        "commanddatasize",
+        "corre",
+        "cubert",
+        "datae",
+        "dcltt",
+        "deassert",
+        "deasserted",
+        "deviceid",
+        "dialup",
+        "dimms",
+        "downswitch",
+        "eventlog",
+        "eventonly",
+        "everyboot",
+        "everytime",
+        "extts",
+        "firmwares",
+        "frumaxstring",
+        "grouptype",
+        "harddrive",
+        "hardfail",
+        "hygon",
+        "ibist",
+        "idcommand",
+        "idvalue",
+        "inprogress",
+        "intmask",
+        "invalidpsw",
+        "ipadd",
+        "ipmiboot",
+        "ipmidefinitions",
+        "ipminetfnappdefinitions",
+        "ipminetfnbridgedefinitions",
+        "ipminetfnchassisdefinitions",
+        "ipminetfnfirmwaredefinitions",
+        "ipminetfngroupextdefinitions",
+        "ipminetfnintelgeneraldefinitions",
+        "ipminetfnplatformspecificdefinitions",
+        "ipminetfnsensordefinitions",
+        "ipminetfnstoragedefinitions",
+        "ipminetfntransportdefinitions",
+        "ipmitool",
+        "laninfo",
+        "lastuser",
+        "lightgray",
+        "linearization",
+        "mapout",
+        "mcainfo",
+        "microcontroller",
+        "mltibit",
+        "multibit",
+        "multisymbol",
+        "netfn",
+        "netfnapp",
+        "nextboot",
+        "nvvariables",
+        "oemid",
+        "opromspace",
+        "otherbank",
+        "outofsource",
+        "outter",
+        "overtemperature",
+        "payld",
+        "payloadchecksum",
+        "payloadlength",
+        "pcibridge",
+        "phinux",
+        "powerstate",
+        "powerup",
+        "pretimeout",
+        "pswjump",
+        "rading",
+        "rankmul",
+        "rediction",
+        "responde",
+        "responsesize",
+        "rsrvd",
+        "scltt",
+        "secondarybios",
+        "selfull",
+        "seltest",
+        "senosr",
+        "setvariable",
+        "singlebit",
+        "singlesymbols",
+        "smbiostype",
+        "softfail",
+        "tcontrol",
+        "tcrit",
+        "tempcount",
+        "testword",
+        "thurley",
+        "tmpting",
+        "toleremce",
+        "txdata",
+        "uncontained",
+        "uncor",
+        "uncorr",
+        "uncorre",
+        "unimp",
+        "unrecovered",
+        "upswitch",
+        "watchdogtimer",
+        "winddy",
+        "ymdhms",
+        "disclear",
+        "endpassword",
+        "niccnfg",
+        "poweron",
+        "srvrmgmt"
+        ],
+        "AdditionalIncludePaths": [] # Additional paths to spell check relative to package root (wildcards supported)
+    }
+}

@@ -1,0 +1,62 @@
+## @file
+#
+#Copyright (c) 2006 - 2016, Byosoft Corporation.<BR>
+#All rights reserved.This software and associated documentation (if any)
+#is furnished under a license and may only be used or copied in
+#accordance with the terms of the license. Except as permitted by such
+#license, no part of this software or documentation may be reproduced,
+#stored in a retrieval system, or transmitted in any form or by any
+#means without the express written consent of Byosoft Corporation.
+#
+#File Name:
+#  BmcWdt.inf
+#
+#Abstract:
+#
+#Revision History:
+#
+##
+
+[defines]
+  INF_VERSION          = 0x00010005
+  BASE_NAME            = BmcWdtDriver
+  FILE_GUID            = F6C7812D-81BF-4e6d-A87D-E75AF17BD511
+  MODULE_TYPE          = DXE_DRIVER
+  VERSION_STRING       = 1.0
+  ENTRY_POINT          = BmcWdtDriverEntryPoint
+
+[Sources]
+  BmcWdt.c
+  BmcWdt.h
+
+[Packages]  
+  MdePkg/MdePkg.dec
+  ByoModulePkg/ByoModulePkg.dec
+  ByoServerPkg/ByoServerPkg.dec
+
+[LibraryClasses]
+  UefiBootServicesTableLib
+  UefiRuntimeServicesTableLib
+  UefiDriverEntryPoint
+  UefiLib
+  ReportStatusCodeLib
+  MemoryAllocationLib
+  DebugLib
+  BaseMemoryLib
+  IpmiBaseLib
+  PcdLib
+
+[Protocols]
+  gEfiBmcWdtProtocolGuid		  # PROTOCOL ALWAYS_PRODUCED
+  gEfiBootMenuEnterGuid
+  
+[Guids]
+  gEfiSetupEnterGuid
+  gEfiFrb2WatchDogNotifyGuid
+  gEfiFrb2WatchDogResetNotifyGuid
+  gEfiEventReadyToBootGuid
+  
+[Depex]
+  gEfiIpmiTransportProtocolGuid AND
+  gEfiVariableArchProtocolGuid AND
+  gEfiVariableWriteArchProtocolGuid

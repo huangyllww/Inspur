@@ -1,0 +1,26 @@
+## @file
+#
+# Binary Ext2 EFI Driver for X64 and AARCH64 arch.
+#
+# Copyright (c) 2020, Byosoft Corporation.<BR>
+# All rights reserved.This software and associated documentation (if any)
+# is furnished under a license and may only be used or copied in
+# accordance with the terms of the license. Except as permitted by such
+# license, no part of this software or documentation may be reproduced,
+# stored in a retrieval system, or transmitted in any form or by any
+# means without the express written consent of Byosoft Corporation.
+#
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = Ext2
+  FILE_GUID                      = B06BF760-F934-4079-A50E-0C415F48C9AA
+  MODULE_TYPE                    = UEFI_DRIVER
+  VERSION_STRING                 = 1.0
+
+[Binaries.AArch64]
+  PE32|AArch64/Ext2.efi|*
+
+[Binaries.X64]
+  PE32|X64/Ext2.efi|*

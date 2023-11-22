@@ -1,0 +1,96 @@
+## @file
+#
+#Copyright (c) 2006 - 2020, Byosoft Corporation.<BR>
+#All rights reserved.This software and associated documentation (if any)
+#is furnished under a license and may only be used or copied in
+#accordance with the terms of the license. Except as permitted by such
+#license, no part of this software or documentation may be reproduced,
+#stored in a retrieval system, or transmitted in any form or by any
+#means without the express written consent of Byosoft Corporation.
+#
+#File Name:
+#  TcmSetup.inf
+#
+#Abstract:
+#  Setup part of TCM Module.
+#
+#Revision History:
+#
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = TcmSetup
+  MODULE_UNI_FILE                = TcgSetup.uni
+  FILE_GUID                      = 3694BD22-6FFD-47E1-B9AF-309DBD75F3ED
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = TcmSetupEntry
+
+#
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           = IA32 X64 IPF
+#
+
+[Sources]
+  TcmDxeSetup.c
+  TcmSetupInfoReport.c
+  TcmSetup.vfr
+  TcmSetup.uni
+
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  ByoModulePkg/ByoModulePkg.dec
+  SecurityPkg/SecurityPkg.dec
+[LibraryClasses]
+  MemoryAllocationLib
+  BaseLib
+  UefiBootServicesTableLib
+  HobLib
+  UefiDriverEntryPoint
+  UefiRuntimeServicesTableLib
+  BaseMemoryLib
+  DebugLib
+  UefiLib
+  TimerLib
+  IoLib
+  HiiLib
+  PrintLib
+  UefiHiiServicesLib
+  TcmCommLib
+  SafePrintLib
+  SafeMemoryLib
+  PcdLib
+
+
+[Guids]
+  gEfiSmbiosTableGuid
+  gEfiGlobalVariableGuid
+  gTcmEventEntryHobGuid
+  gEfiEventExitBootServicesGuid
+  gTcmSetupConfigGuid
+
+
+[Protocols]
+  gEfiTcmProtocolGuid
+  gEfiHiiConfigAccessProtocolGuid
+  gEfiDevicePathProtocolGuid
+  gEfiAcpiTableProtocolGuid
+  gSetupSaveNotifyProtocolGuid
+
+
+[FeaturePcd]
+
+
+[Pcd]
+  gEfiByoModulePkgTokenSpaceGuid.PcdTcmChipPresent               ## CONSUMES
+  gEfiSecurityPkgTokenSpaceGuid.PcdTpmBaseAddress
+  gEfiByoModulePkgTokenSpaceGuid.PcdTpmAndTcmHasSetupWithoutDevice
+
+[Depex]
+  gEfiVariableArchProtocolGuid AND
+  gEfiVariableWriteArchProtocolGuid
+

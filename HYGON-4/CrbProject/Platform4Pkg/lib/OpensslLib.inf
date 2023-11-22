@@ -1,0 +1,37 @@
+## @file
+#  This module provides OpenSSL Library implementation with TLS features.
+#
+#  Copyright (c) 2010 - 2020, Intel Corporation. All rights reserved.<BR>
+#  (C) Copyright 2020 Hewlett Packard Enterprise Development LP<BR>
+#  Copyright (c) 2022, Loongson Technology Corporation Limited. All rights reserved.<BR>
+#  SPDX-License-Identifier: BSD-2-Clause-Patent
+#
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = OpensslLib
+  FILE_GUID                      = C873A7D0-9824-409f-9B42-2C158B992E69
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = OpensslLib
+  CONSTRUCTOR                    = OpensslLibConstructor
+
+#
+#  VALID_ARCHITECTURES           = IA32 X64 ARM AARCH64
+#
+
+[Packages]
+  MdePkg/MdePkg.dec
+  CryptoPkg/CryptoPkg.dec
+
+[LibraryClasses]
+  BaseLib
+  DebugLib
+  RngLib
+
+[Binaries.IA32]
+  PE32|x86/OpensslLib.lib|*
+
+[Binaries.X64]
+  PE32|x64/OpensslLib.lib|*

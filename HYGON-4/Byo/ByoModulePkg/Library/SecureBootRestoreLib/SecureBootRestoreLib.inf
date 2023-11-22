@@ -1,0 +1,92 @@
+#  @file
+#
+#  Copyright (c) 2020, Byosoft Corporation.<BR>
+#  All rights reserved.This software and associated documentation (if any)
+#  is furnished under a license and may only be used or copied in
+#  accordance with the terms of the license. Except as permitted by such
+#  license, no part of this software or documentation may be reproduced,
+#  stored in a retrieval system, or transmitted in any form or by any
+#  means without the express written consent of Byosoft Corporation.
+#
+#  File Name:
+#    SecureBootRestoreLib.inf
+#
+#  Abstract:
+#    SecureBoot Policy Restoration Library Header File
+#
+#  Revision History:
+#
+#  TIME:
+#  $AUTHOR:
+#  $REVIEWERS:
+#  $SCOPE:
+#  $TECHNICAL:
+#
+#
+#  T.O.D.O
+#
+#  $END
+
+[Defines]
+INF_VERSION                    = 0x00010005
+  BASE_NAME                      = SecureBootRestoreLib
+  FILE_GUID                      = 47BB917D-AAA4-704B-B9DC-A18B73B9656B
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = SecureBootRestoreLib
+
+#
+#  VALID_ARCHITECTURES           = IA32 X64 EBC
+#
+
+[Sources]
+  SecureBootRestoreLib.c
+  SecureBootRestoreLibPrivate.h
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  CryptoPkg/CryptoPkg.dec
+  SecurityPkg/SecurityPkg.dec
+  ByoModulePkg/ByoModulePkg.dec
+
+[LibraryClasses]
+  BaseLib
+  BaseMemoryLib
+  BaseCryptLib
+  MemoryAllocationLib
+  UefiLib
+  UefiBootServicesTableLib
+  UefiRuntimeServicesTableLib
+  DxeServicesLib
+  DebugLib
+  PcdLib
+  PlatformSecureLib
+
+[Guids]
+  gEfiGlobalVariableGuid
+  gEfiImageSecurityDatabaseGuid
+  gEfiCertPkcs7Guid
+  gEfiCertSha256Guid
+  gEfiCertX509Guid
+  gEfiCustomModeEnableGuid
+  gEfiByoModulePkgTokenSpaceGuid
+  gByoUosDbKeyFileGuid
+  gByoKylinDbKeyFileGuid
+  gByoOemDbKeyFileGuid
+
+[Protocols]
+  gEfiFirmwareVolume2ProtocolGuid
+
+[FixedPcd.common]  
+  gEfiByoModulePkgTokenSpaceGuid.PcdSecureKeyPKFile
+# gEfiByoModulePkgTokenSpaceGuid.PcdSecureKeyKEKFile
+# gEfiByoModulePkgTokenSpaceGuid.PcdSecureKeyDBFile
+  gEfiByoModulePkgTokenSpaceGuid.PcdSecureKeyMSKEKFile
+  gEfiByoModulePkgTokenSpaceGuid.PcdSecureKeyMSProFile
+  gEfiByoModulePkgTokenSpaceGuid.PcdSecureKeyMSUEFFile
+  gEfiByoModulePkgTokenSpaceGuid.PcdSecureKeyMSDBXFile
+  gEfiByoModulePkgTokenSpaceGuid.PcdByoKylinDbKeyEnable
+  gEfiByoModulePkgTokenSpaceGuid.PcdByoOemDbKeyEnable
+
+

@@ -1,0 +1,55 @@
+/** @file
+
+Copyright (c) 2023, Byosoft Corporation.<BR>
+All rights reserved.This software and associated documentation (if any)
+is furnished under a license and may only be used or copied in
+accordance with the terms of the license. Except as permitted by such
+license, no part of this software or documentation may be reproduced,
+stored in a retrieval system, or transmitted in any form or by any
+means without the express written consent of Byosoft Corporation.
+
+**/
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = DxeDebugCallStackLib
+  FILE_GUID                      = 35A570B6-B382-4942-9996-4D57F89A9D72
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = DebugCallStackLib|DXE_CORE DXE_DRIVER DXE_RUNTIME_DRIVER DXE_SMM_DRIVER SMM_CORE UEFI_APPLICATION UEFI_DRIVER 
+
+  CONSTRUCTOR                    = DebugCallStackLibConstructor
+
+#
+#  VALID_ARCHITECTURES           = IA32 X64 EBC ARM AARCH64 RISCV64
+#
+
+[Binaries.X64]
+  LIB|X64/Dxe/DxeDebugCallStackLib.lib
+  
+[Binaries.AARCH64]
+  LIB|AArch64/Dxe/DxeDebugCallStackLib.lib
+  
+[Binaries.RiscV64]
+  LIB|RiscV64/Dxe/DxeDebugCallStackLib.lib
+
+[LibraryClasses]
+  BaseLib
+  DebugLib
+  PeCoffLib
+  PeCoffGetEntryPointLib
+  BaseMemoryLib
+  HobLib
+  SerialPortLib
+  PrintLib
+  UefiBootServicesTableLib
+
+[Packages]
+  MdePkg/MdePkg.dec
+  ByoInstantDebugPkg/ByoInstantDebugPkg.dec
+  
+[Protocols]
+  gEfiFirmwareVolume2ProtocolGuid
+
+[Guids]
+  gEfiDebugFvGuid

@@ -1,0 +1,57 @@
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = ReportRasUcePei
+  FILE_GUID                      = CBAA67D6-785C-4D60-B75A-446E877AE4E8
+  MODULE_TYPE                    = PEIM
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = ReportRasUcePeiEntry
+
+#
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           = IA32 X64 IPF EBC
+#
+
+[Sources]
+  ReportRasUcePei.c
+
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  ByoModulePkg/ByoModulePkg.dec
+  Platform4Pkg/Platform4Pkg.dec
+  ByoHgpiModulePkg/ByoHgpiModulePkg.dec
+
+
+[LibraryClasses]
+  HobLib
+  PeimEntryPoint
+  PeiServicesLib
+  BaseMemoryLib
+  DebugLib
+  IoLib
+  PlatformCommLib
+
+  
+
+[Guids]
+  gHygonReportRasUceVariableGuid
+  
+
+[Ppis]
+  gByoSetupDataReadyPpiGuid
+  gEfiPeiReadOnlyVariable2PpiGuid
+  gPeiInstallPeiMemoryPpiGuid
+  
+
+[Pcd]
+
+
+  
+[Depex]
+  TRUE
+
+
+

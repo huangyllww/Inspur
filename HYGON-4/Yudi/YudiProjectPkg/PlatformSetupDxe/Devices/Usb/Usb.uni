@@ -1,0 +1,78 @@
+/** @file
+
+Copyright (c) 2006 - 2014, Byosoft Corporation.<BR>
+All rights reserved.This software and associated documentation (if any)
+is furnished under a license and may only be used or copied in
+accordance with the terms of the license. Except as permitted by such
+license, no part of this software or documentation may be reproduced,
+stored in a retrieval system, or transmitted in any form or by any
+means without the express written consent of Byosoft Corporation.
+
+File Name:
+  UsbSetup.uni
+
+Abstract:
+  The definition of string used in  USB Setup setting.
+
+Revision History:
+
+$END--------------------------------------------------------------------
+
+**/
+
+/=#
+#langdef   en-US "English"
+#langdef   zh-Hans "\wide中文\narrow"
+
+#string STR_COM_EMPTY                      #language en-US " "
+                                           #language zh-Hans " "
+
+#string STR_USB_FORM                       #language en-US   "USB Configuration"
+                                           #language zh-Hans "USB\wide配置\narrow"
+#string STR_USB_FORM_HELP                  #language en-US   "USB Configuration"
+                                           #language zh-Hans "USB\wide配置\narrow"
+
+#string STR_USB_MASS_SUPPORT               #language en-US   "USB Mass Storage Support"
+                                           #language zh-Hans "USB\wide存储设备支持\narrow"                                            
+#string STR_USB_MASS_SUPPORT_HELP          #language en-US   "Set USB mass storage device support before entering OS."
+                                           #language zh-Hans "\wide控制进入\narrowOS\wide之前的\narrowUSB\wide存储设备的支持\narrow"                                             
+
+#string STR_USB_DEVICE_LIST             #language en-US   "USB device list :"
+                                        #language zh-Hans "USB\wide设备列表：\narrow"
+                                        
+#string STR_USB_STORAGE                 #language en-US   "USB  Storage"
+                                        #language zh-Hans "USB\wide存储设备\narrow"
+#string STR_USB_KEYBOARD                #language en-US   "USB Keyboard"
+                                        #language zh-Hans "USB    \wide键盘\narrow"
+#string STR_USB_MOUSE                   #language en-US   "USB    Mouse"
+                                        #language zh-Hans "USB    \wide鼠标\narrow" 
+#string STR_USB_OTHERS                  #language en-US   "USB   Others"
+                                        #language zh-Hans "USB\wide其他设备\narrow"
+
+#string STR_USB_PORT0_ENABLE            #language en-US   "  USB Port 0"
+                                        #language zh-Hans "  USB\wide端口\narrow0"
+#string STR_USB_PORT1_ENABLE            #language en-US   "  USB Port 1"
+                                        #language zh-Hans "  USB\wide端口\narrow1"
+#string STR_USB_PORT2_ENABLE            #language en-US   "  USB Port 2"
+                                        #language zh-Hans "  USB\wide端口\narrow2"
+#string STR_USB_PORT3_ENABLE            #language en-US   "  USB Port 3"
+                                        #language zh-Hans "  USB\wide端口\narrow3" 
+#string STR_USB_PORT_ENABLE_HELP        #language en-US   "Enable or disable usb port."
+                                        #language zh-Hans "\wide打开或关闭\narrowUSB\wide端口\narrow"
+
+#string STR_USB_NOTES                   #language en-US   "Note: Usb port disable should be from port 3 to port 0 sequentially."
+                                        #language zh-Hans "\wide注意：需要按照端口\narrow3\wide到端口\narrow0的顺序关闭。"
+
+#string STR_USB_WAIT_PORT_STABLE_STALL       #language en-US   "USB wait port stable stall"
+                                             #language zh-Hans "USB\wide等待端口稳定延时\narrow"
+#string STR_USB_WAIT_PORT_STABLE_STALL_HELP  #language en-US   "Configure SUSB wait port stable stall time(ms), default and minimum is 100ms that defined in USB spec."
+                                             #language zh-Hans "\wide配置\narrowUSB\wide设备检测延迟时间（毫秒），默认和最小值为\narrowUSB\wide规范定义的\narrow100\wide毫秒。\narrow"
+                                             
+#string STR_USB_HOST0                   #language en-US   "USB HOST 0"
+                                        #language zh-Hans "USB\wide控制器\narrow0"
+#string STR_USB_HOST1                   #language en-US   "USB HOST 1"
+                                        #language zh-Hans "USB\wide控制器\narrow1"
+#string STR_USB_HOST2                   #language en-US   "USB HOST 2"
+                                        #language zh-Hans "USB\wide控制器\narrow2"
+#string STR_USB_HOST3                   #language en-US   "USB HOST 3"
+                                        #language zh-Hans "USB\wide控制器\narrow3"                                        

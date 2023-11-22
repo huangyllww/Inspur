@@ -1,0 +1,98 @@
+#  @file
+#
+#  Copyright (c) 2020, Byosoft Corporation.<BR>
+#  All rights reserved.This software and associated documentation (if any)
+#  is furnished under a license and may only be used or copied in
+#  accordance with the terms of the license. Except as permitted by such
+#  license, no part of this software or documentation may be reproduced,
+#  stored in a retrieval system, or transmitted in any form or by any
+#  means without the express written consent of Byosoft Corporation.
+#
+#  File Name:
+#    ByoSmbiosTable.inf
+#
+#  Abstract:
+#    Add SMBIOS type ByoTool.
+#
+#  Revision History:
+#
+#  TIME:
+#  $AUTHOR:
+#  $REVIEWERS:
+#  $SCOPE:
+#  $TECHNICAL:
+#
+#
+#  T.O.D.O
+#
+#  $END
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = ByoSmbiosTable
+  FILE_GUID                      = 42021FF5-F9B7-4143-B8B8-08C2D2A7C88D
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = ByoSmbiosTableEntryPoint
+
+[Sources]
+  ByoSmbiosTable.c
+  ByoPcdAccess.c
+  BinaryParse.c
+
+[Sources.IA32, Sources.X64]
+  DefaultVariableTableX86.c
+
+[Sources.AARCH64]
+  DefaultVariableTableAarch64.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  ByoModulePkg/ByoModulePkg.dec
+  SecurityPkg/SecurityPkg.dec
+
+[LibraryClasses]
+  UefiBootServicesTableLib
+  UefiDriverEntryPoint
+  BaseLib
+  DebugLib
+  BaseMemoryLib
+  HobLib
+  MemoryAllocationLib
+  UefiLib
+  DevicePathLib
+  PrintLib
+  ByoCommLib
+  PeCoffLib
+  DxeServicesLib
+
+[Pcd]
+  gEfiByoModulePkgTokenSpaceGuid.PcdSwSmiCmdPort
+  gEfiByoModulePkgTokenSpaceGuid.PcdSmbiosByoToolVendorType
+  gEfiByoModulePkgTokenSpaceGuid.PcdSmbiosTableAddSuppressIf
+
+[Pcd]
+  gEfiByoModulePkgTokenSpaceGuid.PcdGraphicsConsoleDeltaXPersent
+  gEfiByoModulePkgTokenSpaceGuid.PcdHddPasswordMaxLength
+  gEfiByoModulePkgTokenSpaceGuid.PcdAhciOrPortNameIndexBase0
+  gEfiSecurityPkgTokenSpaceGuid.PcdOpalUpdateDataStoreTable
+  gEfiByoModulePkgTokenSpaceGuid.PcdSmbiosType251Version
+  gEfiByoModulePkgTokenSpaceGuid.PcdIsPlatformCmosBad
+
+[Protocols]
+  gEfiSmbiosProtocolGuid
+  gEfiPciIoProtocolGuid
+  gPlatformUsbDeviceSupportProtocolGuid
+  gEfiAfterConnectPciRootBridgeGuid
+  gByoPcdAccessProtocolGuid
+  gEfiFirmwareVolume2ProtocolGuid
+  gSetupItemUpdateProtocolGuid
+
+[Guids]
+  gEfiVariableGuid
+  gVariableDefaultGuid
+  gByoSetupItemsDBGuid
+
+[Depex]
+  gEfiSmbiosProtocolGuid

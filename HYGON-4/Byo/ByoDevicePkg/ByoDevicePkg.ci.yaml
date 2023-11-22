@@ -1,0 +1,119 @@
+## @file  
+# 
+# Copyright (c) 2023, Byosoft Corporation.<BR>
+# All rights reserved.This software and associated documentation (if any)
+# is furnished under a license and may only be used or copied in
+# accordance with the terms of the license. Except as permitted by such
+# license, no part of this software or documentation may be reproduced,
+# stored in a retrieval system, or transmitted in any form or by any
+# means without the express written consent of Byosoft Corporation.
+# 
+##
+{
+    ## options defined .pytool/Plugin/LicenseCheck
+    "LicenseCheck": {
+    },
+    "EccCheck": {
+    },
+    ## options defined ci/Plugin/CompilerPlugin
+    "CompilerPlugin": {
+    },
+    ## options defined ci/Plugin/HostUnitTestCompilerPlugin
+    "HostUnitTestCompilerPlugin": {
+    },
+
+    ## options defined ci/Plugin/CharEncodingCheck
+    "CharEncodingCheck": {
+        "IgnoreFiles": []
+    },
+
+    ## options defined ci/Plugin/DependencyCheck
+    "DependencyCheck": {
+        "AcceptableDependencies": [
+            "MdePkg/MdePkg.dec",
+            "MdeModulePkg/MdeModulePkg.dec",
+            "ByoDevicePkg/ByoDevicePkg.dec",
+            "ByoModulePkg/ByoModulePkg.dec",
+            "ArmPlatformPkg/ArmPlatformPkg.dec",
+            "SecurityPkg/SecurityPkg.dec"
+        ]
+    },
+
+    ## options defined ci/Plugin/DscCompleteCheck
+    "DscCompleteCheck": {
+    },
+    ## options defined ci/Plugin/HostUnitTestDscCompleteCheck
+    "HostUnitTestDscCompleteCheck": {
+    },
+
+    ## options defined ci/Plugin/GuidCheck
+    "GuidCheck": {
+        "IgnoreFoldersAndFiles": ["ByoDevicePkg"],
+    },
+
+    ## options defined ci/Plugin/LibraryClassCheck
+    "LibraryClassCheck": {
+        IgnoreHeaderFile: [
+        ]
+    },
+
+    "SpellCheck": {
+        "AuditOnly": True,           # Fails test but run in AuditOnly mode to collect log
+        "IgnoreStandardPaths": [     # Standard Plugin defined paths that should be ignore
+            "*.pdb", "**/*_extdep/**", "*.pdf", "*.exe", "*.jpg", "*.txt"
+        ],
+        "IgnoreFiles": [             # use gitignore syntax to ignore errors in matching files
+        ],
+        "ExtendWords": [           # words to extend to the dictionary for this package
+        "allocatepool",
+        "berase",
+        "chipid",
+        "databyte",
+        "deviceprotocol",
+        "jedec",
+        "kbrst",
+        "numonyx",
+        "nvmedia",
+        "opmenu",
+        "optype",
+        "phytium",
+        "serase",
+        "shadowbuffer",
+        "shujun",
+        "spiflashdevice",
+        "tecer",
+        "tempin",
+        "thermd",
+        "tmpin",
+        "ulbpr",
+        "winbond",
+        "zhang",
+        "blkio",
+        "byosoft",
+        "devcie",
+        "devicepath",
+        "winddy",
+        "SYSTIN",
+        "CPUVCORE",
+        "SYSFAN",
+        "EGPIO",
+        "MMBASE",
+        "SBTSI",
+        "SMBUSMASTER",
+        "UARTA",
+        "UARTB",
+        "UARTC",
+        "UARTD",
+        "UARTE",
+        "UARTF",
+        "PDECODE",
+        "MANUL",
+        "SYSFANOUT",
+        "CPUFANIN",
+        "SYSFANIN",
+        "AUXFANIN",
+        "SMIOVT"
+        ],
+        "AdditionalIncludePaths": [] # Additional paths to spell check relative to package root (wildcards supported)
+    }
+}

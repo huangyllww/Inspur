@@ -1,0 +1,21 @@
+
+/=#
+
+#langdef   en-US "English"
+#langdef   zh-Hans "\wide中文\narrow"
+                                          
+#string STR_NO_BOOT_DEVICE                  #language en-US   "No bootable device"
+                                            #language zh-Hans "\wide没有可启动设备\narrow"      
+#string STR_PRESS_KEY_IN_SECOND             #language en-US   "Press Key in %d seconds        "
+                                            #language zh-Hans "\wide请在\narrow%d\wide秒内按键 \narrow        "
+
+#string STR_SETUP                           #language en-US   "Setup"
+                                            #language zh-Hans "\wide固件配置菜单\narrow"
+#string STR_BOOT_MENU                       #language en-US   "Boot Menu"
+                                            #language zh-Hans "\wide启动菜单\narrow"
+#string STR_PXE_BOOT                        #language en-US   "Pxe Boot"
+                                            #language zh-Hans "\wide网络启动\narrow"
+#string STR_OS_BACKUP_RECOVERY              #language en-US   "OS Backup and Recovery"
+                                            #language zh-Hans "\wide操作系统备份与还原\narrow"
+#string STR_ENTER                           #language en-US   "Entering "
+                                            #language zh-Hans "\wide进入\narrow"

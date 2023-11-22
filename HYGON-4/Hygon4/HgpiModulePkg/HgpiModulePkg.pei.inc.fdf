@@ -1,0 +1,42 @@
+    INF HgpiModulePkg/Debug/HygonIdsDebugPrintPei/HygonIdsDebugPrintPei.inf
+
+    INF HgpiModulePkg/Psp/HygonPspPei/HygonPspPei.inf
+    INF HgpiModulePkg/Mem/HyEx/HygonMemPei/HygonMemPei.inf
+    INF HgpiModulePkg/Mem/HyGx/HygonMemPei/HygonMemPei.inf
+    INF HgpiModulePkg/Soc/HygonSocPei/HygonSocPei.inf
+    INF HgpiModulePkg/ErrorLog/HygonErrorLogPei/HygonErrorLogPei.inf
+
+#   ## DF Pei Drivers
+    INF HgpiModulePkg/Fabric/HyEx/FabricPei/HygonFabricPei.inf
+    INF HgpiModulePkg/Fabric/HyGx/FabricPei/HygonFabricPei.inf
+
+#   ## Fch Pei Drivers
+    INF HgpiModulePkg/Fch/HyEx/FchTaishanPei/FchPei.inf
+    INF HgpiModulePkg/Fch/HyEx/FchTaishanMultiFchPei/FchMultiFchPei.inf
+    INF HgpiModulePkg/Fch/HyGx/FchTaishanPei/FchPei.inf
+    INF HgpiModulePkg/Fch/HyGx/FchTaishanMultiFchPei/FchMultiFchPei.inf
+    INF HgpiModulePkg/Fch/Common/FchTaishanSmbusPei/Smbus.inf
+
+#   ## GNb Pei Drivers
+    INF HgpiModulePkg/Nbio/IOAPIC/HygonNbioIOAPICSTPei/HygonNbioIOAPICSTPei.inf
+    INF HgpiModulePkg/Nbio/HyEx/NbioBase/HygonNbioBasePei/HygonNbioBasePei.inf
+    INF HgpiModulePkg/Nbio/HyGx/NbioBase/HygonNbioBasePei/HygonNbioBasePei.inf
+    INF HgpiModulePkg/Nbio/HyEx/SMU/HygonNbioSmuPei/HygonNbioSmuPei.inf
+    INF HgpiModulePkg/Nbio/HyGx/SMU/HygonNbioSmuPei/HygonNbioSmuPei.inf
+    INF HgpiModulePkg/Nbio/HyEx/PCIe/HygonNbioPciePei/HygonNbioPciePei.inf
+    INF HgpiModulePkg/Nbio/HyGx/PCIe/HygonNbioPciePei/HygonNbioPciePei.inf
+    INF HgpiModulePkg/Nbio/IOMMU/HygonNbioIOMMUPei/HygonNbioIOMMUPei.inf
+    INF HgpiModulePkg/Nbio/HyGx/CXL/HygonCxlPei/HygonCxlPei.inf
+
+#   ## Ccx Pei Drivers
+    INF HgpiModulePkg/Ccx/Dharma/CcxDharmaPei/HygonCcxDharmaPei.inf
+
+#   ## Universal HygonMeoryInfoHob PEIM
+    INF HgpiModulePkg/Universal/HygonMemoryHobInfoPeim/HygonMemoryHobInfoPeim.inf
+    INF HgpiModulePkg/Universal/Version/HygonVersionPei/HygonVersionPei.inf
+
+#   ## MEM PEIMs
+    INF HgpiModulePkg/Mem/HgpiMemPei/HgpiMemPei.inf
+    INF HgpiModulePkg/Mem/HyEx/HygonMemChanXLatPei/MemChanXLatPei.inf
+    INF HgpiModulePkg/Mem/HyGx/HygonMemChanXLatPei/MemChanXLatPei.inf
+    INF HgpiModulePkg/Mem/HygonMemSmbiosPei/MemSmbiosPei.inf

@@ -1,0 +1,75 @@
+// /*++
+//  Copyright (c) 2013 - 2019 Byosoft Corporation. All rights reserved.
+//  This program and associated documentation (if any) is furnished
+//  under a license. Except as permitted by such license,no part of this
+//  program or documentation may be reproduced, stored divulged or used
+//  in a public system, or transmitted in any form or by any means
+//  without the express written consent of Byosoft Corporation.
+//
+// Name:  EventLog.uni
+//
+// Description: Setup strings
+//
+//**********************************************************************
+/=#
+#langdef   zh-Hans "\wide中文\narrow"
+#langdef   en-US   "English"
+
+
+
+#string STR_EMPTY                       #language en-US   ""
+                                        #language zh-Hans ""
+                                        
+#string STR_PCI_LIST_FORMSET_TITLE      #language en-US   "PCI Device Info"
+                                        #language zh-Hans "PCI\wide设备信息\narrow"
+#string STR_PCI_LIST_FORMSET_HELP       #language en-US   "Show pci device info"
+                                        #language zh-Hans "\wide显示\narrowPCI\wide设备信息\narrow"
+
+                                        
+#string STR_PCI_LIST_HEADERS            #language en-US   "SEG  BUS DEV FUN  VendorID  DeviceID LinkSpeed      LinkWidth Device Class"
+                                        #language zh-Hans "SEG  BUS DEV FUN  \wide厂商\narrowID    \wide设备\narrowID   \wide链路速率       链路带宽  设备类\narrow"
+
+#string STR_PCI_LIST_BUS                #language en-US   "BUS"
+                                        #language zh-Hans "BUS"
+#string STR_PCI_LIST_DEV                #language en-US   "DEV"
+                                        #language zh-Hans "DEV"
+#string STR_PCI_LIST_FUN                #language en-US   "FUN"
+                                        #language zh-Hans "FUN"
+#string STR_PCI_LIST_SEG                #language en-US   "SEG      "
+                                        #language zh-Hans "SEG      "
+// #string STR_PCI_LIST_CONF               #language en-US   "ConfigAddress"
+//                                         #language zh-Hans "配置地址"
+
+#string STR_PCI_LIST_VENDOR_ID          #language en-US   "VendorID"
+                                        #language zh-Hans "\wide厂商\narrowID"
+#string STR_PCI_LIST_DEVICE_ID          #language en-US   "DeviceID"
+                                        #language zh-Hans "\wide设备\narrowID"
+#string STR_PCI_LIST_DEVICE_CLASS       #language en-US   "Device Class"
+                                        #language zh-Hans "\wide设备类\narrow"
+
+#string STR_PCI_LIST_DEVICE_INFO                    #language en-US   "Device Information"
+                                                    #language zh-Hans "\wide设备信息\narrow"
+#string STR_PCI_ROOT_FORMSET_TITLE                  #language en-US   "PCIe Root Port Information"
+                                                    #language zh-Hans "PCIe\wide端口信息\narrow"
+#string STR_PCI_ROOT_FORMSET_HELP                   #language en-US   "The PCIe Root port information is displayed"
+                                                    #language zh-Hans "\wide显示\narrowPCIe\wide端口信息\narrow"
+#string STR_PCI_ROOT_FORMSET_SUBTITLE               #language en-US   "PCIe Root Port Information"
+                                                    #language zh-Hans "PCIe\wide端口信息\narrow"
+#string STR_PCIE_ROOT_PORT_ASPM                     #language en-US   "ASPM Support"
+                                                    #language zh-Hans "\wide活动状态电源管理支持\narrow"
+#string STR_PCIE_ROOT_PORT_ASPM_STATE               #language en-US   "Disabled"
+                                                    #language zh-Hans "Disabled"
+#string STR_PCIE_ROOT_PORT_MAXLINK_WIDTH_TITLE      #language zh-Hans "\wide最大链路带宽\narrow"
+                                                    #language en-US   "MAXLinkWidth"
+#string STR_PCIE_ROOT_PORT_MAXLINK_WIDTH            #language en-US   "N/A"
+                                                    #language zh-Hans "N/A"
+#string STR_PCIE_ROOT_PORT_MAXLINK_SPEED_TITLE      #language zh-Hans "\wide最大链路速率\narrow"
+                                                    #language en-US   "MaxLinkSpeed"
+#string STR_PCIE_ROOT_PORT_MAXLINK_SPEED            #language en-US   "N/A"
+                                                    #language zh-Hans "N/A"
+#string STR_PCI_ROOT_PORT_VENDOR_ID                 #language en-US   "N/A"
+                                                    #language zh-Hans "N/A"
+#string STR_PCI_ROOT_PORT_DEVICE_ID                 #language en-US   "N/A"
+                                                    #language zh-Hans "N/A"
+#string STR_PCI_ROOT_PORT_DEVICE_CLASS              #language en-US   "N/A"
+                                                    #language zh-Hans "N/A"

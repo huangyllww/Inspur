@@ -1,0 +1,75 @@
+## @file
+#
+# Copyright (c) 2022, Byosoft Corporation.<BR>
+# All rights reserved.This software and associated documentation (if any)
+# is furnished under a license and may only be used or copied in
+# accordance with the terms of the license. Except as permitted by such
+# license, no part of this software or documentation may be reproduced,
+# stored in a retrieval system, or transmitted in any form or by any
+# means without the express written consent of Byosoft Corporation.
+#
+# File Name:
+#   DhcpGetNetworkId.inf
+#
+# Abstract:
+#   DhcpGetNetworkId module's inf file
+#
+# Revision History:
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = DhcpGetNetworkId
+  FILE_GUID                      = 555E6E20-29DF-4154-81D9-BDF3C9935027
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = DhcpGetNetworkIdEntryPoint
+
+[Sources]
+  DhcpGetNetworkIdCfg.vfr
+  DhcpGetNetworkIdCfg.uni
+  DhcpGetNetworkId.c
+  DhcpCommonInfo.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  NetworkPkg/NetworkPkg.dec
+  ByoModulePkg/ByoModulePkg.dec
+
+[LibraryClasses]
+  BaseLib
+  MemoryAllocationLib
+  UefiBootServicesTableLib
+  UefiDriverEntryPoint
+  UefiRuntimeServicesTableLib
+  UefiLib
+  BaseMemoryLib
+  DebugLib
+  PcdLib
+  IoLib
+  NetLib
+  PrintLib
+  ByoCommLib
+  HiiLib
+
+  SetupUiLib
+  UefiHiiServicesLib
+
+[Guids]
+  gByoPasswordNetworkAuthConfigGuid
+[Protocols]
+  gEfiDhcp4ServiceBindingProtocolGuid
+  gEfiDhcp4ProtocolGuid
+  gEfiSimpleNetworkProtocolGuid
+  gByoNetworkIdentifierProtocolGuid
+  gEfiIp4Config2ProtocolGuid
+  gEfiDevicePathProtocolGuid
+  gEfiHiiConfigAccessProtocolGuid
+  gSetupItemUpdateProtocolGuid
+[Pcd]
+  gEfiByoModulePkgTokenSpaceGuid.PcdPxeOpRomLaunchPolicy
+[Depex]
+gEfiVariableArchProtocolGuid AND 
+gEfiHiiDatabaseProtocolGuid
+

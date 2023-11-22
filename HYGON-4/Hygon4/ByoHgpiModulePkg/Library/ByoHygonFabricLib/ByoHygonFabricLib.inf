@@ -1,0 +1,62 @@
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = ByoHygonFabricLib
+  FILE_GUID                      = F2E11B81-E4E7-47F3-AD50-02B74A8792AE
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = ByoHygonFabricLib
+
+
+#
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           = IA32 X64 IPF EBC
+#
+
+[Sources]
+  ByoHygonFabricLib.c
+
+
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  ByoModulePkg/ByoModulePkg.dec
+  HgpiPkg/HgpiPkg.dec
+  ByoHgpiModulePkg/ByoHgpiModulePkg.dec
+  HgpiModulePkg/HgpiModuleNbioPkg.dec
+  HgpiModulePkg/HgpiModuleDfPkg.dec
+  
+
+[LibraryClasses]
+  IoLib
+  BaseLib
+  DebugLib
+  NbioHandleLib
+  FabricResourceManagerLib
+  NbioRegisterAccLib
+  NbioSmuLib
+  PcieConfigLib
+  BaseMemoryLib
+  BaseFabricTopologyLib
+  
+
+[Guids]
+  gGnbPcieHobInfoGuid
+
+
+[Protocols]
+  gHygonNbioPcieServicesProtocolGuid
+  gHygonFabricNumaServicesProtocolGuid
+  gHygonFabricTopologyServicesProtocolGuid
+
+[Pcd]
+  gEfiMdePkgTokenSpaceGuid.PcdPciExpressBaseAddress
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonHgpiSmee
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonAbove4GMmioLimitBit
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonMmioAbove4GLimit
+
+
+
+

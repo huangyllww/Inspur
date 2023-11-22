@@ -1,0 +1,25 @@
+// /** @file
+//  Byosoft Ui App module is driver for BDS phase.
+//
+// Copyright (c) 2010 - 2018, Byosoft Corporation.<BR>
+// All rights reserved.This software and associated documentation (if any)
+// is furnished under a license and may only be used or copied in
+// accordance with the terms of the license. Except as permitted by such
+// license, no part of this software or documentation may be reproduced,
+// stored in a retrieval system, or transmitted in any form or by any
+// means without the express written consent of Byosoft Corporation.
+//
+// File Name:
+//
+// Abstract:
+//    Byosoft Ui App module.
+//
+// Revision History:
+//
+// **/
+
+#langdef   en-US "English"
+#langdef   zh-Hans  "\wide中文\narrow"
+
+#string STR_FOLDER_UNWRITEABLE         #language en-US    "File system is Unwriteable, please reselect !"
+                                       #language zh-Hans  "\wide文件系统不可写,请重新选择\narrow!" 

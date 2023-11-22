@@ -1,0 +1,109 @@
+///*++
+//Copyright (c) 2006 Byosoft Corporation. All rights reserved.
+//This software and associated documentation (if any) is furnished
+//under a license and may only be used or copied in accordance
+//with the terms of the license. Except as permitted by such
+//license, no part of this software or documentation may be
+//reproduced, stored in a retrieval system, or transmitted in any
+//form or by any means without the express written consent of
+//Byosoft Corporation.
+//
+//Module Name:
+//
+//  TextScreen.uni
+//
+//Abstract:
+//
+//--*/
+/=#
+#langdef   en-US "English"
+#langdef   zh-Hans "\wide中文\narrow"
+
+#string STR_BIOS_VERSION                       #language en-US   "BIOS Version"
+                                               #language zh-Hans "BIOS \wide版本\narrow"
+#string STR_BIOS_RELEASE_DATE                  #language en-US   "Release Date"
+                                               #language zh-Hans "\wide发布日期\narrow"
+#string STR_BMC_IP                             #language en-US "BMC IP Address"
+                                               #language zh-Hans "BMC IP\wide地址\narrow"
+#string STR_BMC_IP_INVALID                     #language en-US   "Invalid"
+                                               #language zh-Hans "\wide无效\narrow"                                               
+#string STR_BMC_VERSION                        #language en-US "BMC Version"
+                                               #language zh-Hans "BMC \wide版本\narrow"
+#string STR_CPU_INFO                           #language en-US "CPU Info"
+                                               #language zh-Hans "CPU \wide信息\narrow"  
+#string STR_CPU                               #language en-US "CPU"
+                                               #language zh-Hans "\wide处理器\narrow"
+                                               
+#string STR_SYS_MEMORY                         #language en-US   "Memory Manufacturer"
+                                               #language zh-Hans "\wide内存厂商\narrow"
+#string STR_MEM_CURRENT_FREQUENCY              #language en-US   "Memory Current Frequency"
+                                               #language zh-Hans "\wide内存工作频率\narrow"
+#string STR_MEM_MAX_FREQUENCY                  #language en-US   "Memory Maximum Frequency"
+                                               #language zh-Hans "\wide内存最大频率\narrow"
+#string STR_KEY_CONTINUE                       #language en-US   "Press ENTER key to continue..."
+                                               #language zh-Hans "\wide按回车键继续\narrow..."
+#string STR_MIXED_DIMM                         #language en-US   "Mixed Dimm"
+                                               #language zh-Hans "\wide混杂内存\narrow"
+#string STR_TOTAL                              #language en-US   "Total"
+                                               #language zh-Hans "\wide共有\narrow"
+
+#string STR_PRODUCT_NAME                       #language en-US   "Product Name"
+                                               #language zh-Hans "\wide产品名称\narrow"
+#string STR_BOARD_PN                           #language en-US   "Board PN"
+                                               #language zh-Hans "\wide主板\narrowPN"
+#string STR_CPU_CURRENT_FREQUENCY              #language en-US   "Frequency"
+                                               #language zh-Hans "\wide频率\narrow"
+                                               
+#string STR_ONBOARD_LAN_MAC0_ADRESS            #language en-US   "Onboard NIC 0 MAC Address"
+                                               #language zh-Hans "\wide板载网卡\narrow0 MAC\wide地址"
+#string STR_ONBOARD_LAN_MAC1_ADRESS            #language en-US   "Onboard NIC 1 MAC Address"
+                                               #language zh-Hans "\wide板载网卡\narrow1 MAC\wide地址"
+
+#string STR_MOUSE                              #language en-US   "Mouse"
+                                               #language zh-Hans "\wide鼠标\narrow"
+#string STR_KEYBOARD                           #language en-US   "KeyBoard"
+                                               #language zh-Hans "\wide键盘\narrow"
+
+#string STR_CMOS_BAD                           #language en-US   "ERROR: CMOS BAD. Setup Data loaded default."
+                                               #language zh-Hans "\wide错误：检测到\narrowCMOS\wide被清除。\narrowSetup\wide数据已恢复默认值。\narrow"
+#string STR_TYPE                               #language en-US   "Type"
+                                               #language zh-Hans "\wide类型\narrow"
+#string STR_TOTAL_SIZE                         #language en-US   "Memory Total Size"
+                                               #language zh-Hans "\wide内存总大小\narrow"
+#string STR_TOTAL_COUNT                        #language en-US   "Memory Total Count"
+                                               #language zh-Hans "\wide内存总数量\narrow"
+#string STR_MEM_BRAND_SAMSUNG                  #language en-US "Samsung"
+                                               #language zh-Hans "\wide三星\narrow" 
+#string STR_MEM_BRAND_HYNIX                    #language en-US "SK Hynix"
+                                               #language zh-Hans "\wide海力士\narrow" 
+#string STR_MEM_BRAND_MICRON                   #language en-US "Micron Technology"
+                                               #language zh-Hans "\wide镁光\narrow" 
+#string STR_MEM_BRAND_UNIIC                    #language en-US "UniIC"
+                                               #language zh-Hans "\wide紫光\narrow"
+#string STR_MEM_BRAND_RAMAXEL                  #language en-US "Ramaxel"
+                                               #language zh-Hans "\wide记忆科技\narrow" 
+#string STR_MEM_BRAND_INFINEON                 #language en-US "Infineon (Siemens)"
+                                               #language zh-Hans "\wide英飞凌\narrow" 
+#string STR_MEM_BRAND_TRANSCEND                #language en-US "Transcend Information"
+                                               #language zh-Hans "\wide创见\narrow" 
+#string STR_MEM_BRAND_KINGSTON                 #language en-US "Kingston"
+                                               #language zh-Hans "\wide金士顿\narrow"
+#string STR_MEM_BRAND_ELPIDA                   #language en-US "Elpida"
+                                               #language zh-Hans "\wide尔必达\narrow" 
+#string STR_MEM_BRAND_NANYA                    #language en-US "Nanya Technology"
+                                               #language zh-Hans "\wide南亚科技\narrow" 
+#string STR_MEM_BRAND_KINGMAX                  #language en-US "Kingmax Semiconductor"
+                                               #language zh-Hans "\wide胜创\narrow" 
+#string STR_MEM_BRAND_A_DATA                   #language en-US "A-DATA Technology"
+                                               #language zh-Hans "\wide威刚科技\narrow"
+#string STR_MEM_BRAND_ASINT                    #language en-US "ASint Technology"
+                                               #language zh-Hans "\wide昱联科技\narrow"
+#string STR_MEM_BRAND_CHANGXIN                 #language en-US "CXMT"
+                                               #language zh-Hans "\wide长鑫存储\narrow"
+#string STR_MEM_BRAND_UNKOWN                   #language en-US "Unkown"
+                                               #language zh-Hans "\wide未知\narrow"
+#string STR_HDD_SIZE                           #language en-US "Size"
+                                               #language zh-Hans "\wide大小\narrow"
+
+#string STR_WAIT_F2_TO_CLOSE_QUIET_BOOT        #language en-US "Please press F2 key in %d seconds to show POST info     "
+                                               #language zh-Hans "\wide请在\narrow%d\wide秒内按\narrowF2\wide键以显示\narrowPOST\wide信息     "

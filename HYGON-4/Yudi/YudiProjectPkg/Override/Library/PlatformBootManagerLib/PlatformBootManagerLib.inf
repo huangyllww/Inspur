@@ -1,0 +1,142 @@
+## @file  
+#
+# Copyright (c) 2006 - 2019, Byosoft Corporation.<BR> 
+# All rights reserved.This software and associated documentation (if any)
+# is furnished under a license and may only be used or copied in 
+# accordance with the terms of the license. Except as permitted by such
+# license, no part of this software or documentation may be reproduced, 
+# stored in a retrieval system, or transmitted in any form or by any 
+# means without the express written consent of Byosoft Corporation.
+#
+# File Name:
+#   PlatformBootManagerLib.inf
+#
+# Abstract: 
+#   The platform support PlatformBootManagerLib.
+#
+# Revision History:
+#
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = PlatformBootManagerLib
+  FILE_GUID                      = EBEB0935-72D3-414d-B297-0E0B87B31C4D
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = PlatformBootManagerLib
+  CONSTRUCTOR                    = PlatformBmConstructor
+
+#
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           = ARM AARCH64
+#
+
+[Sources]
+  PlatformBm.c
+  PlatformBm.h
+  PlatformBm.uni
+  InstallOptionRom.c
+  
+[Packages]
+  MdeModulePkg/MdeModulePkg.dec
+  MdePkg/MdePkg.dec
+  ByoModulePkg/ByoModulePkg.dec
+  ByoLegacyPkg/ByoLegacyPkg.dec
+  Platform4Pkg/Platform4Pkg.dec
+  SecurityPkg/SecurityPkg.dec
+
+[LibraryClasses]
+  BaseLib
+  BaseMemoryLib
+  DebugLib
+  DevicePathLib
+  DxeServicesLib
+  MemoryAllocationLib
+  PcdLib
+  PrintLib
+  UefiBootManagerLib
+  UefiBootServicesTableLib
+  UefiLib
+  HiiLib
+  BootLogoLib
+  ReportStatusCodeLib
+  ByoCommLib
+  PerformanceLib
+  ByoBootManagerLib
+  TcgPhysicalPresenceLib
+  Tcg2PhysicalPresenceLib
+  PlatformCommLib
+
+[LibraryClasses.X64, LibraryClasses.IA32]
+  ByoKbcLib
+  
+[FeaturePcd]
+
+[FixedPcd]
+
+  
+[Pcd]
+  gEfiMdePkgTokenSpaceGuid.PcdPlatformBootTimeOut
+  gEfiMdeModulePkgTokenSpaceGuid.PcdConOutRow
+  gEfiByoModulePkgTokenSpaceGuid.PcdSystemMiscConfig
+  gEfiMdeModulePkgTokenSpaceGuid.PcdVideoHorizontalResolution
+  gEfiMdeModulePkgTokenSpaceGuid.PcdVideoVerticalResolution
+  gEfiByoModulePkgTokenSpaceGuid.PcdFirstVideoHostHandle
+  gEfiMdeModulePkgTokenSpaceGuid.PcdBootManagerMenuFile
+  gEfiByoModulePkgTokenSpaceGuid.PcdShellFile
+  gEfiByoModulePkgTokenSpaceGuid.PcdBiosBootModeType
+  gEfiByoModulePkgTokenSpaceGuid.PcdBootState
+  gEfiByoModulePkgTokenSpaceGuid.PcdKbcPresent
+  gEfiSecurityPkgTokenSpaceGuid.PcdTpmInstanceGuid
+  gEfiByoModulePkgTokenSpaceGuid.PcdLegacyBiosSupport
+  gEfiMdeModulePkgTokenSpaceGuid.PcdSetDescOfOsFirst
+  gEfiByoModulePkgTokenSpaceGuid.PcdPxeOpRomLaunchPolicy
+  gPlatformModuleTokenSpaceGuid.PcdPwdNetworkAuthEnable
+
+[Guids]
+  gEfiGlobalVariableGuid
+  gBootMenuFileGuid
+  gPlatformSetupVariableGuid
+  gPxeBootAppGuid
+  gEfiEndOfDxeEventGroupGuid
+  gByoGlobalVariableGuid
+  gEfiCapsuleVendorGuid
+  gEfiTpmDeviceInstanceTpm20DtpmGuid
+  gEfiTpmDeviceInstanceTpm12Guid
+  gEfiTpmDeviceInstanceTpm20HgfTpmGuid
+  gOSBackupRestoreFileGuid
+  gByoPasswordNetworkAuthConfigGuid
+  
+[Protocols]
+  gEfiSimpleTextInputExProtocolGuid
+  gEfiBeforeConnectPciRootBridgeGuid
+  gEfiPciRootBridgeIoProtocolGuid
+  gEfiAfterAllPciIoGuid
+  gEfiAfterConnectPciRootBridgeGuid
+  gPlatHostInfoProtocolGuid
+  gEfiDevicePathProtocolGuid
+  gEfiGraphicsOutputProtocolGuid
+  gEfiPciIoProtocolGuid
+  gEfiLoadedImageProtocolGuid
+  gPlatAfterConsoleStartProtocolGuid
+  gPlatAfterConsoleEndProtocolGuid
+  gPlatBeforeExitPmAuthProtocolGuid
+  gExitPmAuthProtocolGuid
+  gEfiDxeSmmReadyToLockProtocolGuid
+  gEfiFirmwareVolume2ProtocolGuid
+  gByoBeforeHotKeyBootProtocolGuid
+  gByoNoBootDeviceProtocolGuid
+  gByoBdsWaitHookProtocolGuid
+  gBdsAllDriversConnectedProtocolGuid
+  gBdsAfterConnectAllDefConsoleProtocolGuid
+  gEfiLegacyBiosProtocolGuid
+  gPlatAfterConnectSequenceProtocolGuid
+  gPlatBdsRecoveryStartProtocolGuid
+  gByoSmiFlashProtocolGuid
+  gByoBdsEnterHookGuid
+  gEfiBlockIoProtocolGuid
+  gByoBeforeHotKeyBootProtocolGuid
+  gByoNetworkIdentifierProtocolGuid
+  gEfiNetworkInterfaceIdentifierProtocolGuid_31

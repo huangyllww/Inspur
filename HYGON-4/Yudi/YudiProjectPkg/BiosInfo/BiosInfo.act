@@ -1,0 +1,107 @@
+
+
+#include <ByoBiosInfo2.h>
+
+
+#define IAMGE_BLOCK_STEP_COUNT          11
+ 
+
+#pragma pack(1)  
+ 
+typedef struct {
+  FLASH_HEADER           Header;
+  FLASH_STEP             Step[IAMGE_BLOCK_STEP_COUNT];
+} MY_BYO_BIOS_INFO2;
+
+#pragma pack() 
+
+#define NVRAM_RAEA_SIZE  (_PCD_VALUE_PcdFlashNvStorageVariableSize + _PCD_VALUE_PcdFlashNvStorageFtwWorkingSize + _PCD_VALUE_PcdFlashNvStorageFtwSpareSize) 
+
+MY_BYO_BIOS_INFO2 gByoBiosInfo = {
+  {
+    BYO_BIOS_INFO2_SIGNATURE,
+    sizeof(FLASH_HEADER),
+    IAMGE_BLOCK_STEP_COUNT,
+    _PCD_VALUE_PcdFlashAreaSize,
+  },
+  {
+    {
+      {"", _PCD_VALUE_PcdFlashFvRecoveryBackUpBase - _PCD_VALUE_PcdFlashAreaBaseAddress, _PCD_VALUE_PcdFlashFvRecoveryBackUpSize},
+      {"", _PCD_VALUE_PcdFlashFvRecoveryBackUpBase - _PCD_VALUE_PcdFlashAreaBaseAddress, _PCD_VALUE_PcdFlashFvRecoveryBackUpSize},
+      FLASH_STEP_BK,   OP_PROGRAM_FLASH,   "Update BackUp FvBB ...."
+    },      
+
+    {
+      {"", _PCD_VALUE_PcdFlashFvRecoveryBase - _PCD_VALUE_PcdFlashAreaBaseAddress, _PCD_VALUE_PcdFlashFvRecoverySize},
+      {"", _PCD_VALUE_PcdFlashFvRecoveryBase - _PCD_VALUE_PcdFlashAreaBaseAddress, _PCD_VALUE_PcdFlashFvRecoverySize},
+      FLASH_STEP_RUN,  OP_PROGRAM_FLASH,   "Update FvBB ..........."
+    }, 
+    
+    {
+      {"", _PCD_VALUE_PcdFchFwFlashBase - _PCD_VALUE_PcdFlashAreaBaseAddress, _PCD_VALUE_PcdFchFwFlashSize},
+      {"", _PCD_VALUE_PcdFchFwFlashBase - _PCD_VALUE_PcdFlashAreaBaseAddress, _PCD_VALUE_PcdFchFwFlashSize},
+      FLASH_STEP_RUN,  OP_PROGRAM_FLASH,   "Update Fv FchFw ......."
+    },
+    {
+      {"", _PCD_VALUE_PcdPspFlashBase - _PCD_VALUE_PcdFlashAreaBaseAddress, _PCD_VALUE_PcdPspFlashSize},
+      {"", _PCD_VALUE_PcdPspFlashBase - _PCD_VALUE_PcdFlashAreaBaseAddress, _PCD_VALUE_PcdPspFlashSize},
+      FLASH_STEP_RUN,  OP_PROGRAM_FLASH,   "Update Psp Firmware...."
+    },
+    {
+      {"", _PCD_VALUE_PcdFlashFvMainBase - _PCD_VALUE_PcdFlashAreaBaseAddress, _PCD_VALUE_PcdFlashFvMainSize},
+      {"FVMAIN", _PCD_VALUE_PcdFlashFvMainBase - _PCD_VALUE_PcdFlashAreaBaseAddress, _PCD_VALUE_PcdFlashFvMainSize},
+      FLASH_STEP_RUN,  OP_PROGRAM_FLASH,   "Update FvMain ........."
+    },
+    {
+      {"", _PCD_VALUE_PcdFlashFvMain2Base - _PCD_VALUE_PcdFlashAreaBaseAddress, _PCD_VALUE_PcdFlashFvMain2Size},
+      {"FVMAIN", _PCD_VALUE_PcdFlashFvMain2Base - _PCD_VALUE_PcdFlashAreaBaseAddress, _PCD_VALUE_PcdFlashFvMain2Size},
+      FLASH_STEP_RUN,  OP_PROGRAM_FLASH,   "Update FvMain2 ........"
+    },
+         
+    {
+      {"", _PCD_VALUE_PcdFlashFvSecBase - _PCD_VALUE_PcdFlashAreaBaseAddress, _PCD_VALUE_PcdFlashFvSecSize},
+      {"", _PCD_VALUE_PcdFlashFvSecBase - _PCD_VALUE_PcdFlashAreaBaseAddress, _PCD_VALUE_PcdFlashFvSecSize},
+      FLASH_STEP_RUN, OP_PROGRAM_FLASH,    "Update FvSec .........."
+    },
+    
+    {
+      {"", _PCD_VALUE_PcdSetupItemsFvBase - _PCD_VALUE_PcdFlashAreaBaseAddress, _PCD_VALUE_PcdSetupItemsFvSize},
+      {"", _PCD_VALUE_PcdSetupItemsFvBase - _PCD_VALUE_PcdFlashAreaBaseAddress, _PCD_VALUE_PcdSetupItemsFvSize},
+      FLASH_STEP_RUN, OP_PROGRAM_FLASH,    "Update SetupDb ........"
+    },    
+        
+    {
+      {"", _PCD_VALUE_PcdFlashNvLogoBase - _PCD_VALUE_PcdFlashAreaBaseAddress, _PCD_VALUE_PcdFlashNvLogoSize},
+      {"", _PCD_VALUE_PcdFlashNvLogoBase - _PCD_VALUE_PcdFlashAreaBaseAddress, _PCD_VALUE_PcdFlashNvLogoSize},
+      FLASH_STEP_LOGO, OP_RESERVE_OEM__,    "Update Logo .........."
+    },
+
+    {
+      {"", _PCD_VALUE_PcdFvMainHashDataBase - _PCD_VALUE_PcdFlashAreaBaseAddress, _PCD_VALUE_PcdFvMainHashDataSize},
+      {"", _PCD_VALUE_PcdFvMainHashDataBase - _PCD_VALUE_PcdFlashAreaBaseAddress, _PCD_VALUE_PcdFvMainHashDataSize},
+      FLASH_STEP_RUN, OP_PROGRAM_FLASH,    "Update Fv Hash ........"
+    }, 
+    
+    { 
+      {"",0,0},
+      {"",0,0},
+      FLASH_STEP_OK, OP_BIOS_VERIFY__,     "End...................."
+    }    
+  },
+};
+
+
+
+
+VOID*
+ReferenceAcpiTable (
+  VOID
+  )
+{
+  //
+  // Reference the table being generated to prevent the optimizer from removing the 
+  // data structure from the exeutable
+  //
+  return (VOID*)&gByoBiosInfo;
+}
+

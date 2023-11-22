@@ -1,0 +1,63 @@
+// /** @file
+//
+// Copyright (c) 2010 - 2015, Byosoft Corporation.<BR>
+// All rights reserved.This software and associated documentation (if any)
+// is furnished under a license and may only be used or copied in
+// accordance with the terms of the license. Except as permitted by such
+// license, no part of this software or documentation may be reproduced,
+// stored in a retrieval system, or transmitted in any form or by any
+// means without the express written consent of Byosoft Corporation.
+//
+// File Name:
+//
+// Abstract:
+//   Network configuration setup.
+//
+// Revision History:
+//
+//
+// **/
+/=#
+#langdef   en-US "English"
+#langdef   zh-Hans  "\wide中文\narrow"
+
+#string  STR_PLATID_PROMPT             #language en-US "\x0001"
+                                       #language zh-Hans  "\x0001"
+
+#string  STR_EMPTY                              #language en-US ""
+                                                #language zh-Hans  ""
+#string  STR_ENABLED                            #language en-US "Enabled"
+                                                #language zh-Hans  "\wide启用\narrow"
+#string  STR_DISABLED                           #language en-US "Disabled"
+                                                #language zh-Hans  "\wide禁用\narrow"
+
+#string  STR_SECURITY_UPDATE_PROMPT           #language en-US "Security Update"
+                                              #language zh-Hans "\wide安全更新\narrow"
+#string  STR_SECURITY_UPDATE_HELP             #language en-US "Security Update."
+                                              #language zh-Hans "\wide安全更新。\narrow"
+
+#string  STR_SIGNED_BIOS_UPDATE               #language en-US "Signed BIOS update"
+                                              #language zh-Hans "\wide已签署的\narrowBIOS\wide更新\narrow"
+
+#string  STR_FW_KEY_TYPE                      #language en-US "FW Key Type"
+                                              #language zh-Hans "FW\wide密钥类型\narrow"
+#string STR_HASH_SHA256                       #language en-US   "SHA-256 Hash"
+                                              #language zh-Hans "SHA-256 Hash"
+
+#string  STR_FW_KEY_NAME                      #language en-US "FW Key Name"
+                                              #language zh-Hans "FW\wide密钥名称\narrow"
+#string  STR_FW_KEY_NAME_OEM                  #language en-US "OEM"
+                                              #language zh-Hans "OEM"
+
+#string  STR_FW_UPDATE_METHOD                 #language en-US "FW Update Method"
+                                              #language zh-Hans "FW\wide更新方法\narrow"
+#string  STR_FW_UPDATE_METHOD_RUNTIME         #language en-US "Runtime"
+                                              #language zh-Hans "Runtime"
+
+#string  STR_FW_ROLL_BACK_PROTECTION          #language en-US "FW Rollback Protection"
+                                              #language zh-Hans "FW\wide回滚保护\narrow"
+
+#string  STR_FLASH_WRITE_PROTECTION           #language en-US "Flash Write Protection"
+                                              #language zh-Hans "Flash\wide写保护\narrow"
+
+

@@ -1,0 +1,159 @@
+## @file
+#
+# Copyright (c) 2022, Byosoft Corporation.<BR>
+# All rights reserved.This software and associated documentation (if any)
+# is furnished under a license and may only be used or copied in
+# accordance with the terms of the license. Except as permitted by such
+# license, no part of this software or documentation may be reproduced,
+# stored in a retrieval system, or transmitted in any form or by any
+# means without the express written consent of Byosoft Corporation.
+#
+##
+
+[Defines]
+  DEC_SPECIFICATION              = 0x00010005
+  PACKAGE_NAME                   = ByoLegacyPkg
+  PACKAGE_GUID                   = 91C2C6D1-3C8F-420D-962A-4F52A4602034
+  PACKAGE_VERSION                = 1.00
+
+[Includes]
+  Include
+
+[LibraryClasses]
+  LegacyBootOptionalDataLib|Include/Library/LegacyBootOptionalDataLib.h
+
+[Guids]
+  ## ByoLegacy package token space guid
+  #  Include/Guid/ByoLegacyTokenSpace.h
+  gByoLegacyPkgTokenSpaceGuid = { 0xd8348631, 0xf4f7, 0x409c, { 0xbf, 0x55, 0x81, 0x5b, 0xf5, 0x27, 0x6a, 0xdd }}
+
+  ## Include/Guid/LegacyBios.h
+  gEfiLegacyBiosGuid          = { 0x2E3044AC, 0x879F, 0x490F, { 0x97, 0x60, 0xBB, 0xDF, 0xAF, 0x69, 0x5F, 0x50 }}
+
+  ## Include/Guid/LegacyDevOrder.h
+  gEfiLegacyDevOrderVariableGuid     = { 0xa56074db, 0x65fe, 0x45f7, {0xbd, 0x21, 0x2d, 0x2b, 0xdd, 0x8e, 0x96, 0x52 }}
+ 
+[PcdsFixedAtBuild, PcdsDynamic, PcdsDynamicEx, PcdsPatchableInModule]
+  ## Pcd8259LegacyModeMask defines the default mask value for platform. This value is determined<BR><BR>
+  #  1) If platform only support pure UEFI, value should be set to 0xFFFF or 0xFFFE;
+  #     Because only clock interrupt is allowed in legacy mode in pure UEFI platform.<BR>
+  #  2) If platform install CSM and use thunk module:<BR>
+  #     a) If thunk call provided by CSM binary requires some legacy interrupt support, the corresponding bit
+  #        should be opened as 0.<BR>
+  #        For example, if keyboard interfaces provided CSM binary use legacy keyboard interrupt in 8259 bit 1, then
+  #        the value should be set to 0xFFFC.<BR>
+  #     b) If all thunk call provided by CSM binary do not require legacy interrupt support, value should be set
+  #        to 0xFFFF or 0xFFFE.<BR>
+  #
+  #  The default value of legacy mode mask could be changed by EFI_LEGACY_8259_PROTOCOL->SetMask(). But it is rarely
+  #  need change it except some special cases such as when initializing the CSM binary, it should be set to 0xFFFF to
+  #  mask all legacy interrupt. Please restore the original legacy mask value if changing is made for these special case.<BR>
+  # @Prompt 8259 Legacy Mode mask.
+  gPcAtChipsetPkgTokenSpaceGuid.Pcd8259LegacyModeMask|0xFFFF|UINT16|0x00000001
+
+  ## Pcd8259LegacyModeEdgeLevel defines the default edge level for legacy mode's interrupt controller.
+  #  For the corresponding bits, 0 = Edge triggered and 1 = Level triggered.
+  # @Prompt 8259 Legacy Mode edge level.
+  gPcAtChipsetPkgTokenSpaceGuid.Pcd8259LegacyModeEdgeLevel|0x0000|UINT16|0x00000002
+
+  gPcAtChipsetPkgTokenSpaceGuid.Pcd8259ProtectedModeBaseVectorMaster|0x68|UINT8|0x00010000
+
+  ## Specify the high PMM (Post Memory Manager) size with bytes above 1MB.
+  #  The value should be a multiple of 4KB.
+  # @Prompt High PMM (Post Memory Manager) Size
+  # @Expression 0x80000001 | (gByoLegacyPkgTokenSpaceGuid.PcdHighPmmMemorySize & 0x1000) == 0
+  gByoLegacyPkgTokenSpaceGuid.PcdHighPmmMemorySize|0x400000|UINT32|0x3000000a
+
+  ## Indicates if memory space for legacy region will be set as cacheable.<BR><BR>
+  #   TRUE  - Set cacheability for legacy region.<BR>
+  #   FALSE - Does not set cacheability for legacy region.<BR>
+  # @Prompt Enable Cacheability for Legacy Region
+  gByoLegacyPkgTokenSpaceGuid.PcdLegacyBiosCacheLegacyRegion|TRUE|BOOLEAN|0x00000004
+
+  ## Specify memory size with page number for a pre-allocated reserved memory to be used
+  #  by PEI in S3 phase. The default size 32K. When changing the value make sure the memory size
+  #  is large enough to meet PEI requirement in the S3 phase.
+  # @Prompt Reserved S3 Boot ACPI Memory Size
+  gByoLegacyPkgTokenSpaceGuid.PcdS3AcpiReservedMemorySize|0x8000|UINT32|0x30000006
+
+  ## Indicates if BiosVideo driver will switch to 80x25 Text VGA Mode when exiting boot service.<BR><BR>
+  #   TRUE  - Switch to Text VGA Mode.<BR>
+  #   FALSE - Does not switch to Text VGA Mode.<BR>
+  # @Prompt Switch to Text VGA Mode on UEFI Boot
+  gByoLegacyPkgTokenSpaceGuid.PcdBiosVideoSetTextVgaModeEnable|FALSE|BOOLEAN|0x30000001
+
+  ## Indicates if BiosVideo driver will check for VESA BIOS Extension service support.<BR><BR>
+  #   TRUE  - Check for VESA BIOS Extension service.<BR>
+  #   FALSE - Does not check for VESA BIOS Extension service.<BR>
+  # @Prompt Enable Check for VESA BIOS Extension Service
+  gByoLegacyPkgTokenSpaceGuid.PcdBiosVideoCheckVbeEnable|TRUE|BOOLEAN|0x30000002
+
+  ## Indicates if BiosVideo driver will check for VGA service support.
+  #  NOTE: If both PcdBiosVideoCheckVbeEnable and PcdBiosVideoCheckVgaEnable are set to FALSE,
+  #  that means Graphics Output protocol will not be installed, the VGA miniport protocol will be installed instead.<BR><BR>
+  #   TRUE  - Check for VGA service.<BR>
+  #   FALSE - Does not check for VGA service.<BR>
+  # @Prompt Enable Check for VGA Service
+  gByoLegacyPkgTokenSpaceGuid.PcdBiosVideoCheckVgaEnable|TRUE|BOOLEAN|0x30000003
+
+  ## ISA Bus features to support DMA, SlaveDMA and ISA Memory. <BR><BR>
+  #  BIT0 indicates if DMA is supported<BR>
+  #  BIT1 indicates if only slave DMA is supported<BR>
+  #  BIT2 indicates if ISA memory is supported<BR>
+  #  Other BITs are reserved and must be zero.
+  #  If more than one features are supported, the different BIT will be enabled at the same time.
+  # @Prompt ISA Bus Features
+  # @Expression 0x80000002 | (gEfiIntelFrameworkModulePkgTokenSpaceGuid.PcdIsaBusSupportedFeatures & 0xF8) == 0
+  gByoLegacyPkgTokenSpaceGuid.PcdIsaBusSupportedFeatures|0x05|UINT8|0x00010040
+
+[PcdsFeatureFlag]
+
+  ## Indicates if Legacy support is needed for ACPI S3 Save.<BR><BR>
+  #   TRUE  - Support Legacy OS with S3 boot.<BR>
+  #   FALSE - Does not support Legacy OS with S3 boot.<BR>
+  # @Prompt Turn on Legacy Support in S3 Boot
+  gByoLegacyPkgTokenSpaceGuid.PcdPlatformCsmSupport|TRUE|BOOLEAN|0x00010044
+
+  ## Indicates if Serial device uses half hand shake.<BR><BR>
+  #   TRUE  - Serial device uses half hand shake.<BR>
+  #   FALSE - Serial device doesn't use half hand shake.<BR>
+  # @Prompt Enable Serial device Half Hand Shake
+  gByoLegacyPkgTokenSpaceGuid.PcdIsaBusSerialUseHalfHandshake|FALSE|BOOLEAN|0x00010043
+
+  gByoLegacyPkgTokenSpaceGuid.PcdCsm32Legacy2UefiSupport|FALSE|BOOLEAN|0x10010043
+
+  gByoLegacyPkgTokenSpaceGuid.PcdLegacyPciRestoreVideoModeSupport|TRUE|BOOLEAN|0x20010043
+  
+  gByoLegacyPkgTokenSpaceGuid.PcdAlwaysPortingPciIntLine|FALSE|BOOLEAN|0x20010044
+
+
+[PcdsDynamic]
+  gByoLegacyPkgTokenSpaceGuid.PcdBbsTableEntryRtMaxCount|128|UINT16|0x00020043
+  gByoLegacyPkgTokenSpaceGuid.PcdBbsTableEntryRtAddress|0|UINT32|0x00030043
+
+
+[Protocols]
+
+  ## ISA Acpi Protocol is used to operate and communicate with ISA device.
+  #  Include/Protocol/IsaAcpi.h
+  gEfiIsaAcpiProtocolGuid        = { 0x64a892dc, 0x5561, 0x4536, { 0x92, 0xc7, 0x79, 0x9b, 0xfc, 0x18, 0x33, 0x55 }}
+
+  ## ISA I/O Protocol is used to perform ISA device Io/Mem operations.
+  #  Include/Protocol/IsaIo.h
+  gEfiIsaIoProtocolGuid          = { 0x7ee2bd44, 0x3da0, 0x11d4, { 0x9a, 0x38, 0x0, 0x90, 0x27, 0x3f, 0xc1, 0x4d }}
+  
+  ## Include/Protocol/LegacyBios.h
+  gEfiLegacyBiosProtocolGuid     = { 0xdb9a1e3d, 0x45cb, 0x4abb, { 0x85, 0x3b, 0xe5, 0x38, 0x7f, 0xdb, 0x2e, 0x2d }}
+
+  ## Include/Protocol/LegacyInterrupt.h
+  gEfiLegacyInterruptProtocolGuid = { 0x31ce593d, 0x108a, 0x485d, { 0xad, 0xb2, 0x78, 0xf2, 0x1f, 0x29, 0x66, 0xbe }}
+
+  ## Include/Protocol/LegacyBiosPlatform.h
+  gEfiLegacyBiosPlatformProtocolGuid = { 0x783658a3, 0x4172, 0x4421, { 0xa2, 0x99, 0xe0, 0x09, 0x07, 0x9c, 0x0c, 0xb4 }}
+
+  ## Include/Protocol/Legacy8259.h
+  gEfiLegacy8259ProtocolGuid     = { 0x38321dba, 0x4fe0, 0x4e17, { 0x8a, 0xec, 0x41, 0x30, 0x55, 0xea, 0xed, 0xc1 }}
+
+  ## Vga Mini port binding for a VGA controller
+  #  Include/Protocol/VgaMiniPort.h
+  gEfiVgaMiniPortProtocolGuid    = { 0xc7735a2f, 0x88f5, 0x4882, { 0xae, 0x63, 0xfa, 0xac, 0x8c, 0x8b, 0x86, 0xb3 }}

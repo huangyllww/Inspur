@@ -1,0 +1,28 @@
+## @file
+#
+#  Copyright (c) 2022, Byosoft Corporation. All rights reserved.<BR>
+#
+#  This software and associated documentation (if any)
+#  is furnished under a license and may only be used or copied in
+#  accordance with the terms of the license. Except as permitted by such
+#  license, no part of this software or documentation may be reproduced,
+#  stored in a retrieval system, or transmitted in any form or by any
+#  means without the express written consent of Byosoft Corporation.
+#
+#
+##
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = PngDecoderDxe
+  FILE_GUID                      = C85E848C-C65C-4D29-891E-73A0776B7708
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = PngDecoderInstall
+
+[Binaries.AArch64]
+  PE32|AArch64/PngDecoderDxe.efi
+  DXE_DEPEX|AArch64/PngDecoderDxe.depex
+
+[Binaries.X64]
+  PE32|X64/PngDecoderDxe.efi
+  DXE_DEPEX|X64/PngDecoderDxe.depex

@@ -1,0 +1,106 @@
+diff --git a/ByoModulePkg/Setup/BiosUpdate/BiosUpdate.c b/ByoModulePkg/Setup/BiosUpdate/BiosUpdate.c
+index 24bb0734..8f8d3527 100644
+--- a/ByoModulePkg/Setup/BiosUpdate/BiosUpdate.c
++++ b/ByoModulePkg/Setup/BiosUpdate/BiosUpdate.c
+@@ -1048,7 +1048,7 @@ VOID BiosUpdate(
+     }
+   }
+ 
+-  Status = ByoSmiFlash->BiosCheck(ByoSmiFlash, FileData, FileSize, NULL);
++  Status = ByoSmiFlash->BiosCheck(ByoSmiFlash, FileData, FileSize, NULL);// NOLINT
+   if(EFI_ERROR(Status)){
+ 
+     if (Status == EFI_SECURITY_VIOLATION) {
+diff --git a/ByoModulePkg/Setup/DisplayEngineDxe/FormDisplay.c b/ByoModulePkg/Setup/DisplayEngineDxe/FormDisplay.c
+index 29c15f9f..5720e7f9 100644
+--- a/ByoModulePkg/Setup/DisplayEngineDxe/FormDisplay.c
++++ b/ByoModulePkg/Setup/DisplayEngineDxe/FormDisplay.c
+@@ -2774,7 +2774,7 @@ DrawScrollBar (
+     }
+     Begin = TopLines;
+   } else {
+-    SoliderLength = Length - (Length * (TotalLines - Length))/(TotalLines);
++    SoliderLength = Length - (Length * (TotalLines - Length))/(TotalLines);// NOLINT
+     if (SoliderLength < MIN_SOLIDER_LENGTH) {
+       SoliderLength = MIN_SOLIDER_LENGTH;
+     }
+diff --git a/ByoModulePkg/Setup/SetupBrowserDxe/Setup.c b/ByoModulePkg/Setup/SetupBrowserDxe/Setup.c
+index e7139ba1..18da86be 100644
+--- a/ByoModulePkg/Setup/SetupBrowserDxe/Setup.c
++++ b/ByoModulePkg/Setup/SetupBrowserDxe/Setup.c
+@@ -2436,7 +2436,7 @@ HotkeyRegistrationFunction (
+                   (VOID **) &FormBrowseExtensionProtocol
+                   );
+   if (!EFI_ERROR (Status)) {
+-    Status = FormBrowseExtensionProtocol->RegisterHotKeyFunction (
++    Status = FormBrowseExtensionProtocol->RegisterHotKeyFunction ( // NOLINT
+                                               ScreenshotKeyData,
+                                               BROWSER_ACTION_NONE,
+                                               0,
+@@ -4023,7 +4023,7 @@ ValidateQuestion (
+         // New display engine will not use this field.
+         //
+         if (Expression->Error != 0) {
+-          ErrorStr = GetToken (Expression->Error, FormSet->HiiHandle);
++          ErrorStr = GetToken (Expression->Error, FormSet->HiiHandle);// NOLINT
+         }
+         break;
+ 
+@@ -4037,7 +4037,7 @@ ValidateQuestion (
+         // If in system submit process and for no_submit_if check, not popup this error message.
+         // Will process this fail again later in not system submit process.
+         //
+-        PopupErrorMessage(BrowserStatus, FormSet->HiiHandle, Expression->OpCode, ErrorStr);
++        PopupErrorMessage(BrowserStatus, FormSet->HiiHandle, Expression->OpCode, ErrorStr);// NOLINT
+       }
+ 
+       if (ErrorStr != NULL) {
+@@ -4339,7 +4339,7 @@ SubmitCallbackForForm (
+   EFI_IFR_TYPE_VALUE          *TypeValue;
+   EFI_BROWSER_ACTION_REQUEST  ActionRequest;
+ 
+-  if (FormSet->ConfigAccess == NULL) {
++  if (FormSet->ConfigAccess == NULL) {// NOLINT
+     return;
+   }
+ 
+@@ -5132,7 +5132,7 @@ SubmitForForm (
+   //
+   if (!IsListEmpty (&gBrowserSaveFailFormSetList)) {
+     DMSG ((EFI_D_ERROR, "SubmitForForm, Process Failed Storage, \n"));
+-    if (ConfirmSaveFail (Form->FormTitle, FormSet->HiiHandle) == BROWSER_ACTION_DISCARD) {
++    if (ConfirmSaveFail (Form->FormTitle, FormSet->HiiHandle) == BROWSER_ACTION_DISCARD) {// NOLINT
+       Link = GetFirstNode (&gBrowserSaveFailFormSetList);
+       while (!IsNull (&gBrowserSaveFailFormSetList, Link)) {
+         ConfigInfo = FORM_BROWSER_CONFIG_REQUEST_FROM_SAVE_FAIL_LINK (Link);
+diff --git a/ByoModulePkg/Universal/BootMaintenanceManagerDxe/BootMaint.c b/ByoModulePkg/Universal/BootMaintenanceManagerDxe/BootMaint.c
+index ab9acf9e..974f4013 100644
+--- a/ByoModulePkg/Universal/BootMaintenanceManagerDxe/BootMaint.c
++++ b/ByoModulePkg/Universal/BootMaintenanceManagerDxe/BootMaint.c
+@@ -1091,7 +1091,7 @@ InitBootGroup (
+     // Init position of UEFI MenuCtx
+     //
+     for (Index = 0; Index < UefiGroupOrderSize; Index++) {
+-      MenuCtx = FindBmMenuCtxEntry(UefiGroupOrder[Index]);
++      MenuCtx = FindBmMenuCtxEntry(UefiGroupOrder[Index]);// NOLINT
+       ASSERT(MenuCtx != NULL);
+       MenuCtx->Position = gMaxPosition[MenuCtx->BootType]++;
+     }
+@@ -1119,7 +1119,7 @@ InitBootGroup (
+     // Init position of legacy MenuCtx
+     //
+     for (Index = 0; Index < LegacyGroupOrderSize; Index++) {
+-      MenuCtx = FindBmMenuCtxEntry(LegacyGroupOrder[Index]);
++      MenuCtx = FindBmMenuCtxEntry(LegacyGroupOrder[Index]);// NOLINT
+       if (MenuCtx != NULL) {
+         MenuCtx->Position = gMaxPosition[MenuCtx->BootType]++;
+       } else {
+@@ -2153,7 +2153,7 @@ RestoreItemOrder (
+       OptionCount = 0;
+       for (Index = 0; Index < BufferSize / sizeof(UINTN); Index++) {
+         for (i = 0; i < mUefiOptionsCount; i++) {
+-          if (mUefiOptions[i].OptionNumber == BootOptionOrder[Index]) {
++          if (mUefiOptions[i].OptionNumber == BootOptionOrder[Index]) {// NOLINT
+             ByoCopyBootOption (Option + OptionCount, mUefiOptions + i);
+             OptionCount++;
+           }

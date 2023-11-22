@@ -1,0 +1,99 @@
+## @file
+#
+# Copyright (c) 2023, Byosoft Corporation.<BR>
+# All rights reserved.This software and associated documentation (if any)
+# is furnished under a license and may only be used or copied in
+# accordance with the terms of the license. Except as permitted by such
+# license, no part of this software or documentation may be reproduced,
+# stored in a retrieval system, or transmitted in any form or by any
+# means without the express written consent of Byosoft Corporation.
+#
+# File Name:
+#   HddSanitizationDxe.inf
+#
+# Abstract:
+#   HddSanitizationDxe module's inf file
+#
+# Revision History:
+##
+
+
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = HddSanitizationDxe
+  FILE_GUID                      = A90B4757-A52E-4CA8-9494-3C7203615AC3
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = HddSanitizationDxeEntryPoint
+
+#
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           = IA32 X64 IPF EBC
+#
+
+[Sources]
+
+  HddSanitizationCfg.h
+  HddSanitizationCfg.uni
+  HddSanitizationCfg.vfr
+  HddSanitizationCommon.c
+  HddSanitizationCommon.h
+  HddSanitizationDxe.c
+  HddSanitizationDxe.h
+  NvmeSanitization.c
+  SataSanitization.c
+
+[Packages]
+
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  ByoModulePkg/ByoModulePkg.dec
+  SecurityPkg/SecurityPkg.dec
+
+[LibraryClasses]
+
+  BaseLib
+  MemoryAllocationLib
+  UefiBootServicesTableLib
+  UefiDriverEntryPoint
+  UefiHiiServicesLib
+  UefiRuntimeServicesTableLib
+  UefiLib
+  BaseMemoryLib
+  DebugLib
+  HiiLib
+  PrintLib
+  PcdLib
+  IoLib
+  ByoCommLib
+  SetupUiLib
+  HobLib
+  TcgStorageOpalLib
+  DevicePathLib
+
+[Guids]
+
+  gEfiIfrTianoGuid                              ## CONSUMES ## Guid
+  gEfiSetupEnterGuid
+  gIfrByoSecurityUiPageGuid
+
+[Protocols]
+
+  gEfiHiiConfigAccessProtocolGuid               ## PRODUCES
+  gEfiAtaPassThruProtocolGuid                   ## CONSUMES
+  gEfiPciIoProtocolGuid
+  gEfiVariableArchProtocolGuid                  # GetVariable()
+  gAtaPassThruHookProtocolGuid
+  gEfiReadyToBootProtocolGuid
+  gNvmeSscpHookProtocolGuid
+  gEfiBlockIoProtocolGuid
+  gPlatHostInfoProtocolGuid
+
+[Pcd]
+
+  gEfiSecurityPkgTokenSpaceGuid.PcdOpalUpdateDataStoreTable
+  gEfiByoModulePkgTokenSpaceGuid.PcdGuiEnable
+[Depex]
+  gEfiVariableWriteArchProtocolGuid

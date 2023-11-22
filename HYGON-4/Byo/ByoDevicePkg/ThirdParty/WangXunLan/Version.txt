@@ -1,0 +1,8 @@
+
+2023/9/6:
+KGigUndiDxe.efi : 1.2.05
+NGigUndiDxe.efi : 1.4.01
+
+before:
+KGigUndiDxe.efi : 1.1.01 
+NGigUndiDxe.efi : 1.3.03 

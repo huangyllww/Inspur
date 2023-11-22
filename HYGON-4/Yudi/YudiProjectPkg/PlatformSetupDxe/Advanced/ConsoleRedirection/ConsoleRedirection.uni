@@ -1,0 +1,140 @@
+// /*++
+// Copyright (c) 2009 Intel Corporation. All rights reserved.
+// This software and associated documentation (if any) is furnished
+// under a license and may only be used or copied in accordance
+// with the terms of the license. Except as permitted by such
+// license, no part of this software or documentation may be
+// reproduced, stored in a retrieval system, or transmitted in any
+// form or by any means without the express written consent of
+// Intel Corporation.
+// --*/
+//
+// Name: Terminal.uni
+//
+// Description: Contains the unicode string definitions for the strings
+//              in Terminal.sd.
+//
+//**********************************************************************
+
+/=#
+#langdef   en-US "English"
+#langdef   zh-Hans "\wide中文\narrow"
+
+//
+//UCR support
+//
+#string STR_CONSOLE_REDIRECTION_CONF_TITLE   #language en-US  "Console Redirection"
+                                             #language zh-Hans  "\wide串口重定向\narrow"
+#string STR_CONSOLE_REDIRECTION_CONF_HELP    #language en-US  "Configure Console Redirection"
+                                             #language zh-Hans  "\wide串口重定向配置菜单。\narrow"
+#string STR_UCR                              #language en-US  "Console Redirection"
+                                             #language zh-Hans  "\wide串口重定向\narrow"
+#string STR_UCR_HELP                         #language en-US  "When console redirection is enabled and boot to DOS, only under MS-DOS 7.1 or below and Free DOS the output is normal. Windows 98 MS-DOS is not supported."
+                                             #language zh-Hans  "DOS\wide串口重定向，只支持\narrowMS-DOS 7.1\wide及下版本，不支持\narrowWindows 98 MS-DOS"
+#string STR_SERIAL_PORT_SELECT               #language en-US  "Serial Port Select"
+                                             #language zh-Hans  "\wide串口选择\narrow"
+#string STR_SERIAL_PORT_SELECT_HELP          #language en-US  "select serial port for console redirection. make sure the selected port is enabled."
+                                             #language zh-Hans  "\wide选择重定向串口，请先打开串口。\narrow"
+#string STR_SERIAL_PORT_SELECT_COM1          #language en-US  "COM1"
+                                             #language zh-Hans  "COM1"
+#string STR_SERIAL_PORT_SELECT_COM2          #language en-US  "COM2"
+                                             #language zh-Hans  "COM2"
+#string STR_SERIAL_PORT_SELECT_COM3          #language en-US  "COM3"
+                                             #language zh-Hans  "COM3"
+#string STR_SERIAL_PORT_SELECT_COM4          #language en-US  "COM4"
+                                             #language zh-Hans  "COM4"                                             
+#string STR_SOL_REDIRECTION_PORT             #language en-US  "SOL Redirect"
+                                             #language zh-Hans  "SOL Redirect"
+#string STR_SERIAL_BAUDRATE                  #language en-US  "Serial Port Baudrate"
+                                             #language zh-Hans  "\wide串口波特率\narrow"
+#string STR_SERIAL_BAUDRATE_HELP             #language en-US  "Select Serial Port Baudrate."
+                                             #language zh-Hans  "\wide选择串口波特率。\narrow"
+#string STR_SERIAL_BAUDRATE_9600             #language en-US  "9600"
+                                             #language zh-Hans  "9600"
+#string STR_SERIAL_BAUDRATE_19200            #language en-US  "19200"
+                                             #language zh-Hans  "19200"
+#string STR_SERIAL_BAUDRATE_38400            #language en-US  "38400"
+                                             #language zh-Hans  "38400"
+#string STR_SERIAL_BAUDRATE_57600            #language en-US  "57600"
+                                             #language zh-Hans  "57600"
+#string STR_SERIAL_BAUDRATE_115200           #language en-US  "115200"
+                                             #language zh-Hans  "115200"
+#string STR_TERMINAL_TYPE                    #language en-US  "Terminal Type"
+                                             #language zh-Hans  "\wide终端类型\narrow"
+#string STR_TERMINAL_TYPE_HELP               #language en-US  "select the target terminal type."
+                                             #language zh-Hans  "\wide选择终端类型。\narrow"
+#string STR_TERMINAL_TYPE_ANSI               #language en-US  "ANSI"
+                                             #language zh-Hans  "ANSI"
+#string STR_TERMINAL_TYPE_VT100              #language en-US  "VT100"
+                                             #language zh-Hans  "VT100"
+#string STR_TERMINAL_TYPE_VT100_PLUS         #language en-US  "VT100+"
+                                             #language zh-Hans  "VT100+"
+#string STR_TERMINAL_TYPE_UTF8               #language en-US  "VT-UTF8"
+                                             #language zh-Hans  "VT-UTF8"
+#string STR_TERMINAL_TYPE_TTY                #language en-US  "Tty"
+                                             #language zh-Hans  "Tty"
+#string STR_TERMINAL_TYPE_LINUX              #language en-US  "Linux"
+                                             #language zh-Hans  "Linux"
+#string STR_TERMINAL_TYPE_X_TERM_R6          #language en-US  "Xterm R6"
+                                             #language zh-Hans  "Xterm R6"
+#string STR_TERMINAL_TYPE_VT400              #language en-US  "VT-400"
+                                             #language zh-Hans  "VT-400"
+#string STR_TERMINAL_TYPE_SCO                #language en-US  "SCO"
+                                             #language zh-Hans  "SCO"
+#string STR_TERMINAL_TYPE_AUTO               #language en-US  "AUTO"
+                                             #language zh-Hans  "AUTO"
+                                             
+#string STR_PARITY                           #language en-US  "Parity Type"
+                                             #language zh-Hans  "\wide校验位\narrow"
+#string STR_PARITY_HELP                      #language en-US  "select the parity type."
+                                             #language zh-Hans  "\wide选择校验位\narrow"
+#string STR_NO_PARITY                        #language en-US  "No parity"
+                                             #language zh-Hans  "No parity"
+#string STR_EVEN_PARITY                      #language en-US  "Even parity"
+                                             #language zh-Hans  "Even parity"
+#string STR_ODD_PARITY                       #language en-US  "Odd parity"
+                                             #language zh-Hans  "Odd parity"
+#string STR_MARK_PARITY                      #language en-US  "Mark parity"
+                                             #language zh-Hans  "Mark parity"
+#string STR_SPACE_PARITY                     #language en-US  "Space parity"
+                                             #language zh-Hans  "Space parity"
+
+#string STR_STOP_BITS                         #language en-US  "Stop Bits"
+                                             #language zh-Hans  "\wide停止位\narrow"
+#string STR_STOP_BITS_HELP                    #language en-US  "set stop bits"
+                                             #language zh-Hans  "\wide选择停止位\narrow"
+#string STR_1_STOP_BITS                      #language en-US  "1 Stop Bit"
+                                             #language zh-Hans  "1 Stop Bit"
+#string STR_1_5_STOP_BITS                    #language en-US  "1.5 Stop Bits"
+                                             #language zh-Hans  "1.5 Stop Bits"
+#string STR_2_STOP_BITS                      #language en-US  "2 Stop Bits"
+                                             #language zh-Hans  "2 Stop Bits"
+
+#string STR_DATA_BITS                         #language en-US  "Data Bits"
+                                             #language zh-Hans  "\wide数据位\narrow"
+#string STR_DATA_BITS_HELP                    #language en-US  "set data bits,when 7 Data Bits is selected, non-basic Latin letters are not supported."
+                                             #language zh-Hans  "\wide选择数据位，选择\narrow7 Data Bits\wide时，不支持显示非基本拉丁字母\narrow。"
+#string STR_7_DATA_BITS                    #language en-US  "7 Data Bits"
+                                             #language zh-Hans  "7 Data Bits"
+#string STR_8_DATA_BITS                      #language en-US  "8 Data Bits"
+                                             #language zh-Hans  "8 Data Bits"
+
+#string STR_FLOW_CONTROL                     #language en-US  "Flow Control"
+                                             #language zh-Hans  "\wide流控制\narrow"
+#string STR_FLOW_CONTROL_HELP                #language en-US  "select the flow control type"
+                                             #language zh-Hans  "\wide选择流控制类型\narrow"
+#string STR_HARDWARE_FLOW_CONTROL            #language en-US  "Hardware"
+                                             #language zh-Hans  "Hardware"
+#string STR_NO_FLOW_CONTROL                  #language en-US  "None"
+                                             #language zh-Hans  "None"
+
+#string STR_ENABLE                           #language en-US  "Enabled"
+                                             #language zh-Hans  "\wide打开\narrow"
+#string STR_DISABLE                          #language en-US  "Disabled"
+                                             #language zh-Hans  "\wide关闭\narrow"
+
+#string STR_UCR2                             #language en-US  "Console Redirection 2"
+                                             #language zh-Hans  "\wide串口重定向2\narrow"
+#string STR_UCR2_HELP                        #language en-US  "Second Console Redirection"
+                                             #language zh-Hans  "\wide第二个串口重定向\narrow"
+

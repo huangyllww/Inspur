@@ -1,0 +1,72 @@
+///** @file
+//
+// Copyright (c) 2022, Byosoft Corporation.<BR>
+// All rights reserved.This software and associated documentation (if any)
+// is furnished under a license and may only be used or copied in
+// accordance with the terms of the license. Except as permitted by such
+// license, no part of this software or documentation may be reproduced,
+// stored in a retrieval system, or transmitted in any form or by any
+// means without the express written consent of Byosoft Corporation.
+//
+//--*/
+
+/=#
+
+#langdef   en-US "English"
+#langdef   zh-Hans "\wide中文\narrow"
+
+
+#string STR_FILE_NOT_FOUND             #language en-US    "File Not Found"
+                                       #language zh-Hans  "\wide文件未找到\narrow"
+#string STR_FILE_NOT_MATCH             #language en-US    "File Not Match"
+                                       #language zh-Hans  "\wide文件不匹配\narrow"
+#string STR_FILE_SIGN_MATCH            #language en-US    "File Sign Match Fail"
+                                       #language zh-Hans  "\wide文件验证失败\narrow"     
+#string STR_FILE_LOAD_FAILED           #language en-US    "File Download Failed"
+                                       #language zh-Hans  "\wide文件下载失败\narrow"
+#string STR_UPDATE_BIOS_WARN1_1        #language en-US   "Update BIOS and keep configuration?"
+                                       #language zh-Hans "\wide是否更新固件并保留配置？\narrow"
+#string STR_UPDATE_BIOS_WARN1_2        #language en-US   "Update BIOS?"
+                                       #language zh-Hans "\wide是否更新固件？\narrow"
+#string STR_UPDATE_BIOS_WARN2_1        #language en-US   "It will reset after updating."
+                                       #language zh-Hans "\wide更新完成后会自动重启。\narrow"
+#string STR_UPDATE_BIOS_WARN2_2        #language en-US   "It will reset after updating, setup changes will not be saved."
+                                       #language zh-Hans "\wide更新完成后会自动重启，对\narrowSetup\wide的修改将会丢失。\narrow"
+#string STR_UPDATE_BIOS_WARN3          #language en-US   "Please DO NOT power off or reset the system."
+                                       #language zh-Hans "\wide更新过程中请不要断电或重启系统。\narrow"
+#string STR_UPDATE_ERROR               #language en-US   "Flash Update Error! Press power button to Shutdown system."
+                                       #language zh-Hans "\wide更新出错！按电源按钮关闭系统。\narrow"
+
+#string STR_SIGN_VERIFY_PRESENT        #language en-US    "Sign Verify %d %%"
+                                       #language zh-Hans  "\wide签名验证\narrow %3d%%"
+
+#string STR_UPDATA_TITLE               #language en-US    "BIOS Updata"
+                                       #language zh-Hans  "BIOS \wide更新\narrow"
+#string STR_UPDATA_SUCCESS_TIMEOUT     #language en-US    "Bios is updated successfully! System will reset in %d second(s)"
+                                       #language zh-Hans  "BIOS\wide更新完成。系统 %d秒 后重启\narrow"
+#string STR_BACKUP_BIOS_WARN_1         #language en-US    "Backup BIOS Image to flash?"
+                                       #language zh-Hans  "\wide是否将固件备份到flash中？\narrow"
+#string STR_BACKUP_BIOS_WARN_2         #language en-US    "Backup BIOS Image to usb?"
+                                       #language zh-Hans  "\wide是否将固件备份到usb中？\narrow"                                       
+#string STR_BACKUP_ERROR               #language en-US    "Flash Backup Error! Press power button to Shutdown system."
+                                       #language zh-Hans  "\wide备份出错！按电源按钮关闭系统。\narrow"   
+#string STR_RECOVERY_BIOS_WARN_1       #language en-US    "Recovery BIOS Image form flash?"
+                                       #language zh-Hans  "\wide是否从\narrowflash\wide中还原固件？\narrow"
+#string STR_RECOVERY_BIOS_WARN_2       #language en-US    "Recovery BIOS Image form usb?"
+                                       #language zh-Hans  "\wide是否从\narrowusb\wide中还原固件？\narrow"                                       
+#string STR_RECOVERY_ERROR             #language en-US    "Flash recovery Error! Press power button to Shutdown system."
+                                       #language zh-Hans  "\wide还原出错！按电源按钮关闭系统。\narrow"
+#string STR_FOLDER_UNWRITEABLE         #language en-US    "File system is Unwriteable, please reselect !"
+                                       #language zh-Hans  "\wide文件系统不可写,请重新选择\narrow!"
+#string STR_INVALID_STORAGE_MEDIA      #language en-US    "Invalid storage media, please reselect !"
+                                       #language zh-Hans  "\wide无效的存储介质,请重新选择\narrow!"
+#string STR_NETWORK_UPDATE_TITLE1      #language en-US    "Please input the IP uri"
+                                       #language zh-Hans  "\wide请输入\narrowIP\wide网址\narrow"
+#string STR_NETWORK_UPDATE_TITLE2      #language en-US    "Incorrect uri, please input again"
+                                       #language zh-Hans  "\wide网址错误，请重新输入\narrow"
+#string STR_NETWORK_UPDATE_TITLE3      #language en-US    "Empty uri, please input again"
+                                       #language zh-Hans  "\wide网址不能为空，请重新输入\narrow"
+#string UPDATE_BIOS_NETWORK_INFO        #language en-US   "HTTP Boot Disabled, Network Update Unsupported!"
+                                        #language zh-Hans "HTTP\wide启动被禁止，无法进行更新\narrow"
+#string STR_NO_USB_DEVICE              #language en-US    "No USB devices"
+                                       #language zh-Hans  "\wide无\narrowUSB\wide设备\narrow"

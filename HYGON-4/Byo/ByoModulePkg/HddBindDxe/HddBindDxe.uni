@@ -1,0 +1,59 @@
+// /*++
+//  Copyright (c) 2013 - 2019 Byosoft Corporation. All rights reserved.
+//  This program and associated documentation (if any) is furnished
+//  under a license. Except as permitted by such license,no part of this
+//  program or documentation may be reproduced, stored divulged or used
+//  in a public system, or transmitted in any form or by any means
+//  without the express written consent of Byosoft Corporation.
+//
+// Name:  HddBindDxe.uni
+//
+// Description: Setup strings
+//
+//**********************************************************************
+/=#
+#langdef   zh-Hans "\wide中文\narrow"
+#langdef   en-US   "English"
+
+#string STR_EMPTY                       #language en-US   ""
+                                        #language zh-Hans ""
+                                        
+#string STR_HDD_BIND_FORMSET_TITLE      #language en-US   "HDD Bind"
+                                        #language zh-Hans "\wide硬盘绑定\narrow"
+#string STR_HDD_BIND_FORMSET_HELP       #language en-US   "This selection will take you to the HDD Bind page"
+                                        #language zh-Hans "\wide该选项将带您进入硬盘绑定页面\narrow"
+
+                                        
+#string STR_HDD_BIND_ITEM_NAME          #language en-US   "HDD Bind"
+                                        #language zh-Hans "\wide硬盘绑定\narrow"
+
+#string STR_HDD_BIND_ITEM_HELP          #language en-US   "Select hard disk to boot. Hard disk binding enables the platform to boot from the hard disk in the option, while other hard disks will not be booted. HDD should support SATA and NVME, No Raid."
+                                        #language zh-Hans "\wide选择启动硬盘。硬盘绑定可以使平台从选项中的硬盘固定启动，同时其他的硬盘将无法启动。支持绑定本地\narrowSATA\wide和\narrowNVME\wide接口的硬盘，不支持\narrowRaid\wide硬盘绑定。\narrow"                                       
+                                        
+#string STR_CUR_BOOT_HDD                #language en-US   "Current Boot HDD"
+                                        #language zh-Hans "\wide当前启动硬盘\narrow"
+#string STR_NOBIND_TEXT                 #language en-US   "No Binded"
+                                        #language zh-Hans "\wide未绑定\narrow"
+
+#string STR_CUR_BOOT_HDD_VALUE          #language en-US   ""
+                                        #language zh-Hans ""
+
+#string STR_UNBIND                      #language en-US   "Unbind"
+                                        #language zh-Hans "\wide解除绑定\narrow"                                          
+
+#string STR_HDD_BIND_BLOCK_TITLE        #language en-US    "Hdd Boot Violation"
+                                        #language zh-Hans  "\wide硬盘引导违规\narrow"                                       
+#string STR_HDD_BIND_BLOCK_INFO         #language en-US    "No binded Hdd boot will be ignored. Please check Hdd Bind Policy in Setup."
+                                        #language zh-Hans  "\wide非绑定硬盘的启动将被忽略。检查“设置”中的“硬盘绑定”。\narrow"
+
+#string STR_HDD_MISTYPED                #language    en-US    "Hdd has been changed !"
+                                        #language    zh-Hans  "\wide启动硬盘已更改！\narrow"
+
+#string STR_ENTER_STRING                #language    en-US    "Press <Enter> to shutdown !"
+                                        #language    zh-Hans  "\wide请按回车键关机！\narrow"
+
+#string STR_BOUND_HDD_NOT_EXIST         #language en-US   "Bound Hdd is not detected"
+                                        #language zh-Hans "\wide绑定的硬盘不在位\narrow"
+
+#string STR_SN_TEXT                     #language en-US   ""
+                                        #language zh-Hans ""                                         

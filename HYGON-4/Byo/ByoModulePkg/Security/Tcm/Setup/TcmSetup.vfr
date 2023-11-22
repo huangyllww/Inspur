@@ -1,0 +1,165 @@
+/** @file
+
+Copyright (c) 2006 - 2011, Byosoft Corporation.<BR> 
+All rights reserved.This software and associated documentation (if any)
+is furnished under a license and may only be used or copied in 
+accordance with the terms of the license. Except as permitted by such
+license, no part of this software or documentation may be reproduced, 
+stored in a retrieval system, or transmitted in any form or by any 
+means without the express written consent of Byosoft Corporation.
+
+File Name:
+  TcmSetup.vfr
+
+Abstract: 
+  Dxe part of TCM Module.
+
+Revision History:
+
+Bug 3075 - Add TCM support.
+TIME: 2011-11-14
+$AUTHOR: Zhang Lin
+$REVIEWERS: 
+$SCOPE: SugarBay
+$TECHNICAL: 
+  1. Tcm module init version.
+     Only support setup function.
+$END--------------------------------------------------------------------
+
+**/
+
+#include "TcmSetupDataStruc.h"
+
+formset
+  guid      = TCM_SETUP_CONFIG_GUID,
+  title     = STRING_TOKEN(STR_TCM_TITLE),
+  help      = STRING_TOKEN(STR_TCM_HELP),
+  classguid = EFI_HII_PLATFORM_SETUP_FORMSET_GUID,
+  class     = 0x100,
+  subclass  = 0,
+
+  efivarstore TCM_SETUP_CONFIG,
+    varid = TCM_CONFIG_VARSTORE_ID,
+    attribute = 7,
+    name  = TcmSetup,
+    guid  = TCM_SETUP_CONFIG_GUID;
+
+  varstore TCM_STATE_CONFIG,
+    varid = TCM_STATE_VARSTORE_ID,
+    name  = TcmState,
+    guid  = TCM_SETUP_CONFIG_GUID;
+
+  form 
+    formid = TCM_CONFIG_FORM_ID,
+    title  = STRING_TOKEN(STR_TRUSTED_COMPUTING_CONFIG);
+
+    text
+      help   = STRING_TOKEN(STR_TCM_DEVICE_STATE_HELP),
+      text   = STRING_TOKEN(STR_TCM_DEVICE_STATE_PROMPT),
+        text   = STRING_TOKEN(STR_TCM_DEVICE_STATE_CONTENT);
+
+     suppressif ideqval TCM_STATE_CONFIG.TcmPresent == 0;
+      oneof varid = TCM_SETUP_CONFIG.TcmEnableCmd,
+        questionid = KEY_TCM_ENABLE,
+        prompt = STRING_TOKEN(STR_TCM_STATE_CONFIG),
+        help = STRING_TOKEN(STR_TCM_STATE_CONFIG_HELP),
+        flags = INTERACTIVE,
+        option text = STRING_TOKEN(STR_TCM_STATUS_DISABLED), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_TCM_STATUS_ENABLED),  value = 1, flags = RESET_REQUIRED;
+      endoneof;
+    
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    subtitle text = STRING_TOKEN(STR_TCM_DEVICE_INFO_PROMPT);
+
+    text
+      help = STRING_TOKEN(STR_NULL_STRING),
+      text = STRING_TOKEN(STR_TCM_DEVICE_FIRMWARE_VERSION_PROMPT),
+        text = STRING_TOKEN(STR_TCM_DEVICE_FIRMWARE_VERSION_CONTENT);
+
+    text
+      help = STRING_TOKEN(STR_NULL_STRING),
+      text = STRING_TOKEN(STR_TCM_DEVICE_VENDOR_PROMPT),
+        text = STRING_TOKEN(STR_TCM_DEVICE_VENDOR_CONTENT);
+
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+      
+      grayoutif ideqval TCM_STATE_CONFIG.TcmEnableStatus == 0;
+       oneof varid = TCM_SETUP_CONFIG.TcmPendingOperationCmd,
+        questionid = KEY_TCM_OPERATION,
+        prompt = STRING_TOKEN(STR_PENDING_OPERATION_CONFIG),
+        help = STRING_TOKEN(STR_PENDING_OPERATION_CONFIG_HELP),
+        flags = INTERACTIVE,
+        option text = STRING_TOKEN(STR_PENDING_NONE), value = 0, flags =DEFAULT | MANUFACTURING | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_PENDING_ACTIVATE), value = 1, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_PENDING_DEACTIVATE), value = 2, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_PENDING_CLEAR), value = 3, flags = RESET_REQUIRED;
+       endoneof;
+      endif;
+     endif;
+    
+    subtitle text = STRING_TOKEN(STR_EMPTY);
+    subtitle text = STRING_TOKEN(STR_EMPTY);
+
+     suppressif  ideqval TCM_STATE_CONFIG.TcmPresent == 0;
+
+    grayoutif TRUE;
+     subtitle text = STRING_TOKEN(STR_TRUSTED_CURRENT_STATUS);
+    endif;
+
+      text
+        help   = STRING_TOKEN(STR_EMPTY),  
+        text   = STRING_TOKEN(STR_SUPPORT_TURNED_OFF), 
+        text   = STRING_TOKEN(STR_EMPTY),
+        flags  = 0,
+        key = 0;
+     endif;
+
+     suppressif ideqval TCM_STATE_CONFIG.TcmPresent == 0;
+      grayoutif TRUE;
+
+       suppressif ideqval TCM_STATE_CONFIG.TcmEnableStatus == 0;
+        text 
+          help   = STRING_TOKEN(STR_EMPTY),
+          text   = STRING_TOKEN(STR_TCM_ENABLE_STATUS_CONFIG),
+          text   = STRING_TOKEN(STR_ENABLED),
+          flags  = 0,
+          key = 0;
+        endif;
+       suppressif NOT ideqval TCM_STATE_CONFIG.TcmEnableStatus == 0;
+        text 
+          help   = STRING_TOKEN(STR_EMPTY),
+          text   = STRING_TOKEN(STR_TCM_ENABLE_STATUS_CONFIG),
+          text   = STRING_TOKEN(STR_DISABLED),
+          flags  = 0,
+          key = 0;
+        endif;
+
+       suppressif ideqval TCM_STATE_CONFIG.TcmActive == 0;
+        text 
+          help   = STRING_TOKEN(STR_EMPTY),
+          text   = STRING_TOKEN(STR_TCM_ACTIVATED_STATUS_CONFIG),
+          text   = STRING_TOKEN(STR_TCM_ACTIVATED),
+          flags  = 0,
+          key = 0;
+        endif;
+
+       suppressif NOT ideqval TCM_STATE_CONFIG.TcmActive == 0;
+        text 
+          help   = STRING_TOKEN(STR_EMPTY),
+          text   = STRING_TOKEN(STR_TCM_ACTIVATED_STATUS_CONFIG),
+          text   = STRING_TOKEN(STR_TCM_DEACTIVATED),
+          flags  = 0,
+          key = 0;
+        endif;
+
+      endif; //grayoutif
+     endif;  //suppressif
+
+  endform;
+
+endformset;
+
+
+
+

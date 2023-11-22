@@ -1,0 +1,108 @@
+// /** @file
+//
+// Copyright (c) 2006 - 2020, Byosoft Corporation.<BR>
+// All rights reserved.This software and associated documentation (if any)
+// is furnished under a license and may only be used or copied in
+// accordance with the terms of the license. Except as permitted by such
+// license, no part of this software or documentation may be reproduced,
+// stored in a retrieval system, or transmitted in any form or by any
+// means without the express written consent of Byosoft Corporation.
+//
+// File Name:
+//
+// Abstract:
+//   Platform configuration setup.
+//
+// Revision History:
+//
+//
+
+/=#
+#langdef   zh-Hans "\wide中文\narrow"
+#langdef   en-US "English"
+									   
+																						   
+#string FORMSET_TITLE_SECURITY          #language en-US "Security"
+                                        #language zh-Hans "\wide安全\narrow"
+#string FORMSET_TITLE_SECURITY_HELP     #language en-US "Security Settings"
+                                        #language zh-Hans "\wide安全配置\narrow"
+#string STR_EMPTY                       #language en-US   "" 
+                                        #language zh-Hans ""
+#string STR_SECUREBOOT_TITLE            #language en-US "Secure Boot"
+                                        #language zh-Hans "\wide安全启动\narrow"
+#string STR_SECUREBOOT_TITLE_HELP       #language en-US "Secure boot settings, include enable/disable function and remove/restore keys." 
+                                        #language zh-Hans "\wide安全启动设置，包括打开或关闭功能以及移除或恢复证书。\narrow"                                        
+#string STR_PASSWORD_INSTALLED          #language en-US "Installed"
+                                        #language zh-Hans "\wide已安装\narrow"
+#string STR_PASSWORD_UNINSTALLED        #language en-US "Uninstalled"
+                                        #language zh-Hans "\wide未安装\narrow"
+#string STR_ADMIN_PASSWORD              #language en-US "Administrator Password"
+                                        #language zh-Hans "\wide管理员密码\narrow"
+#string STR_SET_ADMIN_PASSWORD          #language en-US   "Set Administrator Password"
+                                        #language zh-Hans "\wide设置管理员密码\narrow"
+#string STR_ADMIN_PASSWORD_HELP         #language en-US "Select this item to set, change, or delete Administrator Password. a-z, 0-9 and special printable character are supported. Passwords are case sensitive. The limited length of password string is 6 to 20.\n\nNOTE:\nTo delete Password, enter blank when input new password. The password need contains at least three of the four types of uppercase letters, lowercase letters, numbers, and special characters. And it cannot be set to the previously set password, within five (inclusive) times."
+                                        #language zh-Hans "\wide选择这一项来设定、更改以及删除管理员密码。密码支持字符包括字母、数字以及其它可打印字符。密码区分大小写，支持输入密码长度为\narrow6\wide到\narrow20\wide。\narrow\n\n\wide注意\narrow:\n\wide输入密码时按\narrowEnter\wide键输入空可以删除密码。密码至少包含大写字母，小写字母，数字，特殊字符四种类型中的三种。且不能设定为之前设定过的密码，五（含）次以内。\narrow"
+																						   
+#string STR_USER_PASSWORD               #language en-US "User Password"
+                                        #language zh-Hans "\wide用户密码\narrow"
+#string STR_SET_USER_PASSWORD           #language en-US "Set User Password"
+                                        #language zh-Hans "\wide设置用户密码\narrow"
+#string STR_USER_PASSWORD_HELP          #language en-US "Select this item to set, change, or delete User Password. a-z, 0-9 and special printable character are supported. Passwords are case sensitive. The limited length of password string is 6 to 20.\n\nNOTE:\nTo delete Password, enter blank when input new password. The password need contains at least three of the four types of uppercase letters, lowercase letters, numbers, and special characters. And it cannot be set to the previously set password, within five (inclusive) times."
+                                        #language zh-Hans "\wide选择这一项来设定、更改以及删除用户密码。密码支持字符包括字母、数字以及其它可打印字符。密码区分大小写，支持输入密码长度为\narrow6\wide到\narrow20\wide。\narrow\n\n\wide注意\narrow:\n\wide输入密码时按\narrowEnter\wide键输入空可以删除密码。密码至少包含大写字母，小写字母，数字，特殊字符四种类型中的三种。且不能设定为之前设定过的密码，五（含）次以内。\narrow"
+#string STR_CHANGE_POP_BY_USER          #language en-US  "User Password Changeable by User"
+                                        #language zh-Hans "\wide允许用户更改其密码\narrow"
+#string STR_CHANGE_POP_BY_USER_HELP     #language en-US  "The User Password can be locked by Administrator."
+                                        #language zh-Hans "\wide用户密码可以被管理员禁止修改。\narrow"
+#string STR_CLEAR_USER_PASSWORD         #language en-US "Clear User Password"
+                                        #language zh-Hans "\wide清除用户密码\narrow"
+#string STR_CLEAR_USER_PASSWORD_HELP    #language en-US   "Set User Password to Empty."
+                                        #language zh-Hans "\wide设置用户密码为空。\narrow"
+																																   
+#string STR_PASSWORD_FATAL_ERROR        #language zh-Hans  "\wide密码错误，系统挂起。\narrow" 
+                                        #language en-US    "Fatal Error... System Halted."                            
+#string STR_ERROR                       #language zh-Hans  "\wide错误\narrow" 
+                                        #language en-US    "ERROR"                                        
+#string STR_ENTER_CORRECT_PD            #language en-US   "Passwords can contain upper and lower case letters, numbers, and special symbols,at least three of them"
+                                        #language zh-Hans "\wide密码中可以包含大小写字母、数字以及特殊符号，至少包含其中三种。\narrow"
+#string STR_PASSWORD_TIMES              #language en-US   "Password has been used by the latest 5 times!"
+                                        #language zh-Hans "\wide修改后的密码不能与前五次密码相同！\narrow"
+#string STR_SET_PASSWORD                #language en-US "Password Setting Successfully"
+                                        #language zh-Hans "\wide密码设置成功\narrow"
+#string STR_CLEAR_PD                    #language en-US "Password deleted succeeded"
+                                        #language zh-Hans "\wide密码删除成功\narrow"  
+#string STR_SET_PASSWORD_VALID_DAYS         #language en-US   "Set Password Valid Days"
+                                            #language zh-Hans "\wide设置密码有效期\narrow"
+#string STR_SET_PASSWORD_VALID_DAYS_HELP    #language en-US   "Set Password Valid Days."
+                                            #language zh-Hans "\wide设置密码有效期。\narrow"
+#string STR_FOREVER                         #language en-US   "Forever"
+                                            #language zh-Hans "\wide长期有效\narrow"
+#string STR_SEVEN_DAYS                      #language en-US   "7 Days"
+                                            #language zh-Hans "7\wide天\narrow"
+#string STR_THIRTY_DAYS                     #language en-US   "30 Days"
+                                            #language zh-Hans "30\wide天\narrow"
+#string STR_POP_ON_RESTART              #language en-US  "Power-on Password"
+                                        #language zh-Hans "\wide开机密码\narrow" 
+#string STR_POP_ON_RESTART_HELP         #language en-US  "Select whether to turn on Power-on Password."
+                                        #language zh-Hans "\wide选择是否开启开机密码功能。\narrow"
+#string STR_OUT_TIME_PASSWORD_STRING    #language    en-US "Password expired, Please change it as soon as possible! Press ENTER to continue"
+                                        #language    zh-Hans "\wide密码已经过期，请尽快修改!按\narrowEnter\wide键继续\narrow"
+
+#string STR_TPM_SELECT                  #language en-US    "TPM Select"
+                                        #language zh-Hans  "TPM\wide选择\narrow"
+#string STR_TPM_SELECT_HELP             #language en-US    "TPM module selection: DTPM uses Onboard TPM chip, FTPM uses TPM module provided by Hygon CPU."
+                                        #language zh-Hans  "TPM\wide模块选择\narrow: DTPM\wide使用板载\narrowTPM\wide芯片\narrow,FTPM\wide使用海光\narrowCPU\wide提供的\narrowTPM\wide模块\narrow."
+
+#string STR_DTPM_SPI                    #language en-US    "DTPM(SPI)"
+                                        #language zh-Hans  "DTPM(SPI)"
+#string STR_DTPM_LPC                    #language en-US    "DTPM(LPC)"
+                                        #language zh-Hans  "DTPM(LPC)"                                        
+#string STR_FTPM                        #language en-US    "FTPM"
+                                        #language zh-Hans  "FTPM"
+
+#string STR_TPCM_BIOS_MEASURE_ENABLE       #language en-US    "Hygon TPCM BIOS Stage Measurement"
+                                           #language zh-Hans  "\wide海光\narrowTPCM BIOS\wide阶段度量\narrow"                                        
+#string STR_TPCM_BIOS_MEASURE_ENABLE_HELP  #language en-US    "Enable or disable Hygon TPCM BIOS stage measurement."
+                                           #language zh-Hans  "\wide启用或禁用海光\narrowTPCM BIOS\wide阶段度量。\narrow"                                         
+                                        
+                                        
+                                        

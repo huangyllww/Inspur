@@ -1,0 +1,29 @@
+// /** @file
+//
+// Copyright (c) 2022, Byosoft Corporation. All rights reserved.<BR>
+// This software and associated documentation (if any)
+// is furnished under a license and may only be used or copied in
+// accordance with the terms of the license. Except as permitted by such
+// license, no part of this software or documentation may be reproduced,
+// stored in a retrieval system, or transmitted in any form or by any
+// means without the express written consent of Byosoft Corporation.
+
+//
+// **/
+/=#
+
+#langdef   en-US "English"
+#langdef   zh-Hans "\wide中文\narrow"
+
+#string STR_BOOT_POPUP_MENU_TITLE_STRING  #language    en-US    "Startup Device Menu"
+                                          #language    zh-Hans  "\wide设备启动菜单\narrow"
+
+
+#string STR_BOOT_POPUP_MENU_HELP1_STRING  #language    en-US    "↑ and ↓ to move selection"
+                                          #language    zh-Hans  "    \wide用 ↑ 和 ↓ 移动选择\narrow"
+
+#string STR_BOOT_POPUP_MENU_HELP2_STRING  #language    en-US    "ENTER to select boot device"
+                                          #language    zh-Hans  "    \wide 按ENTER选择启动设备\narrow"
+
+#string STR_BOOT_POPUP_MENU_HELP3_STRING  #language    en-US    "ESC to exit"
+                                          #language    zh-Hans  "  \wide 按ESC退出\narrow"

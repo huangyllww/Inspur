@@ -1,0 +1,57 @@
+V1.12  
+1. Fix ByoDmi lock issue  
+2. Fix reset password prompt messagebox issue  
+
+V1.11  
+1. Fix BIOS update Browse button issue  
+
+V1.10  
+1. Fix ByoFlash update logo/ucode unlock issue  
+2. Fix ByoCfg change boot order issue  
+
+V1.9  
+1. Fix SMBIOS type 4 can't modify issue  
+2. Fix ByoDmi lock issue  
+
+V1.8  
+1. Fix by checking the reboot option issue  
+2. Fix keyboard and mouse status issue  
+
+V1.7  
+1. Fix update logo issue  
+  
+V1.6  
+1. Support ME/IRC/EC/NIS update  
+2. Fix BIOS ID not match issue  
+3. Enhance view smbios type  
+4. update ByoCfg/ByoFlash tools  
+5. Fix main thread not in main loop issue  
+  
+V1.5  
+1. Fix parse options data issue
+
+
+V1.4  
+1. Fix update status and command result show issue  
+2. Fix update Smbios type 11 issue  
+3. Fix search and filter on ByoCfg table issue  
+
+V1.3
+1. Fix check password issue
+2. Fix ByoCfg table parsing options issue
+3. Fix log print for ByoFlash Tab issue
+4. Enable search and filter
+5. ByoCfg table add search function
+
+V1.2
+1. Fix ByoCfg table display issue
+2. Fix ByoDmi table show type 11/38/4/127 issue
+3. Fix reset password issue
+4. optimizing ByoFlash table update BIOS display message
+5. Package related files to one ByoFlashGUI.exe file
+
+V1.1
+1. Update for support ByoDmi and ByoCfg GUI
+
+V1.0
+1. first release

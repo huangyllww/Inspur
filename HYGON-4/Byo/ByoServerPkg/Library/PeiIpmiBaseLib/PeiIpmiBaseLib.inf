@@ -1,0 +1,41 @@
+## @file
+#
+#Copyright (c) 2006 - 2021, Byosoft Corporation.<BR>
+#All rights reserved.This software and associated documentation (if any)
+#is furnished under a license and may only be used or copied in
+#accordance with the terms of the license. Except as permitted by such
+#license, no part of this software or documentation may be reproduced,
+#stored in a retrieval system, or transmitted in any form or by any
+#means without the express written consent of Byosoft Corporation.
+#
+#File Name:
+#  PeiGenericIpmi.inf
+#
+#Abstract:
+#
+#Revision History:
+#
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = PeiIpmiBaseLib
+  FILE_GUID                      = 616A8628-9A5C-4d19-9C62-3874C5E6F4A6
+  MODULE_TYPE                    = PEIM
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = IpmiBaseLib|PEIM PEI_CORE
+
+[sources]
+  PeiIpmiBaseLib.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  ByoServerPkg/ByoServerPkg.dec
+
+[LibraryClasses]
+  DebugLib
+  BaseMemoryLib
+  PeiServicesLib
+
+[Ppis]
+  gPeiIpmiTransportPpiGuid
+

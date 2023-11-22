@@ -1,0 +1,40 @@
+/** @file      
+                                                    
+==========================================================================================
+      NOTICE: Copyright (c) 2006 - 2020 Byosoft Corporation. All rights reserved.
+              This program and associated documentation (if any) is furnished
+              under a license. Except as permitted by such license,no part of this
+              program or documentation may be reproduced, stored divulged or used
+              in a public system, or transmitted in any form or by any means
+              without the express written consent of Byosoft Corporation.
+==========================================================================================
+
+THE PROGRAM IS DISTRIBUTED UNDER THE BSD LICENSE ON AN "AS IS" BASIS,
+WITHOUT WARRANTIES OR REPRESENTATIONS OF ANY KIND, EITHER EXPRESS OR IMPLIED.
+
+ Module Name:
+
+
+ Abstract:
+
+
+**/
+
+
+/=#
+
+#langdef en-US "English"
+#langdef zh-Hans "\wide中文\narrow"
+
+
+#string STR_USB_STORAGE1                #language en-US   "USB  Storage"
+                                        #language zh-Hans "USB\wide存储设备\narrow"
+#string STR_USB_KEYBOARD1               #language en-US   "USB Keyboard"
+                                        #language zh-Hans "USB    \wide键盘\narrow"
+#string STR_USB_MOUSE1                  #language en-US   "USB    Mouse"
+                                        #language zh-Hans "USB    \wide鼠标\narrow" 
+#string STR_USB_OTHERS1                 #language en-US   "USB   Others"
+                                        #language zh-Hans "USB\wide其他设备\narrow"
+#string STR_USB_HUB1                    #language en-US   "USB       Hub"
+                                        #language zh-Hans "USB\wide集线器\narrow"
+                                  

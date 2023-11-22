@@ -1,0 +1,3467 @@
+/*****************************************************************************
+ *
+ * 
+ * Copyright 2016 - 2023 CHENGDU HAIGUANG IC DESIGN CO., LTD. All Rights Reserved.
+ * 
+ * HYGON is granting you permission to use this software (the Materials)
+ * pursuant to the terms and conditions of your Software License Agreement
+ * with HYGON.  This header does *NOT* give you permission to use the Materials
+ * or any rights under HYGON's intellectual property.  Your use of any portion
+ * of these Materials shall constitute your acceptance of those terms and
+ * conditions.  If you do not agree to the terms and conditions of the Software
+ * License Agreement, please do not use any portion of these Materials.
+ * 
+ * CONFIDENTIALITY:  The Materials and all other information, identified as
+ * confidential and provided to you by HYGON shall be kept confidential in
+ * accordance with the terms and conditions of the Software License Agreement.
+ * 
+ * LIMITATION OF LIABILITY: THE MATERIALS AND ANY OTHER RELATED INFORMATION
+ * PROVIDED TO YOU BY HYGON ARE PROVIDED "AS IS" WITHOUT ANY EXPRESS OR IMPLIED
+ * WARRANTY OF ANY KIND, INCLUDING BUT NOT LIMITED TO WARRANTIES OF
+ * MERCHANTABILITY, NONINFRINGEMENT, TITLE, FITNESS FOR ANY PARTICULAR PURPOSE,
+ * OR WARRANTIES ARISING FROM CONDUCT, COURSE OF DEALING, OR USAGE OF TRADE.
+ * IN NO EVENT SHALL HYGON OR ITS LICENSORS BE LIABLE FOR ANY DAMAGES WHATSOEVER
+ * (INCLUDING, WITHOUT LIMITATION, DAMAGES FOR LOSS OF PROFITS, BUSINESS
+ * INTERRUPTION, OR LOSS OF INFORMATION) ARISING OUT OF HYGON'S NEGLIGENCE,
+ * GROSS NEGLIGENCE, THE USE OF OR INABILITY TO USE THE MATERIALS OR ANY OTHER
+ * RELATED INFORMATION PROVIDED TO YOU BY HYGON, EVEN IF HYGON HAS BEEN ADVISED OF
+ * THE POSSIBILITY OF SUCH DAMAGES.  BECAUSE SOME JURISDICTIONS PROHIBIT THE
+ * EXCLUSION OR LIMITATION OF LIABILITY FOR CONSEQUENTIAL OR INCIDENTAL DAMAGES,
+ * THE ABOVE LIMITATION MAY NOT APPLY TO YOU.
+ * 
+ * HYGON does not assume any responsibility for any errors which may appear in
+ * the Materials or any other related information provided to you by HYGON, or
+ * result from use of the Materials or any related information.
+ * 
+ * You agree that you will not reverse engineer or decompile the Materials.
+ * 
+ * NO SUPPORT OBLIGATION: HYGON is not obligated to furnish, support, or make any
+ * further information, software, technical information, know-how, or show-how
+ * available to you.  Additionally, HYGON retains the right to modify the
+ * Materials at any time, without notice, and is not obligated to provide such
+ * modified Materials to you.
+ * 
+ * 
+ *
+ ***************************************************************************/
+
+
+#include <Guid/HiiPlatformSetupFormset.h>
+#include "HygonCbsFormID.h"
+#include <Guid/HygonCbsConfig.h>
+#include "HygonCbsVariable.h"
+#include <SocId.h>
+
+#define EFI_HYGON_CBS_CLASS 0x55
+#define SHOW_ALL_CBS 1
+
+#define BYO_HIDE_CLASS_GUID   { 0xaa0b824f, 0xd457, 0x4277, { 0x87, 0x19, 0xa6, 0xd7, 0xfd, 0x60, 0xed, 0x38 }}        // byo231012 +
+
+formset
+  guid      = FORMSET_ID_GUID_HYGON_CBS,
+  title     = STRING_TOKEN(HYGON_CBS_STR_CBS_ROOT_SECTION),
+  help      = STRING_TOKEN(HYGON_CBS_STR_BLANK),
+  classguid = BYO_HIDE_CLASS_GUID,                                                                                     // byo231012 +
+  class     = EFI_HYGON_CBS_CLASS, subclass = 0,
+
+  varstore CBS_CONFIG,                        // This is the data structure type
+    varid = CBS_CONFIGURATION_VARSTORE_ID,    // Optional VarStore ID
+    name  = HygonSetup,                         // Define referenced name in vfr
+    guid  = CBS_SYSTEM_CONFIGURATION_GUID;    // GUID of this buffer storage
+  
+  //
+  // form - CBS_ROOT
+  //
+  form
+
+    formid        = SETUP_CBS_ROOT_LABEL,
+
+    title         = STRING_TOKEN (HYGON_CBS_STR_CBS_ROOT_SECTION);
+
+    subtitle text = STRING_TOKEN (HYGON_CBS_STR_CBS_ROOT_SECTION);
+    subtitle text = STRING_TOKEN (HYGON_CBS_STR_BLANK);
+
+// byo231012 + >>
+    suppressif TRUE;
+
+      numeric varid = CBS_CONFIG.CbsCmnCLDOVDDPvoltageIODHmiPHY,
+        prompt    = STRING_TOKEN(HYGON_CBS_STR_BLANK),
+        help      = STRING_TOKEN(HYGON_CBS_STR_BLANK),
+        minimum   = 241,
+        maximum   = 241,
+        step      = 1,
+        default   = 241,
+      endnumeric;
+
+      numeric varid = CBS_CONFIG.CbsCmnCLDOVDDPvoltageCDDDDRPHY,
+        prompt    = STRING_TOKEN(HYGON_CBS_STR_BLANK),
+        help      = STRING_TOKEN(HYGON_CBS_STR_BLANK),
+        minimum   = 241,
+        maximum   = 241,
+        step      = 1,
+        default   = 241,
+      endnumeric;
+
+      numeric varid = CBS_CONFIG.CbsCmnCLDOVDDPvoltageCDDHmiCFOPPHY,
+        prompt    = STRING_TOKEN(HYGON_CBS_STR_BLANK),
+        help      = STRING_TOKEN(HYGON_CBS_STR_BLANK),
+        minimum   = 241,
+        maximum   = 241,
+        step      = 1,
+        default   = 241,
+      endnumeric;
+
+      numeric varid = CBS_CONFIG.CbsCmnDjCLDOVDDPvoltageHmi,
+        prompt    = STRING_TOKEN(HYGON_CBS_STR_BLANK),
+        help      = STRING_TOKEN(HYGON_CBS_STR_BLANK),
+        minimum   = 241,
+        maximum   = 241,
+        step      = 1,
+        default   = 241,
+      endnumeric;      
+
+      numeric varid = CBS_CONFIG.CbsCmnDjCLDOVDDPvoltageS5,
+        prompt    = STRING_TOKEN(HYGON_CBS_STR_BLANK),
+        help      = STRING_TOKEN(HYGON_CBS_STR_BLANK),
+        minimum   = 241,
+        maximum   = 241,
+        step      = 1,
+        default   = 241,
+      endnumeric;    
+
+      numeric varid = CBS_CONFIG.CbsCmnEmCLDOVDDPvoltageHmi,
+        prompt    = STRING_TOKEN(HYGON_CBS_STR_BLANK),
+        help      = STRING_TOKEN(HYGON_CBS_STR_BLANK),
+        minimum   = 241,
+        maximum   = 241,
+        step      = 1,
+        default   = 241,
+      endnumeric;
+
+      numeric varid = CBS_CONFIG.CbsCmnEmCLDOVDDPvoltageCfop,
+        prompt    = STRING_TOKEN(HYGON_CBS_STR_BLANK),
+        help      = STRING_TOKEN(HYGON_CBS_STR_BLANK),
+        minimum   = 241,
+        maximum   = 241,
+        step      = 1,
+        default   = 241,
+      endnumeric;
+
+      numeric varid = CBS_CONFIG.CbsCmnCddCLDOVDDPvoltageHmi,
+        prompt    = STRING_TOKEN(HYGON_CBS_STR_BLANK),
+        help      = STRING_TOKEN(HYGON_CBS_STR_BLANK),
+        minimum   = 241,
+        maximum   = 241,
+        step      = 1,
+        default   = 241,
+      endnumeric;
+
+      numeric varid = CBS_CONFIG.CbsCmnCddCLDOVDDPvoltageDDR,
+        prompt    = STRING_TOKEN(HYGON_CBS_STR_BLANK),
+        help      = STRING_TOKEN(HYGON_CBS_STR_BLANK),
+        minimum   = 241,
+        maximum   = 241,
+        step      = 1,
+        default   = 241,
+      endnumeric;
+
+      oneof
+        varid       = CBS_CONFIG.CbsDfCmnCc6MemEncryption,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_BLANK),
+        help        = STRING_TOKEN (HYGON_CBS_STR_BLANK),
+        option text = STRING_TOKEN (HYGON_CBS_STR_BLANK), value = 3, flags = RESET_REQUIRED | DEFAULT;
+        option text = STRING_TOKEN (HYGON_CBS_STR_BLANK), value = 0, flags = RESET_REQUIRED;
+      endoneof;
+
+      oneof
+        varid       = CBS_CONFIG.CbsDfCmnCc6AllocationScheme,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_BLANK),
+        help        = STRING_TOKEN (HYGON_CBS_STR_BLANK),
+        option text = STRING_TOKEN (HYGON_CBS_STR_BLANK), value = 3, flags = RESET_REQUIRED | DEFAULT;
+        option text = STRING_TOKEN (HYGON_CBS_STR_BLANK), value = 0, flags = RESET_REQUIRED;
+      endoneof;
+
+      oneof
+        varid       = CBS_CONFIG.CbsDfCmnSysProbeFilter,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_BLANK),
+        help        = STRING_TOKEN (HYGON_CBS_STR_BLANK),
+        option text = STRING_TOKEN (HYGON_CBS_STR_BLANK), value = 3, flags = RESET_REQUIRED | DEFAULT;
+        option text = STRING_TOKEN (HYGON_CBS_STR_BLANK), value = 0, flags = RESET_REQUIRED;
+      endoneof;
+
+      oneof
+        varid       = CBS_CONFIG.CbsCmnMemCtrller2TModeDdr5,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_CMD2T),
+        help        = STRING_TOKEN (HYGON_CBS_STR_CMD2T_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_1T),              value = 0,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_2T),              value = 1,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 0xFF, flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+      endoneof;
+
+      oneof
+        varid       = CBS_CONFIG.CbsCmnMemGearDownModeDdr5,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_GEAR_DOWN_MODE),
+        help        = STRING_TOKEN (HYGON_CBS_STR_GEAR_DOWN_MODE_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_DISABLED),        value = 0,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_ENABLED),         value = 1,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 0xFF, flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+      endoneof;
+
+      oneof
+        varid       = CBS_CONFIG.CbsCmnAvsCtl,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_BLANK),
+        help        = STRING_TOKEN (HYGON_CBS_STR_BLANK),
+        option text = STRING_TOKEN (HYGON_CBS_STR_BLANK), value = 1, flags = RESET_REQUIRED | DEFAULT;
+        option text = STRING_TOKEN (HYGON_CBS_STR_BLANK), value = 0, flags = RESET_REQUIRED;
+      endoneof;
+
+      numeric varid = CBS_CONFIG.CbsDldoPsmMargin,
+        prompt    = STRING_TOKEN(HYGON_CBS_STR_BLANK),
+        help      = STRING_TOKEN(HYGON_CBS_STR_BLANK),
+        minimum   = 12,
+        maximum   = 12,
+        step      = 1,
+        default   = 12,
+      endnumeric;
+
+      oneof
+        varid       = CBS_CONFIG.CbsCmnFchSataClass,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_BLANK),
+        help        = STRING_TOKEN (HYGON_CBS_STR_BLANK),
+        option text = STRING_TOKEN (HYGON_CBS_STR_BLANK), value = 2, flags = RESET_REQUIRED | DEFAULT;
+        option text = STRING_TOKEN (HYGON_CBS_STR_BLANK), value = 0, flags = RESET_REQUIRED;
+      endoneof;
+
+      numeric varid = CBS_CONFIG.CbsCmnForceCclkFrequency,
+        prompt    = STRING_TOKEN(HYGON_CBS_STR_BLANK),
+        help      = STRING_TOKEN(HYGON_CBS_STR_BLANK),
+        minimum   = 2000,
+        maximum   = 2000,
+        step      = 1,
+        default   = 2000,
+      endnumeric;
+
+      oneof
+        varid       = CBS_CONFIG.CbsValidationDdrParity,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_BLANK),
+        help        = STRING_TOKEN (HYGON_CBS_STR_BLANK),
+        option text = STRING_TOKEN (HYGON_CBS_STR_BLANK), value = 0xf, flags = RESET_REQUIRED | DEFAULT;
+        option text = STRING_TOKEN (HYGON_CBS_STR_BLANK), value = 0,   flags = RESET_REQUIRED;
+      endoneof;
+
+      oneof
+        varid       = CBS_CONFIG.CbsHBLCntl,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_BLANK),
+        help        = STRING_TOKEN (HYGON_CBS_STR_BLANK),
+        option text = STRING_TOKEN (HYGON_CBS_STR_BLANK), value = 1, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_BLANK), value = 0, flags = RESET_REQUIRED | DEFAULT;
+      endoneof;
+
+      oneof
+        varid       = CBS_CONFIG.CbsHBLDieType,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_BLANK),
+        help        = STRING_TOKEN (HYGON_CBS_STR_BLANK),
+        option text = STRING_TOKEN (HYGON_CBS_STR_BLANK), value = 2, flags = RESET_REQUIRED | DEFAULT;
+        option text = STRING_TOKEN (HYGON_CBS_STR_BLANK), value = 0, flags = RESET_REQUIRED;
+      endoneof;
+
+      oneof
+        varid       = CBS_CONFIG.CbsPspLogCategory,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_BLANK),
+        help        = STRING_TOKEN (HYGON_CBS_STR_BLANK),
+        option text = STRING_TOKEN (HYGON_CBS_STR_BLANK), value = 1, flags = RESET_REQUIRED | DEFAULT;
+        option text = STRING_TOKEN (HYGON_CBS_STR_BLANK), value = 0, flags = RESET_REQUIRED;
+      endoneof;
+
+      oneof
+        varid       = CBS_CONFIG.CbsPspLogLevel,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_BLANK),
+        help        = STRING_TOKEN (HYGON_CBS_STR_BLANK),
+        option text = STRING_TOKEN (HYGON_CBS_STR_BLANK), value = 3, flags = RESET_REQUIRED | DEFAULT;
+        option text = STRING_TOKEN (HYGON_CBS_STR_BLANK), value = 0, flags = RESET_REQUIRED;
+      endoneof;
+
+      oneof
+        varid       = CBS_CONFIG.AutoRefFineGranMode,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_BLANK),
+        help        = STRING_TOKEN (HYGON_CBS_STR_BLANK),
+        option text = STRING_TOKEN (HYGON_CBS_STR_BLANK), value = 1, flags = RESET_REQUIRED | DEFAULT;
+        option text = STRING_TOKEN (HYGON_CBS_STR_BLANK), value = 0, flags = RESET_REQUIRED;
+      endoneof;
+
+      oneof
+        varid       = CBS_CONFIG.CbsSerialPortCtl,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_BLANK),
+        help        = STRING_TOKEN (HYGON_CBS_STR_BLANK),
+        option text = STRING_TOKEN (HYGON_CBS_STR_BLANK), value = 1, flags = RESET_REQUIRED | DEFAULT;
+        option text = STRING_TOKEN (HYGON_CBS_STR_BLANK), value = 0, flags = RESET_REQUIRED;
+      endoneof;
+
+      numeric varid = CBS_CONFIG.CbsPostCompletePin,
+        prompt    = STRING_TOKEN(HYGON_CBS_STR_BLANK),
+        help      = STRING_TOKEN(HYGON_CBS_STR_BLANK),
+        minimum   = 0x1D00,
+        maximum   = 0x1D00,
+        step      = 1,
+        default   = 0x1D00,
+      endnumeric;
+    
+    endif;
+
+// byo231012 + <<
+
+
+
+    goto SETUP_CORE_COMMON_OPTIONS_LABEL,
+      prompt      = STRING_TOKEN (HYGON_CBS_STR_DHARMA_COMMON_OPTIONS_SECTION),
+      help        = STRING_TOKEN (HYGON_CBS_STR_DHARMA_COMMON_OPTIONS_SECTION);
+
+    goto SETUP_DF_COMMON_OPTIONS_LABEL,
+      prompt      = STRING_TOKEN (HYGON_CBS_STR_DF_COMMON_OPTIONS_SECTION),
+      help        = STRING_TOKEN (HYGON_CBS_STR_DF_COMMON_OPTIONS_SECTION);
+
+    goto SETUP_UMC_COMMON_OPTIONS_LABEL,
+      prompt      = STRING_TOKEN (HYGON_CBS_STR_UMC_COMMON_OPTIONS_SECTION),
+      help        = STRING_TOKEN (HYGON_CBS_STR_UMC_COMMON_OPTIONS_SECTION);
+
+    goto SETUP_NBIO_COMMON_OPTIONS_LABEL,
+      prompt      = STRING_TOKEN (HYGON_CBS_STR_NBIO_COMMON_OPTIONS_SECTION),
+      help        = STRING_TOKEN (HYGON_CBS_STR_NBIO_COMMON_OPTIONS_SECTION);
+
+    goto SETUP_FCH_COMMON_OPTIONS_LABEL,
+      prompt      = STRING_TOKEN (HYGON_CBS_STR_FCH_COMMON_OPTIONS_SECTION),
+      help        = STRING_TOKEN (HYGON_CBS_STR_FCH_COMMON_OPTIONS_SECTION);
+
+    goto SETUP_RAS_COMMON_OPTIONS_LABEL,
+      prompt      = STRING_TOKEN (HYGON_CBS_STR_RAS_COMMON_OPTIONS_SECTION),
+      help        = STRING_TOKEN (HYGON_CBS_STR_RAS_COMMON_OPTIONS_SECTION);
+
+  endform;
+
+
+    //
+    // form - Dharma Common Options
+    //
+  form
+
+    formid        = SETUP_CORE_COMMON_OPTIONS_LABEL,
+
+    title         = STRING_TOKEN (HYGON_CBS_STR_DHARMA_COMMON_OPTIONS_SECTION);
+
+    subtitle text = STRING_TOKEN (HYGON_CBS_STR_DHARMA_COMMON_OPTIONS_SECTION);
+    subtitle text = STRING_TOKEN (HYGON_CBS_STR_BLANK);
+
+    // Core Performance Boost
+    // Disable CPB
+    oneof
+      varid       = CBS_CONFIG.CbsCmnCpuCpb,
+      prompt      = STRING_TOKEN (HYGON_CBS_STR_CORE_PERFORMANCE_BOOST),
+      help        = STRING_TOKEN (HYGON_CBS_STR_CORE_PERFORMANCE_BOOST_HELP),
+      option text = STRING_TOKEN (HYGON_CBS_STR_DISABLED),        value = 0,    flags = 0 | RESET_REQUIRED;
+      option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 1,    flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+    endoneof;
+
+    suppressif SHOW_ALL_CBS==0;
+      // Enable IBS
+      // Enables IBS through MSRC001_1005[42] and disables SpecLockMap through MSRC001_1020[54]
+      oneof
+        varid       = CBS_CONFIG.CbsCmnCpuEnIbs,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_ENABLE_IBS),
+        help        = STRING_TOKEN (HYGON_CBS_STR_ENABLE_IBS_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 3,    flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+        option text = STRING_TOKEN (HYGON_CBS_STR_ENABLED),         value = 1,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_DISABLED),        value = 0,    flags = 0 | RESET_REQUIRED;
+      endoneof;
+    endif;
+
+    // CPU C-state Control
+    // Controls Core C-state generation 
+    oneof
+      varid       = CBS_CONFIG.CbsCmnCpuCstateCtrl,
+      prompt      = STRING_TOKEN (HYGON_CBS_STR_CPU_C_STATE_CONTROL),
+      help        = STRING_TOKEN (HYGON_CBS_STR_CPU_C_STATE_CONTROL_HELP),
+      option text = STRING_TOKEN (HYGON_CBS_STR_DISABLED),        value = 0,    flags = 0 | RESET_REQUIRED;
+      option text = STRING_TOKEN (HYGON_CBS_STR_ENABLED_CC1),     value = 1,    flags = 0 | RESET_REQUIRED;
+      option text = STRING_TOKEN (HYGON_CBS_STR_ENABLED_CC6),     value = 2,    flags = 0 | RESET_REQUIRED;
+      option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 0xFF, flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+    endoneof;
+
+    //SMT Control
+    oneof 
+      varid       = CBS_CONFIG.CbsCmnSmtMode,\
+      prompt      = STRING_TOKEN(HYGON_CBS_STR_SMT_MODE),\
+      help        = STRING_TOKEN(HYGON_CBS_STR_SMT_MODE_HELP),\
+      option text = STRING_TOKEN(HYGON_CBS_STR_DISABLED), value = 0, flags = RESET_REQUIRED;\
+      option text = STRING_TOKEN(HYGON_CBS_STR_SMT2),  value = 1, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING;\
+    endoneof;
+
+      // Opcache Control
+      // Enables or disables the Opcache
+      oneof
+        varid       = CBS_CONFIG.CbsCmnCpuOpcacheCtrl,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_OPCACHE_CONTROL),
+        help        = STRING_TOKEN (HYGON_CBS_STR_OPCACHE_CONTROL_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_DISABLED),        value = 0,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_ENABLED),         value = 1,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 3,    flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+      endoneof;
+
+    suppressif SHOW_ALL_CBS==0;
+      // Display RDSEED and RDRAND Control Option
+      // No help string
+      oneof
+        varid       = CBS_CONFIG.CbsCmnCpuRdseedRdrandCap,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_CPU_RDSEED_RDRAND_DISPLAY_CONTROL),
+        help        = STRING_TOKEN (HYGON_CBS_STR_CPU_RDSEED_RDRAND_DISPLAY_CONTROL_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_DISABLED),          value = 0,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_ENABLED),           value = 1,    flags = DEFAULT | RESET_REQUIRED;
+      endoneof;
+
+      suppressif NOT ideqval CBS_CONFIG.CbsCmnCpuRdseedRdrandCap==1;
+        //Enables or disables CPU rdseed and rdrand feature
+        oneof
+          varid       = CBS_CONFIG.CbsCmnCpuRdseedRdrandCtrl,
+          prompt      = STRING_TOKEN (HYGON_CBS_STR_CPU_RDSEED_RDRAND_CONTROL),
+          help        = STRING_TOKEN (HYGON_CBS_STR_CPU_RDSEED_RDRAND_CONTROL_HELP),
+          option text = STRING_TOKEN (HYGON_CBS_STR_DISABLED),        value = 0,    flags = 0 | RESET_REQUIRED;
+          option text = STRING_TOKEN (HYGON_CBS_STR_ENABLED),         value = 1,    flags = 0 | RESET_REQUIRED;
+          option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 3,    flags = DEFAULT | RESET_REQUIRED;
+        endoneof;
+      endif;
+    endif;
+    
+    suppressif SHOW_ALL_CBS==0;
+    suppressif TRUE;
+      // Display SMEE Control Option
+      // No help string
+      oneof
+        varid       = CBS_CONFIG.CbsCmnCpuSmeeCap,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_CPU_SMEE_DISPLAY_CONTROL),
+        help        = STRING_TOKEN (HYGON_CBS_STR_CPU_SMEE_DISPLAY_CONTROL_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_DISABLED),          value = 0,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_ENABLED),           value = 1,    flags = DEFAULT | RESET_REQUIRED;
+      endoneof;
+    endif;
+
+      //SMEE ENABLE
+      suppressif  NOT ideqval CBS_CONFIG.CbsCmnCpuSmeeCap==1;
+        oneof
+          varid       = CBS_CONFIG.CbsCmnSmeeCtrl,
+          prompt      = STRING_TOKEN (HYGON_CBS_STR_CPU_SMEE_CONTROL),
+          help        = STRING_TOKEN (HYGON_CBS_STR_CPU_SMEE_CONTROL_HELP),
+          option text = STRING_TOKEN (HYGON_CBS_STR_DISABLED),        value = 0,    flags = DEFAULT | RESET_REQUIRED;
+          option text = STRING_TOKEN (HYGON_CBS_STR_ENABLED),         value = 1,    flags = 0 | RESET_REQUIRED;
+        endoneof;
+      endif;
+    endif;
+
+    //Above 4G MMIO limit set
+    suppressif SHOW_ALL_CBS==0;
+      oneof
+        varid       = CBS_CONFIG.CbsAbove4GMmioLimitBit,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_ABOVE4G_MMIO_LIMIT_BIT_SET),
+        help        = STRING_TOKEN (HYGON_CBS_STR_ABOVE4G_MMIO_LIMIT_BIT_SET_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_MMIO_LIMIT_43BIT),        value = 43,    flags = DEFAULT | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_MMIO_LIMIT_44BIT),        value = 44,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_MMIO_LIMIT_45BIT),        value = 45,    flags = 0 | RESET_REQUIRED;
+        suppressif  NOT ideqval CBS_CONFIG.CbsCmnSmeeCtrl==0;
+          option text = STRING_TOKEN (HYGON_CBS_STR_MMIO_LIMIT_46BIT),        value = 46,    flags = 0 | RESET_REQUIRED;
+          option text = STRING_TOKEN (HYGON_CBS_STR_MMIO_LIMIT_47BIT),        value = 47,    flags = 0 | RESET_REQUIRED;
+          option text = STRING_TOKEN (HYGON_CBS_STR_MMIO_LIMIT_48BIT),        value = 48,    flags = 0 | RESET_REQUIRED;
+        endif;
+      endoneof;
+    endif;
+
+    suppressif SHOW_ALL_CBS==0;
+      //SVM ENABLE
+      oneof
+        varid       = CBS_CONFIG.CbsCmnSVMCtrl,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_CPU_SVM_CONTROL),
+        help        = STRING_TOKEN (HYGON_CBS_STR_CPU_SVM_CONTROL_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_DISABLED),        value = 0,    flags = DEFAULT | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_ENABLED),         value = 1,    flags = 0 | RESET_REQUIRED;
+      endoneof;
+    endif;
+
+    suppressif SHOW_ALL_CBS==0;
+      oneof
+        varid       = CBS_CONFIG.CbsCmnCpuLoadUcodeCtrl,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_CPU_LOAD_UCODE_CONTROL),
+        help        = STRING_TOKEN (HYGON_CBS_STR_CPU_LOAD_UCODE_CONTROL_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_DISABLED),        value = 0,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_ENABLED),         value = 1,    flags = DEFAULT | RESET_REQUIRED;
+      endoneof;
+    endif;
+
+    // Local APIC Mode
+    oneof
+      varid       = CBS_CONFIG.CbsCmnCpuLApicMode,
+      prompt      = STRING_TOKEN (HYGON_CBS_STR_LOCAL_APIC_MODE),
+      help        = STRING_TOKEN (HYGON_CBS_STR_LOCAL_APIC_MODE_HELP),
+      option text = STRING_TOKEN (HYGON_CBS_STR_XAPIC),           value = 0,    flags = 0 | RESET_REQUIRED;
+      option text = STRING_TOKEN (HYGON_CBS_STR_X2APIC),          value = 1,    flags = 0 | RESET_REQUIRED;
+      option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 0xFF, flags = DEFAULT | RESET_REQUIRED;
+    endoneof;
+
+    suppressif SHOW_ALL_CBS==0;
+      // Streaming Stores Control
+      // Enables or disables the streaming stores functionality
+      oneof
+        varid       = CBS_CONFIG.CbsCmnCpuStreamingStoresCtrl,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_STREAMING_STORES_CONTROL),
+        help        = STRING_TOKEN (HYGON_CBS_STR_STREAMING_STORES_CONTROL_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_DISABLED),        value = 0,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_ENABLED),         value = 1,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 3,    flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+      endoneof;
+    endif;
+
+    suppressif SHOW_ALL_CBS==0;
+      // Core Watchdog Control
+      // Enable or disable core watchdog
+      oneof
+        varid       = CBS_CONFIG.CbsCmnCoreWatchdogCtrl,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_CPU_WATCHDOG_CONTROL),
+        help        = STRING_TOKEN (HYGON_CBS_STR_CPU_WATCHDOG_CONTROL_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_DISABLED),        value = 0,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_ENABLED),         value = 1,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 3,    flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+      endoneof;
+    endif;
+
+    suppressif SHOW_ALL_CBS == 0;
+    oneof varid = CBS_CONFIG.CbsTpcmControl,
+          prompt  = STRING_TOKEN(HYGON_SECURE_TPCM_CONTROL),
+          help    = STRING_TOKEN(HYGON_SECURE_TPCM_CONTROL_HELP),
+          option text = STRING_TOKEN(HYGON_CBS_STR_DISABLED), value = 0, flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+          option text = STRING_TOKEN(HYGON_CBS_STR_ENABLED), value = 1, flags = RESET_REQUIRED;
+      endoneof;
+    endif;
+
+    suppressif SHOW_ALL_CBS == 0;
+    oneof varid = CBS_CONFIG.CbsPsfControl,
+          prompt  = STRING_TOKEN(HYGON_SECURE_PSF_CONTROL),
+          help    = STRING_TOKEN(HYGON_SECURE_PSF_CONTROL_HELP),
+          option text = STRING_TOKEN(HYGON_CBS_STR_DISABLED), value = 0, flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+          option text = STRING_TOKEN(HYGON_CBS_STR_ENABLED), value = 1, flags = RESET_REQUIRED;
+      endoneof;
+    endif;
+
+    suppressif SHOW_ALL_CBS==0;
+      // CSV-ES ASID Space Limit
+      // CSV VMs using ASIDs below the CSV-ES ASID Space Limit must enable the CSV-ES feature. The valid values for this field are from 0x1 (1) - 0x1F5 (501).
+      // Value 0x1 (1) - 0x1F4 (500) determines how many ASIDs are reserved for CSV VMs, When the value is set to 0x1F5 (501), no ASID reserved for CSV VMs.
+      numeric
+        varid       = CBS_CONFIG.CbsCmnCpuCsvAsidSpaceLimit,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_CSV_ES_ASID_SPACE_LIMIT),
+        help        = STRING_TOKEN (HYGON_CBS_STR_CSV_ES_ASID_SPACE_LIMIT_HELP),
+        flags       = DISPLAY_UINT_HEX | RESET_REQUIRED,
+        minimum     = 1,
+        maximum     = 16,
+        step        = 1,
+        default     = 1,
+      endnumeric;
+    endif;
+
+    suppressif TRUE;
+      // Display CPU Model Option
+      // No help string
+      numeric
+        varid       = CBS_CONFIG.CbsCpuModel,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_CPU_MODEL_CBS),
+        help        = STRING_TOKEN (HYGON_CBS_STR_CPU_MODEL_CBS_HELP),
+        flags       = RESET_REQUIRED,
+        minimum     = 0,
+        maximum     = 16,
+        step        = 1,
+        default     = 4,
+      endnumeric;
+
+      numeric
+        varid       = CBS_CONFIG.CbsCpuPkgType,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_CPU_PGKTYPE_CBS),
+        help        = STRING_TOKEN (HYGON_CBS_STR_CPU_PGKTYPE_CBS_HELP),
+        flags       = RESET_REQUIRED,
+        minimum     = 0,
+        maximum     = 16,
+        step        = 1,
+        default     = 1,
+      endnumeric;
+    endif;
+
+    suppressif SHOW_ALL_CBS==0;
+    goto SETUP_CUSTOM_CORE_PSTATES_LABEL,
+      prompt      = STRING_TOKEN (HYGON_CBS_STR_CUSTOM_CORE_PSTATES_SECTION),
+      help        = STRING_TOKEN (HYGON_CBS_STR_CUSTOM_CORE_PSTATES_SECTION);
+    endif;
+    
+    goto SETUP_CORE_THREAD_ENABLEMENT_LABEL,
+      prompt      = STRING_TOKEN (HYGON_CBS_STR_CORE_THREAD_ENABLEMENT_SECTION),
+      help        = STRING_TOKEN (HYGON_CBS_STR_CORE_THREAD_ENABLEMENT_SECTION);
+
+    goto SETUP_PREFETCHER_SETTINGS_LABEL,
+      prompt      = STRING_TOKEN (HYGON_CBS_STR_PREFETCHER_SETTINGS_SECTION),
+      help        = STRING_TOKEN (HYGON_CBS_STR_PREFETCHER_SETTINGS_SECTION);
+
+  endform;
+
+  //
+  // form - Custom Core Pstates
+  //
+  form
+
+    formid        = SETUP_CUSTOM_CORE_PSTATES_LABEL,
+
+    title         = STRING_TOKEN (HYGON_CBS_STR_CUSTOM_CORE_PSTATES_SECTION);
+
+    subtitle text = STRING_TOKEN (HYGON_CBS_STR_CUSTOM_CORE_PSTATES_SECTION);
+    subtitle text = STRING_TOKEN (HYGON_CBS_STR_BLANK);
+
+    suppressif SHOW_ALL_CBS==0;
+      // Custom Core Pstates Legal Disclaimer
+      // Legal Disclaimer
+      text
+        help        = STRING_TOKEN (HYGON_CBS_STR_CUSTOM_CORE_PSTATES_LEGAL_DISCLAIMER_HELP),
+        text        = STRING_TOKEN (HYGON_CBS_STR_CUSTOM_CORE_PSTATES_LEGAL_DISCLAIMER);
+    endif;
+
+    suppressif SHOW_ALL_CBS==0;
+      // Custom Core Pstates Legal Disclaimer 1
+      // Legal Disclaimer
+      text
+        help        = STRING_TOKEN (HYGON_CBS_STR_CUSTOM_CORE_PSTATES_LEGAL_DISCLAIMER_1_HELP),
+        text        = STRING_TOKEN (HYGON_CBS_STR_CUSTOM_CORE_PSTATES_LEGAL_DISCLAIMER_1);
+    endif;
+
+    suppressif SHOW_ALL_CBS==0;
+      goto SETUP_DECLINE_LABEL,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_DECLINE_SECTION),
+        help        = STRING_TOKEN (HYGON_CBS_STR_DECLINE_SECTION);
+    endif;
+
+    suppressif SHOW_ALL_CBS==0;
+      goto SETUP_ACCEPT_LABEL,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_ACCEPT_SECTION),
+        help        = STRING_TOKEN (HYGON_CBS_STR_ACCEPT_SECTION);
+    endif;
+
+  endform;
+        
+  //
+  // form - Decline
+  //
+  form
+
+    formid        = SETUP_DECLINE_LABEL,
+
+    title         = STRING_TOKEN (HYGON_CBS_STR_DECLINE_SECTION);
+
+    subtitle text = STRING_TOKEN (HYGON_CBS_STR_DECLINE_SECTION);
+    subtitle text = STRING_TOKEN (HYGON_CBS_STR_BLANK);
+
+  endform;
+
+  //
+  // form - Accept
+  //
+  form
+
+    formid        = SETUP_ACCEPT_LABEL,
+
+    title         = STRING_TOKEN (HYGON_CBS_STR_ACCEPT_SECTION);
+
+    subtitle text = STRING_TOKEN (HYGON_CBS_STR_ACCEPT_SECTION);
+    subtitle text = STRING_TOKEN (HYGON_CBS_STR_BLANK);
+
+    // Active Condition: CbsCmnCpuOcMode=Normal Operation
+    grayoutif NOT ideqval CBS_CONFIG.CbsCmnCpuOcMode == 0;
+      suppressif SHOW_ALL_CBS==0;
+        // Custom Pstate0
+        // Disable - disable this Pstate\nCustom - customize this Pstate, applicable only if PcdOcDisable=FALSE\n\nWARNING - DAMAGE CAUSED BY USE OF YOUR HYGON PROCESSOR OUTSIDE OF SPECIFICATION OR IN EXCESS OF FACTORY SETTINGS ARE NOT COVERED UNDER YOUR HYGON PRODUCT WARRANTY AND MAY NOT BE COVERED BY YOUR SYSTEM MANUFACTURER'S WARRANTY.\nOperating your HYGON processor outside of specification or in excess of factory settings, including but not limited to overclocking, may damage or shorten the life of your processor or other system components, create system instabilities (e.g., data loss and corrupted images) and in extreme cases may result in total system failure. HYGON does not provide support or service for issues or damages related to use of an HYGON processor outside of processor specifications or in excess of factory settings.\n
+        oneof
+          varid       = CBS_CONFIG.CbsCpuPstCustomP0,
+          questionid  = KEY_CUSTOM_PSTATE0,
+          prompt      = STRING_TOKEN (HYGON_CBS_STR_CUSTOM_PSTATE0),
+          help        = STRING_TOKEN (HYGON_CBS_STR_CUSTOM_PSTATE0_HELP),
+          option text = STRING_TOKEN (HYGON_CBS_STR_CUSTOM),          value = 1,    flags = 0 | RESET_REQUIRED | INTERACTIVE;
+          option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 2,    flags = DEFAULT | RESET_REQUIRED | MANUFACTURING | INTERACTIVE;
+        endoneof;
+      endif;
+    endif;
+
+    // Display Condition: CbsCpuPstCustomP0=Custom
+    // Active Condition: CbsCpuPstCustomP0=Auto
+    suppressif NOT ideqval CBS_CONFIG.CbsCpuPstCustomP0 == 1 OR SHOW_ALL_CBS==0;
+      grayoutif NOT ideqval CBS_CONFIG.CbsCpuPstCustomP0 == 2;
+        //   Frequency (MHz)
+        // Current core frequency in MHz
+        numeric
+          varid       = CBS_CONFIG.CbsCpuCofP0,
+          prompt      = STRING_TOKEN (HYGON_CBS_STR_FREQUENCY_MHZ),
+          help        = STRING_TOKEN (HYGON_CBS_STR_FREQUENCY_MHZ_HELP),
+          flags       = RESET_REQUIRED,
+          minimum     = 0,
+          maximum     = 0xffffffff,
+          step        = 0,
+          default     = 0,
+        endnumeric;
+      endif;
+    endif;
+
+    // Display Condition: CbsCpuPstCustomP0=Custom
+    // Active Condition: CbsCpuPstCustomP0=Auto
+    suppressif NOT ideqval CBS_CONFIG.CbsCpuPstCustomP0 == 1 OR SHOW_ALL_CBS==0;
+      grayoutif NOT ideqval CBS_CONFIG.CbsCpuPstCustomP0 == 2;
+        //   Voltage (uV)
+        // Voltage in uV (1V = 1000 * 1000 uV)
+        numeric
+          varid       = CBS_CONFIG.CbsCpuVoltageP0,
+          prompt      = STRING_TOKEN (HYGON_CBS_STR_VOLTAGE_UV),
+          help        = STRING_TOKEN (HYGON_CBS_STR_VOLTAGE_UV_HELP),
+          flags       = RESET_REQUIRED,
+          minimum     = 0,
+          maximum     = 0xffffffff,
+          step        = 0,
+          default     = 0,
+        endnumeric;
+      endif;
+    endif;
+
+    // Display Condition: CbsCpuPstCustomP0=Custom
+    // Active Condition: CbsCmnCpuOcMode=Normal Operation
+    suppressif NOT ideqval CBS_CONFIG.CbsCpuPstCustomP0 == 1 OR SHOW_ALL_CBS==0;
+      grayoutif NOT ideqval CBS_CONFIG.CbsCmnCpuOcMode == 0;
+        //   Pstate0 FID
+        // Specifies the core frequency multiplier. COF = 200MHz * FID / DID
+        numeric
+          varid       = CBS_CONFIG.CbsCpuPst0Fid,
+          questionid  = KEY_PSTATE0_FID,
+          prompt      = STRING_TOKEN (HYGON_CBS_STR_PSTATE0_FID),
+          help        = STRING_TOKEN (HYGON_CBS_STR_PSTATE0_FID_HELP),
+          flags       = DISPLAY_UINT_HEX | RESET_REQUIRED | INTERACTIVE,
+          minimum     = 0x10,
+          maximum     = 0xff,
+          step        = 0,
+          default     = 16,
+        endnumeric;
+      endif;
+    endif;
+
+    // Display Condition: CbsCpuPstCustomP0=Custom
+    // Active Condition: CbsCmnCpuOcMode=Normal Operation
+    suppressif NOT ideqval CBS_CONFIG.CbsCpuPstCustomP0 == 1 OR SHOW_ALL_CBS==0;
+      grayoutif NOT ideqval CBS_CONFIG.CbsCmnCpuOcMode == 0;
+        //   Pstate0 DID
+        // Specifies the core frequency divisor (DID[0] should zero if DID[5:0]>1Ah).
+        numeric
+          varid       = CBS_CONFIG.CbsCpuPst0Did,
+          questionid  = KEY_PSTATE0_DID,
+          prompt      = STRING_TOKEN (HYGON_CBS_STR_PSTATE0_DID),
+          help        = STRING_TOKEN (HYGON_CBS_STR_PSTATE0_DID_HELP),
+          flags       = DISPLAY_UINT_HEX | RESET_REQUIRED | INTERACTIVE,
+          minimum     = 0x8,
+          maximum     = 0x30,
+          step        = 0,
+          default     = 8,
+        endnumeric;
+      endif;
+    endif;
+
+    // Display Condition: CbsCpuPstCustomP0=Custom
+    // Active Condition: CbsCmnCpuOcMode=Normal Operation
+    suppressif NOT ideqval CBS_CONFIG.CbsCpuPstCustomP0 == 1 OR SHOW_ALL_CBS==0;
+      grayoutif NOT ideqval CBS_CONFIG.CbsCmnCpuOcMode == 0;
+        //   Pstate0 VID
+        // Specifies the core voltage.
+        numeric
+          varid       = CBS_CONFIG.CbsCpuPst0Vid,
+          questionid  = KEY_PSTATE0_VID,
+          prompt      = STRING_TOKEN (HYGON_CBS_STR_PSTATE0_VID),
+          help        = STRING_TOKEN (HYGON_CBS_STR_PSTATE0_VID_HELP),
+          flags       = DISPLAY_UINT_HEX | RESET_REQUIRED | INTERACTIVE,
+          minimum     = 0,
+          maximum     = 0xff,
+          step        = 0,
+          default     = 255,
+        endnumeric;
+      endif;
+    endif;
+
+    suppressif SHOW_ALL_CBS==0;
+      // Custom Pstate1
+      // Disabled - disable this Pstate\nCustom - customize this Pstate, 
+      //applicable only if PcdOcDisable=FALSE\n\nWARNING 
+      //- DAMAGE CAUSED BY USE OF YOUR HYGON PROCESSOR OUTSIDE OF SPECIFICATION 
+      //OR IN EXCESS OF FACTORY SETTINGS ARE NOT COVERED UNDER YOUR HYGON PRODUCT WARRANTY 
+      //AND MAY NOT BE COVERED BY YOUR SYSTEM MANUFACTURER'S WARRANTY.\n
+      //Operating your HYGON processor outside of specification or in excess of factory settings, 
+      //including but not limited to overclocking, may damage or shorten the life of your processor 
+      //or other system components, create system instabilities (e.g., data loss and corrupted images) 
+      //and in extreme cases may result in total system failure. HYGON does not provide support 
+      //or service for issues or damages related to use of an HYGON processor outside of processor 
+      //specifications or in excess of factory settings.\n
+      oneof
+        varid       = CBS_CONFIG.CbsCpuPstCustomP1,
+        questionid  = KEY_CUSTOM_PSTATE1,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_CUSTOM_PSTATE1),
+        help        = STRING_TOKEN (HYGON_CBS_STR_CUSTOM_PSTATE1_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_DISABLED),        value = 0,    flags = 0 | RESET_REQUIRED | INTERACTIVE;
+        option text = STRING_TOKEN (HYGON_CBS_STR_CUSTOM),          value = 1,    flags = 0 | RESET_REQUIRED | INTERACTIVE;
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 2,    flags = DEFAULT | RESET_REQUIRED | MANUFACTURING | INTERACTIVE;
+      endoneof;
+    endif;
+
+    // Display Condition: CbsCpuPstCustomP1=Custom
+    // Active Condition: CbsCpuPstCustomP1=Auto
+    suppressif NOT ideqval CBS_CONFIG.CbsCpuPstCustomP1 == 1 OR SHOW_ALL_CBS==0;
+      grayoutif NOT ideqval CBS_CONFIG.CbsCpuPstCustomP1 == 2;
+        //   Frequency (MHz)
+        // No help string
+        numeric
+          varid       = CBS_CONFIG.CbsCpuCofP1,
+          prompt      = STRING_TOKEN (HYGON_CBS_STR_FREQUENCY_MHZ),
+          help        = STRING_TOKEN (HYGON_CBS_STR_FREQUENCY_MHZ_HELP),
+          flags       = RESET_REQUIRED,
+          minimum     = 0,
+          maximum     = 0xffffffff,
+          step        = 0,
+          default     = 0,
+        endnumeric;
+      endif;
+    endif;
+
+    // Display Condition: CbsCpuPstCustomP1=Custom
+    // Active Condition: CbsCpuPstCustomP1=Auto
+    suppressif NOT ideqval CBS_CONFIG.CbsCpuPstCustomP1 == 1 OR SHOW_ALL_CBS==0;
+      grayoutif NOT ideqval CBS_CONFIG.CbsCpuPstCustomP1 == 2;
+        //   Voltage (uV)
+        // No help string
+        numeric
+          varid       = CBS_CONFIG.CbsCpuVoltageP1,
+          prompt      = STRING_TOKEN (HYGON_CBS_STR_VOLTAGE_UV),
+          help        = STRING_TOKEN (HYGON_CBS_STR_VOLTAGE_UV_HELP),
+          flags       = RESET_REQUIRED,
+          minimum     = 0,
+          maximum     = 0xffffffff,
+          step        = 0,
+          default     = 0,
+        endnumeric;
+      endif;
+    endif;
+
+    // Display Condition: CbsCpuPstCustomP1=Custom
+    suppressif NOT ideqval CBS_CONFIG.CbsCpuPstCustomP1 == 1 OR SHOW_ALL_CBS==0;
+      //   Pstate1 FID
+      // Specifies the core frequency multiplier. COF = 200MHz * FID / DID
+      numeric
+        varid       = CBS_CONFIG.CbsCpuPst1Fid,
+        questionid  = KEY_PSTATE1_FID,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_PSTATE1_FID),
+        help        = STRING_TOKEN (HYGON_CBS_STR_PSTATE1_FID_HELP),
+        flags       = DISPLAY_UINT_HEX | RESET_REQUIRED | INTERACTIVE,
+        minimum     = 0x10,
+        maximum     = 0xff,
+        step        = 0,
+        default     = 16,
+      endnumeric;
+    endif;
+
+    // Display Condition: CbsCpuPstCustomP1=Custom
+    suppressif NOT ideqval CBS_CONFIG.CbsCpuPstCustomP1 == 1 OR SHOW_ALL_CBS==0;
+      //   Pstate1 DID
+      // Specifies the core frequency divisor (DID[0] should zero if DID[5:0]>1Ah).
+      numeric
+        varid       = CBS_CONFIG.CbsCpuPst1Did,
+        questionid  = KEY_PSTATE1_DID,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_PSTATE1_DID),
+        help        = STRING_TOKEN (HYGON_CBS_STR_PSTATE1_DID_HELP),
+        flags       = DISPLAY_UINT_HEX | RESET_REQUIRED | INTERACTIVE,
+        minimum     = 0x8,
+        maximum     = 0x30,
+        step        = 0,
+        default     = 8,
+      endnumeric;
+    endif;
+
+    // Display Condition: CbsCpuPstCustomP1=Custom
+    suppressif NOT ideqval CBS_CONFIG.CbsCpuPstCustomP1 == 1 OR SHOW_ALL_CBS==0;
+      //   Pstate1 VID
+      // Specifies the core voltage.
+      numeric
+        varid       = CBS_CONFIG.CbsCpuPst1Vid,
+        questionid  = KEY_PSTATE1_VID,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_PSTATE1_VID),
+        help        = STRING_TOKEN (HYGON_CBS_STR_PSTATE1_VID_HELP),
+        flags       = DISPLAY_UINT_HEX | RESET_REQUIRED | INTERACTIVE,
+        minimum     = 0,
+        maximum     = 0xff,
+        step        = 0,
+        default     = 255,
+      endnumeric;
+    endif;
+
+    // Active Condition: CbsCpuPstCustomP1=Custom|CbsCpuPstCustomP1=Auto
+    grayoutif NOT ideqval CBS_CONFIG.CbsCpuPstCustomP1 == 1
+          AND NOT ideqval CBS_CONFIG.CbsCpuPstCustomP1 == 2;
+      suppressif SHOW_ALL_CBS==0;
+        // Custom Pstate2
+        // Disabled - disable this Pstate\nCustom - customize this Pstate, applicable only if PcdOcDisable=FALSE\n\nWARNING - DAMAGE CAUSED BY USE OF YOUR HYGON PROCESSOR OUTSIDE OF SPECIFICATION OR IN EXCESS OF FACTORY SETTINGS ARE NOT COVERED UNDER YOUR HYGON PRODUCT WARRANTY AND MAY NOT BE COVERED BY YOUR SYSTEM MANUFACTURER'S WARRANTY.\nOperating your HYGON processor outside of specification or in excess of factory settings, including but not limited to overclocking, may damage or shorten the life of your processor or other system components, create system instabilities (e.g., data loss and corrupted images) and in extreme cases may result in total system failure. HYGON does not provide support or service for issues or damages related to use of an HYGON processor outside of processor specifications or in excess of factory settings.\n
+        oneof
+          varid       = CBS_CONFIG.CbsCpuPstCustomP2,
+          questionid  = KEY_CUSTOM_PSTATE2,
+          prompt      = STRING_TOKEN (HYGON_CBS_STR_CUSTOM_PSTATE2),
+          help        = STRING_TOKEN (HYGON_CBS_STR_CUSTOM_PSTATE2_HELP),
+          option text = STRING_TOKEN (HYGON_CBS_STR_DISABLED),        value = 0,    flags = 0 | RESET_REQUIRED | INTERACTIVE;
+          option text = STRING_TOKEN (HYGON_CBS_STR_CUSTOM),          value = 1,    flags = 0 | RESET_REQUIRED | INTERACTIVE;
+          option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 2,    flags = DEFAULT | RESET_REQUIRED | MANUFACTURING | INTERACTIVE;
+        endoneof;
+      endif;
+    endif;
+
+    // Display Condition: CbsCpuPstCustomP2=Custom
+    // Active Condition: CbsCpuPstCustomP2=Auto
+    suppressif NOT ideqval CBS_CONFIG.CbsCpuPstCustomP2 == 1 OR SHOW_ALL_CBS==0;
+      grayoutif NOT ideqval CBS_CONFIG.CbsCpuPstCustomP2 == 2;
+        //   Frequency (MHz)
+        // No help string
+        numeric
+          varid       = CBS_CONFIG.CbsCpuCofP2,
+          prompt      = STRING_TOKEN (HYGON_CBS_STR_FREQUENCY_MHZ),
+          help        = STRING_TOKEN (HYGON_CBS_STR_FREQUENCY_MHZ_HELP),
+          flags       = RESET_REQUIRED,
+          minimum     = 0,
+          maximum     = 0xffffffff,
+          step        = 0,
+          default     = 0,
+        endnumeric;
+      endif;
+    endif;
+
+    // Display Condition: CbsCpuPstCustomP2=Custom
+    // Active Condition: CbsCpuPstCustomP2=Auto
+    suppressif NOT ideqval CBS_CONFIG.CbsCpuPstCustomP2 == 1 OR SHOW_ALL_CBS==0;
+      grayoutif NOT ideqval CBS_CONFIG.CbsCpuPstCustomP2 == 2;
+        //   Voltage (uV)
+        // No help string
+        numeric
+          varid       = CBS_CONFIG.CbsCpuVoltageP2,
+          prompt      = STRING_TOKEN (HYGON_CBS_STR_VOLTAGE_UV),
+          help        = STRING_TOKEN (HYGON_CBS_STR_VOLTAGE_UV_HELP),
+          flags       = RESET_REQUIRED,
+          minimum     = 0,
+          maximum     = 0xffffffff,
+          step        = 0,
+          default     = 0,
+        endnumeric;
+      endif;
+    endif;
+
+    // Display Condition: CbsCpuPstCustomP2=Custom
+    suppressif NOT ideqval CBS_CONFIG.CbsCpuPstCustomP2 == 1 OR SHOW_ALL_CBS==0;
+      //   Pstate2 FID
+      // Specifies the core frequency multiplier. COF = 200MHz * FID / DID
+      numeric
+        varid       = CBS_CONFIG.CbsCpuPst2Fid,
+        questionid  = KEY_PSTATE2_FID,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_PSTATE2_FID),
+        help        = STRING_TOKEN (HYGON_CBS_STR_PSTATE2_FID_HELP),
+        flags       = DISPLAY_UINT_HEX | RESET_REQUIRED | INTERACTIVE,
+        minimum     = 0x10,
+        maximum     = 0xff,
+        step        = 0,
+        default     = 16,
+      endnumeric;
+    endif;
+
+    // Display Condition: CbsCpuPstCustomP2=Custom
+    suppressif NOT ideqval CBS_CONFIG.CbsCpuPstCustomP2 == 1 OR SHOW_ALL_CBS==0;
+      //   Pstate2 DID
+      // Specifies the core frequency divisor (DID[0] should zero if DID[5:0]>1Ah).
+      numeric
+        varid       = CBS_CONFIG.CbsCpuPst2Did,
+        questionid  = KEY_PSTATE2_DID,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_PSTATE2_DID),
+        help        = STRING_TOKEN (HYGON_CBS_STR_PSTATE2_DID_HELP),
+        flags       = DISPLAY_UINT_HEX | RESET_REQUIRED | INTERACTIVE,
+        minimum     = 0x8,
+        maximum     = 0x30,
+        step        = 0,
+        default     = 8,
+      endnumeric;
+    endif;
+
+    // Display Condition: CbsCpuPstCustomP2=Custom
+    suppressif NOT ideqval CBS_CONFIG.CbsCpuPstCustomP2 == 1 OR SHOW_ALL_CBS==0;
+      //   Pstate2 VID
+      // Specifies the core voltage.
+      numeric
+        varid       = CBS_CONFIG.CbsCpuPst2Vid,
+        questionid  = KEY_PSTATE2_VID,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_PSTATE2_VID),
+        help        = STRING_TOKEN (HYGON_CBS_STR_PSTATE2_VID_HELP),
+        flags       = DISPLAY_UINT_HEX | RESET_REQUIRED | INTERACTIVE,
+        minimum     = 0,
+        maximum     = 0xff,
+        step        = 0,
+        default     = 255,
+      endnumeric;
+    endif;
+  endform;
+
+  //
+  // form - Core/Thread Enablement
+  //
+  form
+
+    formid        = SETUP_CORE_THREAD_ENABLEMENT_LABEL,
+
+    title         = STRING_TOKEN (HYGON_CBS_STR_CORE_THREAD_ENABLEMENT_SECTION);
+
+    subtitle text = STRING_TOKEN (HYGON_CBS_STR_CORE_THREAD_ENABLEMENT_SECTION);
+    subtitle text = STRING_TOKEN (HYGON_CBS_STR_BLANK);
+
+    // Core/Thread Enablement Legal Disclaimer
+    // Legal Disclaimer
+    text
+      help        = STRING_TOKEN (HYGON_CBS_STR_CORE_THREAD_ENABLEMENT_LEGAL_DISCLAIMER_HELP),
+      text        = STRING_TOKEN (HYGON_CBS_STR_CORE_THREAD_ENABLEMENT_LEGAL_DISCLAIMER);
+
+    goto SETUP_DISAGREE_LABEL,
+      prompt      = STRING_TOKEN (HYGON_CBS_STR_DISAGREE_SECTION),
+      help        = STRING_TOKEN (HYGON_CBS_STR_DISAGREE_SECTION);
+
+    goto SETUP_AGREE_LABEL,
+      prompt      = STRING_TOKEN (HYGON_CBS_STR_AGREE_SECTION),
+      help        = STRING_TOKEN (HYGON_CBS_STR_AGREE_SECTION);
+
+  endform;
+
+  //
+  // form - Disagree
+  //
+  form
+
+    formid        = SETUP_DISAGREE_LABEL,
+
+    title         = STRING_TOKEN (HYGON_CBS_STR_DISAGREE_SECTION);
+
+    subtitle text = STRING_TOKEN (HYGON_CBS_STR_DISAGREE_SECTION);
+    subtitle text = STRING_TOKEN (HYGON_CBS_STR_BLANK);
+
+  endform;
+
+  //
+  // form - Agree
+  //
+  form
+
+    formid        = SETUP_AGREE_LABEL,
+
+    title         = STRING_TOKEN (HYGON_CBS_STR_AGREE_SECTION);
+
+    subtitle text = STRING_TOKEN (HYGON_CBS_STR_AGREE_SECTION);
+    subtitle text = STRING_TOKEN (HYGON_CBS_STR_BLANK);
+
+    // Active Condition: CbsCmnCpuOcMode=Normal Operation
+    grayoutif NOT ideqval CBS_CONFIG.CbsCmnCpuOcMode == 0;
+      // Downcore control
+      // Sets the number of cores to be used. Once this option has been used to remove any cores, a POWER CYCLE is required in order for future selections to take effect.
+      oneof
+        varid       = CBS_CONFIG.CbsCmnCpuGenDowncoreCtrl,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_DOWNCORE_CONTROL),
+        help        = STRING_TOKEN (HYGON_CBS_STR_DOWNCORE_CONTROL_HELP),
+        
+        suppressif ideqval CBS_CONFIG.CbsCpuModel == HYGON_GX_CPU;
+          option text = STRING_TOKEN (HYGON_CBS_STR_1_1_0_0),         value = 2,    flags = 0 | RESET_REQUIRED;
+          option text = STRING_TOKEN (HYGON_CBS_STR_2_0_0_0),         value = 3,    flags = 0 | RESET_REQUIRED;
+          option text = STRING_TOKEN (HYGON_CBS_STR_3_0_0_0),         value = 4,    flags = 0 | RESET_REQUIRED;
+          option text = STRING_TOKEN (HYGON_CBS_STR_2_2_0_0),         value = 5,    flags = 0 | RESET_REQUIRED;
+          option text = STRING_TOKEN (HYGON_CBS_STR_4_0_0_0),         value = 6,    flags = 0 | RESET_REQUIRED;
+          option text = STRING_TOKEN (HYGON_CBS_STR_3_3_0_0),         value = 7,    flags = 0 | RESET_REQUIRED;
+          option text = STRING_TOKEN (HYGON_CBS_STR_1_1_1_0),         value = 8,    flags = 0 | RESET_REQUIRED;
+          option text = STRING_TOKEN (HYGON_CBS_STR_2_2_2_0),         value = 10,   flags = 0 | RESET_REQUIRED;
+          option text = STRING_TOKEN (HYGON_CBS_STR_3_3_3_0),         value = 12,   flags = 0 | RESET_REQUIRED;
+          option text = STRING_TOKEN (HYGON_CBS_STR_4_4_0_0),         value = 14,   flags = 0 | RESET_REQUIRED;
+          option text = STRING_TOKEN (HYGON_CBS_STR_4_4_4_0),         value = 15,   flags = 0 | RESET_REQUIRED;
+          option text = STRING_TOKEN (HYGON_CBS_STR_1_1_1_1),         value = 9,    flags = 0 | RESET_REQUIRED;
+          option text = STRING_TOKEN (HYGON_CBS_STR_2_2_2_2),         value = 11,   flags = 0 | RESET_REQUIRED;
+          option text = STRING_TOKEN (HYGON_CBS_STR_3_3_3_3),         value = 13,   flags = 0 | RESET_REQUIRED;
+        endif;
+	suppressif ideqval CBS_CONFIG.CbsCpuModel == HYGON_EX_CPU;
+          option text = STRING_TOKEN (HYGON_CBS_STR_2_0),         value = 2,    flags = 0 | RESET_REQUIRED;
+          option text = STRING_TOKEN (HYGON_CBS_STR_3_0),         value = 3,    flags = 0 | RESET_REQUIRED;
+          option text = STRING_TOKEN (HYGON_CBS_STR_4_0),         value = 4,    flags = 0 | RESET_REQUIRED;
+          option text = STRING_TOKEN (HYGON_CBS_STR_5_0),         value = 5,    flags = 0 | RESET_REQUIRED;
+          option text = STRING_TOKEN (HYGON_CBS_STR_6_0),         value = 6,    flags = 0 | RESET_REQUIRED;
+          option text = STRING_TOKEN (HYGON_CBS_STR_7_0),         value = 7,    flags = 0 | RESET_REQUIRED;            
+          option text = STRING_TOKEN (HYGON_CBS_STR_8_0),         value = 8,    flags = 0 | RESET_REQUIRED;
+          option text = STRING_TOKEN (HYGON_CBS_STR_1_1),         value = 9,    flags = 0 | RESET_REQUIRED;
+          option text = STRING_TOKEN (HYGON_CBS_STR_2_2),         value = 10,   flags = 0 | RESET_REQUIRED;
+          option text = STRING_TOKEN (HYGON_CBS_STR_3_3),         value = 11,   flags = 0 | RESET_REQUIRED;
+          option text = STRING_TOKEN (HYGON_CBS_STR_4_4),         value = 12,   flags = 0 | RESET_REQUIRED;
+          option text = STRING_TOKEN (HYGON_CBS_STR_5_5),         value = 13,   flags = 0 | RESET_REQUIRED;
+          option text = STRING_TOKEN (HYGON_CBS_STR_6_6),         value = 14,   flags = 0 | RESET_REQUIRED;
+          option text = STRING_TOKEN (HYGON_CBS_STR_7_7),         value = 15,   flags = 0 | RESET_REQUIRED;
+        endif;
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 0,    flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      endoneof;
+    endif;
+
+  endform;
+
+  //
+  // form - Prefetcher settings
+  //
+  form
+
+    formid        = SETUP_PREFETCHER_SETTINGS_LABEL,
+
+    title         = STRING_TOKEN (HYGON_CBS_STR_PREFETCHER_SETTINGS_SECTION);
+
+    subtitle text = STRING_TOKEN (HYGON_CBS_STR_PREFETCHER_SETTINGS_SECTION);
+    subtitle text = STRING_TOKEN (HYGON_CBS_STR_BLANK);
+
+    // L1 Stream HW Prefetcher
+    // Option to Enable | Disable L1 Stream HW Prefetcher
+    oneof
+      varid       = CBS_CONFIG.CbsCmnCpuL1StreamHwPrefetcher,
+      prompt      = STRING_TOKEN (HYGON_CBS_STR_L1_STREAM_HW_PREFETCHER),
+      help        = STRING_TOKEN (HYGON_CBS_STR_L1_STREAM_HW_PREFETCHER_HELP),
+      option text = STRING_TOKEN (HYGON_CBS_STR_DISABLE),         value = 0,    flags = 0 | RESET_REQUIRED;
+      option text = STRING_TOKEN (HYGON_CBS_STR_ENABLE),          value = 1,    flags = 0 | RESET_REQUIRED;
+      option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 3,    flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+    endoneof;
+
+    // L2 Stream HW Prefetcher
+    // Option to Enable | Disable L2 Stream HW Prefetcher
+    oneof
+      varid       = CBS_CONFIG.CbsCmnCpuL2StreamHwPrefetcher,
+      prompt      = STRING_TOKEN (HYGON_CBS_STR_L2_STREAM_HW_PREFETCHER),
+      help        = STRING_TOKEN (HYGON_CBS_STR_L2_STREAM_HW_PREFETCHER_HELP),
+      option text = STRING_TOKEN (HYGON_CBS_STR_DISABLE),         value = 0,    flags = 0 | RESET_REQUIRED;
+      option text = STRING_TOKEN (HYGON_CBS_STR_ENABLE),          value = 1,    flags = 0 | RESET_REQUIRED;
+      option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 3,    flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+    endoneof;
+
+  endform;
+
+  //
+  // form - DF Common Options
+  //
+  form
+
+    formid        = SETUP_DF_COMMON_OPTIONS_LABEL,
+
+    title         = STRING_TOKEN (HYGON_CBS_STR_DF_COMMON_OPTIONS_SECTION);
+
+    subtitle text = STRING_TOKEN (HYGON_CBS_STR_DF_COMMON_OPTIONS_SECTION);
+    subtitle text = STRING_TOKEN (HYGON_CBS_STR_BLANK);
+
+    suppressif SHOW_ALL_CBS==0;
+      // HMI encryption control
+      // Control HMI link encryption
+      oneof
+        varid       = CBS_CONFIG.CbsDfCmnHmiEncryption,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_HMI_ENCRYPTION_CONTROL),
+        help        = STRING_TOKEN (HYGON_CBS_STR_HMI_ENCRYPTION_CONTROL_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_DISABLED),        value = 0,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_ENABLED),         value = 1,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 3,    flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+      endoneof;
+    endif;
+
+    suppressif SHOW_ALL_CBS==0;
+      // xHMI encryption control
+      // Control xHMI link encryption
+      oneof
+        varid       = CBS_CONFIG.CbsDfCmnXHmiEncryption,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_XHMI_ENCRYPTION_CONTROL),
+        help        = STRING_TOKEN (HYGON_CBS_STR_XHMI_ENCRYPTION_CONTROL_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_DISABLED),        value = 0,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_ENABLED),         value = 1,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 3,    flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+      endoneof;
+    endif;
+
+    // Memory interleaving
+    // Controls fabric level memory interleaving (AUTO, none, channel, die, socket). Note that channel, die, and socket has requirements on memory populations and it will be ignored if the memory doesn't support the selected option.
+    oneof
+      varid       = CBS_CONFIG.CbsDfCmnMemIntlv,
+      prompt      = STRING_TOKEN (HYGON_CBS_STR_MEMORY_INTERLEAVING),
+      help        = STRING_TOKEN (HYGON_CBS_STR_MEMORY_INTERLEAVING_HELP),
+      #if FixedPcdGet8 (PcdHygonNumberOfPhysicalSocket) == 4
+        suppressif TRUE;
+          option text = STRING_TOKEN (HYGON_CBS_STR_NONE),            value = 0,    flags = 0 | RESET_REQUIRED;
+        endif;
+      #else
+        option text = STRING_TOKEN (HYGON_CBS_STR_NONE),            value = 0,    flags = 0 | RESET_REQUIRED;
+      #endif
+      option text = STRING_TOKEN (HYGON_CBS_STR_CHANNEL),         value = 1,    flags = 0 | RESET_REQUIRED;
+      option text = STRING_TOKEN (HYGON_CBS_STR_DIE),             value = 2,    flags = 0 | RESET_REQUIRED;
+      option text = STRING_TOKEN (HYGON_CBS_STR_SOCKET),          value = 3,    flags = 0 | RESET_REQUIRED;
+      option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 7,    flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+    endoneof;
+
+    // Memory interleaving size
+    // Controls the memory interleaving size. The valid values are AUTO, 256 bytes, 512 bytes, 1 Kbytes or 2Kbytes. This determines the starting address of the interleave (bit 8, 9, 10 or 11).
+    oneof
+      varid       = CBS_CONFIG.CbsDfCmnMemIntlvSize,
+      prompt      = STRING_TOKEN (HYGON_CBS_STR_MEMORY_INTERLEAVING_SIZE),
+      help        = STRING_TOKEN (HYGON_CBS_STR_MEMORY_INTERLEAVING_SIZE_HELP),
+      option text = STRING_TOKEN (HYGON_CBS_STR_256_BYTES),       value = 0,    flags = 0 | RESET_REQUIRED;
+      option text = STRING_TOKEN (HYGON_CBS_STR_512_BYTES),       value = 1,    flags = 0 | RESET_REQUIRED;
+      suppressif NOT ideqval CBS_CONFIG.CbsDfCmnChnlIntlvHash == 0;
+        option text = STRING_TOKEN (HYGON_CBS_STR_1_KB),            value = 2,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_2_KB),            value = 3,    flags = 0 | RESET_REQUIRED;
+      endif;
+      option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 7,    flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+    endoneof;
+   
+    suppressif SHOW_ALL_CBS==0;
+      // Channel interleaving hash
+      // Controls whether or not the address bits are hashed during channel interleave mode. This field should not be used unless the interleaving is set to channel and the interleaving size is 256 or 512 bytes.
+      oneof
+        varid       = CBS_CONFIG.CbsDfCmnChnlIntlvHash,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_CHANNEL_INTERLEAVING_HASH),
+        help        = STRING_TOKEN (HYGON_CBS_STR_CHANNEL_INTERLEAVING_HASH_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_DISABLED),        value = 0,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_ENABLED),         value = 1,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 3,    flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+      endoneof;
+    endif;
+
+    suppressif ideqval CBS_CONFIG.CbsCpuModel == HYGON_GX_CPU;
+      // Subchannel interleaving bit
+      // 0: Bit7; 1: Bit8
+      oneof
+        varid       = CBS_CONFIG.CbsDfCmnSubchannelIntlvBit,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_SUBCHANNEL_INTERLEAVING_BIT),
+        help        = STRING_TOKEN (HYGON_CBS_STR_SUBCHANNEL_INTERLEAVING_BIT_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_BIT_7),            value = 0,    flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+        option text = STRING_TOKEN (HYGON_CBS_STR_BIT_8),            value = 1,    flags = 0 | RESET_REQUIRED;
+      endoneof;
+      
+      // MCA Bank Control
+        oneof
+	varid       = CBS_CONFIG.CbsDfCmnMcaBankCtrl,
+	prompt      = STRING_TOKEN (HYGON_CBS_STR_DF_MCA_BANK_CONTROL),
+	help        = STRING_TOKEN (HYGON_CBS_STR_DF_MCA_BANK_CONTROL_HELP),
+	option text = STRING_TOKEN (HYGON_CBS_STR_NORMAL_MODE),        value = 0, flags = 0 | RESET_REQUIRED;
+	option text = STRING_TOKEN (HYGON_CBS_STR_LEGACY_MODE),        value = 1, flags = 0 | RESET_REQUIRED;
+	option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),               value = 3, flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+	endoneof;
+    endif;
+
+    // Numa node per socket
+    oneof
+        varid       = CBS_CONFIG.CbsDfNumaNodePerSocket,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_NUMA_NODE_PER_SOCKET),
+        help        = STRING_TOKEN (HYGON_CBS_STR_NUMA_NODE_PER_SOCKET_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_1_NUMA_NODE),     value = 1,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_2_NUMA_NODE),     value = 2,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_4_NUMA_NODE),     value = 4,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_8_NUMA_NODE),     value = 8,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 0xFF, flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+    endoneof;
+    
+    // DF C-state Control
+    oneof
+      varid       = CBS_CONFIG.CbsDfCmnCstateCtrl,
+      prompt      = STRING_TOKEN (HYGON_CBS_STR_DF_C_STATE_CONTROL),
+      help        = STRING_TOKEN (HYGON_CBS_STR_DF_C_STATE_CONTROL_HELP),
+      option text = STRING_TOKEN (HYGON_CBS_STR_DISABLED),        value = 0,    flags = 0 | RESET_REQUIRED;
+      option text = STRING_TOKEN (HYGON_CBS_STR_ENABLED),         value = 1,    flags = 0 | RESET_REQUIRED;
+      option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 0xFF, flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+    endoneof;
+    
+  suppressif SHOW_ALL_CBS==0;
+    // xHMI Link Width Control
+    oneof
+      varid       = CBS_CONFIG.CbsXhmiLinkWidth,
+      prompt      = STRING_TOKEN (HYGON_CBS_STR_XHMI_LINK_WIDTH),
+      help        = STRING_TOKEN (HYGON_CBS_STR_XHMI_LINK_WIDTH_HELP),
+      option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),                    value = 0,    flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+      option text = STRING_TOKEN (HYGON_CBS_STR_XHMI_LINK_WIDTH_X16),     value = 1,    flags = 0 | RESET_REQUIRED;
+      option text = STRING_TOKEN (HYGON_CBS_STR_XHMI_LINK_WIDTH_X8),      value = 2,    flags = 0 | RESET_REQUIRED;
+    endoneof;
+  endif;
+
+  suppressif SHOW_ALL_CBS==0;
+    // GNB xHMI PHY Rate
+    oneof
+      varid       = CBS_CONFIG.CbsGnbxHmiPHYRateCFG,
+      prompt      = STRING_TOKEN (HYGON_CBS_STR_GNB_XHMI_PHY_RATE_CFG),
+      help        = STRING_TOKEN (HYGON_CBS_STR_GNB_XHMI_PHY_RATE_CFG_HELP),
+      option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),                        value = 0xff, flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+      option text = STRING_TOKEN (HYGON_CBS_STR_12_8),                        value = 0,    flags = 0 | RESET_REQUIRED;
+      option text = STRING_TOKEN (HYGON_CBS_STR_14_4),                        value = 1,    flags = 0 | RESET_REQUIRED;
+      option text = STRING_TOKEN (HYGON_CBS_STR_16_0),                        value = 2,    flags = 0 | RESET_REQUIRED;
+      option text = STRING_TOKEN (HYGON_CBS_STR_17_6),                        value = 3,    flags = 0 | RESET_REQUIRED;
+      option text = STRING_TOKEN (HYGON_CBS_STR_19_2),                        value = 4,    flags = 0 | RESET_REQUIRED;
+      option text = STRING_TOKEN (HYGON_CBS_STR_25_6),                        value = 5,    flags = 0 | RESET_REQUIRED;
+      option text = STRING_TOKEN (HYGON_CBS_STR_28_8),                        value = 6,    flags = 0 | RESET_REQUIRED;
+      suppressif ideqval CBS_CONFIG.CbsCpuModel == HYGON_EX_CPU;
+      option text = STRING_TOKEN (HYGON_CBS_STR_32_0),                        value = 7,    flags = 0 | RESET_REQUIRED;
+      endif;
+    endoneof;
+  endif;
+  
+  suppressif SHOW_ALL_CBS==0;
+    // GNB HMI PHY Rate
+    oneof
+      varid       = CBS_CONFIG.CbsGnbHmiPHYRateCFG,
+      prompt      = STRING_TOKEN (HYGON_CBS_STR_GNB_HMI_PHY_RATE_CFG),
+      help        = STRING_TOKEN (HYGON_CBS_STR_GNB_HMI_PHY_RATE_CFG_HELP),
+      option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),                        value = 0xff, flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+      option text = STRING_TOKEN (HYGON_CBS_STR_6_4),                         value = 1,    flags = 0 | RESET_REQUIRED;
+      option text = STRING_TOKEN (HYGON_CBS_STR_7_2),                         value = 2,    flags = 0 | RESET_REQUIRED;
+      option text = STRING_TOKEN (HYGON_CBS_STR_9_6),                         value = 4,    flags = 0 | RESET_REQUIRED;
+      suppressif ideqval CBS_CONFIG.CbsCpuModel == HYGON_EX_CPU;
+      option text = STRING_TOKEN (HYGON_CBS_STR_12_8),                        value = 5,    flags = 0 | RESET_REQUIRED;
+      endif;
+    endoneof;
+  endif;
+    
+  endform;
+
+  //
+  // form - UMC Common Options
+  //
+  form
+
+    formid        = SETUP_UMC_COMMON_OPTIONS_LABEL,
+
+    title         = STRING_TOKEN (HYGON_CBS_STR_UMC_COMMON_OPTIONS_SECTION);
+
+    subtitle text = STRING_TOKEN (HYGON_CBS_STR_UMC_COMMON_OPTIONS_SECTION);
+    subtitle text = STRING_TOKEN (HYGON_CBS_STR_BLANK);
+
+    suppressif SHOW_ALL_CBS==0;
+      goto SETUP_DDR5_COMMON_OPTIONS_LABEL,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_DDR5_COMMON_OPTIONS_SECTION),
+        help        = STRING_TOKEN (HYGON_CBS_STR_DDR5_COMMON_OPTIONS_SECTION);
+    endif;
+
+    goto SETUP_DRAM_MEMORY_MAPPING_LABEL,
+      prompt      = STRING_TOKEN (HYGON_CBS_STR_DRAM_MEMORY_MAPPING_SECTION),
+      help        = STRING_TOKEN (HYGON_CBS_STR_DRAM_MEMORY_MAPPING_SECTION);
+
+    suppressif SHOW_ALL_CBS==0;
+      goto SETUP_MEMORY_MBIST_LABEL,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_MEMORY_MBIST_SECTION),
+        help        = STRING_TOKEN (HYGON_CBS_STR_MEMORY_MBIST_SECTION);
+    endif;
+
+    suppressif SHOW_ALL_CBS==0;
+      // Memory Clear
+      // When this feature is disabled, BIOS does not implement MemClear after memory training (only if non-ECC DIMMs are used).
+      oneof
+        varid       = CBS_CONFIG.CbsDfCmnMemClear,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_MEMORY_CLEAR),
+        help        = STRING_TOKEN (HYGON_CBS_STR_MEMORY_CLEAR_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_ENABLED),         value = 0,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_DISABLED),        value = 1,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 3,    flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+      endoneof;
+    endif;
+
+    suppressif SHOW_ALL_CBS==0;
+      // FclkUclkSyncMode
+      oneof
+        varid       = CBS_CONFIG.CbsFclkUclkSyncMode,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_FCLK_UCLK_SYNC_MODE),
+        help        = STRING_TOKEN (HYGON_CBS_STR_FCLK_UCLK_SYNC_MODE_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_SYNCHRONOUS_MODE),         value = 1,    flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+        option text = STRING_TOKEN (HYGON_CBS_STR_ASYNCHRONOUS_MODE),        value = 0,    flags = 0 | RESET_REQUIRED;
+      endoneof;
+    endif;
+
+  endform;
+
+  //
+  // form - DDR5 Common Options
+  //
+  form
+
+    formid        = SETUP_DDR5_COMMON_OPTIONS_LABEL,
+
+    title         = STRING_TOKEN (HYGON_CBS_STR_DDR5_COMMON_OPTIONS_SECTION);
+
+    subtitle text = STRING_TOKEN (HYGON_CBS_STR_DDR5_COMMON_OPTIONS_SECTION);
+    subtitle text = STRING_TOKEN (HYGON_CBS_STR_BLANK);
+
+    suppressif SHOW_ALL_CBS==0;
+      goto SETUP_DRAM_TIMING_CONFIGURATION_LABEL,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_DRAM_TIMING_CONFIGURATION_SECTION),
+        help        = STRING_TOKEN (HYGON_CBS_STR_DRAM_TIMING_CONFIGURATION_SECTION);
+    endif;
+
+    suppressif SHOW_ALL_CBS==0;
+      goto SETUP_DRAM_CONTROLLER_CONFIGURATION_LABEL,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_DRAM_CONTROLLER_CONFIGURATION_SECTION),
+        help        = STRING_TOKEN (HYGON_CBS_STR_DRAM_CONTROLLER_CONFIGURATION_SECTION);
+    endif;
+
+    suppressif SHOW_ALL_CBS==0;
+      goto SETUP_DATA_BUS_CONFIGURATION_LABEL,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_DATA_BUS_CONFIGURATION_SECTION),
+        help        = STRING_TOKEN (HYGON_CBS_STR_DATA_BUS_CONFIGURATION_SECTION);
+    endif;
+
+    suppressif SHOW_ALL_CBS==0;
+      goto SETUP_SECURITY_LABEL,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_SECURITY_SECTION),
+        help        = STRING_TOKEN (HYGON_CBS_STR_SECURITY_SECTION);
+    endif;
+
+  endform;
+
+  //
+  // form - DRAM Timing Configuration
+  //
+  form
+
+    formid        = SETUP_DRAM_TIMING_CONFIGURATION_LABEL,
+
+    title         = STRING_TOKEN (HYGON_CBS_STR_DRAM_TIMING_CONFIGURATION_SECTION);
+
+    subtitle text = STRING_TOKEN (HYGON_CBS_STR_DRAM_TIMING_CONFIGURATION_SECTION);
+    subtitle text = STRING_TOKEN (HYGON_CBS_STR_BLANK);
+
+    suppressif SHOW_ALL_CBS==0;
+      // DRAM Timing Configuration Legal Disclaimer
+      // No help string
+      text
+        help        = STRING_TOKEN (HYGON_CBS_STR_DRAM_TIMING_CONFIGURATION_LEGAL_DISCLAIMER_HELP),
+        text        = STRING_TOKEN (HYGON_CBS_STR_DRAM_TIMING_CONFIGURATION_LEGAL_DISCLAIMER);
+    endif;
+
+    suppressif SHOW_ALL_CBS==0;
+      // DRAM Timing Configuration Legal Disclaimer 1
+      // No help string
+      text
+        help        = STRING_TOKEN (HYGON_CBS_STR_DRAM_TIMING_CONFIGURATION_LEGAL_DISCLAIMER_1_HELP),
+        text        = STRING_TOKEN (HYGON_CBS_STR_DRAM_TIMING_CONFIGURATION_LEGAL_DISCLAIMER_1);
+    endif;
+
+    suppressif SHOW_ALL_CBS==0;
+      goto SETUP_I_DECLINE_LABEL,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_I_DECLINE_SECTION),
+        help        = STRING_TOKEN (HYGON_CBS_STR_I_DECLINE_SECTION);
+    endif;
+
+    suppressif SHOW_ALL_CBS==0;
+      goto SETUP_I_ACCEPT_LABEL,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_I_ACCEPT_SECTION),
+        help        = STRING_TOKEN (HYGON_CBS_STR_I_ACCEPT_SECTION);
+    endif;
+
+  endform;
+
+  //
+  // form - I Decline
+  //
+  form
+
+    formid        = SETUP_I_DECLINE_LABEL,
+
+    title         = STRING_TOKEN (HYGON_CBS_STR_I_DECLINE_SECTION);
+
+    subtitle text = STRING_TOKEN (HYGON_CBS_STR_I_DECLINE_SECTION);
+    subtitle text = STRING_TOKEN (HYGON_CBS_STR_BLANK);
+
+  endform;
+
+  //
+  // form - I Accept
+  //
+  form
+
+    formid        = SETUP_I_ACCEPT_LABEL,
+
+    title         = STRING_TOKEN (HYGON_CBS_STR_I_ACCEPT_SECTION);
+
+    subtitle text = STRING_TOKEN (HYGON_CBS_STR_I_ACCEPT_SECTION);
+    subtitle text = STRING_TOKEN (HYGON_CBS_STR_BLANK);
+
+    suppressif SHOW_ALL_CBS==0;
+      // Overclock
+      // Memory Overclock Settings
+      oneof
+        varid       = CBS_CONFIG.CbsCmnMemOverclockDdr5,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_OVERCLOCK),
+        help        = STRING_TOKEN (HYGON_CBS_STR_OVERCLOCK_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 0xFF, flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+        option text = STRING_TOKEN (HYGON_CBS_STR_ENABLED),         value = 1,    flags = 0 | RESET_REQUIRED;
+      endoneof;
+    endif;
+
+    // Display Condition: CbsCmnMemOverclockDdr5=Enabled
+    suppressif NOT ideqval CBS_CONFIG.CbsCmnMemOverclockDdr5 == 1 OR SHOW_ALL_CBS==0;
+      // Memory Clock Speed
+      // Set the memory clock frequency.
+      oneof
+        varid       = CBS_CONFIG.CbsCmnMemSpeedDdr5,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_MEMORY_CLOCK_SPEED),
+        help        = STRING_TOKEN (HYGON_CBS_STR_MEMORY_CLOCK_SPEED_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 0xFF, flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+        option text = STRING_TOKEN (HYGON_CBS_STR_1600MHZ),         value = 0x30, flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_1800MHZ),         value = 0x34, flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_2000MHZ),         value = 0x38, flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_2200MHZ),         value = 0x3C, flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_2400MHZ),         value = 0x40, flags = 0 | RESET_REQUIRED;
+	suppressif ideqval CBS_CONFIG.CbsCpuModel == HYGON_EX_CPU;
+        option text = STRING_TOKEN (HYGON_CBS_STR_2600MHZ),         value = 0x44, flags = 0 | RESET_REQUIRED;
+	endif;
+      endoneof;
+    endif;
+
+  endform;
+
+  //
+  // form - DRAM Controller Configuration
+  //
+  form
+
+    formid        = SETUP_DRAM_CONTROLLER_CONFIGURATION_LABEL,
+
+    title         = STRING_TOKEN (HYGON_CBS_STR_DRAM_CONTROLLER_CONFIGURATION_SECTION);
+
+    subtitle text = STRING_TOKEN (HYGON_CBS_STR_DRAM_CONTROLLER_CONFIGURATION_SECTION);
+    subtitle text = STRING_TOKEN (HYGON_CBS_STR_BLANK);
+
+    suppressif SHOW_ALL_CBS==0;
+      goto SETUP_DRAM_POWER_OPTIONS_LABEL,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_DRAM_POWER_OPTIONS_SECTION),
+        help        = STRING_TOKEN (HYGON_CBS_STR_DRAM_POWER_OPTIONS_SECTION);
+    endif;
+
+    text
+      help        = STRING_TOKEN (HYGON_CBS_STR_BLANK),
+      text        = STRING_TOKEN (HYGON_CBS_STR_BLANK);
+
+    //suppressif SHOW_ALL_CBS==0;
+      // Cmd2T
+      // Select between 1T and 2T mode on ADDR/CMD
+     // oneof
+     //   varid       = CBS_CONFIG.CbsCmnMemCtrller2TModeDdr5,
+     //   prompt      = STRING_TOKEN (HYGON_CBS_STR_CMD2T),
+     //   help        = STRING_TOKEN (HYGON_CBS_STR_CMD2T_HELP),
+     //   option text = STRING_TOKEN (HYGON_CBS_STR_1T),              value = 0,    flags = 0 | RESET_REQUIRED;
+      //  option text = STRING_TOKEN (HYGON_CBS_STR_2T),              value = 1,    flags = 0 | RESET_REQUIRED;
+    //    option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 0xFF, flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+     // endoneof;
+   // endif;
+
+   // suppressif SHOW_ALL_CBS==0;
+      // Gear Down Mode
+      // No help string
+   //   oneof
+   //     varid       = CBS_CONFIG.CbsCmnMemGearDownModeDdr5,
+   //     prompt      = STRING_TOKEN (HYGON_CBS_STR_GEAR_DOWN_MODE),
+    //    help        = STRING_TOKEN (HYGON_CBS_STR_GEAR_DOWN_MODE_HELP),
+    //    option text = STRING_TOKEN (HYGON_CBS_STR_DISABLED),        value = 0,    flags = 0 | RESET_REQUIRED;
+    //    option text = STRING_TOKEN (HYGON_CBS_STR_ENABLED),         value = 1,    flags = 0 | RESET_REQUIRED;
+   //     option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 0xFF, flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+   //   endoneof;
+  //  endif;
+
+  endform;
+
+  //
+  // form - DRAM Power Options
+  //
+  form
+
+    formid        = SETUP_DRAM_POWER_OPTIONS_LABEL,
+
+    title         = STRING_TOKEN (HYGON_CBS_STR_DRAM_POWER_OPTIONS_SECTION);
+
+    subtitle text = STRING_TOKEN (HYGON_CBS_STR_DRAM_POWER_OPTIONS_SECTION);
+    subtitle text = STRING_TOKEN (HYGON_CBS_STR_BLANK);
+
+    suppressif SHOW_ALL_CBS==0;
+      // Power Down Enable
+      // Enable or disable DDR power down mode
+      oneof
+        varid       = CBS_CONFIG.CbsCmnMemCtrllerPwrDnEnDdr5,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_POWER_DOWN_ENABLE),
+        help        = STRING_TOKEN (HYGON_CBS_STR_POWER_DOWN_ENABLE_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_DISABLED),        value = 0,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_ENABLED),         value = 1,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 0xFF, flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+      endoneof;
+    endif;
+
+  endform;
+
+  //
+  // form - Data Bus Configuration
+  //
+  form
+
+    formid        = SETUP_DATA_BUS_CONFIGURATION_LABEL,
+
+    title         = STRING_TOKEN (HYGON_CBS_STR_DATA_BUS_CONFIGURATION_SECTION);
+
+    subtitle text = STRING_TOKEN (HYGON_CBS_STR_DATA_BUS_CONFIGURATION_SECTION);
+    subtitle text = STRING_TOKEN (HYGON_CBS_STR_BLANK);
+
+    suppressif SHOW_ALL_CBS==0;
+      // Data Bus Configuration User Controls
+      // Specify the mode for drive strength to Auto or Manual
+      oneof
+        varid       = CBS_CONFIG.CbsCmnMemDataBusConfigCtlDdr5,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_DATA_BUS_CONFIGURATION_USER_CONTROLS),
+        help        = STRING_TOKEN (HYGON_CBS_STR_DATA_BUS_CONFIGURATION_USER_CONTROLS_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 0xFF, flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+        option text = STRING_TOKEN (HYGON_CBS_STR_MANUAL),          value = 1,    flags = 0 | RESET_REQUIRED;
+      endoneof;
+    endif;
+
+  //< phydrvstrenQqdqs
+  suppressif NOT ideqval CBS_CONFIG.CbsCmnMemDataBusConfigCtlDdr5 == 1 OR SHOW_ALL_CBS==0;
+    numeric
+	    varid       = CBS_CONFIG.CbsCmnMemCtrllerPhyDrvStrenDqdqs,
+	    prompt      = STRING_TOKEN (HYGON_CBS_STR_PHY_DRV_STREN_DQ_DQS),
+	    help        = STRING_TOKEN (HYGON_CBS_STR_PHY_DRV_STREN_DQ_DQS_HELP),
+	    flags       = RESET_REQUIRED,
+	    minimum     = 0,
+	    maximum     = 0xff,
+	    step        = 1,
+	    default     = 0xff,
+	  endnumeric;
+   endif;
+
+  //< PhyOdtStrenDqDqs
+  suppressif NOT ideqval CBS_CONFIG.CbsCmnMemDataBusConfigCtlDdr5 == 1 OR SHOW_ALL_CBS==0;
+    numeric
+	    varid       = CBS_CONFIG.CbsCmnMemCtrllerPhyOdtStrenDqDqs,
+	    prompt      = STRING_TOKEN (HYGON_CBS_STR_PHY_ODT_STREN_DQ_DQS),
+	    help        = STRING_TOKEN (HYGON_CBS_STR_PHY_ODT_STREN_DQ_DQS_HELP),
+	    flags       = RESET_REQUIRED,
+	    minimum     = 0,
+	    maximum     = 0xff,
+	    step        = 1,
+	    default     = 0xff,
+	  endnumeric;
+     endif;
+
+    // Display Condition: CbsCmnMemDataBusConfigCtlDdr5=Manual
+    suppressif NOT ideqval CBS_CONFIG.CbsCmnMemDataBusConfigCtlDdr5 == 1 OR SHOW_ALL_CBS==0;
+      // RttNomRd
+      // No help string
+      oneof
+        varid       = CBS_CONFIG.CbsCmnMemCtrllerRttNomRDDdr5,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_RTTNOM_RD),
+        help        = STRING_TOKEN (HYGON_CBS_STR_RTTNOM_RD_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_RTT_NOM_DISABLE), value = 0,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_RZQ_1),           value = 1,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_RZQ_2),           value = 2,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_RZQ_3),           value = 3,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_RZQ_4),           value = 4,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_RZQ_5),           value = 5,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_RZQ_6),           value = 6,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_RZQ_7),           value = 7,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 0xFF, flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+      endoneof;
+    endif;
+
+    // Display Condition: CbsCmnMemDataBusConfigCtlDdr5=Manual
+    suppressif NOT ideqval CBS_CONFIG.CbsCmnMemDataBusConfigCtlDdr5 == 1 OR SHOW_ALL_CBS==0;
+      // RttWr
+      // No help string
+      oneof
+        varid       = CBS_CONFIG.CbsCmnMemCtrllerRttWrDdr5,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_RTTWR),
+        help        = STRING_TOKEN (HYGON_CBS_STR_RTTWR_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_DYNAMIC_ODT_OFF), value = 0,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_RZQ_1),           value = 1,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_RZQ_2),           value = 2,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_RZQ_3),           value = 3,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_RZQ_4),           value = 4,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_RZQ_5),           value = 5,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_RZQ_6),           value = 6,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_RZQ_7),           value = 7,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 0xFF, flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+      endoneof;
+    endif;
+
+    // Display Condition: CbsCmnMemDataBusConfigCtlDdr5=Manual
+    suppressif NOT ideqval CBS_CONFIG.CbsCmnMemDataBusConfigCtlDdr5 == 1 OR SHOW_ALL_CBS==0;
+      // Rtt_NOM_Wr
+      // No help string
+      oneof
+        varid       = CBS_CONFIG.CbsCmnMemCtrllerRttNomWrDdr5,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_RTTNOMWR),
+        help        = STRING_TOKEN (HYGON_CBS_STR_RTTNOMWR_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_DYNAMIC_ODT_OFF), value = 0,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_RZQ_1),           value = 1,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_RZQ_2),           value = 2,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_RZQ_3),           value = 3,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_RZQ_4),           value = 4,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_RZQ_5),           value = 5,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_RZQ_6),           value = 6,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_RZQ_7),           value = 7,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 0xFF, flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+      endoneof;
+    endif;
+
+    // Display Condition: CbsCmnMemDataBusConfigCtlDdr5=Manual
+    suppressif NOT ideqval CBS_CONFIG.CbsCmnMemDataBusConfigCtlDdr5 == 1 OR SHOW_ALL_CBS==0;
+      // RttPark
+      // No help string
+      oneof
+        varid       = CBS_CONFIG.CbsCmnMemCtrllerRttParkDdr5,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_RTTPARK),
+        help        = STRING_TOKEN (HYGON_CBS_STR_RTTPARK_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_RTT_PARK_DISABLE), value = 0,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_RZQ_1),            value = 1,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_RZQ_2),            value = 2,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_RZQ_3),            value = 3,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_RZQ_4),            value = 4,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_RZQ_5),            value = 5,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_RZQ_6),            value = 6,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_RZQ_7),            value = 7,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),             value = 0xFF, flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+      endoneof;
+    endif;
+
+  endform;
+
+  //
+  // form - DDR5 Common RAS
+  //
+  form
+
+    formid        = SETUP_COMMON_DDR5_RAS_LABEL,
+
+    title         = STRING_TOKEN (HYGON_CBS_STR_COMMON_DDR5_RAS_SECTION);
+
+    subtitle text = STRING_TOKEN (HYGON_CBS_STR_COMMON_DDR5_RAS_SECTION);
+    subtitle text = STRING_TOKEN (HYGON_CBS_STR_BLANK);
+
+    suppressif SHOW_ALL_CBS==0;
+      // DRAM scrub time
+      // Provide a value that is the number of hours to scrub memory.
+      oneof
+        varid       = CBS_CONFIG.CbsDfCmnDramScrubTime,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_DRAM_SCRUB_TIME),
+        help        = STRING_TOKEN (HYGON_CBS_STR_DRAM_SCRUB_TIME_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_DISABLED),        value = 0,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_1_HOUR),          value = 1,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_4_HOURS),         value = 2,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_8_HOURS),         value = 3,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_16_HOURS),        value = 4,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_24_HOURS),        value = 5,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_48_HOURS),        value = 6,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 7,    flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+      endoneof;
+    endif;
+
+    suppressif SHOW_ALL_CBS==0;
+      // Redirect scrubber control
+      // Control DF::RedirScrubCtrl[EnRedirScrub]
+      oneof
+        varid       = CBS_CONFIG.CbsDfCmnRedirScrubCtrl,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_REDIRECT_SCRUBBER_CONTROL),
+        help        = STRING_TOKEN (HYGON_CBS_STR_REDIRECT_SCRUBBER_CONTROL_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_DISABLED),        value = 0,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_ENABLED),         value = 1,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 3,    flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+      endoneof;
+    endif;
+
+
+    suppressif SHOW_ALL_CBS==0;
+      // Data Poisoning
+      //  Enable/disable data poisoning: UMC_CH::EccCtrl[UcFatalEn] UMC_CH::EccCtrl[WrEccEn] Should be enabled/disabled together.
+      oneof
+        varid       = CBS_CONFIG.CbsCmnMemDataPoisoningDdr5,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_DATA_POISONING),
+        help        = STRING_TOKEN (HYGON_CBS_STR_DATA_POISONING_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_DISABLED),        value = 0,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_ENABLED),         value = 1,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 0xFF, flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+      endoneof;
+    endif;
+
+    suppressif SHOW_ALL_CBS==0;
+      goto SETUP_ECC_CONFIGURATION_LABEL,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_ECC_CONFIGURATION_SECTION),
+        help        = STRING_TOKEN (HYGON_CBS_STR_ECC_CONFIGURATION_SECTION);
+    endif;
+
+  endform;
+
+  //
+  // form - ECC Configuration
+  //
+  form
+
+    formid        = SETUP_ECC_CONFIGURATION_LABEL,
+
+    title         = STRING_TOKEN (HYGON_CBS_STR_ECC_CONFIGURATION_SECTION);
+
+    subtitle text = STRING_TOKEN (HYGON_CBS_STR_ECC_CONFIGURATION_SECTION);
+    subtitle text = STRING_TOKEN (HYGON_CBS_STR_BLANK);
+
+    suppressif SHOW_ALL_CBS==0;
+      // DRAM ECC Symbol Size
+      // DRAM ECC Symbol Size (x4/x8) - UMC_CH::EccCtrl[EccSymbolSize]
+      oneof
+        varid       = CBS_CONFIG.CbsCmnMemCtrllerDramEccSymbolSizeDdr5,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_DRAM_ECC_SYMBOL_SIZE),
+        help        = STRING_TOKEN (HYGON_CBS_STR_DRAM_ECC_SYMBOL_SIZE_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_X4),              value = 0,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_X8),              value = 1,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 0xFF, flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+      endoneof;
+    endif;
+
+    suppressif SHOW_ALL_CBS==0;
+      // DRAM ECC Enable
+      // Use this option to enable / disable DRAM ECC. Auto will set ECC to enable.
+      oneof
+        varid       = CBS_CONFIG.CbsCmnMemCtrllerDramEccEnDdr5,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_DRAM_ECC_ENABLE),
+        help        = STRING_TOKEN (HYGON_CBS_STR_DRAM_ECC_ENABLE_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_DISABLED),        value = 0,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_ENABLED),         value = 1,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 0xFF, flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+      endoneof;
+    endif;
+
+  endform;
+
+  //
+  // form - Security
+  //
+  form
+
+    formid        = SETUP_SECURITY_LABEL,
+
+    title         = STRING_TOKEN (HYGON_CBS_STR_SECURITY_SECTION);
+
+    subtitle text = STRING_TOKEN (HYGON_CBS_STR_SECURITY_SECTION);
+    subtitle text = STRING_TOKEN (HYGON_CBS_STR_BLANK);
+
+    suppressif SHOW_ALL_CBS==0;
+      // TSME
+      // Transparent SME: AddrTweakEn = 1; ForceEncrEn =1; DataEncrEn = 0
+      oneof
+        varid       = CBS_CONFIG.CbsCmnMemTsmeDdr5,
+        questionid  = KEY_TSME,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_TSME),
+        help        = STRING_TOKEN (HYGON_CBS_STR_TSME_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_DISABLED),        value = 0,    flags = 0 | RESET_REQUIRED | INTERACTIVE;
+        option text = STRING_TOKEN (HYGON_CBS_STR_ENABLED),         value = 1,    flags = 0 | RESET_REQUIRED | INTERACTIVE;
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 0xFF, flags = DEFAULT | RESET_REQUIRED | MANUFACTURING | INTERACTIVE;
+      endoneof;
+    endif;
+
+    suppressif SHOW_ALL_CBS==0;
+      // Data Scramble
+      // Data scrambling: DataScrambleEn
+      oneof
+        varid       = CBS_CONFIG.CbsCmnMemCtrllerDataScrambleDdr5,
+        questionid  = KEY_DATA_SCRAMBLE,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_DATA_SCRAMBLE),
+        help        = STRING_TOKEN (HYGON_CBS_STR_DATA_SCRAMBLE_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_ENABLED),         value = 0x1,  flags = 0 | RESET_REQUIRED | INTERACTIVE;
+        option text = STRING_TOKEN (HYGON_CBS_STR_DISABLED),        value = 0x0,  flags = 0 | RESET_REQUIRED | INTERACTIVE;
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 0xFF, flags = DEFAULT | RESET_REQUIRED | MANUFACTURING | INTERACTIVE;
+      endoneof;
+    endif;
+
+  endform;
+
+  //
+  // form - DRAM Memory Mapping
+  //
+  form
+
+    formid        = SETUP_DRAM_MEMORY_MAPPING_LABEL,
+
+    title         = STRING_TOKEN (HYGON_CBS_STR_DRAM_MEMORY_MAPPING_SECTION);
+
+    subtitle text = STRING_TOKEN (HYGON_CBS_STR_DRAM_MEMORY_MAPPING_SECTION);
+    subtitle text = STRING_TOKEN (HYGON_CBS_STR_BLANK);
+
+    // Chipselect Interleaving
+    // Interleave memory blocks across the DRAM chip selects for node 0.
+    oneof
+      varid       = CBS_CONFIG.CbsCmnMemMappingBankInterleaveDdr5,
+      prompt      = STRING_TOKEN (HYGON_CBS_STR_CHIPSELECT_INTERLEAVING),
+      help        = STRING_TOKEN (HYGON_CBS_STR_CHIPSELECT_INTERLEAVING_HELP),
+      option text = STRING_TOKEN (HYGON_CBS_STR_DISABLED),        value = 0,    flags = 0 | RESET_REQUIRED;
+      option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 0xFF, flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+    endoneof;
+
+    // BankGroupSwap
+    // No help string
+    oneof
+      varid       = CBS_CONFIG.CbsCmnMemCtrllerBankGroupSwapDdr5,
+      prompt      = STRING_TOKEN (HYGON_CBS_STR_BANKGROUPSWAP),
+      help        = STRING_TOKEN (HYGON_CBS_STR_BANKGROUPSWAP_HELP),
+      option text = STRING_TOKEN (HYGON_CBS_STR_ENABLED),         value = 1,    flags = 0 | RESET_REQUIRED;
+      option text = STRING_TOKEN (HYGON_CBS_STR_DISABLED),        value = 0,    flags = 0 | RESET_REQUIRED;
+      option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 0xFF, flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+    endoneof;
+
+    suppressif SHOW_ALL_CBS==0;
+      // Address Hash Bank
+      // Enable or disable bank address hashing
+      oneof
+        varid       = CBS_CONFIG.CbsCmnMemAddressHashBankDdr5,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_ADDRESS_HASH_BANK),
+        help        = STRING_TOKEN (HYGON_CBS_STR_ADDRESS_HASH_BANK_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_DISABLED),        value = 0,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_ENABLED),         value = 1,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 0xFF, flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+      endoneof;
+    endif;
+
+    suppressif SHOW_ALL_CBS==0;
+      // Address Hash CS
+      // Enable or disable CS address hashing
+      oneof
+        varid       = CBS_CONFIG.CbsCmnMemAddressHashCsDdr5,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_ADDRESS_HASH_CS),
+        help        = STRING_TOKEN (HYGON_CBS_STR_ADDRESS_HASH_CS_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 0xFF, flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+        option text = STRING_TOKEN (HYGON_CBS_STR_ENABLED),         value = 1,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_DISABLED),        value = 0,    flags = 0 | RESET_REQUIRED;
+      endoneof;
+    endif;
+
+  endform;
+
+  //
+  // form - Memory MBIST
+  //
+  form
+
+    formid        = SETUP_MEMORY_MBIST_LABEL,
+
+    title         = STRING_TOKEN (HYGON_CBS_STR_MEMORY_MBIST_SECTION);
+
+    subtitle text = STRING_TOKEN (HYGON_CBS_STR_MEMORY_MBIST_SECTION);
+    subtitle text = STRING_TOKEN (HYGON_CBS_STR_BLANK);
+
+    suppressif SHOW_ALL_CBS==0;
+      // MBIST Enable
+      // Enable or disable Memory MBIST
+      oneof
+        varid       = CBS_CONFIG.CbsCmnMemMbistEn,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_MBIST_ENABLE),
+        help        = STRING_TOKEN (HYGON_CBS_STR_MBIST_ENABLE_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_DISABLED),        value = 0,    flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+        option text = STRING_TOKEN (HYGON_CBS_STR_ENABLED),         value = 1,    flags = 0 | RESET_REQUIRED;
+      endoneof;
+    endif;
+
+    // Active Condition: CbsCmnMemMbistEn=Enabled
+    grayoutif NOT ideqval CBS_CONFIG.CbsCmnMemMbistEn == 1;
+      suppressif SHOW_ALL_CBS==0;
+        // MBIST Test Mode
+        // Select MBIST Test Mode -Interface Mode (Tests Single and Multiple CS transactions and Basic Connectivity) or Data Eye Mode (Measures Voltage vs. Timing)
+        oneof
+          varid       = CBS_CONFIG.CbsCmnMemMbistTestmode,
+          prompt      = STRING_TOKEN (HYGON_CBS_STR_MBIST_TEST_MODE),
+          help        = STRING_TOKEN (HYGON_CBS_STR_MBIST_TEST_MODE_HELP),
+          option text = STRING_TOKEN (HYGON_CBS_STR_INTERFACE_MODE),  value = 0,    flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+          option text = STRING_TOKEN (HYGON_CBS_STR_DATA_EYE_MODE),   value = 1,    flags = 0 | RESET_REQUIRED;
+        endoneof;
+      endif;
+    endif;
+
+    // Active Condition: CbsCmnMemMbistEn=Enabled
+    grayoutif NOT ideqval CBS_CONFIG.CbsCmnMemMbistEn == 1;
+      suppressif SHOW_ALL_CBS==0;
+        // MBIST Aggressors
+        // Enable or disable MBIST Aggressor test
+        oneof
+          varid       = CBS_CONFIG.CbsCmnMemMbistAggressors,
+          prompt      = STRING_TOKEN (HYGON_CBS_STR_MBIST_AGGRESSORS),
+          help        = STRING_TOKEN (HYGON_CBS_STR_MBIST_AGGRESSORS_HELP),
+          option text = STRING_TOKEN (HYGON_CBS_STR_DISABLED),        value = 0,    flags = 0 | RESET_REQUIRED;
+          option text = STRING_TOKEN (HYGON_CBS_STR_ENABLED),         value = 1,    flags = 0 | RESET_REQUIRED;
+          option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 0xff, flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+        endoneof;
+      endif;
+    endif;
+
+    // Active Condition: CbsCmnMemMbistEn=Enabled
+    grayoutif NOT ideqval CBS_CONFIG.CbsCmnMemMbistEn == 1;
+      suppressif SHOW_ALL_CBS==0;
+        // MBIST Per Bit Slave Die Reporting
+        // Reports 2D Data Eye Results in ABL Log for each DQ, Chipselect, and Channel
+        oneof
+          varid       = CBS_CONFIG.CbsCmnMemMbistPerBitSlaveDieReport,
+          prompt      = STRING_TOKEN (HYGON_CBS_STR_MBIST_PER_BIT_SLAVE_DIE_REPORTING),
+          help        = STRING_TOKEN (HYGON_CBS_STR_MBIST_PER_BIT_SLAVE_DIE_REPORTING_HELP),
+          option text = STRING_TOKEN (HYGON_CBS_STR_DISABLED),        value = 0,    flags = 0 | RESET_REQUIRED;
+          option text = STRING_TOKEN (HYGON_CBS_STR_ENABLED),         value = 1,    flags = 0 | RESET_REQUIRED;
+          option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 0xff, flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+        endoneof;
+      endif;
+    endif;
+    
+    suppressif SHOW_ALL_CBS==0;
+      oneof
+        varid       = CBS_CONFIG.CbsMemEyeTest,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_MEM_EYE_TEST),
+        help        = STRING_TOKEN (HYGON_CBS_STR_MEM_EYE_TEST_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_DISABLED),         value = 0,    flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+        option text = STRING_TOKEN (HYGON_CBS_STR_ENABLED),          value = 1,    flags = 0 | RESET_REQUIRED;
+      endoneof;
+    endif;
+
+  endform;
+
+  //
+  // form - NBIO Common Options
+  //
+  form
+
+    formid        = SETUP_NBIO_COMMON_OPTIONS_LABEL,
+
+    title         = STRING_TOKEN (HYGON_CBS_STR_NBIO_COMMON_OPTIONS_SECTION);
+
+    subtitle text = STRING_TOKEN (HYGON_CBS_STR_NBIO_COMMON_OPTIONS_SECTION);
+    subtitle text = STRING_TOKEN (HYGON_CBS_STR_BLANK);
+
+    suppressif SHOW_ALL_CBS==0;
+      // Enable/Disable IOMMU
+      oneof
+        varid       = CBS_CONFIG.CbsCmnGnbNbIOMMU,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_IOMMU),
+        help        = STRING_TOKEN (HYGON_CBS_STR_IOMMU_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_DISABLED),        value = 0,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_ENABLED),         value = 1,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 0xf,  flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      endoneof;
+    endif;
+
+    // cTDP Control
+    // Auto = Use the fused cTDP\nManual = User can set customized cTDP
+    oneof
+      varid       = CBS_CONFIG.CbsCmncTDPCtl,
+      prompt      = STRING_TOKEN (HYGON_CBS_STR_CTDP_CONTROL),
+      help        = STRING_TOKEN (HYGON_CBS_STR_CTDP_CONTROL_HELP),
+      option text = STRING_TOKEN (HYGON_CBS_STR_MANUAL),          value = 1,    flags = 0 | RESET_REQUIRED;
+      option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 0,    flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+    endoneof;
+
+    // Display Condition: CbsCmncTDPCtl=Manual
+    suppressif NOT ideqval CBS_CONFIG.CbsCmncTDPCtl == 1;
+      // cTDP
+      // cTDP [W] 0 = Invalid value.
+      numeric
+        varid       = CBS_CONFIG.CbsCmncTDPLimit,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_CTDP),
+        help        = STRING_TOKEN (HYGON_CBS_STR_CTDP_HELP),
+        flags       = RESET_REQUIRED,
+        minimum     = 0,
+        maximum     = 0xffffffff,
+        step        = 0,
+        default     = 0,
+      endnumeric;
+    endif;
+
+    suppressif SHOW_ALL_CBS==0;
+      // Enable/Disable TDP Boost
+      oneof
+        varid       = CBS_CONFIG.CbsCmnTDPBoost,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_TDP_BOOST),
+        help        = STRING_TOKEN (HYGON_CBS_STR_TDP_BOOST_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_DISABLED),         value = 0,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_ENABLED),          value = 1,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),             value = 0xF,  flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+      endoneof;
+    endif;
+
+    suppressif TRUE;
+      // Efficiency Optimized Mode
+      oneof
+        varid       = CBS_CONFIG.CbsCmnNbioEfficiencyOptimizedMode,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_EFFICIENCY_OPTIMIZED_MODE),
+        help        = STRING_TOKEN (HYGON_CBS_STR_EFFICIENCY_OPTIMIZED_MODE_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_DISABLED),        value = 0,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_ENABLED),         value = 1,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 0xF,  flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+      endoneof;
+    endif;
+
+    suppressif SHOW_ALL_CBS==0;
+      // PSI
+      // Disable PSI
+      oneof
+        varid       = CBS_CONFIG.CbsCmnNbioPSIDisable,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_PSI),
+        help        = STRING_TOKEN (HYGON_CBS_STR_PSI_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_DISABLE),         value = 1,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 0xf,  flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+      endoneof;
+    endif;
+
+    suppressif SHOW_ALL_CBS==0;
+      // ACS Enable
+      // No help string
+      oneof
+        varid       = CBS_CONFIG.CbsDbgGnbDbgACSEnable,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_ACS_ENABLE),
+        help        = STRING_TOKEN (HYGON_CBS_STR_ACS_ENABLE_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_ENABLE),          value = 1,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_DISABLED),        value = 0,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 0xF,  flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+      endoneof;
+    endif;
+
+    suppressif TRUE;                                                         // byo231012 -  Use SetupData->SriovDis instead.
+      // PCIe ARI Support
+      // Enables Alternative Routing-ID Interpretation
+      oneof
+        varid       = CBS_CONFIG.CbsGnbDbgPcieAriSupport,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_PCIE_ARI_SUPPORT),
+        help        = STRING_TOKEN (HYGON_CBS_STR_PCIE_ARI_SUPPORT_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_DISABLE),         value = 0,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_ENABLE),          value = 1,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 0xf,  flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+      endoneof;
+    endif;
+
+    suppressif ideqval CBS_CONFIG.CbsCpuModel == HYGON_EX_CPU OR SHOW_ALL_CBS==0;
+      suppressif NOT ideqval CBS_CONFIG.CbsCpuPkgType == DM1_102;
+      // HD Audio Enable
+      // No help string
+      oneof
+          varid       = CBS_CONFIG.CbsCmnGnbHdAudioEn,
+          prompt      = STRING_TOKEN (HYGON_CBS_STR_HD_AUDIO_ENABLE),
+          help        = STRING_TOKEN (HYGON_CBS_STR_HD_AUDIO_ENABLE_HELP),
+          option text = STRING_TOKEN (HYGON_CBS_STR_ENABLE),          value = 1,    flags = 0 | RESET_REQUIRED;
+          option text = STRING_TOKEN (HYGON_CBS_STR_DISABLED),        value = 0,    flags = 0 | RESET_REQUIRED;
+          option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 0xF,  flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+      endoneof;
+      endif;
+    endif;
+
+    suppressif SHOW_ALL_CBS==0;
+      // Block PCIe Loopback
+      // Block PCIe loopback mode for hot plug slots
+      oneof
+        varid       = CBS_CONFIG.CbsCfgPcieLoopbackMode,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_BLOCK_PCIE_LOOPBACK),
+        help        = STRING_TOKEN (HYGON_CBS_STR_BLOCK_PCIE_LOOPBACK_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_DISABLE),         value = 0,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_ENABLE),          value = 1,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 2,    flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+      endoneof;
+    endif;
+
+    suppressif SHOW_ALL_CBS==0;
+      // CRS Delay
+      // CRS delay for hot plug ports
+      numeric
+        varid       = CBS_CONFIG.CbsCfgPcieCrsDelay,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_CRS_DELAY),
+        help        = STRING_TOKEN (HYGON_CBS_STR_CRS_DELAY_HELP),
+        flags       = DISPLAY_UINT_HEX | RESET_REQUIRED,
+        minimum     = 0,
+        maximum     = 0xffff,
+        step        = 0,
+        default     = 6,
+      endnumeric;
+    endif;
+
+    suppressif SHOW_ALL_CBS==0;
+      // CRS Limit
+      // CRS limit for hot plug ports
+      numeric
+        varid       = CBS_CONFIG.CbsCfgPcieCrsLimit,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_CRS_LIMIT),
+        help        = STRING_TOKEN (HYGON_CBS_STR_CRS_LIMIT_HELP),
+        flags       = DISPLAY_UINT_HEX | RESET_REQUIRED,
+        minimum     = 0,
+        maximum     = 0xffff,
+        step        = 0,
+        default     = 6,
+      endnumeric;
+    endif;
+    
+     suppressif SHOW_ALL_CBS==0;
+      // PCIe ASPM Control
+      oneof
+        varid       = CBS_CONFIG.CbsPcieAspmControl,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_PCIE_ASPM_CNTL),
+        help        = STRING_TOKEN (HYGON_CBS_STR_PCIE_ASPM_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),                         value = 0xf,  flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_PCIE_ASPM_DISABLED),           value = 0,    flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+        option text = STRING_TOKEN (HYGON_CBS_STR_PCIE_ASPM_L0S),                value = 1,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_PCIE_ASPM_L1),                 value = 2,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_PCIE_ASPM_L0S_L1),             value = 3,    flags = 0 | RESET_REQUIRED;
+      endoneof;
+    endif;
+        
+     suppressif SHOW_ALL_CBS==0;
+      // PCIe Eq Mode Control
+      oneof
+        varid       = CBS_CONFIG.CbsPcieEqMode,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_PCIE_EQ_MODE),
+        help        = STRING_TOKEN (HYGON_CBS_STR_PCIE_EQ_MODE_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),                         value = 0xff, flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_FULL_EQ_MODE),                 value = 0,    flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+        option text = STRING_TOKEN (HYGON_CBS_STR_BYPASS_EQ_MODE),               value = 1,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_NO_EQ_NEEDED_MODE),            value = 2,    flags = 0 | RESET_REQUIRED;
+      endoneof;
+    endif;
+
+    suppressif SHOW_ALL_CBS==0;
+      // PCIe 4Symbol
+      oneof
+        varid       = CBS_CONFIG.CbsPcie4Symbol,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_PCIE_4SYMBOL),
+        help        = STRING_TOKEN (HYGON_CBS_STR_PCIE_4SYMBOL_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),                         value = 0xff,  flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+        option text = STRING_TOKEN (HYGON_CBS_STR_DISABLE),                      value = 0,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_ENABLE),                       value = 2,    flags = 0 | RESET_REQUIRED; 
+      endoneof;
+    endif;
+
+    suppressif SHOW_ALL_CBS==0;
+      // PCIe Precoding
+      oneof
+        varid       = CBS_CONFIG.CbsPcieGen5Precoding,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_PCIE_GEN5_PRECODING),
+        help        = STRING_TOKEN (HYGON_CBS_STR_PCIE_GEN5_PRECODING_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),                         value = 0xff,  flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+        option text = STRING_TOKEN (HYGON_CBS_STR_DISABLE),                      value = 0,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_ENABLE),                       value = 1,    flags = 0 | RESET_REQUIRED; 
+      endoneof;
+    endif;
+
+    suppressif SHOW_ALL_CBS==0;
+      // PCIe Precoding
+      oneof
+        varid       = CBS_CONFIG.CbsPcieMaxpayloadSize,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_PCIE_MAX_PAYLAOD_SIZE),
+        help        = STRING_TOKEN (HYGON_CBS_STR_PCIE_MAX_PAYLAOD_SIZE_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),                         value = 0xff,  flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+        option text = STRING_TOKEN (HYGON_CBS_STR_PCIE_MAX_PAYLAOD_SIZE_128),    value = 0,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_PCIE_MAX_PAYLAOD_SIZE_256),    value = 1,    flags = 0 | RESET_REQUIRED; 
+        option text = STRING_TOKEN (HYGON_CBS_STR_PCIE_MAX_PAYLAOD_SIZE_512),    value = 2,    flags = 0 | RESET_REQUIRED;
+        //option text = STRING_TOKEN (HYGON_CBS_STR_PCIE_MAX_PAYLAOD_SIZE_1024),   value = 3,    flags = 0 | RESET_REQUIRED; 
+        //option text = STRING_TOKEN (HYGON_CBS_STR_PCIE_MAX_PAYLAOD_SIZE_2046),   value = 4,    flags = 0 | RESET_REQUIRED; 
+        //option text = STRING_TOKEN (HYGON_CBS_STR_PCIE_MAX_PAYLAOD_SIZE_4096),   value = 5,    flags = 0 | RESET_REQUIRED;
+      endoneof;
+    endif;
+
+    suppressif SHOW_ALL_CBS==0;
+      // TCDX Routing
+      // TODO
+      oneof
+        varid       = CBS_CONFIG.CbsTcdxRouting,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_TCDX_ROUTING),
+        help        = STRING_TOKEN (HYGON_CBS_STR_TCDX_ROUTING_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),                    value = 0,    flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+      endoneof;
+    endif;
+
+    suppressif SHOW_ALL_CBS==0;
+      goto SETUP_HOT_PLUG_FLAGS_LABEL,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_HOT_PLUG_FLAGS_SECTION),
+        help        = STRING_TOKEN (HYGON_CBS_STR_HOT_PLUG_FLAGS_SECTION);
+    endif;
+    
+    suppressif SHOW_ALL_CBS==0;
+      goto SETUP_NTB_COMMON_OPTIONS_LABEL,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_NTB_COMMON_OPTIONS_SECTION),
+        help        = STRING_TOKEN (HYGON_CBS_STR_NTB_COMMON_OPTIONS_SECTION);
+    endif;
+
+    suppressif ideqval CBS_CONFIG.CbsCpuModel == HYGON_EX_CPU;
+      goto SETUP_CXL_COMMON_OPTIONS_LABEL,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_CXL_COMMON_OPTIONS_SECTION),
+        help        = STRING_TOKEN (HYGON_CBS_STR_CXL_COMMON_OPTIONS_SECTION);
+    endif;
+  endform;
+
+
+  //
+  // form - Hot Plug flags
+  //
+  form
+
+    formid        = SETUP_HOT_PLUG_FLAGS_LABEL,
+
+    title         = STRING_TOKEN (HYGON_CBS_STR_HOT_PLUG_FLAGS_SECTION);
+
+    subtitle text = STRING_TOKEN (HYGON_CBS_STR_HOT_PLUG_FLAGS_SECTION);
+    subtitle text = STRING_TOKEN (HYGON_CBS_STR_BLANK);
+
+    suppressif SHOW_ALL_CBS==0;
+      // Ignore sideband
+      // Disable sideband
+      oneof
+        varid       = CBS_CONFIG.CbsCmnDisableSideband,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_IGNORE_SIDEBAND),
+        help        = STRING_TOKEN (HYGON_CBS_STR_IGNORE_SIDEBAND_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_DISABLED),        value = 0,    flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+        option text = STRING_TOKEN (HYGON_CBS_STR_ENABLED),         value = 1,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 0xF,  flags = 0 | RESET_REQUIRED;
+      endoneof;
+    endif;
+
+    suppressif SHOW_ALL_CBS==0;
+      // Disable L1 w/a
+      oneof
+        varid       = CBS_CONFIG.CbsCmnDisableL1wa,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_DISABLE_L1_W_A),
+        help        = STRING_TOKEN (HYGON_CBS_STR_DISABLE_L1_W_A_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_DISABLED),        value = 0,    flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+        option text = STRING_TOKEN (HYGON_CBS_STR_ENABLED),         value = 1,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 0xF,  flags = 0 | RESET_REQUIRED;
+      endoneof;
+    endif;
+
+    suppressif SHOW_ALL_CBS==0;
+      // Disable BridgeDis
+      // No BridgeDis update based on sideband
+      oneof
+        varid       = CBS_CONFIG.CbsCmnDisableBridgeDis,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_DISABLE_BRIDGEDIS),
+        help        = STRING_TOKEN (HYGON_CBS_STR_DISABLE_BRIDGEDIS_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_DISABLED),        value = 0,    flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+        option text = STRING_TOKEN (HYGON_CBS_STR_ENABLED),         value = 1,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 0xF,  flags = 0 | RESET_REQUIRED;
+      endoneof;
+    endif;
+
+    suppressif SHOW_ALL_CBS==0;
+      // Disable irq polling
+      // HPC holds root port IRQ until DL_Active is set
+      oneof
+        varid       = CBS_CONFIG.CbsCmnDisableIrqPoll,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_DISABLE_IRQ_POLLING),
+        help        = STRING_TOKEN (HYGON_CBS_STR_DISABLE_IRQ_POLLING_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_DISABLED),        value = 0,    flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+        option text = STRING_TOKEN (HYGON_CBS_STR_ENABLED),         value = 1,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 0xF,  flags = 0 | RESET_REQUIRED;
+      endoneof;
+    endif;
+
+    suppressif SHOW_ALL_CBS==0;
+      // IRQ sets BridgeDis
+      // Register control of BridgeDis only follows DL_Active
+      oneof
+        varid       = CBS_CONFIG.CbsCmnIrqSetsBridgeDis,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_IRQ_SETS_BRIDGEDIS),
+        help        = STRING_TOKEN (HYGON_CBS_STR_IRQ_SETS_BRIDGEDIS_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_DISABLED),        value = 0,    flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+        option text = STRING_TOKEN (HYGON_CBS_STR_ENABLED),         value = 1,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 0xF,  flags = 0 | RESET_REQUIRED;
+      endoneof;
+    endif;
+
+    suppressif SHOW_ALL_CBS==0;
+      oneof
+        varid       = CBS_CONFIG.CbsPcieHotplugSupport,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_PCIE_HOTPLUG_SUPPORT),
+        help        = STRING_TOKEN (HYGON_CBS_STR_PCIE_HOTPLUG_SUPPORT_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_DISABLED),        value = 0,    flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_ENABLED),         value = 1,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 0xF,  flags = 0 | RESET_REQUIRED;
+      endoneof;
+    endif;
+  endform;
+
+  //
+  // form - FCH Common Options
+  //
+  form
+
+    formid        = SETUP_FCH_COMMON_OPTIONS_LABEL,
+
+    title         = STRING_TOKEN (HYGON_CBS_STR_FCH_COMMON_OPTIONS_SECTION);
+
+    subtitle text = STRING_TOKEN (HYGON_CBS_STR_FCH_COMMON_OPTIONS_SECTION);
+    subtitle text = STRING_TOKEN (HYGON_CBS_STR_BLANK);
+
+    suppressif SHOW_ALL_CBS==0;
+      goto SETUP_SATA_CONFIGURATION_OPTIONS_LABEL,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_SATA_CONFIGURATION_OPTIONS_SECTION),
+        help        = STRING_TOKEN (HYGON_CBS_STR_SATA_CONFIGURATION_OPTIONS_SECTION);
+    endif;
+
+    suppressif SHOW_ALL_CBS==0;
+      goto SETUP_USB_CONFIGURATION_OPTIONS_LABEL,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_USB_CONFIGURATION_OPTIONS_SECTION),
+        help        = STRING_TOKEN (HYGON_CBS_STR_USB_CONFIGURATION_OPTIONS_SECTION);
+    endif;
+
+    suppressif SHOW_ALL_CBS==0;
+      goto SETUP_I2C_CONFIGURATION_OPTIONS_LABEL,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_I2C_CONFIGURATION_OPTIONS_SECTION),
+        help        = STRING_TOKEN (HYGON_CBS_STR_I2C_CONFIGURATION_OPTIONS_SECTION);
+    endif;
+
+    suppressif SHOW_ALL_CBS==0;
+      goto SETUP_UART_CONFIGURATION_OPTIONS_LABEL,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_UART_CONFIGURATION_OPTIONS_SECTION),
+        help        = STRING_TOKEN (HYGON_CBS_STR_UART_CONFIGURATION_OPTIONS_SECTION);
+    endif;
+
+    suppressif SHOW_ALL_CBS==0;
+      goto SETUP_ESPI_CONFIGURATION_OPTIONS_LABEL,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_ESPI_CONFIGURATION_OPTIONS_SECTION),
+        help        = STRING_TOKEN (HYGON_CBS_STR_ESPI_CONFIGURATION_OPTIONS_SECTION);
+    endif;
+
+    suppressif SHOW_ALL_CBS==0;
+      goto SETUP_AC_POWER_LOSS_OPTIONS_LABEL,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_AC_POWER_LOSS_OPTIONS_SECTION),
+        help        = STRING_TOKEN (HYGON_CBS_STR_AC_POWER_LOSS_OPTIONS_SECTION);
+    endif;
+
+    suppressif SHOW_ALL_CBS==0;
+      goto SETUP_SPI_CONFIGURATION_OPTIONS_LABEL,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_SPI_CONFIGURATION_OPTIONS_SECTION),
+        help        = STRING_TOKEN (HYGON_CBS_STR_SPI_CONFIGURATION_OPTIONS_SECTION);
+    endif;
+
+  endform;
+
+  //
+  // form - SATA Configuration Options
+  //
+  form
+
+    formid        = SETUP_SATA_CONFIGURATION_OPTIONS_LABEL,
+
+    title         = STRING_TOKEN (HYGON_CBS_STR_SATA_CONFIGURATION_OPTIONS_SECTION);
+
+    subtitle text = STRING_TOKEN (HYGON_CBS_STR_SATA_CONFIGURATION_OPTIONS_SECTION);
+    subtitle text = STRING_TOKEN (HYGON_CBS_STR_BLANK);
+
+    suppressif SHOW_ALL_CBS==0;
+      // SATA Controller
+      // Disable or enable OnChip SATA controller
+      // 4-Way & 8-Way TODO
+      oneof
+        varid       = CBS_CONFIG.CbsCmnFchSataEnable0,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_SATA_CONTROLLER0),
+        help        = STRING_TOKEN (HYGON_CBS_STR_SATA_CONTROLLER_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_DISABLED),        value = 0,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_ENABLED),         value = 1,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 0xf,  flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+      endoneof;
+    
+     suppressif ideqval CBS_CONFIG.CbsCpuModel == HYGON_GX_CPU;
+      oneof
+        varid       = CBS_CONFIG.CbsCmnFchSataEnable1,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_SATA_CONTROLLER1),
+        help        = STRING_TOKEN (HYGON_CBS_STR_SATA_CONTROLLER_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_DISABLED),        value = 0,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_ENABLED),         value = 1,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 0xf,  flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+      endoneof;
+
+      oneof
+        varid       = CBS_CONFIG.CbsCmnFchSataEnable2,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_SATA_CONTROLLER2),
+        help        = STRING_TOKEN (HYGON_CBS_STR_SATA_CONTROLLER_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_DISABLED),        value = 0,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_ENABLED),         value = 1,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 0xf,  flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+      endoneof;
+
+      oneof
+        varid       = CBS_CONFIG.CbsCmnFchSataEnable3,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_SATA_CONTROLLER3),
+        help        = STRING_TOKEN (HYGON_CBS_STR_SATA_CONTROLLER_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_DISABLED),        value = 0,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_ENABLED),         value = 1,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 0xf,  flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+      endoneof;
+     endif;
+    endif;
+
+    suppressif SHOW_ALL_CBS==0;
+      // Sata Disabled AHCI Prefetch Function
+      // Disable or enable Sata Disabled AHCI Prefetch Function
+      oneof
+        varid       = CBS_CONFIG.CbsCmnFchSataAhciDisPrefetchFunction,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_SATA_DISABLED_AHCI_PREFETCH_FUNCTION),
+        help        = STRING_TOKEN (HYGON_CBS_STR_SATA_DISABLED_AHCI_PREFETCH_FUNCTION_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_DISABLED),        value = 0,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_ENABLED),         value = 1,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 0xf,  flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+      endoneof;
+    endif;
+
+    suppressif SHOW_ALL_CBS==0;
+      // Aggresive SATA Device Sleep Port 0
+      // No help string
+      oneof
+        varid       = CBS_CONFIG.CbsDbgFchSataAggresiveDevSlpP0,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_AGGRESIVE_SATA_DEVICE_SLEEP_PORT_0),
+        help        = STRING_TOKEN (HYGON_CBS_STR_AGGRESIVE_SATA_DEVICE_SLEEP_PORT_0_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_DISABLED),        value = 0,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_ENABLED),         value = 1,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 0xF,  flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+      endoneof;
+    endif;
+
+    // Display Condition: CbsDbgFchSataAggresiveDevSlpP0=Enabled
+    suppressif NOT ideqval CBS_CONFIG.CbsDbgFchSataAggresiveDevSlpP0 == 1 OR SHOW_ALL_CBS==0;
+      // DevSleep0 Port Number
+      // DEVSLP port 0
+      numeric
+        varid       = CBS_CONFIG.CbsDbgFchSataDevSlpPort0Num,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_DEVSLEEP0_PORT_NUMBER),
+        help        = STRING_TOKEN (HYGON_CBS_STR_DEVSLEEP0_PORT_NUMBER_HELP),
+        flags       = DISPLAY_UINT_HEX | RESET_REQUIRED,
+        minimum     = 0,
+        maximum     = 7,
+        step        = 0,
+        default     = 0,
+      endnumeric;
+    endif;
+
+    suppressif SHOW_ALL_CBS==0;
+      // Aggresive SATA Device Sleep Port 1
+      // No help string
+      oneof
+        varid       = CBS_CONFIG.CbsDbgFchSataAggresiveDevSlpP1,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_AGGRESIVE_SATA_DEVICE_SLEEP_PORT_1),
+        help        = STRING_TOKEN (HYGON_CBS_STR_AGGRESIVE_SATA_DEVICE_SLEEP_PORT_1_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_DISABLED),        value = 0,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_ENABLED),         value = 1,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 0xF,  flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+      endoneof;
+    endif;
+
+    // Display Condition: CbsDbgFchSataAggresiveDevSlpP1=Enabled
+    suppressif NOT ideqval CBS_CONFIG.CbsDbgFchSataAggresiveDevSlpP1 == 1 OR SHOW_ALL_CBS==0;
+      // DevSleep1 Port Number
+      // DEVSLP port 1
+      numeric
+        varid       = CBS_CONFIG.CbsDbgFchSataDevSlpPort1Num,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_DEVSLEEP1_PORT_NUMBER),
+        help        = STRING_TOKEN (HYGON_CBS_STR_DEVSLEEP1_PORT_NUMBER_HELP),
+        flags       = DISPLAY_UINT_HEX | RESET_REQUIRED,
+        minimum     = 0,
+        maximum     = 7,
+        step        = 0,
+        default     = 0,
+      endnumeric;
+    endif;
+
+  endform;
+
+  //
+  // form - USB Configuration Options
+  //
+  form
+
+    formid        = SETUP_USB_CONFIGURATION_OPTIONS_LABEL,
+
+    title         = STRING_TOKEN (HYGON_CBS_STR_USB_CONFIGURATION_OPTIONS_SECTION);
+
+    subtitle text = STRING_TOKEN (HYGON_CBS_STR_USB_CONFIGURATION_OPTIONS_SECTION);
+    subtitle text = STRING_TOKEN (HYGON_CBS_STR_BLANK);
+
+    suppressif SHOW_ALL_CBS==0;
+      // XHCI controller enable (Xhci 0)
+      // Enable or disable USB3 controller.
+      oneof
+        varid       = CBS_CONFIG.CbsCmnFchUsbXHCI0Enable,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_XHCI_CONTROLLER_ENABLE),
+        help        = STRING_TOKEN (HYGON_CBS_STR_XHCI_CONTROLLER_ENABLE_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_ENABLED),         value = 1,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_DISABLED),        value = 0,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 0xf,  flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+      endoneof;
+    endif;
+    
+    suppressif SHOW_ALL_CBS==0;
+        // XHCI Controller1 enable (Xhci 1)
+        // Enable or disable USB3 controller.
+      oneof
+        varid       = CBS_CONFIG.CbsCmnFchUsbXHCI1Enable,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_XHCI_CONTROLLER1_ENABLE),
+        help        = STRING_TOKEN (HYGON_CBS_STR_XHCI_CONTROLLER1_ENABLE_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_ENABLED),         value = 1,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_DISABLED),        value = 0,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 0xf,  flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+      endoneof;
+    endif;
+
+    suppressif ideqval CBS_CONFIG.CbsCpuModel == HYGON_GX_CPU OR SHOW_ALL_CBS==0;
+      goto SETUP_MCM_USB_ENABLE_LABEL,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_MCM_USB_ENABLE_SECTION),
+        help        = STRING_TOKEN (HYGON_CBS_STR_MCM_USB_ENABLE_SECTION);
+    endif;
+
+  endform;
+
+  //
+  // form - MCM USB enable
+  //
+  form
+
+    formid        = SETUP_MCM_USB_ENABLE_LABEL,
+
+    title         = STRING_TOKEN (HYGON_CBS_STR_MCM_USB_ENABLE_SECTION);
+
+    subtitle text = STRING_TOKEN (HYGON_CBS_STR_MCM_USB_ENABLE_SECTION);
+    subtitle text = STRING_TOKEN (HYGON_CBS_STR_BLANK);
+
+    suppressif SHOW_ALL_CBS==0;
+      // XHCI0 enable (Other socket)
+      // Enable or disable USB3 controller.
+      oneof
+        varid       = CBS_CONFIG.CbsCmnFchUsbXHCI2Enable,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_XHCI0_ENABLE_SOCKET_X),
+        help        = STRING_TOKEN (HYGON_CBS_STR_XHCI0_ENABLE_SOCKET_X_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_ENABLED),         value = 1,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_DISABLED),        value = 0,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 0xf,  flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+      endoneof;
+    endif;
+
+    suppressif SHOW_ALL_CBS==0;
+      // XHCI1 enable (Other socket)
+      // Enable or disable USB3 controller.
+      oneof
+        varid       = CBS_CONFIG.CbsCmnFchUsbXHCI3Enable,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_XHCI1_ENABLE_SOCKET_X),
+        help        = STRING_TOKEN (HYGON_CBS_STR_XHCI1_ENABLE_SOCKET_X_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_ENABLED),         value = 1,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_DISABLED),        value = 0,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 0xf,  flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+      endoneof;
+    endif;
+
+    suppressif NOT FixedPcdGet8(PcdHygonNumberOfPhysicalSocket) == 4;        // byo231012 -
+      suppressif SHOW_ALL_CBS==0;
+        // XHCI0 enable (socket2 )
+        // Enable or disable USB4 controller.
+        oneof
+          varid       = CBS_CONFIG.CbsCmnFchUsbXHCI4Enable,
+          prompt      = STRING_TOKEN (HYGON_CBS_STR_XHCI0_ENABLE_SOCKET_2),
+          help        = STRING_TOKEN (HYGON_CBS_STR_XHCI0_ENABLE_SOCKET_2_HELP),
+          option text = STRING_TOKEN (HYGON_CBS_STR_ENABLED),         value = 1,    flags = 0 | RESET_REQUIRED;
+          option text = STRING_TOKEN (HYGON_CBS_STR_DISABLED),        value = 0,    flags = 0 | RESET_REQUIRED;
+          option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 0xf,  flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+        endoneof;
+      endif;
+  
+      suppressif SHOW_ALL_CBS==0;
+        // XHCI1 enable (socket2)
+        // Enable or disable USB5 controller.
+        oneof
+          varid       = CBS_CONFIG.CbsCmnFchUsbXHCI5Enable,
+          prompt      = STRING_TOKEN (HYGON_CBS_STR_XHCI1_ENABLE_SOCKET_2),
+          help        = STRING_TOKEN (HYGON_CBS_STR_XHCI1_ENABLE_SOCKET_2_HELP),
+          option text = STRING_TOKEN (HYGON_CBS_STR_ENABLED),         value = 1,    flags = 0 | RESET_REQUIRED;
+          option text = STRING_TOKEN (HYGON_CBS_STR_DISABLED),        value = 0,    flags = 0 | RESET_REQUIRED;
+          option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 0xf,  flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+        endoneof;
+      endif;
+
+    suppressif SHOW_ALL_CBS==0;
+      // XHCI0 enable (socket3)
+      // Enable or disable USB6 controller.
+      oneof
+        varid       = CBS_CONFIG.CbsCmnFchUsbXHCI6Enable,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_XHCI0_ENABLE_SOCKET_3),
+        help        = STRING_TOKEN (HYGON_CBS_STR_XHCI0_ENABLE_SOCKET_3_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_ENABLED),         value = 1,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_DISABLED),        value = 0,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 0xf,  flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+      endoneof;
+    endif;
+  
+    suppressif SHOW_ALL_CBS==0;
+      // XHCI1 enable (socket3)
+      // Enable or disable USB7 controller.
+      oneof
+        varid       = CBS_CONFIG.CbsCmnFchUsbXHCI7Enable,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_XHCI1_ENABLE_SOCKET_3),
+        help        = STRING_TOKEN (HYGON_CBS_STR_XHCI1_ENABLE_SOCKET_3_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_ENABLED),         value = 1,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_DISABLED),        value = 0,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 0xf,  flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+      endoneof;
+    endif;
+  endif;                                                                     // byo231012 -
+  endform;
+
+  form
+  
+    formid        = SETUP_SPI_CONFIGURATION_OPTIONS_LABEL,
+
+    title         = STRING_TOKEN (HYGON_CBS_STR_SPI_CONFIGURATION_OPTIONS_SECTION);
+
+    subtitle text = STRING_TOKEN (HYGON_CBS_STR_SPI_CONFIGURATION_OPTIONS_SECTION);
+    subtitle text = STRING_TOKEN (HYGON_CBS_STR_BLANK);
+	   
+    suppressif SHOW_ALL_CBS==0;
+      //SPISpeed
+      oneof
+        //Default Value of HPCB_TOKEN_CBS_CMN_BIOS_SPI_SPEED_MODE_VALUE
+        varid       = CBS_CONFIG.CbsCmnSPISpeedCtrl,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_SPI_SPEED_CONTROL),
+        help        = STRING_TOKEN (HYGON_CBS_STR_SPI_SPEED_CONTROL_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),               value = 0xf,  flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_SPI_16MHZ),          value = 0,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_SPI_22MHZ),          value = 1,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_SPI_33MHZ),          value = 2,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_SPI_66MHZ),          value = 3,    flags = 0 | RESET_REQUIRED;
+      endoneof;
+    endif;
+  endform;
+      
+  //
+  // form - Ac Power Loss Options
+  //
+  form
+
+    formid        = SETUP_AC_POWER_LOSS_OPTIONS_LABEL,
+
+    title         = STRING_TOKEN (HYGON_CBS_STR_AC_POWER_LOSS_OPTIONS_SECTION);
+
+    subtitle text = STRING_TOKEN (HYGON_CBS_STR_AC_POWER_LOSS_OPTIONS_SECTION);
+    subtitle text = STRING_TOKEN (HYGON_CBS_STR_BLANK);
+
+    // Ac Loss Control
+    // Select Ac Loss Control Method
+    oneof
+      varid       = CBS_CONFIG.CbsCmnFchSystemPwrFailShadow,
+      prompt      = STRING_TOKEN (HYGON_CBS_STR_AC_LOSS_CONTROL),
+      help        = STRING_TOKEN (HYGON_CBS_STR_AC_LOSS_CONTROL_HELP),
+      option text = STRING_TOKEN (HYGON_CBS_STR_ALWAYS_OFF),      value = 0,    flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+      option text = STRING_TOKEN (HYGON_CBS_STR_ALWAYS_ON),       value = 1,    flags = 0 | RESET_REQUIRED;
+      option text = STRING_TOKEN (HYGON_CBS_STR_RESERVED),        value = 2,    flags = 0 | RESET_REQUIRED;
+      option text = STRING_TOKEN (HYGON_CBS_STR_PREVIOUS),        value = 3,    flags = 0 | RESET_REQUIRED;
+    endoneof;
+
+  endform;
+
+  //
+  // form - I2C Configuration Options
+  //
+  form
+
+    formid        = SETUP_I2C_CONFIGURATION_OPTIONS_LABEL,
+
+    title         = STRING_TOKEN (HYGON_CBS_STR_I2C_CONFIGURATION_OPTIONS_SECTION);
+
+    subtitle text = STRING_TOKEN (HYGON_CBS_STR_I2C_CONFIGURATION_OPTIONS_SECTION);
+    subtitle text = STRING_TOKEN (HYGON_CBS_STR_BLANK);
+
+    suppressif SHOW_ALL_CBS==0;
+      // I2C 0 Enable
+      // No help string
+      oneof
+        varid       = CBS_CONFIG.CbsCmnFchI2C0Config,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_I2C_0_ENABLE),
+        help        = STRING_TOKEN (HYGON_CBS_STR_I2C_0_ENABLE_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_DISABLED),        value = 0,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_ENABLED),         value = 1,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 0xf,  flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+      endoneof;
+    endif;
+
+    suppressif SHOW_ALL_CBS==0;
+      // I2C 1 Enable
+      // No help string
+      oneof
+        varid       = CBS_CONFIG.CbsCmnFchI2C1Config,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_I2C_1_ENABLE),
+        help        = STRING_TOKEN (HYGON_CBS_STR_I2C_1_ENABLE_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_DISABLED),        value = 0,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_ENABLED),         value = 1,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 0xf,  flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+      endoneof;
+    endif;
+
+    suppressif SHOW_ALL_CBS==0;
+      // I2C 2 Enable
+      // No help string
+      oneof
+        varid       = CBS_CONFIG.CbsCmnFchI2C2Config,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_I2C_2_ENABLE),
+        help        = STRING_TOKEN (HYGON_CBS_STR_I2C_2_ENABLE_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_DISABLED),        value = 0,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_ENABLED),         value = 1,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 0xf,  flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+      endoneof;
+    endif;
+
+    suppressif SHOW_ALL_CBS==0;
+      // I2C 3 Enable
+      // No help string
+      oneof
+        varid       = CBS_CONFIG.CbsCmnFchI2C3Config,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_I2C_3_ENABLE),
+        help        = STRING_TOKEN (HYGON_CBS_STR_I2C_3_ENABLE_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_DISABLED),        value = 0,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_ENABLED),         value = 1,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 0xf,  flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+      endoneof;
+    endif;
+
+    suppressif ideqval CBS_CONFIG.CbsCpuModel == HYGON_GX_CPU;
+      // I2C 4 Enable
+      // No help string
+      oneof
+        varid       = CBS_CONFIG.CbsCmnFchI2C4Config,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_I2C_4_ENABLE),
+        help        = STRING_TOKEN (HYGON_CBS_STR_I2C_4_ENABLE_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_DISABLED),        value = 0,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_ENABLED),         value = 1,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 0xf,  flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+      endoneof;
+    endif;
+
+    suppressif ideqval CBS_CONFIG.CbsCpuModel == HYGON_GX_CPU;
+      // I2C 5 Enable
+      // No help string
+      oneof
+        varid       = CBS_CONFIG.CbsCmnFchI2C5Config,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_I2C_5_ENABLE),
+        help        = STRING_TOKEN (HYGON_CBS_STR_I2C_5_ENABLE_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_DISABLED),        value = 0,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_ENABLED),         value = 1,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 0xf,  flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+      endoneof;
+    endif;
+
+    suppressif ideqval CBS_CONFIG.CbsCpuModel == HYGON_EX_CPU;
+      // I3C 0 Enable
+      // No help string
+      oneof
+            varid       = CBS_CONFIG.CbsCmnFchI3C0Config,
+            prompt      = STRING_TOKEN (HYGON_CBS_STR_I3C_0_ENABLE),
+            help        = STRING_TOKEN (HYGON_CBS_STR_I3C_0_ENABLE_HELP),
+            option text = STRING_TOKEN (HYGON_CBS_STR_DISABLED),        value = 0,    flags = 0 | RESET_REQUIRED;
+            option text = STRING_TOKEN (HYGON_CBS_STR_ENABLED),         value = 1,    flags = 0 | RESET_REQUIRED;
+            option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 0xf,  flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+      endoneof;
+    endif;
+
+    suppressif ideqval CBS_CONFIG.CbsCpuModel == HYGON_EX_CPU;
+      // I3C 1 Enable
+      // No help string
+      oneof
+            varid       = CBS_CONFIG.CbsCmnFchI3C1Config,
+            prompt      = STRING_TOKEN (HYGON_CBS_STR_I3C_1_ENABLE),
+            help        = STRING_TOKEN (HYGON_CBS_STR_I3C_1_ENABLE_HELP),
+            option text = STRING_TOKEN (HYGON_CBS_STR_DISABLED),        value = 0,    flags = 0 | RESET_REQUIRED;
+            option text = STRING_TOKEN (HYGON_CBS_STR_ENABLED),         value = 1,    flags = 0 | RESET_REQUIRED;
+            option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 0xf,  flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+      endoneof;
+    endif;
+
+  endform;
+
+  //
+  // form - Uart Configuration Options
+  //
+  form
+
+    formid        = SETUP_UART_CONFIGURATION_OPTIONS_LABEL,
+
+    title         = STRING_TOKEN (HYGON_CBS_STR_UART_CONFIGURATION_OPTIONS_SECTION);
+
+    subtitle text = STRING_TOKEN (HYGON_CBS_STR_UART_CONFIGURATION_OPTIONS_SECTION);
+    subtitle text = STRING_TOKEN (HYGON_CBS_STR_BLANK);
+
+    suppressif SHOW_ALL_CBS==0;
+      // Uart 0 Enable
+      // Uart 0 has no HW FC if Uart 2 is enabled
+      oneof
+        varid       = CBS_CONFIG.CbsCmnFchUart0Config,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_UART_0_ENABLE),
+        help        = STRING_TOKEN (HYGON_CBS_STR_UART_0_ENABLE_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_DISABLED),        value = 0,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_ENABLED),         value = 1,    flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 0xf,  flags = 0 | RESET_REQUIRED;
+      endoneof;
+    endif;
+
+    // Display Condition: CbsCmnFchUart0Config = Enabled
+    suppressif NOT ideqval CBS_CONFIG.CbsCmnFchUart0Config == 1 OR SHOW_ALL_CBS==0;
+      // Uart 0 Legacy Options
+      // No help string
+      oneof
+        varid       = CBS_CONFIG.CbsCmnFchUart0LegacyConfig,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_UART_0_LEGACY_OPTIONS),
+        help        = STRING_TOKEN (HYGON_CBS_STR_UART_0_LEGACY_OPTIONS_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_DISABLED),        value = 0,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_0X2E8),           value = 1,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_0X2F8),           value = 2,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_0X3E8),           value = 3,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_0X3F8),           value = 4,    flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+      endoneof;
+    endif;
+
+    suppressif SHOW_ALL_CBS==0;
+      // Uart 1 Enable
+      // Uart 1 has no HW FC if Uart 3 is enabled
+      oneof
+        varid       = CBS_CONFIG.CbsCmnFchUart1Config,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_UART_1_ENABLE),
+        help        = STRING_TOKEN (HYGON_CBS_STR_UART_1_ENABLE_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_DISABLED),        value = 0,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_ENABLED),         value = 1,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 0xf,  flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+      endoneof;
+    endif;
+
+    // Display Condition: CbsCmnFchUart1Config = Enabled
+    suppressif NOT ideqval CBS_CONFIG.CbsCmnFchUart1Config == 1 OR SHOW_ALL_CBS==0;
+      // Uart 1 Legacy Options
+      // No help string
+      oneof
+        varid       = CBS_CONFIG.CbsCmnFchUart1LegacyConfig,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_UART_1_LEGACY_OPTIONS),
+        help        = STRING_TOKEN (HYGON_CBS_STR_UART_1_LEGACY_OPTIONS_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_DISABLED),        value = 0,    flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+        option text = STRING_TOKEN (HYGON_CBS_STR_0X2E8),           value = 1,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_0X2F8),           value = 2,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_0X3E8),           value = 3,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_0X3F8),           value = 4,    flags = 0 | RESET_REQUIRED;
+      endoneof;
+    endif;
+
+    suppressif SHOW_ALL_CBS==0;
+      // Uart 2 Enable (no HW FC)
+      // No help string
+      oneof
+        varid       = CBS_CONFIG.CbsCmnFchUart2Config,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_UART_2_ENABLE_NO_HW_FC),
+        help        = STRING_TOKEN (HYGON_CBS_STR_UART_2_ENABLE_NO_HW_FC_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_DISABLED),        value = 0,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_ENABLED),         value = 1,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 0xf,  flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+      endoneof;
+    endif;
+
+    // Display Condition: CbsCmnFchUart2Config = Enabled
+    suppressif NOT ideqval CBS_CONFIG.CbsCmnFchUart2Config == 1 OR SHOW_ALL_CBS==0;
+      // Uart 2 Legacy Options
+      // No help string
+      oneof
+        varid       = CBS_CONFIG.CbsCmnFchUart2LegacyConfig,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_UART_2_LEGACY_OPTIONS),
+        help        = STRING_TOKEN (HYGON_CBS_STR_UART_2_LEGACY_OPTIONS_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_DISABLED),        value = 0,    flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+        option text = STRING_TOKEN (HYGON_CBS_STR_0X2E8),           value = 1,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_0X2F8),           value = 2,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_0X3E8),           value = 3,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_0X3F8),           value = 4,    flags = 0 | RESET_REQUIRED;
+      endoneof;
+    endif;
+
+    suppressif SHOW_ALL_CBS==0;
+      // Uart 3 Enable (no HW FC)
+      // No help string
+      oneof
+        varid       = CBS_CONFIG.CbsCmnFchUart3Config,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_UART_3_ENABLE_NO_HW_FC),
+        help        = STRING_TOKEN (HYGON_CBS_STR_UART_3_ENABLE_NO_HW_FC_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_DISABLED),        value = 0,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_ENABLED),         value = 1,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 0xf,  flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+      endoneof;
+    endif;
+
+    // Display Condition: CbsCmnFchUart3Config = Enabled
+    suppressif NOT ideqval CBS_CONFIG.CbsCmnFchUart3Config == 1 OR SHOW_ALL_CBS==0;
+      // Uart 3 Legacy Options
+      // No help string
+      oneof
+        varid       = CBS_CONFIG.CbsCmnFchUart3LegacyConfig,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_UART_3_LEGACY_OPTIONS),
+        help        = STRING_TOKEN (HYGON_CBS_STR_UART_3_LEGACY_OPTIONS_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_DISABLED),        value = 0,    flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+        option text = STRING_TOKEN (HYGON_CBS_STR_0X2E8),           value = 1,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_0X2F8),           value = 2,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_0X3E8),           value = 3,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_0X3F8),           value = 4,    flags = 0 | RESET_REQUIRED;
+      endoneof;
+    endif;
+
+  endform;
+
+  //
+  // form - ESPI Configuration Options
+  //
+  form
+
+    formid        = SETUP_ESPI_CONFIGURATION_OPTIONS_LABEL,
+
+    title         = STRING_TOKEN (HYGON_CBS_STR_ESPI_CONFIGURATION_OPTIONS_SECTION);
+
+    subtitle text = STRING_TOKEN (HYGON_CBS_STR_ESPI_CONFIGURATION_OPTIONS_SECTION);
+    subtitle text = STRING_TOKEN (HYGON_CBS_STR_BLANK);
+
+  endform;
+
+  //
+  // form - NTB Common Options
+  //
+  form
+
+    formid        = SETUP_NTB_COMMON_OPTIONS_LABEL,
+
+    title         = STRING_TOKEN (HYGON_CBS_STR_NTB_COMMON_OPTIONS_SECTION);
+
+    subtitle text = STRING_TOKEN (HYGON_CBS_STR_NTB_COMMON_OPTIONS_SECTION);
+    subtitle text = STRING_TOKEN (HYGON_CBS_STR_BLANK);
+
+    suppressif SHOW_ALL_CBS==0;
+      // NTB Enable
+      oneof
+        varid       = CBS_CONFIG.CbsCmnNtbEnable,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_NTB_ENABLE),
+        help        = STRING_TOKEN (HYGON_CBS_STR_NTB_ENABLE_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 0,    flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+        option text = STRING_TOKEN (HYGON_CBS_STR_ENABLE),          value = 1,    flags = 0 | RESET_REQUIRED;
+      endoneof;
+    endif;
+
+    // Display Condition: CbsCmnNtbEnable=Enable
+    suppressif NOT ideqval CBS_CONFIG.CbsCmnNtbEnable == 1 OR SHOW_ALL_CBS==0;
+      // NTB Location
+      oneof
+        varid       = CBS_CONFIG.CbsCmnNtbLocation,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_NTB_LOCATION),
+        help        = STRING_TOKEN (HYGON_CBS_STR_NTB_LOCATION_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),     value = 0xFF, flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+        suppressif ideqval CBS_CONFIG.CbsCpuModel == HYGON_GX_CPU; //HYGON_EX_CPU display
+          option text = STRING_TOKEN (HYGON_CBS_STR_IOD0_NBIO0),    value = 0,    flags = 0 | RESET_REQUIRED;
+          option text = STRING_TOKEN (HYGON_CBS_STR_IOD0_NBIO1),    value = 1,    flags = 0 | RESET_REQUIRED;
+          option text = STRING_TOKEN (HYGON_CBS_STR_IOD0_NBIO2),    value = 2,    flags = 0 | RESET_REQUIRED;
+          option text = STRING_TOKEN (HYGON_CBS_STR_IOD0_NBIO3),    value = 3,    flags = 0 | RESET_REQUIRED;
+          option text = STRING_TOKEN (HYGON_CBS_STR_IOD1_NBIO0),    value = 4,    flags = 0 | RESET_REQUIRED;
+          option text = STRING_TOKEN (HYGON_CBS_STR_IOD1_NBIO1),    value = 5,    flags = 0 | RESET_REQUIRED;
+          option text = STRING_TOKEN (HYGON_CBS_STR_IOD1_NBIO2),    value = 6,    flags = 0 | RESET_REQUIRED;
+          option text = STRING_TOKEN (HYGON_CBS_STR_IOD1_NBIO3),    value = 7,    flags = 0 | RESET_REQUIRED;
+          option text = STRING_TOKEN (HYGON_CBS_STR_IOD2_NBIO0),    value = 8,    flags = 0 | RESET_REQUIRED;
+          option text = STRING_TOKEN (HYGON_CBS_STR_IOD2_NBIO1),    value = 9,    flags = 0 | RESET_REQUIRED;
+          option text = STRING_TOKEN (HYGON_CBS_STR_IOD2_NBIO2),    value = 0xa,   flags = 0 | RESET_REQUIRED;
+          option text = STRING_TOKEN (HYGON_CBS_STR_IOD2_NBIO3),    value = 0xb,   flags = 0 | RESET_REQUIRED;
+          option text = STRING_TOKEN (HYGON_CBS_STR_IOD3_NBIO0),    value = 0xc,   flags = 0 | RESET_REQUIRED;
+          option text = STRING_TOKEN (HYGON_CBS_STR_IOD3_NBIO1),    value = 0xd,   flags = 0 | RESET_REQUIRED;
+          option text = STRING_TOKEN (HYGON_CBS_STR_IOD3_NBIO2),    value = 0xe,   flags = 0 | RESET_REQUIRED;
+          option text = STRING_TOKEN (HYGON_CBS_STR_IOD3_NBIO3),    value = 0xf,   flags = 0 | RESET_REQUIRED;
+        endif;
+        suppressif ideqval CBS_CONFIG.CbsCpuModel == HYGON_EX_CPU; //HYGON_GX_CPU display
+          option text = STRING_TOKEN (HYGON_CBS_STR_EMEI0_NBIO0),    value = 0x1f,    flags = 0 | RESET_REQUIRED;
+          option text = STRING_TOKEN (HYGON_CBS_STR_EMEI0_NBIO2),    value = 0x3f,    flags = 0 | RESET_REQUIRED;
+          option text = STRING_TOKEN (HYGON_CBS_STR_EMEI1_NBIO0),    value = 0x5f,    flags = 0 | RESET_REQUIRED;
+          option text = STRING_TOKEN (HYGON_CBS_STR_EMEI1_NBIO2),    value = 0x7f,    flags = 0 | RESET_REQUIRED;
+        endif;
+      endoneof;
+    endif;
+
+    // Display Condition: CbsCmnNtbEnable=Enable
+    suppressif NOT ideqval CBS_CONFIG.CbsCmnNtbEnable == 1 OR SHOW_ALL_CBS==0;
+      // NTB active on PCIeCore
+      oneof
+        varid       = CBS_CONFIG.CbsCmnNtbPCIeCore,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_NTB_ACTIVE_ON_PCIECORE),
+        help        = STRING_TOKEN (HYGON_CBS_STR_NTB_ACTIVE_ON_PCIECORE_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 0xf,  flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+        option text = STRING_TOKEN (HYGON_CBS_STR_CORE0),           value = 0,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_CORE1),           value = 16,   flags = 0 | RESET_REQUIRED;
+      endoneof;
+    endif;
+
+    // Display Condition: CbsCmnNtbEnable=Enable
+    suppressif NOT ideqval CBS_CONFIG.CbsCmnNtbEnable == 1 OR SHOW_ALL_CBS==0;
+      // NTB Mode
+      // Select NTB Mode (Core 0, Port 0)
+      oneof
+        varid       = CBS_CONFIG.CbsCmnNtbMode,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_NTB_MODE),
+        help        = STRING_TOKEN (HYGON_CBS_STR_NTB_MODE_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_NTB_DISABLED),    value = 0,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_NTB_PRIMARY),     value = 1,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_NTB_SECONDARY),   value = 2,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 0xf,  flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+      endoneof;
+    endif;
+
+    // Display Condition: CbsCmnNtbEnable=Enable
+    suppressif NOT ideqval CBS_CONFIG.CbsCmnNtbEnable == 1 OR SHOW_ALL_CBS==0;
+      //   Link Speed
+      // Select Link Speed for NTB Mode (Core 0, Port 0)
+      oneof
+        varid       = CBS_CONFIG.CbsCmnNtbLinkSpeed,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_LINK_SPEED),
+        help        = STRING_TOKEN (HYGON_CBS_STR_LINK_SPEED_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_MAX_SPEED),       value = 0,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_GEN_1),           value = 1,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_GEN_2),           value = 2,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_GEN_3),           value = 3,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 0xf,  flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+      endoneof;
+    endif;
+    // Display Condition: CbsDbgSL2NtbEnable=Enable
+    suppressif NOT ideqval CBS_CONFIG.CbsCmnNtbEnable == 1 OR SHOW_ALL_CBS==0;
+      oneof
+        varid       = CBS_CONFIG.CbsCmnNtbBAR1Window,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_BAR1WINDOW_SIZE),
+        help        = STRING_TOKEN (HYGON_CBS_STR_BAR1WINDOW_SIZE_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_1MB),             value = 0,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_2MB),             value = 1,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_4MB),             value = 2,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_8MB),             value = 3,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_16MB),            value = 4,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_32MB),            value = 5,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_64MB),            value = 6,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_128MB),           value = 7,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_256MB),           value = 8,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_512MB),           value = 9,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_1GB),             value = 0xa,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_2GB),             value = 0xb,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_4GB),             value = 0xc,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_8GB),             value = 0xd,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_16GB),            value = 0xe,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_32GB),            value = 0xf,    flags = 0 | RESET_REQUIRED; 
+        option text = STRING_TOKEN (HYGON_CBS_STR_64GB),            value = 0x10,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_128GB),           value = 0x11,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_256GB),           value = 0x12,    flags = 0 | RESET_REQUIRED;  
+        option text = STRING_TOKEN (HYGON_CBS_STR_512GB),           value = 0x13,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_1T),              value = 0x14,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_2T),              value = 0x15,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_4T),              value = 0x16,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_8T),              value = 0x17,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_16T),             value = 0x18,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_32T),             value = 0x19,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_64T),             value = 0x1A,    flags = 0 | RESET_REQUIRED;                        
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 0xff,  flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+      endoneof;
+    endif;
+      
+    // Display Condition: CbsDbgSL2NtbEnable=Enable
+    suppressif NOT ideqval CBS_CONFIG.CbsCmnNtbEnable == 1 OR SHOW_ALL_CBS==0;
+      oneof
+        varid       = CBS_CONFIG.CbsCmnNtbBAR23Window,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_BAR23WINDOW_SIZE),
+        help        = STRING_TOKEN (HYGON_CBS_STR_BAR23WINDOW_SIZE_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_1MB),             value = 0,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_2MB),             value = 1,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_4MB),             value = 2,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_8MB),             value = 3,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_16MB),            value = 4,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_32MB),            value = 5,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_64MB),            value = 6,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_128MB),           value = 7,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_256MB),           value = 8,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_512MB),           value = 9,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_1GB),             value = 0xa,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_2GB),             value = 0xb,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_4GB),             value = 0xc,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_8GB),             value = 0xd,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_16GB),            value = 0xe,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_32GB),            value = 0xf,    flags = 0 | RESET_REQUIRED; 
+        option text = STRING_TOKEN (HYGON_CBS_STR_64GB),            value = 0x10,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_128GB),           value = 0x11,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_256GB),           value = 0x12,    flags = 0 | RESET_REQUIRED ; 
+        option text = STRING_TOKEN (HYGON_CBS_STR_512GB),           value = 0x13,    flags = 0 | RESET_REQUIRED ;
+        option text = STRING_TOKEN (HYGON_CBS_STR_1T),              value = 0x14,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_2T),              value = 0x15,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_4T),              value = 0x16,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_8T),              value = 0x17,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_16T),             value = 0x18,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_32T),             value = 0x19,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_64T),             value = 0x1A,    flags = 0 | RESET_REQUIRED;                       
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 0xff,  flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+      endoneof;
+    endif;
+
+    // Display Condition: CbsDbgSL2NtbEnable=Enable
+    suppressif NOT ideqval CBS_CONFIG.CbsCmnNtbEnable == 1 OR SHOW_ALL_CBS==0;
+      oneof
+        varid       = CBS_CONFIG.CbsCmnNtbBAR45Window,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_BAR45WINDOW_SIZE),
+        help        = STRING_TOKEN (HYGON_CBS_STR_BAR45WINDOW_SIZE_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_1MB),             value = 0,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_2MB),             value = 1,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_4MB),             value = 2,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_8MB),             value = 3,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_16MB),            value = 4,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_32MB),            value = 5,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_64MB),            value = 6,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_128MB),           value = 7,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_256MB),           value = 8,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_512MB),           value = 9,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_1GB),             value = 0xa,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_2GB),             value = 0xb,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_4GB),             value = 0xc,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_8GB),             value = 0xd,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_16GB),            value = 0xe,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_32GB),            value = 0xf,    flags = 0 | RESET_REQUIRED; 
+        option text = STRING_TOKEN (HYGON_CBS_STR_64GB),            value = 0x10,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_128GB),           value = 0x11,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_256GB),           value = 0x12,    flags = 0 | RESET_REQUIRED;  
+        option text = STRING_TOKEN (HYGON_CBS_STR_512GB),           value = 0x13,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_1T),              value = 0x14,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_2T),              value = 0x15,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_4T),              value = 0x16,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_8T),              value = 0x17,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_16T),             value = 0x18,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_32T),             value = 0x19,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_64T),             value = 0x1A,    flags = 0 | RESET_REQUIRED;                          
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 0xff,  flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+      endoneof;
+    endif;
+
+  endform;
+
+  //
+  // form - NTB Common Options
+  //
+  form
+
+    formid        = SETUP_CXL_COMMON_OPTIONS_LABEL,
+
+    title         = STRING_TOKEN (HYGON_CBS_STR_CXL_COMMON_OPTIONS_SECTION);
+
+    subtitle text = STRING_TOKEN (HYGON_CBS_STR_CXL_COMMON_OPTIONS_SECTION);
+    subtitle text = STRING_TOKEN (HYGON_CBS_STR_BLANK);
+
+    suppressif SHOW_ALL_CBS==0;
+      oneof
+        varid       = CBS_CONFIG.CbsCmnCxlControl,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_CXL_CONTROL),
+        help        = STRING_TOKEN (HYGON_CBS_STR_CXL_CONTROL_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_ENABLED),        value = 1,     flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_DISABLED),       value = 0,     flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),           value = 0xFF,  flags = DEFAULT | RESET_REQUIRED;
+      endoneof;
+    endif;
+
+    suppressif SHOW_ALL_CBS==0;
+      oneof
+        varid       = CBS_CONFIG.CbsCmnCxlMemAttr,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_CXL_MEM_ATTR),
+        help        = STRING_TOKEN (HYGON_CBS_STR_CXL_MEM_ATTR_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_RESERVED),       value = 0,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_AVAILABLE),      value = 1,    flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+        option text = STRING_TOKEN (HYGON_CBS_STR_SPECIAL),        value = 2,    flags = 0 | RESET_REQUIRED;
+      endoneof;
+    endif;
+
+  endform;
+
+  //
+  // form - RAS Common Options
+  //
+  form
+    formid        = SETUP_RAS_COMMON_OPTIONS_LABEL,
+    
+    title         = STRING_TOKEN (HYGON_CBS_STR_RAS_COMMON_OPTIONS_SECTION);
+    
+    subtitle text = STRING_TOKEN (HYGON_CBS_STR_RAS_COMMON_OPTIONS_SECTION);
+    subtitle text = STRING_TOKEN (HYGON_CBS_STR_BLANK);
+
+    suppressif SHOW_ALL_CBS==0;
+    // Platform First Error Handling. Enable/disable PFEH, cloak individual banks, and mask deferred error interrupts from each bank.
+      oneof
+        varid       = CBS_CONFIG.CbsCmnCpuPfeh,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_PLATFORM_FIRST_ERROR_HANDLING),
+        help        = STRING_TOKEN (HYGON_CBS_STR_PLATFORM_FIRST_ERROR_HANDLING_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_ENABLED),         value = 1,    flags = RESET_REQUIRED;            // byo231109 -
+        option text = STRING_TOKEN (HYGON_CBS_STR_DISABLED),        value = 0,    flags = RESET_REQUIRED;            // byo231109 -
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 3,    flags = RESET_REQUIRED | DEFAULT;  // byo231109 -
+      endoneof;
+   
+      oneof
+        varid       = CBS_CONFIG.CbsCmnCpuMcaErrThreshEn,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_MCA_ERROR_THRESH_ENABLE),
+        help        = STRING_TOKEN (HYGON_CBS_STR_MCA_ERROR_THRESH_ENABLE_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_DISABLED),        value = 0,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_ENABLED),         value = 1,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 0xFF, flags = DEFAULT | RESET_REQUIRED;
+      endoneof;
+
+      suppressif TRUE;             // byo231109 -
+        numeric
+          varid     = CBS_CONFIG.CbsCmnCpuMcaErrThreshCount,
+          prompt    = STRING_TOKEN (HYGON_CBS_STR_MCA_ERROR_THRESH_COUNT),
+          help      = STRING_TOKEN (HYGON_CBS_STR_MCA_ERROR_THRESH_COUNT_HELP),
+          flags     = DISPLAY_UINT_HEX | RESET_REQUIRED,
+          minimum   = 1,
+          maximum   = 0xFFF,
+          step      = 0,
+          default   = 0xA,
+        endnumeric;
+      endif;
+
+    endif;
+
+    // DDR RAS
+    suppressif SHOW_ALL_CBS==0;
+      goto SETUP_DDR_RAS_SUPPORT_LABEL,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_COMMON_DDR_RAS_SECTION),
+        help        = STRING_TOKEN (HYGON_CBS_STR_COMMON_DDR_RAS_SECTION);
+    endif;
+
+    // NBIO RAS
+    suppressif SHOW_ALL_CBS==0;
+      goto SETUP_NBIO_RAS_SUPPORT_LABEL,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_COMMON_NBIO_RAS_SECTION),
+        help        = STRING_TOKEN (HYGON_CBS_STR_COMMON_NBIO_RAS_SECTION);
+    endif;
+
+    // DF RAS
+    suppressif SHOW_ALL_CBS==0;
+      goto SETUP_DF_RAS_SUPPORT_LABEL,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_COMMON_DF_RAS_SECTION),
+        help        = STRING_TOKEN (HYGON_CBS_STR_COMMON_DF_RAS_SECTION);
+    endif;
+
+    // SATA RAS
+    suppressif SHOW_ALL_CBS==0;
+      goto SETUP_SATA_RAS_SUPPORT_LABEL,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_COMMON_SATA_RAS_SECTION),
+        help        = STRING_TOKEN (HYGON_CBS_STR_COMMON_SATA_RAS_SECTION);
+    endif;
+
+  endform;
+
+
+  //
+  // form - DDR RAS Common Options
+  //
+  form
+    formid        = SETUP_DDR_RAS_SUPPORT_LABEL,
+
+    title         = STRING_TOKEN (HYGON_CBS_STR_COMMON_DDR_RAS_SECTION);
+
+    subtitle text = STRING_TOKEN (HYGON_CBS_STR_COMMON_DDR_RAS_SECTION);
+    subtitle text = STRING_TOKEN (HYGON_CBS_STR_BLANK);
+
+    suppressif SHOW_ALL_CBS==0;
+      goto SETUP_COMMON_DDR5_RAS_LABEL,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_COMMON_DDR5_RAS_SECTION),
+        help        = STRING_TOKEN (HYGON_CBS_STR_COMMON_DDR5_RAS_SECTION);
+    endif;
+
+  endform;
+
+
+
+  //
+  // form - NBIO RAS Common Options
+  //
+  form
+    formid        = SETUP_NBIO_RAS_SUPPORT_LABEL,
+
+    title         = STRING_TOKEN (HYGON_CBS_STR_COMMON_NBIO_RAS_SECTION);
+
+    subtitle text = STRING_TOKEN (HYGON_CBS_STR_COMMON_NBIO_RAS_SECTION);
+    subtitle text = STRING_TOKEN (HYGON_CBS_STR_BLANK);
+
+    suppressif SHOW_ALL_CBS==0;
+      // NBIO RAS Control
+      oneof
+        varid       = CBS_CONFIG.CbsNbioRASControl,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_NBIO_RAS_CONTROL),
+        help        = STRING_TOKEN (HYGON_CBS_STR_NBIO_RAS_CONTROL_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_ENABLED),         value = 1,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_DISABLED),        value = 0,    flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 0xF,  flags = 0 | RESET_REQUIRED;
+      endoneof;
+    endif;
+
+    suppressif SHOW_ALL_CBS==0;
+      // NBIO Internal Poison Consumption
+      oneof
+        varid       = CBS_CONFIG.CbsDbgPoisonConsumption,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_NBIO_INTERNAL_POISON_CONSUMPTION),
+        help        = STRING_TOKEN (HYGON_CBS_STR_NBIO_INTERNAL_POISON_CONSUMPTION_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_ENABLED),         value = 1,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_DISABLED),        value = 0,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 0xF,  flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+      endoneof;
+    endif;
+
+  endform;
+
+
+  //
+  // form - DF RAS Common Options
+  //
+  form
+    formid        = SETUP_DF_RAS_SUPPORT_LABEL,
+
+    title         = STRING_TOKEN (HYGON_CBS_STR_COMMON_DF_RAS_SECTION);
+
+    subtitle text = STRING_TOKEN (HYGON_CBS_STR_COMMON_DF_RAS_SECTION);
+    subtitle text = STRING_TOKEN (HYGON_CBS_STR_BLANK);
+
+    suppressif SHOW_ALL_CBS==0;
+      // Disable DF sync flood propagation
+      // Control DF::PIEConfig[DisSyncFloodProp]
+      oneof
+        varid       = CBS_CONFIG.CbsDfCmnSyncFloodProp,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_DISABLE_DF_SYNC_FLOOD_PROPAGATION),
+        help        = STRING_TOKEN (HYGON_CBS_STR_DISABLE_DF_SYNC_FLOOD_PROPAGATION_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_SYNC_FLOOD_DISABLED), value = 0,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_SYNC_FLOOD_ENABLED), value = 1,    flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 3,    flags = 0 | RESET_REQUIRED;
+      endoneof;
+    endif;
+
+    suppressif SHOW_ALL_CBS==0;
+      // Freeze DF module queues on error
+      // Controls DF::PIEConfig[DisImmSyncFloodOnFatalError]\nDisabling this option sets DF:PIEConfig[DisImmSyncFloodOnFatalError]
+      oneof
+        varid       = CBS_CONFIG.CbsDfCmnFreezeQueueError,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_FREEZE_DF_MODULE_QUEUES_ON_ERROR),
+        help        = STRING_TOKEN (HYGON_CBS_STR_FREEZE_DF_MODULE_QUEUES_ON_ERROR_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_DISABLED),        value = 0,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_ENABLED),         value = 1,    flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 3,    flags = 0 | RESET_REQUIRED;
+      endoneof;
+    endif;
+
+  endform;
+
+
+  //
+  // form - SATA RAS Common Options
+  //
+  form
+    formid        = SETUP_SATA_RAS_SUPPORT_LABEL,
+
+    title         = STRING_TOKEN (HYGON_CBS_STR_COMMON_SATA_RAS_SECTION);
+
+    subtitle text = STRING_TOKEN (HYGON_CBS_STR_COMMON_SATA_RAS_SECTION);
+    subtitle text = STRING_TOKEN (HYGON_CBS_STR_BLANK);
+
+    suppressif SHOW_ALL_CBS==0;
+      // Sata RAS Support
+      // Disable or enable Sata RAS Support
+      oneof
+        varid       = CBS_CONFIG.CbsCmnFchSataRasSupport,
+        prompt      = STRING_TOKEN (HYGON_CBS_STR_SATA_RAS_SUPPORT),
+        help        = STRING_TOKEN (HYGON_CBS_STR_SATA_RAS_SUPPORT_HELP),
+        option text = STRING_TOKEN (HYGON_CBS_STR_DISABLED),        value = 0,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_ENABLED),         value = 1,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (HYGON_CBS_STR_AUTO),            value = 0xf,  flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+      endoneof;
+    endif;
+  
+  endform;
+
+endformset;

@@ -1,0 +1,57 @@
+/** @file
+  String definitions for Tls Authentication Configuration form.
+
+Copyright (c) 2016, Intel Corporation. All rights reserved.<BR>
+SPDX-License-Identifier: BSD-2-Clause-Patent
+
+**/
+
+#langdef en-US "English"
+#langdef zh-Hans "\wide中文\narrow"
+
+#string STR_TLS_AUTH_CONFIG_TITLE                    #language en-US "Tls Auth Configuration"
+                                                     #language zh-Hans "Tls\wide身份验证配置\narrow"
+#string STR_TLS_AUTH_CONFIG_HELP                     #language en-US "Press <Enter> to select Tls Auth Configuration."
+                                                     #language zh-Hans "\wide按\narrow <Enter> \wide选择\narrowTls\wide身份验证配置。\narrow"
+
+#string STR_TLS_AUTH_CONFIG_SERVER_CA              #language en-US "Server CA Configuration"
+                                                   #language zh-Hans "\wide服务器\narrow CA \wide配置\narrow"
+#string STR_TLS_AUTH_CONFIG_SERVER_CA_HELP         #language en-US "Press <Enter> to configure Server CA."
+                                                   #language zh-Hans "\wide按\narrow <Enter> \wide配置服务器\narrow CA \wide。\narrow"
+#string STR_TLS_AUTH_CONFIG_CLIENT_CERT            #language en-US "Client Cert Configuration"
+                                                   #language zh-Hans "\wide客户端证书配置\narrow"
+#string STR_TLS_AUTH_CONFIG_CLIENT_CERT_HELP       #language en-US "Client cert configuration is unsupported currently."
+                                                   #language zh-Hans "\wide当前不支持客户端证书配置。\narrow"
+
+#string STR_TLS_AUTH_CONFIG_ENROLL_CERT              #language en-US "Enroll Cert"
+                                                     #language zh-Hans "\wide注册证书\narrow"
+#string STR_TLS_AUTH_CONFIG_ENROLL_CERT_HELP         #language en-US "Press <Enter> to enroll cert."
+                                                     #language zh-Hans "\wide按\narrow <Enter> \wide注册证书。\narrow"
+#string STR_TLS_AUTH_CONFIG_DELETE_CERT              #language en-US "Delete Cert"
+                                                     #language zh-Hans "\wide删除证书\narrow"
+#string STR_TLS_AUTH_CONFIG_DELETE_CERT_HELP         #language en-US "Press <Enter> to delete cert."
+                                                     #language zh-Hans "\wide按\narrow <Enter> \wide删除证书。\narrow"
+
+#string STR_TLS_AUTH_CONFIG_ADD_CERT_FILE            #language en-US "Enroll Cert Using File"
+                                                     #language zh-Hans "\wide使用文件注册证书\narrow"
+
+#string STR_TLS_AUTH_CONFIG_CERT_GUID                #language en-US "Cert GUID"
+                                                     #language zh-Hans "\wide证书\narrow GUID"
+#string STR_TLS_AUTH_CONFIG_CERT_GUID_HELP           #language en-US "Input digit character in 11111111-2222-3333-4444-1234567890ab format."
+                                                     #language zh-Hans "\wide以\narrow 11111111-2222-3333-4444-1234567890ab \wide格式输入数字字符。\narrow"
+#string STR_TLS_AUTH_CONFIG_SAVE_AND_EXIT            #language en-US "Commit Changes and Exit"
+                                                     #language zh-Hans "\wide提交更改并退出\narrow"
+#string STR_TLS_AUTH_CONFIG_NO_SAVE_AND_EXIT         #language en-US "Discard Changes and Exit"
+                                                     #language zh-Hans "\wide放弃更改并退出\narrow"
+
+#string STR_TLS_AUTH_ENROLL_CERT_FAILURE             #language en-US "ERROR: Enroll Cert Failure!"
+                                                     #language zh-Hans "\wide错误：注册证书失败！\narrow"
+
+#string STR_CERT_TYPE_PCKS_GUID                      #language en-US "GUID for CERT"
+                                                     #language zh-Hans "CERT \wide的\narrow GUID"
+
+#string STR_CORRECT_FORMAT                           #language en-US "Please enter the correct format of cert GUID"
+                                                     #language zh-Hans "\wide请输入正确的\narrowGUID\wide证书格式\narrow"
+
+#string STR_NULL                                     #language en-US ""
+                                                     #language zh-Hans ""

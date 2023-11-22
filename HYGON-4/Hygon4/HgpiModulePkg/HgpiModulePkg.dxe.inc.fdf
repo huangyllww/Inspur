@@ -1,0 +1,72 @@
+    INF HgpiModulePkg/Debug/HygonIdsDebugPrintDxe/HygonIdsDebugPrintDxe.inf
+
+    INF HgpiModulePkg/Soc/HygonSocDxe/HygonSocDxe.inf
+    INF HgpiModulePkg/ErrorLog/HygonErrorLogDxe/HygonErrorLogDxe.inf
+
+#   ##PSP Dxe Drivers
+    INF HgpiModulePkg/Psp/HygonPspDxe/HygonPspDxe.inf
+    INF HgpiModulePkg/Psp/HygonPspP2Cmbox/HygonPspP2Cmbox.inf
+    INF HgpiModulePkg/Psp/HygonPspSmm/HygonPspSmm.inf
+    INF HgpiModulePkg/Psp/HygonHsti/HygonHstiSrc.inf
+#    ## Ccx & DF Dxe Drivers
+    INF HgpiModulePkg/Fabric/HyEx/FabricDxe/HygonFabricDxe.inf
+    INF HgpiModulePkg/Fabric/HyGx/FabricDxe/HygonFabricDxe.inf
+    INF HgpiModulePkg/Fabric/HyEx/FabricSmm/HygonFabricSmm.inf
+    INF HgpiModulePkg/Fabric/HyGx/FabricSmm/HygonFabricSmm.inf
+    INF HgpiModulePkg/Ccx/Dharma/CcxDharmaDxe/HygonCcxDharmaDxe.inf
+    INF HgpiModulePkg/Ccx/Dharma/CcxDharmaSmm/HygonCcxDharmaSmm.inf
+
+#    ## Mem Dxe Drivers
+    INF HgpiModulePkg/Mem/HygonMemSmbiosDxe/HygonMemSmbiosDxe.inf
+
+#    ## GNb Dxe Drivers
+    INF HgpiModulePkg/Nbio/HyEx/NbioBase/HygonNbioBaseDxe/HygonNbioBaseDxe.inf
+    INF HgpiModulePkg/Nbio/HyGx/NbioBase/HygonNbioBaseDxe/HygonNbioBaseDxe.inf
+    INF HgpiModulePkg/Nbio/HyEx/SMU/HygonNbioSmuDxe/HygonNbioSmuDxe.inf
+    INF HgpiModulePkg/Nbio/HyGx/SMU/HygonNbioSmuDxe/HygonNbioSmuDxe.inf
+    INF HgpiModulePkg/Nbio/HyEx/PCIe/HygonNbioPcieDxe/HygonNbioPcieDxe.inf
+    INF HgpiModulePkg/Nbio/HyGx/PCIe/HygonNbioPcieDxe/HygonNbioPcieDxe.inf
+    INF HgpiModulePkg/Nbio/IOMMU/HygonNbioIOMMUDxe/HygonNbioIOMMUDxe.inf
+    INF HgpiModulePkg/Nbio/NbioALib/HygonNbioAlibSTDxe/HygonNbioAlibSTDxe.inf
+    INF HgpiModulePkg/Nbio/HyGx/IOHC/IohcSmmSwSmiDispatcher/IohcSmmSwSmiDispatcher.inf
+    INF HgpiModulePkg/Nbio/HyGx/CXL/HygonCxlDxe/HygonCxlDxe.inf
+
+#   ## Fch Dxe Drivers
+    INF HgpiModulePkg/Fch/HyEx/FchTaishanDxe/FchDxe.inf
+#   INF HgpiModulePkg/Fch/HyEx/FchTaishanDxe/FchTaishanSsdt.inf                      # byo230823 -
+    INF HgpiModulePkg/Fch/HyEx/FchTaishanSmm/FchSmm.inf
+    INF HgpiModulePkg/Fch/HyGx/FchTaishanDxe/FchDxe.inf
+#   INF HgpiModulePkg/Fch/HyGx/FchTaishanDxe/FchTaishanSsdt.inf                      # byo230823 -
+    INF HgpiModulePkg/Fch/HyGx/FchTaishanSmm/FchSmm.inf
+    INF HgpiModulePkg/Fch/Common/FchTaishanSmbusDxe/SmbusLight.inf
+    INF HgpiModulePkg/Fch/Common/FchTaishanCf9ResetDxe/Cf9Reset.inf
+    INF HgpiModulePkg/Fch/Common/FchTaishanLegacyInterruptDxe/LegacyInterrupt.inf
+    INF HgpiModulePkg/Fch/Common/FchTaishanSmmControlDxe/SmmControl.inf
+    INF HgpiModulePkg/Fch/HyEx/FchTaishanSmmDispatcher/FchSmmDispatcher.inf
+    INF HgpiModulePkg/Fch/HyEx/FchTaishanMultiFchDxe/FchMultiFchDxe.inf
+    INF HgpiModulePkg/Fch/HyEx/FchTaishanMultiFchSmm/FchMultiFchSmm.inf
+    INF HgpiModulePkg/Fch/HyGx/FchTaishanSmmDispatcher/FchSmmDispatcher.inf
+    INF HgpiModulePkg/Fch/HyGx/FchTaishanMultiFchDxe/FchMultiFchDxe.inf
+    INF HgpiModulePkg/Fch/HyGx/FchTaishanMultiFchSmm/FchMultiFchSmm.inf
+
+#   ## HPCB Dxe Drivers
+    INF HgpiModulePkg/Psp/HpcbDrv/HpcbSatDxe/HpcbSatDxe.inf
+
+#   ## HPCB Smm Drivers
+    INF HgpiModulePkg/Psp/HpcbDrv/HpcbSatSmm/HpcbSatSmm.inf
+
+#   ## Universal
+    INF HgpiModulePkg/Universal/Smbios/HygonSmbiosDxe.inf
+    INF HgpiModulePkg/Universal/Acpi/HygonAcpiDxe.inf
+    INF HgpiModulePkg/Universal/Acpi/HygonAcpiHmatService.inf
+    INF HgpiModulePkg/Universal/HygonSmmCommunication/HygonSmmCommunication.inf
+    INF HgpiModulePkg/Universal/Version/HygonVersionDxe/HygonVersionDxe.inf
+
+#   ## Ras Dxe Drivers
+!if $(gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdRunEnvironment) != 2
+    INF HgpiModulePkg/Ras/HygonRasApeiDxe/HygonRasApeiDxe.inf
+    INF HgpiModulePkg/Ras/HygonRasDxe/HygonRasDxe.inf
+    INF HgpiModulePkg/Ras/HygonRasSmm/HygonRasSmm.inf
+!endif
+#   ## Nvdimm Dxe Drivers
+    INF HgpiModulePkg/JedecNvdimm/JedecNvdimm.inf

@@ -1,0 +1,86 @@
+## @file
+#  Instant Debug library instance.
+#
+#  Copyright (c) 2021 - 2022, Byosoft Corporation. All rights reserved.<BR>
+#
+#  This software and associated documentation (if any)
+#  is furnished under a license and may only be used or copied in
+#  accordance with the terms of the license. Except as permitted by such
+#  license, no part of this software or documentation may be reproduced,
+#  stored in a retrieval system, or transmitted in any form or by any
+#  means without the express written consent of Byosoft Corporation.
+#
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = DxeInstantDebugLib
+  MODULE_UNI_FILE                = InstantDebugLib.uni
+  FILE_GUID                      = 1517d8f3-8780-4f76-afb8-9b285e19abc2
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 0.1
+  LIBRARY_CLASS                  = DebugAgentLib|DXE_CORE DXE_DRIVER DXE_SMM_DRIVER UEFI_APPLICATION
+
+  CONSTRUCTOR                    = DxeInstantDebugConstructor
+
+#
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           = IA32 X64 AARCH64
+#
+
+[Binaries.X64]
+  LIB|X64/Dxe/DxeInstantDebugLib.lib
+  
+[Binaries.AARCH64]
+  LIB|AArch64/Dxe/DxeInstantDebugLib.lib
+  
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  ByoInstantDebugPkg/ByoInstantDebugPkg.dec
+  
+[Packages.AARCH64]
+  ArmPkg/ArmPkg.dec
+
+[Packages.Ia32, Packages.X64]
+  UefiCpuPkg/UefiCpuPkg.dec
+  
+[LibraryClasses]
+  BaseLib
+  BaseMemoryLib
+  SerialPortLib
+  PrintLib
+  PciSegmentLib
+  PeCoffLib
+  PeCoffGetEntryPointLib
+  PcdLib
+  SynchronizationLib
+  DebugLib
+  MemoryAllocationLib
+  UefiBootServicesTableLib
+  UefiLib
+  DebugCallStackLib
+  
+[LibraryClasses.AARCH64]
+  ArmLib
+  
+[LibraryClasses.Ia32, LibraryClasses.X64]
+  MtrrLib
+  LocalApicLib
+  
+[Ppis]
+  gEfiVectorHandoffInfoPpiGuid
+
+[Guids]
+  gEfiInstantDebuggerGuid
+  gEfiVectorHandoffTableGuid
+  gEfiDebugFvGuid
+
+[Pcd]
+  gEfiByoInstantDebugPkgTokenSpaceGuid.PcdExceptionsIgnoredByDebugger
+  gEfiByoInstantDebugPkgTokenSpaceGuid.PcdDebugPeiModuleCount
+  gEfiByoInstantDebugPkgTokenSpaceGuid.PcdBreakAtModuleEntryPoint
+
+
+

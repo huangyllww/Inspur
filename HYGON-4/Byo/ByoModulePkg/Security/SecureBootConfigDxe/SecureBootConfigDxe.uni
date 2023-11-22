@@ -1,0 +1,21 @@
+// /** @file
+// Provides the capability to configure secure boot in a setup browser
+//
+// By this module, user may change the content of DB, DBX, PK and KEK.
+//
+// Copyright (c) 2011 - 2022, Byosoft Corporation. All rights reserved.<BR>
+//
+// This software and associated documentation (if any)
+// is furnished under a license and may only be used or copied in
+// accordance with the terms of the license. Except as permitted by such
+// license, no part of this software or documentation may be reproduced,
+// stored in a retrieval system, or transmitted in any form or by any
+// means without the express written consent of Byosoft Corporation.
+
+//
+// **/
+
+
+#string STR_MODULE_ABSTRACT             #language en-US "Provides the capability to configure secure boot in a setup browser"
+
+#string STR_MODULE_DESCRIPTION          #language en-US "By this module, user may change the content of DB, DBX, PK and KEK."

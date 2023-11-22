@@ -1,0 +1,50 @@
+// /*++
+//  Copyright (c) 2023 Byosoft Corporation. All rights reserved.
+//  This program and associated documentation (if any) is furnished
+//  under a license. Except as permitted by such license,no part of this
+//  program or documentation may be reproduced, stored divulged or used
+//  in a public system, or transmitted in any form or by any means
+//  without the express written consent of Byosoft Corporation.
+//
+// Name:  SecurityUpdate.vfr
+//
+// Description: Setup strings
+//
+//**********************************************************************
+//=#
+#include <DisplayNVMESSConf.h>
+#include <Guid/HiiPlatformSetupFormset.h>
+
+formset
+  guid     = SETUP_DISPLAY_NVMESSD_GUID,
+  title    = STRING_TOKEN(STR_NVME_PCIE_SSD_PROMPT),
+  help     = STRING_TOKEN(STR_NVME_PCIE_SSD_HELP),
+  classguid = EFI_HII_PLATFORM_SETUP_FORMSET_GUID,
+
+  form formid = VFR_FORMID_DISPLAY_NVMESSD,
+    title         = STRING_TOKEN(STR_EMPTY);
+
+    // grayoutif TRUE;
+      text
+        help   = STRING_TOKEN(STR_EMPTY),
+        text   = STRING_TOKEN(STR_SSD_MODEL_NUMBER),
+        text   = STRING_TOKEN(STR_SSD_MODEL_NUMBER_VALUE);
+
+    subtitle text =  STRING_TOKEN(STR_EMPTY);
+
+      text
+        help   = STRING_TOKEN(STR_EMPTY),
+        text   = STRING_TOKEN(STR_SSD_FIRMWARE_REVISION),
+        text   = STRING_TOKEN(STR_SSD_FIRMWARE_REVISION_VALUE);
+
+      text
+        help   = STRING_TOKEN(STR_EMPTY),
+        text   = STRING_TOKEN(STR_SSD_CAPACITY),
+        text   = STRING_TOKEN(STR_SSD_CAPACITY_VALUE);
+
+
+    // endif;
+
+
+  endform;
+endformset;

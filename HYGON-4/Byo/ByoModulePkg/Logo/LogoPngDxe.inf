@@ -1,0 +1,79 @@
+## @file
+#  The default logo bitmap picture shown on setup screen.
+#
+#  Copyright (c) 2016 - 2022, Byosoft Corporation. All rights reserved.<BR>
+#
+#  This software and associated documentation (if any)
+#  is furnished under a license and may only be used or copied in
+#  accordance with the terms of the license. Except as permitted by such
+#  license, no part of this software or documentation may be reproduced,
+#  stored in a retrieval system, or transmitted in any form or by any
+#  means without the express written consent of Byosoft Corporation.
+#
+#
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = LogoPngDxe
+  MODULE_UNI_FILE                = LogoDxe.uni
+  FILE_GUID                      = 97276B9D-5CB4-4B75-82E1-F96ECC21A1E9
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+
+  ENTRY_POINT                    = InitializeLogo
+#
+#  This flag specifies whether HII resource section is generated into PE image.
+#
+#  UEFI_HII_RESOURCE_SECTION      = TRUE
+
+#
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           = IA32 X64
+#
+
+[Sources]
+  ByoNormalLogo.png
+  Logo.c
+  LogoPng.idf
+
+[Packages]
+  MdeModulePkg/MdeModulePkg.dec
+  MdePkg/MdePkg.dec
+  ByoModulePkg/ByoModulePkg.dec
+
+[LibraryClasses]
+  UefiBootServicesTableLib
+  UefiDriverEntryPoint
+  DebugLib
+  BmpSupportLib
+  MemoryAllocationLib
+  HiiLib
+
+[Pcd]
+  gEfiByoModulePkgTokenSpaceGuid.PcdLogoDataAddress
+  gEfiByoModulePkgTokenSpaceGuid.PcdLogoDataSize
+  gEfiByoModulePkgTokenSpaceGuid.PcdFlashNvLogoBase
+  gEfiByoModulePkgTokenSpaceGuid.PcdFlashNvLogoSize
+  gEfiMdeModulePkgTokenSpaceGuid.PcdRecordUpdateLogoState
+
+[Guids]
+  gEfiEndOfDxeEventGroupGuid
+  gEfiHiiImageDecoderNameJpegGuid
+  gEfiHiiImageDecoderNamePngGuid
+  gEventAfterConnectConsoleDeviceGuid
+
+[Protocols]
+  gEfiHiiDatabaseProtocolGuid        ## CONSUMES
+  gEfiHiiImageExProtocolGuid         ## CONSUMES
+  gEfiHiiPackageListProtocolGuid     ## PRODUCES CONSUMES
+  gEdkiiPlatformLogoProtocolGuid     ## PRODUCES
+  gEfiHiiImageDecoderProtocolGuid
+
+[Depex]
+  gEfiHiiDatabaseProtocolGuid AND
+  gEfiHiiImageExProtocolGuid
+
+[UserExtensions.TianoCore."ExtraFiles"]
+  LogoDxeExtra.uni

@@ -1,0 +1,71 @@
+
+/=#
+#langdef   zh-Hans "\wide中文\narrow"
+#langdef   en-US "English"
+
+#string STR_TPCM_INFO_FORM                      #language en-US   "TPCM Info"
+                                                #language zh-Hans "TPCM\wide信息\narrow"
+
+#string STR_TPCM_INFO_GET_TIME                  #language en-US   "Platform Status Get Time"
+                                                #language zh-Hans "\wide获取平台状态时间\narrow"
+#string STR_TPCM_INFO_GET_TIME_VALUE            #language en-US   "N/A"
+                                                #language zh-Hans "N/A"                                       
+#string STR_TPCM_AUTH_START_TIME                #language en-US   "Authorization start time"
+                                                #language zh-Hans "\wide授权起始时间\narrow"
+#string STR_TPCM_AUTH_START_TIME_VALUE          #language en-US   "N/A"
+                                                #language zh-Hans "N/A"
+#string STR_TPCM_AUTH_END_TIME                  #language en-US   "Deadline for after-sales service"
+                                                #language zh-Hans "\wide售后服务截止时间\narrow"
+#string STR_TPCM_AUTH_END_TIME_VALUE            #language en-US   "N/A"
+                                                #language zh-Hans "N/A"
+
+#string STR_TPCM_TRUSTED_ROOT_FORM              #language en-US   "Trusted Root Form"
+                                                #language zh-Hans "\wide可信根形态\narrow"
+#string STR_TPCM_TRUSTED_ROOT_FORM_VALUE        #language en-US   "N/A"
+                                                #language zh-Hans "N/A"
+
+#string STR_TPCM_STORAGE_SIZE                   #language en-US   "Storage(Flash Data) (K)"
+                                                #language zh-Hans "\wide存储空间（\narrowFlash\wide数据）（\narrowK\wide）\narrow"                                           
+#string STR_TPCM_STORAGE_SIZE_VALUE             #language en-US   "N/A"
+                                                #language zh-Hans "N/A"
+
+#string STR_TPCM_USABLE_STORAGE_SIZE            #language en-US   "Usable Storage(Flash Data) (K)"
+                                                #language zh-Hans "\wide可用存储空间（\narrowFlash\wide数据）（\narrowK\wide）\narrow"                                           
+#string STR_TPCM_USABLE_STORAGE_SIZE_VALUE      #language en-US   "N/A"
+                                                #language zh-Hans "N/A"
+                                                
+#string STR_TPCM_TRUSTED_STATE                  #language en-US   "Trusted Boot State"
+                                                #language zh-Hans "\wide启动可信状态\narrow"                                           
+#string STR_TPCM_TRUSTED_STATE_VALUE            #language en-US   "N/A"
+                                                #language zh-Hans "N/A"                                                
+
+#string STR_TPCM_VERSION                        #language en-US   "HuaTai TPCM Version"
+                                                #language zh-Hans "\wide可信华泰\narrowTPCM\wide版本号\narrow"                                           
+#string STR_TPCM_VERSION_VALUE                  #language en-US   "N/A"
+                                                #language zh-Hans "N/A"                                                 
+                                                
+#string STR_TPCM_HAS_ROOT_STORAGE_KEY           #language en-US   "Has Root Storage Key"
+                                                #language zh-Hans "\wide根存储密钥是否生成\narrow"                                           
+#string STR_TPCM_HAS_ROOT_STORAGE_KEY_VALUE     #language en-US   "N/A"
+                                                #language zh-Hans "N/A"                                                 
+
+#string STR_TPCM_TRUSTED_ROOT_FORM_MAIN         #language en-US   "Main Core"
+                                                #language zh-Hans "\wide主核\narrow"
+#string STR_TPCM_TRUSTED_ROOT_FORM_ADDITIONAL   #language en-US   "Additional Core"
+                                                #language zh-Hans "\wide附加核\narrow" 
+#string STR_TPCM_TRUSTED_ROOT_FORM_SIM          #language en-US   "Simulate"
+                                                #language zh-Hans "\wide模拟\narrow" 
+#string STR_TPCM_TRUSTED_ROOT_FORM_EXT          #language en-US   "External"
+                                                #language zh-Hans "\wide外置\narrow"
+
+#string STR_TPCM_GENERATED                      #language en-US   "Generated"
+                                                #language zh-Hans "\wide已生成\narrow"
+#string STR_TPCM_NOT_GENERATED                  #language en-US   "Not Generated"
+                                                #language zh-Hans "\wide未生成\narrow"
+
+#string STR_TPCM_TRUSTED                        #language en-US   "Trusted"
+                                                #language zh-Hans "\wide可信\narrow"
+#string STR_TPCM_UNTRUSTED                      #language en-US   "Untrusted"
+                                                #language zh-Hans "\wide不可信\narrow"
+#string STR_TPCM_UNKNOWN                        #language en-US   "Unknown"
+                                                #language zh-Hans "\wide未知\narrow"                                                 

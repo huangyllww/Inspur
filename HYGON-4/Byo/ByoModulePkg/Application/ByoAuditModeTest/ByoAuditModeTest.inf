@@ -1,0 +1,75 @@
+## @file
+#
+# Copyright (c) 2006 - 2022, Byosoft Corporation.<BR>
+# All rights reserved.This software and associated documentation (if any)
+# is furnished under a license and may only be used or copied in
+# accordance with the terms of the license. Except as permitted by such
+# license, no part of this software or documentation may be reproduced,
+# stored in a retrieval system, or transmitted in any form or by any
+# means without the express written consent of Byosoft Corporation.
+#
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = ByoAuditModeTest
+  FILE_GUID                      = 0AEBD12A-F0EA-4524-A039-70F0B140F3BA
+  MODULE_TYPE                    = UEFI_APPLICATION
+  VERSION_STRING                 = 1.0 
+  ENTRY_POINT                    = ByoAuditModeTestEntry
+
+#
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           = IA32 X64 IPF EBC
+#
+
+[Sources]
+  ByoAuditModeTest.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  ByoModulePkg/ByoModulePkg.dec
+  SecurityPkg/SecurityPkg.dec
+
+[LibraryClasses]
+  HiiLib
+  DebugLib
+  UefiLib
+  MemoryAllocationLib
+  UefiBootServicesTableLib
+  UefiApplicationEntryPoint
+  ByoCommLib
+  UefiRuntimeServicesTableLib
+  DevicePathLib
+[Guids]
+  ## SOMETIMES_CONSUMES   ## Variable:L"DB"
+  ## SOMETIMES_CONSUMES   ## Variable:L"DBX"
+  ## SOMETIMES_CONSUMES   ## Variable:L"DBT"
+  ## PRODUCES             ## SystemTable
+  ## CONSUMES             ## SystemTable
+  gEfiImageSecurityDatabaseGuid
+
+  ## SOMETIMES_CONSUMES      ## GUID            # Unique ID for the type of the signature.
+  ## SOMETIMES_PRODUCES      ## GUID            # Unique ID for the type of the signature.
+  gEfiCertRsa2048Guid
+
+  ## SOMETIMES_CONSUMES      ## GUID            # Unique ID for the type of the signature.
+  ## SOMETIMES_PRODUCES      ## GUID            # Unique ID for the type of the signature.
+  gEfiCertX509Guid
+
+  ## SOMETIMES_CONSUMES      ## GUID            # Unique ID for the type of the signature.
+  ## SOMETIMES_PRODUCES      ## GUID            # Unique ID for the type of the signature.
+  gEfiCertSha1Guid
+
+  ## SOMETIMES_CONSUMES      ## GUID            # Unique ID for the type of the signature.
+  ## SOMETIMES_PRODUCES      ## GUID            # Unique ID for the type of the signature.
+  gEfiCertSha256Guid
+
+  gEfiCertX509Sha256Guid                        ## SOMETIMES_PRODUCES  ## GUID  # Unique ID for the type of the certificate.
+  gEfiCertX509Sha384Guid                        ## SOMETIMES_PRODUCES  ## GUID  # Unique ID for the type of the certificate.
+  gEfiCertX509Sha512Guid                        ## SOMETIMES_PRODUCES  ## GUID  # Unique ID for the type of the certificate.
+
+
+

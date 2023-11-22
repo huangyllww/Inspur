@@ -1,0 +1,86 @@
+## @file
+# EFI/PI Reference Module Package for All Architectures
+#
+# Copyright (c) 2006 - 2023, Byosoft Corporation.<BR>
+# All rights reserved.This software and associated documentation (if any)
+# is furnished under a license and may only be used or copied in
+# accordance with the terms of the license. Except as permitted by such
+# license, no part of this software or documentation may be reproduced,
+# stored in a retrieval system, or transmitted in any form or by any
+# means without the express written consent of Byosoft Corporation.
+#
+# File Name:
+#   ByoCommonDxe.fdf
+#
+
+INF  ByoModulePkg/Logo/LogoDxe.inf 
+INF  ByoModulePkg/Universal/PlatformBootManagerDxe/PlatformBootManagerDxeEdk2.inf
+INF  ByoModulePkg/Setup/BiosUpdate/BiosUpdate.inf
+INF  ByoModulePkg/HddBindDxe/HddBindDxeOnlyUefi.inf
+INF  ByoModulePkg/Application/PxeBootApp/PxeBootApp.inf
+INF  ByoModulePkg/Nvme/NvmeDxe/NvmExpressDxe.inf
+INF  ByoModulePkg/Security/HddPassword/Dxe/HddPasswordDxe.inf
+INF  ByoModulePkg/Setup/PlatformSetupDxe/PlatformSetupDxe.inf
+
+INF  ByoModulePkg/Universal/SmbiosSmm/SmbiosSmm.inf
+INF  ByoModulePkg/Universal/SmbiosDxe/SmbiosDxe.inf
+FILE DRIVER = B06BF760-F934-4079-A50E-0C415F48C9AA {
+    SECTION PE32 = ByoDevicePkg/ThirdParty/Ext2/X64/Ext2.efi
+    SECTION UI   = "Ext"
+  }
+
+FILE DRIVER = 66CA4AE8-387D-4381-8D86-78278033DB0D {
+    SECTION PE32 = ByoDevicePkg/ThirdParty/NTFS/X64/NTFS.efi
+    SECTION UI   = "ntfs"
+  }
+
+#
+#Instant Debugger Feature Support 
+#
+!if $(INSTANT_DEBUG_ENABLE) == TRUE 
+#INF USE=X64  ByoInstantDebugPkg/DeAssembleEngine/Binaries/DeAssembleEngineSmm.inf
+INF USE=X64  ByoInstantDebugPkg/DeAssembleEngine/Binaries/DeAssembleEngineDxe.inf
+#INF USE=IA32 ByoInstantDebugPkg/DeAssembleEngine/Binaries/DeAssembleEnginePei.inf
+
+FILE FREEFORM  = 88425FB4-2E38-4B56-9576-522D365A885A {
+    SECTION RAW = $(OUTPUT_DIRECTORY)/$(TARGET)_$(TOOL_CHAIN_TAG)/MapDb.raw
+  }
+!endif
+
+
+#
+#Platform BIOS Update Support
+#
+INF  ByoModulePkg/SmiFlash/SmiFlash.inf 
+INF  ByoModulePkg/SmiFlashDxe/SmiFlashDxe.inf
+INF  ByoModulePkg/Universal/ByoSmbiosTable/ByoSmbiosTable.inf
+#
+#Secure Boot
+#
+!if $(SECURE_BOOT_ENABLE) == TRUE
+!include ByoModulePkg/Security/SecureKey/SecureKey.fdf
+INF ByoModulePkg/Security/SecureBoot/SecureBootDefult.inf
+INF ByoModulePkg/Security/SecureBootConfigDxe/SecureBootConfigDxe.inf
+!endif
+
+
+#
+#TPM2 support
+#
+!if $(TPM2_ENABLE) == TRUE
+INF  ByoModulePkg/Security/Tpm/Tpm2Setup/Tcg2ConfigDxe.inf
+INF  ByoModulePkg/Security/Tpm/Tcg2PlatformDxe/Tcg2PlatformDxe.inf
+!endif
+
+#
+#Server Platform ipmi Support
+#
+!if $(IPMI_SUPPORT) == TRUE
+INF  ByoServerPkg/Ipmi/IpmiBootOrder/IpmiBootOrderUefi.inf
+INF  ByoServerPkg/Ipmi/Generic/GenericIpmi.inf
+INF  ByoServerPkg/Ipmi/BmcSol/SolStatus.inf
+INF  ByoServerPkg/Ipmi/IpmiRedirFru/IpmiRedirFru.inf
+INF  ByoServerPkg/Ipmi/BmcWdt/BmcWdt.inf
+INF  ByoServerPkg/Ipmi/BmcCfg/BmcCfg.inf
+INF  ByoServerPkg/Ipmi/SetupBmcCfg/SetupBmcCfg.inf
+!endif

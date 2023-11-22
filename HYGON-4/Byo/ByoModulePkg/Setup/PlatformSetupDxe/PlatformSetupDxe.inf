@@ -1,0 +1,145 @@
+## @file
+#
+# Copyright (c) 2010 - 2018, Byosoft Corporation.<BR>
+# All rights reserved.This software and associated documentation (if any)
+# is furnished under a license and may only be used or copied in
+# accordance with the terms of the license. Except as permitted by such
+# license, no part of this software or documentation may be reproduced,
+# stored in a retrieval system, or transmitted in any form or by any
+# means without the express written consent of Byosoft Corporation.
+#
+# File Name:
+#
+# Abstract:
+#   Platform configuration setup.
+#
+# Revision History:
+#
+#
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = PlatformSetupDxe
+  FILE_GUID                      = C1A69A12-8653-4fde-A215-48FCD95288C3
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = PlatformSetupDxeInit
+  UNLOAD_IMAGE                   = PlatformSetupDxeUnload
+
+[Sources]
+  Setup.uni
+  Advanced/FormsetAdvanced.vfr
+  Advanced/AdvancedCallback.c
+  Boot/FormsetBoot.vfr
+  Boot/BootCallback.c
+  Security/FormsetSecurity.vfr
+  Security/Security.uni
+  Security/PasswordCallback.c
+  Exit/FormsetExit.vfr
+  Exit/ExitCallback.c
+  PlatformSetupDxe.c
+  ByoSetupProtocol.c
+  SetupFormInit.c
+  SetupFormInit.h
+  Devices/Usb/UsbCallback.c
+  Devices/Usb/UsbSetup.uni
+
+
+[Packages]
+  ByoModulePkg/ByoModulePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  MdePkg/MdePkg.dec
+
+[LibraryClasses]
+  BaseLib
+  DebugLib
+  UefiBootServicesTableLib
+  HobLib
+  MemoryAllocationLib
+  UefiRuntimeServicesTableLib
+  UefiDriverEntryPoint
+  HiiLib
+  SetupUiLib
+  SystemPasswordLib
+  ByoCommLib
+  UefiLib
+  UsbListLib
+  PcdLib
+  PlatformLanguageLib
+  DxeServicesLib
+  ByoBootManagerLib
+  PrintLib
+  
+[Guids]
+  gPlatformSetupVariableGuid
+  gEfiSetupEnterGuid
+  gEfiSystemPasswordVariableGuid
+  gEfiFormsetGuidMain
+  gEfiHiiPlatformSetupFormsetGuid
+  gEfiIfrTianoGuid
+  gEfiFormsetGuidAdvance
+  gEfiFormsetGuidBoot
+  gEfiFormsetGuidSecurity
+  gEfiFormsetGuidExit
+  gByoPasswordNetworkAuthConfigGuid
+  gByoGlobalVariableGuid
+  gEfiFlashLockStatusVariableGuid
+  gByoCsmOnDpxGuid
+  gByoCsmOffDpxGuid
+  gPxeControlVariableGuid
+  gNetworkStackFvDpxGuid 
+
+[Protocols]
+  gEfiByoPlatformSetupGuid
+  gEfiHiiConfigAccessProtocolGuid               ## SOMETIMES_PRODUCES
+  gEfiByoFormsetManagerProtocolGuid
+  gEfiSystemPasswordProtocolGuid
+  gEdkiiFormBrowserEx2ProtocolGuid
+  gEdkiiFormDisplayEngineProtocolGuid
+  gSetupSaveNotifyProtocolGuid
+  gByoSetupBiosUpdateProtocolGuid
+  gByoNetworkIdentifierProtocolGuid
+  gByoSetupBiosUpdateAllProtocolGuid
+  gDisplayBackupRecoverProtocolGuid
+  gByoSetupBiosUpdateNetworkProtocolGuid
+  gByoSetupBiosUpdateAllNetworkProtocolGuid
+  gByoPlatformLanguageProtocolGuid
+  gByoAllDriversConnectedProtocolGuid
+  gUsbPolicyGuid
+  gEfiReadyToBootProtocolGuid
+  gSetupItemUpdateNotifyProtocolGuid
+
+[Pcd]
+  gEfiByoModulePkgTokenSpaceGuid.PcdPxeRetrylimites
+  gEfiByoModulePkgTokenSpaceGuid.PcdRetryPxeBoot
+  gEfiByoModulePkgTokenSpaceGuid.PcdMaxVerifyTimes
+  gEfiByoModulePkgTokenSpaceGuid.PcdRecorderPasswordTime
+  gEfiByoModulePkgTokenSpaceGuid.PcdPasswordMaxRecorderTime
+  gEfiByoModulePkgTokenSpaceGuid.PcdLockScreenTime
+  gEfiByoModulePkgTokenSpaceGuid.PcdPasswordUnlockTime
+  gEfiByoModulePkgTokenSpaceGuid.PcdPasswordReminderDays
+  gEfiMdeModulePkgTokenSpaceGuid.PcdPxeRetryForeverValue
+  gEfiByoModulePkgTokenSpaceGuid.PcdBiosIdVersionCheck
+  gEfiByoModulePkgTokenSpaceGuid.PcdSystemMiscConfig
+  gEfiByoModulePkgTokenSpaceGuid.PcdPasswordComplexity
+  gEfiByoModulePkgTokenSpaceGuid.PcdDisplayMode
+  gEfiByoModulePkgTokenSpaceGuid.PcdGuiEnable
+
+  gEfiByoModulePkgTokenSpaceGuid.PcdBiosBootModeType
+  gEfiMdeModulePkgTokenSpaceGuid.PcdSystemMiscSetting
+  gEfiByoModulePkgTokenSpaceGuid.PcdLegacyBiosSupport
+  gEfiByoModulePkgTokenSpaceGuid.PcdVideoOpRomLaunchPolicy
+  gEfiByoModulePkgTokenSpaceGuid.PcdPxeOpRomLaunchPolicy
+  gEfiByoModulePkgTokenSpaceGuid.PcdStorageOpRomLaunchPolicy
+  gEfiByoModulePkgTokenSpaceGuid.PcdOtherOpRomLaunchPolicy
+
+  gEfiByoModulePkgTokenSpaceGuid.PcdPlatSupportCSM
+  gEfiByoModulePkgTokenSpaceGuid.PcdBiosBootModeType
+  gEfiByoModulePkgTokenSpaceGuid.PcdAlwaysCreatNetOption
+
+  gEfiByoModulePkgTokenSpaceGuid.PcdUpdateNvVariableEnable
+
+[Depex]
+  gEfiHiiConfigRoutingProtocolGuid
+

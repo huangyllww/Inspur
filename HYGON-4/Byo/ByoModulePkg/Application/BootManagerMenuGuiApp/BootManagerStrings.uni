@@ -1,0 +1,53 @@
+///** @file
+//
+// Copyright (c) 2007 - 2022, Byosoft Corporation.<BR>
+//
+// All rights reserved.This software and associated documentation (if any)
+// is furnished under a license and may only be used or copied in
+// accordance with the terms of the license. Except as permitted by such
+// license, no part of this software or documentation may be reproduced,
+// stored in a retrieval system, or transmitted in any form or by any
+// means without the express written consent of Byosoft Corporation.
+//
+// Module Name:
+//
+//   BootManagerStrings.uni
+//
+// Abstract:
+//
+//   String definitions for Boot Manager formset.
+//
+// Revision History:
+//
+// --*/
+
+/=#
+#langdef   en-US "English"
+#langdef   fr-FR "Français"
+#langdef   zh-Hans "\wide中文\narrow"
+
+#string STR_BM_BANNER                  #language en-US  "Boot Manager"
+                                       #language fr-FR  "Boot Manager"
+                                       #language zh-Hans "\wide启动管理器\narrow"
+#string STR_BOOT_MANAGER_HELP          #language en-US  "This selection will take you to the Boot Manager"
+                                       #language fr-FR  "This selection will take you to the Boot Manager"
+                                       #language zh-Hans "\wide该选项将带您进入启动管理器\narrow"
+#string STR_HELP_FOOTER                #language en-US  "Use the <↑> and <↓> keys to choose a boot option, the <Enter> key to select a boot option, and the <Esc> key to exit the Boot Manager Menu."
+                                       #language fr-FR  "<↑> pour <↓> changer l'option, <ENTER> choisir une option, <ESC> pour sortir"
+                                       #language zh-Hans "\wide使用\narrow <↑> \wide和\narrow <↓> \wide键选择启动选项，使用\narrow <Enter> \wide键选中启动选项，使用\narrow <Esc> \wide键退出启动管理器菜单。\narrow"
+#string STR_AND                        #language en-US  " and "
+                                       #language fr-FR  " et "
+                                       #language zh-Hans "\wide和\narrow"
+#string STR_BOOT_OPTION_BANNER         #language en-US  "Boot Manager Menu"
+                                       #language fr-FR  "le Menu d'Option de Botte"
+                                       #language zh-Hans "\wide启动管理器菜单\narrow"
+#string STR_ANY_KEY_CONTINUE           #language en-US  "Press any key to continue..."
+                                       #language fr-FR  "Appuie n'importe quelle pour continuer..."
+                                       #language zh-Hans "\wide按任意键继续\narrow..."
+#string STR_LAST_STRING                #language en-US  ""
+                                       #language fr-FR  ""
+                                       #language zh-Hans ""
+#string STR_RESET_APPLY_NOW            #language en-US  "Configuration changed. Reset to apply it Now."
+                                       #language zh-Hans "\wide配置已更改。立即重启以应用它。\narrow"
+#string STR_ENTER_TO_RESET             #language en-US  "Press <ENTER> to reset"
+                                       #language zh-Hans "\wide按\narrow <ENTER> \wide键重启\narrow"

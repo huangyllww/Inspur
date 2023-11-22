@@ -1,0 +1,74 @@
+/*++
+Copyright (c) 2006-2021 Byosoft Corporation. All rights reserved.
+This software and associated documentation (if any) is furnished
+under a license and may only be used or copied in accordance
+with the terms of the license. Except as permitted by such
+license, no part of this software or documentation may be
+reproduced, stored in a retrieval system, or transmitted in any
+form or by any means without the express written consent of
+Byosoft Corporation.
+
+Module Name:
+
+  Network.sd
+
+Abstract:
+
+  NETWORK CONFIGURATION FORM TEMPLATE
+
+--*/
+
+#ifdef DEVICES_FORM_SET
+
+  #ifdef FORM_SET_GOTO
+
+    suppressif TRUE;  
+      goto NETWORK_SETUP_FORM_ID, 
+        prompt = STRING_TOKEN(STR_NETWORK_SETUP_FORM),
+        help = STRING_TOKEN(STR_NETWORK_SETUP_FORM_HELP);
+    endif;
+    
+  #endif
+
+  #ifdef FORM_SET_FORM
+
+    form formid = AUTO_ID(NETWORK_SETUP_FORM_ID),
+      title = STRING_TOKEN(STR_NETWORK_SETUP_FORM);
+
+      subtitle text = STRING_TOKEN(STR_EMPTY);
+          
+      oneof varid  = SETUP_DATA.ObLanEn,
+        prompt = STRING_TOKEN(STR_ONBOARD_ETHERNET_CONTROLLER),
+        help = STRING_TOKEN(STR_ONBOARD_ETHERNET_CONTROLLER_HELP),
+        option text = STRING_TOKEN(STR_ENABLED),  value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+      endoneof;
+   
+      subtitle text = STRING_TOKEN(STR_EMPTY);
+
+#if TKN_ONBOARD_LAN_MAX_COUNT > 0   
+      text
+        help   = STRING_TOKEN(STR_EMPTY),
+        text   = STRING_TOKEN(STR_LAN1_MAC_ADDR_NAME),
+        text   = STRING_TOKEN(STR_LAN1_MAC_ADDR_VALUE);  
+#endif
+
+#if TKN_ONBOARD_LAN_MAX_COUNT > 1   
+      text
+        help   = STRING_TOKEN(STR_EMPTY),
+        text   = STRING_TOKEN(STR_LAN2_MAC_ADDR_NAME),
+        text   = STRING_TOKEN(STR_LAN2_MAC_ADDR_VALUE);
+#endif
+
+#if TKN_ONBOARD_LAN_MAX_COUNT > 2
+      text
+        help   = STRING_TOKEN(STR_EMPTY),
+        text   = STRING_TOKEN(STR_LAN3_MAC_ADDR_NAME),
+        text   = STRING_TOKEN(STR_LAN3_MAC_ADDR_VALUE);  
+#endif   
+      
+    endform;
+
+  #endif
+
+#endif

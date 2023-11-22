@@ -1,0 +1,185 @@
+// /** @file
+//
+// Copyright (c) 2006 - 2018, Byosoft Corporation.<BR>
+// All rights reserved.This software and associated documentation (if any)
+// is furnished under a license and may only be used or copied in
+// accordance with the terms of the license. Except as permitted by such
+// license, no part of this software or documentation may be reproduced,
+// stored in a retrieval system, or transmitted in any form or by any
+// means without the express written consent of Byosoft Corporation.
+//
+// File Name:
+//
+// Abstract:
+//   Platform configuration setup.
+//
+// Revision History:
+//
+//
+// **/
+/=#
+#langdef   zh-Hans "\wide中文\narrow"
+#langdef   en-US "English"
+
+#string    STR_EMPTY                    #language en-US ""
+                                        #language zh-Hans ""
+#string    STR_ENABLED                  #language en-US "Enabled"
+                                        #language zh-Hans "\wide打开\narrow"
+#string    STR_DISABLED                 #language en-US "Disabled"
+                                        #language zh-Hans "\wide关闭\narrow"
+#string    STR_NONE                     #language en-US "None"
+                                        #language zh-Hans "\wide无\narrow"
+#string    STR_AUTO                     #language en-US   "Auto"
+                                        #language zh-Hans "\wide自动\narrow"
+
+
+#string FORMSET_TITLE_ADVANCED          #language en-US "Advanced"
+                                        #language zh-Hans "\wide高级\narrow"
+#string FORMSET_TITLE_ADVANCED_HELP     #language en-US "Advanced Menu Settings"
+                                        #language zh-Hans "\wide高级选项\narrow"
+#string FORMSET_TITLE_DEVICE            #language en-US "Device"
+                                        #language zh-Hans "\wide设备\narrow"
+#string FORMSET_TITLE_DEVICE_HELP       #language en-US "Devices Settings"
+                                        #language zh-Hans "\wide设备配置\narrow"
+#string FORMSET_TITLE_POWER             #language en-US "Power"
+                                        #language zh-Hans "\wide电源\narrow"
+#string FORMSET_TITLE_POWER_HELP        #language en-US "Power Menu Settings"
+                                        #language zh-Hans "\wide电源配置\narrow"
+#string FORMSET_TITLE_SECURITY          #language en-US "Security"
+                                        #language zh-Hans "\wide安全\narrow"
+#string FORMSET_TITLE_SECURITY_HELP     #language en-US "Security Settings"
+                                        #language zh-Hans "\wide安全配置\narrow"
+
+
+#string FORMSET_TITLE_EXIT              #language en-US   "Exit"
+                                        #language zh-Hans "\wide退出\narrow"
+#string FORMSET_TITLE_EXIT_HELP         #language en-US "Maintain Options"
+                                        #language zh-Hans "\wide维护选项\narrow"
+#string STR_SAVE_WITHOUT_EXIT           #language en-US "Save Changes"
+                                        #language zh-Hans "\wide保存修改\narrow"
+#string STR_SAVE_WITHOUT_EXIT_HELP      #language en-US "Save changes."
+                                        #language zh-Hans "\wide保存修改。\narrow"
+#string STR_SAVE_EXIT                   #language en-US "Save and Exit"
+                                        #language zh-Hans "\wide保存并且退出\narrow"
+#string STR_SAVE_EXIT_HELP              #language en-US "Exit system Setup after saving the changes."
+                                        #language zh-Hans "\wide在保存设定之后退出。\narrow"
+#string STR_DISCARD_EXIT                #language en-US "Discard Changes and Exit"
+                                        #language zh-Hans "\wide不保存并且退出\narrow"
+#string STR_DISCARD_EXIT_HELP           #language en-US "Exit system Setup without saving any changes."
+                                        #language zh-Hans "\wide不保存设定退出。\narrow"
+#string STR_RESTORE_DEFAULTS            #language en-US "Load Setup Defaults"
+                                        #language zh-Hans "\wide恢复初始值\narrow"
+#string STR_RESTORE_DEFAULTS_HELP       #language en-US   "Restore/Load defaults values for all the Setup options."
+                                        #language zh-Hans "\wide为每个选项恢复/加载默认值。\narrow"
+					
+#string STR_SAVE_USER_DEFAULTS          #language en-US "Save as User Default Values"
+                                        #language zh-Hans "\wide保存为用户默认值\narrow"
+#string STR_SAVE_USER_DEFAULTS_HELP     #language en-US "Save as User Default Values"
+                                        #language zh-Hans "\wide保存为用户默认值\narrow"
+#string STR_RESTORE_USER_DEFAULTS       #language en-US "Load User Default Values"
+                                        #language zh-Hans "\wide加载用户默认值\narrow"
+#string STR_RESTORE_USER_DEFAULTS_HELP  #language en-US "Load User Default Values"
+                                        #language zh-Hans "\wide加载用户默认值\narrow"
+					
+#string STR_UPDATE_BIOS                 #language en-US "Update BIOS"
+                                        #language zh-Hans "\wide更新固件\narrow"
+#string STR_UPDATE_BIOS_HELP            #language en-US "Update BIOS with file BIOS.FD."
+                                        #language zh-Hans "\wide用\narrowBIOS.FD\wide文件更新固件。\narrow"
+// Reset
+#string STR_RESET                       #language en-US "Reset"
+                                        #language zh-Hans "\wide重启\narrow"
+#string STR_RESET_HELP                  #language en-US "Reset System"
+                                        #language zh-Hans "\wide重启系统\narrow"
+#string RESET_MAIN                      #language en-US "Reset"
+                                        #language zh-Hans "\wide\重启narrow"
+// Boot Override
+#string STR_BOOT_MANAGER_TITLE          #language en-US "Boot Override"
+                                        #language zh-Hans "Boot Override"
+#string STR_HORIZONTAL_LINE             #language en-US "--------------------------------------------------"
+                                        #language zh-Hans "--------------------------------------------------"
+
+#string STR_STANDARD_DEFAULT_PROMPT     #language en-US "Standard Default"
+                                        #language zh-Hans "\wide标准默认值\narrow"
+#string STR_MANUFACTURE_DEFAULT_PROMPT  #language en-US "Manufacture Default"
+                                        #language zh-Hans "\wide手动默认值\narrow"
+#string STR_PROCESSOR_TYPE              #language en-US "Processor Type"
+                                        #language zh-Hans "\wide处理器类型\narrow"
+#string STR_MAIN_LANGUAGE_SELECT        #language en-US  "Select Language"
+                                        #language zh-Hans "\wide选择语言\narrow"
+#string STR_MAIN_LANGUAGE_SELECT_HELP   #language en-US  "This is the option one adjusts to change the language for the current system."
+                                        #language zh-Hans "\wide这是可以调整以更改当前系统语言的选项。\narrow"
+#string STR_CLEAR_EVENT_LOG_WARNING     #language en-US  "All system event log will be cleared immediately!"
+                                        #language zh-Hans "\wide所有系统事件日志将立即清除！\narrow"
+#string STR_WARNING_TITLE               #language en-US  "Setup Warning"
+                                        #language zh-Hans "\wide设置警告\narrow"
+
+                                        
+#string STR_SECUREBOOT_TITLE            #language en-US "Security Boot"
+                                        #language zh-Hans "\wide安全启动\narrow"
+#string STR_SECUREBOOT_HELP             #language en-US "Security boot settings, include enable/disable function and remove/restore keys." 
+                                        #language zh-Hans "\wide安全启动设置，包括启用或禁用功能和删除或恢复密钥。\narrow"
+                                       
+#string STR_TXT_CONFIG                  #language en-US "TXT Configuration"
+                                        #language zh-Hans "TXT\wide配置\narrow"  
+#string STR_TXT                         #language en-US "TXT" 
+                                        #language zh-Hans "TXT"  
+#string STR_TXT_HELP                    #language en-US "enable/disable TXT."
+                                        #language zh-Hans "\wide启用或禁用\narrow TXT\wide。\narrow"   
+
+#string STR_LANGUAGE_SELECT             #language en-US  "Select Language"
+                                        #language zh-Hans "\wide选择语言\narrow"
+
+#string FORMSET_TITLE_MAIN              #language en-US "Main"
+                                        #language zh-Hans "\wide主页\narrow"
+#string FORMSET_TITLE_MAIN_HELP         #language en-US "Main"
+                                        #language zh-Hans "\wide主页\narrow"
+
+#string STR_BIOS_UPDATE                 #language en-US   "BIOS Update"
+                                        #language zh-Hans "BIOS\wide固件更新\narrow" 
+#string STR_BIOS_UPDATE_HELP            #language en-US   "Put the BIOS file into the U disk root directory, insert the U disk, and select this option to update the BIOS."
+                                        #language zh-Hans "\wide将\narrowBIOS\wide文件放入\narrowU\wide盘根目录，插入\narrowU\wide盘，选择该选项进行\narrowBIOS\wide更新。\narrow"
+
+#string UPDATE_BIOS_ALL                 #language en-US   "BIOS Update ALL"
+                                        #language zh-Hans "BIOS\wide全固件更新\narrow"
+#string UPDATE_BIOS_ALL_HELP            #language en-US   "BIOS Update ALL"
+                                        #language zh-Hans "BIOS\wide全固件更新\narrow"
+                                        
+#string STR_CONFIRM_RESET               #language en-US   "Reboot System?"
+                                        #language zh-Hans "\wide重启系统？\narrow" 
+#string STR_CONFIRM_SHUTDOWN            #language en-US   "Shutdown System?"
+                                        #language zh-Hans "\wide关闭系统？\narrow"                                        
+#string STR_SYS_RESET                   #language en-US   "Reboot System"
+                                        #language zh-Hans "\wide重启\narrow"                                         
+#string STR_SYS_RESET_HELP              #language en-US   "Reboot the system"
+                                        #language zh-Hans "\wide重启系统\narrow"                                         
+#string STR_SYS_SHUTDOWN                #language en-US   "Shutdown System"
+                                        #language zh-Hans "\wide关机\narrow"                                         
+#string STR_SYS_SHUTDOWN_HELP           #language en-US   "Shutdown the system"
+                                        #language zh-Hans "\wide关闭系统\narrow"                                         
+
+#string STR_BIOS_FLASH_LOCK           #language en-US   "BIOS is locked!"
+                                        #language zh-Hans "BIOS\wide已上锁\narrow！"
+
+                                        
+#string STR_UEFI_HII_CONFIG             #language en-US    "UEFI HII Configuration"
+                                        #language zh-Hans  "UEFI HII\wide配置\narrow"
+#string STR_UEFI_HII_CONFIG_HELP        #language en-US    "Provides configuration of device supported UEFI HII(Human Interface Infrastructure)."
+                                        #language zh-Hans  "\wide提供设备支持的\narrowUEFI HII\wide（人机界面基础设施）的配置。\narrow"
+
+#string STR_DIRECT_BOOT                 #language en-US "Pressing Enter key to load the selected boot item."
+                                        #language zh-Hans  "\wide按确认键启动系统\narrow。"
+
+#string STR_DISCARD_EXIT                #language en-US "Discard Changes and Exit"
+                                        #language zh-Hans "\wide不保存并且退出\narrow"
+#string STR_DISCARD_EXIT_HELP           #language en-US "Exit system Setup without saving any changes."
+                                        #language zh-Hans "\wide不保存设定退出。\narrow"
+
+#string STR_BIOS_UPDATE_PARM            #language en-US   "BIOS Update Parameters"
+                                        #language zh-Hans "BIOS\wide固件更新参数\narrow" 
+#string STR_BIOS_UPDATE_PARM_HELP       #language en-US   "BIOS update parameters, choose to retain the setup configuration or full update BIOS. When the setup data (default value, structure, etc.) changes between different versions and the method of retaining the configuration refresh is selected, the option other than password-related will revert to the default value."
+                                        #language zh-Hans "BIOS\wide固件更新参数，选择保留\narrowsetup\wide配置或者全刷的方式更新\narrowBIOS\wide。当不同版本之间\narrowsetup\wide数据（默认值、结构等）发生变化选择保留配置刷新方式时，除密码相关以外的选项将会恢复默认值。\narrow"
+#string STR_RESERVED_CONFIGURATION      #language en-US   "Reserved Configuration"
+                                        #language zh-Hans "\wide保留配置\narrow" 
+#string STR_FULL_BRUSH                  #language en-US   "Full Update"
+                                        #language zh-Hans "\wide完全刷新\narrow"                                        
+                                        

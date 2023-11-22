@@ -1,0 +1,70 @@
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = PlatformCommLib
+  FILE_GUID                      = DC8A643C-CD84-4289-980D-20F01F3DDA1C
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = PlatformCommLib
+
+
+#
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           = IA32 X64 IPF EBC
+#
+
+[Sources]
+  PlatformCommLib.c
+
+
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  ByoModulePkg/ByoModulePkg.dec
+  Platform4Pkg/Platform4Pkg.dec
+  UefiCpuPkg/UefiCpuPkg.dec
+  PcAtChipsetPkg/PcAtChipsetPkg.dec
+  ByoHgpiModulePkg/ByoHgpiModulePkg.dec
+
+
+[LibraryClasses]
+  PcdLib
+  IoLib
+  BaseLib
+  TimerLib
+  HobLib
+  PciLib
+
+[Guids]
+  gPlatformSetupVariableGuid
+  gEfiConsoleOutDeviceGuid
+  gCarTopDataHobGuid
+  gEfiDiskInfoIdeInterfaceGuid
+  gEfiDiskInfoAhciInterfaceGuid
+  gEfiPlatformCommInfoGuid
+  gEfiCpuInfoHobGuid
+  gHygonCbsVariableHobGuid
+
+
+[Protocols]
+  gEfiGraphicsOutputProtocolGuid
+  gEfiExtScsiPassThruProtocolGuid
+  gEfiAtaPassThruProtocolGuid
+  gEfiPciIoProtocolGuid
+  gEfiDevicePathProtocolGuid
+  gEfiDiskInfoProtocolGuid
+  gEfiDevicePathToTextProtocolGuid
+  gEfiScsiIoProtocolGuid
+
+[Pcd]
+  gEfiMdePkgTokenSpaceGuid.PcdPciExpressBaseAddress
+  gEfiByoModulePkgTokenSpaceGuid.AcpiIoPortBaseAddress
+  gPlatformModuleTokenSpaceGuid.PcdS3RecordAddr
+
+
+
+
+
+

@@ -1,0 +1,74 @@
+## @file  
+#
+# Copyright (c) 2006 - 2022, Byosoft Corporation.<BR> 
+# All rights reserved.This software and associated documentation (if any)
+# is furnished under a license and may only be used or copied in 
+# accordance with the terms of the license. Except as permitted by such
+# license, no part of this software or documentation may be reproduced, 
+# stored in a retrieval system, or transmitted in any form or by any 
+# means without the express written consent of Byosoft Corporation.
+#
+# File Name:
+#   ByoPlatformPromptDxe.inf
+#
+# Abstract: 
+#  Display prompt information: "Driver Loading ...".
+#  Common Start at gEventAfterConnectConsoleDeviceGuid, stop at gPlatAfterConsoleEndProtocolGuid.
+#
+#  If in legacy boot mode, stop at gPlatAfterConnectSequenceProtocolGuid
+#  and start it at gBdsAllDriversConnectedProtocolGuid again.
+#
+#  FullScreenLogo BIOS: If need display Logo, then delay it to gPlatAfterConsoleEndProtocolGuid(Common Stop, Logo Show 2 Second).
+#
+# Revision History:
+#
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = ByoPlatformPromptDxe
+  FILE_GUID                      = A6185946-5711-48A4-8825-0FA8A982F1BE
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = ByoPlatformPromptDxeEntry
+
+
+[Sources]
+  ByoPlatformPromptDxe.c
+  ByoPlatformPromptDxe.uni
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  ByoModulePkg/ByoModulePkg.dec
+  Platform4Pkg/Platform4Pkg.dec
+  YudiProjectPkg/ProjectPkg.dec
+
+[LibraryClasses]
+  BaseLib
+  UefiBootServicesTableLib
+  UefiDriverEntryPoint
+  BaseMemoryLib
+  MemoryAllocationLib
+  PrintLib
+  DebugLib
+  HiiLib
+  HobLib
+  PlatformCommLib
+  BootLogoLib
+
+[Guids]
+  gEventAfterConnectConsoleDeviceGuid
+
+[Protocols]
+  gBdsAllDriversConnectedProtocolGuid
+  gPlatAfterConsoleEndProtocolGuid
+  gPlatAfterConnectSequenceProtocolGuid
+
+[Pcd]
+  gEfiByoModulePkgTokenSpaceGuid.PcdBiosBootModeType
+  gEfiByoModulePkgTokenSpaceGuid.PcdDisplayOptionRomMessage
+  gEfiByoModulePkgTokenSpaceGuid.PcdSystemMiscConfig
+
+[Depex]
+  TRUE

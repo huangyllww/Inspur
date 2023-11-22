@@ -1,0 +1,70 @@
+
+[Defines]
+  INF_VERSION                    = 0x00010006
+  BASE_NAME                      = CpuSmm
+  FILE_GUID                      = 9DAECAB8-AFB8-40d3-80CD-3545D5025DBB
+  MODULE_TYPE                    = DXE_SMM_DRIVER
+  VERSION_STRING                 = 0.6
+  PI_SPECIFICATION_VERSION       = 0x0001000A
+  ENTRY_POINT                    = CpuSmmInit
+
+#
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           = IA32 X64
+#
+
+[Sources]
+  CpuSmm.c
+  SmmCpuProtocol.c
+  SmmPage.c
+  CpuSmm.h
+
+[Sources.X64]
+  x64/SmmReloc.asm
+  x64/SmmEntry.asm
+  x64/SmmExcepHandler.asm
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  UefiCpuPkg/UefiCpuPkg.dec
+  Platform4Pkg/Platform4Pkg.dec
+  HgpiModulePkg/Fch/FchTaishan.dec
+
+
+[LibraryClasses]
+  UefiDriverEntryPoint
+  LocalApicLib
+  SmmLib
+  MemoryAllocationLib
+  UefiLib
+  HobLib
+  SynchronizationLib
+  PcdLib
+  DebugAgentLib
+  UefiCpuLib
+  BaseLib
+  IoLib
+  ReportStatusCodeLib
+
+[Protocols]
+  gEfiSmmAccess2ProtocolGuid               ## CONSUMED
+  gEfiMpServiceProtocolGuid                ## CONSUMED
+  gEfiSmmReadyToLockProtocolGuid           ## CONSUMED
+  gEfiSmmConfigurationProtocolGuid         ## PRODUCED
+  gEfiSmmCpuProtocolGuid                   ## PRODUCED
+
+[Guids]
+  gEfiCpuInfoHobGuid
+  gEfiAcpiVariableGuid
+
+[Pcd]
+  gUefiCpuPkgTokenSpaceGuid.PcdCpuMaxLogicalProcessorNumber
+  gEfiMdePkgTokenSpaceGuid.PcdPciExpressBaseAddress
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonFchCfgAcpiPmTmrBlkAddr
+  gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiS3Enable
+
+[Depex]
+  gEfiSmmAccess2ProtocolGuid AND gEfiMpServiceProtocolGuid
+

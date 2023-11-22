@@ -1,0 +1,64 @@
+// /** @file
+//   String definitions for Ip4Config2 formset
+
+// Copyright (c) 2015 - 2018, Intel Corporation. All rights reserved.<BR>
+// SPDX-License-Identifier: BSD-2-Clause-Patent
+//
+//**/
+
+
+/=#
+
+#langdef en-US "English"
+#langdef zh-Hans "\wide中文\narrow"
+
+#string STR_IP4_CONFIG2_FORM_TITLE    #language en-US "IPv4 Network Configuration"
+                                      #language zh-Hans "IPv4 \wide网络配置\narrow"
+                                      
+#string STR_IP4_CONFIG2_FORM_HELP     #language en-US "Configure IPv4 network parameters."
+                                      #language zh-Hans "\wide配置\narrowIPv4\wide网络参数。\narrow"
+                                      
+#string STR_IP4_CONFIGURE             #language en-US "Set"
+                                      #language zh-Hans "\wide设置\narrow"
+                                      
+#string STR_IP4_CONFIGURE_HELP        #language en-US "Indicate whether network address configured successfully or not."
+                                      #language zh-Hans "\wide显示网络地址是否成功设置\narrow"
+                                      
+#string STR_IP4_ENABLE_DHCP           #language en-US "Enable DHCP"
+                                      #language zh-Hans "\wide启用动态主机配置协议\narrow"
+                                      
+#string STR_IP4_LOCAL_IP_ADDRESS      #language en-US "Local IP Address"
+                                      #language zh-Hans "\wide本地\narrow IP \wide地址\narrow"
+                                      
+#string STR_IP4_IP_ADDRESS_HELP       #language en-US "Enter IP address in dotted-decimal notation. Example: 192.168.10.12\r\n"
+                                      #language zh-Hans "\wide以点分十进制记法输入\narrow IP \wide地址。示例：\narrow 192.168.10.12\r\n"
+                                      
+#string STR_IP4_LOCAL_MASK            #language en-US "Local NetMask"
+                                      #language zh-Hans "\wide本地网络掩码\narrow"
+                                      
+#string STR_IP4_MASK_HELP             #language en-US "Enter NetMask in dotted-decimal notation. Example: 255.255.255.0\r\n"
+                                      #language zh-Hans "\wide以点分十进制记法输入本地网络掩码。示例：\narrow 255.255.255.0\r\n"
+                                      
+#string STR_IP4_LOCAL_GATEWAY         #language en-US "Local Gateway"
+                                      #language zh-Hans "\wide本地网关\narrow"
+                                      
+#string STR_IP4_GATEWAY_HELP          #language en-US "Enter Gateway in dotted-decimal notation. Example: 192.168.10.1\r\n"
+                                      #language zh-Hans "\wide以点分十进制记法输入本地网关。示例：\narrow 192.168.10.1\r\n"
+                                      
+#string STR_IP4_LOCAL_DNS             #language en-US "Local DNS Servers"
+                                      #language zh-Hans "\wide本地\narrow DNS \wide服务器\narrow"
+                                      
+#string STR_IP4_DNS_HELP              #language en-US "Enter DNS Servers in dotted-decimal notation. Example: 192.168.10.8 192.168.10.9\r\n"
+                                      #language zh-Hans "\wide以点分十进制记法输入本地\narrow DNS \wide服务器。示例：\narrow 192.168.10.8 192.168.10.9\r\n"
+                                      
+#string STR_SAVE_CHANGES              #language en-US "Save Changes and Exit"
+                                      #language zh-Hans "\wide保存更改并退出\narrow"
+
+#string STR_INVALID_IP                #language en-US "Invalid IP Address."
+                                      #language zh-Hans "\wide无效\narrowIP\wide地址。\narrow"
+#string STR_INVALID_SUBNET            #language en-US "Invalid Subnet Mask."
+                                      #language zh-Hans "\wide无效子网掩码。\narrow"
+#string STR_INVALID_GATEWAY_IP        #language en-US "Invalid  Gateway IP Address."
+                                      #language zh-Hans "\wide无效网关\narrowIP\wide地址。\narrow"
+#string STR_INVALID_DNS               #language en-US "Invalid Dns Server!"
+                                      #language zh-Hans "\wide无效的\narrowDNS\wide主机地址。\narrow"

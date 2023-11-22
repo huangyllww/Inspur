@@ -1,0 +1,22 @@
+<DIRS AddressMode="0">
+  <PSP_DIR Base="0x98000" Level="1" Size="0x280000" SpiBlockSize=" 0x1000">
+    <IMAGE_ENTRY File="HgpiModulePkg\Firmwares\FW_VERSION\FW_SECURE_MODE\HygonPubKeyDN.bin" Type="0x0" />
+    <IMAGE_ENTRY File="HgpiModulePkg\Firmwares\FW_VERSION\FW_SECURE_MODE\PspFirmwareMcmDN.esbin" Type="0x1" />
+    <IMAGE_ENTRY File="HgpiModulePkg\Firmwares\FW_VERSION\FW_SECURE_MODE\SmuFirmwareMcmDN.esbin" Type="0x8" />
+    <IMAGE_ENTRY File="HgpiModulePkg\Firmwares\FW_VERSION\FW_SECURE_MODE\PspIkekDN.bin" Type="0x21" />
+    <IMAGE_ENTRY File="HgpiModulePkg\Firmwares\FW_VERSION\FW_SECURE_MODE\HygonAuthCert.bin" Type="0x22" />
+    <IMAGE_ENTRY File="HgpiModulePkg\Firmwares\FW_VERSION\FW_SECURE_MODE\PspSecureFwData.bin" Type="0x38" />
+  </PSP_DIR>
+  <BIOS_DIR Base="0x318000" Level="1" Size="0xF1000" SpiBlockSize="0x1000">
+    <IMAGE_ENTRY File="Build\Hpcb\HyEx\Release\HPCB.bin" Instance="0x00" Size="0x4000" Type="0x60" />
+    <IMAGE_ENTRY File="Build\Hpcb\HyEx\Release\HPCB.bin" Instance="0x00" Size="0x4000" Type="0x68" />
+    <POINT_ENTRY Address="0x0" Destination="0x4000000" Size="0x0" Type="0x61" />
+    <POINT_ENTRY Address="0xde0000" Destination="0x31de0000" Size="0x220000" Type="0x62">
+     <TypeAttrib Compressed="0x0" Copy="0x1" ReadOnly="0x0" RegionType="0x0" ResetImage="0x1" />
+    </POINT_ENTRY>
+    <IMAGE_ENTRY File="HgpiModulePkg\Firmwares\FW_VERSION\FW_SECURE_MODE\HPOB_NV_DN.bin" Type="0x63" />
+    <IMAGE_ENTRY File="HgpiModulePkg\Firmwares\FW_VERSION\FW_SECURE_MODE\CoreMceEmptyData.bin" Instance="0x00" Type="0x67" />
+    <IMAGE_ENTRY File="HgpiModulePkg\Firmwares\FW_VERSION\FW_SECURE_MODE\UcodePatch_DM_E0.esbin" Instance="0x00" Type="0x66"/>
+    <IMAGE_ENTRY File="HgpiModulePkg\Firmwares\FW_VERSION\FW_SECURE_MODE\UcodePatch_DM_E1.esbin" Instance="0x01" Type="0x66"/>
+  </BIOS_DIR>
+</DIRS>

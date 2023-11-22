@@ -1,0 +1,188 @@
+///** @file
+//  Copyright (c) 2023, Byosoft Corporation.<BR>
+//  All rights reserved.This software and associated documentation (if any)
+//  is furnished under a license and may only be used or copied in
+//  accordance with the terms of the license. Except as permitted by such
+//  license, no part of this software or documentation may be reproduced,
+//  stored in a retrieval system, or transmitted in any form or by any
+//  means without the express written consent of Byosoft Corporation.
+//
+//**/
+
+#include "FormGuid.h"
+#include <ByoDisabledGroupType.h>
+#include <Guid/BootRetryPolicyVariable.h>
+#include <Guid/PxeControlVariable.h>
+#include <SystemPasswordVariable.h>
+
+formset
+  guid     = BOOT_MAINT_MANAGER_FORMSET_GUID,
+  title    = STRING_TOKEN(FORMSET_TITLE_BOOT_MAINT),
+  help     = STRING_TOKEN(FORMSET_TITLE_BOOT_MAINT_HELP),
+  classguid = gEfiIfrByoBootUiPageGuid | gIfrByoRedfishUiPageGuid,
+
+  efivarstore DISABLED_GROUP_TYPE,
+    attribute = 0x7,
+    name      = DisabledGroupType,
+    guid      = DISABLED_GROUP_TYPE_GUID;
+
+  efivarstore PXE_CONTROL_VARIABLE,
+    attribute = 0x7,
+    name      = PxeControl,
+    guid      = PXE_CONTROL_GUID;
+
+  efivarstore BOOT_RETRY_POLICY_VARIABLE,
+    attribute = 0x7,
+    name      = BootRetryPolicy,
+    guid      = BOOT_RETRY_POLICY_GUID;
+
+  SYSTEM_PASSWORD_VARSTORE
+
+  varstore BMM_FAKE_NV_DATA,
+    varid = VARSTORE_ID_BOOT_MAINT,
+    name = BmmData,
+    guid = BOOT_MAINT_MANAGER_FORMSET_GUID;
+
+
+  form formid = FORM_MAIN_ID,
+    title = STRING_TOKEN(FORMSET_TITLE_BOOT_MAINT);
+
+    LOGIN_TYPE_ADMIN;
+    suppressif ideqval PXE_CONTROL_VARIABLE.NetworkEnable == 0;
+      numeric varid = PXE_CONTROL_VARIABLE.WaitSeconds,
+        prompt    = STRING_TOKEN(STR_PXE_WAIT_TIME),
+        help      = STRING_TOKEN(STR_PXE_WAIT_TIME_HELP),
+        minimum   = 0,
+        maximum   = 5,
+        step      = 1,
+        default   = 0,
+      endnumeric;
+      numeric varid = PXE_CONTROL_VARIABLE.DetectMediaTimes,
+        prompt    = STRING_TOKEN(STR_PXE_DETECT_MEDIA_TIME),
+        help      = STRING_TOKEN(STR_PXE_DETECT_MEDIA_TIME_HELP),
+        minimum   = 1,
+        maximum   = 50,
+        step      = 1,
+        default   = 1,
+      endnumeric;
+    endif;
+    disableif TRUE;
+      numeric varid = BOOT_RETRY_POLICY_VARIABLE.GroupRetryTime,
+        prompt    = STRING_TOKEN(STR_GROUP_RETRY_TIME),
+        help      = STRING_TOKEN(STR_GROUP_RETRY_TIME_HELP),
+        minimum   = 0,
+        maximum   = 3,
+        step      = 1,
+        default   = 0,
+      endnumeric;
+
+      numeric varid = BOOT_RETRY_POLICY_VARIABLE.AllRetryTime,
+        prompt    = STRING_TOKEN(STR_ALL_RETRY_TIME),
+        help      = STRING_TOKEN(STR_ALL_RETRY_TIME_HELP),
+        minimum   = 0,
+        maximum   = 3,
+        step      = 1,
+        default   = 0,
+      endnumeric;
+    endif;
+      text
+        help   = STRING_TOKEN(STR_TEXT_NULL_HELP),
+        text   = STRING_TOKEN(STR_TEXT_PROMPT),
+        flags  = INTERACTIVE,
+        key    = BOOT_ORDER_PAGE_QUESTION_ID;
+
+      goto FORM_DISABLE_GROUP_TYPE,
+        prompt = STRING_TOKEN(STR_DISABLE_GROUP_TYPE),
+        help   = STRING_TOKEN(STR_DISABLE_GROUP_TYPE_HELP);
+
+      goto FORM_DISABLE_BOOT_OPTIONS,
+        prompt = STRING_TOKEN(STR_DISABLE_BOOT_OPTIONS),
+        help   = STRING_TOKEN(STR_DISABLE_BOOT_OPTIONS_HELP);
+ 
+      label UEFI_BOOT_ITEM_ID;
+      label UEFI_BOOT_ITEM_END_ID;
+#ifndef BYO_ONLY_UEFI
+      subtitle text = STRING_TOKEN(STR_NULL_STRING);
+      label LEGACY_BOOT_ITEM_ID;
+      label LEGACY_BOOT_ITEM_END_ID;
+#endif
+   END_LOGIN_TYPE;
+
+  endform;
+
+  form formid = FORM_DISABLE_GROUP_TYPE,
+    title = STRING_TOKEN(STR_DISABLE_GROUP_TYPE);
+    label DISABLE_UEFI_BOOT_GROUP_ID;
+    label DISABLE_UEFI_BOOT_GROUP_END_ID;
+#ifndef BYO_ONLY_UEFI
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+    label DISABLE_LEGACY_BOOT_GROUP_ID;
+    label DISABLE_LEGACY_BOOT_GROUP_END_ID;
+#endif
+    text
+      help   = STRING_TOKEN(STR_TEXT_NULL_HELP),
+      text   = STRING_TOKEN(STR_TEXT_PROMPT),
+      flags  = INTERACTIVE,
+      key    = DISABLE_GROUP_TYPE_PAGE_QUESTION_ID;
+  endform;
+
+  form formid = FORM_DISABLE_BOOT_OPTIONS,
+    title = STRING_TOKEN(STR_DISABLE_BOOT_OPTIONS);
+    label DISABLE_BOOT_OPTIONS_ID;
+    label DISABLE_BOOT_OPTIONS_END_ID;
+
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+    label DISABLE_LEGACY_BOOT_GROUP_ID;
+    label DISABLE_LEGACY_BOOT_GROUP_END_ID;
+
+
+    text
+      help   = STRING_TOKEN(STR_TEXT_NULL_HELP),
+      text   = STRING_TOKEN(STR_TEXT_PROMPT),
+      flags  = INTERACTIVE,
+      key    = DISABLE_OPTIONS_PAGE_QUESTION_ID;
+  endform;
+
+  form formid = FORM_ADD_BOOT_OPTIONS,
+    title = STRING_TOKEN(STR_ADD_BOOT_OPTION);
+
+      text
+        help   = STRING_TOKEN(STR_SELECT_BOOT_FILE_HELP),
+        text   = STRING_TOKEN(STR_SELECT_BOOT_FILE),
+        flags  = INTERACTIVE,
+        key    = FORM_ADD_OPTIONS_ID;
+
+      subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+       string    varid    = BmmData.BootDescriptionData,
+                 prompt   = STRING_TOKEN(STR_LOAD_OPTION_DESC),
+                 help     = STRING_TOKEN(STR_LOAD_OPTION_DESC_HELP),
+                 minsize  = MIN_BOOT_DESCRIPTION_LEN,
+                 maxsize  = MAX_BOOT_DESCRIPTION_LEN,
+       endstring;
+
+       subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+       text
+         help   = STRING_TOKEN(STR_SAVE_AND_EXIT_HELP),
+         text   = STRING_TOKEN(STR_SAVE_AND_EXIT),
+         flags  = INTERACTIVE,
+         key    = KEY_VALUE_SAVE_AND_EXIT_BOOT;
+
+       text
+         help   = STRING_TOKEN(STR_NO_SAVE_AND_EXIT_HELP),
+         text   = STRING_TOKEN(STR_NO_SAVE_AND_EXIT),
+         flags  = INTERACTIVE,
+         key    = KEY_VALUE_NO_SAVE_AND_EXIT_BOOT;
+
+  endform;
+
+  form formid = FORM_DELETE_BOOT_OPTIONS,
+    title = STRING_TOKEN(STR_DELETE_BOOT_OPTION);
+
+    label DELETEL_OPTIONS_ID;
+    label DELETEL_OPTIONS_END_ID;
+
+  endform;
+
+endformset;

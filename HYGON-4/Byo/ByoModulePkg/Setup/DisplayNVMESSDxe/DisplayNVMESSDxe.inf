@@ -1,0 +1,54 @@
+## @file  
+#
+# Copyright (c) 2023, Byosoft Corporation.<BR> 
+# All rights reserved.This software and associated documentation (if any)
+# is furnished under a license and may only be used or copied in 
+# accordance with the terms of the license. Except as permitted by such
+# license, no part of this software or documentation may be reproduced, 
+# stored in a retrieval system, or transmitted in any form or by any 
+# means without the express written consent of Byosoft Corporation.
+#
+#
+##
+[Defines]
+  INF_VERSION                   = 0x00010005
+  BASE_NAME                     = DisplayNVMESSDxe
+  FILE_GUID                     = C20FC276-8A42-4504-EEE5-77C390430C95
+  MODULE_TYPE                   = DXE_DRIVER
+  VERSION_STRING                = 1.0
+  ENTRY_POINT                   = DisplayNVMESSDxeEntryPoint
+
+[Sources]
+  DisplayNVMESSD.vfr 
+  DisplayNVMESS.uni
+  DisplayNVMESSConf.h
+  DisplayNVMESSDxe.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  ByoModulePkg/ByoModulePkg.dec
+
+
+[LibraryClasses]
+  PcdLib
+  MemoryAllocationLib
+  IoLib
+  BaseMemoryLib
+  DebugLib
+  BaseLib
+  UefiLib
+  UefiBootServicesTableLib
+  UefiDriverEntryPoint
+  DevicePathLib
+  PrintLib
+  HiiLib
+
+[Guids]
+  gEfiSetupEnterGuid
+
+[Protocols]
+  gByoDiskInfoProtocolGuid
+
+[Depex]
+  TRUE

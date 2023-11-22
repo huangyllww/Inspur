@@ -1,0 +1,72 @@
+## @file
+# Usb Mouse Driver.
+#
+# This driver provides support for Usb based mice.
+#
+# Copyright (c) 2006 - 2022, Byosoft Corporation. All rights reserved.<BR>
+#
+# This software and associated documentation (if any)
+# is furnished under a license and may only be used or copied in
+# accordance with the terms of the license. Except as permitted by such
+# license, no part of this software or documentation may be reproduced,
+# stored in a retrieval system, or transmitted in any form or by any
+# means without the express written consent of Byosoft Corporation.
+
+#
+#
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = UsbMouseDxe
+  MODULE_UNI_FILE                = UsbMouseDxe.uni
+  FILE_GUID                      = 202A2B0E-9A31-4812-B291-8747DF152439
+  MODULE_TYPE                    = UEFI_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = InitializeUsbMouse
+
+#
+#  VALID_ARCHITECTURES           = IA32 X64 IPF EBC
+#  DRIVER_BINDING                = gUsbMouseDriverBinding;
+#  COMPONENT_NAME                = gUsbMouseComponentName;
+#  COMPONENT_NAME2               = gUsbMouseComponentName2;
+#
+
+[Sources]
+  ComponentName.c
+  UsbMouse.h
+  UsbMouse.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  ByoModulePkg/ByoModulePkg.dec
+  ByoLegacyPkg/ByoLegacyPkg.dec
+
+[LibraryClasses]
+  ReportStatusCodeLib
+  UefiBootServicesTableLib
+  MemoryAllocationLib
+  BaseMemoryLib
+  UefiLib
+  UefiDriverEntryPoint
+  DebugLib
+  PcdLib
+  DevicePathLib
+
+[Protocols]
+  gEfiSimplePointerProtocolGuid                 ## BY_START
+  gEfiDevicePathProtocolGuid                    ## TO_START
+  gEfiUsbMouseCommunicationProtocolGuid
+  gEfiUsbIoProtocolGuid
+#
+# [Event]
+#
+#   ##
+#   # Timer event used to check the mouse state at a regular interval.
+#   #
+#   EVENT_TYPE_PERIODIC_TIMER   ## CONSUMES
+#
+
+[UserExtensions.TianoCore."ExtraFiles"]
+  UsbMouseDxeExtra.uni

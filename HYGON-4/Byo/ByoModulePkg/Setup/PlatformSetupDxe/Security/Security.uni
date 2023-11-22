@@ -1,0 +1,147 @@
+// /** @file
+//
+// Copyright (c) 2010 - 2016, Byosoft Corporation.<BR>
+// All rights reserved.This software and associated documentation (if any)
+// is furnished under a license and may only be used or copied in
+// accordance with the terms of the license. Except as permitted by such
+// license, no part of this software or documentation may be reproduced,
+// stored in a retrieval system, or transmitted in any form or by any
+// means without the express written consent of Byosoft Corporation.
+//
+// File Name:
+//
+// Abstract:
+//   Platform configuration setup.
+//
+// Revision History:
+//
+//
+// **/
+/=#
+#langdef   en-US "English"
+#langdef   zh-Hans "\wide中文\narrow"
+
+
+#string STR_EMPTY                       #language en-US   "" 
+                                        #language zh-Hans ""
+#string STR_SECUREBOOT_TITLE            #language en-US "Secure Boot"
+                                        #language zh-Hans "\wide安全启动\narrow"
+#string STR_SECUREBOOT_HELP             #language en-US "Secure boot settings, include enable/disable function and remove/restore keys." 
+                                        #language zh-Hans "\wide安全启动设定，包括打开\narrow/\wide关闭此功能，以及移除\narrow/\wide恢复证书。\narrow"                                        
+#string STR_PASSWORD_INSTALLED          #language en-US "Installed"
+                                        #language zh-Hans "\wide已设定\narrow"
+#string STR_PASSWORD_UNINSTALLED        #language en-US "Not Installed"
+                                        #language zh-Hans "\wide未设定\narrow"
+#string STR_ADMIN_PASSWORD              #language en-US "Set Administrator Password"
+                                        #language zh-Hans "\wide设置管理员密码\narrow"
+#string STR_SET_ADMIN_PASSWORD          #language en-US "Set Administrator Password"
+                                        #language zh-Hans "\wide设置管理员密码\narrow"
+#string STR_ADMIN_PASSWORD_HELP         #language en-US "Select this item to set, change, or delete Administrator Password. a-z, 0-9 and special printable character are supported. Passwords are case sensitive. The limited length of password string is %d to %d.\n\nNOTE:\nTo delete Password, enter blank when input new password.Passwords need to contain upper and lower case letters, numbers, and special symbols.\n\nIf Administrator password network auth is enabled, network auth is performed before password is changed."
+                                        #language zh-Hans "\wide选择这一项来设定、更改以及删除管理员密码。密码支持字符包括字母、数字以及其它可打印字符。密码区分大小写，支持输入密码长度为\narrow%d\wide到\narrow%d\wide。\narrow\n\n\wide注意\narrow:\n\wide输入密码时按\narrowEnter\wide键输入空可以删除密码。密码中需要包含大小写字母、数字以及特殊符号。\narrow\n\n\wide如果启用管理员密码网络验证，进行管理员密码更改时将会进行网络认证.\narrow"
+#string STR_USER_PASSWORD               #language en-US "Set User Password"
+                                        #language zh-Hans "\wide设置用户密码\narrow"
+#string STR_SET_USER_PASSWORD           #language en-US "Set User Password"
+                                        #language zh-Hans "\wide设置用户密码\narrow"
+
+#string STR_USER_PASSWORD_HELP          #language en-US "Select this item to set, change, or delete User Password. a-z, 0-9 and special printable character are supported. Passwords are case sensitive. The limited length of password string is %d to %d.\n\nNOTE:\nTo delete Password, enter blank when input new password.Passwords need to contain upper and lower case letters, numbers, and special symbols.\n\nIf User password network auth is enabled, network auth is performed before password is changed."
+                                        #language zh-Hans "\wide选择这一项来设定、更改以及删除用户密码。密码支持字符包括字母、数字以及其它可打印字符。密码区分大小写，支持输入密码长度为\narrow%d\wide到\narrow%d\wide。\narrow\n\n\wide注意\narrow:\n\wide输入密码时按\narrowEnter\wide键输入空可以删除密码。密码中需要包含大小写字母、数字以及特殊符号。\narrow\n\n\wide如果启用用户密码网络验证，进行用户密码更改时将会进行网络认证.\narrow"
+
+#string STR_POP_ON_RESTART              #language en-US  "Power-on Password"
+                                        #language zh-Hans "\wide开机密码\narrow"
+#string STR_POP_ON_RESTART_HELP         #language en-US  "Select whether to turn on Power-on Password."
+                                        #language zh-Hans "\wide选择是否开启开机密码功能。\narrow"
+#string STR_CHANGE_POP_BY_USER          #language en-US  "POP Changeable by User"
+                                        #language zh-Hans "\wide允许更改用户密码\narrow"
+#string STR_CHANGE_POP_BY_USER_HELP     #language en-US  "The User Password can be locked by Administrator."
+                                        #language zh-Hans "\wide用户密码可以被管理员锁住。\narrow"
+#string STR_CLEAR_USER_PASSWORD         #language en-US "Clear Pop Password"
+                                        #language zh-Hans "\wide清除用户密码\narrow"
+#string STR_CLEAR_USER_PASSWORD_HELP    #language en-US "Set Pop Password to Empty."
+                                        #language zh-Hans "\wide清空用户密码。\narrow"
+#string STR_OUT_TIME_PASSWORD_STRING    #language en-US "Password expired, Please change it as soon as possible! Press ENTER to continue"
+                                        #language zh-Hans "\wide密码已经过期，请尽快修改! 按\narrowEnter\wide键继续\narrow"
+
+#string STR_HDD_SECURITY_CONFIG         #language en-US   "Hard Disk Password"
+                                        #language zh-Hans "\wide硬盘密码\narrow"
+#string STR_HDD_SECURITY_CONFIG_HELP    #language en-US   "Set/Clear Hard Disk Password."
+                                        #language zh-Hans "\wide设置或清除硬盘密码。\narrow"
+
+#string STR_ENTER_CORRECT_PD            #language en-US   "Passwords need to contain upper and lower case letters, numbers, and special symbols."
+                                        #language zh-Hans "\wide密码中需要包含大小写字母、数字以及特殊符号。\narrow"
+#string STR_PASSWORD_TIMES              #language en-US   "Password has been used by the latest %d times!"
+                                        #language zh-Hans "\wide修改后的密码不能与前\narrow%d\wide次密码相同！\narrow"
+
+#string STR_SET_PASSWORD_VALID_DAYS         #language en-US   "Set Password Valid Days"
+                                            #language zh-Hans "\wide设置密码有效期\narrow"
+#string STR_SET_PASSWORD_VALID_DAYS_HELP    #language en-US   "Set Password Valid Days."
+                                            #language zh-Hans "\wide设置密码有效期。\narrow"
+#string STR_FOREVER                         #language en-US   "Forever"
+                                            #language zh-Hans "\wide长期有效\narrow"
+#string STR_SEVEN_DAYS                      #language en-US   "7 Days"
+                                            #language zh-Hans "7\wide天\narrow"
+#string STR_THIRTY_DAYS                     #language en-US   "30 Days"
+                                            #language zh-Hans "30\wide天\narrow"
+
+#string STR_SET_PASSWORD_HASH_TYPE          #language en-US   "Set Password Hash Type"
+                                            #language zh-Hans "\wide设置密码的哈希算法\narrow"
+#string STR_SET_PASSWORD_HASH_TYPE_HELP     #language en-US   "Support Hash Type: Sha256, SM3, Sha512 or Sha384"
+                                            #language zh-Hans "\wide支持的哈希算法\narrowSha256, SM3, Sha512 or Sha384"
+#string STR_HASH_SHA256                     #language en-US   "SHA-256 Hash"
+                                            #language zh-Hans "SHA-256 Hash"
+#string STR_HASH_SM3                        #language en-US   "SM3 Hash"
+                                            #language zh-Hans "SM3 Hash"
+#string STR_HASH_SHA512                     #language en-US   "SHA-512 Hash"
+                                            #language zh-Hans "SHA-512 Hash"
+#string STR_HASH_SHA384                     #language en-US   "SHA-384 Hash"
+                                            #language zh-Hans "SHA-384 Hash"
+#string STR_GETNETWORKID_MSG                #language en-US   "Network authentication failed, unable to verify,\nplease restart the system and try again"
+                                            #language zh-Hans "\wide网络认证失败，无法进行校验，\n请重启系统再试\narrow"
+#string STR_NETWORK_AUTH_PROMPT             #language en-US   "Prompt Message"
+                                            #language zh-Hans "\wide提示信息\narrow"
+#string STR_NETWORK_AUTH_RUNTIME            #language en-US   "Network auth is being performed..."
+                                            #language zh-Hans "\wide正在进行网络认证...\narrow"
+#string STR_PASSWORD_VERIFY_TIME            #language en-US   "Password Validation Times"
+                                            #language zh-Hans "\wide密码校验次数\narrow"
+#string STR_PASSWORD_VERIFY_TIME_HELP       #language en-US   "This option is the value of the range is 0-10, according to the number of allowed to check the password, option to 0 said can infinite time verify password."
+                                            #language zh-Hans "\wide这个选项值的范围是\narrow0-10，\wide表示允许校验密码的次数，选项为\narrow0\wide时表示可以无限次校验密码。\narrow"
+#string STR_PASSWORD_REPEAT_TITLE           #language en-US   "Password Repetitive Rule"
+                                            #language zh-Hans "\wide密码重复性规则\narrow"
+#string STR_PASSWORD_REPEAT_TITLE_HELP      #language en-US   "The value of this option (n) can range from 0 to %d. 0 means that the password is not checked for repeatability and the new password can be the same as the previously set password. Non-zero said new password cannot be the same as the first n times password."
+                                            #language zh-Hans "\wide此选项值\narrow(n)\wide的范围为\narrow0-%d,0\wide表示不检验密码的重复性，新密码可以与以前设过的密码相同，非\narrow0\wide表示新密码不能与前\narrown\wide次密码相同。\narrow"
+#string STR_PASSWORD_UNLOCK_TIME            #language en-US   "Password Unlock Time"
+                                            #language zh-Hans "\wide密码解锁时间\narrow"
+#string STR_PASSWORD_UNLOCK_TIME_HELP       #language en-US   "Password error countdown time (n) in seconds. When the password verification number reaches the upper limit, 0 means that the password can be verified immediately without waiting, and 65535 means that the password cannot be further verified. Other values indicate verifiable passwords after a countdown of n seconds."
+                                            #language zh-Hans "\wide密码错误倒计时时间\narrow（n），\wide单位为秒。当密码验证次数达到上限时，\narrow0\wide表示无需等待，立即可验证密码，\narrow65535\wide表示不可继续验证密码。其他值表示倒计时\narrown\wide秒后可验证密码。\narrow"
+#string STR_SCREEN_LOCK_TIME                #language en-US   "Screen Lock Time"
+                                            #language zh-Hans "\wide屏幕锁定时间\narrow"
+#string STR_SCREEN_LOCK_TIME_HELP           #language en-US   "Screen lock time,If the option is any value other than no lock screen, the Setup page does not receive any operation within the limited time, then the screen will be black, if the password is set, you need to enter the password to unlock the screen; If a passcode is not set, press Enter to unlock the screen. "
+                                            #language zh-Hans "\wide屏幕锁定时间,如果该选项为不锁屏之外的其他值，表示\narrowSetup\wide页面在限定的时间内，没有收到任何操作的话，就黑屏,如果密码已设，则需要输入密码解锁屏幕；如果密码未设，则按\narrowEnter\wide键即可解锁屏幕。\narrow"
+#string STR_SCREEN_UNLOCK                   #language en-US   "Don't Lock Screen"
+                                            #language zh-Hans "\wide不锁屏\narrow"
+#string STR_SCREEN_ONE_MINUTE               #language en-US   "1 Minutes"
+                                            #language zh-Hans "1\wide分钟\narrow"
+#string STR_SCREEN_THREEN_MINUTE            #language en-US   "3 Minutes"
+                                            #language zh-Hans "3\wide分钟\narrow"
+#string STR_SCREEN_FIVE_MINUTE              #language en-US   "5 Minutes"
+                                            #language zh-Hans "5\wide分钟\narrow"
+#string STR_SCREEN_TEN_MINUTE               #language en-US   "10 Minutes"
+                                            #language zh-Hans "10\wide分钟\narrow"
+#string STR_SCREEN_FIFTEEN_MINUTE           #language en-US   "15 Minutes"
+                                            #language zh-Hans "15\wide分钟\narrow"
+#string STR_SCREEN_THIRTY_MINUTE            #language en-US   "30 minutes"
+                                            #language zh-Hans "30\wide分钟\narrow"
+#string STR_SCREEN_HOUR_MINUTE              #language en-US   "60 minutes"
+                                            #language zh-Hans "60\wide分钟\narrow"
+#string STR_PASSWORD_REMINDE_DAYS           #language en-US   "Warning Time before Password Expires"
+                                            #language zh-Hans "\wide密码过期前预警时间\narrow"
+#string STR_PASSWORD_REMINDE_DAYS_HELP      #language en-US   "Password has expired before the warning time (n), the unit for day, the range of 0 to 10,A value of 0 signifies no reminder, while a non-zero value indicates a reminder n days prior to expiration."
+                                            #language zh-Hans "\wide密码过期前预警时间\narrow（n）\wide，单位为天，范围为\narrow0-10，0\wide表示不提醒，非\narrow0\wide表示过期前\narrown\wide天提醒。\narrow"
+#string STR_FLASH_ROLLBACK_PROTECT          #language en-US   "Flash rollback protect"
+                                            #language zh-Hans "Flash\wide回滚保护\narrow"
+#string STR_PASSWORD_COMPLEXITY             #language en-US   "Password Complexity Switch"
+                                            #language zh-Hans "\wide密码复杂度开关\narrow"
+#string STR_PASSWORD_COMPLEXITY_HELP        #language en-US   "Password Complexity Switch, Enabled: Check password complexity when changing passwords, Disabled: Do not check password complexity when changing passwords."
+                                            #language zh-Hans "\wide密码复杂度开关，打开:修改密码时检查密码复杂度，关闭:修改密码时不检查密码复杂度。\narrow"
+
+
+

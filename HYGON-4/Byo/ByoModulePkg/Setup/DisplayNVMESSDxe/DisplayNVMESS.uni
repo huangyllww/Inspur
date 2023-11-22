@@ -1,0 +1,45 @@
+// /** @file
+//
+// Copyright (c) 2010 - 2015, Byosoft Corporation.<BR>
+// All rights reserved.This software and associated documentation (if any)
+// is furnished under a license and may only be used or copied in
+// accordance with the terms of the license. Except as permitted by such
+// license, no part of this software or documentation may be reproduced,
+// stored in a retrieval system, or transmitted in any form or by any
+// means without the express written consent of Byosoft Corporation.
+//
+// File Name:
+//
+// Abstract:
+//
+//
+// Revision History:
+//
+//
+// **/
+/=#
+#langdef   en-US "English"
+#langdef   zh-Hans  "\wide中文\narrow"
+
+#string  STR_PLATID_PROMPT             #language en-US "\x0001"
+                                       #language zh-Hans  "\x0001"
+
+#string  STR_EMPTY                              #language en-US ""
+                                                #language zh-Hans  ""
+
+#string  STR_NVME_PCIE_SSD_PROMPT           #language en-US "Generic NVMe PCIe SSD Configuration Data"
+                                            #language zh-Hans "NVMe PCIe SSD\wide通用配置数据\narrow"
+#string  STR_NVME_PCIE_SSD_HELP             #language en-US "Manage Generic Express Flash NVMe PCIe SSD."
+                                            #language zh-Hans "\wide管理\narrowGeneric Express Flash NVMe PCIe\wide固态硬盘。\narrow"
+
+#string  STR_SSD_MODEL_NUMBER              #language en-US "Model Number"
+                                           #language zh-Hans "\wide型号\narrow"
+#string STR_SSD_MODEL_NUMBER_VALUE         #language en-US ""
+
+#string  STR_SSD_FIRMWARE_REVISION         #language en-US "Firmware Revision"
+                                           #language zh-Hans "\wide固件版本\narrow"
+#string STR_SSD_FIRMWARE_REVISION_VALUE    #language en-US ""
+
+#string  STR_SSD_CAPACITY                  #language en-US "Capacity(GB)"
+                                           #language zh-Hans "\wide容量\narrow(GB)"
+#string STR_SSD_CAPACITY_VALUE             #language en-US ""

@@ -1,0 +1,385 @@
+
+//**********************************************************************
+#ifdef FORM_SET_TYPEDEF
+
+#endif
+
+#ifdef MAIN_FORM_SET
+
+#ifdef FORM_SET_VARSTORE
+
+#endif
+
+#ifdef FORM_SET_ITEM
+
+    text
+      help = STRING_TOKEN(STR_EMPTY),
+      text = STRING_TOKEN(STR_BIOS_VENDOR_NAME),
+      text = STRING_TOKEN(STR_BIOS_VENDOR_VALUE);      
+
+    text
+       help = STRING_TOKEN(STR_EMPTY),
+       text = STRING_TOKEN(STR_BIOS_VERSION_NAME),
+       text = STRING_TOKEN(STR_BIOS_VERSION_VALUE);
+    
+    text
+      help = STRING_TOKEN(STR_EMPTY),
+      text = STRING_TOKEN(STR_BIOS_RELEASE_VERSION_NAME),
+      text = STRING_TOKEN(STR_BIOS_RELEASE_VERSION_VALUE);    
+    
+    text
+      help   = STRING_TOKEN(STR_EMPTY),
+      text   = STRING_TOKEN(STR_BIOS_DATE_NAME),
+      text   = STRING_TOKEN(STR_BIOS_DATE_VALUE); 
+      
+    text
+      help   = STRING_TOKEN(STR_EMPTY),
+      text   = STRING_TOKEN(STR_BMC_FIRMWARE_STATUS_PROMPT),
+      text   = STRING_TOKEN(STR_BMC_FIRMWARE_STATUS_VALUE);
+    
+    text
+      help   = STRING_TOKEN(STR_EMPTY),
+      text   = STRING_TOKEN(STR_BOARD_ID_NAME),
+      text   = STRING_TOKEN(STR_BOARD_ID_VALUE);
+    
+#endif
+
+
+
+#ifdef FORM_SET_FORM
+
+  form formid = AUTO_ID(MAIN_CPU_FORM_ID),
+    title = STRING_TOKEN(STR_MAIN_CPU_FORM);
+    
+    subtitle text = STRING_TOKEN(STR_MAIN_CPU_FORM);
+
+    subtitle text = STRING_TOKEN(STR_EMPTY);
+    subtitle text = STRING_TOKEN(STR_SOCKET_1);    
+    text 
+      help   = STRING_TOKEN(STR_EMPTY),
+      text   = STRING_TOKEN(STR_PROCESSOR_VERSION_STRING),
+      text   = STRING_TOKEN(STR_PROCESSOR_VERSION_VALUE);
+                                                      
+    text 
+      help   = STRING_TOKEN(STR_EMPTY),
+      text   = STRING_TOKEN(STR_PROCESSOR_ID_STRING),
+      text   = STRING_TOKEN(STR_PROCESSOR_ID_VALUE);
+
+    text 
+      help   = STRING_TOKEN(STR_EMPTY),
+      text   = STRING_TOKEN(STR_PROCESSOR_SPEED_STRING),
+      text   = STRING_TOKEN(STR_PROCESSOR_SPEED_VALUE);
+
+    text 
+      help   = STRING_TOKEN(STR_EMPTY),
+      text   = STRING_TOKEN(STR_PROCESSOR_MAX_SPEED_STRING),
+      text   = STRING_TOKEN(STR_PROCESSOR_MAX_SPEED_VALUE);
+
+    text 
+      help   = STRING_TOKEN(STR_EMPTY),
+      text   = STRING_TOKEN(STR_PROCESSOR_TDP_STRING),
+      text   = STRING_TOKEN(STR_PROCESSOR_TDP_VALUE);
+
+    text
+      help   = STRING_TOKEN(STR_EMPTY),
+      text   = STRING_TOKEN(STR_PROCESSOR_VOLTAGE_STRING),
+      text   = STRING_TOKEN(STR_PROCESSOR_VOLTAGE_VALUE);
+
+    text 
+      help   = STRING_TOKEN(STR_EMPTY),
+      text   = STRING_TOKEN(STR_PROCESSOR_DATA_CACHE_L1_STRING),
+      text   = STRING_TOKEN(STR_PROCESSOR_DATA_CACHE_L1_VALUE);   
+
+    text 
+      help   = STRING_TOKEN(STR_EMPTY),
+      text   = STRING_TOKEN(STR_PROCESSOR_INSTRUCTION_CACHE_L1_STRING),
+      text   = STRING_TOKEN(STR_PROCESSOR_INSTRUCTION_CACHE_L1_VALUE);   
+
+    text 
+      help   = STRING_TOKEN(STR_EMPTY),
+      text   = STRING_TOKEN(STR_PROCESSOR_CACHE_L2_STRING),
+      text   = STRING_TOKEN(STR_PROCESSOR_CACHE_L2_VALUE);
+
+    text 
+      help   = STRING_TOKEN(STR_EMPTY),
+      text   = STRING_TOKEN(STR_PROCESSOR_CACHE_L3_STRING),
+      text   = STRING_TOKEN(STR_PROCESSOR_CACHE_L3_VALUE);    
+        
+    text 
+      help   = STRING_TOKEN(STR_EMPTY),
+      text   = STRING_TOKEN(STR_PROCESSOR_CORE_COUNT_STRING),
+      text   = STRING_TOKEN(STR_PROCESSOR_CORE_COUNT_VALUE);
+
+    text 
+      help   = STRING_TOKEN(STR_EMPTY),
+      text   = STRING_TOKEN(STR_PROCESSOR_EN_CORE_COUNT_STRING),
+      text   = STRING_TOKEN(STR_PROCESSOR_EN_CORE_COUNT_VALUE);
+
+    text 
+      help   = STRING_TOKEN(STR_EMPTY),
+      text   = STRING_TOKEN(STR_PROCESSOR_MICROCODE),
+      text   = STRING_TOKEN(STR_PROCESSOR_MICROCODE_VALUE);
+
+    text 
+      help   = STRING_TOKEN(STR_EMPTY),
+      text   = STRING_TOKEN(STR_PROCESSOR_SN),
+      text   = STRING_TOKEN(STR_PROCESSOR_SN_VALUE);
+    
+    suppressif ideqval SETUP_VOLATILE_DATA.CpuSockets == 1;
+    subtitle text = STRING_TOKEN(STR_EMPTY);    
+    subtitle text = STRING_TOKEN(STR_SOCKET_2);    
+    text 
+      help   = STRING_TOKEN(STR_EMPTY),
+      text   = STRING_TOKEN(STR_PROCESSOR_VERSION_STRING),
+      text   = STRING_TOKEN(STR_PROCESSOR_VERSION_VALUE_2);
+                                                      
+    text 
+      help   = STRING_TOKEN(STR_EMPTY),
+      text   = STRING_TOKEN(STR_PROCESSOR_ID_STRING),
+      text   = STRING_TOKEN(STR_PROCESSOR_ID_VALUE_2);
+
+    text 
+      help   = STRING_TOKEN(STR_EMPTY),
+      text   = STRING_TOKEN(STR_PROCESSOR_SPEED_STRING),
+      text   = STRING_TOKEN(STR_PROCESSOR_SPEED_VALUE_2);
+
+    text 
+      help   = STRING_TOKEN(STR_EMPTY),
+      text   = STRING_TOKEN(STR_PROCESSOR_MAX_SPEED_STRING),
+      text   = STRING_TOKEN(STR_PROCESSOR_MAX_SPEED_VALUE_2);
+
+    text
+      help   = STRING_TOKEN(STR_EMPTY),
+      text   = STRING_TOKEN(STR_PROCESSOR_TDP_STRING),
+      text   = STRING_TOKEN(STR_PROCESSOR_TDP_VALUE_2);
+
+    text
+      help   = STRING_TOKEN(STR_EMPTY),
+      text   = STRING_TOKEN(STR_PROCESSOR_VOLTAGE_STRING),
+      text   = STRING_TOKEN(STR_PROCESSOR_VOLTAGE_VALUE_2);
+
+    text 
+      help   = STRING_TOKEN(STR_EMPTY),
+      text   = STRING_TOKEN(STR_PROCESSOR_DATA_CACHE_L1_STRING),
+      text   = STRING_TOKEN(STR_PROCESSOR_DATA_CACHE_L1_VALUE_2);   
+
+    text 
+      help   = STRING_TOKEN(STR_EMPTY),
+      text   = STRING_TOKEN(STR_PROCESSOR_INSTRUCTION_CACHE_L1_STRING),
+      text   = STRING_TOKEN(STR_PROCESSOR_INSTRUCTION_CACHE_L1_VALUE_2);   
+
+    text 
+      help   = STRING_TOKEN(STR_EMPTY),
+      text   = STRING_TOKEN(STR_PROCESSOR_CACHE_L2_STRING),
+      text   = STRING_TOKEN(STR_PROCESSOR_CACHE_L2_VALUE_2);
+
+    text 
+      help   = STRING_TOKEN(STR_EMPTY),
+      text   = STRING_TOKEN(STR_PROCESSOR_CACHE_L3_STRING),
+      text   = STRING_TOKEN(STR_PROCESSOR_CACHE_L3_VALUE_2);    
+        
+    text 
+      help   = STRING_TOKEN(STR_EMPTY),
+      text   = STRING_TOKEN(STR_PROCESSOR_CORE_COUNT_STRING),
+      text   = STRING_TOKEN(STR_PROCESSOR_CORE_COUNT_VALUE_2);
+
+    text 
+      help   = STRING_TOKEN(STR_EMPTY),
+      text   = STRING_TOKEN(STR_PROCESSOR_EN_CORE_COUNT_STRING),
+      text   = STRING_TOKEN(STR_PROCESSOR_EN_CORE_COUNT_VALUE_2);
+
+    text 
+      help   = STRING_TOKEN(STR_EMPTY),
+      text   = STRING_TOKEN(STR_PROCESSOR_MICROCODE),
+      text   = STRING_TOKEN(STR_PROCESSOR_MICROCODE_VALUE_2);
+      
+    text 
+      help   = STRING_TOKEN(STR_EMPTY),
+      text   = STRING_TOKEN(STR_PROCESSOR_SN),
+      text   = STRING_TOKEN(STR_PROCESSOR_SN_VALUE_2);      
+      
+  endif;
+  
+  endform; 
+  
+  form formid = AUTO_ID(MAIN_DATE_TIME_FORM_ID),
+    title = STRING_TOKEN(STR_DATE_TIME_FORM);
+
+    LOGIN_TYPE_ADMIN; 
+
+    date 
+      year varid  = Date.Year,
+        prompt  = STRING_TOKEN(STR_DATE),
+        help    = STRING_TOKEN(STR_DATE_HELP),
+        minimum = 2018,
+        maximum = 2099,
+        step    = 1,
+        default = 2018,
+        
+      month varid = Date.Month,
+        prompt  = STRING_TOKEN(STR_DATE),
+        help    = STRING_TOKEN(STR_DATE_HELP),
+        minimum = 1,
+        maximum = 12,
+        step    = 1,
+        default = 1,
+        
+      day varid   = Date.Day,
+        prompt  = STRING_TOKEN(STR_DATE),
+        help    = STRING_TOKEN(STR_DATE_HELP),
+        minimum = 1,
+        maximum = 31,
+        step    = 1,
+        default = 1,
+    enddate;    
+    
+    time
+      hour varid  = Time.Hours,
+        prompt  = STRING_TOKEN(STR_TIME),
+        help    = STRING_TOKEN(STR_TIME_HELP),
+        minimum = 0,
+        maximum = 23,
+        step    = 1, 
+        default = 0,
+      
+      minute varid = Time.Minutes,
+        prompt  = STRING_TOKEN(STR_TIME),
+        help    = STRING_TOKEN(STR_TIME_HELP),
+        minimum = 0,
+        maximum = 59,
+        step    = 1,
+        default = 0,
+        
+      second varid = Time.Seconds,
+        prompt  = STRING_TOKEN(STR_TIME),
+        help    = STRING_TOKEN(STR_TIME_HELP),
+        minimum = 0,
+        maximum = 59,
+        step    = 1,
+        default = 0,
+    endtime;  
+    
+    END_LOGIN_TYPE;
+    
+  endform;  
+  
+  
+  
+
+
+  form formid = MAIN_SYSTEM_SUMMARY_FORM_ID, 
+  
+    title = STRING_TOKEN(STR_SYSTEM_SUMMARY);
+
+    text
+      help   = STRING_TOKEN(STR_EMPTY),
+      text   = STRING_TOKEN(STR_SYSTEM_MANUFACTURER_NAME),
+      text   = STRING_TOKEN(STR_SYSTEM_MANUFACTURER_VALUE);      
+   
+    text
+      help   = STRING_TOKEN(STR_EMPTY),
+      text   = STRING_TOKEN(STR_SYSTEM_SERIAL_NUMBER_NAME),
+      text   = STRING_TOKEN(STR_SYSTEM_SERIAL_NUMBER_VALUE);
+
+    text
+      help   = STRING_TOKEN(STR_EMPTY),
+      text   = STRING_TOKEN(STR_ASSET_TAG_NAME),
+      text   = STRING_TOKEN(STR_ASSET_TAG_VALUE);
+    
+    text
+      help   = STRING_TOKEN(STR_EMPTY),
+      text   = STRING_TOKEN(STR_SYSTEM_UUID_NAME),
+      text   = STRING_TOKEN(STR_SYSTEM_UUID_VALUE);
+
+    subtitle text = STRING_TOKEN(STR_EMPTY);      
+    
+    text
+      help   = STRING_TOKEN(STR_EMPTY),
+      text   = STRING_TOKEN(STR_UEFI_SPEC_VER_NAME),
+      text   = STRING_TOKEN(STR_UEFI_SPEC_VER_VALUE);     
+
+    text
+      help   = STRING_TOKEN(STR_EMPTY),
+      text   = STRING_TOKEN(STR_INFO_ACPI_VER),
+      text   = STRING_TOKEN(STR_INFO_ACPI_VER_VALUE); 
+      
+    text
+      help   = STRING_TOKEN(STR_EMPTY),
+      text   = STRING_TOKEN(STR_SMBIOS_VER),
+      text   = STRING_TOKEN(STR_SMBIOS_VER_VALUE);  
+
+    text
+      help   = STRING_TOKEN(STR_EMPTY),
+      text   = STRING_TOKEN(STR_AGESA_PI_VER_NAME),
+      text   = STRING_TOKEN(STR_AGESA_PI_VER_VALUE); 
+     
+    text
+      help   = STRING_TOKEN(STR_EMPTY),
+      text   = STRING_TOKEN(STR_CSM_DATE),
+      text   = STRING_TOKEN(STR_CSM_DATE_VALUE);      
+
+    text
+      help   = STRING_TOKEN(STR_EMPTY),
+      text   = STRING_TOKEN(STR_OPENSSL_VER),
+      text   = STRING_TOKEN(STR_OPENSSL_VER_VALUE);
+
+    text
+      help   = STRING_TOKEN(STR_EMPTY),
+      text   = STRING_TOKEN(STR_HDDPASSWORD_MODULE_VER_NAME),
+      text   = STRING_TOKEN(STR_HDDPASSWORD_MODULE_VER_VALUE);
+     
+    subtitle text = STRING_TOKEN(STR_EMPTY); 
+    subtitle text = STRING_TOKEN(STR_PSP_FWVERSION_FORM);  
+
+    text
+      help   = STRING_TOKEN(STR_EMPTY),
+      text   = STRING_TOKEN(STR_PSP_BOOT_VER_STRING),
+      text   = STRING_TOKEN(STR_PSP_BOOT_VER_VALUE);
+
+    text
+      help   = STRING_TOKEN(STR_EMPTY),
+      text   = STRING_TOKEN(STR_SMU_FW_VER_STRING),
+      text   = STRING_TOKEN(STR_SMU_FW_VER_VALUE_L1);
+      
+  endform; 
+   
+#endif               // FORM_SET_FORM
+
+
+
+#ifdef FORM_SET_GOTO
+
+  goto MAIN_CPU_FORM_ID,
+    prompt = STRING_TOKEN(STR_MAIN_CPU_FORM),
+    help   = STRING_TOKEN(STR_MAIN_CPU_FORM);
+
+  goto MAIN_MEMORY_7000_FORM_ID,
+    prompt = STRING_TOKEN(STR_MAIN_MEMORY_FORM),
+    help   = STRING_TOKEN(STR_MAIN_MEMORY_FORM);
+  
+  goto MAIN_DATE_TIME_FORM_ID,
+    prompt = STRING_TOKEN(STR_DATE_TIME_FORM),
+    help   = STRING_TOKEN(STR_DATE_TIME_FORM);
+
+  goto MAIN_SYSTEM_SUMMARY_FORM_ID,
+    prompt = STRING_TOKEN(STR_SYSTEM_SUMMARY),
+    help   = STRING_TOKEN(STR_SYSTEM_SUMMARY);
+    
+#endif
+
+
+#ifdef FORM_SET_ITEM2
+
+    text
+      help   = STRING_TOKEN(STR_EMPTY),
+      text   = STRING_TOKEN(STR_LOGIN_TYPE),
+      text   = STRING_TOKEN(STR_LOGIN_TYPE_VALUE);
+  
+  LOGIN_TYPE_ADMIN;  
+  label LABEL_CHANGE_LANGUAGE;
+  label LABEL_CHANGE_LANGUAGE_END;
+  END_LOGIN_TYPE;  
+  
+#endif
+
+#endif           // MAIN_FORM_SET

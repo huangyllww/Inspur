@@ -1,0 +1,129 @@
+## @file
+#  Byosoft Ui App module is driver for BDS phase.
+#
+# Copyright (c) 2010 - 2021, Byosoft Corporation.<BR>
+# All rights reserved.This software and associated documentation (if any)
+# is furnished under a license and may only be used or copied in
+# accordance with the terms of the license. Except as permitted by such
+# license, no part of this software or documentation may be reproduced,
+# stored in a retrieval system, or transmitted in any form or by any
+# means without the express written consent of Byosoft Corporation.
+#
+# File Name:
+#
+# Abstract:
+#    Byosoft Ui App module.
+#
+# Revision History:
+#
+#
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = ByoUiDxe
+  FILE_GUID                      = 8CAE29E8-777B-4F8D-85AD-D91C37760339
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = InitializeByoDxe
+
+#
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           = IA32 X64 IPF EBC
+#
+
+[Sources]
+  ByoUi.h
+  ByoUi.c
+  InstallMainFormset.c
+  ConfigSetupFormSet.c
+  ChangeLanguage.c
+  ChangeBootOrder.c
+  ByoUiApp.uni
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  ByoModulePkg/ByoModulePkg.dec
+
+[LibraryClasses]
+  DevicePathLib
+  BaseLib
+  UefiRuntimeServicesTableLib
+  ReportStatusCodeLib
+  MemoryAllocationLib
+  UefiLib
+  UefiBootServicesTableLib
+  BaseMemoryLib
+  DebugLib
+  PrintLib
+  HiiLib
+  UefiDriverEntryPoint
+  PcdLib
+  UefiHiiServicesLib
+  UefiBootManagerLib
+  PlatformLanguageLib
+  SetupUiLib
+  
+[Guids]
+  gEfiGlobalVariableGuid
+  gEfiIfrTianoGuid                              ## CONSUMES ## GUID (Extended IFR Guid Opcode)
+  gEfiIfrFrontPageGuid                          ## CONSUMES ## GUID
+
+  gEfiFormsetGuidMain
+  gEfiFormsetGuidAdvance
+  gEfiFormsetGuidDevices
+  gEfiFormsetGuidBoot
+  gEfiFormsetGuidSecurity
+  gEfiFormsetGuidExit
+  gEfiFormsetGuidPower
+
+  gEfiSetupEnterGuid
+  gEfiSetupExitGuid
+  gEfiHiiPlatformSetupFormsetGuid
+  gEfiIfrByoBootUiPageGuid
+  gIfrByoSecurityUiPageGuid
+  gIfrByoDevicesUiPageGuid
+  gIfrByoHideUiPageGuid
+  gEfiFrb2WatchDogNotifyGuid
+
+[Protocols]
+  gEfiSmbiosProtocolGuid                        ## CONSUMES
+  gEfiHiiConfigAccessProtocolGuid               ## CONSUMES
+  gEfiByoPlatformSetupGuid
+  gByoPlatformLanguageProtocolGuid
+  gEfiBootLogoProtocolGuid
+  gEfiLoadedImageProtocolGuid
+  gEfiReadyToBootProtocolGuid
+  gEfiByoFormBrowserExProtocolGuid
+  gEfiFileExplorerProtocolGuid
+  gScreenshotProtocolGuid
+
+[FeaturePcd]
+
+[Pcd]
+  gEfiMdePkgTokenSpaceGuid.PcdUefiVariableDefaultPlatformLangCodes  ## CONSUMES
+  gEfiMdeModulePkgTokenSpaceGuid.PcdConOutRow                       ## PRODUCES
+  gEfiMdeModulePkgTokenSpaceGuid.PcdConOutColumn                    ## PRODUCES
+  gEfiMdeModulePkgTokenSpaceGuid.PcdVideoHorizontalResolution       ## PRODUCES
+  gEfiMdeModulePkgTokenSpaceGuid.PcdVideoVerticalResolution         ## PRODUCES
+  gEfiMdeModulePkgTokenSpaceGuid.PcdSetupConOutColumn               ## CONSUMES ## SOMETIMES_PRODUCES
+  gEfiMdeModulePkgTokenSpaceGuid.PcdSetupConOutRow                  ## CONSUMES ## SOMETIMES_PRODUCES
+  gEfiMdeModulePkgTokenSpaceGuid.PcdSetupVideoHorizontalResolution  ## CONSUMES
+  gEfiMdeModulePkgTokenSpaceGuid.PcdSetupVideoVerticalResolution    ## CONSUMES
+  gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVersionString           ## CONSUMES
+
+  gEfiMdePkgTokenSpaceGuid.PcdUefiVariableDefaultLangCodes          ## SOMETIMES_CONSUMES
+  gEfiMdePkgTokenSpaceGuid.PcdUefiVariableDefaultLang               ## SOMETIMES_CONSUMES
+  gEfiMdePkgTokenSpaceGuid.PcdUefiVariableDefaultPlatformLangCodes  ## CONSUMES
+  gEfiMdePkgTokenSpaceGuid.PcdUefiVariableDefaultPlatformLang       ## SOMETIMES_CONSUMES
+
+  gEfiMdePkgTokenSpaceGuid.PcdPlatformBootTimeOut              ## CONSUMES
+  gEfiByoModulePkgTokenSpaceGuid.PcdSystemMiscConfig
+  gEfiByoModulePkgTokenSpaceGuid.PcdUiAppState
+  gEfiByoModulePkgTokenSpaceGuid.PcdKeepCurrentLanagugeAsDefault
+  gEfiMdeModulePkgTokenSpaceGuid.PcdEarlyVideoSupport
+
+[Depex]
+  TRUE

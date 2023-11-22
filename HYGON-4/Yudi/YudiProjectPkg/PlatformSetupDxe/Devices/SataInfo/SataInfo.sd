@@ -1,0 +1,97 @@
+
+/** @file
+
+Copyright (c) 2006 - 2023, Byosoft Corporation.<BR>
+All rights reserved.This software and associated documentation (if any)
+is furnished under a license and may only be used or copied in
+accordance with the terms of the license. Except as permitted by such
+license, no part of this software or documentation may be reproduced,
+stored in a retrieval system, or transmitted in any form or by any
+means without the express written consent of Byosoft Corporation.
+
+File Name:
+  SataInfo.sd
+
+Abstract:
+  SATA Information
+
+Revision History:
+
+$END--------------------------------------------------------------------
+
+**/
+
+#ifdef DEVICES_FORM_SET
+  #ifdef FORM_SET_GOTO
+    goto SATA_INFORMATION_FORM_ID,
+        prompt = STRING_TOKEN(STR_SATA_INFO),
+        help = STRING_TOKEN(STR_SATA_INFO_HELP);
+  #endif
+
+  #ifdef FORM_SET_FORM
+    form formid = SATA_INFORMATION_FORM_ID,
+    title = STRING_TOKEN(STR_SATA_INFO);
+
+      subtitle text = STRING_TOKEN(STR_EMPTY);
+      subtitle text = STRING_TOKEN(STR_SATA_HOST0);
+
+      suppressif ideqval SETUP_VOLATILE_DATA.HygonSata0HwPresent[0] == 0;
+          text
+            help   = STRING_TOKEN(STR_EMPTY),
+            text   = STRING_TOKEN(STR_SATA_H0_PORT0),
+            text   = STRING_TOKEN(STR_SATA_DRIVE0_VALUE);
+      endif;  
+
+      suppressif ideqval SETUP_VOLATILE_DATA.HygonSata0HwPresent[1] == 0;
+        text
+          help   = STRING_TOKEN(STR_EMPTY),
+          text   = STRING_TOKEN(STR_SATA_H0_PORT1),
+          text   = STRING_TOKEN(STR_SATA_DRIVE1_VALUE);
+      endif;
+
+      suppressif ideqval SETUP_VOLATILE_DATA.HygonSata0HwPresent[2] == 0;
+        text
+          help   = STRING_TOKEN(STR_EMPTY),
+          text   = STRING_TOKEN(STR_SATA_H0_PORT2),
+          text   = STRING_TOKEN(STR_SATA_DRIVE2_VALUE);
+      endif;
+
+      suppressif ideqval SETUP_VOLATILE_DATA.HygonSata0HwPresent[3] == 0;
+        text
+          help   = STRING_TOKEN(STR_EMPTY),
+          text   = STRING_TOKEN(STR_SATA_H0_PORT3),
+          text   = STRING_TOKEN(STR_SATA_DRIVE3_VALUE);
+      endif;
+
+      suppressif ideqval SETUP_VOLATILE_DATA.HygonSata0HwPresent[4] == 0;
+        text
+          help   = STRING_TOKEN(STR_EMPTY),
+          text   = STRING_TOKEN(STR_SATA_H0_PORT4),
+          text   = STRING_TOKEN(STR_SATA_DRIVE4_VALUE);
+      endif;
+
+      suppressif ideqval SETUP_VOLATILE_DATA.HygonSata0HwPresent[5] == 0;
+          text
+            help   = STRING_TOKEN(STR_EMPTY),
+            text   = STRING_TOKEN(STR_SATA_H0_PORT5),
+            text   = STRING_TOKEN(STR_SATA_DRIVE5_VALUE);
+      endif;
+
+      suppressif ideqval SETUP_VOLATILE_DATA.HygonSata0HwPresent[6] == 0;
+        text
+          help   = STRING_TOKEN(STR_EMPTY),
+          text   = STRING_TOKEN(STR_SATA_H0_PORT6),
+          text   = STRING_TOKEN(STR_SATA_DRIVE6_VALUE);
+      endif;
+        
+      suppressif ideqval SETUP_VOLATILE_DATA.HygonSata0HwPresent[7] == 0;
+        text
+          help   = STRING_TOKEN(STR_EMPTY),
+          text   = STRING_TOKEN(STR_SATA_H0_PORT7),
+          text   = STRING_TOKEN(STR_SATA_DRIVE7_VALUE);
+      endif;
+      
+  endform;
+
+  #endif  //end, FORM_SET_FORM
+#endif  //end, DEVICES_FORM_SET

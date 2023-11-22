@@ -1,0 +1,49 @@
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = PlatformSyncMmLib
+  FILE_GUID                      = 65369B46-5EBF-47B6-A879-099A0D674041
+  MODULE_TYPE                    = DXE_SMM_DRIVER
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = PlatformSyncMmLib|DXE_SMM_DRIVER
+  PI_SPECIFICATION_VERSION       = 0x00010032
+  CONSTRUCTOR                    = PlatformSyncMmLibConstructor
+
+#
+#  VALID_ARCHITECTURES           = IA32 X64 IPF EBC
+#
+
+[Sources]
+  PlatformSyncMmLib.c
+
+
+
+[LibraryClasses]
+  BaseLib
+  DebugLib
+  BaseMemoryLib
+  SmmServicesTableLib
+  MemoryAllocationLib
+  BaseLib
+  ByoCommLib
+  
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  ByoModulePkg/ByoModulePkg.dec
+  Platform4Pkg/Platform4Pkg.dec
+  HgpiCbsPkg/HgpiCbsPkg.dec
+  ByoServerPkg/ByoServerPkg.dec
+
+
+[Protocols]
+  gEdkiiSmmReadyToBootProtocolGuid
+
+[Pcd]
+  gPlatformModuleTokenSpaceGuid.PcdNvVarSwSetCmosOffset
+
+[Guids]
+  gCbsSystemConfigurationGuid
+  gPlatformSetupVariableGuid
+

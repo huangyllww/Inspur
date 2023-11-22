@@ -1,0 +1,38 @@
+/** @file
+  String definitions for HTTP Boot configuration.
+
+  Copyright (c) 2016, Intel Corporation. All rights reserved.<BR>
+
+  SPDX-License-Identifier: BSD-2-Clause-Patent
+
+**/
+
+#langdef en-US "English"
+#langdef zh-Hans "\wide中文\narrow"
+
+#string STR_HTTP_BOOT_CONFIG_FORM_TITLE       #language en-US "HTTP Boot Configuration"
+                                              #language zh-Hans "HTTP \wide启动配置\narrow"
+#string STR_HTTP_BOOT_CONFIG_FORM_HELP        #language en-US "Configure HTTP Boot parameters."
+                                              #language zh-Hans "\wide配置\narrow HTTP \wide启动参数。\narrow"
+#string STR_HTTP_BOOT_IP_VERSION_PROMPT       #language en-US "Internet Protocol"
+                                              #language zh-Hans "\wide网络协议\narrow"
+#string STR_HTTP_BOOT_IP_VERSION_HELP         #language en-US "Select the version of Internet Protocol."
+                                              #language zh-Hans "\wide选择网络协议的版本。\narrow"
+#string STR_HTTP_BOOT_IP_VERSION_4            #language en-US "IP4"
+                                              #language zh-Hans "IP4"
+#string STR_HTTP_BOOT_IP_VERSION_6            #language en-US "IP6"
+                                              #language zh-Hans "IP6"
+#string STR_BOOT_URI_PROMPT                   #language en-US "Boot URI"
+                                              #language zh-Hans "\wide启动\narrow URI"
+#string STR_BOOT_URI_HELP                     #language en-US "A new Boot Option will be created according to this Boot URI."
+                                              #language zh-Hans "\wide将根据此启动\narrow URI \wide创建新的启动选项。\narrow"
+#string STR_BOOT_DESCRIPTION_PROMPT           #language en-US "Input the description"
+                                              #language zh-Hans "\wide输入描述\narrow"
+#string STR_UNSUPPORTED_PROMPT                #language en-US "ERROR: Unsupported URI!"
+                                              #language zh-Hans "\wide错误：不支持的\narrow URI\wide！\narrow"                            
+#string STR_SUPPORT_PROMPT                    #language en-US "Only supports HTTP and HTTPS"
+                                              #language zh-Hans "\wide仅支持\narrow HTTP \wide和\narrow HTTPS"                         
+#string STR_HTTP_INFO_PROMPT                  #language en-US "HTTP is disabled"
+                                              #language zh-Hans "HTTP \wide被禁用\narrow"
+#string STR_NULL_STRING                       #language en-US ""
+                                              #language zh-Hans ""

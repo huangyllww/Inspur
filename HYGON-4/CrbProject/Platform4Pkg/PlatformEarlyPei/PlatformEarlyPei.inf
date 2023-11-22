@@ -1,0 +1,97 @@
+## @file
+#  This module will initialize TPM device and measure FVs in PEI phase.
+#
+# Copyright (c) 2006 - 2023, Intel Corporation. All rights reserved.<BR>
+# This program and the accompanying materials
+# are licensed and made available under the terms and conditions of the BSD License
+# which accompanies this distribution. The full text of the license may be found at
+# http://opensource.org/licenses/bsd-license.php
+# THE PROGRAM IS DISTRIBUTED UNDER THE BSD LICENSE ON AN "AS IS" BASIS,
+# WITHOUT WARRANTIES OR REPRESENTATIONS OF ANY KIND, EITHER EXPRESS OR IMPLIED.
+#
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = PlatformEarlyPei
+  FILE_GUID                      = 3B26CC14-D994-4366-92CD-56678E84F47F
+  MODULE_TYPE                    = PEIM
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = EarlyPeiEntry
+
+#
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           = IA32 X64 IPF EBC
+#
+
+[Sources]
+  PlatformEarlyPei.c
+  GetBmcInfo.c
+  TpmSelect.c
+
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  ByoModulePkg/ByoModulePkg.dec
+  Platform4Pkg/Platform4Pkg.dec
+  ByoServerPkg/ByoServerPkg.dec
+  SecurityPkg/SecurityPkg.dec
+  ByoHgpiModulePkg/ByoHgpiModulePkg.dec
+  HgpiPkg/HgpiPkg.dec
+  HgpiModulePkg/HgpiCommonModulePkg.dec
+  HgpiModulePkg/HgpiModuleDfPkg.dec
+
+
+[LibraryClasses]
+  HobLib
+  PeimEntryPoint
+  PeiServicesLib
+  BaseMemoryLib
+  DebugLib
+  IoLib
+  TimerLib
+  PcdLib
+  PlatformCommLib
+  ByoCommLib
+  ByoHygonCommLib
+
+
+[Guids]
+  gEfiTscFrequencyGuid
+  gCarTopDataHobGuid
+  gByoTpm12ModuleDpxGuid
+  gByoTpm20ModuleDpxGuid
+  gByoTcmModuleDpxGuid
+  gEfiTpmDeviceSelectedGuid
+  gEfiTpmDeviceInstanceTpm20DtpmGuid
+  gEfiTpmDeviceInstanceTpm20HgfTpmGuid
+  gEfiTpmDeviceInstanceTpm12Guid
+  gEfiTcmDeviceInstanceGuid
+
+
+[Ppis]
+  gPeiSecPerformancePpiGuid
+  gByoSetupDataReadyPpiGuid
+  gPeiIpmiTransportPpiGuid
+  gHygonFabricTopologyServicesPpiGuid
+  
+
+
+[Pcd]
+  gEfiMdePkgTokenSpaceGuid.PcdPciExpressBaseAddress
+  gEfiByoModulePkgTokenSpaceGuid.AcpiIoPortBaseAddress
+  gPlatformModuleTokenSpaceGuid.PcdTemporaryRamBase
+  gPlatformModuleTokenSpaceGuid.PcdTemporaryRamSize
+  gServerCommonPkgModuleTokenSpaceGuid.IpmiIoBase
+  gServerCommonPkgModuleTokenSpaceGuid.PcdBmcOnboardLanChannelNumber
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonNumberOfPhysicalSocket
+  gEfiSecurityPkgTokenSpaceGuid.PcdTpmInstanceGuid
+  gPlatformModuleTokenSpaceGuid.PcdTpmTcmModuleDpxGuid
+
+[Depex]
+  TRUE
+
+
+

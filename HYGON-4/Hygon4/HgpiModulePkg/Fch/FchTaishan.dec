@@ -1,0 +1,425 @@
+#;*****************************************************************************
+#;
+#; 
+#; Copyright 2016 - 2023 CHENGDU HAIGUANG IC DESIGN CO., LTD. All Rights Reserved.
+#; 
+#; HYGON is granting you permission to use this software (the Materials)
+#; pursuant to the terms and conditions of your Software License Agreement
+#; with HYGON.  This header does *NOT* give you permission to use the Materials
+#; or any rights under HYGON's intellectual property.  Your use of any portion
+#; of these Materials shall constitute your acceptance of those terms and
+#; conditions.  If you do not agree to the terms and conditions of the Software
+#; License Agreement, please do not use any portion of these Materials.
+#; 
+#; CONFIDENTIALITY:  The Materials and all other information, identified as
+#; confidential and provided to you by HYGON shall be kept confidential in
+#; accordance with the terms and conditions of the Software License Agreement.
+#; 
+#; LIMITATION OF LIABILITY: THE MATERIALS AND ANY OTHER RELATED INFORMATION
+#; PROVIDED TO YOU BY HYGON ARE PROVIDED "AS IS" WITHOUT ANY EXPRESS OR IMPLIED
+#; WARRANTY OF ANY KIND, INCLUDING BUT NOT LIMITED TO WARRANTIES OF
+#; MERCHANTABILITY, NONINFRINGEMENT, TITLE, FITNESS FOR ANY PARTICULAR PURPOSE,
+#; OR WARRANTIES ARISING FROM CONDUCT, COURSE OF DEALING, OR USAGE OF TRADE.
+#; IN NO EVENT SHALL HYGON OR ITS LICENSORS BE LIABLE FOR ANY DAMAGES WHATSOEVER
+#; (INCLUDING, WITHOUT LIMITATION, DAMAGES FOR LOSS OF PROFITS, BUSINESS
+#; INTERRUPTION, OR LOSS OF INFORMATION) ARISING OUT OF HYGON'S NEGLIGENCE,
+#; GROSS NEGLIGENCE, THE USE OF OR INABILITY TO USE THE MATERIALS OR ANY OTHER
+#; RELATED INFORMATION PROVIDED TO YOU BY HYGON, EVEN IF HYGON HAS BEEN ADVISED OF
+#; THE POSSIBILITY OF SUCH DAMAGES.  BECAUSE SOME JURISDICTIONS PROHIBIT THE
+#; EXCLUSION OR LIMITATION OF LIABILITY FOR CONSEQUENTIAL OR INCIDENTAL DAMAGES,
+#; THE ABOVE LIMITATION MAY NOT APPLY TO YOU.
+#; 
+#; HYGON does not assume any responsibility for any errors which may appear in
+#; the Materials or any other related information provided to you by HYGON, or
+#; result from use of the Materials or any related information.
+#; 
+#; You agree that you will not reverse engineer or decompile the Materials.
+#; 
+#; NO SUPPORT OBLIGATION: HYGON is not obligated to furnish, support, or make any
+#; further information, software, technical information, know-how, or show-how
+#; available to you.  Additionally, HYGON retains the right to modify the
+#; Materials at any time, without notice, and is not obligated to provide such
+#; modified Materials to you.
+#; 
+#; 
+#;*****************************************************************************
+
+#
+# This DEC file is for things that are only used internally to FchKernModulePkg
+# and will not be exposed publicly.  Use FchPkg.dec to produce public definitions
+#
+[Defines]
+  DEC_SPECIFICATION     = 0x00010005
+  PACKAGE_NAME          = FchTaishan
+  PACKAGE_GUID          = B4B1DCCC-1016-46c7-A964-8413E30F0481
+  PACKAGE_VERSION       = 0.1
+
+[Includes]
+  Common/Include/
+  Common/Include/Library
+
+[LibraryClasses]
+
+[Guids]
+  gFchResetDataHobGuid                   = { 0x26ab8e31, 0x6c47, 0x480a, { 0xa0, 0x39, 0x1e, 0x4, 0x3f, 0xa7, 0x93, 0xcd } }
+  gEfiHygonHgpiPkgTokenSpaceGuid          = { 0xd4d8435f, 0xfffb, 0x4acb, { 0xa0, 0x4d, 0xff, 0xf, 0xad, 0x67, 0x7f, 0xe9 } }
+  gEfiHygonHgpiModulePkgTokenSpaceGuid    = { 0x7788adf0, 0x9788, 0x4a3f, { 0x83, 0xfa, 0xcb, 0x51, 0x2e, 0x7c, 0xf8, 0xdd } }
+  
+[Protocols]
+  gFchInitProtocolGuid                   = { 0xdb4a79ac, 0x5bbb, 0x4625, {0xa6, 0x9e, 0xfe, 0xbf, 0x9d, 0x6d, 0x95, 0xeb } }
+  gFchInitDonePolicyProtocolGuid         = { 0xc63c0c73, 0xf612, 0x4c02, {0x84, 0xa3, 0xc6, 0x40, 0xad, 0xb, 0xa6, 0x22 } }
+  gFchSsdtInstalledProtocolGuid          = { 0x16560ed9, 0x3636, 0x4ee7, {0xa6, 0xad, 0x8b, 0xde, 0x4f, 0x35, 0x37, 0x7c } }
+  gFchSmmInitProtocolGuid                = { 0xad63ce68, 0x792a, 0x4fec, {0xac, 0xa6, 0x81, 0x6a, 0xd9, 0x7c, 0x01, 0x76 } }
+  gFchSmmGpiDispatch2ProtocolGuid        = { 0x7051ab6d, 0x9ec2, 0x42eb, { 0xa2, 0x13, 0xde, 0x48, 0x81, 0xf1, 0xf7, 0x87 } }
+  gFchSmmIoTrapDispatch2ProtocolGuid     = { 0x91288fc4, 0xe64b, 0x4ef9, { 0xa4, 0x63, 0x66, 0x88, 0x0, 0x71, 0x7f, 0xca } }
+  gFchSmmPeriodicalDispatch2ProtocolGuid = { 0x736102f1, 0x9584, 0x44e7, { 0x82, 0x8a, 0x43, 0x4b, 0x1e, 0x67, 0x5c, 0xc4 } }
+  gFchSmmPwrBtnDispatch2ProtocolGuid     = { 0xa365240e, 0x56b0, 0x426d, { 0x83, 0xa, 0x30, 0x66, 0xc6, 0x81, 0xbe, 0x9a } }
+  gFchSmmSwDispatch2ProtocolGuid         = { 0x881b4ab6, 0x17b0, 0x4bdf, { 0x88, 0xe2, 0xd4, 0x29, 0xda, 0x42, 0x5f, 0xfd } }
+  gFchSmmSxDispatch2ProtocolGuid         = { 0x87e2a6cf, 0x91fb, 0x4581, { 0x90, 0xa9, 0x6f, 0x50, 0x5d, 0xdc, 0x1c, 0xb2 } }
+  gFchSmmUsbDispatch2ProtocolGuid        = { 0xfbbb2ea9, 0xce0e, 0x4689, { 0xb3, 0xf0, 0xc6, 0xb8, 0xf0, 0x76, 0xbd, 0x20 } }
+  gFchSmmMiscDispatchProtocolGuid        = { 0x13bd659b, 0xb4c6, 0x47da, {0x9b, 0x22, 0x11, 0x50, 0xd4, 0xf3, 0xb, 0xda } }
+  gFchSmmApuRasDispatchProtocolGuid      = { 0xf871ee59, 0x29d2, 0x4b15, {0x9e, 0x67, 0xaf, 0x32, 0xcd, 0xc1, 0x41, 0x73 } }
+  gFchSmmUsbDispatchProtocolGuid         = { 0x59053b0d, 0xeeb8, 0x4379, {0xb1, 0xc8, 0x14, 0x5f, 0x1b, 0xb, 0xe4, 0xb9 } }
+  gHygonFchTaishanDepexProtocolGuid        = { 0xa8ad1743, 0xc841, 0x4dbf, {0xb6, 0x51, 0xae, 0x75, 0xc6, 0xb1, 0x19, 0x23 } }
+  gHygonFchTSSmbusDepexProtocolGuid        = { 0x4d427da6, 0x2d8c, 0x4252, {0xba, 0xbe, 0xd1, 0xdc, 0x5e, 0x60, 0xc5, 0xad } }
+  gHygonFchTSSmmDispacherDepexProtocolGuid = { 0xe4eb9f35, 0xe1df, 0x45d1, {0x97, 0x2b, 0xeb, 0xa4, 0xe6, 0x5e, 0xd5, 0x44 } }
+  gHygonFchTSSmmControlDepexProtocolGuid   = { 0xd2b711bc, 0x68b0, 0x4e98, {0xa5, 0x56, 0x57, 0x94, 0xc0, 0x64, 0x68, 0x32 } }
+  gHygonFchTSMultiFchDepexProtocolGuid     = { 0x09ada51f, 0x97b6, 0x45af, {0x8b, 0xba, 0x2d, 0xeb, 0x04, 0x06, 0x5a, 0xc2 } }
+  gEfiLegacyInterruptProtocolGuid          = { 0x31ce593d, 0x108a, 0x485d, {0xad, 0xb2, 0x78, 0xf2, 0x1f, 0x29, 0x66, 0xbe } }
+
+[Ppis]
+  gHygonFchInitPpiGuid                     = { 0x3fb7a27a, 0x33f3, 0x483d, {0xbc, 0x6f, 0x7a, 0x51, 0xbe, 0xf5, 0x3d, 0xa } }
+  gHygonFchTaishanDepexPpiGuid             = { 0xae6d98f0, 0x3720, 0x4c10, {0xaf, 0xce, 0xc8, 0xcf, 0x94, 0x36, 0x14, 0x31} }
+  gHygonFchTSSmbusDepexPpiGuid             = { 0xdd946448, 0x6adb, 0x4ed7, {0x8f, 0x66, 0x0d, 0x61, 0x06, 0x3e, 0x89, 0x2d} }
+  gHygonFchTSMultiFchDepexPpiGuid          = { 0xc076ec1b, 0x5b4e, 0x4b80, {0xad, 0x70, 0xb7, 0x8a, 0x92, 0x29, 0x55, 0xa3} }
+
+[PcdsFixedAtBuild]
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonFchCfgSmbus0BaseAddress|0xB00|UINT16|0x0002F001
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonFchCfgSioPmeBaseAddress|0xE00|UINT16|0x0002F003
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonFchCfgAcpiPm1EvtBlkAddr|0x400|UINT16|0x0002F004
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonFchCfgAcpiPm1CntBlkAddr|0x404|UINT16|0x0002F005
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonFchCfgAcpiPmTmrBlkAddr|0x408|UINT16|0x0002F006
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonFchCfgCpuControlBlkAddr|0x410|UINT16|0x0002F007
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonFchCfgAcpiGpe0BlkAddr|0x420|UINT16|0x0002F008
+  #gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonFchCfgSmiCmdPortAddr|0xB0|UINT16|0x0002F009
+
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdFchOemBeforePciRestoreSwSmi|0xD3|UINT8|0x0002F010
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdFchOemAfterPciRestoreSwSmi|0xD4|UINT8|0x0002F011
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdFchOemEnableAcpiSwSmi|0xA0|UINT8|0x0002F012
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdFchOemDisableAcpiSwSmi|0xA1|UINT8|0x0002F013
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdFchOemSpiUnlockSwSmi|0xAA|UINT8|0x0002F014
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdFchOemSpiLockSwSmi|0xAB|UINT8|0x0002F015
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdFchOemStartTimerSmi|0xBC|UINT8|0x0002F016
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdFchOemStopTimerSmi|0xBD|UINT8|0x0002F017
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdFchUsbPmeOffSupport|FALSE|BOOLEAN|0x0002F018
+  # PcdMultiDieXhciPortNum Define
+  # BIT[0:3] Die0 USB Controller 0 2.0 Port Number
+  # BIT[4:7] Die0 USB Controller 0 3.0 Port Number
+  # BIT[8:11] Die1 USB Controller 1 2.0 Port Number
+  # BIT[12:15] Die1 USB Controller 1 3.0 Port Number
+  # BIT[16:19] Die4 USB Controller 2 2.0 Port Number
+  # BIT[20:23] Die4 USB Controller 2 3.0 Port Number
+  # BIT[24:27] Die5 USB Controller 3 2.0 Port Number
+  # BIT[28:31] Die5 USB Controller 3 3.0 Port Number
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonUsbSupport|TRUE|BOOLEAN|0x0002F019
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdSmbusTiming0|0x2A|UINT8|0x0002F01B
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdSmbus0SdaDebounceCount1M|0x0A|UINT8|0x0002F01C
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdSmbus0SclDebounceCount1M|0x0A|UINT8|0x0002F01D
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdSlaveTxHoldCount1M|0xA0|UINT8|0x0002F01E
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdFchDetectSpiAddressMode|FALSE|BOOLEAN|0x0002F01F
+
+[PcdsDynamic]
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdLegacyFree|FALSE|BOOLEAN|0x0003F001
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdHpetEnable|TRUE|BOOLEAN|0x0003F002
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdHpetMsiDis|TRUE|BOOLEAN|0x0003F003
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdEcKbd|FALSE|BOOLEAN|0x0003F004
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSpreadSpectrum|FALSE|BOOLEAN|0x0003F005
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdFchOscout1ClkContinous|FALSE|BOOLEAN|0x0003F006
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdPwrFailShadow|0x00|UINT8|0x0003F007
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdStressResetMode|0x00|UINT8|0x0003F008
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdOemProgrammingTablePtr|{0x0}|VOID*|0x0003F009
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdUmiGen2|TRUE|BOOLEAN|0x0003F00A
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdResetFastSpeed|0x00|UINT8|0x0003F00B
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdResetMode|0x00|UINT8|0x0003F00D
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdResetCg2Pll|0x00|UINT8|0x0003F010
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdResetSpiSpeed|0x02|UINT8|0x0003F011
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSerialDebugBusEnable|FALSE|BOOLEAN|0x0003F014
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdNoClearThermalTripSts|FALSE|BOOLEAN|0x0003F015
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdEspiEc0Enable|FALSE|BOOLEAN|0x0003F017
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdEspiIo80Enable|FALSE|BOOLEAN|0x0003F018
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdEspiKbc6064Enable|FALSE|BOOLEAN|0x0003F019
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdFchWdtEnable|TRUE|BOOLEAN|0x0003F01A
+
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdNativePcieSupport|FALSE|BOOLEAN|0x0003F020
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdNoneSioKbcSupport|FALSE|BOOLEAN|0x0003F021
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdTimerTickTrack|0x00|UINT8|0x0003F022
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdClockInterruptTag|0x00|UINT8|0x0003F023
+
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSataEnableHyEx|0xFFFFFFFF|UINT32|0x0003F105   #Enable (1) or Disable (0),
+                                                                                   #  bit0~bit3   - Socket0 IOHC0~3
+                                                                                   #  bit4~bit7   - Socket1 IOHC0~3
+                                                                                   #   ... 
+                                                                                   #  bit27~bit31 - Socket7 IOHC0~3
+										   
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSataEnableHyGx|0xFFFFFFFF|UINT32|0x0003F100   #Enable (1) or Disable (0),
+                                                                                           #   bit0~bit3  - Socket0 DJ0~3 SATA0
+                                                                                           #   bit4~bit7  - Socket1 DJ0~3 SATA0
+                                                                                           #   bit8~bit11 - Socket2 DJ0~3 SATA0
+                                                                                           #   bit12~bit15- Socket3 DJ0~3 SATA0
+                                                                                           #   bit16~bit19- Socket4 DJ0~3 SATA0
+                                                                                           #   bit20~bit23- Socket5 DJ0~3 SATA0
+                                                                                           #   bit24~bit27- Socket6 DJ0~3 SATA0
+                                                                                           #   bit28~bit31- Socket7 DJ0~3 SATA0
+
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSataClass|0x02|UINT8|0x0003F101
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSataSetMaxGen2|FALSE|BOOLEAN|0x0003F102
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSataClkMode|0x01|UINT8|0x0003F103
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSataEspPortHyGx|0x00|UINT8|0x0003F104
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSataHotRemovalEnhPort|0x00|UINT8|0x0003F107
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSataAggrLinkPmCap|0x01|UINT8|0x0003F108
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSataPortMultCap|0x01|UINT8|0x0003F109
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSataClkAutoOff|0x01|UINT8|0x0003F10A
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSataPscCap|0x01|UINT8|0x0003F10B
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSataSscCap|0x01|UINT8|0x0003F10C
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSataBiosOsHandOff|0x00|UINT8|0x0003F10D
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSataFisBasedSwitching|0x01|UINT8|0x0003F10E
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSataCccSupport|0x00|UINT8|0x0003F10F
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSataMsiCapability|0x00|UINT8|0x0003F110
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSataTargetSupport8Device|0x00|UINT8|0x0003F111
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSataAhciEnclosureManagement|0x00|UINT8|0x0003F112
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSataDisableGenericMode|0x00|UINT8|0x0003F113
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSataPhyPllShutDown|0x00|UINT8|0x0003F114
+  #gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSataDevSlpPort|0x00|UINT8|0x0003F115
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSataOobDetectionEnh|FALSE|BOOLEAN|0x0003F116
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSataMemoryPowerSaving|0|UINT8|0x0003F117
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSataHotRemovalEnh|FALSE|BOOLEAN|0x0003F118
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSataAhciDisPrefetchFunction|TRUE|BOOLEAN|0x0003F119
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSataSata6AhciCap|FALSE|BOOLEAN|0x0003F11A
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSataModeReg|0x09|UINT8|0x0003F11B
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSataInternal100Spread|FALSE|BOOLEAN|0x0003F11C
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSataRasSupport|FALSE|BOOLEAN|0x0003F11D
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSataDevSlpPort0|FALSE|BOOLEAN|0x0003F11E
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSataDevSlpPort1|FALSE|BOOLEAN|0x0003F11F
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSataDevSlpPort0Num|0x00|UINT8|0x0003F120
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSataDevSlpPort1Num|0x01|UINT8|0x0003F121
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSataMsiEnable|TRUE|BOOLEAN|0x0003F122
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSataSgpioHyGx|0x00000000|UINT32|0x0003F123    #Enable (1) or Disable (0),
+                                                                                           #   bit0~bit3  - Socket0 DJ0~3 SATA0 Sgpio
+                                                                                           #   bit4~bit7  - Socket1 DJ0~3 SATA0 Sgpio
+                                                                                           #   bit8~bit11 - Socket2 DJ0~3 SATA0 Sgpio
+                                                                                           #   bit12~bit15- Socket3 DJ0~3 SATA0 Sgpio
+                                                                                           #   bit16~bit19- Socket4 DJ0~3 SATA0 Sgpio
+                                                                                           #   bit20~bit23- Socket5 DJ0~3 SATA0 Sgpio
+                                                                                           #   bit24~bit27- Socket6 DJ0~3 SATA0 Sgpio
+                                                                                           #   bit28~bit31- Socket7 DJ0~3 SATA0 Sgpio
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSataModePort0|0x00|UINT8|0x0003F130
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSataModePort1|0x00|UINT8|0x0003F131
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSataModePort2|0x00|UINT8|0x0003F132
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSataModePort3|0x00|UINT8|0x0003F133
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSataModePort4|0x00|UINT8|0x0003F134
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSataModePort5|0x00|UINT8|0x0003F135
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSataModePort6|0x00|UINT8|0x0003F136
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSataModePort7|0x00|UINT8|0x0003F137
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSataEspPort0|0x01|UINT8|0x0003F140
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSataEspPort1|0x01|UINT8|0x0003F141
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSataEspPort2|0x01|UINT8|0x0003F142
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSataEspPort3|0x01|UINT8|0x0003F143
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSataEspPort4|0x01|UINT8|0x0003F144
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSataEspPort5|0x01|UINT8|0x0003F145
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSataEspPort6|0x01|UINT8|0x0003F146
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSataEspPort7|0x01|UINT8|0x0003F147
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSataPortPowerPort0|0x00|UINT8|0x0003F150
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSataPortPowerPort1|0x00|UINT8|0x0003F151
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSataPortPowerPort2|0x00|UINT8|0x0003F152
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSataPortPowerPort3|0x00|UINT8|0x0003F153
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSataPortPowerPort4|0x00|UINT8|0x0003F154
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSataPortPowerPort5|0x00|UINT8|0x0003F155
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSataPortPowerPort6|0x00|UINT8|0x0003F156
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSataPortPowerPort7|0x00|UINT8|0x0003F157
+  
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSataMultiDiePortShutDownHyGx|{0x00,0x00,0x00,0x00,  0x00,0x00,0x00,0x00,  0x00,0x00,0x00,0x00,  0x00,0x00,0x00,0x00,  0x00,0x00,0x00,0x00,  0x00,0x00,0x00,0x00,  0x00,0x00,0x00,0x00,  0x00,0x00,0x00,0x00}|VOID*|0x0003F1E1
+                                                                                            #max 8 socket; from socket0 to socket7,
+                                                                                            #   byte0~byte3    - Socket0 DJ0~3 SATA0
+                                                                                            #   byte4~byte7    - Socket1 DJ0~3 SATA0
+                                                                                            #   ...
+                                                                                            #   byte28~byte31  - Socket7 DJ0~3 SATA0
+                                                                                            #   each byte for each SATA Controller,
+                                                                                            #   each bit for each SATA port
+                                                                                                             
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSataMultiDiePortESPHyGx|{0xFF,0xFF,0xFF,0xFF,  0xFF,0xFF,0xFF,0xFF,  0xFF,0xFF,0xFF,0xFF,  0xFF,0xFF,0xFF,0xFF,  0xFF,0xFF,0xFF,0xFF,  0xFF,0xFF,0xFF,0xFF,  0xFF,0xFF,0xFF,0xFF,  0xFF,0xFF,0xFF,0xFF}|VOID*|0x0003F1E2
+                                                                                            #max 8 socket; from socket0 to socket7,
+                                                                                            #   byte0~byte3    - Socket0 DJ0~3 SATA0
+                                                                                            #   byte4~byte7    - Socket1 DJ0~3 SATA0
+                                                                                            #   ...
+                                                                                            #   byte28~byte31  - Socket7 DJ0~3 SATA0
+                                                                                            #   each byte for each SATA Controller,
+                                                                                            #   each bit for each SATA port
+  
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSataMultiDieDevSlpHyGx|0x00|UINT64|0x0003F1E3          #bit8:  Socket1 DJ0 Sata Controller0 DevSlp Port0 enable, bit9-11: port mapping
+                                                                                            #bit12: Socket1 DJ0 Sata Controller0 DevSlp Port1 enable, bit13-15: port mapping
+                                                                                            #bit16: Socket2 DJ0 Sata Controller0 DevSlp Port0 enable, bit17-19: port mapping
+                                                                                            #bit20: Socket2 DJ0 Sata Controller0 DevSlp Port1 enable, bit21-23: port mapping
+                                                                                            #   ...
+                                                                                            #bit56: Socket7 DJ0 Sata Controller0 DevSlp Port0 enable, bit57-59: port mapping
+                                                                                            #bit60: Socket7 DJ0 Sata Controller0 DevSlp Port1 enable, bit61-63: port mapping
+                                                                                                             
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdALinkClkGateOff|0x01|UINT8|0x0003F201
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdBLinkClkGateOff|0x01|UINT8|0x0003F202
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdAbClockGating|0x01|UINT8|0x0003F203
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSlowSpeedAbLinkClock|0x00|UINT8|0x0003F204
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdAbDmaMemoryWrtie3264B|TRUE|BOOLEAN|0x0003F205
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdAbMemoryPowerSaving|TRUE|BOOLEAN|0x0003F206
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSbgMemoryPowerSaving|TRUE|BOOLEAN|0x0003F207
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSbgClockGating|TRUE|BOOLEAN|0x0003F208
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdXdmaDmaWrite16ByteMode|FALSE|BOOLEAN|0x0003F209
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdXdmaMemoryPowerSaving|FALSE|BOOLEAN|0x0003F20A
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdXdmaPendingNprThreshold|0x00|UINT8|0x0003F20B
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdXdmaDncplOrderDis|FALSE|BOOLEAN|0x0003F20C
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdResetCpuOnSyncFlood|FALSE|BOOLEAN|0x0003F20D
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdGppClockRequest0|0x03|UINT8|0x0003F20E
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdGppClockRequest1|0x03|UINT8|0x0003F20F
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdGppClockRequest2|0x03|UINT8|0x0003F210
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdGppClockRequest3|0x03|UINT8|0x0003F211
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSltGfxClockRequest0|0x03|UINT8|0x0003F212
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSltGfxClockRequest1|0x03|UINT8|0x0003F213
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSdphostBypassDataPack|FALSE|BOOLEAN|0x0003F214
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSdphostDisNpmwrProtect|FALSE|BOOLEAN|0x0003F215
+
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdXhciEnableHyGx|0xFFFFFFFFFFFFFFFF|UINT64|0x0003F300        #Enable (1) or Disable (0),
+                                                                                                #   bit0~bit7  - Socket0 DJ0~3 USB[1:0]
+                                                                                                #   bit8~bit15 - Socket1 DJ0~3 USB[1:0]
+                                                                                                #   bit23~bit16- Socket2 DJ0~3 USB[1:0]
+                                                                                                #   bit31~bit24- Socket3 DJ0~3 USB[1:0]
+                                                                                                #   bit39~bit32- Socket4 DJ0~3 USB[1:0]
+                                                                                                #   bit47~bit40- Socket5 DJ0~3 USB[1:0]
+                                                                                                #   bit55~bit48- Socket6 DJ0~3 USB[1:0]
+                                                                                                #   bit63~bit56- Socket7 DJ0~3 USB[1:0]
+
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdXhci0EnableHyEx|TRUE|BOOLEAN|0x0003F301
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdXhci1EnableHyEx|TRUE|BOOLEAN|0x0003F302 
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdXhci2EnableHyEx|TRUE|BOOLEAN|0x0003F304                   
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdXhci3EnableHyEx|TRUE|BOOLEAN|0x0003F305                   
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdXhci4EnableHyEx|TRUE|BOOLEAN|0x0003F306
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdXhci5EnableHyEx|TRUE|BOOLEAN|0x0003F307                   
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdXhci6EnableHyEx|TRUE|BOOLEAN|0x0003F308                   
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdXhci7EnableHyEx|TRUE|BOOLEAN|0x0003F309 
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdXhci0PortNum|0xFF|UINT8|0x0003F320
+#  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdXhci0PortNum|0xFF|UINT8|0x0003F321
+
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdXhciPlatformPortDisableMapHyEx|{0x00,0x00,0xFF,0xFF, 0x00,0x00,0xFF,0xFF, 0x00,0x00,0xFF,0xFF, 0x00,0x00,0xFF,0xFF, 0x00,0x00,0xFF,0xFF, 0x00,0x00,0xFF,0xFF, 0x00,0x00,0xFF,0xFF, 0x00,0x00,0xFF,0xFF}|VOID*|0x0003F322 #Control Usb Port
+                                                                        # byte0 -byte3    - Socket0 IOD0 NBIO0/1/2/3 USB0 Port[7:0]
+                                                                        # byte4 -byte7    - Socket1 IOD0 NBIO0/1/2/3 USB0 Port[7:0]
+                                                                        # byte8 -byte11   - Socket2 IOD0 NBIO0/1/2/3 USB0 Port[7:0]
+                                                                        # byte12-byte15   - Socket3 IOD0 NBIO0/1/2/3 USB0 Port[7:0]
+                                                                        # byte16-byte19   - Socket4 IOD0 NBIO0/1/2/3 USB0 Port[7:0]
+                                                                        # byte10-byte23   - Socket5 IOD0 NBIO0/1/2/3 USB0 Port[7:0]
+                                                                        # byte24-byte27   - Socket6 IOD0 NBIO0/1/2/3 USB0 Port[7:0]
+                                                                        # byte28-byte31   - Socket7 IOD0 NBIO0/1/2/3 USB0 Port[7:0]
+                                                                        # Usb Controller Not Exist on NBIO2/3,So These Values Shuld be set to 0xFF for All Socket 
+
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdXhciPlatformPortDisableMapHyGx|{0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00}|VOID*|0x0003F323
+
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdLpcClockDriveStrength|0x00|UINT8|0x0003F401
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdLpcClk0|TRUE|BOOLEAN|0x0003F402
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdLpcClk1|TRUE|BOOLEAN|0x0003F403
+
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdEmmcEnable|FALSE|BOOLEAN|0x0003F601
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdEmmcBusSpeedMode|0x00|UINT8|0x0003F602
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdEmmcBusWidth|0x00|UINT8|0x0003F603
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdEmmcRetuneMode|0x00|UINT8|0x0003F604
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdEmmcClockMultiplier|FALSE|BOOLEAN|0x0003F605
+
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdXgbeMdio0|FALSE|BOOLEAN|0x0003F710
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdXgbeMdio1|FALSE|BOOLEAN|0x0003F711
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdXgbeSfp|FALSE|BOOLEAN|0x0003F712
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdXgbePort0ConfigEn|FALSE|BOOLEAN|0x0003F713
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdXgbePort1ConfigEn|FALSE|BOOLEAN|0x0003F714
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdXgbePort2ConfigEn|FALSE|BOOLEAN|0x0003F715
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdXgbePort3ConfigEn|FALSE|BOOLEAN|0x0003F716
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdXgbePort4ConfigEn|FALSE|BOOLEAN|0x0003F717
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdXgbePort5ConfigEn|FALSE|BOOLEAN|0x0003F718
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdXgbePort6ConfigEn|FALSE|BOOLEAN|0x0003F719
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdXgbePort7ConfigEn|FALSE|BOOLEAN|0x0003F71A
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdXgbePort0Table|{0x0}|VOID*|0x0003F71B
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdXgbePort1Table|{0x0}|VOID*|0x0003F71C
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdXgbePort2Table|{0x0}|VOID*|0x0003F71D
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdXgbePort3Table|{0x0}|VOID*|0x0003F71E
+  #{0x01, PortConfig, Speed, Type, MdioId, MdioResetType, ResetGpio, ResetI2C, SfpI2c, TX_FAULT, RS, Mod_ABS, Rx_LOS, SfpGpioMask, TwiAddress, TwiBus, RedriverEn, 0x00, 0x00, 0x00, RedriverModel, RedriverInterface, RedriverAddress, RedriverLane, GpioPad, MdioPad, I2cPac, 0x00}
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdXgbePort0MAC|0x00|UINT64|0x0003F720
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdXgbePort1MAC|0x00|UINT64|0x0003F721
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdXgbePort2MAC|0x00|UINT64|0x0003F722
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdXgbePort3MAC|0x00|UINT64|0x0003F723
+
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSmbusSsid|0x00000000|UINT32|0x0003FF01
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSataAhciSsid|0x00000000|UINT32|0x0003FF02
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSataRaidSsid|0x00000000|UINT32|0x0003FF03
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSataRaid5Ssid|0x00000000|UINT32|0x0003FF04
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSataIdeSsid|0x00000000|UINT32|0x0003FF05
+#  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdEhciSsid|0x00000000|UINT32|0x0003FF06
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdXhciSsid|0x00000000|UINT32|0x0003FF07
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdLpcSsid|0x00000000|UINT32|0x0003FF08
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSdSsid|0x00000000|UINT32|0x0003FF09
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdXhciECCDedErrRptEn|FALSE|BOOLEAN|0x0003FF0A
+
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdFchRTDeviceEnableMap|0x04011FE0|UINT32|0x0003FF81
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdFchRTSataDevSlpPort0S5Pin|0x00|UINT8|0x0003FF82
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdFchRTSataDevSlpPort1S5Pin|0x00|UINT8|0x0003FF83
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdFchAl2AhbLegacyUartIoEnable|0xE400|UINT16|0x0003FF84
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdFchUart0LegacyEnable|0x00|UINT8|0x0003FF85
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdFchUart1LegacyEnable|0x00|UINT8|0x0003FF86
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdFchUart2LegacyEnable|0x00|UINT8|0x0003FF87
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdFchUart3LegacyEnable|0x00|UINT8|0x0003FF88
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonFchCfgSmiCmdPortAddr|0xB0|UINT16|0x0003FFC0
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonFchApuRasSmiSupport|FALSE|BOOLEAN|0x0003FFC1
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdDieNumUsbPortAndOCPinMapHyGx|{0xFF}|VOID*|0x0003EF35    # 1st byte: SocketID
+                                                                                              # 2nd byte: PhysicalDieId
+                                                                                              # 3rd byte: Port Number: Bit[0:3] for USB0,  Bit[4:7] for USB1 
+                                                                                              # 4th byte: OC Pin: Bit[0:3] for USB0,  Bit[4:7] for USB1
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSlaveCpuResetEnable|0|UINT8|0x0003EF36
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdWarmResetSequence|0|UINT8|0x0003EF37
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdS0ResetDelayTimerCount|0x16|UINT8|0x0003EF38
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdFchSerialIrqSupport|FALSE|BOOLEAN|0x0003EF39
+  
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSataSgpioHyEx|0x00000000|UINT32|0x0003EF40    #Enable (1) or Disable (0),
+                                                                                   #  bit0~bit3   - Socket0 IOHC0~3
+                                                                                   #  bit4~bit7   - Socket1 IOHC0~3
+                                                                                   #   ... 
+                                                                                   #  bit27~bit31 - Socket7 IOHC0~3
+
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSataModePortHyEx|0x0000000000000000|UINT64|0x0003EF41 
+                                                        # 01b for gen1,10b for gen2
+                                                        # bit[0:15] for NBIO0 Port0~7
+                                                        # bit[16:31] for NBIO1 Port0~7
+                                                        # bit[32:47] for NBIO2 Port0~7
+                                                        # bit[48:63] for NBIO3 Port0~7
+
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSataEspPortHyEx|0xFFFFFFFF|UINT32|0x0003EF42
+                                                        # bit map,1b = enable ,0b = disable; 
+                                                        # bit0~7 for NBIO0 Port0~7; bit8~15 for NBIO1 Port0~7; and so on
+  
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSataPortPowerPortHyEx|0x00000000|UINT32|0x0003EF43
+                                                        # bit map,0b = enable ,1b = disable; 
+                                                        # bit0~7 for NBIO0 Port0~7; bit8~15 for NBIO1 Port0~7; and so on
+  
+  
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSataMultiDiePortShutDownHyEx|{0x00,0x00,0x00,0x00,  0x00,0x00,0x00,0x00,  0x00,0x00,0x00,0x00,  0x00,0x00,0x00,0x00,  0x00,0x00,0x00,0x00,  0x00,0x00,0x00,0x00,  0x00,0x00,0x00,0x00}|VOID*|0x0003EF44
+                                                                                                             #max 8 socket; from socket1 to socket7,
+                                                                                                             #   each byte for each IOMS,
+                                                                                                             #   each bit for each SATA port
+                                                                                                             
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSataMultiDiePortESPHyEx|{0xFF,0xFF,0xFF,0xFF,  0xFF,0xFF,0xFF,0xFF,  0xFF,0xFF,0xFF,0xFF,  0xFF,0xFF,0xFF,0xFF,  0xFF,0xFF,0xFF,0xFF,  0xFF,0xFF,0xFF,0xFF,  0xFF,0xFF,0xFF,0xFF}|VOID*|0x0003EF45
+                                                                                                             #max 8 socket; from socket1 to socket7,
+                                                                                                             #   each byte for each IOMS,
+                                                                                                             #   each bit for each SATA port
+  
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSataMultiDieDevSlpHyEx|0x00|UINT64|0x0003EF46      #bit8:  Socket1 NBIO0 Sata Controller DevSlp Port0 enable, bit9-11: port mapping
+                                                                                            #bit12: Socket1 NBIO0 Sata Controller DevSlp Port1 enable, bit13-15: port mapping
+                                                                                            #bit16: Socket2 NBIO0 Sata Controller DevSlp Port0 enable, bit17-19: port mapping
+                                                                                            #bit20: Socket2 NBIO0 Sata Controlle0 DevSlp Port1 enable, bit21-23: port mapping
+                                                                                            #   ...
+                                                                                            #bit56: Socket7 NBIO0 Sata Controller DevSlp Port0 enable, bit57-59: port mapping
+                                                                                            #bit60: Socket7 NBIO0 Sata Controller DevSlp Port1 enable, bit61-63: port mapping
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdDieNumUsbPortAndOCPinMapHyEx|{0xFF}|VOID*|0x0003EF47   # 1st byte: Socket Num
+                                                                                                # 2nd byte: RB Num
+                                                                                                # 3rd byte: USB Port Num
+                                                                                                # 4th byte: OC Pin

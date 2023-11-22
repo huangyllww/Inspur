@@ -1,0 +1,26 @@
+///** @file
+//
+//Copyright (c) 2006 - 2021, Byosoft Corporation.<BR> 
+//All rights reserved.This software and associated documentation (if any)
+//is furnished under a license and may only be used or copied in 
+//accordance with the terms of the license. Except as permitted by such
+//license, no part of this software or documentation may be reproduced, 
+//stored in a retrieval system, or transmitted in any form or by any
+//means without the express written consent of Byosoft Corporation.
+//
+//File Name:
+//  ErrorMessage.uni
+//
+//Abstract:
+//  uni file for VerifyErrorMsgDxe driver.
+//
+//**/
+/=#
+
+#langdef   en-US "English"
+#langdef   zh-Hans "\wide中文\narrow"
+
+#string STR_OS_MISTYPED         #language    en-US    "Safe startup has been opened,the startup item failed to be verified!"
+                                #language    zh-Hans  "\wide安全启动已经打开，当前启动项验签未通过!\narrow"
+#string STR_OS_ENTER_STRING     #language    en-US    "Press <Enter> to continue."
+                                #language    zh-Hans  "\wide请按回车键继续。\narrow"

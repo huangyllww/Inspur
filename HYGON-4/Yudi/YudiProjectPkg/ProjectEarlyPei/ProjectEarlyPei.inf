@@ -1,0 +1,97 @@
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = ProjectEarlyPei
+  FILE_GUID                      = 745BF6AC-7458-47c7-8A63-2390C167D967
+  MODULE_TYPE                    = PEIM
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = ProjectEarlyPeiEntry
+
+#
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           = IA32 X64 IPF EBC
+#
+
+[Sources]
+  ProjectEarlyPei.c
+  HandleStatusCode.c
+  CpmTableOverride.c
+  SetupData.c
+  
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  ByoModulePkg/ByoModulePkg.dec
+  HgpiModulePkg/Fch/FchTaishan.dec
+  HgpiPkg/HgpiPkg.dec
+  HgpiModulePkg/HgpiCommonModulePkg.dec
+  HgpiModulePkg/HgpiModuleCcxPkg.dec
+  HgpiCpmPkg/HgpiCpmPkg.dec
+  Platform4Pkg/Platform4Pkg.dec
+  YudiProjectPkg/ProjectPkg.dec
+  ByoServerPkg/ByoServerPkg.dec
+  ByoHgpiModulePkg/ByoHgpiModulePkg.dec
+
+
+[LibraryClasses]
+  HobLib
+  PeimEntryPoint
+  PeiServicesLib
+  BaseMemoryLib
+  DebugLib
+  IoLib
+  PlatformCommLib
+  ReportStatusCodeLib
+  BiosIdLib
+  TimestampLib
+  PrintLib
+  ByoHygonGpioLib
+  ByoCommLib
+
+[Guids]
+  gHygonHsioInfoHobGuid
+  
+
+[Ppis]
+  gByoSetupDataReadyPpiGuid
+  gEfiPeiMasterBootModePpiGuid
+  gEfiPeiRscHandlerPpiGuid
+  gPeiIpmiTransportPpiGuid
+  gEfiEndOfPeiSignalPpiGuid
+  gByoHygonCpmTableOverrideHookPpiGuid
+  gHygonCpmTablePpiGuid
+  
+
+[Pcd]
+  gEfiMdePkgTokenSpaceGuid.PcdPciExpressBaseAddress
+  gEfiByoModulePkgTokenSpaceGuid.AcpiIoPortBaseAddress
+  gEfiByoModulePkgTokenSpaceGuid.PcdFlashFvRecoveryBase
+  gEfiByoModulePkgTokenSpaceGuid.PcdFlashFvRecoveryBackUpBase
+  gEfiProjectPkgTokenSpaceGuid.PcdBoardIdType
+  gEfiByoModulePkgTokenSpaceGuid.PcdBiosSettingNeedLoadDefault
+  gEfiByoModulePkgTokenSpaceGuid.PcdIsClearSystemPwd
+  gPlatformModuleTokenSpaceGuid.PcdIpmiSelRecordGeneratorId
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonFchCfgSmiCmdPortAddr
+  gEfiByoModulePkgTokenSpaceGuid.PcdSwSmiCmdPort
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonFchCfgAcpiPm1EvtBlkAddr
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSataEnableHyEx
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSataPortPowerPort0
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSataPortPowerPort1
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSataPortPowerPort2
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSataPortPowerPort3
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSataPortPowerPort4
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSataPortPowerPort5
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSataPortPowerPort6
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSataPortPowerPort7
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdSataPortPowerPortHyEx
+  gServerCommonPkgModuleTokenSpaceGuid.PcdBmcFwVerStr8
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdXhciPlatformPortDisableMapHyEx
+  gEfiHygonHgpiModulePkgTokenSpaceGuid.PcdXhciPlatformPortDisableMapHyGx
+
+[Depex]
+  TRUE
+
+
+

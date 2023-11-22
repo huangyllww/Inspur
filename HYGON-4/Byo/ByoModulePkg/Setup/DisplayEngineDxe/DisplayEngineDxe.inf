@@ -1,0 +1,102 @@
+## @file
+# The DXE driver produces FORM DISPLAY ENGIEN protocol.
+#
+# Copyright (c) 2007 - 2022, Byosoft Corporation.<BR>
+# All rights reserved.This software and associated documentation (if any)
+# is furnished under a license and may only be used or copied in
+# accordance with the terms of the license. Except as permitted by such
+# license, no part of this software or documentation may be reproduced,
+# stored in a retrieval system, or transmitted in any form or by any
+# means without the express written consent of Byosoft Corporation.
+
+#
+#
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = DisplayEngine
+  MODULE_UNI_FILE                = DisplayEngine.uni
+  FILE_GUID                      = E660EA85-058E-4b55-A54B-F02F83A24707
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = InitializeDisplayEngine
+  UNLOAD_IMAGE                   = UnloadDisplayEngine
+#
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           = IA32 X64 IPF EBC
+#
+
+[Sources]
+  FormDisplayStr.uni
+  FormDisplay.c
+  FormDisplay.h
+  ProcessOptions.c
+  InputHandler.c
+  MouseInput.c
+  Popup.c
+  
+[Packages]
+  ByoModulePkg/ByoModulePkg.dec
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  PcAtChipsetPkg/PcAtChipsetPkg.dec
+
+[LibraryClasses]
+  UefiDriverEntryPoint
+  UefiBootServicesTableLib
+  DebugLib
+  BaseMemoryLib
+  BaseLib
+  PrintLib
+  HiiLib
+  MemoryAllocationLib
+  CustomizedDisplayLib
+  SetupUiLib
+  ReportStatusCodeLib
+  PcdLib
+  UefiRuntimeServicesTableLib
+
+[Protocols]
+  gEdkiiFormDisplayEngineProtocolGuid   ## PRODUCES
+  gEdkiiFormBrowserEx2ProtocolGuid      ## CONSUMES
+  gEfiByoFormsetManagerProtocolGuid     ## CONSUMES
+  gEfiSetupMouseProtocolGuid
+  gEfiHiiPopupProtocolGuid              ## PRODUCES
+  gEfiSystemPasswordProtocolGuid
+  gByoSetupHotKeyDisableProtocolGuid                         # wz200707 +
+  gByoCustomStrProtocolGuid
+  gEfiSimpleTextInputExProtocolGuid
+  gDisplayBackupRecoverProtocolGuid
+
+[Depex]
+  gEfiHiiDatabaseProtocolGuid AND gEfiHiiConfigRoutingProtocolGuid AND gEdkiiFormBrowserEx2ProtocolGuid
+
+[Pcd]
+  gEfiByoModulePkgTokenSpaceGuid.PcdTextSetupMouseEnable
+  gEfiByoModulePkgTokenSpaceGuid.PcdEnableSetupHotkeyF3F4
+  gPcAtChipsetPkgTokenSpaceGuid.PcdMinimalValidYear             ## CONSUMES
+  gPcAtChipsetPkgTokenSpaceGuid.PcdMaximalValidYear             ## CONSUMES
+  gEfiByoModulePkgTokenSpaceGuid.PcdCurrentFormSetGuid
+  gEfiByoModulePkgTokenSpaceGuid.PcdEnableF4ForMeasure
+  gEfiByoModulePkgTokenSpaceGuid.PcdGraphicsConsoleDeltaXPersent
+  gEfiByoModulePkgTokenSpaceGuid.PcdSetupAddSubUseF5F6
+  gEfiByoModulePkgTokenSpaceGuid.PcdOemCopyRightLineNumber
+  gEfiByoModulePkgTokenSpaceGuid.PcdResetAfterExitUiApp
+  gEfiByoModulePkgTokenSpaceGuid.PcdLockScreenTime
+  gEfiByoModulePkgTokenSpaceGuid.PcdSystemPasswordMinLength
+  gEfiByoModulePkgTokenSpaceGuid.PcdSystemPasswordLength
+  gEfiByoModulePkgTokenSpaceGuid.PcdPasswordUnlockTime
+  gEfiByoModulePkgTokenSpaceGuid.PcdPasswordNearExpirationDays
+  gEfiByoModulePkgTokenSpaceGuid.PcdDisplayWeekdayCheck
+
+[Guids]
+  gEfiSystemPasswordVariableGuid
+
+[FeaturePcd]
+  gEfiMdeModulePkgTokenSpaceGuid.PcdBrowserGrayOutTextStatement     ## CONSUMES
+  gEfiMdeModulePkgTokenSpaceGuid.PcdBrowerGrayOutReadOnlyMenu       ## CONSUMES
+
+[UserExtensions.TianoCore."ExtraFiles"]
+  DisplayEngineExtra.uni

@@ -1,0 +1,65 @@
+/** @file
+
+Copyright (c) 2023, Byosoft Corporation.<BR>
+All rights reserved.This software and associated documentation (if any)
+is furnished under a license and may only be used or copied in
+accordance with the terms of the license. Except as permitted by such
+license, no part of this software or documentation may be reproduced,
+stored in a retrieval system, or transmitted in any form or by any
+means without the express written consent of Byosoft Corporation.
+
+File Name:
+  NetworkConfig.uni
+
+Abstract:
+
+Revision History:
+
+**/
+/=#
+#langdef   en-US "English"
+#langdef   zh-Hans  "\wide中文\narrow"
+
+
+
+#string STR_NETWORK_STACK_TITLE         #language en-US "Network Stack Configuration"
+                                        #language zh-Hans  "\wide网络协议栈配置\narrow"
+#string STR_NETWORK_STACK_TITLE_HELP    #language en-US "Enable/Disable Network Stack"
+                                        #language zh-Hans  "\wide打开/关闭网络协议栈\narrow"
+#string STR_NETWORK_STACK               #language en-US "Network Stack"
+                                        #language zh-Hans  "\wide网络协议栈\narrow"
+#string STR_NETWORK_STACK_HELP          #language en-US "Enable/Disable Network Stack"
+                                        #language zh-Hans  "\wide打开/关闭网络协议栈\narrow"
+#string STR_ENABLED                     #language en-US "Enabled"
+                                        #language zh-Hans  "\wide打开\narrow"
+#string STR_DISABLED                    #language en-US "Disabled"
+                                        #language zh-Hans  "\wide关闭\narrow"
+#string STR_IPV4_PXE_SUPPORT            #language en-US "IPV4 PXE Support"
+                                        #language zh-Hans  "IPV4 PXE\wide支持\narrow"
+#string STR_IPV4_PXE_SUPPORT_HELP       #language en-US "Enable/Disable IPV4 PXE Support.If Disabled, Ipv4 PXE boot Support will not be available."
+                                        #language zh-Hans  "\wide打开/关闭\narrow IPV4 PXE\wide启动支持，如果关闭该选项，则不会创建\narrow IPV4 PXE\wide启动选项。\narrow"
+#string STR_IPV4_HTTP_SUPPORT           #language en-US "IPV4 HTTP Support"
+                                        #language zh-Hans  "IPV4 HTTP\wide支持\narrow"
+#string STR_IPV4_HTTP_SUPPORT_HELP      #language en-US "Enable/Disable IPV4 HTTP Support.If Disabled, Ipv4 HTTP boot Support will not be available."
+                                        #language zh-Hans  "\wide打开/关闭\narrow IPV4 HTTP\wide启动支持，如果关闭该选项，则不会创建\narrow IPV4 HTTP\wide启动选项。\narrow"
+#string STR_IPV6_PXE_SUPPORT            #language en-US "IPV6 PXE Support"
+                                        #language zh-Hans  "IPV6 PXE\wide支持\narrow"
+#string STR_IPV6_PXE_SUPPORT_HELP       #language en-US "Enable/Disable IPV6 PXE Support.If Disabled, Ipv6 PXE boot Support will not be available."
+                                        #language zh-Hans  "\wide打开/关闭\narrow IPV6 PXE\wide启动支持，如果关闭该选项，则不会创建\narrow IPV6 PXE\wide启动选项。\narrow"
+#string STR_IPV6_HTTP_SUPPORT           #language en-US "IPV6 HTTP Support"
+                                        #language zh-Hans  "IPV6 HTTP\wide支持\narrow"
+#string STR_IPV6_HTTP_SUPPORT_HELP      #language en-US "Enable/Disable IPV6 HTTP Support.If Disabled, Ipv6 HTTP boot Support will not be available."
+                                        #language zh-Hans  "\wide打开/关闭\narrow IPV6 HTTP\wide启动支持，如果关闭该选项，则不会创建\narrow IPV6 HTTP\wide启动选项。\narrow"
+#string STR_PXE_WAIT_TIME               #language en-US   "PXE Boot Wait Time"
+                                        #language zh-Hans "PXE\wide启动等待时间\narrow"
+#string STR_PXE_WAIT_TIME_HELP          #language en-US   "Value is the time in seconds that each PXE option waits before it starts, ranging from 0 to 5."
+                                        #language zh-Hans "\wide每个\narrowPXE\wide选项启动前的等待时间，单位为秒,取值范围为0-5。\narrow"
+#string STR_PXE_DETECT_MEDIA_TIME       #language en-US   "Detect Media Time"
+                                        #language zh-Hans "\wide介质检测次数\narrow"
+#string STR_PXE_DETECT_MEDIA_TIME_HELP  #language en-US   "The number of times to detect the connection status of each PXE or HTTP net options, ranging from 1 to 50."
+                                        #language zh-Hans "\wide检测每个\narrowPXE\wide网络启动项或者\narrowHTTP\wide网络启动项的连接状态的次数，取值范围为1-50。\narrow"
+
+
+
+
+

@@ -1,0 +1,139 @@
+// @file
+//
+//Copyright (c) 2006 - 2022, Byosoft Corporation.<BR> 
+//All rights reserved.This software and associated documentation (if any)
+//is furnished under a license and may only be used or copied in 
+//accordance with the terms of the license. Except as permitted by such
+//license, no part of this software or documentation may be reproduced, 
+//stored in a retrieval system, or transmitted in any form or by any 
+//means without the express written consent of Byosoft Corporation.
+//
+//File Name:
+//  tcmSetup.uni
+//
+//Abstract: 
+//  Dxe part of TCM Module.
+//
+//Revision History:
+//
+//Bug 3075 - Add TCM support.
+//TIME: 2011-11-14
+//$AUTHOR: Zhang Lin
+//$REVIEWERS: 
+//$SCOPE: SugarBay
+//$TECHNICAL: 
+//  1. Tcm module init version.
+//     Only support setup function.
+//$END--------------------------------------------------------------------
+//
+//
+
+
+
+/=#
+
+
+#langdef   en-US "English"
+#langdef   zh-Hans "\wide中文\narrow"
+
+#string STR_EMPTY                                    #language en-US ""
+                                                     #language zh-Hans ""
+// TCM 
+#string STR_TCM_TITLE                      #language en-US "TCM Configuration"
+                                           #language zh-Hans "TCM\wide配置\narrow"
+#string STR_TCM_HELP                       #language en-US "Press <Enter> to select the TCM Setup options."
+                                           #language zh-Hans "\wide按\narrow <Enter> \wide选择\narrowTCM\wide配置选项。\narrow"
+
+#string STR_TCM_DEVICE_STATE_PROMPT        #language en-US "Current TCM Device"
+                                           #language zh-Hans "\wide当前的\narrow TCM \wide设备\narrow"
+#string STR_TCM_DEVICE_STATE_HELP          #language en-US "Current TCM Device: Disable, Unpresent, or TCM"
+                                           #language zh-Hans "\wide当前的\narrow TCM \wide设备：禁用，不存在或\narrow TCM"
+#string STR_TCM_DEVICE_STATE_CONTENT       #language en-US ""
+                                           #language zh-Hans ""
+#string STR_TCM_DEVICE_NOT_PRESENT          #language en-US "Not Present"
+                                            #language zh-Hans "\wide未安装\narrow"
+#string STR_TCM_DEVICE_ENABLED              #language en-US "Enabled"
+                                            #language zh-Hans "\wide启用\narrow"
+#string STR_TCM_DEVICE_DISABLED             #language en-US "Disabled"
+                                            #language zh-Hans "\wide禁用\narrow"
+
+#string STR_TCM_DEVICE_INFO_PROMPT         #language en-US "TCM Chip Device Info"
+                                           #language zh-Hans "TCM \wide芯片设备信息\narrow"
+
+#string STR_TCM_DEVICE_FIRMWARE_VERSION_PROMPT        #language en-US "  Firmware Version:"
+                                                      #language zh-Hans "  \wide固件版本：\narrow"
+#string STR_TCM_DEVICE_FIRMWARE_VERSION_CONTENT       #language en-US ""
+                                                      #language zh-Hans ""
+
+#string STR_TCM_DEVICE_VENDOR_PROMPT       #language en-US "  Vendor:"
+                                           #language zh-Hans "  \wide供应商：\narrow"
+#string STR_TCM_DEVICE_VENDOR_CONTENT      #language en-US ""
+                                           #language zh-Hans ""
+
+#string STR_MOR_PROMPT                     #language en-US "MOR State"
+                                           #language zh-Hans "MOR \wide状态\narrow"
+#string STR_MOR_HELP                       #language en-US "Enable/Disable the MOR (Memory Overwrite Request) feature"
+                                           #language zh-Hans "\wide打开/关闭\narrow MOR (Memory Overwrite Request) \wide功能\narrow"
+#string STR_NULL_STRING                    #language en-US ""
+                                           #language zh-Hans ""
+
+#string STR_TRUSTED_COMPUTING_CONFIG                 #language en-US "TCM Configuration"
+                                                     #language zh-Hans "TCM \wide配置\narrow"
+                                                      
+#string STR_TRUSTED_COMPUTING_CONFIG_HELP            #language en-US "TCM Settings."
+                                                     #language zh-Hans "TCM \wide设置\narrow"
+                                                       
+#string STR_TCM_STATE_CONFIG                         #language en-US "TCM State"
+                                                     #language zh-Hans "TCM\wide状态\narrow"
+                                                     
+#string STR_TCM_STATE_CONFIG_HELP                    #language en-US "Enable/Disable Security Device."
+                                                     #language zh-Hans "\wide打开或关闭安全设备。\narrow"
+
+#string STR_TCM_STATUS_ENABLED                       #language en-US "Enabled"
+                                                     #language zh-Hans "\wide打开\narrow"
+                                                     
+#string STR_TCM_STATUS_DISABLED                      #language en-US "Disabled"
+                                                     #language zh-Hans "\wide关闭\narrow"
+                                                     
+#string STR_PENDING_OPERATION_CONFIG                 #language en-US "Pending operation"
+                                                     #language zh-Hans "\wide等待执行的操作\narrow"
+                                                     
+#string STR_PENDING_OPERATION_CONFIG_HELP            #language en-US "Schedule an Operation for the Security Device."
+                                                     #language zh-Hans "\wide为安全设备预定一个操作。\narrow"
+
+#string STR_PENDING_NONE                             #language en-US "None"
+                                                     #language zh-Hans "\wide无\narrow"
+                                                     
+#string STR_PENDING_ACTIVATE                           #language en-US "Activate"
+                                                       #language zh-Hans "\wide激活所有人权限\narrow"
+                                                     
+#string STR_PENDING_DEACTIVATE                          #language en-US "Deactivate"
+                                                        #language zh-Hans "\wide停用所有人权限\narrow"
+                                                       
+#string STR_PENDING_CLEAR                            #language en-US "TCM Clear"
+                                                     #language zh-Hans "\wide清空\narrowTCM"
+
+#string STR_TRUSTED_CURRENT_STATUS                   #language en-US "Current Status Information"
+                                                     #language zh-Hans "\wide当前状态信息\narrow"
+
+#string STR_SUPPORT_TURNED_OFF                       #language en-US "SUPPORT TURNED OFF"
+                                                     #language zh-Hans "\wide支持关闭\narrow"
+#string STR_TCM_ENABLE_STATUS_CONFIG                 #language en-US "TCM Enable Status"
+                                                     #language zh-Hans "TCM \wide打开状态\narrow"
+#string STR_TCM_ACTIVATED_STATUS_CONFIG              #language en-US "TCM Activated Status"
+                                                     #language zh-Hans "TCM \wide激活状态\narrow"
+#string STR_TCM_ACTIVATED                            #language en-US "Activated"
+                                                     #language zh-Hans "\wide激活\narrow"
+#string STR_TCM_DEACTIVATED                          #language en-US "Deactivated"
+                                                     #language zh-Hans "\wide停用\narrow"
+#string STR_TCM_OWNER_STATUS_CONFIG                  #language en-US "TCM Owner Status"
+                                                     #language zh-Hans "TCM Owner \wide状态\narrow"
+#string STR_TCM_OWNED                                #language en-US "Owned"
+                                                     #language zh-Hans "Owned"
+#string STR_TCM_UNOWNED                              #language en-US "Unowned"
+                                                     #language zh-Hans "Unowned"
+#string STR_ENABLED                                  #language en-US "Enabled"
+                                                     #language zh-Hans "\wide打开\narrow"
+
+#string STR_DISABLED                                 #language en-US "Disabled"
+                                                     #language zh-Hans "\wide关闭\narrow"

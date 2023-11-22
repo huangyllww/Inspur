@@ -1,0 +1,113 @@
+/** @file
+
+Copyright (c) 2006 - 2020, Byosoft Corporation.<BR>
+All rights reserved.This software and associated documentation (if any)
+is furnished under a license and may only be used or copied in
+accordance with the terms of the license. Except as permitted by such
+license, no part of this software or documentation may be reproduced,
+stored in a retrieval system, or transmitted in any form or by any
+means without the express written consent of Byosoft Corporation.
+
+File Name:
+  AtaDriverCfg.uni
+
+Abstract:
+  The definition of string used in ATA Devices setting.
+
+Revision History:
+
+$END--------------------------------------------------------------------
+
+**/
+
+/=#
+#langdef   zh-Hans "\wide中文\narrow"
+#langdef   en-US "English"
+
+#string STR_PCIE_FORM                   #language en-US   "PCIe Configuration"
+                                        #language zh-Hans "PCIe\wide配置\narrow"
+
+#string STR_PCIE_STATUS_LIST            #language en-US   "PCIe Status List"
+                                        #language zh-Hans "PCIe\wide状态列表\narrow"
+
+
+#string STR_PCIE_SLOT0                  #language en-US   "SLOT0"
+                                        #language zh-Hans "SLOT0"
+#string STR_PCIE_SLOT1                  #language en-US   "SLOT1"
+                                        #language zh-Hans "SLOT1"
+#string STR_PCIE_SLOT2                  #language en-US   "SLOT2"
+                                        #language zh-Hans "SLOT2"
+#string STR_PCIE_SLOT3                  #language en-US   "SLOT3"
+                                        #language zh-Hans "SLOT3"
+#string STR_PCIE_SLOT4                  #language en-US   "SLOT4"
+                                        #language zh-Hans "SLOT4"
+#string STR_PCIE_SLOT5                  #language en-US   "SLOT5"
+                                        #language zh-Hans "SLOT5"
+#string STR_PCIE_SLOT6                  #language en-US   "SLOT6"
+                                        #language zh-Hans "SLOT6"
+#string STR_PCIE_SLOT7                  #language en-US   "SLOT7"
+                                        #language zh-Hans "SLOT7"
+                                        
+#string STR_PCIE_SLOT8                  #language en-US   "SLOT8"
+                                        #language zh-Hans "SLOT8"
+#string STR_PCIE_SLOT9                  #language en-US   "SLOT9"
+                                        #language zh-Hans "SLOT9"
+#string STR_PCIE_SLOT10                 #language en-US   "SLOT10"
+                                        #language zh-Hans "SLOT10"
+#string STR_PCIE_SLOT11                 #language en-US   "SLOT11"
+                                        #language zh-Hans "SLOT11"
+#string STR_PCIE_SLOT12                 #language en-US   "SLOT12"
+                                        #language zh-Hans "SLOT12"
+#string STR_PCIE_SLOT13                 #language en-US   "SLOT13"
+                                        #language zh-Hans "SLOT13"
+#string STR_PCIE_SLOT14                 #language en-US   "SLOT14"
+                                        #language zh-Hans "SLOT14"
+#string STR_PCIE_SLOT15                 #language en-US   "SLOT15"
+                                        #language zh-Hans "SLOT15"
+                                        
+#string STR_PCIE_SLOT16                 #language en-US   "SLOT16"
+                                        #language zh-Hans "SLOT16"
+#string STR_PCIE_SLOT17                 #language en-US   "SLOT17"
+                                        #language zh-Hans "SLOT17" 
+#string STR_PCIE_SLOT18                 #language en-US   "SLOT18"
+                                        #language zh-Hans "SLOT18"
+#string STR_PCIE_SLOT19                 #language en-US   "SLOT19"
+                                        #language zh-Hans "SLOT19"
+#string STR_PCIE_SLOT20                 #language en-US   "SLOT20"
+                                        #language zh-Hans "SLOT20"
+#string STR_PCIE_SLOT21                 #language en-US   "SLOT21"
+                                        #language zh-Hans "SLOT21"
+#string STR_PCIE_SLOT22                 #language en-US   "SLOT22"
+                                        #language zh-Hans "SLOT22"
+#string STR_PCIE_SLOT23                 #language en-US   "SLOT23"
+                                        #language zh-Hans "SLOT23"
+                                        
+#string STR_PCIE_SLOT_HELP              #language en-US   "Enable or disable this PCIe root port."
+                                        #language zh-Hans "\wide打开或关闭此\narrowPCIe\wide端口。\narrow"  
+
+#string STR_PCIESLOT_MAXPAYLOAD         #language en-US   "PCIe Max Payload Size"
+                                        #language zh-Hans "PCIe\wide最大负载\narrow"
+#string STR_PCIESLOT_MAXPAYLOAD_HELP    #language en-US   "Set Max Payload of PCI Express Device. 1x link max size is 128, 2x link max size is 256, 4x and above link max size is 512."
+                                        #language zh-Hans "\wide设置\narrowPCIe\wide最大负载值。\narrow1X\wide适配时最大值为\narrow128\wide，\narrow2X\wide适配时最大值为\narrow256\wide，\narrow4X\wide及以上适配时最大值为\narrow512\wide。\narrow"
+#string STR_128                         #language en-US   "128B"
+                                        #language zh-Hans "128B"
+#string STR_256                         #language en-US   "256B"
+                                        #language zh-Hans "256B"
+#string STR_512                         #language en-US   "512B"
+                                        #language zh-Hans "512B"
+
+#string STR_PCIESLOT_ASPM               #language en-US   "ASPM Support"
+                                        #language zh-Hans "PCIe\wide活动状态电源管理\narrow"
+#string STR_PCIESLOT_ASPM_HELP          #language en-US   "Set PCIe ASPM"
+                                        #language zh-Hans "\wide设定\narrowPCIe\wide活动状态电源管理\narrow"
+#string STR_L0S                         #language en-US   "L0s"
+                                        #language zh-Hans "L0s"
+#string STR_L1                          #language en-US   "L1"
+                                        #language zh-Hans "L1"
+#string STR_L0SL1                       #language en-US   "L0s&L1"
+                                        #language zh-Hans "L0s&L1"
+
+#string STR_PCIE_MAX_READ_REQ_SIZE             #language en-US   "PCIe Max Read Request Size"  
+                                               #language zh-Hans "PCIe\wide最大读需求大小\narrow"
+#string STR_PCIE_MAX_READ_REQ_SIZE_HELP        #language en-US   "Set PCIe Max Read Request Size"  
+                                               #language zh-Hans "\wide设定\narrowPCIe\wide最大读需求大小\narrow"                                        

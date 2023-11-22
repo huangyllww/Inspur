@@ -1,0 +1,528 @@
+/** @file
+
+Copyright (c) 2017, Byosoft Corporation.<BR>
+All rights reserved.This software and associated documentation (if any)
+is furnished under a license and may only be used or copied in
+accordance with the terms of the license. Except as permitted by such
+license, no part of this software or documentation may be reproduced,
+stored in a retrieval system, or transmitted in any form or by any
+means without the express written consent of Byosoft Corporation.
+
+File Name:
+  SelEventLog.h
+
+Revision History:
+
+TIME:       2017-6-9
+$AUTHOR:    Phinux Qin
+$REVIEWERS:
+$SCOPE:     All BMC Platforms
+$TECHNICAL:
+
+
+$END--------------------------------------------------------------------
+
+--*/
+#ifndef _SEL_EVENT_LOG_H
+#define _SEL_EVENT_LOG_H
+
+#pragma pack (1)
+typedef struct {
+  UINT8      SensorType;
+  UINT8      Offset;
+  UINT8      EvData2;
+  UINT8      EvData3;
+  UINT16     *EventDesc;
+ } SENSOR_TYPE6F_CODE;
+#pragma pack ()
+//***************************************************************************************************************************
+// Sensor and Event definitions from IPMI2.0 Spc rev1.1 2013
+//*************************************************************************************************************************** 
+ UINT16 *SensorType[] = {
+  L"reserved",
+  L"Temperature",
+  L"Voltage",
+  L"Current",
+  L"Fan",
+  L"Physical Security",
+  L"Platform Security",
+  L"Processor",
+  L"Power Supply",
+  L"Power Unit",
+  L"Cooling Device",
+  L"Other Units",
+  L"Memory",
+  L"Drive Slot/Bay",
+  L"POST Memory Resize",
+  L"System Firmwares",
+  L"Event Logging Disabled",
+  L"Watchdog1",
+  L"System Event",
+  L"Critical Interrupt",
+  L"Button",
+  L"Module/Board", 
+  L"Microcontroller", 
+  L"Add-in Card",
+  L"Chassis",
+  L"Chip Set",
+  L"Other FRU",
+  L"Cable/Interconnect",
+  L"Terminator",
+  L"System Boot Initiated",
+  L"Boot Error",
+  L"OS Boot",
+  L"OS Critical Stop",
+  L"Slot/Connector",
+  L"System ACPI Power State",
+  L"Watchdog2",
+  L"Platform Alert",
+  L"Entity Presence",
+  L"Monitor ASIC",
+  L"LAN",
+  L"Management Subsys Health",
+  L"Battery", 
+  L"Session Audit",
+  L"Version Change",
+  L"FRU State"
+};
+ 
+CHAR16 *Type1Offset[] = {
+  L"Lower Non-critical going low ",
+  L"Lower Non-critical going high",
+  L"Lower Critical going low",
+  L"Lower Critical going high",
+  L"Lower Non-recoverable going low",
+  L"Lower Non-recoverable going high",
+  L"Upper Non-critical going low",
+  L"Upper Non-critical going high",
+  L"Upper Critical going low",
+  L"Upper Critical going high",
+  L"Upper Non-recoverable going low",
+  L"Upper Non-recoverable going high"
+ };
+CHAR16 *Type2Offset[] = {
+  L"Transition to Idle",
+  L"Transition to Active",
+  L"Transition to Busy"
+ };
+CHAR16 *Type3Offset[] = {
+  L"State Deasserted",
+  L"State Asserted"
+ };
+CHAR16 *Type4Offset[] = {
+  L"Predictive Failure Deasserted",
+  L"Predictive Failure Asserted"
+ };
+CHAR16 *Type5Offset[] = {
+  L"Limit Not Exceeded",
+  L"Limit Exceeded"
+ };
+CHAR16 *Type6Offset[] = {
+  L"Performance Met",
+  L"Performance Lags"
+ };
+CHAR16 *Type7Offset[] = {
+  L"Transition to OK",
+  L"Transition to Non-critical from OK",
+  L"Transition to Critical from less severe",
+  L"Transition to Non-recoverable from less severe",
+  L"Transition to Non-critical from more severe",
+  L"Transition to Critical from Non-recoverable",
+  L"Transition to Non-recoverable",
+  L"Monitor",
+  L"Informational"
+ };
+CHAR16 *Type8Offset[] = {
+  L"Device Absent",
+  L"Device Present"
+ };
+CHAR16 *Type9Offset[] = {
+  L"Device Disabled",
+  L"Device Enabled"
+ };
+CHAR16 *TypeAOffset[] = {
+  L"Transition to Running",
+  L"Transition to In Test",
+  L"Transition to Power Off",
+  L"Transition to On Line",
+  L"Transition to Off Line",
+  L"Transition to Off Duty",
+  L"Transition to Degraded",
+  L"Transition to Power Save",
+  L"Install Error"
+ };
+CHAR16 *TypeBOffset[] = {
+  L"Fully Redundant",
+  L"Redundancy Lost",
+  L"Redundancy Degraded",
+  L"Non-Redundant: Sufficient from Redundant",
+  L"Non-Redundant: Sufficient from Insufficient",
+  L"Non-Redundant: Insufficient Resources",
+  L"Redundancy Degraded from Fully Redundant",
+  L"Redundancy Degraded from Non-Redundant"
+ };
+CHAR16 *TypeCOffset[] = {
+  L"D0 Power State",
+  L"D1 Power State",
+  L"D2 Power State",
+  L"D3 Power State"
+ };
+
+SENSOR_TYPE6F_CODE  Type6FOffset[] = {
+  //
+  // Physical Security
+  //
+  { 0x05, 0x00, 0xff, 0xff,  L"General Chassis intrusion" },
+  { 0x05, 0x01, 0xff, 0xff,  L"Drive Bay intrusion" },
+  { 0x05, 0x02, 0xff, 0xff,  L"I/O Card area intrusion" },
+  { 0x05, 0x03, 0xff, 0xff,  L"Processor area intrusion" },
+  { 0x05, 0x04, 0xff, 0xff,  L"LAN Leash Lost" },
+  { 0x05, 0x05, 0xff, 0xff,  L"Unauthorized dock" },
+  { 0x05, 0x06, 0xff, 0xff,  L"FAN area intrusion" },
+  //
+  // Platform Security
+  //
+  { 0x06, 0x00, 0xff, 0xff,  L"Security Mode Violation attempt" },
+  { 0x06, 0x01, 0xff, 0xff,  L"Pre-boot password violation - user password" },
+  { 0x06, 0x02, 0xff, 0xff,  L"Pre-boot password violation attempt - setup password" },
+  { 0x06, 0x03, 0xff, 0xff,  L"Pre-boot password violation - network boot password" },
+  { 0x06, 0x04, 0xff, 0xff,  L"Other pre-boot password violation" },
+  { 0x06, 0x05, 0xff, 0xff,  L"Out-of-band access password violation" },
+  //
+  //Processor
+  //
+  { 0x07, 0x00, 0xff, 0xff,  L"IERR" },
+  { 0x07, 0x01, 0xff, 0xff,  L"Thermal Trip" },
+  { 0x07, 0x02, 0xff, 0xff,  L"FRB1/BIST failure" },
+  { 0x07, 0x03, 0xff, 0xff,  L"FRB2/Hang in POST failure" },
+  { 0x07, 0x04, 0xff, 0xff,  L"FRB3/Processor startup/init failure" },
+  { 0x07, 0x05, 0xff, 0xff,  L"Configuration Error" },
+  { 0x07, 0x06, 0xff, 0xff,  L"SM BIOS Uncorrectable CPU-complex Error" },
+  { 0x07, 0x07, 0xff, 0xff,  L"Processor Presence detected" },
+  { 0x07, 0x08, 0xff, 0xff,  L"Processor disabled" },
+  { 0x07, 0x09, 0xff, 0xff,  L"Terminator Presence Detected" },
+  { 0x07, 0x0a, 0xff, 0xff,  L"Processor Automatically Throttled" },
+  { 0x07, 0x0b, 0xff, 0xff,  L"Machine Check Exception" },
+  { 0x07, 0x0c, 0xff, 0xff,  L"Correctable Machine Check Error" },
+  //
+  //PSU
+  //
+  { 0x08, 0x00, 0xff, 0xff,  L"Presence detected" },
+  { 0x08, 0x01, 0xff, 0xff,  L"Power Supply Failure detected" },
+  { 0x08, 0x02, 0xff, 0xff,  L"Predictive Failure" },
+  { 0x08, 0x03, 0xff, 0xff,  L"Power Supply Input lost" },
+  { 0x08, 0x04, 0xff, 0xff,  L"Power Supply Input lost or out-of-range" },
+  { 0x08, 0x05, 0xff, 0xff,  L"Power Supply Input out-of-range, but present" },
+  { 0x08, 0x06, 0xff, 0x00,  L"Configuration Error: Vendor Mismatch" },
+  { 0x08, 0x06, 0xff, 0x01,  L"Configuration Error: Revision Mismatch" },
+  { 0x08, 0x06, 0xff, 0x02,  L"Configuration Error: Processor Missing" },
+  { 0x08, 0x06, 0xff, 0x03,  L"Configuration Error: Power Supply rating mismatch" },
+  { 0x08, 0x06, 0xff, 0x04,  L"Configuration Error: Voltage rating mismatch" },
+  { 0x08, 0x07, 0xff, 0xff,  L"Power Supply Inactive" },
+  //
+  //Power Unit
+  //
+  { 0x09, 0x00, 0xff, 0xff,  L"Power Off/Down" },
+  { 0x09, 0x01, 0xff, 0xff,  L"Power Cycle" },
+  { 0x09, 0x02, 0xff, 0xff,  L"240VA Power Down" },
+  { 0x09, 0x03, 0xff, 0xff,  L"Interlock Power Down" },
+  { 0x09, 0x04, 0xff, 0xff,  L"AC lost/Power input lost" },
+  { 0x09, 0x05, 0xff, 0xff,  L"Soft Power Control Failure" },
+  { 0x09, 0x06, 0xff, 0xff,  L"Power Unit Failure detected" },
+  { 0x09, 0x07, 0xff, 0xff,  L"Predictive failure" },
+  //
+  //Memory
+  //
+  { 0x0c, 0x00, 0xff, 0xff,  L"Correctable Memory Error" },
+  { 0x0c, 0x01, 0xff, 0xff,  L"Uncorrectable Memory Error" },
+  { 0x0c, 0x02, 0xff, 0xff,  L"Memory Parity" },
+  { 0x0c, 0x03, 0xff, 0xff,  L"Memory Scrub Failed" },
+  { 0x0c, 0x04, 0xff, 0xff,  L"Memory Device Disabled" },
+  { 0x0c, 0x05, 0xff, 0xff,  L"Correctable Memory Error logging limit reached" },
+  { 0x0c, 0x06, 0xff, 0xff,  L"Presence Detected" },
+  { 0x0c, 0x07, 0xff, 0xff,  L"Configuration Error" },
+  { 0x0c, 0x08, 0xff, 0xff,  L"Memory Spare" },
+  { 0x0c, 0x09, 0xff, 0xff,  L"Memory Automatically Throttled" },
+  { 0x0c, 0x0a, 0xff, 0xff,  L"Critical Overtemperature" },
+  //
+  //Drive slot(Bay)
+  //
+  { 0x0d, 0x00, 0xff, 0xff,  L"Drive Present" },
+  { 0x0d, 0x01, 0xff, 0xff,  L"Drive Fault" },
+  { 0x0d, 0x02, 0xff, 0xff,  L"Predictive Failure" },
+  { 0x0d, 0x03, 0xff, 0xff,  L"Hot Spare" },
+  { 0x0d, 0x04, 0xff, 0xff,  L"Parity Check In Progress" },
+  { 0x0d, 0x05, 0xff, 0xff,  L"In Critical Array" },
+  { 0x0d, 0x06, 0xff, 0xff,  L"In Failed Array" },
+  { 0x0d, 0x07, 0xff, 0xff,  L"Rebuild In Progress" },
+  { 0x0d, 0x08, 0xff, 0xff,  L"Rebuild Aborted" },
+  //
+  //Post Error
+  //
+  { 0x0f, 0x00, 0x00,  0xff, L"Post Error:Unspecified" },
+  { 0x0f, 0x00, 0x01,  0xff,  L"No system memory installed" },
+  { 0x0f, 0x00, 0x02,  0xff,  L"No usable system memory" },
+  { 0x0f, 0x00, 0x03,  0xff,  L"Unrecoverable IDE device failure" },
+  { 0x0f, 0x00, 0x04,  0xff,  L"Unrecoverable system-board failure" },
+  { 0x0f, 0x00, 0x05,  0xff,  L"Unrecoverable diskette failure" },
+  { 0x0f, 0x00, 0x06,  0xff,  L"Unrecoverable hard-disk controller failure" },
+  { 0x0f, 0x00, 0x07,  0xff,  L"Unrecoverable PS/2 or USB keyboard failure" },
+  { 0x0f, 0x00, 0x08,  0xff,  L"Removable boot media not found" },
+  { 0x0f, 0x00, 0x09,  0xff,  L"Unrecoverable video controller failure" },
+  { 0x0f, 0x00, 0x0a,  0xff,  L"No video device selected" },
+  { 0x0f, 0x00, 0x0b,  0xff,  L"BIOS corruption detected" },
+  { 0x0f, 0x00, 0x0c,  0xff,  L"CPU voltage mismatch" },
+  { 0x0f, 0x00, 0x0d,  0xff,  L"CPU speed mismatch failure" },
+  { 0x0f, 0x01, 0x00,  0xff,  L"Unspecified" },
+  { 0x0f, 0x01, 0x01,  0xff,  L"Memory initialization" },
+  { 0x0f, 0x01, 0x02,  0xff,  L"Hard-disk initialization" },
+  { 0x0f, 0x01, 0x03,  0xff,  L"Secondary CPU Initialization" },
+  { 0x0f, 0x01, 0x04,  0xff,  L"User authentication" },
+  { 0x0f, 0x01, 0x05,  0xff,  L"User-initiated system setup" },
+  { 0x0f, 0x01, 0x06,  0xff,  L"USB resource configuration" },
+  { 0x0f, 0x01, 0x07,  0xff,  L"PCI resource configuration" },
+  { 0x0f, 0x01, 0x08,  0xff,  L"Option ROM initialization" },
+  { 0x0f, 0x01, 0x09,  0xff,  L"Video initialization" },
+  { 0x0f, 0x01, 0x0a,  0xff,  L"Cache initialization" },
+  { 0x0f, 0x01, 0x0b,  0xff,  L"SMBus initialization" },
+  { 0x0f, 0x01, 0x0c,  0xff,  L"Keyboard controller initialization" },
+  { 0x0f, 0x01, 0x0d,  0xff,  L"Management controller initialization" },
+  { 0x0f, 0x01, 0x0e,  0xff,  L"Docking station attachment" },
+  { 0x0f, 0x01, 0x0f,  0xff,  L"Enabling docking station" },
+  { 0x0f, 0x01, 0x10,  0xff,  L"Docking station ejection" },
+  { 0x0f, 0x01, 0x11,  0xff,  L"Disabling docking station" },
+  { 0x0f, 0x01, 0x12,  0xff,  L"Calling operating system wake-up vector" },
+  { 0x0f, 0x01, 0x13,  0xff,  L"System boot initiated" },
+  { 0x0f, 0x01, 0x14,  0xff,  L"Motherboard initialization" },
+  { 0x0f, 0x01, 0x15,  0xff,  L"reserved" },
+  { 0x0f, 0x01, 0x16,  0xff,  L"Floppy initialization" },
+  { 0x0f, 0x01, 0x17,  0xff,  L"Keyboard test" },
+  { 0x0f, 0x01, 0x18,  0xff,  L"Pointing device test" },
+  { 0x0f, 0x01, 0x19,  0xff,  L"Primary CPU initialization" },
+  { 0x0f, 0x02, 0x00,  0xff,  L"Unspecified" },
+  { 0x0f, 0x02, 0x01,  0xff,  L"Memory initialization" },
+  { 0x0f, 0x02, 0x02,  0xff,  L"Hard-disk initialization" },
+  { 0x0f, 0x02, 0x03,  0xff,  L"Secondary CPU Initialization" },
+  { 0x0f, 0x02, 0x04,  0xff,  L"User authentication" },
+  { 0x0f, 0x02, 0x05,  0xff,  L"User-initiated system setup" },
+  { 0x0f, 0x02, 0x06,  0xff,  L"USB resource configuration" },
+  { 0x0f, 0x02, 0x07,  0xff,  L"PCI resource configuration" },
+  { 0x0f, 0x02, 0x08,  0xff,  L"Option ROM initialization" },
+  { 0x0f, 0x02, 0x09,  0xff,  L"Video initialization" },
+  { 0x0f, 0x02, 0x0a,  0xff,  L"Cache initialization" },
+  { 0x0f, 0x02, 0x0b,  0xff,  L"SMBus initialization" },
+  { 0x0f, 0x02, 0x0c,  0xff,  L"Keyboard controller initialization" },
+  { 0x0f, 0x02, 0x0d,  0xff,  L"Management controller initialization" },
+  { 0x0f, 0x02, 0x0e,  0xff,  L"Docking station attachment" },
+  { 0x0f, 0x02, 0x0f,  0xff,  L"Enabling docking station" },
+  { 0x0f, 0x02, 0x10,  0xff,  L"Docking station ejection" },
+  { 0x0f, 0x02, 0x11,  0xff,  L"Disabling docking station" },
+  { 0x0f, 0x02, 0x12,  0xff,  L"Calling operating system wake-up vector" },
+  { 0x0f, 0x02, 0x13,  0xff,  L"System boot initiated" },
+  { 0x0f, 0x02, 0x14,  0xff,  L"Motherboard initialization" },
+  { 0x0f, 0x02, 0x15,  0xff,  L"reserved" },
+  { 0x0f, 0x02, 0x16,  0xff,  L"Floppy initialization" },
+  { 0x0f, 0x02, 0x17,  0xff,  L"Keyboard test" },
+  { 0x0f, 0x02, 0x18,  0xff,  L"Pointing device test" },
+  { 0x0f, 0x02, 0x19,  0xff,  L"Primary CPU initialization" },
+  //
+  //Event Logging Disabled
+  //
+  { 0x10, 0x00, 0xff,  0xff,  L"Correctable memory error logging disabled" },
+  { 0x10, 0x01, 0xff,  0xff,  L"Event logging disabled" },
+  { 0x10, 0x02, 0xff,  0xff,  L"Log area reset/cleared" },
+  { 0x10, 0x03, 0xff,  0xff,  L"All event logging disabled" },
+  { 0x10, 0x04, 0xff,  0xff,  L"Log full" },
+  { 0x10, 0x05, 0xff,  0xff,  L"Log almost full" },
+  //
+  //Watchdog 1
+  //
+  { 0x11, 0x00, 0xff,  0xff,  L"BIOS Reset" },
+  { 0x11, 0x01, 0xff,  0xff,  L"OS Reset" },
+  { 0x11, 0x02, 0xff,  0xff,  L"OS Shut Down" },
+  { 0x11, 0x03, 0xff,  0xff,  L"OS Power Down" },
+  { 0x11, 0x04, 0xff,  0xff,  L"OS Power Cycle" },
+  { 0x11, 0x05, 0xff,  0xff,  L"OS NMI/Diag Interrupt" },
+  { 0x11, 0x06, 0xff,  0xff,  L"OS Expired" },
+  { 0x11, 0x07, 0xff,  0xff,  L"OS pre-timeout Interrupt" },
+  //
+  //System Event Log
+  //
+  { 0x12, 0x00, 0xff,  0xff,  L"System Reconfigured" },
+  { 0x12, 0x01, 0xff,  0xff,  L"OEM System boot event" },
+  { 0x12, 0x02, 0xff,  0xff,  L"Undetermined system hardware failure" },
+  { 0x12, 0x03, 0xff,  0xff,  L"Entry added to auxiliary log" },
+  { 0x12, 0x04, 0xff,  0xff,  L"PEF Action" },
+  { 0x12, 0x05, 0xff,  0xff,  L"Timestamp Clock Sync" },
+  //
+  //Critical Interrupt
+  //
+  { 0x13, 0x00, 0xff,  0xff,  L"NMI/Diag Interrupt" },
+  { 0x13, 0x01, 0xff,  0xff,  L"Bus Timeout" },
+  { 0x13, 0x02, 0xff,  0xff,  L"I/O Channel check NMI" },
+  { 0x13, 0x03, 0xff,  0xff,  L"Software NMI" },
+  { 0x13, 0x04, 0xff,  0xff,  L"PCI PERR" },
+  { 0x13, 0x05, 0xff,  0xff,  L"PCI SERR" },
+  { 0x13, 0x06, 0xff,  0xff,  L"EISA failsafe timeout" },
+  { 0x13, 0x07, 0xff,  0xff,  L"Bus Correctable error" },
+  { 0x13, 0x08, 0xff,  0xff,  L"Bus Uncorrectable error" },
+  { 0x13, 0x09, 0xff,  0xff,  L"Fatal NMI" },
+  { 0x13, 0x0a, 0xff,  0xff,  L"Bus Fatal Error" },
+  { 0x13, 0x0b, 0xff,  0xff,  L"Bus Degraded" },
+  //
+  //Button/Switch
+  //
+  { 0x14, 0x00, 0xff,  0xff,  L"Power Button pressed" },
+  { 0x14, 0x01, 0xff,  0xff,  L"Sleep Button pressed" },
+  { 0x14, 0x02, 0xff,  0xff,  L"Reset Button pressed" },
+  { 0x14, 0x03, 0xff,  0xff,  L"FRU Latch" },
+  { 0x14, 0x04, 0xff,  0xff,  L"FRU Service" },
+
+  //
+  //Cable/Interconnect
+  //
+  { 0x1b, 0x00, 0xff,  0xff,  L"Cable/Interconnect Connected" },
+  { 0x1b, 0x01, 0xff,  0xff,  L"Config Error" },
+  //
+  //System Boot/Restart Initiated
+  //
+  { 0x1d, 0x00, 0xff,  0xff,  L"Initiated by power up" },
+  { 0x1d, 0x01, 0xff,  0xff,  L"Initiated by hard reset" },
+  { 0x1d, 0x02, 0xff,  0xff,  L"Initiated by warm reset" },
+  { 0x1d, 0x03, 0xff,  0xff,  L"User requested PXE boot" },
+  { 0x1d, 0x04, 0xff,  0xff,  L"Automatic boot to diagnostic" },
+  { 0x1d, 0x05, 0xff,  0xff,  L"OS initiated hard reset" },
+  { 0x1d, 0x06, 0xff,  0xff,  L"OS initiated warm reset" },
+  { 0x1d, 0x07, 0xff,  0xff,  L"System Restart" },
+  //
+  //Boot Error
+  //
+  { 0x1e, 0x00, 0xff,  0xff,  L"No bootable media" },
+  { 0x1e, 0x01, 0xff,  0xff,  L"Non-bootable disk in drive" },
+  { 0x1e, 0x02, 0xff,  0xff,  L"PXE server not found" },
+  { 0x1e, 0x03, 0xff,  0xff,  L"Invalid boot sector" },
+  { 0x1e, 0x04, 0xff,  0xff,  L"Timeout waiting for selection" },
+  //
+  //Base OS Boot/Installation Status
+  //
+  { 0x1f, 0x00, 0xff,  0xff,  L"A: boot completed" },
+  { 0x1f, 0x01, 0xff,  0xff,  L"C: boot completed" },
+  { 0x1f, 0x02, 0xff,  0xff,  L"PXE boot completed" },
+  { 0x1f, 0x03, 0xff,  0xff,  L"Diagnostic boot completed" },
+  { 0x1f, 0x04, 0xff,  0xff,  L"CD-ROM boot completed" },
+  { 0x1f, 0x05, 0xff,  0xff,  L"ROM boot completed" },
+  { 0x1f, 0x06, 0xff,  0xff,  L"boot completed - device not specified" },
+  { 0x1f, 0x07, 0xff,  0xff,  L"Installation started" },
+  { 0x1f, 0x08, 0xff,  0xff,  L"Installation completed" },
+  { 0x1f, 0x09, 0xff,  0xff,  L"Installation aborted" },
+  { 0x1f, 0x0a, 0xff,  0xff,  L"Installation failed" },
+  //
+  //OS Stop/Shutdown
+  //
+  { 0x20, 0x00, 0xff,  0xff,  L"Error during system startup" },
+  { 0x20, 0x01, 0xff,  0xff,  L"Run-time critical stop" },
+  { 0x20, 0x02, 0xff,  0xff,  L"OS graceful stop" },
+  { 0x20, 0x03, 0xff,  0xff,  L"OS graceful shutdown" },
+  { 0x20, 0x04, 0xff,  0xff,  L"PEF initiated soft shutdown" },
+  { 0x20, 0x05, 0xff,  0xff,  L"Agent not responding" },
+  //
+  //Slot/Connector
+  //
+  { 0x21, 0x00, 0xff,  0xff,  L"Fault Status" },
+  { 0x21, 0x01, 0xff,  0xff,  L"Identify Status" },
+  { 0x21, 0x02, 0xff,  0xff,  L"Device Installed" },
+  { 0x21, 0x03, 0xff,  0xff,  L"Ready for Device Installation" },
+  { 0x21, 0x04, 0xff,  0xff,  L"Ready for Device Removal" },
+  { 0x21, 0x05, 0xff,  0xff,  L"Slot Power is Off" },
+  { 0x21, 0x06, 0xff,  0xff,  L"Device Removal Request" },
+  { 0x21, 0x07, 0xff,  0xff,  L"Interlock" },
+  { 0x21, 0x08, 0xff,  0xff,  L"Slot is Disabled" },
+  { 0x21, 0x09, 0xff,  0xff,  L"Spare Device" },
+  //
+  //System ACPI Power State
+  //
+  { 0x22, 0x00, 0xff,  0xff,  L"S0/G0: working" },
+  { 0x22, 0x01, 0xff,  0xff,  L"S1: sleeping with system hw & processor context maintained" },
+  { 0x22, 0x02, 0xff,  0xff,  L"S2: sleeping, processor context lost" },
+  { 0x22, 0x03, 0xff,  0xff,  L"S3: sleeping, processor & hw context lost, memory retained" },
+  { 0x22, 0x04, 0xff,  0xff,  L"S4: non-volatile sleep/suspend-to-disk" },
+  { 0x22, 0x05, 0xff,  0xff,  L"S5/G2: soft-off" },
+  { 0x22, 0x06, 0xff,  0xff,  L"S4/S5: soft-off" },
+  { 0x22, 0x07, 0xff,  0xff,  L"G3: mechanical off" },
+  { 0x22, 0x08, 0xff,  0xff,  L"Sleeping in S1/S2/S3 state" },
+  { 0x22, 0x09, 0xff,  0xff,  L"G1: sleeping" },
+  { 0x22, 0x0a, 0xff,  0xff,  L"S5: entered by override" },
+  { 0x22, 0x0b, 0xff,  0xff,  L"Legacy ON state" },
+  { 0x22, 0x0c, 0xff,  0xff,  L"Legacy OFF state" },
+  { 0x22, 0x0e, 0xff,  0xff,  L"Unknown" },
+  //
+  //Watchdog 2
+  //
+  { 0x23, 0x00, 0xff,  0xff, L"Timer expired" },
+  { 0x23, 0x01, 0xff,  0xff, L"Hard reset" },
+  { 0x23, 0x02, 0xff,  0xff, L"Power down" },
+  { 0x23, 0x03, 0xff,  0xff, L"Power cycle" },
+  { 0x23, 0x04, 0xff,  0xff, L"reserved" },
+  { 0x23, 0x05, 0xff,  0xff, L"reserved" },
+  { 0x23, 0x06, 0xff,  0xff, L"reserved" },
+  { 0x23, 0x07, 0xff,  0xff, L"reserved" },
+  { 0x23, 0x08, 0xff,  0xff, L"Timer interrupt" },
+  //
+  //Platform Alert
+  //
+  { 0x24, 0x00, 0xff,  0xff, L"Platform generated page" },
+  { 0x24, 0x01, 0xff,  0xff, L"Platform generated LAN alert" },
+  { 0x24, 0x02, 0xff,  0xff, L"Platform Event Trap generated" },
+  { 0x24, 0x03, 0xff,  0xff, L"Platform generated SNMP trap, OEM format" },
+
+  //
+  //Management Subsystem Health
+  //
+  { 0x28, 0x00, 0xff,  0xff, L"Sensor access degraded or unavailable" },
+  { 0x28, 0x01, 0xff,  0xff, L"Controller access degraded or unavailable" },
+  { 0x28, 0x02, 0xff,  0xff, L"Management controller off-line" },
+  { 0x28, 0x03, 0xff,  0xff, L"Management controller unavailable" },
+  { 0x28, 0x04, 0xff,  0xff, L"Sensor failure" },
+  { 0x28, 0x05, 0xff,  0xff, L"FRU failure" },
+  //
+  //Battery
+  //
+  { 0x29, 0x00, 0xff,  0xff, L"Low" },
+  { 0x29, 0x01, 0xff,  0xff, L"Failed" },
+  { 0x29, 0x02, 0xff,  0xff, L"Presence Detected" },
+  //
+  //Session Audit
+  //
+  { 0x2a, 0x00, 0xff,  0xff, L"Session Actived" },
+  { 0x2a, 0x01, 0xff,  0xff, L"Session Deactivated" },
+  { 0x2a, 0x02, 0xff,  0xff, L"Invalid Username or Password" },
+  { 0x2a, 0x03, 0xff,  0xff, L"Invalid Password Disable" },
+  //
+  //Version Change
+  //
+  { 0x2b, 0x00, 0xff,  0xff, L"Hardware change detected" },
+  { 0x2b, 0x01, 0xff,  0xff, L"Firmware or software change detected" },
+  { 0x2b, 0x02, 0xff,  0xff, L"Hardware incompatibility detected" },
+  { 0x2b, 0x03, 0xff,  0xff, L"Firmware or software incompatibility detected" },
+  { 0x2b, 0x04, 0xff,  0xff, L"Invalid or unsupported hardware version" },
+  { 0x2b, 0x05, 0xff,  0xff, L"Invalid or unsupported firmware or software version" },
+  { 0x2b, 0x06, 0xff,  0xff, L"Hardware change success" },
+  { 0x2b, 0x07, 0xff,  0xff, L"Firmware or software change success" },
+ 
+  //
+  //FRU State
+  //
+  { 0x2c, 0x00, 0xff,  0xff, L"FRU Not Installed" },
+  { 0x2c, 0x01, 0xff,  0xff, L"FRU Inactive" },
+  { 0x2c, 0x02, 0xff,  0xff, L"FRU Activation Requested" },
+  { 0x2c, 0x03, 0xff,  0xff, L"FRU Activation in Progress" },
+  { 0x2c, 0x04, 0xff,  0xff, L"FRU Active" },
+  { 0x2c, 0x05, 0xff,  0xff, L"FRU Deactivation Requested" },
+  { 0x2c, 0x06, 0xff,  0xff, L"FRU Deactivation in Progress" },
+  { 0x2c, 0x07, 0xff,  0xff, L"FRU Communication lost" },
+
+  { 0x00, 0x00, 0xff, 0xff, NULL }
+};
+
+
+#endif

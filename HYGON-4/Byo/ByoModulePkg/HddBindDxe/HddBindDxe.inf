@@ -1,0 +1,85 @@
+## @file  
+#
+# Copyright (c) 2006 - 2019, Byosoft Corporation.<BR> 
+# All rights reserved.This software and associated documentation (if any)
+# is furnished under a license and may only be used or copied in 
+# accordance with the terms of the license. Except as permitted by such
+# license, no part of this software or documentation may be reproduced, 
+# stored in a retrieval system, or transmitted in any form or by any 
+# means without the express written consent of Byosoft Corporation.
+#
+# File Name:
+#   HddBindDxe.inf
+#
+# Abstract: 
+#   Binding the harddisk(SATA or NVME) according to the configuration set by users.
+# When this function has been opened, it can't boot from the unbound harddisk.
+#
+# Revision History:
+#
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = HddBindDxe
+  FILE_GUID                      = D8D8CC95-686D-4f49-A638-B31B3CA6AABE
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = HddBindDxeInit
+
+
+[Sources]
+  HddBindDxe.c
+  BoundHddCheck.c
+  HddBindDxe.h
+  HddBindDxe.uni
+  HddBindDxeVfr.vfr
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  ByoModulePkg/ByoModulePkg.dec
+  ByoLegacyPkg/ByoLegacyPkg.dec
+
+[LibraryClasses]
+  BaseLib
+  UefiBootServicesTableLib
+  UefiDriverEntryPoint
+  UefiRuntimeServicesTableLib
+  DebugLib
+  HiiLib
+  UefiHiiServicesLib
+  DevicePathLib
+  BaseMemoryLib
+  MemoryAllocationLib
+  PrintLib
+  UefiBootManagerLib
+  LegacyBootOptionalDataLib
+  SetupUiLib
+  ByoCommLib
+
+[Guids]
+  gEfiIfrTianoGuid
+  gEfiSetupEnterGuid
+  gEfiGlobalVariableGuid
+  
+[Protocols]
+  gEfiDevicePathProtocolGuid
+  gEfiHiiConfigAccessProtocolGuid
+  gEfiDiskInfoProtocolGuid
+  gByoDiskInfoProtocolGuid
+  gEfiNvmExpressPassThruProtocolGuid
+  gEfiPciIoProtocolGuid
+  gEfiRscHandlerProtocolGuid
+  gEfiBlockIoProtocolGuid
+  gEfiSimpleFileSystemProtocolGuid
+  gUefiBbsRelationProtocolGuid
+  gEfiLegacyBiosProtocolGuid
+
+[Pcd]
+  gEfiMdeModulePkgTokenSpaceGuid.PcdProgressCodeOsLoaderLoad
+  gEfiByoModulePkgTokenSpaceGuid.PcdIsPlatformCmosBad
+  gEfiByoModulePkgTokenSpaceGuid.PcdFceLoadDefault
+
+[Depex]
+  TRUE

@@ -1,0 +1,56 @@
+## @file
+#
+# Copyright (c) 2023, Byosoft Corporation.<BR>
+# All rights reserved.This software and associated documentation (if any)
+# is furnished under a license and may only be used or copied in
+# accordance with the terms of the license. Except as permitted by such
+# license, no part of this software or documentation may be reproduced,
+# stored in a retrieval system, or transmitted in any form or by any
+# means without the express written consent of Byosoft Corporation.
+#
+# File Name:
+#   PlatformSmiFlashExt.inf
+#
+# Abstract:
+#   Do some custom requirements when use byotool
+#   This is a sample driver for platform customization.
+#
+# Revision History:
+#
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = PlatformSmiFlashExt
+  FILE_GUID                      = B9833906-29DB-4e06-BBF8-4C80DE0B707E
+  MODULE_TYPE                    = DXE_SMM_DRIVER
+  VERSION_STRING                 = 1.0
+  PI_SPECIFICATION_VERSION       = 0x0001000A
+  ENTRY_POINT                    = ProjectSmmEntry
+
+
+[Sources]
+  PlatformSmiFlashExt.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  ByoModulePkg/ByoModulePkg.dec
+  ByoDevicePkg/ByoDevicePkg.dec
+
+[LibraryClasses]
+  UefiDriverEntryPoint
+  DebugLib
+  BaseLib
+  BaseMemoryLib
+  SmmServicesTableLib
+  MemoryAllocationLib
+
+[Guids]
+  gEfiSystemPasswordVariableGuid
+
+[Protocols]
+  gByoSmiFlashExtProtocolGuid
+  gEfiSmmVariableProtocolGuid
+
+[Depex]
+  gEfiSmmVariableProtocolGuid

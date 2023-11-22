@@ -1,0 +1,144 @@
+/*++
+
+Copyright (c) 2010 - 2015, Byosoft Corporation.<BR>
+All rights reserved.This software and associated documentation (if any)
+is furnished under a license and may only be used or copied in
+accordance with the terms of the license. Except as permitted by such
+license, no part of this software or documentation may be reproduced,
+stored in a retrieval system, or transmitted in any form or by any
+means without the express written consent of Byosoft Corporation.
+
+File Name:
+
+Abstract:
+  Platform configuration setup.
+
+Revision History:
+
+
+--*/
+
+#include "FormsetConfiguration.h"
+
+formset
+  guid     = FORMSET_GUID_EXIT,
+  title    = STRING_TOKEN(FORMSET_TITLE_EXIT),
+  help     = STRING_TOKEN(FORMSET_TITLE_EXIT_HELP),
+  classguid = FORMSET_GUID_EXIT,
+
+  LANGUAGE_VALUE_VARSTORE
+  SYSTEM_PASSWORD_VARSTORE
+
+  form formid = ROOT_FORM_ID,
+    title    = STRING_TOKEN(FORMSET_TITLE_EXIT);
+
+    subtitle text = STRING_TOKEN(STR_EMPTY);
+
+    subtitle text = STRING_TOKEN(STR_SAVE_OPTION);
+    text
+      help   = STRING_TOKEN(SAVE_CHANGE_EXIT_HELP),
+      text   = STRING_TOKEN(SAVE_CHANGE_EXIT_QUESTION),
+      flags  = INTERACTIVE,
+      key    = EXIT_KEY_SAVE_EXIT;
+
+    text
+      help   = STRING_TOKEN(DISCARD_CHANGE_HELP),
+      text   = STRING_TOKEN(DISCARD_CHANGE_QUESTION),
+      flags  = INTERACTIVE,
+      key    = EXIT_KEY_DISCARD;
+
+    subtitle text = STRING_TOKEN(STR_EMPTY);
+    text
+      help   = STRING_TOKEN(SAVE_CHANGE_HELP),
+      text   = STRING_TOKEN(SAVE_CHANGE_QUESTION),
+      flags  = INTERACTIVE,
+      key    = EXIT_KEY_SAVE;
+
+    text
+      help  = STRING_TOKEN(STR_DISCARD_HELP),
+      text  = STRING_TOKEN(STR_DISCARD),
+      text  = STRING_TOKEN(STR_EMPTY),
+      flags = INTERACTIVE,
+      key   = EXIT_KEY_DISCARD_MODIFY;
+
+    subtitle text = STRING_TOKEN(STR_EMPTY);
+
+    text
+      help  = STRING_TOKEN(STR_SAVE_EXIT_AND_RESET_HELP),
+      text  = STRING_TOKEN(STR_SAVE_EXIT_AND_RESET),
+      text  = STRING_TOKEN(STR_EMPTY),
+      flags = INTERACTIVE,
+      key   = EXIT_KEY_SAVE_EXIT_AND_RESET;
+
+    text
+      help  = STRING_TOKEN(STR_DISCARD_EXIT_AND_RESET_HELP),
+      text  = STRING_TOKEN(STR_DISCARD_EXIT_AND_RESET),
+      text  = STRING_TOKEN(STR_EMPTY),
+      flags = INTERACTIVE,
+      key   = EXIT_KEY_DISCARD_EXIT_AND_RESET;
+
+    LOGIN_TYPE_ADMIN;
+    subtitle text = STRING_TOKEN(STR_EMPTY);
+    subtitle text = STRING_TOKEN(STR_DEFAULT_OPTION);
+
+    text
+      help   = STRING_TOKEN(LOAD_DEFAULT_HELP),
+      text   = STRING_TOKEN(LOAD_DEFAULT_QUESTION),
+      flags  = INTERACTIVE,
+      key    = EXIT_KEY_DEFAULT;
+
+    text
+      help   = STRING_TOKEN(LOAD_USER_DEFAULT_HELP),
+      text   = STRING_TOKEN(LOAD_USER_DEFAULT),
+      flags  = INTERACTIVE,
+      key    = KEY_RESTORE_USER_DEFAULTS_VALUE;
+
+    text
+      help   = STRING_TOKEN(SAVE_USER_DEFAULT_HELP),
+      text   = STRING_TOKEN(SAVE_USER_DEFAULT),
+      flags  = INTERACTIVE,
+      key    = KEY_SAVE_USER_DEFAULTS_VALUE;
+
+    subtitle text = STRING_TOKEN(STR_EMPTY);
+    subtitle text = STRING_TOKEN(STR_FIRMWARE_UPDATE_OPTION);
+
+    text
+      help  = STRING_TOKEN(UPDATE_BIOS),
+      text  = STRING_TOKEN(UPDATE_BIOS_HELP),
+      flags = INTERACTIVE,
+      key   = KEY_BIOS_UPDATE;
+
+
+    text
+      help  = STRING_TOKEN(UPDATE_BIOS_ALL),
+      text  = STRING_TOKEN(UPDATE_BIOS_ALL_HELP),
+      flags = INTERACTIVE,
+      key   = KEY_BIOS_UPDATE_ALL;
+
+
+    text
+      help  = STRING_TOKEN(UPDATE_BIOS_NETWORK),
+      text  = STRING_TOKEN(UPDATE_BIOS_NETWORK_HELP),
+      flags = INTERACTIVE,
+      key   = KEY_BIOS_UPDATE_NETWORK;
+
+
+    text
+      help  = STRING_TOKEN(UPDATE_BIOS_NETWORK_ALL),
+      text  = STRING_TOKEN(UPDATE_BIOS_NETWORK_ALL_HELP),
+      flags = INTERACTIVE,
+      key   = KEY_BIOS_UPDATE_NETWORK_ALL;
+
+    subtitle text = STRING_TOKEN(STR_EMPTY);
+
+
+  label LABEL_CHOOSE_FOLDER;
+  label LABEL_CHOOSE_FOLDER_END;
+  END_LOGIN_TYPE;
+
+  label LABEL_CHANGE_LANGUAGE;
+  label LABEL_CHANGE_LANGUAGE_END;
+
+  endform;
+
+endformset;

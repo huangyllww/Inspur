@@ -1,0 +1,77 @@
+
+
+FILE FREEFORM = C3E36D09-8294-4b97-A857-D5288FE33E28 {
+  SECTION Align = 16 RAW = $(OUTPUT_DIRECTORY)/$(TARGET)_$(TOOL_CHAIN_TAG)/BiosId.bin
+}
+FILE FREEFORM  = 8C3F0AA4-A6DD-463a-A825-19A0398738CA {
+  SECTION RAW = ByoTools/Bin/SignBios/pub.pk.dummy.bin                          # ByoBiosSign tool will fill it.
+  }
+  
+INF  MdeModulePkg/Core/Pei/PeiMain.inf
+INF  MdeModulePkg/Universal/PCD/Pei/Pcd.inf
+INF  MdeModulePkg/Universal/ReportStatusCodeRouter/Pei/ReportStatusCodeRouterPei.inf
+INF  ByoModulePkg/StatusCodeHandler/Pei/StatusCodeHandlerPei.inf
+INF  $(PLATFORM_PACKAGE)/PlatformEarlyPei/PlatformEarlyPei.inf
+
+!if $(IPMI_SUPPORT) == TRUE
+INF  ByoServerPkg/Ipmi/GenericPei/PeiGenericIpmi.inf
+INF  ByoServerPkg/Ipmi/IpmiBootOptionPei/IpmiBootOptionPei.inf
+!endif
+
+INF  $(PROJECT_PKG)/IpmiConfigSetup/IpmiConfigSetupPei.inf
+
+
+INF  $(PROJECT_PKG)/ProjectEarlyPei/ProjectEarlyPei.inf
+
+INF  MdeModulePkg/Universal/PcatSingleSegmentPciCfg2Pei/PcatSingleSegmentPciCfg2Pei.inf
+INF  UefiCpuPkg/CpuIoPei/CpuIoPei.inf
+INF  MdeModulePkg/Universal/FaultTolerantWritePei/FaultTolerantWritePei.inf
+INF  MdeModulePkg/Universal/Variable/Pei/VariablePei.inf
+INF  $(PLATFORM_PACKAGE)/BootModePei/BootModePei.inf
+
+INF  $(PLATFORM_PACKAGE)/Cpu/Pei/CpuPei.inf
+INF  $(PLATFORM_PACKAGE)/PlatformPei/PlatformPei.inf
+INF  $(PLATFORM_PACKAGE)/ReportRasUce/ReportRasUcePei.inf
+INF  $(PLATFORM_PACKAGE)/MemoryInit/MemDetect.inf
+
+!if $(TKN_BOARD_ID_TYPE) == 0
+INF  HgpiCpmPkg/Addendum/Oem/NanHaiVtb1/Pei/HygonCpmOemInitPei/HygonCpmOemInitPeimNanHaiVtb1.inf
+!elseif $(TKN_BOARD_ID_TYPE) == 1
+INF  HgpiCpmPkg/Addendum/Oem/NanHaiVtb3/Pei/HygonCpmOemInitPei/HygonCpmOemInitPeimNanHaiVtb3.inf
+!elseif $(TKN_BOARD_ID_TYPE) == 2
+INF  $(PROJECT_PKG)/HygonCpmOemInitPei/HygonCpmOemInitPei.inf
+!endif
+!include HgpiCpmPkg/Addendum/Oem/HygonCpmCommPkg.pei.inc.fdf
+!include HgpiModulePkg/HgpiModulePkg.pei.inc.fdf
+!include HgpiCbsPkg/Library/HgpiCbs.pei.inc.fdf
+
+!if gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiS3Enable
+INF  UefiCpuPkg/PiSmmCommunication/PiSmmCommunicationPei.inf
+INF  UefiCpuPkg/Universal/Acpi/S3Resume2Pei/S3Resume2Pei.inf
+!endif
+INF  MdeModulePkg/Core/DxeIplPeim/DxeIpl.inf
+INF  MdeModulePkg/Universal/Acpi/FirmwarePerformanceDataTablePei/FirmwarePerformancePei.inf
+
+!if $(TPM_ENABLE) == TRUE
+INF  ByoModulePkg/Security/Tpm/Tpm2Setup/Tcg2ConfigPei.inf
+INF  SecurityPkg/Tcg/PhysicalPresencePei/PhysicalPresencePei.inf
+INF  SecurityPkg/Tcg/TcgPei/TcgPei.inf
+INF  SecurityPkg/Tcg/Tcg2Pei/Tcg2Pei.inf
+!endif
+!if $(TCM_ENABLE) == TRUE
+INF ByoModulePkg/Security/Tcm/Pei/TcmPei.inf
+!endif
+
+FILE FV_IMAGE = 009CC56A-EB58-4157-A22A-1287AC181064 {
+  SECTION PEI_DEPEX_EXP = {gEfiPeiMemoryDiscoveredPpiGuid}
+  SECTION GUIDED EE4E5898-3914-4259-9D6E-DC7BD79403CF {
+    SECTION FV_IMAGE = FVRECOVERY_AFTER_MEM
+  }
+}
+
+!if $(TKN_SIGN_METHOD) == 2
+FILE FREEFORM = 2C29F722-CA20-4f49-A82D-CBDA974B1283 {
+    SECTION Align=16 RAW = ByoTools/Bin/SignBios/_KH_.bin                       # ByoBiosSign tool will fill it.
+  }
+!endif
+

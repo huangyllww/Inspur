@@ -1,0 +1,63 @@
+// *++
+//
+// Copyright (c) 2017, Byosoft Software Corporation. All Rights Reserved.
+//
+// You may not reproduce, distribute, publish, display, perform, modify, adapt,
+// transmit, broadcast, present, recite, release, license or otherwise exploit// any part of this publication in any form, by any means, without the prior
+// written permission of Byosoft Software Corporation.
+//
+// Module Name:
+//
+//   SetupUiLib.uni
+//
+// Abstract:
+//
+//   String definitions for SetupUiLib.
+//
+// --*/
+
+
+/=#
+
+#langdef en-US "English"
+#langdef zh-Hans "\wide中文\narrow"
+
+#string ARE_YOU_SURE_YES               #language en-US  "Yes"
+                                       #language zh-Hans  "\wide是\narrow"  
+#string ARE_YOU_SURE_NO                #language en-US  "No"
+                                       #language zh-Hans  "\wide否\narrow"
+#string STR_CONFIRMATION_DIALOG        #language en-US  "Confirmation"
+                                       #language zh-Hans  "\wide确认\narrow" 
+#string STR_ENTER_BUTTON               #language en-US  "Enter"
+                                       #language zh-Hans  "\wide确认\narrow" 
+#string STR_CONTINUE                   #language en-US  "Continue"
+                                       #language zh-Hans  "\wide继续\narrow" 
+#string STR_WARNING                    #language en-US  "Warning"
+                                       #language zh-Hans  "\wide警告\narrow" 
+
+#string STR_UI_SETUP_CONFIRMATION      #language en-US  "Setup Configuration"
+                                       #language zh-Hans  "\wide配置确认\narrow" 
+#string STR_UI_DISCARD                 #language en-US "Discard Changes now?"
+                                       #language zh-Hans  "\wide放弃修改\narrow?" 
+#string STR_UI_DISCARD_EXIT            #language en-US "Discard Changes and Exit now?"
+                                       #language zh-Hans  "\wide放弃修改并且退出\narrow?" 
+#string STR_UI_LOAD_DEFAULT            #language en-US  "Are you sure load defaults?"
+                                       #language zh-Hans  "\wide加载默认系统优化值\narrow?" 
+#string STR_UI_LOAD_FORMSET            #language en-US  "load FormSet"
+                                       #language zh-Hans  "\wide加载\narrow FormSet" 
+#string STR_UI_SAVING_EXIT             #language en-US  "Save Configuration Changes and Exit now?"
+                                       #language zh-Hans "\wide保存修改并且退出\narrow?"
+#string STR_UI_SAVING                  #language en-US  "Save Configuration Changes now?"
+                                       #language zh-Hans "\wide保存修改\narrow?"
+#string STR_UI_SAVE_USER_DEFAULT       #language en-US "Save Current Settings as Default?"
+                                       #language zh-Hans "\wide将当前设置保存为默认设置\narrow?"
+#string STR_UI_LOAD_USER_DEFAULT       #language en-US "Restore User Default?"
+                                       #language zh-Hans "\wide恢复用户初始值\narrow?"
+                                       
+#string STR_INFO                       #language en-US "Info"
+                                       #language zh-Hans "\wide信息\narrow"
+#string STR_UI_DEFAULT_AND_SAVE        #language en-US "Are you sure you want to set Default and Save ?"
+                                       #language zh-Hans "\wide设置默认值并保存退出\narrow?"
+
+#string STR_UI_SET_MFG_DEFAULT       #language en-US "Restore Factory Settings as Default?"
+                                       #language zh-Hans "\wide将出厂设置还原为默认设置\narrow?"

@@ -1,0 +1,89 @@
+/** @file
+
+Copyright (c) 2023, Byosoft Corporation.<BR>
+All rights reserved.This software and associated documentation (if any)
+is furnished under a license and may only be used or copied in
+accordance with the terms of the license. Except as permitted by such
+license, no part of this software or documentation may be reproduced,
+stored in a retrieval system, or transmitted in any form or by any
+means without the express written consent of Byosoft Corporation.
+
+**/
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = BootMaintenanceManagerDxe
+  FILE_GUID                      = 640845B1-FC0B-4335-A941-59D07FB65F5C
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = BmInit
+
+#
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           = IA32 X64
+#
+
+[Sources]
+  FormGuid.h
+  BootMaint.c
+  BootMaintManager.vfr
+  BmString.uni
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  ByoModulePkg/ByoModulePkg.dec
+  ByoLegacyPkg/ByoLegacyPkg.dec
+
+
+[LibraryClasses]
+  DevicePathLib
+  BaseLib
+  HobLib
+  UefiRuntimeServicesTableLib
+  ReportStatusCodeLib
+  MemoryAllocationLib
+  UefiLib
+  UefiBootServicesTableLib
+  BaseMemoryLib
+  DebugLib
+  PrintLib
+  HiiLib
+  UefiDriverEntryPoint
+  PcdLib
+  UefiHiiServicesLib
+  PlatformLanguageLib
+  ByoCommLib
+  SetupUiLib
+  UefiBootManagerLib
+  ByoBootManagerLib
+  LegacyBootOptionalDataLib
+  FileExplorerLib
+
+[Guids]
+  gEfiGlobalVariableGuid                        ## SOMETIMES_PRODUCES ## Variable:L"BootNext" (The number of next boot option)
+  gEfiIfrTianoGuid                              ## CONSUMES ## GUID (Extended IFR Guid Opcode)
+  gByoGlobalVariableGuid
+  gEfiSetupEnterGuid
+  gByoIpmiBootMiscCfgVariableGuid
+  gEfiIfrByoBootUiPageGuid
+  gIfrByoRedfishUiPageGuid
+  gByoDisableGroupTypeGuid
+  gEdkiiBdsVariableGuid
+  gPxeControlVariableGuid
+
+[Protocols]
+  gEfiLegacyBiosProtocolGuid                    ## PROTOCOL CONSUMES
+  gEfiHiiConfigAccessProtocolGuid               ## PROTOCOL CONSUMES
+  gEfiDevicePathProtocolGuid                    ## PROTOCOL CONSUMES
+  gEfiDevicePathToTextProtocolGuid              ## PROTOCOL CONSUMES
+  gSetupSaveNotifyProtocolGuid
+  gSetupItemUpdateNotifyProtocolGuid
+  gByoSetupNetworkFormsetGuid
+
+[Pcd]
+  gEfiByoModulePkgTokenSpaceGuid.PcdBiosBootModeType
+
+[Depex]
+  TRUE

@@ -1,0 +1,44 @@
+## @file
+#
+# Copyright (c) 2006 - 2022, Byosoft Corporation.<BR>
+# All rights reserved.This software and associated documentation (if any)
+# is furnished under a license and may only be used or copied in
+# accordance with the terms of the license. Except as permitted by such
+# license, no part of this software or documentation may be reproduced,
+# stored in a retrieval system, or transmitted in any form or by any
+# means without the express written consent of Byosoft Corporation.
+#
+# File Name:
+#  BaseUefiVariableHelperLib.inf
+#
+# Abstract:
+#  A library of helper functions for interacting with UEFI variables.
+#
+# Revision History:
+#
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = BaseUefiVariableHelperLib
+  FILE_GUID                      = E259591B-2DE2-4C60-A466-8382CC6E7827
+  VERSION_STRING                 = 1.1
+  MODULE_TYPE                    = BASE
+  LIBRARY_CLASS                  = UefiVariableHelperLib
+#
+# The following information is for reference only and not required by the build tools.
+#
+# VALID_ARCHITECTURES = IA32 X64 IPF
+#
+
+[LibraryClasses]
+  BaseLib
+  DebugLib
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  ByoModulePkg/ByoModulePkg.dec
+
+[Sources]
+  BaseUefiVariableHelperLib.c

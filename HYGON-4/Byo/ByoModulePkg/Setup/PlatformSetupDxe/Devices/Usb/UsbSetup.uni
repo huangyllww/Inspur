@@ -1,0 +1,33 @@
+/** @file
+
+Copyright (c) 2006 - 2014, Byosoft Corporation.<BR>
+All rights reserved.This software and associated documentation (if any)
+is furnished under a license and may only be used or copied in
+accordance with the terms of the license. Except as permitted by such
+license, no part of this software or documentation may be reproduced,
+stored in a retrieval system, or transmitted in any form or by any
+means without the express written consent of Byosoft Corporation.
+
+File Name:
+  UsbSetup.uni
+
+Abstract:
+  The definition of string used in  USB Setup setting.
+
+Revision History:
+
+$END--------------------------------------------------------------------
+
+**/
+
+/=#
+#langdef   en-US "English"
+#langdef   zh-Hans "\wide中文\narrow"
+
+#string STR_USB_FORM                       #language en-US "USB Configuration"
+                                           #language zh-Hans "USB\wide配置\narrow"
+#string STR_USB_FORM_HELP                  #language en-US "USB Configuration"
+                                           #language zh-Hans "USB\wide配置\narrow"
+
+#string STR_USB_DEVICE_LIST             #language en-US   "USB device list :"
+                                        #language zh-Hans "USB\wide设备列表：\narrow"                                       

@@ -1,0 +1,128 @@
+## @file
+# The DXE driver produces FORM BROWSER2 protocol defined in UEFI specification.
+#
+# It also produces FormBrowserEx(2) protocol to let user register the different Hot key service.
+#
+# Copyright (c) 2022, Byosoft Corporation. All rights reserved.<BR>
+#
+# This software and associated documentation (if any)
+# is furnished under a license and may only be used or copied in
+# accordance with the terms of the license. Except as permitted by such
+# license, no part of this software or documentation may be reproduced,
+# stored in a retrieval system, or transmitted in any form or by any
+# means without the express written consent of Byosoft Corporation.
+
+#
+#
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = SetupBrowser
+  MODULE_UNI_FILE                = SetupBrowser.uni
+  FILE_GUID                      = E14A01B3-BE50-463B-8C1A-B3FA67482B78
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 2.0
+  ENTRY_POINT                    = InitializeSetup
+
+#
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           = IA32 X64 IPF EBC
+#
+
+[Sources]
+  Setup.c
+  Setup.h
+  IfrParse.c
+  Expression.c
+  Presentation.c
+  Expression.h
+  Redfish.c
+  SetupBrowser.vfr
+  SetupBrowser.uni
+  SetupBrowser.h
+
+  
+[Packages]
+  ByoModulePkg/ByoModulePkg.dec
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  RedfishPkg/RedfishPkg.dec
+  RedfishClientPkg/RedfishClientPkg.dec
+
+[LibraryClasses]
+  MemoryAllocationLib
+  BaseLib
+  UefiBootServicesTableLib
+  UefiDriverEntryPoint
+  UefiRuntimeServicesTableLib
+  BaseMemoryLib
+  DebugLib
+  PrintLib
+  HiiLib
+  DevicePathLib
+  PcdLib
+  UefiLib
+  SetupUiLib
+  ByoCommLib
+
+[Guids]
+  gEfiIfrFrameworkGuid                          ## SOMETIMES_CONSUMES  ## GUID
+  gEfiHiiPlatformSetupFormsetGuid               ## SOMETIMES_CONSUMES  ## GUID
+  gEfiHiiStandardFormGuid                       ## SOMETIMES_CONSUMES  ## GUID
+  gZeroGuid                                     ## SOMETIMES_CONSUMES  ## GUID
+  gEfiSetupEnterGuid
+  gEdkiiIfrBitVarstoreGuid                      ## SOMETIMES_CONSUMES  ## GUID
+  gIfrByoRedfishUiPageGuid
+  gByoGlobalVariableGuid
+
+  gEfiFormsetGuidMain
+  gEfiFormsetGuidAdvance
+  gEfiFormsetGuidDevices
+  gEfiFormsetGuidBoot
+  gEfiFormsetGuidSecurity
+  gEfiFormsetGuidExit
+  gEfiFormsetGuidPower
+  gEfiFormsetGuidSearch
+
+[Protocols]
+  gEfiHiiConfigAccessProtocolGuid               ## SOMETIMES_CONSUMES
+  gEfiFormBrowser2ProtocolGuid                  ## PRODUCES
+  gEdkiiFormBrowserEx2ProtocolGuid              ## PRODUCES
+  gEfiHiiConfigRoutingProtocolGuid              ## CONSUMES
+  gEfiHiiDatabaseProtocolGuid                   ## CONSUMES
+  gEfiUnicodeCollation2ProtocolGuid             ## SOMETIMES_CONSUMES
+  gEfiUserManagerProtocolGuid                   ## SOMETIMES_CONSUMES
+  gEfiDevicePathFromTextProtocolGuid            ## SOMETIMES_CONSUMES
+  ## CONSUMES
+  ## NOTIFY
+  gEdkiiFormDisplayEngineProtocolGuid
+  gEdkiiFormBrowserExProtocolGuid               ## PRODUCES
+  gEfiRegularExpressionProtocolGuid             ## CONSUMES
+  gEfiByoFormsetManagerProtocolGuid             ## PRODUCES
+  gSetupSaveNotifyProtocolGuid
+  gEfiSetupMouseProtocolGuid
+  gEfiByoFormBrowserExProtocolGuid
+  gEfiByoPlatformSetupGuid
+  gAfterSetupSetConsoleModeHookGuid
+  gByoCustomStrProtocolGuid
+  gScreenshotProtocolGuid
+  gEfiSystemPasswordProtocolGuid
+  
+[Pcd]
+  gEfiByoModulePkgTokenSpaceGuid.PcdTextSetupMouseEnable
+  gEfiByoModulePkgTokenSpaceGuid.PcdGraphicsConsoleDeltaXPersent
+  gEfiByoModulePkgTokenSpaceGuid.PcdDisplaySetupMessage
+  gEfiByoModulePkgTokenSpaceGuid.PcdSkipStorageName
+  gEfiByoModulePkgTokenSpaceGuid.PcdShowSearchForm
+  gEfiByoModulePkgTokenSpaceGuid.PcdBiosBootModeType
+
+[Depex]
+  gEfiHiiDatabaseProtocolGuid AND gEfiHiiConfigRoutingProtocolGuid
+
+[UserExtensions.TianoCore."ExtraFiles"]
+  SetupBrowserExtra.uni
+
+[BuildOptions]
+  *_*_*_CC_FLAGS = -DENABLE_RETERIEVE_SETTING

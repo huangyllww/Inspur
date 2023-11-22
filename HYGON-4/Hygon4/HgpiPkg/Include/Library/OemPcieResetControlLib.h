@@ -1,0 +1,106 @@
+/* $NoKeywords:$ */
+
+/**
+ * @file
+ *
+ * HYGON OEM Hgpi Customization Function Prototype Header File
+ *
+ * This file is placed in the user's platform directory and contains the
+ * build option selections desired for that platform.
+ *
+ * For Information about this file, see @ref platforminstall.
+ *
+ * @xrefitem bom "File Content Label" "Release Content"
+ * @e project:      HGPI
+ * @e sub-project:  UEFI
+ */
+/*****************************************************************************
+ *
+ *
+ * Copyright 2016 - 2023 CHENGDU HAIGUANG IC DESIGN CO., LTD. All Rights Reserved.
+ *
+ * HYGON is granting you permission to use this software (the Materials)
+ * pursuant to the terms and conditions of your Software License Agreement
+ * with HYGON.  This header does *NOT* give you permission to use the Materials
+ * or any rights under HYGON's intellectual property.  Your use of any portion
+ * of these Materials shall constitute your acceptance of those terms and
+ * conditions.  If you do not agree to the terms and conditions of the Software
+ * License Agreement, please do not use any portion of these Materials.
+ *
+ * CONFIDENTIALITY:  The Materials and all other information, identified as
+ * confidential and provided to you by HYGON shall be kept confidential in
+ * accordance with the terms and conditions of the Software License Agreement.
+ *
+ * LIMITATION OF LIABILITY: THE MATERIALS AND ANY OTHER RELATED INFORMATION
+ * PROVIDED TO YOU BY HYGON ARE PROVIDED "AS IS" WITHOUT ANY EXPRESS OR IMPLIED
+ * WARRANTY OF ANY KIND, INCLUDING BUT NOT LIMITED TO WARRANTIES OF
+ * MERCHANTABILITY, NONINFRINGEMENT, TITLE, FITNESS FOR ANY PARTICULAR PURPOSE,
+ * OR WARRANTIES ARISING FROM CONDUCT, COURSE OF DEALING, OR USAGE OF TRADE.
+ * IN NO EVENT SHALL HYGON OR ITS LICENSORS BE LIABLE FOR ANY DAMAGES WHATSOEVER
+ * (INCLUDING, WITHOUT LIMITATION, DAMAGES FOR LOSS OF PROFITS, BUSINESS
+ * INTERRUPTION, OR LOSS OF INFORMATION) ARISING OUT OF HYGON'S NEGLIGENCE,
+ * GROSS NEGLIGENCE, THE USE OF OR INABILITY TO USE THE MATERIALS OR ANY OTHER
+ * RELATED INFORMATION PROVIDED TO YOU BY HYGON, EVEN IF HYGON HAS BEEN ADVISED OF
+ * THE POSSIBILITY OF SUCH DAMAGES.  BECAUSE SOME JURISDICTIONS PROHIBIT THE
+ * EXCLUSION OR LIMITATION OF LIABILITY FOR CONSEQUENTIAL OR INCIDENTAL DAMAGES,
+ * THE ABOVE LIMITATION MAY NOT APPLY TO YOU.
+ *
+ * HYGON does not assume any responsibility for any errors which may appear in
+ * the Materials or any other related information provided to you by HYGON, or
+ * result from use of the Materials or any related information.
+ *
+ * You agree that you will not reverse engineer or decompile the Materials.
+ *
+ * NO SUPPORT OBLIGATION: HYGON is not obligated to furnish, support, or make any
+ * further information, software, technical information, know-how, or show-how
+ * available to you.  Additionally, HYGON retains the right to modify the
+ * Materials at any time, without notice, and is not obligated to provide such
+ * modified Materials to you.
+ *
+ * 
+ * ***************************************************************************
+ */
+
+#ifndef _OEM_PCIE_SLOT_RESET_CONTROL_LIB_H_
+#define _OEM_PCIE_SLOT_RESET_CONTROL_LIB_H_
+
+/**
+ * Callout method to the host environment.
+ *
+ * Callout using a dispatch with appropriate thunk layer, which is determined by the host environment.
+ *
+ * @param[in]        Function      The specific callout function being invoked.
+ * @param[in]        FcnData       Function specific data item.
+ * @param[in,out]    ConfigPtr     Reference to Callout params.
+ */
+
+/// Slot Reset Info
+typedef struct {
+  IN      HYGON_CONFIG_PARAMS    StdHeader;                 ///< Standard configuration header
+  IN      UINT8                ResetId;                   ///< Slot reset ID as specified in PCIe_PORT_DESCRIPTOR
+  IN      UINT8                ResetControl;              ///< Reset control as in PCIE_RESET_CONTROL
+} PCIe_SLOT_RESET_INFO;
+
+/*---------------------------------------------------------------------------------------*/
+
+/**
+ *  PCIE slot reset control.
+ *
+ *  Description:
+ *
+ *  Parameters:
+ *    @param[in]       FcnData    Function data
+ *    @param[in, out]  ResetInfo  Reset information
+ *
+ *    @retval         HGPI_SUCCESS       Function returns successfully
+ *    @retval         HGPI_UNSUPPORTED   Function is not supported
+ *
+ **/
+/*---------------------------------------------------------------------------------------*/
+EFI_STATUS
+HgpiPcieSlotResetControl (
+  IN      UINTN                         FcnData,
+  IN      PCIe_SLOT_RESET_INFO          *ResetInfo
+  );
+
+#endif

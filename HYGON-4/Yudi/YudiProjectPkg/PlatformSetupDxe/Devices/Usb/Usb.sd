@@ -1,0 +1,133 @@
+/** @file
+
+Copyright (c) 2006 - 2023, Byosoft Corporation.<BR>
+All rights reserved.This software and associated documentation (if any)
+is furnished under a license and may only be used or copied in
+accordance with the terms of the license. Except as permitted by such
+license, no part of this software or documentation may be reproduced,
+stored in a retrieval system, or transmitted in any form or by any
+means without the express written consent of Byosoft Corporation.
+
+File Name:
+   UsbSetup.sd
+
+Abstract:
+   USB setting.
+
+Revision History:
+
+$END--------------------------------------------------------------------
+
+**/
+
+
+
+
+
+#ifdef DEVICES_FORM_SET
+
+    #ifdef FORM_SET_GOTO
+
+    goto USB_FORM_ID,
+      prompt = STRING_TOKEN(STR_USB_FORM),
+      help = STRING_TOKEN(STR_USB_FORM_HELP);
+
+    #endif
+
+    #ifdef FORM_SET_FORM
+
+    form formid = USB_FORM_ID,
+    title = STRING_TOKEN(STR_USB_FORM);
+
+    subtitle text = STRING_TOKEN(STR_COM_EMPTY);
+
+    numeric varid = SETUP_DATA.UsbWaitPortStableStall,
+      prompt    = STRING_TOKEN(STR_USB_WAIT_PORT_STABLE_STALL),
+      help      = STRING_TOKEN(STR_USB_WAIT_PORT_STABLE_STALL_HELP),
+      minimum   = 100,
+      maximum   = 1000,
+      step      = 100,
+      default   = 100,
+    endnumeric;
+
+    oneof varid     = SETUP_DATA.UsbMassSupport,
+        prompt      = STRING_TOKEN(STR_USB_MASS_SUPPORT),
+        help        = STRING_TOKEN(STR_USB_MASS_SUPPORT_HELP),
+        option text = STRING_TOKEN(STR_ENABLED),  value = 1, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+    endoneof;        
+
+    subtitle text = STRING_TOKEN(STR_COM_EMPTY);
+    
+    subtitle text = STRING_TOKEN(STR_USB_HOST0);
+     oneof varid     = SETUP_DATA.UsbPortDis[0],
+         prompt      = STRING_TOKEN(STR_USB_PORT0_ENABLE),
+         help        = STRING_TOKEN(STR_USB_PORT_ENABLE_HELP),
+         option text = STRING_TOKEN(STR_ENABLED),  value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+         option text = STRING_TOKEN(STR_DISABLED), value = 1, flags = RESET_REQUIRED;
+     endoneof;  
+     oneof varid     = SETUP_DATA.UsbPortDis[1],
+         prompt      = STRING_TOKEN(STR_USB_PORT1_ENABLE),
+         help        = STRING_TOKEN(STR_USB_PORT_ENABLE_HELP),
+         option text = STRING_TOKEN(STR_ENABLED),  value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+         option text = STRING_TOKEN(STR_DISABLED), value = 1, flags = RESET_REQUIRED;
+     endoneof;
+     oneof varid     = SETUP_DATA.UsbPortDis[2],
+         prompt      = STRING_TOKEN(STR_USB_PORT2_ENABLE),
+         help        = STRING_TOKEN(STR_USB_PORT_ENABLE_HELP),
+         option text = STRING_TOKEN(STR_ENABLED),  value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+         option text = STRING_TOKEN(STR_DISABLED), value = 1, flags = RESET_REQUIRED;
+     endoneof;
+     oneof varid     = SETUP_DATA.UsbPortDis[3],
+        prompt      = STRING_TOKEN(STR_USB_PORT3_ENABLE),
+        help        = STRING_TOKEN(STR_USB_PORT_ENABLE_HELP),
+        option text = STRING_TOKEN(STR_ENABLED),  value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+        option text = STRING_TOKEN(STR_DISABLED), value = 1, flags = RESET_REQUIRED;
+     endoneof;
+
+    subtitle text = STRING_TOKEN(STR_USB_HOST1);
+     oneof varid     = SETUP_DATA.UsbPortDis[4],
+         prompt      = STRING_TOKEN(STR_USB_PORT0_ENABLE),
+         help        = STRING_TOKEN(STR_USB_PORT_ENABLE_HELP),
+         option text = STRING_TOKEN(STR_ENABLED),  value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+         option text = STRING_TOKEN(STR_DISABLED), value = 1, flags = RESET_REQUIRED;
+     endoneof;  
+     oneof varid     = SETUP_DATA.UsbPortDis[5],
+         prompt      = STRING_TOKEN(STR_USB_PORT1_ENABLE),
+         help        = STRING_TOKEN(STR_USB_PORT_ENABLE_HELP),
+         option text = STRING_TOKEN(STR_ENABLED),  value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+         option text = STRING_TOKEN(STR_DISABLED), value = 1, flags = RESET_REQUIRED;
+     endoneof;
+     oneof varid     = SETUP_DATA.UsbPortDis[6],
+         prompt      = STRING_TOKEN(STR_USB_PORT2_ENABLE),
+         help        = STRING_TOKEN(STR_USB_PORT_ENABLE_HELP),
+         option text = STRING_TOKEN(STR_ENABLED),  value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+         option text = STRING_TOKEN(STR_DISABLED), value = 1, flags = RESET_REQUIRED;
+     endoneof;
+     oneof varid     = SETUP_DATA.UsbPortDis[7],
+        prompt      = STRING_TOKEN(STR_USB_PORT3_ENABLE),
+        help        = STRING_TOKEN(STR_USB_PORT_ENABLE_HELP),
+        option text = STRING_TOKEN(STR_ENABLED),  value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+        option text = STRING_TOKEN(STR_DISABLED), value = 1, flags = RESET_REQUIRED;
+     endoneof;
+    
+    subtitle text = STRING_TOKEN(STR_COM_EMPTY);    
+    
+    subtitle text = STRING_TOKEN(STR_USB_DEVICE_LIST);    
+    label USB_DEV_LIST_LABEL;
+    label USB_DEV_LIST_LABEL_END;        
+
+    string varid = SETUP_VOLATILE_DATA.Dummy0,
+      prompt     = STRING_TOKEN(STR_COM_EMPTY),               
+      help       = STRING_TOKEN(STR_COM_EMPTY),   
+      flags      = INTERACTIVE, 
+      key        = KEY_USB_DEV_LIST,        
+      minsize    = 1,
+      maxsize    = 1,
+      refresh interval = 2
+    endstring; 
+        
+    endform;
+
+    #endif
+#endif

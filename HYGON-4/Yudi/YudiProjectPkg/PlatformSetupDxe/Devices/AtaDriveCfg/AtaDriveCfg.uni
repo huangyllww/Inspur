@@ -1,0 +1,130 @@
+/** @file
+
+Copyright (c) 2006 - 2018, Byosoft Corporation.<BR>
+All rights reserved.This software and associated documentation (if any)
+is furnished under a license and may only be used or copied in
+accordance with the terms of the license. Except as permitted by such
+license, no part of this software or documentation may be reproduced,
+stored in a retrieval system, or transmitted in any form or by any
+means without the express written consent of Byosoft Corporation.
+
+File Name:
+  AtaDriverCfg.uni
+
+Abstract:
+  The definition of string used in ATA Devices setting.
+
+Revision History:
+
+$END--------------------------------------------------------------------
+
+**/
+
+/=#
+#langdef   zh-Hans "\wide中文\narrow"
+#langdef   en-US "English"
+
+
+#string STR_SATA_FORM                      #language en-US "SATA Configuration"
+                                           #language zh-Hans "SATA\wide配置\narrow"
+#string STR_SATA_FORM_HELP                 #language en-US "Select this option to configure your system's SATA devices."
+                                           #language zh-Hans "\wide选择此选项可配置系统的\narrowSATA\wide设备。\narrow"
+
+#string STR_SATA_HOST0                                #language en-US "SATA Controller 1"
+                                                      #language zh-Hans "SATA\wide控制器\narrow1"
+#string STR_SATA_HOST1                                #language en-US "SATA Controller 2"
+                                                      #language zh-Hans "SATA\wide控制器\narrow2"
+#string STR_SATA_HOST2                                #language en-US "SATA Controller 3"
+                                                      #language zh-Hans "SATA\wide控制器\narrow3"
+#string STR_SATA_HOST3                                #language en-US "SATA Controller 4"
+                                                      #language zh-Hans "SATA\wide控制器\narrow4"
+
+#string STR_SATA_EN_HELP                              #language en-US   "Enable or disable SATA Controller."
+                                                      #language zh-Hans "\wide开启或关闭\narrowSATA\wide控制器\narrow"                                                      
+
+#string STR_SATA_H0_PORT0               #language en-US   "  Port0"
+                                        #language zh-Hans "  \wide端口\narrow0"
+#string STR_SATA_H0_PORT1               #language en-US   "  Port1"
+                                        #language zh-Hans "  \wide端口\narrow1"
+#string STR_SATA_H0_PORT2               #language en-US   "  Port2"
+                                        #language zh-Hans "  \wide端口\narrow2"
+#string STR_SATA_H0_PORT3               #language en-US   "  Port3"
+                                        #language zh-Hans "  \wide端口\narrow3"
+#string STR_SATA_H0_PORT4               #language en-US   "  Port4"
+                                        #language zh-Hans "  \wide端口\narrow4"
+#string STR_SATA_H0_PORT5               #language en-US   "  Port5"
+                                        #language zh-Hans "  \wide端口\narrow5"
+#string STR_SATA_H0_PORT6               #language en-US   "  Port6"
+                                        #language zh-Hans "  \wide端口\narrow6"
+#string STR_SATA_H0_PORT7               #language en-US   "  Port7"
+                                        #language zh-Hans "  \wide端口\narrow7"
+                                        
+#string STR_SATA_H1_PORT0               #language en-US   "SATA Port(2-1)"
+                                        #language zh-Hans "SATA Port(2-1)"
+#string STR_SATA_H1_PORT1               #language en-US   "SATA Port(2-2)"
+                                        #language zh-Hans "SATA Port(2-2)"
+#string STR_SATA_H1_PORT2               #language en-US   "SATA Port(2-3)"
+                                        #language zh-Hans "SATA Port(2-3)"
+#string STR_SATA_H1_PORT3               #language en-US   "SATA Port(2-4)"
+                                        #language zh-Hans "SATA Port(2-4)"
+#string STR_SATA_H1_PORT4               #language en-US   "SATA Port(2-5)"
+                                        #language zh-Hans "SATA Port(2-5)"
+#string STR_SATA_H1_PORT5               #language en-US   "SATA Port(2-6)"
+                                        #language zh-Hans "SATA Port(2-6)"
+#string STR_SATA_H1_PORT6               #language en-US   "SATA Port(2-7)"
+                                        #language zh-Hans "SATA Port(2-7)"
+#string STR_SATA_H1_PORT7               #language en-US   "SATA Port(2-8)"
+                                        #language zh-Hans "SATA Port(2-8)"                                      
+
+#string STR_SATA_H2_PORT0               #language en-US   "SATA Port(3-1)"
+                                        #language zh-Hans "SATA Port(3-1)"
+#string STR_SATA_H2_PORT1               #language en-US   "SATA Port(3-2)"
+                                        #language zh-Hans "SATA Port(3-2)"
+#string STR_SATA_H2_PORT2               #language en-US   "SATA Port(3-3)"
+                                        #language zh-Hans "SATA Port(3-3)"
+#string STR_SATA_H2_PORT3               #language en-US   "SATA Port(3-4)"
+                                        #language zh-Hans "SATA Port(3-4)"
+#string STR_SATA_H2_PORT4               #language en-US   "SATA Port(3-5)"
+                                        #language zh-Hans "SATA Port(3-5)"
+#string STR_SATA_H2_PORT5               #language en-US   "SATA Port(3-6)"
+                                        #language zh-Hans "SATA Port(3-6)"
+#string STR_SATA_H2_PORT6               #language en-US   "SATA Port(3-7)"
+                                        #language zh-Hans "SATA Port(3-7)"
+#string STR_SATA_H2_PORT7               #language en-US   "SATA Port(3-8)"
+                                        #language zh-Hans "SATA Port(3-8)" 
+
+#string STR_SATA_H3_PORT0               #language en-US   "SATA Port(4-1)"
+                                        #language zh-Hans "SATA Port(4-1)"
+#string STR_SATA_H3_PORT1               #language en-US   "SATA Port(4-2)"
+                                        #language zh-Hans "SATA Port(4-2)"
+#string STR_SATA_H3_PORT2               #language en-US   "SATA Port(4-3)"
+                                        #language zh-Hans "SATA Port(4-3)"
+#string STR_SATA_H3_PORT3               #language en-US   "SATA Port(4-4)"
+                                        #language zh-Hans "SATA Port(4-4)"
+#string STR_SATA_H3_PORT4               #language en-US   "SATA Port(4-5)"
+                                        #language zh-Hans "SATA Port(4-5)"
+#string STR_SATA_H3_PORT5               #language en-US   "SATA Port(4-6)"
+                                        #language zh-Hans "SATA Port(4-6)"
+#string STR_SATA_H3_PORT6               #language en-US   "SATA Port(4-7)"
+                                        #language zh-Hans "SATA Port(4-7)"
+#string STR_SATA_H3_PORT7               #language en-US   "SATA Port(4-8)"
+                                        #language zh-Hans "SATA Port(4-8)" 
+                                        
+#string STR_SATA_PORT_HELP              #language en-US   "SATA Port Configuration"
+                                        #language zh-Hans "SATA Port\wide控制\narrow"
+
+#string STR_SATA_DRIVER_CONTENT1                      #language en-US "%a, FW:%a, SN:%a, RPM:%d, Speed:%a"
+                                                      #language zh-Hans "%a, \wide固件\narrow:%a, \wide序列号\narrow:%a, \wide转速\narrow:%d, \wide速度\narrow:%a"
+#string STR_SATA_DRIVER_CONTENT2                      #language en-US "%a, FW:%a, SN:%a, Speed:%a"
+                                                      #language zh-Hans "%a, \wide固件\narrow:%a, \wide序列号\narrow:%a, \wide速度\narrow:%a"
+
+#string STR_SMART_CHECK                 #language en-US   "S.M.A.R.T Check"
+                                        #language zh-Hans "S.M.A.R.T\wide检查\narrow"
+#string STR_SMART_CHECK_HELP            #language en-US   "SATA Hark disk S.M.A.R.T Check"
+                                        #language zh-Hans "\wide硬盘\narrowS.M.A.R.T\wide状态检查\narrow"
+
+#string STR_ATA_PHY_DETECT_DELAY        #language en-US   "SATA device detect delay"
+                                        #language zh-Hans "SATA\wide设备检测延迟\narrow"
+#string STR_ATA_PHY_DETECT_DELAY_HELP   #language en-US   "Configure SATA device detect delay time(s), default and minimum is 16s that defined in ATA spec."
+                                        #language zh-Hans "\wide配置\narrowSATA\wide设备检测延迟时间（秒），默认和最小值为\narrowATA\wide规范定义的\narrow16\wide秒。\narrow"
+

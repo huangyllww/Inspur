@@ -1,0 +1,105 @@
+## @file
+#
+#Copyright (c) 2006 - 2016, Byosoft Corporation.<BR>
+#All rights reserved.This software and associated documentation (if any)
+#is furnished under a license and may only be used or copied in
+#accordance with the terms of the license. Except as permitted by such
+#license, no part of this software or documentation may be reproduced,
+#stored in a retrieval system, or transmitted in any form or by any
+#means without the express written consent of Byosoft Corporation.
+#
+#File Name:
+#  SetupBmcCfg.inf
+#
+#Abstract:
+#
+#Revision History:
+#
+##
+
+
+[Defines]
+  INF_VERSION              = 0x00010005
+  BASE_NAME                = SetupBmcCfg
+  FILE_GUID                = CEDC062A-84F6-4ffb-8ED5-A43D8EBD5B50
+  MODULE_TYPE              = DXE_DRIVER
+  PI_SPECIFICATION_VERSION = 0x0001000A
+  VERSION_STRING           = 1.0
+  ENTRY_POINT              = SetupBmcCfgEntryPoint
+
+[Sources]
+  BmcConfig.vfr
+  BmcConfig.uni  
+  SetupBmcCfg.c
+  SetupBmcCfg.h
+  SetupBmcCfgFormCallback.c
+  SetupBmcCommonFunctions.c
+  ServerMgmt.uni
+  ServerMgmt.c
+  FruSetup/FruSetup.sd
+  FruSetup/FruSetup.uni
+  FruSetup/FruSetup.c
+  SelEvent/SelEvent.sd
+  SelEvent/SelEvent.uni
+  SelEvent/SelEvent.c
+  SelEvent/SelEventInfo.c  
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  ByoModulePkg/ByoModulePkg.dec
+  ByoServerPkg/ByoServerPkg.dec
+  NetworkPkg/NetworkPkg.dec
+
+[LibraryClasses]
+  UefiDriverEntryPoint
+  UefiLib
+  DebugLib
+  UefiRuntimeServicesTableLib
+  UefiBootServicesTableLib
+  BaseMemoryLib
+  MemoryAllocationLib
+  HobLib
+  IpmiBaseLib
+  HiiLib
+  BaseLib
+  SetupUiLib
+  ByoCommLib
+  TimerLib
+  NetLib
+
+[Protocols]
+  gEfiHiiConfigAccessProtocolGuid               # PROTOCOL ALWAYS_CONSUMED
+  gEfiHiiConfigRoutingProtocolGuid              # PROTOCOL ALWAYS_CONSUMED
+  gSetupSaveNotifyProtocolGuid
+  gSdrSensorDevProtocolGuid
+  gEfiSmbiosProtocolGuid
+  gEfiIpmiSolStatusProtocolGuid
+  
+[Guids]
+  gEfiSetupEnterGuid
+  gEfiIfrTianoGuid
+  gMemoryStatusCodeRecordGuid
+
+[Pcd]
+  gServerCommonPkgModuleTokenSpaceGuid.PcdBmcOnboardLanChannelEnable
+  gServerCommonPkgModuleTokenSpaceGuid.PcdBmcOnboardLanChannelNumber
+  gServerCommonPkgModuleTokenSpaceGuid.PcdBmcShareLanChannelEnable
+  gServerCommonPkgModuleTokenSpaceGuid.PcdBmcShareLanChannelNumber
+  gServerCommonPkgModuleTokenSpaceGuid.PcdBmcIsNeedSendConfigInfoToBmc
+  gServerCommonPkgModuleTokenSpaceGuid.PcdSelSupport
+  gServerCommonPkgModuleTokenSpaceGuid.PcdFrb2WdtDefault
+  gServerCommonPkgModuleTokenSpaceGuid.PcdOsWdtDefault
+  gServerCommonPkgModuleTokenSpaceGuid.PcdBmcAdminName
+  gEfiByoModulePkgTokenSpaceGuid.PcdFceLoadDefault
+  gEfiMdeModulePkgTokenSpaceGuid.PcdDebugCodeHeaderPtr
+  gEfiByoModulePkgTokenSpaceGuid.PcdPlatformNvVariableSwUpdated
+  gServerCommonPkgModuleTokenSpaceGuid.PcdBmcFwVerStr8
+
+[Depex]
+  gEfiIpmiTransportProtocolGuid AND
+  gEfiVariableArchProtocolGuid AND
+  gEfiVariableWriteArchProtocolGuid AND
+  gBmcSetupDataReadyGuid
+  
+  

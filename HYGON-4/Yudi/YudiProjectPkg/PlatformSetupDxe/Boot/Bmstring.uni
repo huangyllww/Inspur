@@ -1,0 +1,248 @@
+//
+// Copyright (c) 2006-2012, Intel Corporation
+// All rights reserved. This program and the accompanying materials
+// are licensed and made available under the terms and conditions of the BSD License
+// which accompanies this distribution.  The full text of the license may be found at
+// http://opensource.org/licenses/bsd-license.php
+//
+// THE PROGRAM IS DISTRIBUTED UNDER THE BSD LICENSE ON AN "AS IS" BASIS,
+// WITHOUT WARRANTIES OR REPRESENTATIONS OF ANY KIND, EITHER EXPRESS OR IMPLIED.
+//
+// Module Description:
+//
+//    String definitions for Boot Maintenance Utility.
+
+//**/
+
+/=#
+
+#langdef   en-US "English"
+#langdef   zh-Hans "\wide中文\narrow"
+
+#string STR_NULL_STRING                #language en-US  " "
+                                       #language zh-Hans  " "
+#string STR_NONE                       #language en-US  "NONE"
+                                       #language zh-Hans  "NONE"
+#string STR_FORM_BOOT_SETUP_TITLE      #language en-US  "Boot Options"
+                                       #language zh-Hans "\wide启动选项\narrow"
+#string STR_FORM_BOOT_SETUP_HELP       #language en-US  "Modify system boot options"
+                                       #language zh-Hans "\wide修改系统启动选项\narrow"
+#string STR_FORM_SET_FD_ORDER_TITLE    #language en-US   "Set Legacy Floppy Drive Order."
+                                       #language zh-Hans "\wide设置传统软驱启动顺序\narrow"
+
+#string STR_FORM_SET_HD_ORDER_TITLE    #language en-US  "Set Legacy HardDisk Drive Order."
+                                       #language zh-Hans "\wide设置传统硬盘启动顺序\narrow"
+
+#string STR_FORM_SET_CD_ORDER_TITLE    #language en-US  "Set Legacy CD-ROM Drive Order."
+                                       #language zh-Hans "\wide设置传统光驱启动顺序\narrow"
+
+#string STR_FORM_SET_NET_ORDER_TITLE   #language en-US  "Set Legacy NET Drive Order."
+                                       #language zh-Hans "\wide设置传统网络启动顺序\narrow"
+
+#string STR_FORM_SET_BEV_ORDER_TITLE   #language en-US  "Set Legacy BEV Drive Order."
+                                       #language zh-Hans "\wide设置传统\narrowBEV\wide设备启动顺序\narrow"
+
+#string STR_CHANGE_ORDER               #language en-US  "Change Boot Order"
+                                       #language zh-Hans "\wide调整启动顺序\narrow"
+
+#string STR_CHANGE_ORDER_HELP          #language en-US  "Change boot option's priority,Move up with "+",Move down with "-",Enter for select."
+                                       #language zh-Hans "\wide改变启动设备优先级，加号向上移动，减号向下移动，回车选择\narrow"
+
+#string STR_DISABLE_LEGACY_DEVICE      #language en-US  "Disabled"
+                                       #language zh-Hans "\wide禁用\narrow"
+
+#string STR_BOOT_FORM                   #language en-US "Boot Setting"
+                                        #language zh-Hans "\wide启动设置\narrow"
+#string STR_BOOT_FORM_HELP              #language en-US "System Boot Configuration Settings"
+                                        #language zh-Hans "\wide系统启动配置设置\narrow"
+#string STR_BOOT_TIMEOUT                #language en-US   "User Wait Time"
+                                        #language zh-Hans "\wide用户等待时间\narrow"
+
+#string STR_BOOT_TIMEOUT_HELP           #language en-US   "Number of seconds to wait for hot key activation. Valid range is from 1s to 20s."
+                                        #language zh-Hans "\wide等待热键的倒计时秒数。范围是\narrow1\wide秒到\narrow20\wide秒。\narrow"
+
+#string STR_CSM_BOOTUP_NUMLOCK          #language en-US "Bootup NumLock State"
+                                        #language zh-Hans "\wide数字锁定键开机状态\narrow"
+
+#string STR_CSM_BOOTUP_NUMLOCK_HELP     #language en-US "Select the keyboard NumLock state."
+                                        #language zh-Hans "\wide选择数字锁定键开机状态\narrow"
+
+#string STR_CSM_BOOTUP_NUMLOCK_ON       #language en-US   "On"
+                                        #language zh-Hans "\wide打开\narrow"
+
+#string STR_CSM_BOOTUP_NUMLOCK_OFF      #language en-US   "Off"
+                                        #language zh-Hans "\wide关闭\narrow"
+
+#string STR_OPROM_MESSAGE               #language en-US   "OPTION ROM Message"
+                                        #language zh-Hans "OPTION ROM\wide信息\narrow"
+
+#string STR_OPROM_MESSAGE_HELP          #language en-US   "Enable/Disable the display of Option Rom's message."
+                                        #language zh-Hans "\wide打开\narrow/\wide关闭\narrowOption Rom\wide信息\narrow"
+
+#string STR_ENABLE_CSM                  #language en-US   "CSM"
+                                        #language zh-Hans "\wide兼容支持模块\narrow"
+
+#string STR_ENABLE_CSM_HELP             #language en-US   "Compatibility support Module. Permit the loading of a traditional operation system."
+                                        #language zh-Hans "\wide兼容性支持模块。允许加载传统的操作系统。\narrow"
+#string STR_BOOT_MODE                   #language en-US   "Boot option filter"
+                                        #language zh-Hans "\wide启动模式\narrow"
+#string STR_BOOT_MODE_HELP              #language en-US "Select "UEFI Only", system will only boot to UEFI aware operating system. Select "Legacy Only", system will only boot to legacy operating system."
+                                        #language zh-Hans "\wide选择仅\narrowUEFI\wide，系统仅启动\narrowUEFI\wide操作系统。选择仅\narrowLegacy\wide，系统将启动传统操作系统。\narrow"
+#string STR_ALL                         #language en-US "All"
+                                        #language zh-Hans "UEFI\wide和\narrowLegacy"
+#string STR_UEFI_ONLY                   #language en-US "UEFI Only"
+                                        #language zh-Hans "\wide仅\narrowUEFI"
+#string STR_LEGACY_ONLY                 #language en-US "Legacy Only"
+                                        #language zh-Hans "\wide仅\narrowLegacy"
+#string STR_BOOT_PRIORITY               #language en-US "Boot Priority"
+                                        #language zh-Hans "\wide启动优先权\narrow"
+#string STR_BOOT_PRIORITY_HELP          #language en-US "Select "UEFI First", system will try to boot to UEFI OS first and then legacy OS.Select "Legacy First", system will try to boot to legacy OS first and then UEFI OS."
+                                        #language zh-Hans "\wide选择\narrow UEFI First,\wide系统将尝试先启动\narrow UEFI\wide再启动传统操作系统。选择\narrow Legacy First,\wide系统先启动传统操作系统再启动\narrow UEFI"
+#string STR_UEFI_FIRST                  #language en-US   "UEFI"
+                                        #language zh-Hans "UEFI"
+#string STR_LEGACY_FIRST                #language en-US   "Legacy"
+                                        #language zh-Hans "Legacy"
+#string STR_BY_CSM                      #language en-US   "By Csm"
+                                        #language zh-Hans "\wide根据\narrowCSM"
+#string STR_NO_LAUNCH                   #language en-US   "Do not launch"
+                                        #language zh-Hans "\wide不加载\narrow"                                        
+#string STR_NORMAL                      #language en-US "Normal"
+                                        #language zh-Hans "Normal"
+#string STR_LEGACY                      #language en-US "Legacy"
+                                        #language zh-Hans "Legacy"
+
+#string STR_ENABLED                     #language en-US "Enabled"
+                                        #language zh-Hans "\wide打开\narrow"
+#string STR_DISABLED                    #language en-US "Disabled"
+                                        #language zh-Hans "\wide关闭\narrow"
+
+#string STR_SHELL_ENABLE                #language en-US "Internal Shell"                                       
+                                        #language zh-Hans "\wide内置\narrowShell"
+#string STR_SHELL_ENABLE_HELP           #language en-US "Internal Shell enable/disable."
+                                        #language zh-Hans "\wide启用或禁用内置\narrowShell"
+#string STR_IPV4                        #language en-US "IPv4"
+                                        #language zh-Hans "IPv4"
+#string STR_IPV6                        #language en-US "IPv6"
+                                        #language zh-Hans "IPv6"
+#string STR_ALL_IP                      #language en-US "All"
+                                        #language zh-Hans "IPv4\wide和\narrowIPv6"																				
+#string STR_NET_BOOT_IP_VERSION         #language en-US "Net Boot IP Version"
+                                        #language zh-Hans "\wide网络引导\narrowIP\wide版本\narrow"
+#string STR_NET_BOOT_IP_VERSION_HELP    #language en-US "Net Boot IP Version."
+                                        #language zh-Hans "\wide网络引导\narrowIP\wide版本\narrow"
+#string STR_PCI_OPTION_ROM_POST         #language en-US "PCI ROM Priority"
+                                        #language zh-Hans "PCI ROM\wide优先级\narrow"
+#string STR_PCI_OPTION_ROM_POST_HELP    #language en-US "In case of multiple Option ROMs (Legacy and EFI Compatible), specifies what PCI Option rom to launch."
+                                        #language zh-Hans "\wide如果有多个\narrow Option ROMs (Legacy and EFI Compatible),\wide请指定要启动的\narrow PCI Option rom."
+#string STR_AUTO         	              #language en-US "Auto"
+                                        #language zh-Hans "\wide自动\narrow"
+#string STR_PCI_LEGACY                  #language en-US "Legacy ROM"
+                                        #language zh-Hans "\wide传统只读存储器\narrow"
+#string STR_PCI_EFI         	          #language en-US "EFI Compatible ROM"
+                                        #language zh-Hans "EFI \wide兼容只读存储器\narrow"
+#string STR_VIDEO_ROM_PRIORITY         	#language en-US   "  Video Option Rom"
+                                        #language zh-Hans "  \wide视频\narrowOption Rom"
+#string STR_NETWORK_ROM_PRIORITY        #language en-US   "  Network Option Rom"
+                                        #language zh-Hans "  \wide网络\narrowOption Rom"
+#string STR_SATA_ROM_PRIORITY         	#language en-US   "  Storage Option Rom"
+                                        #language zh-Hans "  \wide存储\narrowOption Rom"
+#string STR_OTHER_ROM_PRIORITY         	#language en-US   "  Other PCI Option Rom"
+                                        #language zh-Hans "  \wide其他\narrowOption Rom"
+#string STR_ROM_PRIORITY_HELP           #language en-US "Controls the execution of UEFI and Legacy Option ROM"
+                                        #language zh-Hans "\wide控制\narrow UEFI\wide和传统选项只读存储器的执行\narrow"
+#string STR_OPROM_PRIORITY_NOTES        #language en-US "Note: Onboard SATA(AHCI) and NVME are not controlled here."
+                                        #language zh-Hans "\wide注意：此处不控制板载\narrow SATA(AHCI) and NVME."
+#string FORMSET_TITLE_BOOT              #language en-US "Boot"
+                                        #language zh-Hans "\wide启动\narrow"
+#string FORMSET_TITLE_BOOT_HELP         #language en-US "Boot"
+                                        #language zh-Hans "\wide启动\narrow"
+
+#string STR_NVME_OPTIONROM_PRIORITY        #language en-US   "NVME Driver Priority"
+                                           #language zh-Hans "NVME\wide驱动优先级\narrow"
+#string STR_NVME_OPTIONROM_PRIORITY_HELP   #language en-US   "Select Which Driver the Nvme device should be loaded first"
+                                           #language zh-Hans "\wide选择\narrowNvme\wide设备应该首先加载哪个驱动程序\narrow"
+#string STR_BIOS_FIRST                     #language en-US   "BIOS First"
+                                           #language zh-Hans "BIOS\wide优先\narrow"
+#string STR_ADDON_FIRST                    #language en-US   "OptionRom First"
+                                           #language zh-Hans "OptionRom\wide优先\narrow"
+
+#string STR_UEFI_NETWORK_STACK             #language en-US   "UEFI Network Stack"
+                                           #language zh-Hans "UEFI\wide网络协议栈\narrow"                                           
+#string STR_UEFI_NETWORK_STACK_HELP        #language en-US   "If Network Boot is enabled, this item will auto enable and hide."
+                                           #language zh-Hans "\wide如果打开网络引导，此选项将自动使能并隐藏。\narrow"  
+                                           
+#string STR_OBLAN_BOOT                         #language en-US   "Network Boot"
+                                               #language zh-Hans "\wide网络引导\narrow"
+#string STR_OBLAN_BOOT_HELP                    #language en-US   "Enable or Disable Network Boot"
+                                               #language zh-Hans "\wide打开或关闭网络引导\narrow"
+
+#string STR_UEFI_BOOT_ORDER                #language en-US   "UEFI Boot Order"
+                                           #language zh-Hans "UEFI\wide模式下的开机顺序\narrow" 
+#string STR_LEGACY_BOOT_ORDER              #language en-US   "Legacy Boot Order"
+                                           #language zh-Hans "\wide传统模式下的开机顺序\narrow"                                            
+                                        
+#string STR_LEGACY_HDD                     #language en-US   "  Hard Drive"
+                                           #language zh-Hans "  \wide硬盘驱动器\narrow"
+#string STR_LEGACY_ODD                     #language en-US   "  CD/DVD ROM Drive"
+                                           #language zh-Hans "  CD/DVD\wide光驱\narrow"
+#string STR_LEGACY_USB_DISK                #language en-US   "  USB Flash Drive/USB Hard Disk"
+                                           #language zh-Hans "  USB\wide闪存驱动器\narrow/USB\wide硬盘\narrow"
+#string STR_LEGACY_USB_ODD                 #language en-US   "  USB CD/DVD ROM Drive"
+                                           #language zh-Hans "  USB CD/DVD\wide光驱\narrow"
+#string STR_LEGACY_PXE                     #language en-US   "  Network Adapter"
+                                           #language zh-Hans "  \wide网络设备\narrow"
+
+#string STR_UEFI_HDD                       #language en-US   "  Hard Drive"
+                                           #language zh-Hans "  \wide硬盘驱动器\narrow"
+#string STR_UEFI_ODD                       #language en-US   "  CD/DVD ROM Drive"
+                                           #language zh-Hans "  CD/DVD\wide光驱\narrow"
+#string STR_UEFI_USB_DISK                  #language en-US   "  USB Flash Drive/USB Hard Disk"
+                                           #language zh-Hans "  USB\wide闪存驱动器\narrow/USB\wide硬盘\narrow"
+#string STR_UEFI_USB_ODD                   #language en-US   "  USB CD/DVD ROM Drive"
+                                           #language zh-Hans "  USB CD/DVD\wide光驱\narrow"
+#string STR_UEFI_PXE                       #language en-US   "  Network Adapter"
+                                           #language zh-Hans "  \wide网络设备\narrow"
+#string STR_UEFI_OTHERS                    #language en-US   "  Others"
+                                           #language zh-Hans "  \wide其它\narrow"
+#string STR_LEGACY_OTHERS                  #language en-US   "  Others"
+                                           #language zh-Hans "  \wide其它\narrow"                                             
+
+#string STR_BOOT_ORDER_HELP                #language en-US   "Up and Down arrow keys select a device. <+> and <-> keys move the device up or down."
+                                           #language zh-Hans "\wide上下光标键选择设备。\narrow<+>\wide和\narrow<->\wide移动设备至较高或较低值。\narrow"                                         
+                                           
+#string STR_SETUP_CANNOT_ENTER             #language en-US   "Setup cannot enter after booting OS. Please reboot then try again."
+                                           #language zh-Hans "Setup\wide不可以在启动\narrowOS\wide之后进入，请重启后重试。\narrow"                                              
+#string STR_QUIET_BOOT                     #language en-US   "Quiet Boot"
+                                           #language zh-Hans "\wide安静启动\narrow"
+#string STR_QUIET_BOOT_HELP                #language en-US   "Enable or disable Quiet Boot."
+                                           #language zh-Hans "\wide选择是否启用安静启动。\narrow"
+                                           
+#string STR_PXE_RETRY_EN                   #language en-US   "PXE Retry"
+                                           #language zh-Hans "\wide网络启动重试\narrow"                                           
+#string STR_PXE_RETRY_EN_HELP              #language en-US   "0 means disable, 255 means limitless, others means retry count."
+                                           #language zh-Hans "0\wide表示禁止，\narrow255\wide表示使能并无限重试，其他值表示使能并重试这些次。\narrow"                                            
+                                           
+#string STR_HTTP_BOOT_EN                   #language en-US   "Http Boot"
+                                           #language zh-Hans "Http\wide启动\narrow"                                             
+#string STR_HTTP_BOOT_EN_HELP              #language en-US   "Enable or disable Http Boot."
+                                           #language zh-Hans "\wide打开或关闭\narrowHttp\wide启动。\narrow"
+					   
+#string STR_CUSTOM                         #language en-US   "Custom"
+                                           #language zh-Hans "\wide自定义\narrow"
+#string STR_OPROM_PRIORITY                 #language en-US   "Option Rom Priority"
+                                           #language zh-Hans "Option Rom\wide优先级\narrow"					   
+
+#string STR_QUIET_BOOT_MODE                 #language en-US   "Quiet Boot Mode"
+                                            #language zh-Hans "\wide安静启动模式\narrow"
+#string STR_QB_NONE                         #language en-US   "None"
+                                            #language zh-Hans "\wide不显示\narrow"
+#string STR_QB_LOGO                         #language en-US   "Logo"
+                                            #language zh-Hans "Logo"                                            
+#string STR_QB_INFO                         #language en-US   "Info"
+                                            #language zh-Hans "\wide信息\narrow"
+#string STR_QB_LOGO_INFO                    #language en-US   "Logo + Info"
+                                            #language zh-Hans "Logo + \wide信息\narrow"                                           
+#string STR_WAIT_TO_SHOW_POST_INFO         #language en-US   "Wait Switch Quiet Boot Time"
+                                           #language zh-Hans "\wide等待切换静默启动时间\narrow"
+#string STR_WAIT_TO_SHOW_POST_INFO_HELP    #language en-US   "The time to wait for pressing the hotkey(F2) to switch quiet boot, in seconds (0-65535)."
+                                           #language zh-Hans "\wide等待按下切换静默启动关闭界面热键（\narrowF2\wide）的时间，以秒为单位（\narrow0-65535\wide）。\narrow"

@@ -1,0 +1,297 @@
+/** @file
+
+Copyright (c) 2006 - 2016, Byosoft Corporation.<BR>
+All rights reserved.This software and associated documentation (if any)
+is furnished under a license and may only be used or copied in
+accordance with the terms of the license. Except as permitted by such
+license, no part of this software or documentation may be reproduced,
+stored in a retrieval system, or transmitted in any form or by any
+means without the express written consent of Byosoft Corporation.
+
+File Name:
+  WheaElog.c
+
+Abstract:
+  Source file for the IPMI driver.
+
+Revision History:
+
+**/
+
+
+
+/=#
+
+#langdef   en-US "English"
+
+
+//
+// String definitions
+//
+
+
+
+
+
+
+//
+// Severity strings and their description
+//
+#string STR_ERROR_MINOR   #language en-US "Minor"
+#string STR_ERROR_MAJOR   #language en-US "Major"
+#string STR_ERROR_UNRECOVERED #language en-US "Fatal"
+#string STR_ERROR_UNCONTAINED  #language en-US "Fatal"
+
+#string STR_ERROR_UNRECOGNIZED #language en-US "Error Unrecognized"
+#string STR_EFI_CLASS_SUBCLASS_UNRECOGNIZED #language en-US "Class Unrecognized"
+
+
+
+
+//
+//
+// Strings for ClassSubClass.
+// The Class/Subclass is used as the "subject" of a "generic" error message.
+// A "Generic" error message is displayed when the IsSpecificToken is FALSE
+//
+
+#string STR_EFI_COMPUTING_UNIT_UNSPECIFIED  #language en-US "Unspecified processor"
+#string STR_EFI_COMPUTING_UNIT_HOST_PROCESSOR  #language en-US "Processor"
+#string STR_EFI_COMPUTING_UNIT_FIRMWARE_PROCESSOR   #language en-US "Baseboard Management Controller"
+#string STR_EFI_COMPUTING_UNIT_IO_PROCESSOR   #language en-US "IO processor"
+#string STR_EFI_COMPUTING_UNIT_CACHE  #language en-US "Cache"
+#string STR_EFI_COMPUTING_UNIT_MEMORY   #language en-US "Memory"
+#string STR_EFI_COMPUTING_UNIT_CHIPSET  #language en-US "Chipset"
+#string STR_EFI_PERIPHERAL_UNSPECIFIED  #language en-US "Unspecified peripheral"
+#string STR_EFI_PERIPHERAL_KEYBOARD   #language en-US "Keyboard"
+#string STR_EFI_PERIPHERAL_MOUSE  #language en-US "Mouse"
+#string STR_EFI_PERIPHERAL_LOCAL_CONSOLE #language en-US "Local console"
+#string STR_EFI_PERIPHERAL_REMOTE_CONSOLE  #language en-US "Remote console"
+#string STR_EFI_PERIPHERAL_SERIAL_PORT  #language en-US "Serial port"
+#string STR_EFI_PERIPHERAL_PARALLEL_PORT  #language en-US "Parallel port"
+#string STR_EFI_PERIPHERAL_FIXED_MEDIA  #language en-US "Fixed media"
+#string STR_EFI_PERIPHERAL_REMOVABLE_MEDIA  #language en-US "Removable media"
+#string STR_EFI_PERIPHERAL_AUDIO_INPUT #language en-US "Audio input"
+#string STR_EFI_PERIPHERAL_AUDIO_OUTPUT  #language en-US "Audio output"
+#string STR_EFI_PERIPHERAL_LCD_DEVICE  #language en-US "LCD"
+#string STR_EFI_IO_BUS_UNSPECIFIED #language en-US "Unspecified IO bus"
+#string STR_EFI_IO_BUS_PCI  #language en-US "PCI"
+#string STR_EFI_IO_BUS_PCI_EXP  #language en-US "PCI Express"
+#string STR_EFI_IO_BUS_USB  #language en-US "USB"
+#string STR_EFI_IO_BUS_IBA  #language en-US "IBA"
+#string STR_EFI_IO_BUS_AGP  #language en-US "AGP"
+#string STR_EFI_IO_BUS_PC_CARD  #language en-US "PC Card"
+#string STR_EFI_IO_BUS_LPC  #language en-US "LPC"
+#string STR_EFI_IO_BUS_SCSI   #language en-US "SCSI"
+#string STR_EFI_IO_BUS_ATA_ATAPI  #language en-US "ATA/ATAPI"
+#string STR_EFI_IO_BUS_FC   #language en-US "Fiber Channel"
+#string STR_EFI_IO_BUS_IP_NETWORK   #language en-US "IP Network"
+#string STR_EFI_IO_BUS_SMBUS  #language en-US "SMBUS"
+#string STR_EFI_IO_BUS_I2C  #language en-US "I2C"
+#string STR_EFI_COMPUTING_UNIT_TPM   #language en-US "TPM"
+#string STR_EFI_SOFTWARE_UNSPECIFIED  #language en-US "Unspecified software"
+#string STR_EFI_SOFTWARE_EFI_BMC  #language en-US "Baseboard Management Controller"
+#string STR_EFI_SOFTWARE_SEC #language en-US "SEC"
+#string STR_EFI_SOFTWARE_PEI_CORE   #language en-US "PEI Core"
+#string STR_EFI_SOFTWARE_PEI_MODULE   #language en-US "PEI Module"
+#string STR_EFI_SOFTWARE_DXE_CORE   #language en-US "DXE Core"
+#string STR_EFI_SOFTWARE_DXE_BS_DRIVER  #language en-US "DXE boot services driver"
+#string STR_EFI_SOFTWARE_DXE_RT_DRIVER  #language en-US "DXE RT driver"
+#string STR_EFI_SOFTWARE_SMM_DRIVER  #language en-US "SMM driver"
+#string STR_EFI_SOFTWARE_EFI_APPLICATION  #language en-US "EFI application"
+#string STR_EFI_SOFTWARE_EFI_OS_LOADER  #language en-US "OS loader"
+#string STR_EFI_SOFTWARE_RT   #language en-US "Runtime"
+#string STR_EFI_SOFTWARE_AL   #language en-US "AfterLife"
+#string STR_EFI_SOFTWARE_EBC_EXCEPTION  #language en-US "EBC Exception"
+#string STR_EFI_SOFTWARE_IA32_EXCEPTION  #language en-US "IA32 Exception"
+#string STR_EFI_SOFTWARE_IPF_EXCEPTION  #language en-US "Itanium(TM) Processor Exception"
+#string STR_EFI_SOFTWARE_PEI_SERVICE   #language en-US "PEI Service"
+#string STR_EFI_SOFTWARE_EFI_BOOT_SERVICE   #language en-US "EFI Boot Service"
+#string STR_EFI_SOFTWARE_EFI_RUNTIME_SERVICE  #language en-US "EFI Runtime Service"
+#string STR_EFI_SOFTWARE_EFI_DXE_SERVICE   #language en-US "EFI DXE Service"
+#string STR_EFI_SYSTEM_ERROR  #language en-US "System Error"
+
+//
+// "Generic" error operation strings
+// These "generic" operation strings are used as verbs of the error message
+// A "Generic" error message is displayed when the IsSpecificToken is FALSE
+//
+
+#string STR_EC_NON_SPECIFIC  #language en-US "non-specific error."
+#string STR_EC_DISABLED  #language en-US "disabled."
+#string STR_EC_NOT_SUPPORTED  #language en-US "not supported."
+#string STR_EC_NOT_DETECTED  #language en-US "not detected."
+#string STR_EC_NOT_CONFIGURED  #language en-US "not configured."
+#string STR_EC_INVALID_TYPE  #language en-US "invalid type error."
+#string STR_EC_INVALID_SPEED  #language en-US "invalid speed error."
+#string STR_EC_INVALID_SIZE  #language en-US "invalid size error."
+#string STR_EC_MISMATCH  #language en-US "mismatch error."
+#string STR_EC_TIMER_EXPIRED  #language en-US "FRB-3 timeout."
+#string STR_EC_SELF_TEST  #language en-US "Built-In Self Test (BIST) failure."
+#string STR_EC_INTERNAL  #language en-US "Internal Error (IERR)."
+#string STR_EC_THERMAL  #language en-US "Thermal Trip error."
+#string STR_EC_LOW_VOLTAGE  #language en-US "low voltage error."
+#string STR_EC_HIGH_VOLTAGE  #language en-US "high voltage error."
+#string STR_EC_VOLTAGE_MISMATCH  #language en-US "voltage mismatch detected."
+#string STR_EC_CACHE  #language en-US "cache error."
+#string STR_EC_MICROCODE_UPDATE  #language en-US "unable to apply microcode update."
+#string STR_EC_NO_MICROCODE_UPDATE  #language en-US "microcode update not found."
+#string STR_EC_UNSUPPORTED_PROCESSOR_FAMILY  #language en-US "family is not supported."
+#string STR_EC_UNSUPPORTED_CHIPSET  #language en-US "and chipset stepping configuration is unsupported. By continuing to boot, you acknowledge you are operating in an unsupported configuration.\n"
+#string STR_EC_CORRECTABLE  #language en-US "ECC correctable error."
+#string STR_EC_UNCORRECTABLE  #language en-US "ECC uncorrectable error."
+#string STR_EC_MEMORY_UNSUPPORTED  #language en-US "System supports a maximum of 16GB of main memory. Additional memory will not be counted."
+#string STR_EC_MEMORY_CLTT_FAILED  #language en-US "Installed DIMMs do not have valid temperature sensors. Closed Loop Thermal Throttling could not be configured, system may not function properly and proceed at your own risk."
+#string STR_EC_NOT_CONFIGURED_MEM_RAS  #language en-US "component could not be configured in the selected RAS mode."
+
+
+
+
+#string STR_EC_SELF_TEST_FAIL  #language en-US "failed self test."
+#string STR_EC_COMM_ERROR  #language en-US "failed to respond."
+#string STR_EC_SDR_EMPTY  #language en-US "Sensor Data Record empty."
+#string STR_EC_FORCE_UPDATE  #language en-US "in Update Mode."
+#string STR_EC_FW_MISMATCH  #language en-US "Intel(R) Remote Management Module firmware and FRUSDR update required."
+#string STR_EC_SPD_FAIL  #language en-US "encountered a Serial Presence Detect (SPD) failure."
+#string STR_EC_S3_RESUME_FAIL  #language en-US "S3 resume failure."
+#string STR_EC_UPDATE_FAIL  #language en-US "update failure."
+#string STR_EC_NONE_DETECTED  #language en-US "None Detected error."
+#string STR_EC_INTERFACE_ERROR  #language en-US "interface error."
+#string STR_EC_CONTROLLER_ERROR  #language en-US "controller error."
+#string STR_EC_INPUT_ERROR  #language en-US "input error."
+#string STR_EC_OUTPUT_ERROR  #language en-US "output error."
+#string STR_EC_RESOURCE_CONFLICT  #language en-US "resource conflict error."
+#string STR_EC_LOCKED  #language en-US "locked error."
+#string STR_EC_STUCK_KEY  #language en-US "stuck key error."
+#string STR_EC_READ_ERROR  #language en-US "read error."
+#string STR_EC_WRITE_ERROR  #language en-US "write error."
+#string STR_EC_PERR  #language en-US "Parity Error (PERR)."
+#string STR_EC_SERR  #language en-US "System Error (SERR)."
+#string STR_EC_LOAD_ERROR  #language en-US "load error."
+#string STR_EC_INVALID_PARAMETER  #language en-US "invalid parameter error."
+
+#string STR_EC_INVALID_BUFFER  #language en-US "invalid buffer error."
+#string STR_EC_OUT_OF_RESOURCES  #language en-US "out of resources error."
+#string STR_EC_ABORTED #language en-US "ABORT error."
+#string STR_EC_ILLEGAL_SOFTWARE_STATE  #language en-US "illegal software state error."
+#string STR_EC_ILLEGAL_HARDWARE_STATE  #language en-US "illegal hardware state error."
+#string STR_EC_START_ERROR  #language en-US "start error."
+#string STR_EC_BAD_DATE_TIME  #language en-US "bad date or time error."
+#string STR_EC_CFG_INVALID  #language en-US "encountered an invalid configuration."
+#string STR_EC_PWD_INVALID  #language en-US "had invalid password."
+#string STR_EC_PWD_CLR_REQUEST  #language en-US "password clear request."
+#string STR_EC_DXE_CORRUPT  #language en-US "unable to handoff to DXE as DXE core could not be found."
+#string STR_EC_NO_RECOVERY_CAPSULE  #language en-US "unable to continue with crisis recovery because recovery capsule could not be found."
+#string STR_EC_UNDEFINED  #language en-US "undefined error."
+#string STR_EC_DIVIDE_ERROR  #language en-US "divide error."
+#string STR_EC_DEBUG  #language en-US "debug error."
+#string STR_EC_NMI  #language en-US "Non-Maskable Interrupt (NMI) error."
+#string STR_EC_BREAKPOINT  #language en-US "breakpoint error."
+#string STR_EC_OVERFLOW  #language en-US "overflow error."
+#string STR_EC_INVALID_OPCODE  #language en-US "invalid opcode error."
+#string STR_EC_STACK_FAULT  #language en-US "stack fault error."
+#string STR_EC_ALIGNMENT_CHECK  #language en-US "alignment check error."
+#string STR_EC_INSTRUCTION_ENCODING  #language en-US "instruction encoding error."
+#string STR_EC_BAD_BREAK  #language en-US "bad break error."
+#string STR_EC_STEP  #language en-US "step error."
+#string STR_EC_BOUND  #language en-US "bounds error."
+#string STR_EC_DOUBLE_FAULT  #language en-US "double fault error."
+#string STR_EC_INVALID_TSS  #language en-US "TSS error."
+#string STR_EC_SEG_NOT_PRESENT  #language en-US "segment not present error."
+#string STR_EC_GP_FAULT  #language en-US "general protection fault error."
+#string STR_EC_PAGE_FAULT  #language en-US "page fault error."
+#string STR_EC_FP_ERROR  #language en-US "floating point error."
+#string STR_EC_MACHINE_CHECK  #language en-US "machine check error."
+#string STR_EC_SIMD  #language en-US "SIMD error."
+#string STR_EC_TRAINING_FAILED  #language en-US "training failed error."
+#string STR_EC_DEGRADED_LINK  #language en-US "degraded link error."
+#string STR_EC_IBIST_FAILED  #language en-US "IBIST error."
+#string STR_EC_VGA_ILLEAGL  #language en-US "last display setting is illegal, restore to default setting."
+#string STR_TPM_NOT_DETECTED  #language en-US "device not detected."
+#string STR_TPM_FAIL  #language en-US "device failure."
+#string STR_TPM_FAILED_SELFTEST  #language en-US "device failed self test."
+#string STR_TPM_TIMEOUT_FAILURE  #language en-US "device is missing or not responding."
+#string STR_QPI_LINK_DOWN        #language en-US "One of Intel(R) QPI links failed test/initialization."
+//
+// Strings for the ReportStatusCode extended data
+//
+
+
+
+
+
+#string STR_EC_MISMATCH_SPEED  #language en-US "speeds mismatched."
+#string STR_EC_MISMATCH_QPI_SPEED  #language en-US "Intel(R) QPI speed mismatch."
+#string STR_EC_QPI_LINK_WIDTH_REDUCED_HALF  #language en-US "Intel(R) QPI Link width reduced to 1/2."
+#string STR_EC_QPI_LINK_WIDTH_REDUCED_QUARTER  #language en-US "Intel(R) QPI Link width reduced to 1/4."
+#string STR_EC_MISMATCH_FAMILY  #language en-US "family mismatch detected."
+#string STR_EC_MISMATCH_MODEL  #language en-US "model mismatch."
+#string STR_EC_MISMATCH_STEPPING  #language en-US "stepping mismatch."
+#string STR_EC_MISMATCH_CACHE_SIZE  #language en-US "cache size mismatch detected."
+
+
+
+
+
+
+
+
+
+#string STR_EC_MEM_DEFAULT  #language en-US "bad or missing."
+
+//
+// The following messages are specifically customized for the error.
+// CUSTOM error messages are displayed without concatenating of class/subclass
+//
+
+#string STR_EC_RESOURCE_EMP_CUSTOM  #language en-US "B is being used by BMC as EMP port. It is not available for OS or application use."
+#string STR_EC_SMART_NOT_SUPPORTED  #language en-US "ATA bus SMART not supported."
+#string STR_EC_SMART_DISABLED  #language en-US "ATA bus SMART is disabled."
+#string STR_EC_CFG_CLR_REQUEST_CUSTOM  #language en-US "BIOS Settings reset to default settings."
+#string STR_EC_CFG_CLR_REQUEST_FP_CUSTOM  #language en-US "CMOS/NVRAM configuration cleared by Front Panel."
+#string STR_EC_CFG_DEFAULT_CUSTOM  #language en-US "CMOS/NVRAM default configuration loaded."
+#string STR_EC_PWD_INVALID_CUSTOM  #language en-US "Password check failed."
+#string STR_EC_PWD_CLEARED_CUSTOM  #language en-US "Passwords cleared by jumper."
+#string STR_EC_PWD_CLEAR_JMPR_SET_CUSTOM  #language en-US "Password Clear jumper is set."
+#string STR_EC_BIOSID_MISMATCH_CUSTOM  #language en-US "BIOS ID mismatch between Primary and Secondary BIOS."
+#string STR_EC_BOOT_TO_OTHERBANK_CUSTOM  #language en-US "System booting from the other bank.  Recovery Jumper is set to Recovery mode."
+#string STR_EC_BIOSUPDATE_WATCHDOGTIMER_CUSTOM  #language en-US "BIOS update failed, system rolled back to older BIOS."
+#string STR_EC_SECONDARYBIOS_CHECKSUM_FAIL_CUSTOM  #language en-US "Secondary BIOS image checksum failed."
+#string STR_EC_FW_CORRUPTED_CUSTOM  #language en-US "The SAS RAID firmware cannot run properly.  The user should attempt to reflash the firmware."
+#string STR_EC_CMOS_DATE_TIME_ERROR_CUSTOM  #language en-US "System RTC date/time not set."
+#string STR_EC_BACKUP_BIOS_FLASH_ERROR  #language en-US "Backup BIOS is corrupted due to partial update. Please fix it by updating backup BIOS with 'UpdateBackupBios' parameter."
+#string STR_EC_WATCHDOG_TIMEOUT_CUSTOM  #language en-US "Watchdog Timer failed on last boot."
+#string STR_EC_OS_WATCHDOG_TIMEOUT_CUSTOM  #language en-US "OS boot watchdog timer failure."
+#string STR_EC_LEG_OPROM_NO_SPACE_CUSTOM  #language en-US "DXE Boot Services driver: Not enough memory available to shadow a Legacy Option ROM."
+#string STR_EC_NVVARIABLES_CLEARED_CUSTOM  #language en-US "POST Reclaim of non-critical NVRAM variables."
+#string STR_EC_NVVARIABLES_AUTO_RECOVERY  #language en-US "NVRAM variable space was corrupted and has been reinitialized."
+#string STR_SOFT_RECOVERY_MODE  #language en-US " Recovery boot has been initiated.Note: The Primary BIOS image may be corrupted or the system may hang during POST. A BIOS update is required. "
+#string STR_EC_EVENT_LOG_FULL_CUSTOM  #language en-US "Baseboard Management Controller System Event Log full."
+#string STR_EC_FV_EVENT_LOG_FULL_CUSTOM  #language en-US "System Event Log full."
+#string STR_EFI_CPU_DISABLE_INFO #language en-US "CPU 2 is disabled by BMC."
+
+
+#string STR_BYO_VARIABLE_CLEAN_UP                               #language en-US "POST Reclaim of non-critical NVRAM variables."
+
+
+#string STR_EC_MEMORY_ERROR_BIT  #language en-US "failed test/initialization"
+#string STR_EC_BAD_BATTERY #language en-US "Battery has Failed."
+#string STR_EC_MEMORY_POPU_FAIL   #language en-US "Population Error."
+
+#string STR_TXT_ACM_ERROR                               #language en-US "ACM Error"
+
+
+#string STR_EFI_COMPUTING_UNIT_ME_PROCESSOR   #language en-US "Management Engine (ME)"
+
+#string STR_NO_ACTION                               #language en-US " "
+#string STR_CPU_MISMATCH_ACTION                     #language en-US "Please use identical CPU type."
+#string STR_EMPTY_SDR_ACTION                        #language en-US "Please update right SDR."
+#string STR_NO_TSOD_ACTION                          #language en-US "Please use DIMM with temperature sensor."
+#string STR_DISABLED_DIMM_ACTION                    #language en-US "Please remove the disabled DIMM."
+#string STR_POPULATION_DIMM_ACTION                  #language en-US "Please plug DIMM at right population."
+#string STR_OUTOFSOURCE_DIMM_ACTION                 #language en-US "Please enable Memory Mapped I/O above 4 GB item at SETUP to use 64bit MMIO."
+#string STR_INVALIDPSW_DIMM_ACTION                  #language en-US "Please put right password."
+#string STR_SELFULL_DIMM_ACTION                     #language en-US "Please clear SEL through EWS or SELVIEW utility."
+#string STR_PSWJUMP_DIMM_ACTION                     #language en-US "Recommend to remind user to install BIOS password as BIOS admin password is the master keys for several BIOS security features. "
+#string STR_NO_OPROMSPACE_DIMM_ACTION               #language en-US "Please disable OpRom at SETUP to save runtime memory."
+

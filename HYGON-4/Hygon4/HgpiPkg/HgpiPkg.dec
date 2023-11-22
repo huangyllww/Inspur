@@ -1,0 +1,501 @@
+#;*****************************************************************************
+#;
+#; 
+#; Copyright 2016 - 2023 CHENGDU HAIGUANG IC DESIGN CO., LTD. All Rights Reserved.
+#; 
+#; HYGON is granting you permission to use this software (the Materials)
+#; pursuant to the terms and conditions of your Software License Agreement
+#; with HYGON.  This header does *NOT* give you permission to use the Materials
+#; or any rights under HYGON's intellectual property.  Your use of any portion
+#; of these Materials shall constitute your acceptance of those terms and
+#; conditions.  If you do not agree to the terms and conditions of the Software
+#; License Agreement, please do not use any portion of these Materials.
+#; 
+#; CONFIDENTIALITY:  The Materials and all other information, identified as
+#; confidential and provided to you by HYGON shall be kept confidential in
+#; accordance with the terms and conditions of the Software License Agreement.
+#; 
+#; LIMITATION OF LIABILITY: THE MATERIALS AND ANY OTHER RELATED INFORMATION
+#; PROVIDED TO YOU BY HYGON ARE PROVIDED "AS IS" WITHOUT ANY EXPRESS OR IMPLIED
+#; WARRANTY OF ANY KIND, INCLUDING BUT NOT LIMITED TO WARRANTIES OF
+#; MERCHANTABILITY, NONINFRINGEMENT, TITLE, FITNESS FOR ANY PARTICULAR PURPOSE,
+#; OR WARRANTIES ARISING FROM CONDUCT, COURSE OF DEALING, OR USAGE OF TRADE.
+#; IN NO EVENT SHALL HYGON OR ITS LICENSORS BE LIABLE FOR ANY DAMAGES WHATSOEVER
+#; (INCLUDING, WITHOUT LIMITATION, DAMAGES FOR LOSS OF PROFITS, BUSINESS
+#; INTERRUPTION, OR LOSS OF INFORMATION) ARISING OUT OF HYGON'S NEGLIGENCE,
+#; GROSS NEGLIGENCE, THE USE OF OR INABILITY TO USE THE MATERIALS OR ANY OTHER
+#; RELATED INFORMATION PROVIDED TO YOU BY HYGON, EVEN IF HYGON HAS BEEN ADVISED OF
+#; THE POSSIBILITY OF SUCH DAMAGES.  BECAUSE SOME JURISDICTIONS PROHIBIT THE
+#; EXCLUSION OR LIMITATION OF LIABILITY FOR CONSEQUENTIAL OR INCIDENTAL DAMAGES,
+#; THE ABOVE LIMITATION MAY NOT APPLY TO YOU.
+#; 
+#; HYGON does not assume any responsibility for any errors which may appear in
+#; the Materials or any other related information provided to you by HYGON, or
+#; result from use of the Materials or any related information.
+#; 
+#; You agree that you will not reverse engineer or decompile the Materials.
+#; 
+#; NO SUPPORT OBLIGATION: HYGON is not obligated to furnish, support, or make any
+#; further information, software, technical information, know-how, or show-how
+#; available to you.  Additionally, HYGON retains the right to modify the
+#; Materials at any time, without notice, and is not obligated to provide such
+#; modified Materials to you.
+#; 
+#; 
+#;*****************************************************************************
+
+[Defines]
+  DEC_SPECIFICATION     = 0x00010005
+  PACKAGE_NAME          = HgpiPkg
+  PACKAGE_GUID          = DABFEFC6-5A79-444b-862A-1F6FE9F561FE
+  PACKAGE_VERSION       = 0.1
+
+[Includes]
+  Include
+
+[LibraryClasses]
+  OemHgpiCcxPlatformLib|Include/Library/OemHgpiCcxPlatformLib.h
+  HygonHeapLib|Include/Library/HygonHeapLib.h
+  OemPcieResetControlLib|HgpiPkg/Include/Library/OemPcieResetControlLib.h
+  OemGpioResetControlLib|HgpiPkg/Include/Library/OemGpioResetControlLib.h
+  FabricResourceManagerLib|Include/Library/FabricResourceManagerLib.h
+
+  #PSP Libs
+  HygonPspCommonLib|Include/Library/HygonPspCommonLib.h
+  HygonPspHpobLib|Include/Library/HygonPspHpobLib.h
+  HpcbLib|Include/Library/HpcbLib.h
+
+[Guids]
+  gEfiHygonHgpiPkgTokenSpaceGuid          = { 0xd4d8435f, 0xfffb, 0x4acb, { 0xa0, 0x4d, 0xff, 0xf, 0xad, 0x67, 0x7f, 0xe9 } }
+  gHygonMemoryInfoHobGuid                  = { 0x1bce3d14, 0xa5fe, 0x4a0b, { 0x9a, 0x8d, 0x69, 0xca, 0x5d, 0x98, 0x38, 0xd3 } }
+  gHygonHeapHobGuid                        = { 0xd97d161a, 0x16cd, 0x4ada, { 0xb9, 0xf6, 0xae, 0xc3, 0xf9, 0xfc, 0xcc, 0x2c } }
+  gHygonCapsuleStatusHobGuid               = { 0x3a8e17f2, 0x7895, 0x4fb6, { 0xa8, 0x6c, 0xde, 0x82, 0xd3, 0x65, 0x63, 0x1e } }
+  gHygonMemoryMbistHobGuid                 = { 0xfdd95c81, 0xea58, 0x4b51, { 0x99, 0x74, 0x82, 0xc1, 0x4a, 0x36, 0x55, 0xc7 } }
+
+[Protocols]
+  gHygonHeapHeaderProtocolGuid             = { 0xaf62673d, 0xdeda, 0x43ae, { 0x8f, 0x3, 0x9c, 0x2d, 0x89, 0xfd, 0x78, 0xda } }
+
+  ## Error Log Protocols
+  gHygonErrorLogServiceProtocolGuid        = {0x7ef3f75c, 0xae1f, 0x46fc, {0x87, 0x86, 0xe, 0xb4, 0xf2, 0x81, 0xb2, 0x3d}}
+  gHygonErrorLogFullProtocolGuid           = {0x38c2bd90, 0x7bac, 0x47f2, {0xb7, 0x25, 0x4, 0x9, 0xad, 0x7b, 0x8d, 0xe8}}
+  gHygonErrorLogAvailableProtocolGuid      = {0x8444f699, 0xdb97, 0x4f27, {0xb1, 0x1, 0x3b, 0x7b, 0x88, 0x9a, 0xb9, 0xd8}}
+  #PSP Protocols
+  gPspPlatformProtocolGuid               = {0xccf14a29, 0x37e0, 0x48ad, { 0x90, 0x5, 0x1f, 0x89, 0x62, 0x2f, 0xb7, 0x98 }}
+  ## Fch Protocols
+  gFchInitProtocolGuid                   = { 0xdb4a79ac, 0x5bbb, 0x4625, {0xa6, 0x9e, 0xfe, 0xbf, 0x9d, 0x6d, 0x95, 0xeb } }
+  gFchInitDonePolicyProtocolGuid         = { 0xc63c0c73, 0xf612, 0x4c02, {0x84, 0xa3, 0xc6, 0x40, 0xad, 0xb, 0xa6, 0x22 } }
+  gFchMultiFchInitProtocolGuid           = { 0xbb6afbf4, 0x1b0d, 0x483d, {0x96, 0x87, 0xee, 0x02, 0x3c, 0x1b, 0x54, 0x55 } }
+  gFchSmmGpiDispatch2ProtocolGuid        = { 0x7051ab6d, 0x9ec2, 0x42eb, { 0xa2, 0x13, 0xde, 0x48, 0x81, 0xf1, 0xf7, 0x87 } }
+  gFchSmmIoTrapDispatch2ProtocolGuid     = { 0x91288fc4, 0xe64b, 0x4ef9, { 0xa4, 0x63, 0x66, 0x88, 0x0, 0x71, 0x7f, 0xca } }
+  gFchSmmPeriodicalDispatch2ProtocolGuid = { 0x736102f1, 0x9584, 0x44e7, { 0x82, 0x8a, 0x43, 0x4b, 0x1e, 0x67, 0x5c, 0xc4 } }
+  gFchSmmPwrBtnDispatch2ProtocolGuid     = { 0xa365240e, 0x56b0, 0x426d, { 0x83, 0xa, 0x30, 0x66, 0xc6, 0x81, 0xbe, 0x9a } }
+  gFchSmmSwDispatch2ProtocolGuid         = { 0x881b4ab6, 0x17b0, 0x4bdf, { 0x88, 0xe2, 0xd4, 0x29, 0xda, 0x42, 0x5f, 0xfd } }
+  gFchSmmSxDispatch2ProtocolGuid         = { 0x87e2a6cf, 0x91fb, 0x4581, { 0x90, 0xa9, 0x6f, 0x50, 0x5d, 0xdc, 0x1c, 0xb2 } }
+  gFchSmmUsbDispatch2ProtocolGuid        = { 0xfbbb2ea9, 0xce0e, 0x4689, { 0xb3, 0xf0, 0xc6, 0xb8, 0xf0, 0x76, 0xbd, 0x20 } }
+  gFchSmmMiscDispatchProtocolGuid        = { 0x13bd659b, 0xb4c6, 0x47da, {0x9b, 0x22, 0x11, 0x50, 0xd4, 0xf3, 0xb, 0xda } }
+  gFchSmmApuRasDispatchProtocolGuid      = { 0xf871ee59, 0x29d2, 0x4b15, {0x9e, 0x67, 0xaf, 0x32, 0xcd, 0xc1, 0x41, 0x73 } }
+  gFchSmmUsbDispatchProtocolGuid         = { 0x59053b0d, 0xeeb8, 0x4379, {0xb1, 0xc8, 0x14, 0x5f, 0x1b, 0xb, 0xe4, 0xb9 } }
+  ## Nbio Protocols
+  gHygonHotplugDescProtocolGuid            = {0xe8d7e476, 0xedab, 0x4a80, {0x91, 0x19, 0xea, 0x5b, 0xcc, 0xc4, 0xc1, 0x95}}
+  gHygonNbioPcieAerProtocolGuid            = { 0xe48c773, 0x4445, 0x40d5, {0x9f, 0x11, 0x5f, 0x25, 0x6d, 0x19, 0xc1, 0x7b}}
+  #HyGx CXL
+  gHygonNbioCxl11ServicesProtocolGuid    = {0x36e8e9f5, 0x2873, 0x4c8b, {0x95, 0x18, 0x1e, 0x1f, 0xa7, 0x6c, 0x2e, 0x97}}
+  gHygonNbioCxl20ServicesProtocolGuid    = {0x90d12856, 0x9b54, 0x467c, {0xbb, 0x7b, 0xd4, 0x5b, 0x12, 0x51, 0x0, 0x6c}}
+  gHygonCxlManagerProtocolGuid           = {0x381ed246, 0x6c38, 0x467b, {0x95, 0x2a, 0x3e, 0x34, 0x27, 0xe5, 0xd7, 0x9}}
+  gHygonCxl20DeviceProtocolGuid          = {0xda63db34, 0xe280, 0x41e9, {0xbd, 0x24, 0xe4, 0x86, 0xaa, 0x69, 0x21, 0xa3}}
+
+  #Universal
+  gHygonSmbiosDxeInitCompleteProtocolGuid  = {0x607614f9, 0x3f1c, 0x45dd, {0x9c, 0x78, 0x1, 0x72, 0x3b, 0xc3, 0x85, 0xd9}}
+  gHygonAcpiDxeInitCompleteProtocolGuid    = {0x2148aa15, 0x700c, 0x4f75, {0x87, 0xaf, 0x10, 0xa4, 0xdd, 0xbb, 0xb9, 0xe1}}
+  gHygonCapsuleSmmHookProtocolGuid         = {0x4fc43bbe, 0x1433, 0x4951, {0xac, 0x2d, 0xd, 0x1, 0xfe, 0xc0, 0xe, 0xb1}}
+  gHygonAcpiHmatServicesProtocolGuid       = {0x8e65f0a6, 0x4df4, 0x4aa8, {0x85, 0x9a, 0x71, 0x3d, 0xb0, 0x42, 0x7e, 0xb4}}
+
+  # Ccx
+  gHygonMpServicesPreReqProtocolGuid       = {0x33f4458, 0x9c78, 0x42be, { 0x8e, 0x3d, 0x7b, 0xc6, 0x34, 0xb9, 0x5d, 0xe }}
+  gHygonFabricResourceManagerServicesProtocolGuid = {0xaf96f126, 0x64b6, 0x43dc, {0x9e, 0x6d, 0x76, 0x3f, 0xf1, 0x9b, 0xf3, 0x96}}
+
+  # RAS
+  gHygonRasApeiProtocolGuid                = {0xe9dbcc60, 0x8f93, 0x47ed, {0x84, 0x78, 0x46, 0x78, 0xf1, 0x9f, 0x73, 0x4a}}
+  gHygonRasSmmProtocolGuid                 = {0x4E41A9E3, 0x46AB, 0x1549, {0x06, 0x44, 0xB6, 0xA5, 0x55, 0x29, 0x89, 0x77}}
+
+  # HGPI Version String Protocol
+  gHygonVersionStringProtocolGuid          = {0x144b3f95, 0x35, 0x4918, {0x97, 0xd2, 0xfa, 0xfd, 0xcd, 0x74, 0x74, 0x15 }}
+  
+  gByoRasPolicyDataProtocolGuid            = { 0x6149bab7, 0x75c8, 0x40ea, { 0x8a, 0x39, 0x6d, 0xc, 0x8f, 0xe3, 0x2c, 0xa } }    # byo231031 +
+
+[Ppis]
+  gHygonMemoryInfoHobPpiGuid               = { 0xba16e587, 0x1d66, 0x41b7, { 0x9b, 0x52, 0xca, 0x4f, 0x2c, 0xad, 0xd, 0xc8 } }
+
+  ## Error Log Ppis
+  gHygonErrorLogServicePpiGuid             = {0x7cdf73a2, 0x51a9, 0x4c0b, {0xaa, 0x68, 0x3c, 0x46, 0x91, 0x75, 0x76, 0xf9}}
+  gHygonErrorLogFullPpiGuid                = {0xcbe31239, 0x532c, 0x4c27, {0x8f, 0x4e, 0x65, 0x7b, 0x3c, 0x39, 0xa5, 0x56}}
+  gHygonErrorLogAvailablePpiGuid           = {0xb2b0fa81, 0x8b34, 0x4351, {0xa3, 0x9c, 0x8f, 0x5a, 0x88, 0x60, 0x19, 0x47}}
+
+  # PCIe Complex Ppis
+  gHygonNbioPcieComplexPpiGuid             = {0x324a4e15, 0x26ed, 0x4679, { 0xa9, 0xef, 0xba, 0x8a, 0x8f, 0xe7, 0x9a, 0xdb}}
+  gHygonNbioPcieComplexFm15PpiGuid         = {0xdcd2770d, 0xede5, 0x41d0, { 0xa8, 0x84, 0xa8, 0x16, 0x8a, 0xcc, 0xa1, 0x5d}}
+  gHygonNbioPcieGen1TrainingCompleteFm15PpiGuid = {0x3cc7c387, 0xee90, 0x4495, {0x98, 0x5, 0x6c, 0xf6, 0x38, 0x5d, 0xee, 0xd4}}
+
+  gHygonFchInitPpiGuid                     = { 0x3fb7a27a, 0x33f3, 0x483d, {0xbc, 0x6f, 0x7a, 0x51, 0xbe, 0xf5, 0x3d, 0xa } }
+  gHygonFchMultiFchInitPpiGuid             = { 0xa5640daf, 0xfb8b, 0x4265, {0xbf, 0xab, 0x9c, 0x77, 0xf4, 0xe9, 0xd6, 0x20} }
+
+  ## SOC HGPI Group Identification Ppi
+  gHygonSocHgpiGroupIdentificationPpiGuid = {0x970e2d2f, 0x52f7, 0x483d, {0x94, 0x5e, 0x30, 0xfd, 0x4b, 0x34, 0xb2, 0x17}}
+  gHygonPcdInitReadyPpiGuid = {0x60db76a0, 0x5d55, 0x47bb, {0x97, 0xf, 0x34, 0xd8, 0xd0, 0xbe, 0x36, 0x9e}}
+
+  # HGPI Version String Ppi
+  gHygonVersionStringPpiGuid = {0x17632cbe, 0x6c80, 0x49b6, {0x82, 0x7, 0x12, 0xb5, 0x3d, 0x9b, 0x25, 0x70}}
+
+  ## Universal
+  gCapsuleUpdateDetectedPpiGuid = { 0x745dfc73, 0xc401, 0x4ced, { 0x8d, 0x3b, 0x1a, 0x82, 0xf3, 0xda, 0xdc, 0xf8 } }
+
+[PcdsFeatureFlag]
+
+[PcdsFixedAtBuild]
+  #IDS PCDs
+   #Switch for HGPI_TESTPOINT
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHgpiTestPointEnable|TRUE|BOOLEAN|0x00020001               # TRUE:   Enable
+                                                                                              # FALSE:  Disable
+
+  #Specify HGPI_TESTPOINT output width, Master token: PcdHgpiTestPointEnable
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHgpiTestPointWidth|3|UINT8|0x00020002                     # 1: AccessWidth8
+                                                                                              # 2: AccessWidth16
+                                                                                              # 3: AccessWidth32
+
+  #Specify HGPI_TESTPOINT output IO port, Master token: PcdHgpiTestPointEnable
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdIdsDebugPort|0x80|UINT16|0x00020003
+
+  #Switch for Debug Print function
+# gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonIdsDebugPrintEnable|FALSE|BOOLEAN|0x00020004            # byo230914 -
+
+  #Specify the filter for IdsDebugPrint, refer Library/IdsLib.h for details, Master token: PcdHygonIdsDebugPrintEnable
+  #0x100401008A30042C (GNB_TRACE | PCIE_MISC | NB_MISC | GFX_MISC  | CPU_TRACE | MEM_FLOW | MEM_STATUS | MEM_PMU | FCH_TRACE | MAIN_FLOW| TEST_POINT | PSP_TRACE)
+  #0x100401008A300408 (GNB_TRACE | PCIE_MISC | NB_MISC | GFX_MISC  | CPU_TRACE | MEM_FLOW | FCH_TRACE  | MAIN_FLOW| TEST_POINT | PSP_TRACE)
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonIdsDebugPrintFilter|0x100401000A300408|UINT64|0x00020005
+
+  #Switch for HDTOUT translation layer of debug print.
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonIdsDebugPrintHdtOutEnable|TRUE|BOOLEAN|0x00020006       #TRUE:  Enable
+                                                                                              #FALSE: Disable
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonIdsDebugPrintHdtOutForceEnable|FALSE|BOOLEAN|0x00020007 #TRUE:  Enable
+                                                                                              #FALSE: Disable
+  #Switch for Redirect IO layer of debug print, normally used on emulation platform
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonIdsDebugPrintRedirectIOEnable|FALSE|BOOLEAN|0x00020008  #TRUE:  Enable
+                                                                                              #FALSE: Disable
+
+  #Switch for Serial port support of HGPI debug print, NOTE, HGPI will not init the serial port, serial port should be initialized
+  #before call HGPI debug print
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonIdsDebugPrintSerialPortEnable|FALSE|BOOLEAN|0x00020009  #TRUE:  Enable
+                                                                                              #FALSE: Disable
+
+  #Switch for serial port cable connection check, if your serial device can't support cable detection, please set it to FALSE
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonIdsDebugPrintSerialPortDetectCableConnection|TRUE|BOOLEAN|0x0002000A  #TRUE:  Enable
+                                                                                                            #FALSE: Disable
+
+  #Specify the IO port for serial out
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonIdsDebugPrintSerialPort|0x3F8|UINT64|0x0002000B         # If it's IO port, it must < 0x10000
+                                                                                              # If it's Memory, it must >= 0x10000
+
+  #Switch for IDS_HOOK
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonIdsHookEnable|TRUE|BOOLEAN|0x0002000C                   #TRUE:  Enable
+                                                                                              #FALSE: Disable
+  #Switch for HGPI ASSERT
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHgpiAssertEnable|TRUE|BOOLEAN|0x0002000D                   #TRUE:  Enable HGPI ASSERT
+                                                                                               #FALSE: Disable HGPI ASSERT
+
+  #Fch Fixed PCDs
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonFchCfgSmbus0BaseAddress|0xB00|UINT16|0x0002F001
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonFchCfgSioPmeBaseAddress|0xE00|UINT16|0x0002F003
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonFchCfgAcpiPm1EvtBlkAddr|0x400|UINT16|0x0002F004
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonFchCfgAcpiPm1CntBlkAddr|0x404|UINT16|0x0002F005
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonFchCfgAcpiPmTmrBlkAddr|0x408|UINT16|0x0002F006
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonFchCfgCpuControlBlkAddr|0x410|UINT16|0x0002F007
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonFchCfgAcpiGpe0BlkAddr|0x420|UINT16|0x0002F008
+  #gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonFchCfgSmiCmdPortAddr|0xB0|UINT16|0x0002F009
+
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdFchOemBeforePciRestoreSwSmi|0xD3|UINT8|0x0002F010
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdFchOemAfterPciRestoreSwSmi|0xD4|UINT8|0x0002F011
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdFchOemEnableAcpiSwSmi|0xA0|UINT8|0x0002F012
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdFchOemDisableAcpiSwSmi|0xA1|UINT8|0x0002F013
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdFchOemSpiUnlockSwSmi|0xAA|UINT8|0x0002F014
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdFchOemSpiLockSwSmi|0xAB|UINT8|0x0002F015
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdFchOemStartTimerSmi|0xBC|UINT8|0x0002F016
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdFchOemStopTimerSmi|0xBD|UINT8|0x0002F017
+
+  #CCX
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonNumberOfIoApics|3|UINT8|0x000CA000                      # BR
+
+  #Fabric
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonBottomMmioReservedForPrimaryRb|0xFE000000|UINT32|0x000CC100  # From the address specified by this PCD to 0xFEE0_0000 (Local APIC) is reserved for devices connect to primary Rb as MMIO space 
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonNumberOfPhysicalSocket|1|UINT8|0x000CC103               # Number of physical socket.
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdApSyncFlagMemAddress|0x01000000|UINT32|0x000CC104
+  
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonMmioSizePerRbForNonPciDevice|0x800000|UINT32|0x000CC105 # Reserved appropriate size per Die for non PCI devices such as PSP, IOMMU... Defalut is 8M per Die
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonMmioSizePerRbForNonPciDeviceAbove4G|0x20000000|UINT32|0x000CC106 # Reserved appropriate size per Die for non PCI devices such as PSP, IOMMU... Defalut is 512M per Die
+
+  # Fixed-MTRR settings
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonFixedMtrr250|0xFFFFFFFFFFFFFFFF|UINT64|0x000CC110       # MTRR_FIX64k_00000 (MSR_0000_0250) setting for all APs, BSP may be impacted because MTRRs are shared. 0xFFFFFFFFFFFFFFFF --- all APs sync with BSP
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonFixedMtrr258|0xFFFFFFFFFFFFFFFF|UINT64|0x000CC111       # MTRR_FIX16k_80000 (MSR_0000_0258) setting for all APs, BSP may be impacted because MTRRs are shared. 0xFFFFFFFFFFFFFFFF --- all APs sync with BSP
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonFixedMtrr259|0xFFFFFFFFFFFFFFFF|UINT64|0x000CC112       # MTRR_FIX16k_A0000 (MSR_0000_0259) setting for all APs, BSP may be impacted because MTRRs are shared. 0xFFFFFFFFFFFFFFFF --- all APs sync with BSP
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonFixedMtrr268|0xFFFFFFFFFFFFFFFF|UINT64|0x000CC113       # MTRR_FIX4k_C0000  (MSR_0000_0268) setting for all APs, BSP may be impacted because MTRRs are shared. 0xFFFFFFFFFFFFFFFF --- all APs sync with BSP
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonFixedMtrr269|0xFFFFFFFFFFFFFFFF|UINT64|0x000CC114       # MTRR_FIX4k_C8000  (MSR_0000_0269) setting for all APs, BSP may be impacted because MTRRs are shared. 0xFFFFFFFFFFFFFFFF --- all APs sync with BSP
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonFixedMtrr26A|0xFFFFFFFFFFFFFFFF|UINT64|0x000CC115       # MTRR_FIX4k_D0000  (MSR_0000_026A) setting for all APs, BSP may be impacted because MTRRs are shared. 0xFFFFFFFFFFFFFFFF --- all APs sync with BSP
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonFixedMtrr26B|0xFFFFFFFFFFFFFFFF|UINT64|0x000CC116       # MTRR_FIX4k_D8000  (MSR_0000_026B) setting for all APs, BSP may be impacted because MTRRs are shared. 0xFFFFFFFFFFFFFFFF --- all APs sync with BSP
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonFixedMtrr26C|0x1818181818181818|UINT64|0x000CC117       # MTRR_FIX4k_E0000  (MSR_0000_026C) setting for all APs, BSP may be impacted because MTRRs are shared. 0xFFFFFFFFFFFFFFFF --- all APs sync with BSP
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonFixedMtrr26D|0x1818181818181818|UINT64|0x000CC118       # MTRR_FIX4k_E8000  (MSR_0000_026D) setting for all APs, BSP may be impacted because MTRRs are shared. 0xFFFFFFFFFFFFFFFF --- all APs sync with BSP
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonFixedMtrr26E|0x1818181818181818|UINT64|0x000CC119       # MTRR_FIX4k_F0000  (MSR_0000_026E) setting for all APs, BSP may be impacted because MTRRs are shared. 0xFFFFFFFFFFFFFFFF --- all APs sync with BSP
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonFixedMtrr26F|0x1818181818181818|UINT64|0x000CC11A       # MTRR_FIX4k_F8000  (MSR_0000_026F) setting for all APs, BSP may be impacted because MTRRs are shared. 0xFFFFFFFFFFFFFFFF --- all APs sync with BSP
+
+  #ACPI
+  #  Cpu SSDT
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonAcpiCpuSsdtProcessorScopeName0|0x43|UINT8|0x000AC001    # ScopeName0 = 'C'; BR SM
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonAcpiCpuSsdtProcessorScopeName1|0x30|UINT8|0x000AC002    # ScopeName1 = '0'; BR SM
+
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonAcpiCpuSsdtProcessorScopeInSb|FALSE|BOOLEAN|0x000AC003  # True  - processor scope in _SB; BR SM
+                                                                                              # False - processor scope in _PR
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonAcpiTableHeaderOemId|"HYGON"|VOID*|0x000AC004           # Less than or equal to 6 bytes; BR SM
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonAcpiTableHeaderOemTableId|"EdkTable"|VOID*|0x000AC005   # Less than or equal to 8 bytes; BR SM
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonAcpiCpuSsdtTableHeaderOemTableId|"HGN CPU"|VOID*|0x000AC006   # Less than or equal to 8 bytes; BR SM
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonAcpiAlibSsdtTableHeaderOemTableId|"HGN ALIB"|VOID*|0x000AC007 # Less than or equal to 8 bytes; BR SM
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonAcpiPtSsdtTableHeaderOemTableId|"HGN PT"|VOID*|0x000AC008   # Less than or equal to 8 bytes; BR SM
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonAcpiCditTableHeaderOemTableId|"HGN CDIT"|VOID*|0x000AC009   # Less than or equal to 8 bytes; BR SM
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonAcpiCratTableHeaderOemTableId|"HGN CRAT"|VOID*|0x000AC00A   # Less than or equal to 8 bytes; BR SM
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonAcpiSlitTableHeaderOemTableId|"HGN SLIT"|VOID*|0x000AC00B   # Less than or equal to 8 bytes; BR SM
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonAcpiSratTableHeaderOemTableId|"HGN SRAT"|VOID*|0x000AC00C   # Less than or equal to 8 bytes; BR SM
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonAcpiIvrsTableHeaderOemTableId|"HGN IVRS"|VOID*|0x000AC00D   # Less than or equal to 8 bytes; BR SM
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonAcpiMsctTableHeaderOemTableId|"HGN MSCT"|VOID*|0x000AC00E   # Less than or equal to 8 bytes; BR SM
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonAcpiHmatTableHeaderOemTableId|"HGN HMAT"|VOID*|0x000AC010
+
+  #SMBIOS
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonRemoveSmbios|FALSE|BOOLEAN|0x00001000
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonSmbiosSocketDesignationSocket0|"Unknown"|VOID*|0x00001001
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonSmbiosSerialNumberSocket0|"Unknown"|VOID*|0x00001002
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonSmbiosAssetTagSocket0|"Unknown"|VOID*|0x00001003
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonSmbiosPartNumberSocket0|"Unknown"|VOID*|0x00001004
+
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonSmbiosSocketDesignationSocket1|"Unknown"|VOID*|0x00001005
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonSmbiosSerialNumberSocket1|"Unknown"|VOID*|0x00001006
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonSmbiosAssetTagSocket1|"Unknown"|VOID*|0x00001007
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonSmbiosPartNumberSocket1|"Unknown"|VOID*|0x00001008
+
+  #SMBIOS socket2 socket3
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonSmbiosSocketDesignationSocket2|"Unknown"|VOID*|0x00001040
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonSmbiosSerialNumberSocket2|"Unknown"|VOID*|0x00001041
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonSmbiosAssetTagSocket2|"Unknown"|VOID*|0x000010042
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonSmbiosPartNumberSocket2|"Unknown"|VOID*|0x000010043
+
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonSmbiosSocketDesignationSocket3|"Unknown"|VOID*|0x00001044
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonSmbiosSerialNumberSocket3|"Unknown"|VOID*|0x00001045
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonSmbiosAssetTagSocket3|"Unknown"|VOID*|0x00001046
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonSmbiosPartNumberSocket3|"Unknown"|VOID*|0x00001047
+
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonSmbiosT16MaximumCapacity|0x01000000|UINT32|0x00001009   # 4G  - 0x00400000
+                                                                                              # 8G  - 0x00800000
+                                                                                              # 16G - 0x01000000
+                                                                                              # 32G - 0x02000000
+                                                                                              # 64G - 0x04000000
+  
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonSmbiosT16ExtMaximumCapacity|0x0000020000000000|UINT64|0x00001030   # 2TB  - 0x0000020000000000
+
+[PcdsDynamic,PcdsDynamicEx]
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonMemEccEnable|TRUE|BOOLEAN|0x00030001
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonMemUmaEnable|TRUE|BOOLEAN|0x00030002
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonMemDmiEnable|TRUE|BOOLEAN|0x00030003
+
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonCStateMode|2|UINT8|0x000CC001                # 0 - CStateModeDisabled, 1 - CStateModeC1, 2 - CStateModeC6; BR SM
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonCStateIoBaseAddress|0x413|UINT16|0x000CC002  # Setting IoBaseAddress = 0 to disable IoCstate and CC6; BR SM
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonPowerCeiling|35000|UINT32|0x000CC003         # BR
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonCpbMode|0x1|UINT8|0x000CC004                 # 0 - CPB disabled, 1 - Auto ;BR SM
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonHardwarePrefetchMode|0|UINT8|0x000CC005      # See enum HARDWARE_PREFETCH_MODE; BR SM
+                                                                                   # 0 - HARDWARE_PREFETCHER_AUTO;
+                                                                                   # 1 - DISABLE_HW_PREFETCHER_TRAINING_ON_SOFTWARE_PREFETCHES;
+                                                                                   # 2 - DISABLE_L1_PREFETCHER;
+                                                                                   # 3 - DISABLE_L2_STRIDE_PREFETCHER
+                                                                                   # 4 - DISABLE_HARDWARE_PREFETCH
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonSoftwarePrefetchMode|0|UINT8|0x000CC006      # See enum SOFTWARE_PREFETCH_MODE; BR SM
+                                                                                   # 0 - SOFTWARE_PREFETCHES_AUTO
+                                                                                   # 1 - DISABLE_SOFTWARE_PREFETCHES
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonHgpiPstatePolicy|0|UINT8|0x000CC007         # 0 - PSD is dependent or independent per processor default; BR SM
+                                                                                   # 1 - PSD is forced dependent
+                                                                                   # 2 - PSD is forced independent
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonDownCoreMode|0|UINT8|0x000CC008              # See enum CCX_DOWN_CORE_MODE; BR SAT
+                                                                                   # Note that if down coring occurs, the system must be power cycled
+                                                                                   # to restore disabled cores, or before attempting to down core further
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonSmtMode|0x1|UINT8|0x000CC009                 # 0 - SMT disabled, 1 - SMT2; 2 - SMT4;
+
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonAcpiCpuSsdt|TRUE|BOOLEAN|0x000CC00A          # BR SM
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonAcpiCpuSsdtPct|TRUE|BOOLEAN|0x000CC00B       # BR SM
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonAcpiCpuSsdtPss|TRUE|BOOLEAN|0x000CC00C       # BR SM
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonAcpiCpuSsdtXpss|TRUE|BOOLEAN|0x000CC00D      # BR SM
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonAcpiCpuSsdtPsd|TRUE|BOOLEAN|0x000CC00E       # BR SM
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonAcpiCpuSsdtPpc|TRUE|BOOLEAN|0x000CC00F       # BR SM
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonAcpiCstC1|TRUE|BOOLEAN|0x000CC010            # BR SM
+
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonAcpiCrat|TRUE|BOOLEAN|0x000CC011             # BR SM
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonAcpiCdit|TRUE|BOOLEAN|0x000CC012             # BR SM
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonAcpiWhea|TRUE|BOOLEAN|0x000CC013             # BR SM
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonAcpiSrat|TRUE|BOOLEAN|0x000CC014             # BR SM
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonAcpiSlit|TRUE|BOOLEAN|0x000CC015             # BR SM
+
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonHgpiDmi|TRUE|BOOLEAN|0x000CC016             # BR SM
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonAcpiHmat|FALSE|BOOLEAN|0x000CC020
+
+  # Dynamic PCD used to indicate whether or not the current config supports S3
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonAcpiS3Support|FALSE|BOOLEAN|0x000CC017        # BR SAT
+                                                                                   # TRUE - S3 can be enabled
+                                                                                   # FALSE - S3 support should be disabled
+
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonCpuWdtEn|TRUE|BOOLEAN|0x000CC018             # SAT
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonCpuWdtTimeout|0x0000|UINT16|0x000CC019       # SAT
+                                                                                   #   RESTRICTION: When both CPU WDT & DF WDT are enable, the CPU WDT timeout must be greater than or equal to the DF CCM WDT timeout limit
+                                                                                   #    upper 8 bits - CpuWdtCountSel | lower 8 bits - CpuWdtTimeBase
+                                                                                   #      0 - 4095                        00 - 1.31ms
+                                                                                   #      1 - 2047                        01 - 1.28us                     
+                                                                                   #      2 - 1023                        Reserved                        
+                                                                                   #      3 - 511
+                                                                                   #      4 - 255
+                                                                                   #      5 - 127
+                                                                                   #      6 - 63
+                                                                                   #      7 - 31
+                                                                                   #      8 - 8191
+                                                                                   #      9 - 16383
+                                                                                   #      Reserved
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonAcpiMsct|TRUE|BOOLEAN|0x000CC01A             # BR SM
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonL1StreamPrefetcher|TRUE|BOOLEAN|0x000CC01B   # SM RV
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonL2StreamPrefetcher|TRUE|BOOLEAN|0x000CC01C   # SM RV
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonHgpiSmee|FALSE|BOOLEAN|0x000CC01D            # Smee
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonAbove4GMmioLimitBit|0x2D|UINT8|0x000CC01E    # Above 64 Mmio Limit Bit from 43 to 48 default 45
+
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonFabricPstateSupport|TRUE|BOOLEAN|0x000DF000  # BR
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonFabricEccScrubRedirection|TRUE|BOOLEAN|0x000DF001  # SAT
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonFabricDramScrubTime|24|UINT8|0x000DF002      # SAT
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonFabricWdtCfg|0xFF|UINT8|0x000DF003           # SAT
+                                                                                   # 0 - 1.31ms
+                                                                                   # 1 - 1.28us
+                                                                                   # 2 - 10ns
+                                                                                   # 3 - Disabled
+                                                                                   # 0xFF - Auto
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonFabricWdtCntSel|0xFF|UINT8|0x000DF004        # SAT
+                                                                                   # 0: 31
+                                                                                   # 1: 127
+                                                                                   # 2: 255
+                                                                                   # 3: 511
+                                                                                   # 4: 1023
+                                                                                   # 5: 2047
+                                                                                   # 6: 4095
+                                                                                   # 7: 16383
+                                                                                   # 0xFF - Auto
+
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonDfCStateMode|1|UINT8|0x000DF009              # 0 - DF Cstate disable, 1 - DF Cstate enable
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonFabricPciBusMap|{0x00}|VOID*|0x000DF00A      # Define the pci bus length for logic nbio/root bridge in one byte,starting with byte 0,the total buses must be 256.
+
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonFchCfgSmiCmdPortAddr|0xB0|UINT16|0x0003FFC0
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonFchApuRasSmiSupport|FALSE|BOOLEAN|0x0003FFC1
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonMmioAbove4GLimit|0xFFFFFFFFFFFFFFFF|UINT64|0x0003FFC2   # TOM2 ~ PcdHygonMmioAbove4GLimit is total above 4G MMIO will be used
+                                                                                              # if PcdHygonMmioAbove4GLimit <= TOM2 or 4G, there's no above 4G MMIO
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonFabricResourceDefaultMap|FALSE|BOOLEAN|0x0003FFC3 # TRUE - MMIO/IO distribution would apply the default strategy (evenly)
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdNumaNodePerSocket|0x04|UINT8|0x0003FFC4
+  
+  #NBIO
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonPcieSubsystemDeviceID|0x1483|UINT16|0x00041500  # SAT
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonPcieSubsystemVendorID|0x1D94|UINT16|0x00041501  # SAT
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonCfgGnbPcieSSID|0x12341D94|UINT32|0x0004F010     # BR
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonCfgGnbIGPUSSID|0|UINT32|0x00041502              # BR
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonCfgGnbHDAudioSSID|0x14571D94|UINT32|0x00041503           # BR 
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdCfgNbioSsid|0|UINT32|0x00041504                    # SAT Subsystem ID/Subsystem Vendor ID 
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdCfgIommuSsid|0|UINT32|0x00041505                   # SAT Subsystem ID/Subsystem Vendor ID 
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdCfgPspccpSsid|0x14561D94|UINT32|0x00041506                  # SAT Subsystem ID/Subsystem Vendor ID 
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdCfgNtbccpSsid|0x14681D94|UINT32|0x00041507                  # SAT Subsystem ID/Subsystem Vendor ID 
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdCfgXgbeSsid|0x14581D94|UINT32|0x00041508                    # SAT Subsystem ID/Subsystem Vendor ID 
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdCfgNbifF0Ssid|0x145A1D94|UINT32|0x00041509                  # SAT Subsystem ID/Subsystem Vendor ID  
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdCfgNbifRCSsid|0|UINT32|0x0004150A                  # SAT Subsystem ID/Subsystem Vendor ID 
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdCfgNtbSsid|0|UINT32|0x0004150B                     # SAT Subsystem ID for NTB devices
+
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdCfgACSEnable|TRUE|BOOLEAN|0x0004F002
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHotplugI2cAddress|0x70|UINT8|0x0004F003
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdEarlyBmcLinkTraining|FALSE|BOOLEAN|0x0004F004   # SAT Server
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdEarlyBmcLinkSocket|0xFF|UINT8|0x0004F005        # SAT Server
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdEarlyBmcLinkDie|0xFF|UINT8|0x0004F006           # SAT Server
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdCfgPcieAriSupport|FALSE|BOOLEAN|0x0004F007
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdCfgHdAudioEnable|FALSE|BOOLEAN|0x0004F008
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHotplugSlotIndex|0x0|UINT8|0x0004F009
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdPcieLinkTrainingType|0x0|UINT8|0x0004F00A
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdPcieSyncReset|FALSE|BOOLEAN|0x0004F00B
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdPcie50PrecodingEn|TRUE|BOOLEAN|0x0004F011
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdPcie50ByPassEQ|0x0|UINT8|0x0004F012
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdPcie4Symbol|0x0|UINT8|0x0004F013
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdPcieAspmControl|0xFF|UINT8|0x0004F014
+
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonDisableSideband|0|BOOLEAN|0x0004F00C         # 1 = hot plug controller ignores sideband signals 
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonDisableL1wa|0|BOOLEAN|0x0004F00D             # 1 = disable hot plug controller form enforcing valid device presence during L1 hot remove 
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonDisableBridgeDis|0|BOOLEAN|0x0004F00E        # 1 = disable register update of BridgeDis based on sideband 
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonDisableIrqPoll|0|BOOLEAN|0x0004F00F          # 1 = hot plug controller holds root port IRQ until DL_Active is set  
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonIrqSetBridgeDis|0|BOOLEAN|0x0004F022         # 1 = register control of BridgeDis depends only on DL_Active 
+
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonNbioPoisonConsumption|FALSE|BOOLEAN|0x0004F020  # SAT
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonNbioRASControl|FALSE|BOOLEAN|0x0004F021         # SAT
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonDeterminismControl|TRUE|BOOLEAN|0x0004F023     # SAT # FALSE - Power, TRUE - Performance (SL2 ONLY)
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygoncTDP|0x00|UINT32|0x0004F024                  # SAT
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonSataEnable|TRUE|BOOLEAN|0x0004F025           # SAT
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonPSIDisable|FALSE|BOOLEAN|0x0004F026          # SAT
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdCfgIommuSupport|TRUE|BOOLEAN|0x0004F027
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdEfficiencyOptimizedMode|FALSE|BOOLEAN|0x0004F029 # SAT
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdEgressPoisonSeverityLo|0x4|UINT32|0x0004F02A
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdEgressPoisonSeverityHi|0x30011|UINT32|0x0004F02B
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonNbioReportEdbErrors|FALSE|BOOLEAN|0x0004F02C
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonTDPBoost|0x0|UINT8|0x0004F02D
+  #HYGX CXL
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdCfgCxlEnable|TRUE|BOOLEAN|0x0004E001
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdCxlAspm|0x00|UINT8|0x0004E002      #BIT0: L0S enabled; BIT1: L1 enabled
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdCxlMemAttr|0x00|UINT8|0x0004E003   #Set CXL memory attribute 0:Reserved; 1, Available; 2:EFI_MEMORY_SP
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdReportErrorsToRcec|FALSE|BOOLEAN|0x0004E004
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdCpmCxlErrorReport|FALSE|BOOLEAN|0x0004E005 #Report CXL error to APEI
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdCxlIoArbWeights|0x00|UINT8|0x0004E006
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdCxlCacheMemArbWeights|0x00|UINT8|0x0004E007
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdCxlMemValidation|FALSE|BOOLEAN|0x0004E008
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdCxl11ReservedMmioSize|0x200000|UINT32|0x0004E009
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdCxlCdatSupport|FALSE|BOOLEAN|0x0004E00A
+
+  #Fan table control
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdForceFanPwmEn|0x00|UINT8|0x0004F031
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdForceFanPwm|0x00|UINT8|0x0004F032
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdFanTableOverride|0x00|UINT8|0x0004F033
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdFanTableHysteresis|0x00|UINT8|0x0004F034
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdFanTableTempLow|0x00|UINT8|0x0004F035
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdFanTableTempMed|0x00|UINT8|0x0004F036
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdFanTableTempHigh|0x00|UINT8|0x0004F037
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdFanTableTempCritical|0x00|UINT8|0x0004F038
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdFanTablePwmLow|0x00|UINT8|0x0004F039
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdFanTablePwmMed|0x00|UINT8|0x0004F03A
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdFanTablePwmHigh|0x00|UINT8|0x0004F03B
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdFanTablePwmFreq|0x00|UINT8|0x0004F03C
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdFanTablePolarity|0x00|UINT8|0x0004F03D
+
+  #Overclocking Control
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdOcDisable|FALSE|BOOLEAN|0x0004F040
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdOcVoltageMax|0x00|UINT16|0x0004F041
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdOcFrequencyMax|0x00|UINT16|0x0004F042
+
+  #Ras Feature Control
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdMceSwSmiData|0x80|UINT8|0x000A5001                       # SAT
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdMcaErrThreshEn|TRUE|BOOLEAN|0x000A5004                   # SAT
+  #
+  # About PcdMcaErrThreshCount:
+  #   The valid range is 0x000~0xFFF.
+  #   If the value of PcdMcaErrThreshCount is equal to 0xFFFF, Hgpi will automatically set this PCD by following algorithm:
+  #    IF (PcdHygonCcxCfgPFEHEnable is TRUE) THEN (PcdMcaErrThreshCount = 0xFFE) ELSE (PcdMcaErrThreshCount = 0xFF5)
+  #
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdMcaErrThreshCount|10|UINT16|0x000A5005                   # SAT, Set Threshold count to 10 for both PFEH Enable/Disable. # byo231109 -
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdNbioCorrectedErrThreshEn|TRUE|BOOLEAN|0x000A5006         # SAT
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdNbioCorrectedErrThreshCount|0x000A|UINT16|0x000A5007     # SAT
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdNbioDeferredErrThreshEn|TRUE|BOOLEAN|0x000A5008          # SAT
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdNbioDeferredErrThreshCount|0x000A|UINT16|0x000A5009      # SAT
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdPcieEcrcEnablement|TRUE|BOOLEAN|0x000A500A               # SAT
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdPcieEcrcSeverityFatal|TRUE|BOOLEAN|0x000A500B            # SAT
+
+  #Host to Hpcb Memory Channel map
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHostToHpcbChanXLatTab|{0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF,0xFF}|VOID*|0x000A500D
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHpcbToBoardChanXLatTab|{0x0,0x0,0x1,0x1,0x2,0x2,0x3,0x3,0x4,0x4,0x5,0x5,0x6,0x6,0x7,0x7,0x8,0x8,0x9,0x9,0xA,0xA,0xB,0xB,0xFF,0xFF}|VOID*|0x000A500E
+  
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHpcbToBoardDimmXLatTab|{0xFF,0xFF,0xFF,0xFF,0x0,0x0,0x0,0x0,0x0,0x0,0x1,0x1,0x0,0x1,0x0,0x0,0x0,0x1,0x1,0x1,0x0,0x2,0x0,0x0,0x0,0x2,0x1,0x1,0x0,0x3,0x0,0x0,0x0,0x3,0x1,0x1,0x0,0x4,0x0,0x0,0x0,0x4,0x1,0x1,0x0,0x5,0x0,0x0,0x0,0x5,0x1,0x1,0x0,0x6,0x0,0x0,0x0,0x6,0x1,0x1,0x0,0x7,0x0,0x0,0x0,0x7,0x1,0x1,0x1,0x0,0x0,0x0,0x1,0x0,0x1,0x1,0x1,0x1,0x0,0x0,0x1,0x1,0x1,0x1,0x1,0x2,0x0,0x0,0x1,0x2,0x1,0x1,0x1,0x3,0x0,0x0,0x1,0x3,0x1,0x1,0x1,0x4,0x0,0x0,0x1,0x4,0x1,0x1,0x1,0x5,0x0,0x0,0x1,0x5,0x1,0x1,0x1,0x6,0x0,0x0,0x1,0x6,0x1,0x1,0x1,0x7,0x0,0x0,0x1,0x7,0x1,0x1}|VOID*|0x80001017
+
+  gEfiHygonHgpiPkgTokenSpaceGuid.PcdHygonIdsDebugPrintEnable|FALSE|BOOLEAN|0x00020004            # byo230914 +

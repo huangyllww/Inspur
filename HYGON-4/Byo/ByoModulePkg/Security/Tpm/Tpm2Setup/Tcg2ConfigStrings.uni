@@ -1,0 +1,276 @@
+///** @file
+//  String definitions for TCG2 configuration form.
+//
+// Copyright (c) 2015 - 2022, Byosoft Corporation. All rights reserved.<BR>
+// This software and associated documentation (if any)
+// is furnished under a license and may only be used or copied in
+// accordance with the terms of the license. Except as permitted by such
+// license, no part of this software or documentation may be reproduced,
+// stored in a retrieval system, or transmitted in any form or by any
+// means without the express written consent of Byosoft Corporation.
+//
+//
+//--*/
+
+#langdef zh-Hans "\wide中文\narrow"
+#langdef en-US "English"
+
+#string STR_TCG2_TITLE                      #language en-US "TCG2 Configuration"
+                                            #language zh-Hans "TCG2\wide配置\narrow"
+#string STR_TCG2_HELP                       #language en-US "Press <Enter> to select TCG2 Setup options."
+                                            #language zh-Hans "\wide按\narrow <Enter> \wide选择\narrowTCG2\wide设置选项。\narrow"
+
+#string STR_TCG2_DEVICE_FOUND_PROMPT        #language en-US "TPM2.0 Device Found"
+                                            #language zh-Hans "TPM2.0 \wide设备已找到\narrow"
+
+#string STR_TCG2_DEVICE_FIRMWARE_VERSION_PROMPT        #language en-US "  Firmware Version:"
+                                                       #language zh-Hans "  \wide固件版本：\narrow"
+#string STR_TCG2_DEVICE_FIRMWARE_VERSION_CONTENT       #language en-US ""
+                                                       #language zh-Hans ""
+
+#string STR_TCG2_DEVICE_VENDOR_PROMPT       #language en-US "  Vendor:"
+                                            #language zh-Hans "  \wide供应商：\narrow"
+#string STR_TCG2_DEVICE_VENDOR_CONTENT      #language en-US ""
+                                            #language zh-Hans ""
+
+#string STR_TCG2_STATE_PROMPT               #language en-US "TPM State"
+                                            #language zh-Hans "TPM \wide状态\narrow"
+#string STR_TCG2_STATE_HELP                 #language en-US "TPM State Control. When disable, will not response any TPM commands, and following options will be hide. When enable, you need to save and reboot to modify the following options."
+                                            #language zh-Hans "TPM \wide状态控制。当禁用时，将不响应任何\narrow TPM \wide命令，并且以下选项将被隐藏。当启用时，需要保存重启之后才能修改以下选项。\narrow"
+
+#string STR_ENABLED                         #language en-US "Enabled"
+                                            #language zh-Hans "\wide启用\narrow"
+#string STR_DISABLED                        #language en-US "Disabled"
+                                            #language zh-Hans "\wide禁用\narrow"
+
+#string STR_PLATFORM_HIERARCHY_PROMPT       #language en-US "Platform Hierarchy"
+                                            #language zh-Hans "\wide平台\narrowHierarchy"
+#string STR_PLATFORM_HIERARCHY_HELP         #language en-US "Platform Hierarchy Configuration. If Disable, Storage Hierarchy, Endorsement Hierarchy and PH Randomization will be grayed out."
+                                            #language zh-Hans "\wide平台\narrowHierarchy\wide配置。如果禁用，存储\narrowHierarchy\wide，背书\narrowHierarchy\wide和\narrowPH\wide值随机化将会变灰。\narrow"
+
+#string STR_STORAGE_HIERARCHY_PROMPT        #language en-US "Storage Hierarchy"
+                                            #language zh-Hans "\wide存储\narrowHierarchy"
+#string STR_STORAGE_HIERARCHY_HELP          #language en-US "Storage Hierarchy Configuration. Enable or Disable."
+                                            #language zh-Hans "\wide存储\narrowHierarchy\wide配置。启用或禁用。\narrow"
+
+#string STR_ENDORSEMENT_HIERARCHY_PROMPT    #language en-US "Endorsement Hierarchy"
+                                            #language zh-Hans "\wide背书\narrowHierarchy"
+#string STR_ENDORSEMENT_HIERARCHY_HELP      #language en-US "Endorsement Hierarchy Configuration. Enable or Disable."
+                                            #language zh-Hans "\wide背书\narrowHierarchy\wide配置。启用或禁用。\narrow"
+
+#string STR_PH_RANDOMIZATION_PROMPT         #language en-US "PH Randomization"
+                                            #language zh-Hans "PH\wide值随机化\narrow"
+#string STR_PH_RANDOMIZATION_HELP           #language en-US "PH Randomization Configuration. Enable or Disable."
+                                            #language zh-Hans "PH\wide值随机化配置。启用或禁用。\narrow"
+
+#string STR_TCG2_DEVICE_STATE_PROMPT        #language en-US "Current TPM Device"
+                                            #language zh-Hans "\wide当前的\narrow TPM \wide设备\narrow"
+#string STR_TCG2_DEVICE_STATE_HELP          #language en-US "Current TPM Device: Disable, Unpresent, or TPM2.0"
+                                            #language zh-Hans "\wide当前的\narrow TPM \wide设备：禁用，不存在，或\narrow TPM2.0"
+#string STR_TCG2_DEVICE_STATE_CONTENT       #language en-US ""
+                                            #language zh-Hans ""
+
+#string STR_TPM_DEVICE_NOT_PRESENT          #language en-US "Not Present"
+                                            #language zh-Hans "\wide未安装\narrow"
+#string STR_TPM_DEVICE_DISABLED             #language en-US "Disabled"
+                                            #language zh-Hans "\wide禁用\narrow"
+#string STR_TPM_DEVICE_UNKNOWN              #language en-US "Unknown"
+                                            #language zh-Hans "\wide未知\narrow"
+
+#string STR_TCG2_PPI_VERSION_STATE_PROMPT   #language en-US "Current PPI Version"
+                                            #language zh-Hans "\wide当前的\narrow PPI \wide版本\narrow"
+#string STR_TCG2_PPI_VERSION_STATE_HELP     #language en-US "Current PPI Version: 1.2 or 1.3"
+                                            #language zh-Hans "\wide当前的\narrow PPI \wide版本：\narrow1.2 \wide或\narrow 1.3"
+#string STR_TCG2_PPI_VERSION_STATE_CONTENT  #language en-US ""
+                                            #language zh-Hans ""
+
+#string STR_TCG2_PPI_VERSION_PROMPT         #language en-US "Attempt PPI Version"
+                                            #language zh-Hans "\wide尝试使用的\narrow PPI \wide版本\narrow"
+#string STR_TCG2_PPI_VERSION_HELP           #language en-US "Attempt PPI Version: 1.2 or 1.3.\n"
+                                                            "PcdTcgPhysicalPresenceInterfaceVer needs to be DynamicHii type and map to this option.\n"
+                                                            "Otherwise the version configuring by this setup option will not work."
+                                            #language zh-Hans "\wide尝试使用的\narrow PPI \wide版本：\narrow1.2 \wide或\narrow 1.3, \n"
+                                                              "PcdTcgPhysicalPresenceInterfaceVer \wide需要是\narrow DynamicHii \wide类型，并且映射到该选项，\narrow\n"
+                                                              "\wide否则，通过该设置选项配置的版本将无法工作。\narrow"
+
+#string STR_TPM2_ACPI_HID_PROMPT                  #language en-US "HID from TPM2 ACPI Table"
+                                                  #language zh-Hans "TPM2 ACPI \wide表的\narrow HID"
+#string STR_TPM2_ACPI_HID_HELP                    #language en-US "HID from TPM2 ACPI Table: ManufacturerID + FirmwareVersion_1"
+                                                  #language zh-Hans "TPM2 ACPI \wide表的\narrow HID: ManufacturerID + FirmwareVersion_1"
+#string STR_TPM2_ACPI_HID_CONTENT                 #language en-US ""
+                                                  #language zh-Hans ""
+
+#string STR_TPM2_ACPI_REVISION_STATE_PROMPT   #language en-US "Current Rev of TPM2 ACPI Table"
+                                              #language zh-Hans "\wide当前的\narrow TPM2 ACPI \wide表版本\narrow"
+#string STR_TPM2_ACPI_REVISION_STATE_HELP     #language en-US "Current Rev of TPM2 ACPI Table: Rev 3 or Rev 4"
+                                              #language zh-Hans "\wide当前的\narrow TPM2 ACPI \wide表的版本：\narrow Rev 3 \wide或\narrow Rev 4"
+#string STR_TPM2_ACPI_REVISION_STATE_CONTENT  #language en-US ""
+                                              #language zh-Hans ""
+
+#string STR_TPM2_ACPI_REVISION_PROMPT          #language en-US "Attempt Rev of TPM2 ACPI Table"
+                                               #language zh-Hans "\wide尝试使用的\narrow TPM2 ACPI \wide表版本\narrow"
+#string STR_TPM2_ACPI_REVISION_HELP            #language en-US "Rev 3 or Rev 4 (Rev 4 is defined in TCG ACPI Spec 00.37)."
+                                                               "PcdTpm2AcpiTableRev needs to be DynamicHii type and map to this option.\n"
+                                                               "Otherwise the version configuring by this setup option will not work."
+                                               #language zh-Hans "Rev 3 \wide或\narrow Rev 4 (Rev 4 \wide在\narrow TCG ACPI Spec 00.37 \wide中定义\narrow)"
+                                                                 "PcdTpm2AcpiTableRev \wide需要是\narrow DynamicHii \wide类型，并且映射到该选项，\narrow\n"
+                                                                 "\wide否则，通过该设置选项配置的版本将无法工作。\narrow"
+
+#string STR_TCG2_DEVICE_INTERFACE_STATE_PROMPT         #language en-US "Current TPM Device Interface"
+                                                       #language zh-Hans "\wide当前的\narrow TPM \wide设备接口\narrow"
+#string STR_TCG2_DEVICE_INTERFACE_STATE_HELP           #language en-US "Current TPM Device Interface: TIS, PTP FIFO, PTP CRB"
+                                                       #language zh-Hans "\wide当前的\narrow TPM \wide设备接口：\narrowTIS, PTP FIFO, PTP CRB"
+#string STR_TCG2_DEVICE_INTERFACE_STATE_CONTENT        #language en-US ""
+                                                       #language zh-Hans ""
+
+#string STR_TCG2_DEVICE_INTERFACE_CAPABILITY_PROMPT    #language en-US "PTP TPM Device Interface Capability"
+                                                       #language zh-Hans "PTP TPM \wide设备接口能力\narrow"
+#string STR_TCG2_DEVICE_INTERFACE_CAPABILITY_HELP      #language en-US "PTP TPM Device Interface Capability: PTP FIFO, PTP CRB"
+                                                       #language zh-Hans "PTP TPM \wide设备接口能力：\narrowPTP FIFO, PTP CRB"
+#string STR_TCG2_DEVICE_INTERFACE_CAPABILITY_CONTENT   #language en-US ""
+                                                       #language zh-Hans ""
+
+#string STR_TCG2_DEVICE_INTERFACE_PROMPT               #language en-US "Attempt PTP TPM Device Interface"
+                                                       #language zh-Hans "\wide尝试使用的\narrow PTP TPM \wide设备接口\narrow"
+#string STR_TCG2_DEVICE_INTERFACE_HELP                 #language en-US "Attempt PTP TPM Device Interface: PTP FIFO, PTP CRB"
+                                                       #language zh-Hans "\wide尝试使用的\narrow PTP TPM \wide设备接口：\narrowPTP FIFO, PTP CRB"
+#string STR_TCG2_DEVICE_INTERFACE_CONTENT              #language en-US ""
+                                                       #language zh-Hans ""
+
+#string STR_TCG2_DEVICE_INTERFACE_TIS                  #language en-US "TIS"
+                                                       #language zh-Hans "TIS"
+#string STR_TCG2_DEVICE_INTERFACE_PTP_FIFO             #language en-US "PTP FIFO"
+                                                       #language zh-Hans "PTP FIFO"
+#string STR_TCG2_DEVICE_INTERFACE_PTP_CRB              #language en-US "PTP CRB"
+                                                       #language zh-Hans "PTP CRB"
+
+#string STR_TCG2_PP_OPERATION              #language en-US "TPM2 Physical Presence Operation"
+                                           #language zh-Hans "TPM2\wide物理状态操作\narrow"
+
+#string STR_TCG2_OPERATION                 #language en-US "TPM2 Operation"
+                                           #language zh-Hans "TPM2 \wide操作\narrow"
+#string STR_TCG2_OPERATION_HELP            #language en-US "Select one of the supported operation to change TPM2 state."
+                                           #language zh-Hans "\wide选择一个支持的操作来改变\narrow TPM2 \wide的状态。\narrow"
+
+#string STR_TCG2_NO_ACTION                 #language en-US "No Action"
+                                           #language zh-Hans "\wide无动作\narrow"
+#string STR_TCG2_ENABLE                    #language en-US "TPM2 HierarchyControl (TPM_RH_OWNER YES, TPM_RH_ENDORSEMENT YES)"
+                                           #language zh-Hans "TPM2 HierarchyControl (TPM_RH_OWNER YES, TPM_RH_ENDORSEMENT YES)"
+#string STR_TCG2_DISABLE                   #language en-US "TPM2 HierarchyControl (TPM_RH_OWNER NO, TPM_RH_ENDORSEMENT NO)"
+                                           #language zh-Hans "TPM2 HierarchyControl (TPM_RH_OWNER NO, TPM_RH_ENDORSEMENT NO)"
+#string STR_TCG2_CLEAR                     #language en-US "TPM2 ClearControl(NO) + Clear"
+                                           #language zh-Hans "TPM2\wide清除\narrow"
+#string STR_TCG2_SET_PCD_BANKS             #language en-US "TPM2 PCR_Allocate(Algorithm IDs)"
+                                           #language zh-Hans "TPM2 PCR_Allocate(Algorithm IDs)"
+#string STR_TCG2_CHANGE_EPS                #language en-US "TPM2 ChangeEPS"
+                                           #language zh-Hans "TPM2 ChangeEPS"
+#string STR_TCG2_LOG_ALL_DIGESTS           #language en-US "TCG2 LogAllDigests"
+                                           #language zh-Hans "TCG2 LogAllDigests"
+#string STR_TCG2_DISABLE_ENDORSEMENT_ENABLE_STORAGE_HIERARCHY   #language en-US "TPM2 HierarchyControl (TPM_RH_OWNER NO, TPM_RH_ENDORSEMENT YES)"
+                                                                #language zh-Hans "TPM2 HierarchyControl (TPM_RH_OWNER NO, TPM_RH_ENDORSEMENT YES)"
+
+#string STR_TCG2_OPERATION_PARAMETER       #language en-US "TPM2 Operation Parameter"
+                                           #language zh-Hans "TPM2 \wide操作参数\narrow"
+#string STR_TCG2_OPERATION_PARAMETER_HELP  #language en-US "Additional TPM2 Operation Parameter need be sent with Operation Code (required for SetPCRBanks)."
+                                           #language zh-Hans "\wide需要与操作代码一起发送（\narrowSetPCRBanks\wide需要）的额外\narrow TPM2 \wide操作参数。\narrow"
+
+#string STR_TCG2_TPM_2_0_DTPM              #language en-US "TPM 2.0"
+                                           #language zh-Hans "TPM 2.0"
+
+#string STR_TPM2_ACPI_REVISION_3           #language en-US "Rev 3"
+                                           #language zh-Hans "Rev 3"
+#string STR_TPM2_ACPI_REVISION_4           #language en-US "Rev 4"
+                                           #language zh-Hans "Rev 4"
+
+#string STR_TCG2_PPI_VERSION_1_2           #language en-US "1.2"
+                                           #language zh-Hans "1.2"
+#string STR_TCG2_PPI_VERSION_1_3           #language en-US "1.3"
+                                           #language zh-Hans "1.3"
+
+#string STR_TPM2_ACTIVE_HASH_ALGO                 #language en-US "TPM2 Active PCR Hash Algorithm"
+                                                  #language zh-Hans "TPM2 \wide活跃的\narrow PCR \wide哈希算法\narrow"
+#string STR_TPM2_ACTIVE_HASH_ALGO_HELP            #language en-US "TPM2 Active PCR Hash Algorithm: SHA1, SHA256, SHA384, SHA512, SM3_256"
+                                                  #language zh-Hans "TPM2 \wide活跃的\narrow PCR Hash \wide哈希算法：\narrowSHA1, SHA256, SHA384, SHA512, SM3_256"
+#string STR_TPM2_ACTIVE_HASH_ALGO_CONTENT         #language en-US ""
+                                                  #language zh-Hans ""
+
+#string STR_TPM2_SUPPORTED_HASH_ALGO              #language en-US "TPM2 Hardware Supported Hash Algorithm"
+                                                  #language zh-Hans "TPM2 \wide硬件支持的哈希算法\narrow"
+#string STR_TPM2_SUPPORTED_HASH_ALGO_HELP         #language en-US "TPM2 Hardware Supported Hash Algorithm: SHA1, SHA256, SHA384, SHA512, SM3_256"
+                                                  #language zh-Hans "TPM2 \wide硬件支持的哈希算法：\narrowSHA1, SHA256, SHA384, SHA512, SM3_256"
+#string STR_TPM2_SUPPORTED_HASH_ALGO_CONTENT      #language en-US ""
+                                                  #language zh-Hans ""
+
+#string STR_BIOS_HASH_ALGO                 #language en-US "BIOS Supported Hash Algorithm"
+                                           #language zh-Hans "BIOS \wide支持的哈希算法\narrow"
+#string STR_BIOS_HASH_ALGO_HELP            #language en-US "BIOS Supported Hash Algorithm: SHA1, SHA256, SHA384, SHA512, SM3_256"
+                                           #language zh-Hans "BIOS \wide支持的哈希算法：\narrowSHA1, SHA256, SHA384, SHA512, SM3_256"
+#string STR_BIOS_HASH_ALGO_CONTENT         #language en-US ""
+                                           #language zh-Hans ""
+
+#string STR_TCG2_CONFIGURATION             #language en-US "TCG2 Protocol Configuration"
+                                           #language zh-Hans "TCG2 \wide协议配置\narrow"
+
+#string STR_TCG2_PROTOCOL_VERSION          #language en-US "TCG2 Protocol Version"
+                                           #language zh-Hans "TCG2 \wide协议版本\narrow"
+#string STR_TCG2_PROTOCOL_VERSION_HELP     #language en-US "TCG2 Protocol Version: 1.0 or 1.1"
+                                           #language zh-Hans "TCG2 \wide协议版本：\narrow1.0 \wide或\narrow 1.1"
+#string STR_TCG2_PROTOCOL_VERSION_1_0      #language en-US "1.0"
+                                           #language zh-Hans "1.0"
+#string STR_TCG2_PROTOCOL_VERSION_1_1      #language en-US "1.1"
+                                           #language zh-Hans "1.1"
+
+#string STR_TCG2_SUPPORTED_EVENT_LOG_FORMAT               #language en-US "Supported Event Log Format"
+                                                          #language zh-Hans "\wide支持的事件日志格式\narrow"
+#string STR_TCG2_SUPPORTED_EVENT_LOG_FORMAT_HELP          #language en-US "TCG2 Supported Event Log Format: TCG_2"
+                                                          #language zh-Hans "\wide支持的事件日志格式：\narrowTCG_2"
+#string STR_TCG2_SUPPORTED_EVENT_LOG_FORMAT_CONTENT       #language en-US ""
+                                                          #language zh-Hans ""
+
+#string STR_TCG2_HASH_ALGO_BITMAP                         #language en-US "Hash Algorithm Bitmap"
+                                                          #language zh-Hans "\wide哈希算法位图\narrow"
+#string STR_TCG2_HASH_ALGO_BITMAP_HELP                    #language en-US "TCG2 Supported Hash Algorithm Bitmap: SHA1, SHA256, SHA384, SHA512"
+                                                          #language zh-Hans "\wide哈希算法位图：\narrowSHA1, SHA256, SHA384, SHA512"
+#string STR_TCG2_HASH_ALGO_BITMAP_CONTENT                 #language en-US ""
+                                                          #language zh-Hans ""
+
+#string STR_TCG2_NUMBER_OF_PCR_BANKS                      #language en-US "Number of PCR Banks"
+                                                          #language zh-Hans "PCR Banks \wide数量\narrow"
+#string STR_TCG2_NUMBER_OF_PCR_BANKS_HELP                 #language en-US "TCG2 Number of PCR Banks"
+                                                          #language zh-Hans "TCG2 PCR Banks \wide数量\narrow"
+#string STR_TCG2_NUMBER_OF_PCR_BANKS_CONTENT              #language en-US ""
+                                                          #language zh-Hans ""
+
+#string STR_TCG2_ACTIVE_PCR_BANKS                         #language en-US "Active PCR Banks"
+                                                          #language zh-Hans "\wide活跃的\narrowPCR Banks"
+#string STR_TCG2_ACTIVE_PCR_BANKS_HELP                    #language en-US "TCG2 Active PCR Banks: SHA1, SHA256, SHA384, SHA512"
+                                                          #language zh-Hans "TCG2 \wide活跃的\narrowPCR Banks: SHA1, SHA256, SHA384, SHA512"
+#string STR_TCG2_ACTIVE_PCR_BANKS_CONTENT                 #language en-US ""
+                                                          #language zh-Hans ""
+
+#string STR_TCG2_PCR_BANKS_CONFIGURE                      #language en-US "PCR Banks configuration, user must ensure that at least one PCR bank is selected"
+                                                          #language zh-Hans "PCR Banks \wide配置，用户必须确保至少选择了一个\narrow PCR Bank"
+
+#string STR_TCG2_PCR_BANK_SHA1                            #language en-US "  PCR Bank: SHA1"
+                                                          #language zh-Hans "  PCR Bank: SHA1"
+#string STR_TCG2_PCR_BANK_SHA1_HELP                       #language en-US "TCG2 Request PCR Bank: SHA1(The modification takes effect after the restart.  If it is modified, it will only be confirmed again after restart.)"
+                                                          #language zh-Hans "TCG2 \wide请求\narrow PCR Bank: SHA1(重启生效，如果修改，只会在重启后进行二次确认。)"
+#string STR_TCG2_PCR_BANK_SHA256                          #language en-US "  PCR Bank: SHA256"
+                                                          #language zh-Hans "  PCR Bank: SHA256"
+#string STR_TCG2_PCR_BANK_SHA256_HELP                     #language en-US "TCG2 Request PCR Bank: SHA256(The modification takes effect after the restart.  If it is modified, it will only be confirmed again after restart.)"
+                                                          #language zh-Hans "TCG2 \wide请求\narrow PCR Bank: SHA256(重启生效，如果修改，只会在重启后进行二次确认。)"
+#string STR_TCG2_PCR_BANK_SHA384                          #language en-US "  PCR Bank: SHA384"
+                                                          #language zh-Hans "  PCR Bank: SHA384"
+#string STR_TCG2_PCR_BANK_SHA384_HELP                     #language en-US "TCG2 Request PCR Bank: SHA384(The modification takes effect after the restart.  If it is modified, it will only be confirmed again after restart.)"
+                                                          #language zh-Hans "TCG2 \wide请求\narrow PCR Bank: SHA384(重启生效，如果修改，只会在重启后进行二次确认。)"
+#string STR_TCG2_PCR_BANK_SHA512                          #language en-US "  PCR Bank: SHA512"
+                                                          #language zh-Hans "  PCR Bank: SHA512"
+#string STR_TCG2_PCR_BANK_SHA512_HELP                     #language en-US "TCG2 Request PCR Bank: SHA512(The modification takes effect after the restart.  If it is modified, it will only be confirmed again after restart.)"
+                                                          #language zh-Hans "TCG2 \wide请求\narrow PCR Bank: SHA512(重启生效，如果修改，只会在重启后进行二次确认。)"
+#string STR_TCG2_PCR_BANK_SM3_256                         #language en-US "  PCR Bank: SM3_256"
+                                                          #language zh-Hans "  PCR Bank: SM3_256"
+#string STR_TCG2_PCR_BANK_SM3_256_HELP                    #language en-US "TCG2 Request PCR Bank: SM3_256(The modification takes effect after the restart.  If it is modified, it will only be confirmed again after restart.)"
+                                                          #language zh-Hans "TCG2 \wide请求\narrow PCR Bank: SM3_256(重启生效，如果修改，只会在重启后进行二次确认。)"
+
+#string STR_NULL                           #language en-US ""
+                                           #language zh-Hans ""

@@ -1,0 +1,96 @@
+/*++
+
+Copyright (c) 2010 - 2015, Byosoft Corporation.<BR>
+All rights reserved.This software and associated documentation (if any)
+is furnished under a license and may only be used or copied in
+accordance with the terms of the license. Except as permitted by such
+license, no part of this software or documentation may be reproduced,
+stored in a retrieval system, or transmitted in any form or by any
+means without the express written consent of Byosoft Corporation.
+
+File Name:
+
+Abstract:
+  Platform configuration setup.
+
+Revision History:
+
+
+--*/
+
+
+#include "FormsetConfiguration.h"
+
+
+formset
+  guid     = FORMSET_GUID_ADVANCE,
+  title    = STRING_TOKEN(FORMSET_TITLE_ADVANCED),
+  help     = STRING_TOKEN(FORMSET_TITLE_ADVANCED_HELP),
+  classguid = FORMSET_GUID_ADVANCE,
+
+  BYO_PLATFOMR_SETUP_VARSTORE
+
+  form formid = ROOT_FORM_ID,
+    title    = STRING_TOKEN(FORMSET_TITLE_ADVANCED);
+
+    subtitle text = STRING_TOKEN(STR_EMPTY);
+
+    // password protection of runtime variables
+    oneof varid = BYO_PLATFOMR_SETUP.RTVariablesProtect,
+      prompt      = STRING_TOKEN (STR_RTVARIABLE_PROTECT),
+      help        = STRING_TOKEN (STR_RTVARIABLE_PROTECT),
+      option text = STRING_TOKEN (STR_DISABLED), value = 0, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+      option text = STRING_TOKEN (STR_ENABLED), value = 1, flags = RESET_REQUIRED;
+    endoneof;
+    subtitle text = STRING_TOKEN(STR_EMPTY);
+
+    #if FixedPcdGetBool(PcdGuiEnable)
+      oneof varid   = BYO_PLATFOMR_SETUP.DisplayMode,
+          prompt      = STRING_TOKEN(STR_DISPLAY_MODE),
+          help        = STRING_TOKEN(STR_DISPLAY_MODE_HELP),
+          option text = STRING_TOKEN(STR_DISPLAY_GUI),   value = 0,  flags = DEFAULT | MANUFACTURING;
+          option text = STRING_TOKEN(STR_DISPLAY_TEXT),  value = 1,  flags = 0x0;
+      endoneof;
+    #endif;
+
+    label LABEL_DYNAMIC_FORMSET;
+    //
+    // This is where we will dynamically add setup pages
+    //
+    label LABEL_END;	
+
+    // Jump to USB Configuration Form
+    goto CHIPSET_SB_USB_FORM_ID,
+      prompt = STRING_TOKEN(STR_USB_FORM),
+      help   = STRING_TOKEN(STR_USB_FORM_HELP);
+
+
+  endform;
+  //
+  // USB Configuration
+  //
+  form formid = CHIPSET_SB_USB_FORM_ID,
+    title = STRING_TOKEN(STR_USB_FORM);
+    subtitle text = STRING_TOKEN(STR_EMPTY);
+
+    suppressif TRUE;           
+        text               
+          help       = STRING_TOKEN(STR_EMPTY),
+          text       = STRING_TOKEN(STR_EMPTY),   
+          flags      = INTERACTIVE, 
+          key        = KEY_USB_DEV_LIST;
+    endif;
+
+
+    subtitle text = STRING_TOKEN(STR_EMPTY);
+    subtitle text = STRING_TOKEN(STR_USB_DEVICE_LIST);    
+    label USB_DEV_LIST_LABEL;
+    label USB_DEV_LIST_LABEL_END; 
+
+  endform;  //end CHIPSET_SB_USB_FORM_ID
+
+endformset;
+
+
+
+

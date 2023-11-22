@@ -1,0 +1,96 @@
+V1.06  
+1. Support modify SMBIOS info  
+2. Support display FFS info  
+3. Support display NV variable storage data  
+
+V1.05  
+1. Fix update setup default value issue  
+2. Display more section information  
+
+V1.04  
+1. Fix BIOS image include two variable regions update security key issue  
+
+v1.03  
+1. Fix BIOS image include two MULTIPLATFORMGUID issue  
+
+V1.02  
+1. Fix enroll multiple variable regions issue  
+2. Fix save action issue  
+
+V1.01  
+1. Support display PDB file in EFI_SECTION_PE32 section  
+2. Fix openssl.exe execute issue  
+3. Fix multiple NV variable data issue  
+4. Fix FFS search issue  
+5. Fix the default value display of the setting tab issue  
+6. Fix view FV topology issue  
+
+V1.00  
+1. Fix menu and pop-up display for ByoEre Security  
+2. Fix replace section in PEI FV issue  
+3. Support search FFS in view FV info page  
+4. first official version
+
+V0.17
+1. Fix the issue to update ARM PEI
+2. Show setup string information
+3. Fix the variable setting parse issue
+
+V0.16
+1. Check UUID before enroll key
+2. Check FFS file before add and replace function
+3. Fix add FFS exception issue
+4. Fix ByoEre modify PEI FV issue
+
+V0.15
+1. Support security boot enrool PK/KEK
+2. Package related files to one ByoEre.exe file
+
+V0.14
+1. Add search function for ByoEre setting page
+2. Fix DATA_FV not display issue
+
+V0.13
+1. Fix parse multiple forms have the same form name issue
+
+
+V0.12
+1. Support multiple settings
+2. Fix generate signed image issue
+
+V0.11
+1. Update for validate input data
+2. Fix display data issue
+
+V0.10
+1. Fix modify the setup setting not successful issue
+2. Fix parsing default setting issue
+
+V0.9
+1. support EFI_SECTION_RAW extract and replace
+
+V0.8
+1. update for changing setup default setting
+
+V0.7
+1. Add Rom and setting report
+
+V0.6
+1. Update for BIOS sign
+
+V0.5
+1. Fix special character path issue
+
+V0.4
+1. Update parsing BIOS INFO logic
+
+V0.3
+1. Fix replace FFS and add FFS issue
+2. Support GUIDED FV parsing
+
+V0.2
+1. Add view/extract/replace logo
+
+
+V0.1
+1. First release

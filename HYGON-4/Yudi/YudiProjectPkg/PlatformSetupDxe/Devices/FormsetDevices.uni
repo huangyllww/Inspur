@@ -1,0 +1,43 @@
+
+
+/=#
+#langdef   en-US "English"
+#langdef   zh-Hans "\wide中文\narrow"
+
+#string STR_PLATFORM_MODE                  #language en-US "Application Mode Selection"
+                                           #language zh-Hans "\wide应用模式选择\narrow"
+#string STR_PLATFORM_MODE_HELP             #language en-US "Choice Platform Mode"
+                                           #language zh-Hans "\wide选择平台模式\narrow"
+#string STR_NOTEBOOK                       #language en-US "NOTEBOOK"
+                                           #language zh-Hans "NOTEBOOK"
+#string STR_DT_EMBEDDED                    #language en-US "DT_EMBEDDED"
+                                           #language zh-Hans "DT_EMBEDDED"
+
+#string STR_SATAMODE                       #language en-US "SATA Mode"
+                                           #language zh-Hans "SATA Mode"
+#string STR_SATAMODE_HELP                  #language en-US "Choice SATA Working Mode"
+                                           #language zh-Hans "Choice SATA Working Mode"
+#string STR_IDE                            #language en-US "IDE"
+                                           #language zh-Hans "IDE"
+#string STR_RAID                           #language en-US "RAID"
+                                           #language zh-Hans "RAID"
+#string STR_AHCI                           #language en-US "AHCI"
+                                           #language zh-Hans "AHCI"
+
+#string STR_PRIMARY_DISPLAY                #language en-US "Primary Display"
+                                           #language zh-Hans "\wide主显示\narrow"
+#string STR_PRIMARY_DISPLAY_HELP           #language en-US "Select which of IGFX/PEG/PCI Graphics device should be Primary Display"
+                                           #language zh-Hans "\wide选择哪个\narrowIGFX / PEG / PCI\wide图形设备应为主显示器\narrow"
+#string STR_IGFX_STRING                    #language en-US "IGFX"
+                                           #language zh-Hans "IGFX"
+#string STR_PEG_STRING                     #language en-US "PEG"
+                                           #language zh-Hans "PEG"
+#string STR_PCI_STRING                     #language en-US "PCI"
+                                           #language zh-Hans "PCI"
+#string STR_AUTO_STRING                    #language en-US "Auto"
+                                           #language zh-Hans "Auto"
+
+#string STR_PCI_LIST_FORMSET_TITLE      #language en-US   "PCI Device Info"
+                                        #language zh-Hans "PCI\wide设备信息\narrow"
+#string STR_PCI_LIST_FORMSET_HELP       #language en-US   "Show pci device info"
+                                        #language zh-Hans "\wide显示\narrowPCI\wide设备信息\narrow"

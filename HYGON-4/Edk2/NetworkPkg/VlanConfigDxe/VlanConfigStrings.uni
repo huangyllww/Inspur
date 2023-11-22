@@ -1,0 +1,67 @@
+///** @file
+//  String definitions for VLAN Configuration Form.
+//
+//  Copyright (c) 2010 - 2018, Intel Corporation. All rights reserved.<BR>
+//  SPDX-License-Identifier: BSD-2-Clause-Patent
+//
+//**/
+
+/=#
+
+#langdef en-US "English"
+#langdef zh-Hans "\wide中文\narrow"
+
+#string STR_VLAN_FORM_SET_TITLE       #language en-US "VLAN Configuration"
+                                      #language zh-Hans "\wide虚拟局域网配置\narrow"
+                                      
+#string STR_VLAN_FORM_SET_TITLE_HELP  #language en-US "VLAN configuration for this network device"
+                                      #language zh-Hans "\wide此网络设备的虚拟局域网配置\narrow"
+                                      
+#string STR_VLAN_FORM_TITLE           #language en-US "VLAN Configuration"
+                                      #language zh-Hans "\wide虚拟局域网设置\narrow"
+                                      
+#string STR_VLAN_FORM_HELP            #language en-US "VLAN Configuration Help"
+                                      #language zh-Hans "\wide虚拟局域网设置帮助\narrow"
+                                      
+#string STR_VLAN_CREATE_VLAN          #language en-US "Create new VLAN"
+                                      #language zh-Hans "\wide创建新的虚拟局域网\narrow"
+                                      
+
+#string STR_VLAN_VID_PROMPT           #language en-US "  VLAN ID"
+                                      #language zh-Hans "\wide虚拟局域网的识别码\narrow"
+                                      
+#string STR_VLAN_VID_HELP             #language en-US "VLAN ID of new VLAN or existing VLAN, valid value is 0~4094"
+                                      #language zh-Hans "\wide新的虚拟局域网或现有虚拟局域网的虚拟局域网的识别码，有效值为\narrow 0~4094"
+                                      
+#string STR_VLAN_PRIORITY_PROMPT      #language en-US "  Priority"
+                                      #language zh-Hans "\wide优先级\narrow"
+                                      
+#string STR_VLAN_PRIORITY_HELP        #language en-US "802.1Q Priority, valid value is 0~7"
+                                      #language zh-Hans "802.1Q \wide优先级，有效值为\narrow 0~7"
+                                      
+#string STR_VLAN_ADD_VLAN_PROMPT      #language en-US "Add VLAN"
+                                      #language zh-Hans "\wide添加虚拟局域网\narrow"
+                                      
+#string STR_VLAN_ADD_VLAN_HELP        #language en-US "Create a new VLAN or update existing VLAN"
+                                      #language zh-Hans "\wide创建一个新的虚拟局域网或更新现有的虚拟局域网\narrow"
+                                      
+#string STR_VLAN_VLAN_LIST            #language en-US "Set VLAN List"
+                                      #language zh-Hans "\wide已设置的虚拟局域网列表\narrow"
+                                      
+#string STR_VLAN_VLAN_LIST_HELP       #language en-US "Select for remove"
+                                      #language zh-Hans "\wide选择要删除的项目\narrow"
+                                      
+#string STR_VLAN_REMOVE_VLAN_PROMPT   #language en-US "Remove VLAN"
+                                      #language zh-Hans "\wide删除虚拟局域网\narrow"
+                                      
+#string STR_VLAN_REMOVE_VLAN_HELP     #language en-US "Remove selected VLANs"
+                                      #language zh-Hans "\wide删除选定的虚拟局域网\narrow"
+                                      
+#string STR_VLAN_NULL_STRING          #language en-US ""
+                                      #language zh-Hans ""
+
+#string STR_GET_CURRENT_SETTING       #language en-US "Enter Configuration Menu"
+                                      #language zh-Hans "\wide进入配置菜单\narrow"
+
+#string STR_GET_CURRENT_SETTING_HELP  #language en-US "Press ENTER to enter configuration menu for VLAN configuration."
+                                      #language zh-Hans "\wide按\narrow ENTER \wide键进入虚拟局域网配置菜单\narrow"

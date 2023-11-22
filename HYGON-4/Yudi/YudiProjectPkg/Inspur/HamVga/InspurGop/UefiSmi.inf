@@ -1,0 +1,76 @@
+## @file
+# UefiSmi.inf
+#
+# Copyright (c) 2012 Silicon Motion, Inc. 
+#
+# Component description file for SM750/SM718 module
+#
+# This code is based on:
+#
+## @file
+#
+#  This program and the accompanying materials
+#  are licensed and made available under the terms and conditions of the BSD License
+#  which accompanies this distribution. The full text of the license may be found at
+#  http://opensource.org/licenses/bsd-license.php
+#  THE PROGRAM IS DISTRIBUTED UNDER THE BSD LICENSE ON AN "AS IS" BASIS,
+#  WITHOUT WARRANTIES OR REPRESENTATIONS OF ANY KIND, EITHER EXPRESS OR IMPLIED.
+#
+#
+##
+
+[Defines]
+  INF_VERSION		= 0x00010005
+  BASE_NAME			= InspurGop
+  FILE_GUID			= BFB7B510-B09B-11DB-96E3-005056C00008
+  MODULE_TYPE		= UEFI_DRIVER
+  VERSION_STRING	= 1.0
+  ENTRY_POINT		= SmiGraphicsOutputDriverEntryPoint
+
+[Sources]
+  smi2d.h
+  smi2d.c
+  smiMode.c
+  smiMode.h
+  UefiSmi.h
+  UefiSmi.c
+  UefiSmiGraphicsOutput.c
+  UefiComponentName.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  #OptionRomPkg/OptionRomPkg.dec
+  Platform4Pkg/Platform4Pkg.dec
+  
+[LibraryClasses]
+  UefiBootServicesTableLib
+  MemoryAllocationLib
+  UefiLib
+  UefiDriverEntryPoint
+  DebugLib
+  BaseMemoryLib
+  DevicePathLib
+  TimerLib
+
+[Protocols]
+  gEfiDriverSupportedEfiVersionProtocolGuid     # PROTOCOL ALWAYS_PRODUCED
+  gEfiUgaDrawProtocolGuid                       # PROTOCOL BY_START
+  gEfiGraphicsOutputProtocolGuid                # PROTOCOL BY_START
+  gEfiEdidDiscoveredProtocolGuid                # PROTOCOL BY_START
+  gEfiEdidActiveProtocolGuid                    # PROTOCOL BY_START
+  gEfiDevicePathProtocolGuid                    # PROTOCOL BY_START
+  gEfiPciIoProtocolGuid                         # PROTOCOL TO_START
+  gEfiEdidOverrideProtocolGuid                  # PROTOCOL TO_START
+
+
+[FeaturePcd]
+  #gOptionRomPkgTokenSpaceGuid.PcdSupportGop
+  #gOptionRomPkgTokenSpaceGuid.PcdSupportUga
+
+[Pcd]
+  #gOptionRomPkgTokenSpaceGuid.PcdDriverSupportedEfiVersion
+
+[Depex]
+  gIgdGopDepexProtocolGuid
+
+

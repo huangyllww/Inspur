@@ -1,0 +1,89 @@
+## @file
+#
+#Copyright (c) 2023, Byosoft Corporation.<BR>
+#All rights reserved.This software and associated documentation (if any)
+#is furnished under a license and may only be used or copied in
+#accordance with the terms of the license. Except as permitted by such
+#license, no part of this software or documentation may be reproduced,
+#stored in a retrieval system, or transmitted in any form or by any
+#means without the express written consent of Byosoft Corporation.
+#
+#File Name:
+#  SetupSioCfg.inf
+#
+#Abstract:
+#
+#Revision History:
+#
+##
+
+
+[Defines]
+  INF_VERSION              = 0x00010005
+  BASE_NAME                = SetupSioCfg
+  FILE_GUID                = AF2010B6-DD93-487c-A1B5-1740A0EB67E1
+  MODULE_TYPE              = DXE_DRIVER
+  VERSION_STRING           = 1.0
+  ENTRY_POINT              = SetupSioCfgEntryPoint
+
+#
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           = IA32 X64 IPF EBC
+#
+
+[Sources]
+  SetupSioCfg.c
+  ../Common/SuperIoLib.c 
+  SetupSioCfgVfr.vfr
+  SetupSioCfgStr.uni 
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  ByoModulePkg/ByoModulePkg.dec
+  ByoDevicePkg/ByoDevicePkg.dec
+
+[LibraryClasses]
+  UefiDriverEntryPoint
+  UefiLib
+  DebugLib
+  UefiRuntimeServicesTableLib
+  UefiBootServicesTableLib
+  UefiHiiServicesLib  
+  BaseMemoryLib
+  MemoryAllocationLib
+  HobLib
+  HiiLib
+  BaseLib
+  SetupUiLib
+  ByoCommLib
+  IoLib
+[Pcd]
+  gEfiSioModuleTokenSpaceGuid.PcdSioPortBaseAddress
+  gEfiByoModulePkgTokenSpaceGuid.AcpiIoPortBaseAddress
+  gEfiSioModuleTokenSpaceGuid.PcdHwmIoBaseAddress
+#  gPlatformModuleTokenSpaceGuid.PcdOemBoardId
+  
+[Protocols]
+  gEfiHiiConfigAccessProtocolGuid               # PROTOCOL ALWAYS_CONSUMED
+#  gEfiHiiConfigRoutingProtocolGuid              # PROTOCOL ALWAYS_CONSUMED
+  gSetupSaveNotifyProtocolGuid
+  gPlatAfterConsoleStartProtocolGuid
+  
+[Guids]
+  gEfiSetupEnterGuid
+  gEfiIfrTianoGuid
+  gSioSetupConfigGuid
+  gPlatformSetupVariableGuid
+
+[Depex]
+  gEfiVariableArchProtocolGuid      AND 
+  gEfiVariableWriteArchProtocolGuid AND 
+  gEfiHiiDatabaseProtocolGuid       
+
+[BuildOptions]
+
+  *_*_*_CC_FLAGS = -D NCT6126
+  *_*_*_CLANG_FLAGS = -D NCT6126
+

@@ -1,0 +1,70 @@
+#
+## @file
+#
+# Copyright (c) 2023, Byosoft Corporation.<BR>
+# All rights reserved.This software and associated documentation (if any)
+# is furnished under a license and may only be used or copied in
+# accordance with the terms of the license. Except as permitted by such
+# license, no part of this software or documentation may be reproduced,
+# stored in a retrieval system, or transmitted in any form or by any
+# means without the express written consent of Byosoft Corporation.
+#
+#
+#
+#
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = NctSioPei
+  FILE_GUID                      = FC4A7260-A1ED-3B54-3107-D3BF5EB8BB9E
+  MODULE_TYPE                    = PEIM
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = SioPeiEntry
+
+#
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           = IA32 X64 IPF EBC
+#
+
+[Sources]
+  SioPei.c
+  ../Common/SuperIoLib.c
+  
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  ByoModulePkg/ByoModulePkg.dec
+  ByoDevicePkg/ByoDevicePkg.dec
+
+[LibraryClasses]
+  PeimEntryPoint
+  PeiServicesLib
+  BaseMemoryLib
+  DebugLib
+  IoLib
+  PeiServicesTablePointerLib
+  PcdLib
+  
+[Guids]
+  gPlatformSetupVariableGuid
+  gSioSetupConfigGuid
+[Ppis]
+  gEfiPeiReadOnlyVariable2PpiGuid
+  gEfiPeiMemoryDiscoveredPpiGuid
+
+[Pcd]
+  gEfiSioModuleTokenSpaceGuid.PcdSioPortBaseAddress
+  gEfiByoModulePkgTokenSpaceGuid.AcpiIoPortBaseAddress
+  gEfiSioModuleTokenSpaceGuid.PcdHwmIoBaseAddress
+  gEfiSioModuleTokenSpaceGuid.PcdHwmSmbusBaseAddress
+##  gPlatformModuleTokenSpaceGuid.PcdOemBoardId
+[Depex]
+  gEfiPeiReadOnlyVariable2PpiGuid
+
+[BuildOptions]
+
+  *_*_*_CC_FLAGS = -D NCT6126
+  *_*_*_CLANG_FLAGS = -D NCT6126
+

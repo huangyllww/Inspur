@@ -1,0 +1,103 @@
+
+
+  #ifdef ADVANCED_FORM_SET
+
+    #ifdef FORM_SET_GOTO
+      goto ConsoleRedirection_FORM_ID,
+        prompt  = STRING_TOKEN(STR_CONSOLE_REDIRECTION_CONF_TITLE),
+        help    = STRING_TOKEN(STR_CONSOLE_REDIRECTION_CONF_HELP);
+    #endif
+
+    #ifdef FORM_SET_FORM
+      form formid = AUTO_ID(ConsoleRedirection_FORM_ID),
+        title     = STRING_TOKEN(STR_CONSOLE_REDIRECTION_CONF_TITLE);
+        subtitle text = STRING_TOKEN(STR_CONSOLE_REDIRECTION_CONF_TITLE);
+        subtitle text = STRING_TOKEN(STR_EMPTY);
+
+        oneof varid   = SETUP_DATA.UCREnable,
+          prompt      = STRING_TOKEN(STR_UCR),
+          help        = STRING_TOKEN(STR_UCR_HELP),
+          option text = STRING_TOKEN(STR_ENABLED),  value=1, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_DISABLED), value=0, flags = RESET_REQUIRED | DEFAULT;
+        endoneof;
+
+        suppressif NOT ideqval SETUP_DATA.UCREnable == 1;
+
+          grayoutif TRUE;
+            oneof varid   = SETUP_DATA.SerialBaudrate,
+                  prompt      = STRING_TOKEN(STR_SERIAL_BAUDRATE),
+                  help        = STRING_TOKEN(STR_SERIAL_BAUDRATE_HELP),
+                  option text = STRING_TOKEN(STR_SERIAL_BAUDRATE_9600),  value=0, flags=0 | RESET_REQUIRED;
+                  option text = STRING_TOKEN(STR_SERIAL_BAUDRATE_19200), value=1, flags=0 | RESET_REQUIRED;
+                  option text = STRING_TOKEN(STR_SERIAL_BAUDRATE_38400), value=2, flags=0 | RESET_REQUIRED;
+                  option text = STRING_TOKEN(STR_SERIAL_BAUDRATE_57600), value=3, flags=0 | RESET_REQUIRED;
+                  option text = STRING_TOKEN(STR_SERIAL_BAUDRATE_115200), value=4, flags=DEFAULT | RESET_REQUIRED;
+            endoneof;
+          endif;  
+
+          oneof varid   = SETUP_DATA.TerminalType,
+                prompt      = STRING_TOKEN(STR_TERMINAL_TYPE),
+                help        = STRING_TOKEN(STR_TERMINAL_TYPE_HELP),
+                //option text = STRING_TOKEN(STR_TERMINAL_TYPE_ANSI),       value=0, flags = RESET_REQUIRED;
+                //option text = STRING_TOKEN(STR_TERMINAL_TYPE_VT100),      value=1, flags = RESET_REQUIRED;
+                option text = STRING_TOKEN(STR_TERMINAL_TYPE_VT100_PLUS), value=2, flags = RESET_REQUIRED;
+                //option text = STRING_TOKEN(STR_TERMINAL_TYPE_UTF8),       value=3, flags = RESET_REQUIRED;
+                //option text = STRING_TOKEN(STR_TERMINAL_TYPE_TTY),        value=4, flags = RESET_REQUIRED;
+                option text = STRING_TOKEN(STR_TERMINAL_TYPE_LINUX),      value=5, flags = RESET_REQUIRED;
+                option text = STRING_TOKEN(STR_TERMINAL_TYPE_X_TERM_R6),  value=6, flags = RESET_REQUIRED;
+                option text = STRING_TOKEN(STR_TERMINAL_TYPE_VT400),      value=7, flags = RESET_REQUIRED;
+                option text = STRING_TOKEN(STR_TERMINAL_TYPE_SCO),        value=8, flags = RESET_REQUIRED;
+                option text = STRING_TOKEN(STR_TERMINAL_TYPE_AUTO),       value=9, flags = RESET_REQUIRED | DEFAULT;
+          endoneof;
+          
+          suppressif TRUE;
+            oneof varid   = SETUP_DATA.DataBits,
+                  prompt      = STRING_TOKEN(STR_DATA_BITS),
+                  help        = STRING_TOKEN(STR_DATA_BITS_HELP),
+                  option text = STRING_TOKEN(STR_7_DATA_BITS),       value=0, flags = RESET_REQUIRED;
+                  option text = STRING_TOKEN(STR_8_DATA_BITS),       value=1, flags = RESET_REQUIRED | DEFAULT;
+            endoneof;  
+            
+            oneof varid   = SETUP_DATA.Parity,
+                  prompt      = STRING_TOKEN(STR_PARITY),
+                  help        = STRING_TOKEN(STR_PARITY_HELP),
+                  option text = STRING_TOKEN(STR_NO_PARITY),       value=0, flags = RESET_REQUIRED | DEFAULT;
+                  option text = STRING_TOKEN(STR_EVEN_PARITY),     value=1, flags = RESET_REQUIRED;
+                  option text = STRING_TOKEN(STR_ODD_PARITY),      value=2, flags = RESET_REQUIRED;
+                  option text = STRING_TOKEN(STR_MARK_PARITY),     value=3, flags = RESET_REQUIRED;
+                  option text = STRING_TOKEN(STR_SPACE_PARITY),    value=4, flags = RESET_REQUIRED;
+            endoneof;
+
+            oneof varid   = SETUP_DATA.StopBits,
+                  prompt      = STRING_TOKEN(STR_STOP_BITS),
+                  help        = STRING_TOKEN(STR_STOP_BITS_HELP),
+                  option text = STRING_TOKEN(STR_1_STOP_BITS),       value=0, flags = RESET_REQUIRED | DEFAULT;
+                  option text = STRING_TOKEN(STR_1_5_STOP_BITS),     value=1, flags = RESET_REQUIRED;
+                  option text = STRING_TOKEN(STR_2_STOP_BITS),       value=2, flags = RESET_REQUIRED; 
+            endoneof;
+
+            oneof varid   = SETUP_DATA.FlowControl,
+                  prompt      = STRING_TOKEN(STR_FLOW_CONTROL),
+                  help        = STRING_TOKEN(STR_FLOW_CONTROL_HELP),
+                  option text = STRING_TOKEN(STR_HARDWARE_FLOW_CONTROL),    value=0, flags = RESET_REQUIRED;
+                  option text = STRING_TOKEN(STR_NO_FLOW_CONTROL),          value=1, flags = RESET_REQUIRED | DEFAULT; 
+            endoneof;
+          endif;            
+        endif;
+
+        subtitle text = STRING_TOKEN(STR_EMPTY);
+
+        suppressif TRUE;
+          oneof varid   = SETUP_DATA.SerialRedirection2,
+            prompt      = STRING_TOKEN(STR_UCR2),
+            help        = STRING_TOKEN(STR_UCR2_HELP),
+            option text = STRING_TOKEN(STR_ENABLED),  value=1, flags = RESET_REQUIRED;
+            option text = STRING_TOKEN(STR_DISABLED), value=0, flags = RESET_REQUIRED | DEFAULT;
+          endoneof;        
+        endif;
+        
+      endform;
+    #endif
+    
+  #endif //ifdef ADVANCED_FORM_SET
+  

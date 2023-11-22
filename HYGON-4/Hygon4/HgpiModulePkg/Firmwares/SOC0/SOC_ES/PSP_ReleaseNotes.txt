@@ -1,0 +1,664 @@
+// ------------------------------------------------------------------------------
+// Copyright 2016-2023 Chengdu Haiguang IC Design Co., Ltd. All rights reserved.
+//
+// PSP FW Delivery Release Notes
+//
+// Files && Lastest Version:
+//   [P] PspFirmwareMcmDN.esbin  [3.5.2.146]
+//        - PSP Entry: 0x1
+//-------------------------------------------------------------------------------
+Features and fixes in [P]3.5.2.146 (2023/10/27)
+1.enable gop offline flush
+
+Features and fixes in [P]3.5.2.145 (2023/10/27)
+1.update ucodepatch location.
+
+Features and fixes in [P]3.5.2.144 (2023/10/25)
+1.add polling timeout in training.
+
+Features and fixes in [P]3.5.2.143 (2023/10/25)
+1. send more command in SW QCA training.
+
+Features and fixes in [P]3.5.2.142 (2023/10/23)
+1.set wait_cnt=0xffff for pll_lock_bypass mode
+
+Features and fixes in [P]3.5.2.141 (2023/10/18)
+1. send p2p cmd to do wbinvd_check and mask_asid_state
+
+Features and fixes in [P]3.5.2.140 (2023/10/18)
+1.add print for sn
+
+Features and fixes in [P]3.5.2.138 (2023/10/13)
+1.update SPI clock.
+
+Features and fixes in [P]3.5.2.137 (2023/10/12)
+1.Support data poison function,disable by default.
+
+Features and fixes in [P]3.5.2.136 (2023/10/08)
+1.set LSCFG2[17] for HY748X-249 
+
+Features and fixes in [P]3.5.2.135 (2023/10/07)
+1.Disable PVT function for HY4PS-1951.
+
+Features and fixes in [P]3.5.2.133 (2023/9/26)
+1.Revert use spd[0xF8-0xF9] to config RCD RW08-RW09.
+
+Features and fixes in [P]3.5.2.132 (2023/9/26)
+1.Fix hardcode for polling DfiInitComplete.
+
+Features and fixes in [P]3.5.2.130 (2023/9/25)
+1.Use spd[0xF8-0xF9] to config RCD RW08-RW09.
+2.Stop scan when boundary is found in qcs train.
+3.Disable reg rd/wr log in qcs/qca train.
+
+Features and fixes in [P]3.5.2.129 (2023/9/25)
+1.Optimize SwQCA.
+
+Features and fixes in [P]3.5.2.128 (2023/9/21)
+1.Add 3600 timing config
+
+Features and fixes in [P]3.5.2.127 (2023/9/21)
+revert umc with following changes
+1.Stop scan when boundary is found in qcs/qca train.
+2.Disable reg rd/wr log in qcs/qca train.
+3.Use spd[0xF8-0xFF] to config RCD RW08-RW0F.
+
+Features and fixes in [P]3.5.2.123 (2023/9/21)
+1.Add GOPoptfunc.
+
+Features and fixes in [P]3.5.2.119 (2023/9/20)
+1.Update sequence: config RCD by I2C after MemDramInitEngineD5 
+
+Features and fixes in [P]3.5.2.116 (2023/9/18)
+1. fixed access port80
+
+Features and fixes in [P]3.5.2.115 (2023/9/18)
+1.delete some unuse words
+
+Features and fixes in [P]3.5.2.114 (2023/9/18)
+1.Add polling DfiInitComplete subA and subB
+
+Features and fixes in [P]3.5.2.111 (2023/9/16)
+1.Config Non-Target ODT after Writeleveling and RxEn.
+
+Features and fixes in [P]3.5.2.109 (2023/9/16)
+1.Add pass-through in MemPhySlowPathWorkAround.
+
+Features and fixes in [P]3.5.2.106 (2023/9/14)
+1.Add token for McaBank Count
+
+Features and fixes in [P]3.5.2.103 (2023/9/12)
+1.Add token for Ixc voltage level
+
+Features and fixes in [P]3.5.2.102 (2023/9/12)
+1.Order adjustment: Config RCD first and then DramInitEngine
+
+Features and fixes in [P]3.5.2.99 (2023/9/12)
+1.Fix code error in version 3.5.2.97
+
+Features and fixes in [P]3.5.2.97 (2023/9/11)
+1.Use Dram ID as the condition instead of the Module ID for data bus odt configuration.
+
+Features and fixes in [P]3.5.2.96 (2023/9/11)
+1.add soft_rest before ddr phy init.
+
+Features and fixes in [P]3.5.2.91 (2023/9/07)
+1.merge cpu secure fw
+
+Features and fixes in [P]3.5.2.86 (2023/9/06)
+1.Enable PIE MCA in ABL Flow to Detect MCA Error
+
+Features and fixes in [P]3.5.2.85 (2023/9/05)
+1.DXIO FW update pcie MasterPLLAuto to 1.
+
+Features and fixes in [P]3.5.2.83 (2023/9/04)
+1.Support get odt config from Bios SETUP, Only support 89 bios or later version.
+
+Features and fixes in [P]3.5.2.82 (2023/8/30)
+1.Get DQ_RTTPARK from DataBus for SlowPathWorkRevert.
+
+Features and fixes in [P]3.5.2.79 (2023/8/29)
+1.Open PKI/cache function.
+
+Features and fixes in [P]3.5.2.78 (2023/8/29)
+1.Update S3 config.
+
+Features and fixes in [P]3.5.2.77 (2023/8/28)
+1.Surpport get odt & drv & vref config from 0x1704 databus.
+
+Features and fixes in [P]3.5.2.76 (2023/8/25)
+1.Fix bug in software QCS/QCA training
+
+Features and fixes in [P]3.5.2.75 (2023/8/21)
+1.Enable MMIO Hole Align
+2.Enable "Df Memory Map Workaround1" to Resovle HY4PS-1749/1750
+
+Features and fixes in [P]3.5.2.74 (2023/8/18)
+1.Add CS SPF Debug Control to Detect Error
+
+Features and fixes in [P]3.5.2.73 (2023/8/18)
+1.Add MMIO Hole Align Function(Not Enable).
+
+Features and fixes in [P]3.5.2.72 (2023/8/18)
+1.Add disable channel for rrw fail.
+
+Features and fixes in [P]3.5.2.71 (2023/8/18)
+1.Enable sw qcs/qca.
+
+Features and fixes in [P]3.5.2.70 (2023/8/18)
+1.Move rrw to UMC1.
+
+Features and fixes in [P]3.5.2.69 (2023/8/16)
+1.Update combo apcb.h file.
+
+Features and fixes in [P]3.5.2.68 (2023/8/14)
+1.update pcie aspm params,config PCIE_LC_TURN_OFF_UNUSED_LANE 0.
+
+Features and fixes in [P]3.5.2.67 (2023/8/14)
+1.Add control for subchannel interleave bit.
+
+Features and fixes in [P]3.5.2.65 (2023/8/12)
+1.add rrw err info record.
+
+Features and fixes in [P]3.5.2.64 (2023/8/09)
+1.update sw qcs code, but not enable sw qcs.
+
+Features and fixes in [P]3.5.2.63 (2023/8/09)
+1.update cpuid line.
+
+Features and fixes in [P]3.5.2.62 (2023/8/08)
+1.tcpded 10ns to 20ns.
+
+Features and fixes in [P]3.5.2.61 (2023/8/08)
+1.set pll bypass wait cnt to 0xe000.
+
+Features and fixes in [P]3.5.2.60 (2023/8/07)
+1.Enable RcdParity for montage when FGR is enabled.
+
+Features and fixes in [P]3.5.2.59 (2023/8/07)
+1.HY4PS-1749/1750 WorkRound.
+Reduce CS0/1's Memory Size to Generate Asymmetric,
+so Magic Space will Locate on CS2's second Dram Map(non-intlv) to Avoid Problem
+
+Features and fixes in [P]3.5.2.58 (2023/8/05)
+1.add umc max freq limit, disable by default.
+
+Features and fixes in [P]3.5.2.57 (2023/8/03)
+1.add hynix 1Rx8 qca training.
+
+Features and fixes in [P]3.5.2.55 (2023/8/03)
+1.remove fgr Thresh and bypass config.
+
+Features and fixes in [P]3.5.2.54 (2023/8/03)
+1.Config Thresh and bypass config.
+
+Features and fixes in [P]3.5.2.53 (2023/8/03)
+1.Adjust IdleCycleLimit to  optimize performance.
+
+Features and fixes in [P]3.5.2.52 (2023/8/03)
+1.Enable SeqID function.
+
+Features and fixes in [P]3.5.2.51 (2023/8/02)
+1.Modify cs buffer config fo better perf.
+
+Features and fixes in [P]3.5.2.50 (2023/8/02)
+1.keep ddr ca pin high.
+
+Features and fixes in [P]3.5.2.49 (2023/8/02)
+1.fix the mistake of function name.
+
+Features and fixes in [P]3.5.2.48 (2023/8/01)
+1.add LPC and ESPI select switch.
+
+Features and fixes in [P]3.5.2.47 (2023/8/01)
+1.Enable CCM SrcDnBypass for better perf.
+
+Features and fixes in [P]3.5.2.46 (2023/8/01)
+1.Change UMC SubChn Intlv Bit to Addr7 for C2D Bandwidth
+2.Enable "Separate SPF Lookup" and "Optimize CS to UMC Req Stall" in CS for Better Perf
+
+Features and fixes in [P]3.5.2.45 (2023/7/31)
+1.Fix HY4PS-1822 bad tCL & tCWL. Optimize memory bandwidth.
+
+Features and fixes in [P]3.5.2.44 (2023/7/31)
+1.Optimize HY4PS-1070's workaround
+
+Features and fixes in [P]3.5.2.43 (2023/7/31)
+1.Optimize HY4PS-1569 workaround
+
+Features and fixes in [P]3.5.2.42 (2023/7/29)
+1.Adjust ColHiBitsOrig to  optimize performance.
+
+Features and fixes in [P]3.5.2.41 (2023/7/27)
+1.Optimize UMC address mapping code.
+
+Features and fixes in [P]3.5.2.40 (2023/7/26)
+1.Add RW word print after rrw.
+
+Features and fixes in [P]3.5.2.39 (2023/7/26)
+1.Enable Pvt Update post rrw
+
+Features and fixes in [P]3.5.2.38 (2023/7/26)
+1.support qcs 2R training.
+
+Features and fixes in [P]3.5.2.37 (2023/7/26)
+1.update rcd parity enable code.
+
+Features and fixes in [P]3.5.2.36 (2023/7/26)
+1.update error Flow.
+
+Features and fixes in [P]3.5.2.35 (2023/7/26)
+1.update qcs code and print.
+
+Features and fixes in [P]3.5.2.34 (2023/7/24)
+1.update qcs and qca code.
+
+Features and fixes in [P]3.5.2.33 (2023/7/24)
+1.Add 4-way Satori's tcdx token cfg.
+
+Features and fixes in [P]3.5.2.32 (2023/7/24)
+1.Enable CAKE compression.
+
+Features and fixes in [P]3.5.2.31 (2023/7/24)
+1.Change device vrefca/cs for hynix x8 dimm.
+
+Features and fixes in [P]3.5.2.30 (2023/7/24)
+1.add qca and rw word print.
+
+Features and fixes in [P]3.5.2.29 (2023/7/21)
+1.Disable PVT Update.
+
+Features and fixes in [P]3.5.2.27 (2023/7/21)
+1.add espi timeout function
+2.add irq and clk parameter from hpcb
+
+Features and fixes in [P]3.5.2.26 (2023/7/20)
+1.Fix CSD-2664.Update control for PowerDown mode
+
+Features and fixes in [P]3.5.2.25 (2023/7/20)
+1.disable CDD TCDX5 bypass
+
+Features and fixes in [P]3.5.2.24 (2023/7/19)
+1.disable QOS.
+
+Features and fixes in [P]3.5.2.23 (2023/7/18)
+1.WR_NOM to 80ohm.
+2.ODTLon/off to +2/-2.
+
+Features and fixes in [P]3.5.2.22 (2023/7/17)
+1.Fix Tsrx Setting.
+2.Enable DDR PHY Pvt Compensation.
+
+Features and fixes in [P]3.5.2.21 (2023/7/13)
+1.Add Support For Hmac_Key.
+
+Features and fixes in [P]3.5.2.20 (2023/7/13)
+1.cancal printf after release bp.
+
+Features and fixes in [P]3.5.2.18 (2023/7/11)
+1.expand dxio fw operate cache size to whole dxio_data
+2.change the dxio flush bss data judgment condition
+
+Features and fixes in [P]3.5.2.17 (2023/7/11)
+1.dxio fw global variables move to scratch space
+
+Features and fixes in [P]3.5.2.16 (2023/7/10)
+1.Increase Tsrxsrsm by 40%.
+
+Features and fixes in [P]3.5.2.15 (2023/7/10)
+1.dxio update pcie aspm paras.
+
+Features and fixes in [P]3.5.2.14 (2023/7/10)
+1.Optimizing error log printf.
+
+Features and fixes in [P]3.5.2.13 (2023/7/7)
+1.Optimizing DDR training log.
+
+Features and fixes in [P]3.5.2.12 (2023/7/6)
+1.add dxio fw invalid and clean cache operation
+
+Features and fixes in [P]3.5.2.11 (2023/7/6)
+1. Enable DDR PHY CTLE feature.
+
+Features and fixes in [P]3.5.2.9 (2023/7/5)
+1. Disable CAKE compression
+
+Features and fixes in [P]3.5.2.8 (2023/7/5)
+1. Update mod3-align address mapping algorithm to suuport die/socket interleave(HY4PS-1590)
+
+Features and fixes in [P]3.5.2.7 (2023/7/5)
+1. Clear DF hardware assert mask and DisImmSyncflood set 0
+
+Features and fixes in [P]3.5.2.6 (2023/7/4)
+1. Fix dxio data conflicts
+
+Features and fixes in [P]3.5.2.5 (2023/7/4)
+1. Update control for AutoRefFineGranMode
+
+Features and fixes in [P]3.5.2.1 (2023/7/4)
+1. add assert and sync record
+
+Features and fixes in [P]3.5.2.0 (2023/7/4)
+1. Enable Non Target ODT When Multi CS.
+2. RTT_NOM_RD: 40 -> 80ohm
+3. Sync two sub-channel  Self-Refresh-Entry
+
+Features and fixes in [P]3.5.1.255 (2023/7/3)
+1.Disable Non Target ODT When Multi CS.
+
+Features and fixes in [P]3.5.1.253 (2023/7/3)
+1. modify tlb search and close dbgu print
+
+Features and fixes in [P]3.5.1.252 (2023/7/3)
+1.ad socket sync before reading other socket's infor
+
+Features and fixes in [P]3.5.1.251 (2023/7/1)
+1.close pki and cache for dxio test
+
+Features and fixes in [P]3.5.1.250 (2023/6/30)
+1.Add Refresh Management(RFM).
+
+Features and fixes in [P]3.5.1.249 (2023/6/29)
+1.Disable PVT.
+
+Features and fixes in [P]3.5.1.248 (2023/6/29)
+1.Set Tsrx&enable PVT.
+
+Features and fixes in [P]3.5.1.247 (2023/6/29)
+1.Disable RcdParity for montage RCD.
+
+Features and fixes in [P]3.5.1.246 (2023/6/29)
+1.Modify phy_reg_ddr5_rdimm_tstab02 to 25.6us.
+
+Features and fixes in [P]3.5.1.245 (2023/6/27)
+1.Add qca workaround code.
+
+Features and fixes in [P]3.5.1.244 (2023/6/26)
+1.Fix rw01 parity checking config.
+
+Features and fixes in [P]3.5.1.243 (2023/6/25)
+1.Add dq/dqs enb config.
+
+Features and fixes in [P]3.5.1.242 (2023/6/19)
+1.Enable dcsdca hw training in dram init.
+
+Features and fixes in [P]3.5.1.241 (2023/6/19)
+1.Fix dram rank enable 1dpc/2dpc.
+
+Features and fixes in [P]3.5.1.240 (2023/6/17)
+1.Rollback FW 228 version.
+
+Features and fixes in [P]3.5.1.239 (2023/6/17)
+1.Use JEDEC DDR5 Rounding Rule to round down.
+
+Features and fixes in [P]3.5.1.238 (2023/6/16)
+1.Format CSsel usage.
+2.Add debug log in MemRcdSbWriteI2C.
+
+Features and fixes in [P]3.5.1.237 (2023/6/16)
+1.Fix 2R DCSDCA i2c addr problem
+
+Features and fixes in [P]3.5.1.236 (2023/6/15)
+1.revert pcie rx cdr para
+
+Features and fixes in [P]3.5.1.235 (2023/6/15)
+1.add espi config function
+
+Features and fixes in [P]3.5.1.234 (2023/6/15)
+1.Disable FGR mode, Enable Normal mode.
+
+Features and fixes in [P]3.5.1.233 (2023/6/15)
+1.Revert RCD pass-through when send MPC to DRAM.
+
+Features and fixes in [P]3.5.1.232 (2023/6/15)
+1.update pcie rx cdr para.
+
+Features and fixes in [P]3.5.1.231 (2023/6/14)
+1.Split MemPhyUserLoadMode to Stage1 and Stage2.
+
+Features and fixes in [P]3.5.1.230 (2023/6/13)
+1.Fix 2dpc dd timing config swbug.
+
+Features and fixes in [P]3.5.1.229 (2023/6/13)
+1.Enable UMC Auto-ECS.
+
+Features and fixes in [P]3.5.1.228 (2023/6/13)
+1.Fix mod3 align logic in dram mapping flow for ddr4
+
+Features and fixes in [P]3.5.1.227 (2023/6/13)
+1.Fix Hy4ps-926, support 2dpc 1R
+
+Features and fixes in [P]3.5.1.226 (2023/6/13)
+1.Fix CSD-2629, disable GOP4/5 at VTB1
+
+Features and fixes in [P]3.5.1.225 (2023/6/12)
+1.Fix memory clear range mistake when there are more than one dram map.
+
+Features and fixes in [P]3.5.1.224 (2023/6/12)
+1.Fix JIRA Hy4ps-1619, dxio fw suppot xgbe 2SFP+2SGMII mode.
+
+Features and fixes in [P]3.5.1.223 (2023/6/12)
+1.Fix JIRA Hy4ps-1606, Montage/Rambus RCD training failed at 4400/4800MT/s.
+
+Features and fixes in [P]3.5.1.222 (2023/6/9)
+1.Fix JIRA Hy4ps-1630, async x8 mode must select phy3 clk in 2-way reversed link.
+
+Features and fixes in [P]3.5.1.221 (2023/6/9)
+1.Fix Cmds block of CA/CS Training
+
+Features and fixes in [P]3.5.1.220 (2023/6/8)
+1.Fix Mode Resgister and Control Word scan
+
+Features and fixes in [P]3.5.1.219 (2023/6/8)
+1.Roll back SeqID Disable.
+
+Features and fixes in [P]3.5.1.218 (2023/6/7)
+1.Fix JIRA CSD-2579,add dxio fw scratch space size.
+
+Features and fixes in [P]3.5.1.217 (2023/6/6)
+1.Fix JIRA Hy4ps-1648,2Rx4 dimm dq mapping config.
+
+Features and fixes in [P]3.5.1.216 (2023/6/6)
+1.DDR PHY PVT debug code, disable by default.
+
+Features and fixes in [P]3.5.1.215 (2023/6/6)
+1.Enable UMC Data Scramble to reduce bit errors.
+
+Features and fixes in [P]3.5.1.214 (2023/6/5)
+1.Fix 2R DCS Training Flow.
+
+Features and fixes in [P]3.5.1.213 (2023/6/1)
+1.ODTLon_WR_Offset=-2T ODTLoff_WR_Offset=2T.
+2.DQS_RTT_PARK=40ohm
+
+Features and fixes in [P]3.5.1.212 (2023/5/31)
+1.Fix JIRA HY4PS-1506.
+
+Features and fixes in [P]3.5.1.209 (2023/5/30)
+1.Rollback mem_phy.c to 3.5.1.189
+
+Features and fixes in [P]3.5.1.208 (2023/5/30)
+1.Update qcs code
+
+Features and fixes in [P]3.5.1.207 (2023/5/29)
+1.Update cavref rrw scan code
+
+Features and fixes in [P]3.5.1.206 (2023/5/29)
+1.align the dxio data struct by 64 bytes
+
+Features and fixes in [P]3.5.1.205 (2023/5/26)
+1.Enable/Disable Mem Eye Test by TOKEN
+
+Features and fixes in [P]3.5.1.204 (2023/5/26)
+1.Improve DDR DFE
+
+Features and fixes in [P]3.5.1.203 (2023/5/25)
+1.Support 4socket->2socket(GOP12/13 connect)
+
+Features and fixes in [P]3.5.1.202 (2023/5/25)
+1.Update control for Mem Eye Test
+
+Features and fixes in [P]3.5.1.199 (2023/5/24)
+1. Fix JIRA HY4PS-1011
+
+Features and fixes in [P]3.5.1.196 (2023/5/23)
+1. Add manufacturer ID info of SPD
+
+Features and fixes in [P]3.5.1.194 (2023/5/23)
+1. Disable Mem Eye Test Default
+
+Features and fixes in [P]3.5.1.193 (2023/5/22)
+1. Update control for Mem Eye Test
+
+Features and fixes in [P]3.5.1.191 (2023/5/22)
+1. Update qcs training code
+
+Features and fixes in [P]3.5.1.190 (2023/5/22)
+1. Add Support for SA 1Rx4, 1Rx8 Write 2D Vref Per DQ offset
+
+Features and fixes in [P]3.5.1.189 (2023/5/22)
+1. Add support of x4 Write 2D training Vref setting per nibble
+2. Add support of x4 write DFE tap1 setting per nibble
+3. Add set Global Vref and tap before per byte set according to PDA ID
+
+Features and fixes in [P]3.5.1.188 (2023/5/22)
+1. Config odt/vref of rcd and device;
+
+Features and fixes in [P]3.5.1.187 (2023/5/22)
+1. Add Tx FFE code;
+
+Features and fixes in [P]3.5.1.186 (2023/5/22)
+1. Fix compile error;
+
+Features and fixes in [P]3.5.1.185 (2023/5/22)
+1. Add PDA id print;
+
+Features and fixes in [P]3.5.1.184 (2023/5/22)
+1. Set phy drv strenth 22ohm;
+
+Features and fixes in [P]3.5.1.183 (2023/5/22)
+1. Disable PVT feature;
+
+Features and fixes in [P]3.5.1.182 (2023/5/22)
+1. Config all unused CS to 0x7(Non-target)
+
+Features and fixes in [P]3.5.1.179 (2023/5/18)
+1. Fix HY4PS-1525;
+
+Features and fixes in [P]3.5.1.178 (2023/5/16)
+1. add tpcm and secure_fw;
+
+Features and fixes in [P]3.5.1.177 (2023/5/16)
+1. add log level print;
+
+Features and fixes in [P]3.5.1.176 (2023/5/12)
+1. revert pcie cdr para;
+
+Features and fixes in [P]3.5.1.174 (2023/5/11)
+1. Update gop rx afe config;
+
+Features and fixes in [P]3.5.1.173 (2023/5/10)
+1. Update 2R Performance;
+
+Features and fixes in [P]3.5.1.172 (2023/5/10)
+1. Update pcie CDR voltage paras;
+
+Features and fixes in [P]3.5.1.171 (2023/5/8)
+1. Update control for 2d training log;
+
+Features and fixes in [P]3.5.1.170 (2023/5/8)
+1. Update gpio config for DC failed;
+
+Features and fixes in [P]3.5.1.169 (2023/5/5)
+1. Update first mcm sync;
+
+Features and fixes in [P]3.5.1.168 (2023/5/5)
+1. Update zq calib code;
+
+Features and fixes in [P]3.5.1.167 (2023/5/5)
+1. Update pda code;
+
+Features and fixes in [P]3.5.1.166 (2023/5/4)
+1. Update ddc code;
+
+Features and fixes in [P]3.5.1.165 (2023/5/4)
+1. Update rd 2d training CsSel;
+
+Features and fixes in [P]3.5.1.164 (2023/5/3)
+1. Fix DDR5 Read write 2D training;
+
+Features and fixes in [P]3.5.1.163 (2023/5/3)
+1. Fix the timing parameters of UMC read write;
+
+Features and fixes in [P]3.5.1.162 (2023/5/3)
+1. Always enable rx vref;
+
+Features and fixes in [P]3.5.1.161 (2023/5/3)
+1. Fix DDR PHY rx odt;
+
+Features and fixes in [P]3.5.1.159 (2023/4/25)
+1. Add hmi/gop debug code;
+
+Features and fixes in [P]3.5.1.155 (2023/4/20)
+1. Change ddr5 subchannel interleave bit;
+
+Features and fixes in [P]3.5.1.151 (2023/4/18)
+1. ovrd disabled pcie lane term value, fixed detect pns failed;
+
+Features and fixes in [P]3.5.1.146 (2023/4/16)
+1. Add delay in PMIC ADC;
+
+Features and fixes in [P]3.5.1.138 (2023/4/12)
+1. enable sequence id;
+
+Features and fixes in [P]3.5.1.137 (2023/4/12)
+1. bios mailbox to dxio paras fixed register for security;
+
+Features and fixes in [P]3.5.1.135 (2023/4/12)
+1.modify dxio fw code Architecture;
+
+Features and fixes in [P]3.5.1.125 (2023/4/6)
+1.close dxio fw log;
+
+Features and fixes in [P]3.5.1.124 (2023/4/6)
+1.open gop FcInitTimeoutLimit to 0xff;
+
+Features and fixes in [P]3.5.1.123 (2023/4/6)
+1.gop 28.8G add txx_term , txup_termoffset, txdn_termoffset cfg
+
+Features and fixes in [P]3.5.1.117 (2023/4/4)
+1.Fix HY4PS_1070
+
+Features and fixes in [P]3.5.1.116 (2023/4/4)
+1.modify gasket
+
+Features and fixes in [P]3.5.1.115 (2023/4/4)
+1.Optimize TCDX config
+
+Features and fixes in [P]3.5.1.114 (2023/4/3)
+1.modified dxio global variable usage
+
+Features and fixes in [P]3.5.1.113 (2023/4/3)
+1.update pcie phy parameters
+
+Features and fixes in [P]3.5.1.112 (2023/3/31)
+1. Enable Write DFE, and Write 2D training
+
+Features and fixes in [P]3.5.1.110 (2023/3/29)
+1. Disable TCR feature
+2. Disable Write DFE, and Write 2D training
+3. Revert 2R performance config
+
+Features and fixes in [P]3.5.1.12 (2023/2/14)
+add mp0 dxio fw code
+
+Features and fixes in [P]3.5.1.8 (2023/2/10)
+add UT function
+
+Features and fixes in [P]3.5.1.3 (2023/2/7)
+HY4PS-1195 Fixed  Vi error
+
+Features and fixes in [P]3.5.1.0 (2023/2/2)
+first version for release
+
+

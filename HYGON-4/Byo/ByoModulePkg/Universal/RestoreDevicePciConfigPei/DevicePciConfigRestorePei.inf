@@ -1,0 +1,66 @@
+## @file
+#
+#Copyright (c) 2020, Byosoft Corporation.<BR>
+#All rights reserved.This software and associated documentation (if any)
+#is furnished under a license and may only be used or copied in
+#accordance with the terms of the license. Except as permitted by such
+#license, no part of this software or documentation may be reproduced,
+#stored in a retrieval system, or transmitted in any form or by any
+#means without the express written consent of Byosoft Corporation.
+#
+#File Name:
+#  IpmiBootOrder.inf
+#
+#Abstract:
+#
+#Revision History:
+#
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = DevicePciConfigRestorePei
+  FILE_GUID                      = 9C898A43-6807-47F3-B65A-85FD02931D69
+  MODULE_TYPE                    = PEIM
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = DevicePciConfigRestoreEntryPoint
+
+#
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           = IA32 X64 EBC
+#
+
+[Sources]
+  DevicePciConfigRestorePei.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  #MinPlatformPkg/MinPlatformPkg.dec
+  ByoModulePkg/ByoModulePkg.dec
+
+[LibraryClasses]
+  PeiServicesLib 
+  PeimEntryPoint
+  BaseLib
+  BaseMemoryLib
+  DebugLib
+  PciLib
+
+[Guids]
+  gPciDevConfigDataVariableGuid                     ## L"PciDevConfigData" Variable
+
+[Ppis]
+  gByoRestorePciDeviceConfigPpiGuid                 ## PRODUCES
+  gEfiPeiReadOnlyVariable2PpiGuid                   ## CONSUMES
+
+[Pcd]
+
+[Depex]
+  gEfiPeiReadOnlyVariable2PpiGuid
+  
+  
+  
+  
+  

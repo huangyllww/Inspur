@@ -1,0 +1,672 @@
+commit d1a5f06
+Author: Jawen Zhang <zhangjianwen@byosoft.com.cn>
+Date:   Fri Nov 3 16:33:35 2023 +0800
+
+    YudiProjectPkg: [#10] adapt new MP cpu.
+    
+    Signed-off-by: Jawen Zhang <zhangjianwen@byosoft.com.cn>
+
+YudiProjectPkg/Hpcb/HyEx/Inc/HPCB.h
+YudiProjectPkg/Hpcb/HyEx/Oem/HpcbData/HpcbData_SAT_GID_0x1704_Type_PsDataBusRDIMMDdr.c
+YudiProjectPkg/Hpcb/HyEx/Oem/Include/HpcbAutoGen.h
+YudiProjectPkg/Hpcb/HyEx/Oem/Include/HpcbCustomizedDefinitions.h
+YudiProjectPkg/Hpcb/HyEx/Oem/Release/HPCB.bin
+YudiProjectPkg/Hpcb/HyGx/Inc/HPCB.h
+YudiProjectPkg/Hpcb/HyGx/Oem/Include/HpcbAutoGen.h
+YudiProjectPkg/Hpcb/HyGx/Oem/Include/HpcbCustomizedDefinitions.h
+YudiProjectPkg/Hpcb/HyGx/Oem/Release/HPCB.bin
+YudiProjectPkg/HygonCpmOemInitPei/HygonCpmOemTableHyGx.c
+YudiProjectPkg/PlatformBuild.py
+YudiProjectPkg/ProjectEarlyPei/ProjectEarlyPei.c
+YudiProjectPkg/ProjectEarlyPei/ProjectEarlyPei.inf
+
+commit 37347e3
+Author: Jawen Zhang <zhangjianwen@byosoft.com.cn>
+Date:   Thu Nov 2 16:10:23 2023 +0800
+
+    YudiProjectPkg: [#13] Modify Hygon4 crb repo.
+    
+    Signed-off-by: Jawen Zhang <zhangjianwen@byosoft.com.cn>
+
+.gitlab-ci.yml
+YudiProjectPkg/AcpiTables/AcpiTables.inf
+YudiProjectPkg/BiosIdInspur.env
+YudiProjectPkg/BiosInfo/BiosInfo.inf
+YudiProjectPkg/BmcCfg/BmcCfg.inf
+YudiProjectPkg/ByoPlatformPromptDxe/ByoPlatformPromptDxe.inf
+YudiProjectPkg/Include/_PlatSetupVariable.h
+YudiProjectPkg/Inspur/HamVga/InspurGop/UefiSmi.inf
+YudiProjectPkg/IpmiConfigSetup/IpmiConfigSetupDxe.inf
+YudiProjectPkg/IpmiConfigSetup/IpmiConfigSetupPei.inf
+YudiProjectPkg/Library/PlatformHookLib/PlatformHookLib.inf
+YudiProjectPkg/Library/ProjectCommonLib/ProjectCommonLib.inf
+YudiProjectPkg/Library/SecPlatformLib/SecPlatformLib.inf
+YudiProjectPkg/NoBootDeviceDxe/NoBootDeviceDxe.inf
+YudiProjectPkg/OemPStateDxe/OemPStateDxe.inf
+YudiProjectPkg/Override/Library/PlatformBootManagerLib/PlatformBootManagerLib.inf
+YudiProjectPkg/Override/PlatformDxe/PlatformDxe.inf
+YudiProjectPkg/Override/SendInfoToBmc/SendInfoToBmc.inf
+YudiProjectPkg/Override/TextScreenDxe/TextScreenDxe.inf
+YudiProjectPkg/PlatformBuild.py
+YudiProjectPkg/PlatformSetupDxe/Boot/FormsetBoot.vfr
+YudiProjectPkg/PlatformSetupDxe/PlatformSetupDxe.inf
+YudiProjectPkg/ProjectDxe/ProjectDxe.inf
+YudiProjectPkg/ProjectEarlyDxe/ProjectEarlyDxe.inf
+YudiProjectPkg/ProjectEarlyPei/CpmTableOverride.c
+YudiProjectPkg/ProjectEarlyPei/ProjectEarlyPei.inf
+YudiProjectPkg/ProjectPkg.dsc
+YudiProjectPkg/ProjectSmm/ProjectSmm.inf
+
+commit ee57c51
+Author: Jawen Zhang <zhangjianwen@byosoft.com.cn>
+Date:   Thu Oct 26 20:44:27 2023 +0800
+
+    YudiProjectPkg: [#8] Update bios version to 0.0.1
+    - Update bios version to 0.0.1
+    - 拿掉abl的默认输出, release版本默认不输出串口.
+    - 调整热键的响应
+    - 适配QuietBootMode
+    - bios的签名方式选择2以保持16m的rom szie
+    
+    Signed-off-by: Jawen Zhang <zhangjianwen@byosoft.com.cn>
+
+YudiProjectPkg/BiosIdInspur.env
+YudiProjectPkg/ByoPlatformPromptDxe/ByoPlatformPromptDxe.c
+YudiProjectPkg/Include/IpmiCommon.h
+YudiProjectPkg/Include/_PlatSetupVariable.h
+YudiProjectPkg/IpmiConfigSetup/IpmiConfigSetupDxe.c
+YudiProjectPkg/IpmiConfigSetup/IpmiConfigSetupPei.c
+YudiProjectPkg/Override/Library/PlatformBootManagerLib/PlatformBm.c
+YudiProjectPkg/Override/PostLogin/PostLogin.c
+YudiProjectPkg/Override/TextScreenDxe/TextScreen.c
+YudiProjectPkg/Override/TextScreenDxe/TextScreen.uni
+YudiProjectPkg/Override/TextScreenDxe/TextScreenDxe.inf
+YudiProjectPkg/PlatformBuild.py
+YudiProjectPkg/PlatformSetupDxe/Advanced/FormsetAdvanced.sd
+YudiProjectPkg/PlatformSetupDxe/Boot/Bmstring.uni
+YudiProjectPkg/PlatformSetupDxe/Boot/FormsetBoot.vfr
+YudiProjectPkg/PlatformSetupDxe/SetupFormInit.c
+YudiProjectPkg/ProjectDxe/PostHotKey.c
+YudiProjectPkg/ProjectDxe/ProjectDxe.c
+YudiProjectPkg/ProjectDxe/ProjectDxe.inf
+YudiProjectPkg/ProjectDxe/ProjectDxeStr.uni
+YudiProjectPkg/ProjectEarlyPei/CpmTableOverride.c
+YudiProjectPkg/ProjectPkg.dec
+YudiProjectPkg/ProjectPkg.dsc
+
+commit feefd36
+Author: Jawen Zhang <zhangjianwen@byosoft.com.cn>
+Date:   Mon Oct 23 17:53:03 2023 +0800
+
+    YudiProjectPkg: [#7] PowerOn commit.
+    
+    Signed-off-by: Jawen Zhang <zhangjianwen@byosoft.com.cn>
+
+YudiProjectPkg/Hpcb/HyEx/Oem/Include/HpcbAutoGen.h
+YudiProjectPkg/Hpcb/HyEx/Oem/Release/HPCB.bin
+YudiProjectPkg/Hpcb/HyGx/Oem/Include/HpcbAutoGen.h
+YudiProjectPkg/Hpcb/HyGx/Oem/Release/HPCB.bin
+YudiProjectPkg/Override/Library/PlatformBootManagerLib/InstallOptionRom.c
+YudiProjectPkg/Override/Library/PlatformBootManagerLib/PlatformBm.c
+YudiProjectPkg/Override/Library/PlatformBootManagerLib/PlatformBm.h
+YudiProjectPkg/Override/Library/PlatformBootManagerLib/PlatformBm.uni
+YudiProjectPkg/Override/Library/PlatformBootManagerLib/PlatformBootManagerLib.inf
+YudiProjectPkg/ProjectEarlyDxe/HandleStatusCode.c
+YudiProjectPkg/ProjectEarlyDxe/ProjectEarlyDxe.c
+YudiProjectPkg/ProjectEarlyPei/HandleStatusCode.c
+YudiProjectPkg/ProjectEarlyPei/ProjectEarlyPei.c
+YudiProjectPkg/ProjectPkg.dsc
+YudiProjectPkg/ProjectPkg.fdf
+
+commit 9fa24f4
+Author: Jawen Zhang <zhangjianwen@byosoft.com.cn>
+Date:   Tue Oct 17 20:17:43 2023 +0800
+
+    YudiProjectPkg: [#6] Update Platform driver for Yudi.
+    
+    Signed-off-by: Jawen Zhang <zhangjianwen@byosoft.com.cn>
+
+YudiProjectPkg/BmcCfg/BmcCfg.c
+YudiProjectPkg/BmcCfg/BmcCfg.inf
+YudiProjectPkg/ByoPlatformPromptDxe/ByoPlatformPromptDxe.c
+YudiProjectPkg/ByoPlatformPromptDxe/ByoPlatformPromptDxe.inf
+YudiProjectPkg/ByoPlatformPromptDxe/ByoPlatformPromptDxe.uni
+YudiProjectPkg/ByoToolsRelease/ByoCfg/Linux/ByoCfg_Linux_1.24_20230801
+YudiProjectPkg/ByoToolsRelease/ByoCfg/Linux/README.md
+YudiProjectPkg/ByoToolsRelease/ByoCfg/Uefi/ByoCfg_Uefi_1.22_20230801.efi
+YudiProjectPkg/ByoToolsRelease/ByoCfg/Uefi/README.md
+YudiProjectPkg/ByoToolsRelease/ByoCfg/Windows/ByoCfg_Windows_1.23_20230801.exe
+YudiProjectPkg/ByoToolsRelease/ByoCfg/Windows/README.md
+YudiProjectPkg/ByoToolsRelease/ByoFlash/Linux/ByoFlash_Linux_1.27_20230801
+YudiProjectPkg/ByoToolsRelease/ByoFlash/Linux/README.md
+YudiProjectPkg/ByoToolsRelease/ByoFlash/Uefi/ByoFlash_Uefi_1.20_20230801.efi
+YudiProjectPkg/ByoToolsRelease/ByoFlash/Uefi/README.md
+YudiProjectPkg/ByoToolsRelease/ByoFlash/Windows/ByoFlash_Windows_1.27_20230801.exe
+YudiProjectPkg/ByoToolsRelease/ByoFlash/Windows/README.md
+YudiProjectPkg/ByoToolsRelease/Hash.txt
+YudiProjectPkg/HygonCpmOemInitPei/HygonCpmOemSetup.c
+YudiProjectPkg/Include/IpmiCommon.h
+YudiProjectPkg/Include/Library/ProjectCommonLib.h
+YudiProjectPkg/Include/ProjectToken.h
+YudiProjectPkg/Include/_PlatSetupVariable.h
+YudiProjectPkg/IpmiConfigSetup/IpmiConfigSetupDxe.c
+YudiProjectPkg/IpmiConfigSetup/IpmiConfigSetupDxe.inf
+YudiProjectPkg/IpmiConfigSetup/IpmiConfigSetupPei.c
+YudiProjectPkg/IpmiConfigSetup/IpmiConfigSetupPei.inf
+YudiProjectPkg/Library/ProjectCommonLib/ProjectCommonLib.c
+YudiProjectPkg/Library/ProjectCommonLib/ProjectCommonLib.inf
+YudiProjectPkg/Library/VariableServiceHookLib/VariableServiceHookLib.c
+YudiProjectPkg/NoBootDeviceDxe/NoBootDeviceDxe.c
+YudiProjectPkg/NoBootDeviceDxe/NoBootDeviceDxe.inf
+YudiProjectPkg/OemPStateDxe/OemPStateDxe.c
+YudiProjectPkg/OemPStateDxe/OemPStateDxe.inf
+YudiProjectPkg/Override/PostLogin/PostLogin.c
+YudiProjectPkg/Override/PostLogin/PostLogin.inf
+YudiProjectPkg/Override/PostLogin/PostLogin.uni
+YudiProjectPkg/Override/PxeBootApp/PxeBootApp.c
+YudiProjectPkg/Override/PxeBootApp/PxeBootApp.inf
+YudiProjectPkg/Override/PxeBootApp/PxeBootAppAll.inf
+YudiProjectPkg/Override/SendInfoToBmc/SendInfoToBmc.c
+YudiProjectPkg/Override/SendInfoToBmc/SendInfoToBmc.h
+YudiProjectPkg/Override/SendInfoToBmc/SendInfoToBmc.inf
+YudiProjectPkg/Override/SetupBmcCfg/BmcConfig.uni
+YudiProjectPkg/Override/SetupBmcCfg/BmcConfig.vfr
+YudiProjectPkg/Override/SetupBmcCfg/FruSetup/FruSetup.c
+YudiProjectPkg/Override/SetupBmcCfg/FruSetup/FruSetup.sd
+YudiProjectPkg/Override/SetupBmcCfg/FruSetup/FruSetup.uni
+YudiProjectPkg/Override/SetupBmcCfg/SelEvent/SelEvent.c
+YudiProjectPkg/Override/SetupBmcCfg/SelEvent/SelEvent.sd
+YudiProjectPkg/Override/SetupBmcCfg/SelEvent/SelEvent.uni
+YudiProjectPkg/Override/SetupBmcCfg/SelEvent/SelEventInfo.c
+YudiProjectPkg/Override/SetupBmcCfg/SelEvent/SelEventLog.h
+YudiProjectPkg/Override/SetupBmcCfg/ServerMgmt.c
+YudiProjectPkg/Override/SetupBmcCfg/ServerMgmt.uni
+YudiProjectPkg/Override/SetupBmcCfg/SetupBmcCfg.c
+YudiProjectPkg/Override/SetupBmcCfg/SetupBmcCfg.h
+YudiProjectPkg/Override/SetupBmcCfg/SetupBmcCfg.inf
+YudiProjectPkg/Override/SetupBmcCfg/SetupBmcCfgFormCallback.c
+YudiProjectPkg/Override/SetupBmcCfg/SetupBmcCommonFunctions.c
+YudiProjectPkg/Override/TextScreenDxe/TextScreen.c
+YudiProjectPkg/Override/TextScreenDxe/TextScreen.uni
+YudiProjectPkg/Override/TextScreenDxe/TextScreenDxe.inf
+YudiProjectPkg/PciHotPlugInitDxe/PciHotPlugInitDxe.c
+YudiProjectPkg/PciHotPlugInitDxe/PciHotPlugInitDxe.inf
+YudiProjectPkg/PlatformRecovery.fdf
+YudiProjectPkg/PlatformSetupDxe/Devices/PcieCfg/PcieCfg.sd
+YudiProjectPkg/PlatformSetupDxe/Devices/Usb/Usb.sd
+YudiProjectPkg/PlatformSetupDxe/Devices/Usb/Usb.uni
+YudiProjectPkg/PlatformSetupDxe/Main/PlatformInfo.sd
+YudiProjectPkg/PlatformSetupDxe/Main/PlatformInfo.uni
+YudiProjectPkg/PlatformSetupDxe/OemReset.c
+YudiProjectPkg/PlatformSetupDxe/Power/FormsetPower.uni
+YudiProjectPkg/PlatformSetupDxe/Setup.uni
+YudiProjectPkg/PlatformSetupDxe/SetupFormInit.c
+YudiProjectPkg/ProjectDxe/PostHotKey.c
+YudiProjectPkg/ProjectDxe/ProjectDxe.c
+YudiProjectPkg/ProjectDxe/ProjectDxe.inf
+YudiProjectPkg/ProjectEarlyDxe/ProjectEarlyDxe.c
+YudiProjectPkg/ProjectEarlyPei/ProjectEarlyPei.c
+YudiProjectPkg/ProjectEarlyPei/ProjectEarlyPei.inf
+YudiProjectPkg/ProjectPkg.dec
+YudiProjectPkg/ProjectPkg.dsc
+YudiProjectPkg/ProjectPkg.fdf
+
+commit c46239d
+Author: Jawen Zhang <zhangjianwen@byosoft.com.cn>
+Date:   Sun Oct 8 17:25:35 2023 +0800
+
+    YudiProjectPkg: [#5] Sync with hg4 CRB.
+    
+    Signed-off-by: Jawen Zhang <zhangjianwen@byosoft.com.cn>
+
+YudiProjectPkg/Hpcb/HyEx/Inc/HPCB.h
+YudiProjectPkg/Hpcb/HyEx/Inc/HpcbDfCxlConfig.h
+YudiProjectPkg/Hpcb/HyEx/Inc/MiscMemDefines.h
+YudiProjectPkg/Hpcb/HyEx/Inc/MyIntrinsics.h
+YudiProjectPkg/Hpcb/HyEx/Inc/MyPorting.h
+YudiProjectPkg/Hpcb/HyEx/Oem/HpcbCreate.bat
+YudiProjectPkg/Hpcb/HyEx/Oem/HpcbData/HpcbData_SAT_GID_0x1701_Type_ExtDefParams.c
+YudiProjectPkg/Hpcb/HyEx/Oem/HpcbData/HpcbData_SAT_GID_0x1701_Type_ExtParams.c
+YudiProjectPkg/Hpcb/HyEx/Oem/HpcbData/HpcbData_SAT_GID_0x1702_Type_ExtDefParams.c
+YudiProjectPkg/Hpcb/HyEx/Oem/HpcbData/HpcbData_SAT_GID_0x1702_Type_ExtParams.c
+YudiProjectPkg/Hpcb/HyEx/Oem/HpcbData/HpcbData_SAT_GID_0x1703_Type_ExtDefParams.c
+YudiProjectPkg/Hpcb/HyEx/Oem/HpcbData/HpcbData_SAT_GID_0x1703_Type_ExtParams.c
+YudiProjectPkg/Hpcb/HyEx/Oem/HpcbData/HpcbData_SAT_GID_0x1704_Type_BoardIdGettingMethod.c
+YudiProjectPkg/Hpcb/HyEx/Oem/HpcbData/HpcbData_SAT_GID_0x1704_Type_ConsoleOutControl.c
+YudiProjectPkg/Hpcb/HyEx/Oem/HpcbData/HpcbData_SAT_GID_0x1704_Type_DdrPostPackageRepair.c
+YudiProjectPkg/Hpcb/HyEx/Oem/HpcbData/HpcbData_SAT_GID_0x1704_Type_DimmInfoSpd.c
+YudiProjectPkg/Hpcb/HyEx/Oem/HpcbData/HpcbData_SAT_GID_0x1704_Type_ErrorOutControl.c
+YudiProjectPkg/Hpcb/HyEx/Oem/HpcbData/HpcbData_SAT_GID_0x1704_Type_ExtDefParams.c
+YudiProjectPkg/Hpcb/HyEx/Oem/HpcbData/HpcbData_SAT_GID_0x1704_Type_ExtParams.c
+YudiProjectPkg/Hpcb/HyEx/Oem/HpcbData/HpcbData_SAT_GID_0x1704_Type_ExtVoltageControl.c
+YudiProjectPkg/Hpcb/HyEx/Oem/HpcbData/HpcbData_SAT_GID_0x1704_Type_PsCadBusLRDIMMDdr.c
+YudiProjectPkg/Hpcb/HyEx/Oem/HpcbData/HpcbData_SAT_GID_0x1704_Type_PsCadBusRDIMMDdr.c
+YudiProjectPkg/Hpcb/HyEx/Oem/HpcbData/HpcbData_SAT_GID_0x1704_Type_PsCadBusUDIMMDdr.c
+YudiProjectPkg/Hpcb/HyEx/Oem/HpcbData/HpcbData_SAT_GID_0x1704_Type_PsDataBusLRDIMMDdr.c
+YudiProjectPkg/Hpcb/HyEx/Oem/HpcbData/HpcbData_SAT_GID_0x1704_Type_PsDataBusRDIMMDdr.c
+YudiProjectPkg/Hpcb/HyEx/Oem/HpcbData/HpcbData_SAT_GID_0x1704_Type_PsDataBusUDIMMDdr.c
+YudiProjectPkg/Hpcb/HyEx/Oem/HpcbData/HpcbData_SAT_GID_0x1704_Type_PsMaxFreqLRDIMMDdr.c
+YudiProjectPkg/Hpcb/HyEx/Oem/HpcbData/HpcbData_SAT_GID_0x1704_Type_PsMaxFreqRDIMMDdr.c
+YudiProjectPkg/Hpcb/HyEx/Oem/HpcbData/HpcbData_SAT_GID_0x1704_Type_PsMaxFreqUDIMMDdr.c
+YudiProjectPkg/Hpcb/HyEx/Oem/HpcbData/HpcbData_SAT_GID_0x1704_Type_PsOdtPatLRDIMMDdr.c
+YudiProjectPkg/Hpcb/HyEx/Oem/HpcbData/HpcbData_SAT_GID_0x1704_Type_PsOdtPatRDIMMDdr.c
+YudiProjectPkg/Hpcb/HyEx/Oem/HpcbData/HpcbData_SAT_GID_0x1704_Type_PsOdtPatUDIMMDdr.c
+YudiProjectPkg/Hpcb/HyEx/Oem/HpcbData/HpcbData_SAT_GID_0x1704_Type_PsStretchFreqLRDIMMDdr.c
+YudiProjectPkg/Hpcb/HyEx/Oem/HpcbData/HpcbData_SAT_GID_0x1704_Type_PsStretchFreqRDIMMDdr.c
+YudiProjectPkg/Hpcb/HyEx/Oem/HpcbData/HpcbData_SAT_GID_0x1704_Type_PsStretchFreqUDIMMDdr.c
+YudiProjectPkg/Hpcb/HyEx/Oem/HpcbData/HpcbData_SAT_GID_0x1704_Type_PsoOverride.c
+YudiProjectPkg/Hpcb/HyEx/Oem/HpcbData/HpcbData_SAT_GID_0x1704_Type_SpdInfo.c
+YudiProjectPkg/Hpcb/HyEx/Oem/HpcbData/HpcbData_SAT_GID_0x1704_Type_SpdInfo_udimm.c
+YudiProjectPkg/Hpcb/HyEx/Oem/HpcbData/HpcbData_SAT_GID_0x1705_Type_ExtDefParams.c
+YudiProjectPkg/Hpcb/HyEx/Oem/HpcbData/HpcbData_SAT_GID_0x1705_Type_ExtParams.c
+YudiProjectPkg/Hpcb/HyEx/Oem/HpcbData/HpcbData_SAT_GID_0x1706_Type_ExtDefParams.c
+YudiProjectPkg/Hpcb/HyEx/Oem/HpcbData/HpcbData_SAT_GID_0x1706_Type_ExtParams.c
+YudiProjectPkg/Hpcb/HyEx/Oem/HpcbData/HpcbData_SAT_GID_0x1707_Type_CbsDefParams.c
+YudiProjectPkg/Hpcb/HyEx/Oem/HpcbData/HpcbData_SAT_GID_0x1707_Type_CbsParams.c
+YudiProjectPkg/Hpcb/HyEx/Oem/Include/HpcbAutoGen.h
+YudiProjectPkg/Hpcb/HyEx/Oem/Include/HpcbCustomizedDefinitions.h
+YudiProjectPkg/Hpcb/HyEx/Oem/Release/HPCB.bin
+YudiProjectPkg/Hpcb/HyEx/Oem/VS2015.lnk
+YudiProjectPkg/Hpcb/HyGx/Inc/HPCB.h
+YudiProjectPkg/Hpcb/HyGx/Inc/HpcbDfCxlConfig.h
+YudiProjectPkg/Hpcb/HyGx/Inc/MiscMemDefines.h
+YudiProjectPkg/Hpcb/HyGx/Inc/MyIntrinsics.h
+YudiProjectPkg/Hpcb/HyGx/Inc/MyPorting.h
+YudiProjectPkg/Hpcb/HyGx/Oem/HpcbCreate.bat
+YudiProjectPkg/Hpcb/HyGx/Oem/HpcbData/HpcbData_SAT_GID_0x1701_Type_ExtDefParams.c
+YudiProjectPkg/Hpcb/HyGx/Oem/HpcbData/HpcbData_SAT_GID_0x1701_Type_ExtParams.c
+YudiProjectPkg/Hpcb/HyGx/Oem/HpcbData/HpcbData_SAT_GID_0x1702_Type_ExtDefParams.c
+YudiProjectPkg/Hpcb/HyGx/Oem/HpcbData/HpcbData_SAT_GID_0x1702_Type_ExtParams.c
+YudiProjectPkg/Hpcb/HyGx/Oem/HpcbData/HpcbData_SAT_GID_0x1703_Type_ExtDefParams.c
+YudiProjectPkg/Hpcb/HyGx/Oem/HpcbData/HpcbData_SAT_GID_0x1703_Type_ExtParams.c
+YudiProjectPkg/Hpcb/HyGx/Oem/HpcbData/HpcbData_SAT_GID_0x1704_Type_BoardIdGettingMethod.c
+YudiProjectPkg/Hpcb/HyGx/Oem/HpcbData/HpcbData_SAT_GID_0x1704_Type_ConsoleOutControl.c
+YudiProjectPkg/Hpcb/HyGx/Oem/HpcbData/HpcbData_SAT_GID_0x1704_Type_DdrPostPackageRepair.c
+YudiProjectPkg/Hpcb/HyGx/Oem/HpcbData/HpcbData_SAT_GID_0x1704_Type_DimmInfoSpd.c
+YudiProjectPkg/Hpcb/HyGx/Oem/HpcbData/HpcbData_SAT_GID_0x1704_Type_ErrorOutControl.c
+YudiProjectPkg/Hpcb/HyGx/Oem/HpcbData/HpcbData_SAT_GID_0x1704_Type_ExtDefParams.c
+YudiProjectPkg/Hpcb/HyGx/Oem/HpcbData/HpcbData_SAT_GID_0x1704_Type_ExtParams.c
+YudiProjectPkg/Hpcb/HyGx/Oem/HpcbData/HpcbData_SAT_GID_0x1704_Type_ExtVoltageControl.c
+YudiProjectPkg/Hpcb/HyGx/Oem/HpcbData/HpcbData_SAT_GID_0x1704_Type_PsCadBusLRDIMMDdr.c
+YudiProjectPkg/Hpcb/HyGx/Oem/HpcbData/HpcbData_SAT_GID_0x1704_Type_PsCadBusRDIMMDdr.c
+YudiProjectPkg/Hpcb/HyGx/Oem/HpcbData/HpcbData_SAT_GID_0x1704_Type_PsCadBusUDIMMDdr.c
+YudiProjectPkg/Hpcb/HyGx/Oem/HpcbData/HpcbData_SAT_GID_0x1704_Type_PsDataBusLRDIMMDdr.c
+YudiProjectPkg/Hpcb/HyGx/Oem/HpcbData/HpcbData_SAT_GID_0x1704_Type_PsDataBusRDIMMDdr.c
+YudiProjectPkg/Hpcb/HyGx/Oem/HpcbData/HpcbData_SAT_GID_0x1704_Type_PsDataBusUDIMMDdr.c
+YudiProjectPkg/Hpcb/HyGx/Oem/HpcbData/HpcbData_SAT_GID_0x1704_Type_PsMaxFreqLRDIMMDdr.c
+YudiProjectPkg/Hpcb/HyGx/Oem/HpcbData/HpcbData_SAT_GID_0x1704_Type_PsMaxFreqRDIMMDdr.c
+YudiProjectPkg/Hpcb/HyGx/Oem/HpcbData/HpcbData_SAT_GID_0x1704_Type_PsMaxFreqUDIMMDdr.c
+YudiProjectPkg/Hpcb/HyGx/Oem/HpcbData/HpcbData_SAT_GID_0x1704_Type_PsOdtPatLRDIMMDdr.c
+YudiProjectPkg/Hpcb/HyGx/Oem/HpcbData/HpcbData_SAT_GID_0x1704_Type_PsOdtPatRDIMMDdr.c
+YudiProjectPkg/Hpcb/HyGx/Oem/HpcbData/HpcbData_SAT_GID_0x1704_Type_PsOdtPatUDIMMDdr.c
+YudiProjectPkg/Hpcb/HyGx/Oem/HpcbData/HpcbData_SAT_GID_0x1704_Type_PsStretchFreqLRDIMMDdr.c
+YudiProjectPkg/Hpcb/HyGx/Oem/HpcbData/HpcbData_SAT_GID_0x1704_Type_PsStretchFreqRDIMMDdr.c
+YudiProjectPkg/Hpcb/HyGx/Oem/HpcbData/HpcbData_SAT_GID_0x1704_Type_PsStretchFreqUDIMMDdr.c
+YudiProjectPkg/Hpcb/HyGx/Oem/HpcbData/HpcbData_SAT_GID_0x1704_Type_PsoOverride.c
+YudiProjectPkg/Hpcb/HyGx/Oem/HpcbData/HpcbData_SAT_GID_0x1704_Type_SpdInfo.c
+YudiProjectPkg/Hpcb/HyGx/Oem/HpcbData/HpcbData_SAT_GID_0x1704_Type_SpdInfo_udimm.c
+YudiProjectPkg/Hpcb/HyGx/Oem/HpcbData/HpcbData_SAT_GID_0x1705_Type_ExtDefParams.c
+YudiProjectPkg/Hpcb/HyGx/Oem/HpcbData/HpcbData_SAT_GID_0x1705_Type_ExtParams.c
+YudiProjectPkg/Hpcb/HyGx/Oem/HpcbData/HpcbData_SAT_GID_0x1706_Type_ExtDefParams.c
+YudiProjectPkg/Hpcb/HyGx/Oem/HpcbData/HpcbData_SAT_GID_0x1706_Type_ExtParams.c
+YudiProjectPkg/Hpcb/HyGx/Oem/HpcbData/HpcbData_SAT_GID_0x1707_Type_CbsDefParams.c
+YudiProjectPkg/Hpcb/HyGx/Oem/HpcbData/HpcbData_SAT_GID_0x1707_Type_CbsParams.c
+YudiProjectPkg/Hpcb/HyGx/Oem/Include/HpcbAutoGen.h
+YudiProjectPkg/Hpcb/HyGx/Oem/Include/HpcbCustomizedDefinitions.h
+YudiProjectPkg/Hpcb/HyGx/Oem/Release/HPCB.bin
+YudiProjectPkg/Hpcb/HyGx/Oem/VS2015.lnk
+YudiProjectPkg/HygonCpmOemInitPei/HygonCpmOemTableHyEx.c
+YudiProjectPkg/HygonCpmOemInitPei/HygonCpmOemTableHyGx.c
+YudiProjectPkg/PlatformBuild.py
+YudiProjectPkg/ProjectPkg.dsc
+YudiProjectPkg/ProjectPkg.fdf
+YudiProjectPkg/ServerHotplugDxe/ServerHotplugDxe.c
+YudiProjectPkg/ServerHotplugDxe/ServerHotplugDxe.inf
+
+commit 576277c
+Author: Jawen Zhang <zhangjianwen@byosoft.com.cn>
+Date:   Sat Oct 7 20:17:39 2023 +0800
+
+    YudiProjectPkg: [#4] Update HAM VGA driver.
+    - update inspur logo.
+    - add HAM VGA driver(uefi driver and legacy rom).
+    
+    Signed-off-by: Jawen Zhang <zhangjianwen@byosoft.com.cn>
+
+YudiProjectPkg/Inspur/HamVga/INSPUR-1.02.00.ROM
+YudiProjectPkg/Inspur/HamVga/InspurGop/BuildFlag.h
+YudiProjectPkg/Inspur/HamVga/InspurGop/Release.txt
+YudiProjectPkg/Inspur/HamVga/InspurGop/UefiComponentName.c
+YudiProjectPkg/Inspur/HamVga/InspurGop/UefiSmi.c
+YudiProjectPkg/Inspur/HamVga/InspurGop/UefiSmi.h
+YudiProjectPkg/Inspur/HamVga/InspurGop/UefiSmi.inf
+YudiProjectPkg/Inspur/HamVga/InspurGop/UefiSmiGraphicsOutput.c
+YudiProjectPkg/Inspur/HamVga/InspurGop/defs.h
+YudiProjectPkg/Inspur/HamVga/InspurGop/efiComponentName.c
+YudiProjectPkg/Inspur/HamVga/InspurGop/efiSmi.c
+YudiProjectPkg/Inspur/HamVga/InspurGop/efiSmi.h
+YudiProjectPkg/Inspur/HamVga/InspurGop/efiSmiUgaDraw.c
+YudiProjectPkg/Inspur/HamVga/InspurGop/regdc.h
+YudiProjectPkg/Inspur/HamVga/InspurGop/regde.h
+YudiProjectPkg/Inspur/HamVga/InspurGop/regsc.h
+YudiProjectPkg/Inspur/HamVga/InspurGop/smi.inf
+YudiProjectPkg/Inspur/HamVga/InspurGop/smi2d.c
+YudiProjectPkg/Inspur/HamVga/InspurGop/smi2d.h
+YudiProjectPkg/Inspur/HamVga/InspurGop/smiMode.c
+YudiProjectPkg/Inspur/HamVga/InspurGop/smiMode.h
+YudiProjectPkg/Inspur/Logo/inspur.bmp
+YudiProjectPkg/Inspur/Logo/inspur.jpg
+YudiProjectPkg/Override/PlatformDxe/HideLegacyOpRomMsgPrompt.c
+YudiProjectPkg/Override/PlatformDxe/IncompatiblePciDeviceSupport.c
+YudiProjectPkg/Override/PlatformDxe/LegacyBiosPlatform.c
+YudiProjectPkg/Override/PlatformDxe/LegacyRegion2.c
+YudiProjectPkg/Override/PlatformDxe/PciPlatform.c
+YudiProjectPkg/Override/PlatformDxe/PlatformDxe.c
+YudiProjectPkg/Override/PlatformDxe/PlatformDxe.h
+YudiProjectPkg/Override/PlatformDxe/PlatformDxe.inf
+YudiProjectPkg/Override/PlatformDxe/PlatformDxe.uni
+YudiProjectPkg/Override/PlatformDxe/PlatformMisc.c
+YudiProjectPkg/Override/PlatformDxe/SataController.c
+YudiProjectPkg/Override/PlatformDxe/Smbios.c
+YudiProjectPkg/Override/PlatformDxe/SmmAccess2.c
+YudiProjectPkg/ProjectEarlyPei/CpmTableOverride.c
+YudiProjectPkg/ProjectPkg.dsc
+YudiProjectPkg/ProjectPkg.fdf
+
+commit 410d9cd
+Author: Jawen Zhang <zhangjianwen@byosoft.com.cn>
+Date:   Thu Sep 28 15:30:49 2023 +0800
+
+    YudiProjectPkg: [#3] Check SATA Riser Type by GPIO.
+    
+    Signed-off-by: Jawen Zhang <zhangjianwen@byosoft.com.cn>
+
+YudiProjectPkg/HygonCpmOemInitPei/HygonCpmOemTableHyEx.c
+YudiProjectPkg/ProjectEarlyPei/CpmTableOverride.c
+YudiProjectPkg/ProjectEarlyPei/ProjectEarlyPei.inf
+
+commit 219ca4f
+Author: Jawen Zhang <zhangjianwen@byosoft.com.cn>
+Date:   Wed Sep 27 21:02:50 2023 +0800
+
+    YudiProjectPkg: [#2] Update DXIO and GPIO setting.
+    - Update DXIO and GPIO setting.
+    - sync with CRB.
+    - add more debug msg.
+    
+    Signed-off-by: Jawen Zhang <zhangjianwen@byosoft.com.cn>
+
+YudiProjectPkg/HygonCpmOemInitPei/HygonCpmOemInitPeim.c
+YudiProjectPkg/HygonCpmOemInitPei/HygonCpmOemTableHyEx.c
+YudiProjectPkg/HygonCpmOemInitPei/HygonCpmOemTableHyGx.c
+YudiProjectPkg/PlatformBuild.py
+YudiProjectPkg/PlatformSetupDxe/Main/PlatformInfo.sd
+YudiProjectPkg/PlatformSetupDxe/Main/PlatformInfo.uni
+YudiProjectPkg/PlatformSetupDxe/Security/FormsetSecurity.vfr
+YudiProjectPkg/PlatformSetupDxe/SetupFormInit.c
+YudiProjectPkg/ProjectEarlyDxe/ProjectEarlyDxe.c
+YudiProjectPkg/ProjectEarlyDxe/ProjectEarlyDxe.inf
+YudiProjectPkg/ProjectEarlyPei/CpmTableOverride.c
+YudiProjectPkg/ProjectEarlyPei/ProjectEarlyPei.c
+YudiProjectPkg/ProjectEarlyPei/ProjectEarlyPei.inf
+YudiProjectPkg/ProjectPkg.dsc
+
+commit 31f3f8d
+Author: zhangjianwen <zhangjianwen@byosoft.com.cn>
+Date:   Sun Sep 24 21:47:30 2023 +0800
+
+    Update README.md
+
+README.md
+
+commit 08e47dd
+Author: zhangjianwen <zhangjianwen@byosoft.com.cn>
+Date:   Sun Sep 24 21:38:19 2023 +0800
+
+    Update README.md
+
+README.md
+
+commit 4d0e241
+Author: zhangjianwen <zhangjianwen@byosoft.com.cn>
+Date:   Sun Sep 24 21:35:28 2023 +0800
+
+    Update README.md
+
+README.md
+
+commit 0bf31e5
+Author: zhangjianwen <zhangjianwen@byosoft.com.cn>
+Date:   Sun Sep 24 21:33:24 2023 +0800
+
+    Update README.md
+
+README.md
+
+commit 5edcb84
+Author: zhangjianwen <zhangjianwen@byosoft.com.cn>
+Date:   Sun Sep 24 13:06:34 2023 +0800
+
+    Update .gitlab-ci.yml file
+
+.gitlab-ci.yml
+
+commit 0cee4f1
+Author: zhangjianwen <zhangjianwen@byosoft.com.cn>
+Date:   Sun Sep 24 12:57:10 2023 +0800
+
+    Update .gitlab-ci.yml file
+
+.gitlab-ci.yml
+
+commit a64f3d6
+Author: zhangjianwen <zhangjianwen@byosoft.com.cn>
+Date:   Sun Sep 24 12:19:45 2023 +0800
+
+    Update .gitlab-ci.yml file
+
+.gitlab-ci.yml
+
+commit 216bf42
+Author: zhangjianwen <zhangjianwen@byosoft.com.cn>
+Date:   Sun Sep 24 11:11:41 2023 +0800
+
+    Update .gitlab-ci.yml file
+
+.gitlab-ci.yml
+
+commit f0ad7de
+Merge: 63065d8 cf4520e
+Author: zhangjianwen <zhangjianwen@byosoft.com.cn>
+Date:   Fri Sep 22 11:25:13 2023 +0800
+
+    Merge branch '1-initialize-yudi-project-environment' into 'main'
+    
+    Resolve "Initialize Yudi Project environment."
+    
+    Closes #1
+    
+    See merge request inspurprojects/yudi!1
+
+commit cf4520e
+Author: Jawen Zhang <zhangjianwen@byosoft.com.cn>
+Date:   Fri Sep 22 11:18:55 2023 +0800
+
+    YudiProjectPkg: [#1] Initialize Yudi Project environment.
+    - add YudiProjectPkg.
+    
+    Signed-off-by: Jawen Zhang <zhangjianwen@byosoft.com.cn>
+
+YudiProjectPkg/AcpiTables/AcpiTables.inf
+YudiProjectPkg/AcpiTables/Facs.act
+YudiProjectPkg/AcpiTables/Fadt6.0.act
+YudiProjectPkg/AcpiTables/Hpet.act
+YudiProjectPkg/AcpiTables/dsdt/dsdt.asl
+YudiProjectPkg/AcpiTables/dsdt/fch.asl
+YudiProjectPkg/AcpiTables/dsdt/link.asl
+YudiProjectPkg/AcpiTables/dsdt/rp.asl
+YudiProjectPkg/AcpiTables/dsdt/rp1.asl
+YudiProjectPkg/AcpiTables/dsdt/rp2.asl
+YudiProjectPkg/AcpiTables/dsdt/rp3.asl
+YudiProjectPkg/AcpiTables/dsdt/rp4.asl
+YudiProjectPkg/AcpiTables/dsdt/rp5.asl
+YudiProjectPkg/AcpiTables/dsdt/rp6.asl
+YudiProjectPkg/AcpiTables/dsdt/rp7.asl
+YudiProjectPkg/BiosIdInspur.env
+YudiProjectPkg/BiosInfo/BiosInfo.act
+YudiProjectPkg/BiosInfo/BiosInfo.inf
+YudiProjectPkg/BmcCfg/BmcCfg.c
+YudiProjectPkg/BmcCfg/BmcCfg.inf
+YudiProjectPkg/Hpcb/HpcbCreate.bat
+YudiProjectPkg/Hpcb/HpcbData/HpcbData_SAT_GID_0x1701_Type_ExtDefParams.c
+YudiProjectPkg/Hpcb/HpcbData/HpcbData_SAT_GID_0x1701_Type_ExtParams.c
+YudiProjectPkg/Hpcb/HpcbData/HpcbData_SAT_GID_0x1702_Type_ExtDefParams.c
+YudiProjectPkg/Hpcb/HpcbData/HpcbData_SAT_GID_0x1702_Type_ExtParams.c
+YudiProjectPkg/Hpcb/HpcbData/HpcbData_SAT_GID_0x1703_Type_ExtDefParams.c
+YudiProjectPkg/Hpcb/HpcbData/HpcbData_SAT_GID_0x1703_Type_ExtParams.c
+YudiProjectPkg/Hpcb/HpcbData/HpcbData_SAT_GID_0x1704_Type_BoardIdGettingMethod.c
+YudiProjectPkg/Hpcb/HpcbData/HpcbData_SAT_GID_0x1704_Type_ConsoleOutControl.c
+YudiProjectPkg/Hpcb/HpcbData/HpcbData_SAT_GID_0x1704_Type_DdrPostPackageRepair.c
+YudiProjectPkg/Hpcb/HpcbData/HpcbData_SAT_GID_0x1704_Type_DimmInfoSpd.c
+YudiProjectPkg/Hpcb/HpcbData/HpcbData_SAT_GID_0x1704_Type_ErrorOutControl.c
+YudiProjectPkg/Hpcb/HpcbData/HpcbData_SAT_GID_0x1704_Type_ExtDefParams.c
+YudiProjectPkg/Hpcb/HpcbData/HpcbData_SAT_GID_0x1704_Type_ExtParams.c
+YudiProjectPkg/Hpcb/HpcbData/HpcbData_SAT_GID_0x1704_Type_ExtVoltageControl.c
+YudiProjectPkg/Hpcb/HpcbData/HpcbData_SAT_GID_0x1704_Type_PsCadBusLRDIMMDdr.c
+YudiProjectPkg/Hpcb/HpcbData/HpcbData_SAT_GID_0x1704_Type_PsCadBusRDIMMDdr.c
+YudiProjectPkg/Hpcb/HpcbData/HpcbData_SAT_GID_0x1704_Type_PsCadBusUDIMMDdr.c
+YudiProjectPkg/Hpcb/HpcbData/HpcbData_SAT_GID_0x1704_Type_PsDataBusLRDIMMDdr.c
+YudiProjectPkg/Hpcb/HpcbData/HpcbData_SAT_GID_0x1704_Type_PsDataBusRDIMMDdr.c
+YudiProjectPkg/Hpcb/HpcbData/HpcbData_SAT_GID_0x1704_Type_PsDataBusUDIMMDdr.c
+YudiProjectPkg/Hpcb/HpcbData/HpcbData_SAT_GID_0x1704_Type_PsMaxFreqLRDIMMDdr.c
+YudiProjectPkg/Hpcb/HpcbData/HpcbData_SAT_GID_0x1704_Type_PsMaxFreqRDIMMDdr.c
+YudiProjectPkg/Hpcb/HpcbData/HpcbData_SAT_GID_0x1704_Type_PsMaxFreqUDIMMDdr.c
+YudiProjectPkg/Hpcb/HpcbData/HpcbData_SAT_GID_0x1704_Type_PsOdtPatLRDIMMDdr.c
+YudiProjectPkg/Hpcb/HpcbData/HpcbData_SAT_GID_0x1704_Type_PsOdtPatRDIMMDdr.c
+YudiProjectPkg/Hpcb/HpcbData/HpcbData_SAT_GID_0x1704_Type_PsOdtPatUDIMMDdr.c
+YudiProjectPkg/Hpcb/HpcbData/HpcbData_SAT_GID_0x1704_Type_PsStretchFreqLRDIMMDdr.c
+YudiProjectPkg/Hpcb/HpcbData/HpcbData_SAT_GID_0x1704_Type_PsStretchFreqRDIMMDdr.c
+YudiProjectPkg/Hpcb/HpcbData/HpcbData_SAT_GID_0x1704_Type_PsStretchFreqUDIMMDdr.c
+YudiProjectPkg/Hpcb/HpcbData/HpcbData_SAT_GID_0x1704_Type_PsoOverride.c
+YudiProjectPkg/Hpcb/HpcbData/HpcbData_SAT_GID_0x1704_Type_SpdInfo.c
+YudiProjectPkg/Hpcb/HpcbData/HpcbData_SAT_GID_0x1704_Type_SpdInfo_udimm.c
+YudiProjectPkg/Hpcb/HpcbData/HpcbData_SAT_GID_0x1705_Type_ExtDefParams.c
+YudiProjectPkg/Hpcb/HpcbData/HpcbData_SAT_GID_0x1705_Type_ExtParams.c
+YudiProjectPkg/Hpcb/HpcbData/HpcbData_SAT_GID_0x1706_Type_ExtDefParams.c
+YudiProjectPkg/Hpcb/HpcbData/HpcbData_SAT_GID_0x1706_Type_ExtParams.c
+YudiProjectPkg/Hpcb/HpcbData/HpcbData_SAT_GID_0x1707_Type_CbsDefParams.c
+YudiProjectPkg/Hpcb/HpcbData/HpcbData_SAT_GID_0x1707_Type_CbsParams.c
+YudiProjectPkg/Hpcb/Include/HpcbAutoGen.h
+YudiProjectPkg/Hpcb/Include/HpcbCustomizedDefinitions.h
+YudiProjectPkg/Hpcb/Release/HPCB_DN_D4.bin
+YudiProjectPkg/Hpcb/VS2015.lnk
+YudiProjectPkg/HygonCpmOemInitPei/HygonCpmOem.h
+YudiProjectPkg/HygonCpmOemInitPei/HygonCpmOemInitPei.inf
+YudiProjectPkg/HygonCpmOemInitPei/HygonCpmOemInitPeim.c
+YudiProjectPkg/HygonCpmOemInitPei/HygonCpmOemInitPeim.h
+YudiProjectPkg/HygonCpmOemInitPei/HygonCpmOemSetup.c
+YudiProjectPkg/HygonCpmOemInitPei/HygonCpmOemTableHyEx.c
+YudiProjectPkg/HygonCpmOemInitPei/HygonCpmOemTableHyGx.c
+YudiProjectPkg/Include/BoardIdType.h
+YudiProjectPkg/Include/_PlatSetupVariable.h
+YudiProjectPkg/Library/PlatformHookLib/PlatformHookLib.c
+YudiProjectPkg/Library/PlatformHookLib/PlatformHookLib.inf
+YudiProjectPkg/Library/SecPlatformLib/SecPlatformLib.c
+YudiProjectPkg/Library/SecPlatformLib/SecPlatformLib.inf
+YudiProjectPkg/Library/VariableServiceHookLib/VariableServiceHookLib.c
+YudiProjectPkg/Library/VariableServiceHookLib/VariableServiceHookLib.inf
+YudiProjectPkg/PlatformBuild.py
+YudiProjectPkg/PlatformRecovery.fdf
+YudiProjectPkg/PlatformSetupDxe/Advanced/AdvancedCallback.c
+YudiProjectPkg/PlatformSetupDxe/Advanced/ConsoleRedirection/ConsoleRedirection.sd
+YudiProjectPkg/PlatformSetupDxe/Advanced/ConsoleRedirection/ConsoleRedirection.uni
+YudiProjectPkg/PlatformSetupDxe/Advanced/FormsetAdvanced.sd
+YudiProjectPkg/PlatformSetupDxe/Advanced/FormsetAdvanced.uni
+YudiProjectPkg/PlatformSetupDxe/Advanced/FormsetAdvanced.vfr
+YudiProjectPkg/PlatformSetupDxe/Boot/Bmstring.uni
+YudiProjectPkg/PlatformSetupDxe/Boot/BootCallBack.c
+YudiProjectPkg/PlatformSetupDxe/Boot/FormsetBoot.vfr
+YudiProjectPkg/PlatformSetupDxe/ByoSetupProtocol.c
+YudiProjectPkg/PlatformSetupDxe/ClassCode.c
+YudiProjectPkg/PlatformSetupDxe/Devices/AtaDriveCfg/AtaDriveCfg.sd
+YudiProjectPkg/PlatformSetupDxe/Devices/AtaDriveCfg/AtaDriveCfg.uni
+YudiProjectPkg/PlatformSetupDxe/Devices/DevicesCallback.c
+YudiProjectPkg/PlatformSetupDxe/Devices/FormsetDevices.uni
+YudiProjectPkg/PlatformSetupDxe/Devices/FormsetDevices.vfr
+YudiProjectPkg/PlatformSetupDxe/Devices/Network/Network.sd
+YudiProjectPkg/PlatformSetupDxe/Devices/Network/Network.uni
+YudiProjectPkg/PlatformSetupDxe/Devices/NvmeCfg/NvmeCfg.sd
+YudiProjectPkg/PlatformSetupDxe/Devices/NvmeCfg/NvmeCfg.uni
+YudiProjectPkg/PlatformSetupDxe/Devices/PcieCfg/PcieCfg.sd
+YudiProjectPkg/PlatformSetupDxe/Devices/PcieCfg/PcieCfg.uni
+YudiProjectPkg/PlatformSetupDxe/Devices/SataInfo/SataInfo.sd
+YudiProjectPkg/PlatformSetupDxe/Devices/SataInfo/SataInfo.uni
+YudiProjectPkg/PlatformSetupDxe/Devices/Usb/Usb.sd
+YudiProjectPkg/PlatformSetupDxe/Devices/Usb/Usb.uni
+YudiProjectPkg/PlatformSetupDxe/Devices/Video/VideoSetup.sd
+YudiProjectPkg/PlatformSetupDxe/Devices/Video/VideoSetup.uni
+YudiProjectPkg/PlatformSetupDxe/Exit/ExitSetup.c
+YudiProjectPkg/PlatformSetupDxe/Exit/FormsetExit.sd
+YudiProjectPkg/PlatformSetupDxe/Exit/FormsetExit.vfr
+YudiProjectPkg/PlatformSetupDxe/FormsetConfiguration.h
+YudiProjectPkg/PlatformSetupDxe/Main/FormsetMain.vfr
+YudiProjectPkg/PlatformSetupDxe/Main/MainCallback.c
+YudiProjectPkg/PlatformSetupDxe/Main/Memory.sd
+YudiProjectPkg/PlatformSetupDxe/Main/Memory.uni
+YudiProjectPkg/PlatformSetupDxe/Main/PlatformInfo.sd
+YudiProjectPkg/PlatformSetupDxe/Main/PlatformInfo.uni
+YudiProjectPkg/PlatformSetupDxe/Main/PspInfo.c
+YudiProjectPkg/PlatformSetupDxe/Main/TpcmInfo.c
+YudiProjectPkg/PlatformSetupDxe/Main/TpcmInfo.sd
+YudiProjectPkg/PlatformSetupDxe/Main/TpcmInfo.uni
+YudiProjectPkg/PlatformSetupDxe/OemReset.c
+YudiProjectPkg/PlatformSetupDxe/PcieStatusList.c
+YudiProjectPkg/PlatformSetupDxe/PlatformSetupDxe.c
+YudiProjectPkg/PlatformSetupDxe/PlatformSetupDxe.h
+YudiProjectPkg/PlatformSetupDxe/PlatformSetupDxe.inf
+YudiProjectPkg/PlatformSetupDxe/PlatformSetupDxe.uni
+YudiProjectPkg/PlatformSetupDxe/Power/FormsetPower.uni
+YudiProjectPkg/PlatformSetupDxe/Power/FormsetPower.vfr
+YudiProjectPkg/PlatformSetupDxe/Security/FormsetSecurity.sd
+YudiProjectPkg/PlatformSetupDxe/Security/FormsetSecurity.uni
+YudiProjectPkg/PlatformSetupDxe/Security/FormsetSecurity.vfr
+YudiProjectPkg/PlatformSetupDxe/Security/PasswordCallback.c
+YudiProjectPkg/PlatformSetupDxe/Setup.uni
+YudiProjectPkg/PlatformSetupDxe/SetupCallback.h
+YudiProjectPkg/PlatformSetupDxe/SetupDefinitions.h
+YudiProjectPkg/PlatformSetupDxe/SetupFormInit.c
+YudiProjectPkg/PlatformSetupDxe/SetupFormInit.h
+YudiProjectPkg/PlatformSetupDxe/SetupItemId.h
+YudiProjectPkg/PlatformSetupDxe/UqiList.uni
+YudiProjectPkg/ProjectDxe/LocalHddBoot.c
+YudiProjectPkg/ProjectDxe/PostHotKey.c
+YudiProjectPkg/ProjectDxe/ProjectDxe.c
+YudiProjectPkg/ProjectDxe/ProjectDxe.h
+YudiProjectPkg/ProjectDxe/ProjectDxe.inf
+YudiProjectPkg/ProjectDxe/ProjectDxeStr.uni
+YudiProjectPkg/ProjectEarlyDxe/HandleStatusCode.c
+YudiProjectPkg/ProjectEarlyDxe/ProjectEarlyDxe.c
+YudiProjectPkg/ProjectEarlyDxe/ProjectEarlyDxe.inf
+YudiProjectPkg/ProjectEarlyPei/CpmTableOverride.c
+YudiProjectPkg/ProjectEarlyPei/HandleStatusCode.c
+YudiProjectPkg/ProjectEarlyPei/ProjectEarlyPei.c
+YudiProjectPkg/ProjectEarlyPei/ProjectEarlyPei.inf
+YudiProjectPkg/ProjectEarlyPei/SetupData.c
+YudiProjectPkg/ProjectPkg.dec
+YudiProjectPkg/ProjectPkg.dsc
+YudiProjectPkg/ProjectPkg.fdf
+YudiProjectPkg/ProjectSmm/ProjectRtc.c
+YudiProjectPkg/ProjectSmm/ProjectSmm.c
+YudiProjectPkg/ProjectSmm/ProjectSmm.h
+YudiProjectPkg/ProjectSmm/ProjectSmm.inf
+YudiProjectPkg/ProjectSmm/SmiFlashEx.c
+YudiProjectPkg/ProjectSmm/UsbFilter.c
+YudiProjectPkg/ProjectSmm/Uuid.c
+
+commit 63065d8
+Author: zhangjianwen <zhangjianwen@byosoft.com.cn>
+Date:   Fri Sep 22 09:18:36 2023 +0800
+
+    Initial commit
+
+README.md

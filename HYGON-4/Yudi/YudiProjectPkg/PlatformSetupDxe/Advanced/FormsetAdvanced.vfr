@@ -1,0 +1,102 @@
+/*++
+
+Copyright (c) 2010 - 2023, Byosoft Corporation.<BR>
+All rights reserved.This software and associated documentation (if any)
+is furnished under a license and may only be used or copied in
+accordance with the terms of the license. Except as permitted by such
+license, no part of this software or documentation may be reproduced,
+stored in a retrieval system, or transmitted in any form or by any
+means without the express written consent of Byosoft Corporation.
+
+File Name:
+
+Abstract:
+  Platform configuration setup.
+
+Revision History:
+
+
+--*/
+
+#include "FormsetConfiguration.h"
+#include <BmcConfig.h>
+#include <BoardIdType.h>
+#include <Guid/HygonCbsConfig.h>
+#include <Library/HygonCbsVariable.h>
+
+#define ADVANCED_FORM_SET
+
+#define FORM_SET_TYPEDEF
+  #include <SetupDefinitions.h>
+#undef FORM_SET_TYPEDEF
+
+formset
+  guid     = FORMSET_GUID_ADVANCE,
+  title    = STRING_TOKEN(FORMSET_TITLE_ADVANCED),
+  help     = STRING_TOKEN(FORMSET_TITLE_ADVANCED_HELP),
+  class    = BYO_FORMSET_CLASS,
+  subclass = BYO_FORMSET_SUB_CLASS,
+
+  #define FORM_SET_VARSTORE
+    #include <SetupDefinitions.h>
+  #undef FORM_SET_VARSTORE
+
+  SYSTEM_PASSWORD_VARSTORE
+  BMC_SETUP_DATA_VARSTORE
+  BMC_SETUP_SEL_EVENT_DATA_VARSTORE
+
+  efivarstore CBS_CONFIG,                       // This is the data structure type
+    varid     = 0x5000,                         // Optional VarStore ID
+    attribute = 0x7,
+    name      = HygonSetup,                     // Define referenced name in vfr
+    guid      = CBS_SYSTEM_CONFIGURATION_GUID;  // GUID of this buffer storage
+
+  form formid = ROOT_FORM_ID,
+    title = STRING_TOKEN(FORMSET_TITLE_ADVANCED);
+
+    LOGIN_TYPE_ADMIN;
+
+    #define FORM_SET_ITEM
+      #include <SetupDefinitions.h>
+    #undef FORM_SET_ITEM
+
+    subtitle text = STRING_TOKEN(STR_EMPTY);
+
+    #define FORM_SET_GOTO
+      #include <SetupDefinitions.h>
+    #undef FORM_SET_GOTO
+
+    goto
+      formsetguid = FORMSET_ID_GUID_AMD_CBS,
+      formid   = 0x7000,
+      question = 0,
+      prompt   = STRING_TOKEN(STR_HYGON_CBS),
+      help     = STRING_TOKEN(STR_HYGON_CBS_HELP);
+
+    goto RAS_EVENT_FORM_ID,
+      prompt   = STRING_TOKEN(STR_RAS_CONFIG),
+      help     = STRING_TOKEN(STR_RAS_CONFIG_HELP);
+
+    suppressif ideqval SETUP_DATA.BootModeType == BIOS_BOOT_LEGACY_OS;
+      goto ADV_DYNAMIC_FORM_ID,
+        prompt = STRING_TOKEN(STR_UEFI_HII_CONFIG),
+        help   = STRING_TOKEN(STR_UEFI_HII_CONFIG_HELP);
+    endif;
+
+    END_LOGIN_TYPE;
+
+  endform;
+
+  #define FORM_SET_FORM
+    #include <SetupDefinitions.h>
+  #undef FORM_SET_FORM
+
+  form formid = ADV_DYNAMIC_FORM_ID,
+    title = STRING_TOKEN(STR_UEFI_HII_CONFIG);
+    label ADV_DYNAMIC_LABEL;
+    label ADV_DYNAMIC_LABEL_END;
+  endform;
+
+endformset;
+
+

@@ -1,0 +1,33 @@
+## @file
+#
+#Copyright (c) 2021, Byosoft Corporation.<BR>
+#All rights reserved.This software and associated documentation (if any)
+#is furnished under a license and may only be used or copied in
+#accordance with the terms of the license. Except as permitted by such
+#license, no part of this software or documentation may be reproduced,
+#stored in a retrieval system, or transmitted in any form or by any
+#means without the express written consent of Byosoft Corporation.
+#
+#File Name:
+#  PostCodeMapLib.inf
+#
+#Abstract:
+#
+#Revision History:
+#
+##
+
+[Defines]
+  INF_VERSION                = 0x00010005
+  BASE_NAME                  = PostCodeMapLib
+  FILE_GUID                  = 5B481D2A-8A22-4B57-8F99-0F2C35F22F8F
+  MODULE_TYPE                = BASE
+  VERSION_STRING             = 1.0
+  LIBRARY_CLASS              = PostCodeMapLib 
+
+[Sources]
+  PostCodeMapLib.c
+  
+[Packages]  
+  MdePkg/MdePkg.dec
+  ByoModulePkg/ByoModulePkg.dec

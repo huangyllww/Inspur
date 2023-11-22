@@ -1,0 +1,22 @@
+ARCH for the EFI file
+AARCH64:
+        Arm64Gop_1_68.efi
+        ARM64Gop_2_10.efi
+        ASPEED.efi
+        GENGOP.arm64.efi
+        GigUndiDxe.efi
+        Gmi-release20200624.efi
+        Gmi-release20210707.efi
+        I40eUndiDxe.efi
+        IceUndiDxe.efi
+        JmVideoDxe_ARM64.efi
+        LSI_AA64.efi
+        RtkUndiDxe.efi
+        Sm750.efi
+        Smi768Dxe.efi
+        uefi_2300_396.efi
+        uefi_2400_396.efi
+        uefi_2500_800.efi
+        XGigUndiDxe.efi
+        WangXunLan/KGigUndiDxe.efi
+        WangXunLan/NGigUndiDxe.efi

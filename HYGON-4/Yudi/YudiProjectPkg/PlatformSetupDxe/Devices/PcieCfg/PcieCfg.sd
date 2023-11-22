@@ -1,0 +1,285 @@
+/** @file
+
+Copyright (c) 2006 - 2022, Byosoft Corporation.<BR>
+All rights reserved.This software and associated documentation (if any)
+is furnished under a license and may only be used or copied in
+accordance with the terms of the license. Except as permitted by such
+license, no part of this software or documentation may be reproduced,
+stored in a retrieval system, or transmitted in any form or by any
+means without the express written consent of Byosoft Corporation.
+
+File Name:
+  PcieCfg.sd
+
+Abstract:
+  Nvme setting.
+
+Revision History:
+
+$END--------------------------------------------------------------------
+
+**/
+
+#ifdef DEVICES_FORM_SET
+  #ifdef FORM_SET_GOTO
+    goto PCIE_FORM_ID,
+        prompt = STRING_TOKEN(STR_PCIE_FORM),
+        help   = STRING_TOKEN(STR_PCIE_FORM);
+  #endif
+
+  #ifdef FORM_SET_FORM
+
+    form formid = PCIE_FORM_ID,
+      title = STRING_TOKEN(STR_PCIE_FORM);
+        
+      subtitle text = STRING_TOKEN(STR_EMPTY);
+
+
+
+      subtitle text = STRING_TOKEN(STR_EMPTY);
+
+      oneof varid   = SETUP_DATA.PcieMaxReadReqSize,
+        prompt      = STRING_TOKEN(STR_PCIE_MAX_READ_REQ_SIZE),
+        help        = STRING_TOKEN(STR_PCIE_MAX_READ_REQ_SIZE_HELP),
+        option text = STRING_TOKEN(STR_AUTO), value=PCIE_MAX_READ_REQ_AUTO, flags= RESET_REQUIRED | DEFAULT;
+        option text = STRING_TOKEN(STR_128),  value=PCIE_MAX_READ_REQ_128,  flags= RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_256),  value=PCIE_MAX_READ_REQ_256,  flags= RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_512),  value=PCIE_MAX_READ_REQ_512,  flags= RESET_REQUIRED;        
+      endoneof; 
+
+      oneof varid   = SETUP_DATA.PcieAspm,
+        prompt      = STRING_TOKEN(STR_PCIESLOT_ASPM),
+        help        = STRING_TOKEN(STR_PCIESLOT_ASPM_HELP),
+        option text = STRING_TOKEN(STR_DISABLED), value=PCIE_ASPM_DISABLE, flags = RESET_REQUIRED | DEFAULT;        
+//-     option text = STRING_TOKEN(STR_L0S),      value=PCIE_ASPM_L0S,     flags = RESET_REQUIRED;  	
+        option text = STRING_TOKEN(STR_L1),       value=PCIE_ASPM_L1,      flags = RESET_REQUIRED;        
+//-     option text = STRING_TOKEN(STR_L0SL1),    value=PCIE_ASPM_L0SL1,   flags = RESET_REQUIRED;  
+      endoneof; 
+
+      subtitle text = STRING_TOKEN(STR_EMPTY);
+
+      suppressif ideqval SETUP_VOLATILE_DATA.PcieSlotCount == 0; 
+        oneof varid   = SETUP_DATA.PcieDis[0],
+          prompt      = STRING_TOKEN(STR_PCIE_SLOT0),
+          help        = STRING_TOKEN(STR_PCIE_SLOT_HELP),
+          option text = STRING_TOKEN(STR_ENABLED),  value = 0, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING;
+          option text = STRING_TOKEN(STR_DISABLED), value = 1, flags = RESET_REQUIRED;
+        endoneof; 
+      endif;
+
+      suppressif ideqval SETUP_VOLATILE_DATA.PcieSlotCount < 2; 
+        oneof varid   = SETUP_DATA.PcieDis[1],
+          prompt      = STRING_TOKEN(STR_PCIE_SLOT1),
+          help        = STRING_TOKEN(STR_PCIE_SLOT_HELP),
+          option text = STRING_TOKEN(STR_ENABLED),  value = 0, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING;
+          option text = STRING_TOKEN(STR_DISABLED), value = 1, flags = RESET_REQUIRED;
+        endoneof;
+      endif;      
+
+      suppressif ideqval SETUP_VOLATILE_DATA.PcieSlotCount < 3; 
+        oneof varid   = SETUP_DATA.PcieDis[2],
+          prompt      = STRING_TOKEN(STR_PCIE_SLOT2),
+          help        = STRING_TOKEN(STR_PCIE_SLOT_HELP),
+          option text = STRING_TOKEN(STR_ENABLED),  value = 0, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING;
+          option text = STRING_TOKEN(STR_DISABLED), value = 1, flags = RESET_REQUIRED;
+        endoneof; 
+      endif;
+
+      suppressif ideqval SETUP_VOLATILE_DATA.PcieSlotCount < 4; 
+        oneof varid   = SETUP_DATA.PcieDis[3],
+          prompt      = STRING_TOKEN(STR_PCIE_SLOT3),
+          help        = STRING_TOKEN(STR_PCIE_SLOT_HELP),
+          option text = STRING_TOKEN(STR_ENABLED),  value = 0, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING;
+          option text = STRING_TOKEN(STR_DISABLED), value = 1, flags = RESET_REQUIRED;
+        endoneof;
+      endif;        
+
+      suppressif ideqval SETUP_VOLATILE_DATA.PcieSlotCount < 5; 
+        oneof varid   = SETUP_DATA.PcieDis[4],
+          prompt      = STRING_TOKEN(STR_PCIE_SLOT4),
+          help        = STRING_TOKEN(STR_PCIE_SLOT_HELP),
+          option text = STRING_TOKEN(STR_ENABLED),  value = 0, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING;
+          option text = STRING_TOKEN(STR_DISABLED), value = 1, flags = RESET_REQUIRED;
+        endoneof;
+      endif;        
+
+      suppressif ideqval SETUP_VOLATILE_DATA.PcieSlotCount < 6; 
+        oneof varid   = SETUP_DATA.PcieDis[5],
+          prompt      = STRING_TOKEN(STR_PCIE_SLOT5),
+          help        = STRING_TOKEN(STR_PCIE_SLOT_HELP),
+          option text = STRING_TOKEN(STR_ENABLED),  value = 0, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING;
+          option text = STRING_TOKEN(STR_DISABLED), value = 1, flags = RESET_REQUIRED;
+        endoneof;
+      endif;        
+
+      suppressif ideqval SETUP_VOLATILE_DATA.PcieSlotCount < 7; 
+        oneof varid   = SETUP_DATA.PcieDis[6],
+          prompt      = STRING_TOKEN(STR_PCIE_SLOT6),
+          help        = STRING_TOKEN(STR_PCIE_SLOT_HELP),
+          option text = STRING_TOKEN(STR_ENABLED),  value = 0, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING;
+          option text = STRING_TOKEN(STR_DISABLED), value = 1, flags = RESET_REQUIRED;
+        endoneof;
+      endif;        
+
+      suppressif ideqval SETUP_VOLATILE_DATA.PcieSlotCount < 8; 
+        oneof varid   = SETUP_DATA.PcieDis[7],
+          prompt      = STRING_TOKEN(STR_PCIE_SLOT7),
+          help        = STRING_TOKEN(STR_PCIE_SLOT_HELP),
+          option text = STRING_TOKEN(STR_ENABLED),  value = 0, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING;
+          option text = STRING_TOKEN(STR_DISABLED), value = 1, flags = RESET_REQUIRED;
+        endoneof;
+      endif;
+
+      suppressif ideqval SETUP_VOLATILE_DATA.PcieSlotCount < 9; 
+        oneof varid   = SETUP_DATA.PcieDis[8],
+          prompt      = STRING_TOKEN(STR_PCIE_SLOT8),
+          help        = STRING_TOKEN(STR_PCIE_SLOT_HELP),
+          option text = STRING_TOKEN(STR_ENABLED),  value = 0, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING;
+          option text = STRING_TOKEN(STR_DISABLED), value = 1, flags = RESET_REQUIRED;
+        endoneof; 
+      endif;
+
+      suppressif ideqval SETUP_VOLATILE_DATA.PcieSlotCount < 10; 
+        oneof varid   = SETUP_DATA.PcieDis[9],
+          prompt      = STRING_TOKEN(STR_PCIE_SLOT9),
+          help        = STRING_TOKEN(STR_PCIE_SLOT_HELP),
+          option text = STRING_TOKEN(STR_ENABLED),  value = 0, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING;
+          option text = STRING_TOKEN(STR_DISABLED), value = 1, flags = RESET_REQUIRED;
+        endoneof;
+      endif;      
+
+      suppressif ideqval SETUP_VOLATILE_DATA.PcieSlotCount < 11; 
+        oneof varid   = SETUP_DATA.PcieDis[10],
+          prompt      = STRING_TOKEN(STR_PCIE_SLOT10),
+          help        = STRING_TOKEN(STR_PCIE_SLOT_HELP),
+          option text = STRING_TOKEN(STR_ENABLED),  value = 0, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING;
+          option text = STRING_TOKEN(STR_DISABLED), value = 1, flags = RESET_REQUIRED;
+        endoneof; 
+      endif;
+
+      suppressif ideqval SETUP_VOLATILE_DATA.PcieSlotCount < 12; 
+        oneof varid   = SETUP_DATA.PcieDis[11],
+          prompt      = STRING_TOKEN(STR_PCIE_SLOT11),
+          help        = STRING_TOKEN(STR_PCIE_SLOT_HELP),
+          option text = STRING_TOKEN(STR_ENABLED),  value = 0, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING;
+          option text = STRING_TOKEN(STR_DISABLED), value = 1, flags = RESET_REQUIRED;
+        endoneof;
+      endif;        
+
+      suppressif ideqval SETUP_VOLATILE_DATA.PcieSlotCount < 13; 
+        oneof varid   = SETUP_DATA.PcieDis[12],
+          prompt      = STRING_TOKEN(STR_PCIE_SLOT12),
+          help        = STRING_TOKEN(STR_PCIE_SLOT_HELP),
+          option text = STRING_TOKEN(STR_ENABLED),  value = 0, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING;
+          option text = STRING_TOKEN(STR_DISABLED), value = 1, flags = RESET_REQUIRED;
+        endoneof;
+      endif;        
+
+      suppressif ideqval SETUP_VOLATILE_DATA.PcieSlotCount < 14; 
+        oneof varid   = SETUP_DATA.PcieDis[13],
+          prompt      = STRING_TOKEN(STR_PCIE_SLOT13),
+          help        = STRING_TOKEN(STR_PCIE_SLOT_HELP),
+          option text = STRING_TOKEN(STR_ENABLED),  value = 0, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING;
+          option text = STRING_TOKEN(STR_DISABLED), value = 1, flags = RESET_REQUIRED;
+        endoneof;
+      endif;        
+
+      suppressif ideqval SETUP_VOLATILE_DATA.PcieSlotCount < 15; 
+        oneof varid   = SETUP_DATA.PcieDis[14],
+          prompt      = STRING_TOKEN(STR_PCIE_SLOT14),
+          help        = STRING_TOKEN(STR_PCIE_SLOT_HELP),
+          option text = STRING_TOKEN(STR_ENABLED),  value = 0, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING;
+          option text = STRING_TOKEN(STR_DISABLED), value = 1, flags = RESET_REQUIRED;
+        endoneof;
+      endif;        
+
+      suppressif ideqval SETUP_VOLATILE_DATA.PcieSlotCount < 16; 
+        oneof varid   = SETUP_DATA.PcieDis[15],
+          prompt      = STRING_TOKEN(STR_PCIE_SLOT15),
+          help        = STRING_TOKEN(STR_PCIE_SLOT_HELP),
+          option text = STRING_TOKEN(STR_ENABLED),  value = 0, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING;
+          option text = STRING_TOKEN(STR_DISABLED), value = 1, flags = RESET_REQUIRED;
+        endoneof;
+     endif;        
+
+      suppressif ideqval SETUP_VOLATILE_DATA.PcieSlotCount < 17; 
+        oneof varid   = SETUP_DATA.PcieDis[16],
+          prompt      = STRING_TOKEN(STR_PCIE_SLOT16),
+          help        = STRING_TOKEN(STR_PCIE_SLOT_HELP),
+          option text = STRING_TOKEN(STR_ENABLED),  value = 0, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING;
+          option text = STRING_TOKEN(STR_DISABLED), value = 1, flags = RESET_REQUIRED;
+        endoneof; 
+      endif;
+
+      suppressif ideqval SETUP_VOLATILE_DATA.PcieSlotCount < 18; 
+        oneof varid   = SETUP_DATA.PcieDis[17],
+          prompt      = STRING_TOKEN(STR_PCIE_SLOT17),
+          help        = STRING_TOKEN(STR_PCIE_SLOT_HELP),
+          option text = STRING_TOKEN(STR_ENABLED),  value = 0, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING;
+          option text = STRING_TOKEN(STR_DISABLED), value = 1, flags = RESET_REQUIRED;
+        endoneof;
+      endif;      
+
+      suppressif ideqval SETUP_VOLATILE_DATA.PcieSlotCount < 19; 
+        oneof varid   = SETUP_DATA.PcieDis[18],
+          prompt      = STRING_TOKEN(STR_PCIE_SLOT18),
+          help        = STRING_TOKEN(STR_PCIE_SLOT_HELP),
+          option text = STRING_TOKEN(STR_ENABLED),  value = 0, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING;
+          option text = STRING_TOKEN(STR_DISABLED), value = 1, flags = RESET_REQUIRED;
+        endoneof; 
+      endif;
+
+      suppressif ideqval SETUP_VOLATILE_DATA.PcieSlotCount < 20; 
+        oneof varid   = SETUP_DATA.PcieDis[19],
+          prompt      = STRING_TOKEN(STR_PCIE_SLOT19),
+          help        = STRING_TOKEN(STR_PCIE_SLOT_HELP),
+          option text = STRING_TOKEN(STR_ENABLED),  value = 0, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING;
+          option text = STRING_TOKEN(STR_DISABLED), value = 1, flags = RESET_REQUIRED;
+        endoneof;
+      endif;        
+
+      suppressif ideqval SETUP_VOLATILE_DATA.PcieSlotCount < 21; 
+        oneof varid   = SETUP_DATA.PcieDis[20],
+          prompt      = STRING_TOKEN(STR_PCIE_SLOT20),
+          help        = STRING_TOKEN(STR_PCIE_SLOT_HELP),
+          option text = STRING_TOKEN(STR_ENABLED),  value = 0, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING;
+          option text = STRING_TOKEN(STR_DISABLED), value = 1, flags = RESET_REQUIRED;
+        endoneof;
+      endif;        
+
+      suppressif ideqval SETUP_VOLATILE_DATA.PcieSlotCount < 22; 
+        oneof varid   = SETUP_DATA.PcieDis[21],
+          prompt      = STRING_TOKEN(STR_PCIE_SLOT21),
+          help        = STRING_TOKEN(STR_PCIE_SLOT_HELP),
+          option text = STRING_TOKEN(STR_ENABLED),  value = 0, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING;
+          option text = STRING_TOKEN(STR_DISABLED), value = 1, flags = RESET_REQUIRED;
+        endoneof;
+      endif;        
+
+      suppressif ideqval SETUP_VOLATILE_DATA.PcieSlotCount < 23; 
+        oneof varid   = SETUP_DATA.PcieDis[22],
+          prompt      = STRING_TOKEN(STR_PCIE_SLOT22),
+          help        = STRING_TOKEN(STR_PCIE_SLOT_HELP),
+          option text = STRING_TOKEN(STR_ENABLED),  value = 0, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING;
+          option text = STRING_TOKEN(STR_DISABLED), value = 1, flags = RESET_REQUIRED;
+        endoneof;
+      endif;        
+
+      suppressif ideqval SETUP_VOLATILE_DATA.PcieSlotCount < 24; 
+        oneof varid   = SETUP_DATA.PcieDis[23],
+          prompt      = STRING_TOKEN(STR_PCIE_SLOT23),
+          help        = STRING_TOKEN(STR_PCIE_SLOT_HELP),
+          option text = STRING_TOKEN(STR_ENABLED),  value = 0, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING;
+          option text = STRING_TOKEN(STR_DISABLED), value = 1, flags = RESET_REQUIRED;
+        endoneof;
+     endif;   
+
+    subtitle text = STRING_TOKEN(STR_EMPTY);
+    subtitle text = STRING_TOKEN(STR_PCIE_STATUS_LIST);
+    label PCIE_DYNAMIC_LABEL;
+    label PCIE_DYNAMIC_LABEL_END;
+
+    endform;  
+
+  #endif  //end, FORM_SET_FORM
+#endif  //end, DEVICES_FORM_SET

@@ -1,0 +1,49 @@
+## @file
+#
+# Copyright (c) 2006 - 2023, Byosoft Corporation.<BR>
+# All rights reserved.This software and associated documentation (if any)
+# is furnished under a license and may only be used or copied in
+# accordance with the terms of the license. Except as permitted by such
+# license, no part of this software or documentation may be reproduced,
+# stored in a retrieval system, or transmitted in any form or by any
+# means without the express written consent of Byosoft Corporation.
+#
+# File Name:
+#   BiosIdLib.inf
+#
+# Abstract:
+#   Component description file for BIOS ID library
+#
+# Revision History:
+#
+#
+#--*/
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = ByoHygonGpioLib
+  FILE_GUID                      = 0536CBED-1E27-4040-B59E-1717F455B5B6
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = ByoHygonGpioLib
+
+
+[Sources]
+  ByoHygonGpioLib.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  HgpiPkg/HgpiPkg.dec
+  HgpiModulePkg/HgpiCommonModulePkg.dec
+  HgpiCpmPkg/HgpiCpmPkg.dec
+  HgpiModulePkg/HgpiModuleFchPkg.dec
+
+[LibraryClasses]
+  IoLib
+  SmnAccessLib
+  HygonSocBaseLib
+  HygonSmnAddressLib
+
+[Pcd]
+

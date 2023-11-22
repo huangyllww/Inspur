@@ -1,0 +1,52 @@
+/** @file
+
+Copyright (c) 2022, Byosoft Corporation.<BR>
+All rights reserved.This software and associated documentation (if any)
+is furnished under a license and may only be used or copied in
+accordance with the terms of the license. Except as permitted by such
+license, no part of this software or documentation may be reproduced,
+stored in a retrieval system, or transmitted in any form or by any
+means without the express written consent of Byosoft Corporation.
+
+File Name:
+  DhcpGetNetworkIdCfg.vfr
+
+Abstract:
+  vfr file for DhcpGetNetworkId driver.
+
+Revision History:
+
+**/
+
+#include "DhcpGetNetworldCfg.h"
+
+formset
+  guid      = NETWORK_SECURITY_AUTH_GUID,
+  title     = STRING_TOKEN(STR_NETWORK_SECURITY_AUTH_TITLE),
+  help      = STRING_TOKEN(STR_NETWORK_SECURITY_AUTH_HELP),
+
+  efivarstore PASSWORD_NETWORK_AUTH_CONFIG,
+      attribute = 0x7,  // EFI variable attributes,EFI_VARIABLE_BOOTSERVICE_ACCESS | EFI_VARIABLE_RUNTIME_ACCESS | EFI_VARIABLE_NON_VOLATILE
+      name  = PwdNetworkAuth,
+      guid  = NETWORK_SECURITY_AUTH_GUID;
+
+  form formid = NETWORK_SECURITY_AUTH_FORM_ID,
+    title    = STRING_TOKEN(STR_NETWORK_SECURITY_AUTH_TITLE);
+
+    subtitle text = STRING_TOKEN(STR_EMPTY);
+
+    oneof varid   = PwdNetworkAuth.PwdNetworkAuthEnable,
+      questionid  = PWD_NETWORK_AUTH_ENABLE,
+      prompt      = STRING_TOKEN(STR_PWD_NETWORK_AUTH_OPTION),
+      help        = STRING_TOKEN(STR_PWD_NETWORK_AUTH_OPTION_HELP),
+      flags       = INTERACTIVE| NUMERIC_SIZE_1|RESET_REQUIRED,
+      option text = STRING_TOKEN(STR_PWD_NETWORK_AUTH_DISABLE), value = 0x0,  flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_PWD_NETWORK_AUTH_ENABLE),  value = 0x1,  flags = RESET_REQUIRED;
+    endoneof;
+
+    subtitle text = STRING_TOKEN(STR_EMPTY);
+    subtitle text = STRING_TOKEN(STR_EMPTY);
+
+  endform;
+
+endformset;

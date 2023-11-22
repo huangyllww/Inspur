@@ -1,0 +1,59 @@
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = CbsSyncMmLib
+  FILE_GUID                      = 470E2673-CE49-4EC6-AAC6-A9E7AB526F32
+  MODULE_TYPE                    = DXE_SMM_DRIVER
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = CbsSyncMmLib|DXE_SMM_DRIVER
+  PI_SPECIFICATION_VERSION       = 0x00010032
+  CONSTRUCTOR                    = CbsSyncMmLibConstructor
+
+#
+#  VALID_ARCHITECTURES           = IA32 X64 IPF EBC
+#
+
+[Sources]
+  CbsSyncMmLib.c
+  Resource/HpcbSetDataSAT.c
+
+
+[LibraryClasses]
+  BaseLib
+  DebugLib
+  BaseMemoryLib
+  SmmServicesTableLib
+  MemoryAllocationLib
+  BaseLib
+  IoLib
+  HobLib
+  ByoSharedSmmDataLib
+  HpcbLib
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  HgpiCbsPkg/HgpiCbsPkg.dec
+  HgpiModulePkg/HgpiCommonModulePkg.dec
+  HgpiModulePkg/HgpiModuleNbioPkg.dec
+  HgpiModulePkg/Fch/FchTaishan.dec
+  HgpiPkg/HgpiPkg.dec
+  ByoHgpiModulePkg/ByoHgpiModulePkg.dec
+
+
+
+[Protocols]
+  gHygonHpcbSmmServiceProtocolGuid
+  
+
+[Pcd]
+
+
+[Guids]
+  gCbsSystemConfigurationGuid
+  gHygonCbsVariableHobGuid
+
+
+[Depex]
+  TRUE
+

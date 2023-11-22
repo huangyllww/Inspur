@@ -1,0 +1,31 @@
+## @file
+#  Null Library instance to provide [Depex] for Tcg2ConfigPei module.
+#
+#  Copyright (c) 2022, Byosoft Corporation. All rights reserved.<BR>
+#  SPDX-License-Identifier: BSD-2-Clause-Patent
+#
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = Tpm12ModuleDpxLib
+  FILE_GUID                      = D1E10F37-8BED-4A09-BF0B-771BF1792A80
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = Tpm12ModuleDpxLib
+
+#
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           = IA32 X64 EBC
+#
+
+[Packages]
+  MdePkg/MdePkg.dec
+  Platform4Pkg/Platform4Pkg.dec
+
+[Sources]
+  dummy.c
+
+[Depex]
+  gByoTpm12ModuleDpxGuid

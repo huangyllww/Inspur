@@ -1,0 +1,56 @@
+///*++
+//Copyright (c) 2006 Byosoft Corporation. All rights reserved.
+//This software and associated documentation (if any) is furnished
+//under a license and may only be used or copied in accordance
+//with the terms of the license. Except as permitted by such
+//license, no part of this software or documentation may be
+//reproduced, stored in a retrieval system, or transmitted in any
+//form or by any means without the express written consent of
+//Byosoft Corporation.
+//
+//Module Name:
+//
+//  Network.uni
+//
+//Abstract:
+//
+// Network Configuration Form String Definitions
+//--*/
+/=#
+#langdef   en-US "English"
+#langdef   zh-Hans "\wide中文\narrow"
+
+#string STR_NETWORK_SETUP_FORM                 #language en-US "Lan Configuration"
+                                               #language zh-Hans "\wide板载网卡配置\narrow"
+#string STR_NETWORK_SETUP_FORM_HELP            #language en-US "Select this option to configure your system's network."
+                                               #language zh-Hans "\wide选择此选项可配置系统的网络设备.\narrow"
+
+#string STR_ONBOARD_ETHERNET_CONTROLLER        #language en-US "Onboard Ethernet Controller"
+                                               #language zh-Hans "\wide板载网卡控制\narrow"
+#string STR_ONBOARD_ETHERNET_CONTROLLER_HELP   #language en-US "Select whether to enable or disable Onboard Ethernet Controller."
+                                               #language zh-Hans "\wide选择是否打开板载网卡功能\narrow"
+
+#string STR_OBLAN_BOOT                         #language en-US "Lan PXE Boot"
+                                               #language zh-Hans "\wide网络启动\narrow"
+#string STR_OBLAN_BOOT_HELP                    #language en-US "Lan PXE Boot"
+                                               #language zh-Hans "\wide网络启动\narrow"
+#string STR_WAKE_ON_LAN                        #language en-US "Wake On Lan"
+                                               #language zh-Hans "\wide网络唤醒\narrow"
+                                               
+#string STR_LAN1_MAC_ADDR_NAME                  #language en-US   "Onboard Lan 1 MAC Address"
+                                                #language zh-Hans "\wide板载网卡\narrow1\wide物理地址\narrow"
+#string STR_LAN1_MAC_ADDR_VALUE                 #language en-US   "Unknown"
+                                                #language zh-Hans "\wide未知\narrow"
+
+#string STR_LAN2_MAC_ADDR_NAME                  #language en-US   "Onboard Lan 2 MAC Address"
+                                                #language zh-Hans "\wide板载网卡\narrow2\wide物理地址\narrow"
+#string STR_LAN2_MAC_ADDR_VALUE                 #language en-US   "Unknown"
+                                                #language zh-Hans "\wide未知\narrow"
+
+#string STR_LAN3_MAC_ADDR_NAME                  #language en-US   "Onboard Lan 3 MAC Address"
+                                                #language zh-Hans "\wide板载网卡\narrow3\wide物理地址\narrow"
+#string STR_LAN3_MAC_ADDR_VALUE                 #language en-US   "Unknown"
+                                                #language zh-Hans "\wide未知\narrow"
+                                                
+                                                
+                                                

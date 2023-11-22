@@ -1,0 +1,73 @@
+
+#ifdef MAIN_FORM_SET
+
+#ifdef FORM_SET_GOTO
+  suppressif ideqval SETUP_VOLATILE_DATA.TpcmSupport == 0;
+    goto TPCM_INFO_FORM_ID,
+      prompt = STRING_TOKEN(STR_TPCM_INFO_FORM),
+      help   = STRING_TOKEN(STR_TPCM_INFO_FORM);
+  endif;
+#endif
+
+#ifdef FORM_SET_FORM
+  form formid = AUTO_ID(TPCM_INFO_FORM_ID),
+    title = STRING_TOKEN(STR_TPCM_INFO_FORM);
+
+    suppressif TRUE;
+      text
+          help  = STRING_TOKEN(STR_EMPTY ),
+          text  = STRING_TOKEN(STR_EMPTY ),
+          flags = INTERACTIVE,
+          key   = KEY_TPCM_INFO_INIT;
+    endif;
+   
+    text
+      help   = STRING_TOKEN(STR_EMPTY),
+      text   = STRING_TOKEN(STR_TPCM_INFO_GET_TIME),
+      text   = STRING_TOKEN(STR_TPCM_INFO_GET_TIME_VALUE);
+
+    text
+      help   = STRING_TOKEN(STR_EMPTY),
+      text   = STRING_TOKEN(STR_TPCM_AUTH_START_TIME),
+      text   = STRING_TOKEN(STR_TPCM_AUTH_START_TIME_VALUE);
+
+    text
+      help   = STRING_TOKEN(STR_EMPTY),
+      text   = STRING_TOKEN(STR_TPCM_AUTH_END_TIME),
+      text   = STRING_TOKEN(STR_TPCM_AUTH_END_TIME_VALUE);
+
+    text
+      help   = STRING_TOKEN(STR_EMPTY),
+      text   = STRING_TOKEN(STR_TPCM_TRUSTED_ROOT_FORM),
+      text   = STRING_TOKEN(STR_TPCM_TRUSTED_ROOT_FORM_VALUE);
+
+    text
+      help   = STRING_TOKEN(STR_EMPTY),
+      text   = STRING_TOKEN(STR_TPCM_STORAGE_SIZE),
+      text   = STRING_TOKEN(STR_TPCM_STORAGE_SIZE_VALUE);
+  
+    text
+      help   = STRING_TOKEN(STR_EMPTY),
+      text   = STRING_TOKEN(STR_TPCM_USABLE_STORAGE_SIZE),
+      text   = STRING_TOKEN(STR_TPCM_USABLE_STORAGE_SIZE_VALUE);
+
+    text
+      help   = STRING_TOKEN(STR_EMPTY),
+      text   = STRING_TOKEN(STR_TPCM_TRUSTED_STATE),
+      text   = STRING_TOKEN(STR_TPCM_TRUSTED_STATE_VALUE);
+
+    text
+      help   = STRING_TOKEN(STR_EMPTY),
+      text   = STRING_TOKEN(STR_TPCM_VERSION),
+      text   = STRING_TOKEN(STR_TPCM_VERSION_VALUE);
+
+    text
+      help   = STRING_TOKEN(STR_EMPTY),
+      text   = STRING_TOKEN(STR_TPCM_HAS_ROOT_STORAGE_KEY),
+      text   = STRING_TOKEN(STR_TPCM_HAS_ROOT_STORAGE_KEY_VALUE);
+
+  endform;  
+
+#endif
+
+#endif           // MAIN_FORM_SET

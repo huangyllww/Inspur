@@ -1,0 +1,222 @@
+## @file
+#
+#  INF file of Bios.v1_0_0 EFI Redfish JSON Structure DXE driver
+#
+#  (C) Copyright 2019-2021 Hewlett Packard Enterprise Development LP<BR>
+#  SPDX-License-Identifier: BSD-2-Clause-Patent
+#
+#  Auto-generated file by Redfish Schema C Structure Generator.
+#  https://github.com/DMTF/Redfish-Schema-C-Struct-Generator
+#
+#  Copyright Notice:
+#  Copyright 2019-2021 Distributed Management Task Force, Inc. All rights reserved.
+#  License: BSD 3-Clause License. For full text see link: https://github.com/DMTF/Redfish-JSON-C-Struct-Converter/blob/master/LICENSE.md
+#
+##
+
+# DO NOT EDIT
+# FILE auto-generated
+
+[Defines]
+  INF_VERSION                = 0x00010017
+  BASE_NAME                  = RedfishBios_V1_0_0_Dxe
+  FILE_GUID                  = 972898f8-5a43-43fa-afa9-a975917e1e06
+  MODULE_TYPE                = DXE_DRIVER
+  VERSION_STRING             = 1.0
+  ENTRY_POINT                = RedfishBios_V1_0_0EntryPoint
+  UNLOAD_IMAGE               = RedfishBios_V1_0_0Unload
+
+[Packages.X64]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+
+[Binaries.X64]
+  PE32|RedfishBios_V1_0_0_Dxe.efi
+  DXE_DEPEX|RedfishBios_V1_0_0_Dxe.depex
+
+[PatchPcd.X64]
+  gEfiMdePkgTokenSpaceGuid.PcdDebugPrintErrorLevel|0x80280046|0x76E0
+
+
+[Protocols.X64]
+  ## Consuming
+  gEfiRestJsonStructureProtocolGuid
+
+  ## CONSUMES
+  gEfiStatusCodeRuntimeProtocolGuid
+
+  ## SOMETIMES_CONSUMES
+  gEfiDevicePathProtocolGuid
+
+  ## UNDEFINED
+  gEfiDebugPortProtocolGuid
+
+  ## SOMETIMES_CONSUMES
+  gPcdProtocolGuid
+
+  ## CONSUMES
+  gEfiPcdProtocolGuid
+
+  ## SOMETIMES_CONSUMES
+  gGetPcdInfoProtocolGuid
+
+  ## SOMETIMES_CONSUMES
+  gEfiGetPcdInfoProtocolGuid
+
+  ## SOMETIMES_PRODUCES
+  gEfiDriverBindingProtocolGuid
+
+  ## SOMETIMES_CONSUMES
+  gEfiSimpleTextOutProtocolGuid
+
+  ## SOMETIMES_CONSUMES
+  gEfiGraphicsOutputProtocolGuid
+
+  ## SOMETIMES_CONSUMES
+  gEfiHiiFontProtocolGuid
+
+  ## SOMETIMES_CONSUMES
+  gEfiSimpleFileSystemProtocolGuid
+
+  ## SOMETIMES_CONSUMES # Consumes if gEfiGraphicsOutputProtocolGuid uninstalled
+  gEfiUgaDrawProtocolGuid
+
+  ## SOMETIMES_PRODUCES # User chooses to produce it
+  gEfiComponentNameProtocolGuid
+
+  ## SOMETIMES_PRODUCES # User chooses to produce it
+  gEfiComponentName2ProtocolGuid
+
+  ## SOMETIMES_PRODUCES # User chooses to produce it
+  gEfiDriverConfigurationProtocolGuid
+
+  ## SOMETIMES_PRODUCES # User chooses to produce it
+  gEfiDriverConfiguration2ProtocolGuid
+
+  ## SOMETIMES_PRODUCES # User chooses to produce it
+  gEfiDriverDiagnosticsProtocolGuid
+
+  ## SOMETIMES_PRODUCES # User chooses to produce it
+  gEfiDriverDiagnostics2ProtocolGuid
+
+  ## SOMETIMES_CONSUMES
+  gEfiLoadedImageProtocolGuid
+
+
+[Ppis.X64]
+
+[Guids.X64]
+  ## SOMETIMES_CONSUMES ## UNDEFINED
+  gEfiStatusCodeSpecificDataGuid
+
+  ## SOMETIMES_CONSUMES ## UNDEFINED
+  ## SOMETIMES_CONSUMES ## GUID
+  gEfiStatusCodeDataTypeDebugGuid
+
+  ## SOMETIMES_CONSUMES  ## GUID
+  gEfiVTUTF8Guid
+
+  ## SOMETIMES_CONSUMES  ## GUID
+  gEfiVT100Guid
+
+  ## SOMETIMES_CONSUMES  ## GUID
+  gEfiVT100PlusGuid
+
+  ## SOMETIMES_CONSUMES  ## GUID
+  gEfiPcAnsiGuid
+
+  ## SOMETIMES_CONSUMES  ## GUID
+  gEfiUartDevicePathGuid
+
+  ## SOMETIMES_CONSUMES  ## GUID
+  gEfiSasDevicePathGuid
+
+  ## SOMETIMES_CONSUMES  ## GUID
+  gEfiVirtualDiskGuid
+
+  ## SOMETIMES_CONSUMES  ## GUID
+  gEfiVirtualCdGuid
+
+  ## SOMETIMES_CONSUMES  ## GUID
+  gEfiPersistentVirtualDiskGuid
+
+  ## SOMETIMES_CONSUMES  ## GUID
+  gEfiPersistentVirtualCdGuid
+
+  ## SOMETIMES_CONSUMES  ## Event
+  gEfiEventReadyToBootGuid
+
+  ## SOMETIMES_CONSUMES  ## Event
+  gEfiEventLegacyBootGuid
+
+  ## SOMETIMES_CONSUMES  ## Variable
+  gEfiGlobalVariableGuid
+
+  ## SOMETIMES_CONSUMES  ## SystemTable
+  gEfiAcpi20TableGuid
+
+  ## SOMETIMES_CONSUMES  ## SystemTable
+  gEfiAcpi10TableGuid
+
+  ## CONSUMES  ## SystemTable
+  gEfiHobListGuid
+
+
+[PcdEx.X64]
+
+[LibraryClasses.X64]
+## @LIB_INSTANCES
+#  MdePkg/Library/RegisterFilterLibNull/RegisterFilterLibNull.inf
+#  MdePkg/Library/BaseIoLibIntrinsic/BaseIoLibIntrinsic.inf
+#  MdeModulePkg/Library/DxeReportStatusCodeLib/DxeReportStatusCodeLib.inf
+#  MdePkg/Library/UefiDevicePathLib/UefiDevicePathLib.inf
+#  MdePkg/Library/DxePcdLib/DxePcdLib.inf
+#  MdePkg/Library/UefiMemoryAllocationLib/UefiMemoryAllocationLib.inf
+#  MdePkg/Library/BasePrintLib/BasePrintLib.inf
+#  MdeModulePkg/Library/PeiDxeDebugLibReportStatusCode/PeiDxeDebugLibReportStatusCode.inf
+#  MdePkg/Library/BaseMemoryLibRepStr/BaseMemoryLibRepStr.inf
+#  MdePkg/Library/BaseLib/BaseLib.inf
+#  MdePkg/Library/UefiBootServicesTableLib/UefiBootServicesTableLib.inf
+#  MdePkg/Library/UefiRuntimeServicesTableLib/UefiRuntimeServicesTableLib.inf
+#  MdePkg/Library/UefiLib/UefiLib.inf
+#  MdePkg/Library/DxeHobLib/DxeHobLib.inf
+#  MdeModulePkg/Library/BaseSortLib/BaseSortLib.inf
+#  RedfishPkg/PrivateLibrary/RedfishCrtLib/RedfishCrtLib.inf
+#  RedfishPkg/Library/BaseUcs2Utf8Lib/BaseUcs2Utf8Lib.inf
+#  RedfishPkg/Library/JsonLib/JsonLib.inf
+#  MdePkg/Library/UefiDriverEntryPoint/UefiDriverEntryPoint.inf
+#  RedfishClientPkg/ConverterLib/edk2library/Bios/v1_0_0/Lib.inf
+
+[Depex.X64]
+#  (gEfiRestJsonStructureProtocolGuid) AND (gEfiPcdProtocolGuid) AND (gEfiPcdProtocolGuid) AND (gEfiPcdProtocolGuid) AND (gEfiPcdProtocolGuid) AND (gEfiBdsArchProtocolGuid AND gEfiCpuArchProtocolGuid AND gEfiMetronomeArchProtocolGuid AND gEfiMonotonicCounterArchProtocolGuid AND gEfiRealTimeClockArchProtocolGuid AND gEfiResetArchProtocolGuid AND gEfiRuntimeArchProtocolGuid AND gEfiSecurityArchProtocolGuid AND gEfiTimerArchProtocolGuid AND gEfiVariableWriteArchProtocolGuid AND gEfiVariableArchProtocolGuid AND gEfiWatchdogTimerArchProtocolGuid)
+
+
+
+#MSFT:*_*_*_CC_FLAGS = /Od
+
+[BuildOptions.X64]
+## @AsBuilt
+##   MSFT:RELEASE_VS2015x86_X64_ASLPP_FLAGS = /nologo /E /C /FIAutoGen.h
+##   MSFT:RELEASE_VS2015x86_X64_ASLDLINK_FLAGS = /NODEFAULTLIB /ENTRY:ReferenceAcpiTable /SUBSYSTEM:CONSOLE
+##   MSFT:RELEASE_VS2015x86_X64_GENFW_FLAGS = 
+##   MSFT:RELEASE_VS2015x86_X64_SLINK_FLAGS = /NOLOGO /LTCG
+##   MSFT:RELEASE_VS2015x86_X64_OBJCOPY_FLAGS = objcopy not needed for
+##   MSFT:RELEASE_VS2015x86_X64_DEPS_FLAGS = /showIncludes
+##   MSFT:RELEASE_VS2015x86_X64_ASM_FLAGS = /nologo /c /WX /W3 /Cx /Zd
+##   MSFT:RELEASE_VS2015x86_X64_ASMLINK_FLAGS = /nologo /tiny
+##   MSFT:RELEASE_VS2015x86_X64_CC_FLAGS = /nologo /c /WX /GS- /W4 /Gs32768 /D UNICODE /O1b2s /GL /Gy /FIAutoGen.h /EHs-c- /GR- /GF /Gw
+##   MSFT:RELEASE_VS2015x86_X64_VFR_FLAGS = -l -n
+##   MSFT:RELEASE_VS2015x86_X64_ASLCC_FLAGS = /nologo /c /FIAutoGen.h /TC /Dmain=ReferenceAcpiTable
+##   MSFT:RELEASE_VS2015x86_X64_APP_FLAGS = /nologo /E /TC
+##   MSFT:RELEASE_VS2015x86_X64_NASM_FLAGS = -Ox -f win64
+##   MSFT:RELEASE_VS2015x86_X64_OPTROM_FLAGS = -e
+##   MSFT:RELEASE_VS2015x86_X64_DTC_FLAGS = -H epapr
+##   MSFT:RELEASE_VS2015x86_X64_MAKE_FLAGS = /nologo
+##   MSFT:RELEASE_VS2015x86_X64_SYMRENAME_FLAGS = Symbol renaming not needed for
+##   MSFT:RELEASE_VS2015x86_X64_ASM16_FLAGS = 
+##   MSFT:RELEASE_VS2015x86_X64_PP_FLAGS = /nologo /E /TC /FIAutoGen.h
+##   MSFT:RELEASE_VS2015x86_X64_VFRPP_FLAGS = /nologo /E /TC /DVFRCOMPILE /FI$(MODULE_NAME)StrDefs.h
+##   MSFT:RELEASE_VS2015x86_X64_DLINK_FLAGS = /NOLOGO /NODEFAULTLIB /IGNORE:4001 /IGNORE:4254 /OPT:REF /OPT:ICF=10 /MAP /ALIGN:32 /SECTION:.xdata,D /SECTION:.pdata,D /Machine:X64 /LTCG /DLL /ENTRY:$(IMAGE_ENTRY_POINT) /SUBSYSTEM:EFI_BOOT_SERVICE_DRIVER /SAFESEH:NO /BASE:0 /DRIVER /MERGE:.rdata=.data
+##   MSFT:RELEASE_VS2015x86_X64_ASL_FLAGS = -oi
+##   MSFT:RELEASE_VS2015x86_X64_NASMB_FLAGS = -f bin
+##   MSFT:RELEASE_VS2015x86_X64_DLINK2_FLAGS = 

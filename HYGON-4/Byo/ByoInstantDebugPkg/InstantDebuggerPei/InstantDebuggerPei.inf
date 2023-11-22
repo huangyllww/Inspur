@@ -1,0 +1,43 @@
+## @file
+#  Instant Debugger PEIM.
+#
+#  Copyright (c) 2021 - 2022, Byosoft Corporation. All rights reserved.<BR>
+#
+#  This software and associated documentation (if any)
+#  is furnished under a license and may only be used or copied in
+#  accordance with the terms of the license. Except as permitted by such
+#  license, no part of this software or documentation may be reproduced,
+#  stored in a retrieval system, or transmitted in any form or by any
+#  means without the express written consent of Byosoft Corporation.
+#
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = InstantDebuggerPei
+  FILE_GUID                      = B31B1470-0A0F-44B2-8FDB-A03915F3DBDE
+  MODULE_TYPE                    = PEIM
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = InstantDebuggerPeiInitialize
+
+#
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           = IA32 X64
+#
+
+[Sources]
+  InstantDebuggerPei.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  ByoInstantDebugPkg/ByoInstantDebugPkg.dec
+
+[LibraryClasses]
+  PeimEntryPoint
+  DebugLib
+  DebugAgentLib
+
+[Depex]
+  TRUE

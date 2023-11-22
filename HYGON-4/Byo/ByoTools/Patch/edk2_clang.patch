@@ -1,0 +1,45 @@
+diff --git a/BaseTools/Conf/build_rule.template b/BaseTools/Conf/build_rule.template
+index ef6cb0f5d8..16551db66b 100755
+--- a/BaseTools/Conf/build_rule.template
++++ b/BaseTools/Conf/build_rule.template
+@@ -130,6 +130,7 @@
+ 
+     <Command.GCC>
+         "$(CC)" $(DEPS_FLAGS) $(CC_FLAGS) -c -o ${dst} $(INC) ${src}
++        "$(CLANG)" ${src} $(CLANG_FLAGS) $(INC) >> $(WORKSPACE)(+)clang_log.txt
+ 
+     <Command.XCODE>
+         "$(CC)" $(DEPS_FLAGS) $(CC_FLAGS) -o ${dst} $(INC) ${src}
+diff --git a/BaseTools/Conf/tools_def.template b/BaseTools/Conf/tools_def.template
+index f479f36791..34295ae7ab 100755
+--- a/BaseTools/Conf/tools_def.template
++++ b/BaseTools/Conf/tools_def.template
+@@ -2336,6 +2336,7 @@ RELEASE_GCC49_ARM_CC_FLAGS       = DEF(GCC49_ARM_CC_FLAGS) -Wno-unused-but-set-v
+ ##################
+ # GCC49 AARCH64 definitions
+ ##################
++*_GCC49_AARCH64_CLANG_PATH       = ENV(CLANG_TIDY)
+ *_GCC49_AARCH64_CC_PATH          = ENV(GCC49_AARCH64_PREFIX)gcc
+ *_GCC49_AARCH64_SLINK_PATH       = ENV(GCC49_AARCH64_PREFIX)ar
+ *_GCC49_AARCH64_DLINK_PATH       = ENV(GCC49_AARCH64_PREFIX)gcc
+@@ -2363,6 +2364,7 @@ RELEASE_GCC49_ARM_CC_FLAGS       = DEF(GCC49_ARM_CC_FLAGS) -Wno-unused-but-set-v
+   DEBUG_GCC49_AARCH64_DLINK_XIPFLAGS = -z common-page-size=0x20
+ 
+ RELEASE_GCC49_AARCH64_CC_FLAGS     = DEF(GCC49_AARCH64_CC_FLAGS) -Wno-unused-but-set-variable -Wno-unused-const-variable
++RELEASE_GCC49_AARCH64_CLANG_FLAGS  = -checks=-*,clang-analyzer-*,-clang-analyzer-cplusplus*,-clang-analyzer-deadcode.DeadStores,-clang-analyzer-optin.performance.Padding -- -fshort-wchar -include AutoGen.h -D CLANG_ANALYZE
+ RELEASE_GCC49_AARCH64_DLINK_FLAGS  = DEF(GCC49_AARCH64_DLINK_FLAGS)
+ RELEASE_GCC49_AARCH64_DLINK_XIPFLAGS = -z common-page-size=0x20
+ 
+diff --git a/SecurityPkg/Library/DxeTcg2PhysicalPresenceLib/DxeTcg2PhysicalPresenceLib.c b/SecurityPkg/Library/DxeTcg2PhysicalPresenceLib/DxeTcg2PhysicalPresenceLib.c
+index bd4c4acb48..684bc02fcd 100644
+--- a/SecurityPkg/Library/DxeTcg2PhysicalPresenceLib/DxeTcg2PhysicalPresenceLib.c
++++ b/SecurityPkg/Library/DxeTcg2PhysicalPresenceLib/DxeTcg2PhysicalPresenceLib.c
+@@ -865,7 +865,7 @@ Tcg2ExecutePendingTpmRequest (
+         FreePool (HandleBuffer);
+       }
+ 
+-      if (HaveTrustedDisplay == TRUE) {
++      if (HaveTrustedDisplay == TRUE) { // NOLINT
+         //
+         // If there is a trusted display device Print confirm text and wait for approval.
+         //

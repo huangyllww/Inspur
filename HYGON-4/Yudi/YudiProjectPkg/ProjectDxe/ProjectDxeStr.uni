@@ -1,0 +1,71 @@
+/ /*++
+// Copyright (c) 2010 Intel Corporation. All rights reserved.
+// This software and associated documentation (if any) is furnished
+// under a license and may only be used or copied in accordance
+// with the terms of the license. Except as permitted by such
+// license, no part of this software or documentation may be
+// reproduced, stored in a retrieval system, or transmitted in any
+// form or by any means without the express written consent of
+// Intel Corporation.
+//
+// Module Name: Power.uni
+//
+// Abstract: Power manager.
+// --*/
+
+/=#
+#langdef   en-US   "English"
+#langdef   zh-Hans "\wide中文\narrow"
+
+#string STR_HOTKEY_F2          #language en-US   "Press [F2]     to enter setup and select boot options"
+                               #language zh-Hans "\wide按\narrow[F2]  \wide进入固件配置页面\narrow"
+#string STR_HOTKEY_F7          #language en-US   "Press [F7]     to show boot menu options"
+                               #language zh-Hans "\wide按\narrow[F7]  \wide进入启动设备菜单\narrow"
+                               
+#string STR_SECURE_BOOT_VIOLATION_TITLE   #language en-US    "Secure Boot Violation"
+                                          #language zh-Hans  "\wide安全引导违规\narrow"                                       
+#string STR_SECURE_BOOT_VIOLATION_INFO    #language en-US    "Invalid Signature detected. Check Secure Boot Policy in Setup."
+                                          #language zh-Hans  "\wide检测到无效签名。检查“设置”中的“安全启动”。\narrow"                                
+
+#string STR_CMOS_ERROR00           #language en-US   "CMOS invalid, BIOS has been loaded default."
+                                   #language zh-Hans "CMOS\wide无效，\narrowBIOS\wide已恢复默认设定。\narrow"  
+#string STR_CMOS_ERROR01           #language en-US   "Press Enter key to continue, or wait 10 seconds."
+                                   #language zh-Hans "\wide按\narrowENTER\wide键继续，或等待\narrow10\wide秒。\narrow" 
+#string STR_INFO                   #language en-US   "Infomation"
+                                   #language zh-Hans "\wide信息\narrow"  
+
+#string STR_HOTKEY_INFO            #language en-US    "Press "
+                                   #language zh-Hans  "\wide按\narrow " 
+#string STR_HOTKEY_INFO2           #language en-US    "DEL"
+                                   #language zh-Hans  "DEL"
+#string STR_HOTKEY_INFO3           #language en-US    " to enter SETUP, Press "
+                                   #language zh-Hans  " \wide进入固件配置，按\narrow "
+#string STR_HOTKEY_INFO4           #language en-US    "F11"
+                                   #language zh-Hans  "F11"
+#string STR_HOTKEY_INFO5           #language en-US    " to enter Boot Menu, and Press "
+                                   #language zh-Hans  " \wide进入启动菜单，按\narrow "
+#string STR_HOTKEY_INFO6           #language en-US    "F12"
+                                   #language zh-Hans  "F12"
+#string STR_HOTKEY_INFO7           #language en-US    " to PXE boot."
+                                   #language zh-Hans  " \wide进入网络启动。\narrow"                                   
+
+#string STR_SETUP_TITLE            #language en-US    "Byosoft ByoCore BIOS V1.0"
+                                   #language zh-Hans  "\wide百敖\narrowByoCore\wide软件\narrowV1.0" 
+#string STR_DIMM_ERROR             #language en-US    "Memory failure, the system will shut down in %d seconds!"
+                                   #language zh-Hans  "\wide内存故障，系统将在\narrow%d\wide秒后关闭！\narrow"
+
+#string STR_CMOS_ERROR_TITLE       #language en-US    "CMOS Bad"
+                                   #language zh-Hans  "CMOS\wide错误\narrow"
+#string STR_CMOS_ERROR_CONTENT1    #language en-US    "The CMOS checksum is invalid. Setup configuration has been loaded default."
+                                   #language zh-Hans  "\narrowCMOS\wide校验和无效，\narrowSetup\wide配置已经恢复默认。\narrow"
+#string STR_CMOS_ERROR_CONTENT2    #language en-US    "Press ENTER key to continue, or wait 15 seconds."
+                                   #language zh-Hans  "\wide按回车键继续或等待\narrow15\wide秒。\narrow"
+ 
+#string STR_CMOS_ERROR_REASON_JUMPER     #language en-US    "Reason: Cmos Jumper, battery low or CPU socket open"
+                                         #language zh-Hans  "\wide原因：跳线设定，纽扣电池电量低，或处理器座被打开\narrow"
+#string STR_CMOS_ERROR_REASON_SW_SET     #language en-US    "Reason: SW Set"
+                                         #language zh-Hans  "\wide原因：软件设定\narrow"
+#string STR_CMOS_ERROR_REASON_SW_UPDATE  #language en-US    "Reason: Sw update"
+                                         #language zh-Hans  "\wide原因：软件升级\narrow"
+#string STR_CMOS_ERROR_REASON_UNKNOWN    #language en-US    "Reason: Unknown"
+                                         #language zh-Hans  "\wide原因：未知\narrow"

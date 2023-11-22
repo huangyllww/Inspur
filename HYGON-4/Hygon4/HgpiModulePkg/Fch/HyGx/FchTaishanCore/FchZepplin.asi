@@ -1,0 +1,613 @@
+Name (TSOS, 0x75)  
+
+If(CondRefOf(\_OSI))
+{
+  If(\_OSI("Windows 2009"))
+  {
+    Store(0x50, TSOS)
+  }
+  If(\_OSI("Windows 2015"))
+  {
+    Store(0x70, TSOS)
+  }
+  If(\_OSI("Linux"))
+  {
+    Store(0x80, TSOS)
+  }
+}
+
+Scope(\_SB) {
+OperationRegion(ECMC, SystemIo, 0x72, 0x02)
+Field(ECMC, AnyAcc, NoLock, Preserve)
+{
+  ECMI, 8,
+  ECMD, 8,      
+}
+IndexField(ECMI, ECMD, ByteAcc, NoLock, Preserve) {
+  Offset (0x08),
+  FRTB, 32,
+}
+OperationRegion(FRTP, SystemMemory, FRTB, 0x100)
+Field(FRTP, AnyAcc, NoLock, Preserve)
+{
+  PEBA, 32,
+  Offset (0x04),
+  , 5,
+  IC0E, 1,   //I2C0, 5
+  IC1E, 1,   //I2C1, 6
+  IC2E, 1,   //I2C2, 7
+  IC3E, 1,   //I2C3, 8
+  IC4E, 1,   //I3C0, 9
+  IC5E, 1,   //I3C1, 10
+  UT0E, 1,   //UART0, 11
+  UT1E, 1,   //UART1, 12
+  , 1,   // 13
+  , 1,   //, 14
+  ST_E, 1,   //SATA, 15
+  UT2E, 1,   //UART2, 16
+  , 1,
+  EMMD, 2,   //18-19, EMMC Driver type, 0:HYO eMMC Driver (HYOI0040) 1:MS SD Driver (PNP0D40) 2:0:MS eMMC Driver (HYOI0040)
+  , 3,
+  XHCE, 1,   //XCHI, 23
+  , 1,   //24
+  , 1,
+  UT3E, 1,   //UART3, 26
+  ESPI, 1,   //ESPI  27
+  EMME, 1,   //EMMC  28
+  Offset (0x08),
+  PCEF, 1,   // Post Code Enable Flag
+  , 4,
+  IC0D, 1,   //I2C0, 5
+  IC1D, 1,
+  IC2D, 1,
+  IC3D, 1,   //I2C3, 8
+  IC4D, 1,   //I2C3, 9
+  IC5D, 1,   //I2C3, 10
+  UT0D, 1,   //UART0, 11
+  UT1D, 1,   //UART1, 12
+  , 1,   //, 13
+  , 1,   //, 14
+  ST_D, 1,   //SATA, 15
+  UT2D, 1,   //UART2, 16
+  , 1,
+  EHCD, 1,   //EHCI, 18
+  , 4,
+  XHCD, 1,   //XCHI, 23
+  SD_D, 1,   //SD,   24
+  , 1,
+  UT3D, 1,   //UART1, 26
+  , 1,
+  EMD3, 1,   //EMMC D3  28
+  , 2,
+  S03D, 1,   //S0I3 flag, 31   
+  Offset (0x0C),
+  FW00, 16, 
+  FW01, 32, 
+  FW02, 16, 
+  FW03, 32, 
+  SDS0, 8, //SataDevSlpPort0S5Pin
+  SDS1, 8, //SataDevSlpPort1S5Pin
+  CZFG, 1, //Carrizo Serials 
+  Offset (0x20),
+  SD10, 32,
+  EH10, 32,
+  XH10, 32,
+  STBA, 32,
+}
+
+OperationRegion(LUIE, SystemMemory, 0xFEDC0020, 0x4) //Legacy Uart Io Enable
+Field(LUIE, AnyAcc, NoLock, Preserve)
+{
+  IER0, 1,   //2E8
+  IER1, 1,   //2F8
+  IER2, 1,   //3E8
+  IER3, 1,   //3F8
+  UOL0, 1,   //UART0 on legacy
+  UOL1, 1,   //UART1 on legacy
+  UOL2, 1,   //UART2 on legacy
+  UOL3, 1,   //UART3 on legacy
+  WUR0, 2,   //
+  WUR1, 2,   //
+  WUR2, 2,   //
+  WUR3, 2,   //
+}
+Method(FRUI,2, Serialized)  //Fch Return Uart Interrupt
+{
+  if (LEqual(Arg0, 0)) {store (IUA0, Arg1)}
+  if (LEqual(Arg0, 1)) {store (IUA1, Arg1)}
+  if (LEqual(Arg0, 2)) {store (IUA2, Arg1)}
+  if (LEqual(Arg0, 3)) {store (IUA3, Arg1)}
+}
+
+Method(SRAD,2, Serialized)  //SoftResetAoacDevice, Arg0:Device ID, Arg1:reset period in micro seconds
+{
+  ShiftLeft(Arg0, 1, Local0)
+  Add (Local0, 0xfed81e40, Local0)
+  OperationRegion( ADCR, SystemMemory, Local0, 0x02)
+  Field( ADCR, ByteAcc, NoLock, Preserve) { //AoacD3ControlRegister
+    ADTD, 2,
+    ADPS, 1,
+    ADPD, 1, 
+    ADSO, 1, 
+    ADSC, 1, 
+    ADSR, 1, 
+    ADIS, 1, 
+    ADDS, 3, 
+  }
+  store (one, ADIS)       // IsSwControl = 1
+  store (zero, ADSR)      // SwRstB = 0
+  stall (Arg1)
+  store (one, ADSR)       // SwRstB = 1
+  store (zero, ADIS)      // IsSwControl = 0
+  stall (Arg1)
+}
+  Device(GPIO) {
+    Name (_HID, "HYGO0030")
+    Name (_CID, "HYGO0030")
+    Name(_UID, 0)
+
+    Method (_CRS, 0x0, NotSerialized) {
+      Name (RBUF, ResourceTemplate () {
+        //
+        // Interrupt resource. In this example, banks 0 & 1 share the same
+        // interrupt to the parent controller and similarly banks 2 & 3.
+        //
+        // N.B. The definition below is chosen for an arbitrary
+        //      test platform. It needs to be changed to reflect the hardware
+        //      configuration of the actual platform
+        //
+        Interrupt(ResourceConsumer, Level, ActiveLow, Shared, , , ) {7}
+
+        //
+        // Memory resource. The definition below is chosen for an arbitrary
+        // test platform. It needs to be changed to reflect the hardware
+        // configuration of the actual platform.
+        //
+        Memory32Fixed(ReadWrite, 0xFED81500, 0x400)
+      })
+
+      Return (RBUF)
+    }
+
+    Method(_STA, 0, NotSerialized) {
+        If (LGreaterEqual(TSOS, 0x70)) {
+          Return (0x0F)
+        } Else {
+          Return (0x00)
+        }
+    }
+  } // End Device GPIO
+  
+   
+  Device(FUR0) {
+    Name(_HID,"HYGO0020")            // UART Hardware Device ID
+    Name(_UID,0x0)
+    Name(_CRS, ResourceTemplate() {
+      IRQ(Edge, ActiveHigh, Exclusive) {3}
+      Memory32Fixed(ReadWrite, 0xFEDC9000, 0x1000)
+      Memory32Fixed(ReadWrite, 0xFEDC7000, 0x1000)
+    })
+
+    Method(_STA, 0, NotSerialized) {
+        If (LGreaterEqual(TSOS, 0x70)) {
+          if (LEqual(UT0E, one)) { 
+            if (IER0) {Return (0)}
+            Return (0x0F)
+          }
+          Return (0x00)
+        } Else {
+          Return (0x00)
+        }
+    }
+  } // End Device FUR0 
+ 
+  Device(FUR1) {
+    Name(_HID,"HYGO0020")            // UART Hardware Device ID
+    Name(_UID,0x1)
+    Name(_CRS, ResourceTemplate() {
+      IRQ(Edge, ActiveHigh, Exclusive) {4}
+      Memory32Fixed(ReadWrite, 0xFEDCA000, 0x1000)
+      Memory32Fixed(ReadWrite, 0xFEDC8000, 0x1000)
+    })
+
+    Method(_STA, 0, NotSerialized) {
+        If (LGreaterEqual(TSOS, 0x70)) {
+          if (LEqual(UT1E, one)) { 
+            if (UOL1) {Return (0)}
+            Return (0x0F)
+          }
+          Return (0x00)
+        } Else {
+          Return (0x00)
+        }
+    }
+  } // End Device FUR1 
+  
+  Device(FUR2) {
+    Name(_HID,"HYGO0020")            // UART Hardware Device ID
+    Name(_UID,0x2)
+    Name(_CRS, ResourceTemplate() {
+      IRQ(Edge, ActiveHigh, Exclusive) {3}
+      Memory32Fixed(ReadWrite, 0xFEDCE000, 0x1000)
+      Memory32Fixed(ReadWrite, 0xFEDCC000, 0x1000)
+    })
+
+    Method(_STA, 0, NotSerialized) {
+        If (LGreaterEqual(TSOS, 0x70)) {
+          if (LEqual(UT2E, one)) { 
+            if (UOL2) {Return (0)}
+            Return (0x0F)
+          }
+          Return (0x00)
+        } Else {
+          Return (0x00)
+        }
+    }
+  } // End Device FUR2
+  
+  Device(FUR3) {
+    Name(_HID,"HYGO0020")            // UART Hardware Device ID
+    Name(_UID,0x3)
+    Name(_CRS, ResourceTemplate() {
+      IRQ(Edge, ActiveHigh, Exclusive) {4}
+      Memory32Fixed(ReadWrite, 0xFEDCF000, 0x1000)
+      Memory32Fixed(ReadWrite, 0xFEDCD000, 0x1000)
+    })
+
+    Method(_STA, 0, NotSerialized) {
+        If (LGreaterEqual(TSOS, 0x70)) {
+          if (LEqual(UT3E, one)) { 
+            if (UOL3) {Return (0)}
+            Return (0x0F)
+          }
+          Return (0x00)
+        } Else {
+          Return (0x00)
+        }
+    }
+  } // End Device FUR3  
+
+  Device(I2CA) {
+    Name(_HID,"HYGO0010")            // Hardware Device ID
+    Name(_UID,0x0)
+    Name(_CRS, ResourceTemplate() {
+      IRQ(Edge, ActiveHigh, Exclusive) {10}
+      Memory32Fixed(ReadWrite, 0xFEDC2000, 0x1000)
+    })
+
+    Method(_STA, 0, NotSerialized) {
+        If (LGreaterEqual(TSOS, 0x70)) {
+          if (LEqual(IC0E, one)) { Return (0x0F)}
+          Return (0x00)
+        } Else {
+          Return (0x00)
+        }
+    }
+
+    Method(RSET,0) { SRAD (5, 200)}
+  } // End Device I2CA
+  
+  Device(I2CB)
+  {
+    Name(_HID,"HYGO0010")            // Hardware Device ID
+    Name(_UID,0x1)
+    Name(_CRS, ResourceTemplate() {
+      IRQ(Edge, ActiveHigh, Exclusive) {11}
+      Memory32Fixed(ReadWrite, 0xFEDC3000, 0x1000)
+    })
+    Method(_STA, 0, NotSerialized) {
+        If (LGreaterEqual(TSOS, 0x70)) {
+          if (LEqual(IC1E, one)) { Return (0x0F)}
+          Return (0x00)
+        } Else {
+          Return (0x00)
+        }
+    }
+
+    Method(RSET,0) { SRAD (6, 200)}
+  } // End Device I2CB  
+ 
+  Device(I2CC) {
+    Name(_HID,"HYGO0010")            // Hardware Device ID
+    Name(_UID,0x2)
+    Name(_CRS, ResourceTemplate() {
+      IRQ(Edge, ActiveHigh, Exclusive) {4}
+      Memory32Fixed(ReadWrite, 0xFEDC4000, 0x1000)
+    })
+    Method(_STA, 0, NotSerialized) {
+        If (LGreaterEqual(TSOS, 0x70)) {
+          if (LEqual(IC2E, one)) { Return (0x0F)}
+          Return (0x00)
+        } Else {
+          Return (0x00)
+        }
+    }
+
+    Method(RSET,0) { SRAD (7, 200)}
+  } // End Device I2CC   
+ 
+  Device(I2CD) {
+    Name(_HID,"HYGO0010")            // Hardware Device ID
+    Name(_UID,0x3)
+    Name(_CRS, ResourceTemplate() {
+      IRQ(Edge, ActiveHigh, Exclusive) {6}
+      Memory32Fixed(ReadWrite, 0xFEDC5000, 0x1000)
+    })
+    Method(_STA, 0, NotSerialized) {
+        If (LGreaterEqual(TSOS, 0x70)) {
+          if (LEqual(IC3E, one)) { Return (0x0F)}
+          Return (0x00)
+        } Else {
+          Return (0x00)
+        }
+    }
+
+    Method(RSET,0) { SRAD (8, 200)}
+  } // End Device I2CD 
+ 
+  Device(I3CA) {
+    Name(_HID,"HYGO0060")            // Hardware Device ID
+    Name(_UID,0x0)
+    Name(_CRS, ResourceTemplate() {
+      IRQ(Edge, ActiveHigh, Exclusive) {14}
+      Memory32Fixed(ReadWrite, 0xFEDC6000, 0x1000)
+    })
+    Method(_STA, 0, NotSerialized) {
+        If (LGreaterEqual(TSOS, 0x70)) {
+          if (LEqual(IC4E, one)) { Return (0x0F)}
+          Return (0x00)
+        } Else {
+          Return (0x00)
+        }
+    }
+
+    Method(RSET,0) { SRAD (9, 200)}
+  } // End Device I3CA 
+
+  Device(I3CB) {
+    Name(_HID,"HYGO0060")            // Hardware Device ID
+    Name(_UID,0x1)
+    Name(_CRS, ResourceTemplate() {
+      IRQ(Edge, ActiveHigh, Exclusive) {15}
+      Memory32Fixed(ReadWrite, 0xFEDCB000, 0x1000)
+    })
+    Method(_STA, 0, NotSerialized) {
+        If (LGreaterEqual(TSOS, 0x70)) {
+          if (LEqual(IC5E, one)) { Return (0x0F)}
+          Return (0x00)
+        } Else {
+          Return (0x00)
+        }
+    }
+
+    Method(RSET,0) { SRAD (10, 200)}
+  } // End Device I3CB 
+
+  Device(EMMC) {
+    Name(_HID,"HYGO0040")            // Hardware Device ID
+    Name(_UID,0x0)
+//    Name(_HID,EISAID ("PNP0D40"))  //SD device
+//    Name(_CID,"PCI\CC_080501")            //
+    Name(_CRS, ResourceTemplate() {
+      IRQ(Level, ActiveLow, Shared) {5}
+      Memory32Fixed(ReadWrite, 0xFEDD5000, 0x1000)
+    })
+    Method(_STA, 0, NotSerialized) {
+        If (LGreaterEqual(TSOS, 0x70)) {
+          Return (0x00)
+//          Return (0x0F)
+        } Else {
+          Return (0x00)
+        }
+    }
+  } // End Device EMMC 
+ 
+Device(UAR1) {  // COM Port
+  Name(_HID, EISAID("PNP0500"))
+//  Name(_CID, EISAID("PNP0500"))
+//  Name(_HID, EISAID("PNP0501"))
+//  Name(_CID, EISAID("PNP0500"))
+  Name(_DDN, "COM1")
+  //*****************************************************
+  // Method _STA:  Return Status
+  //*****************************************************
+  Method (_STA, 0, NotSerialized) { // Return Status of the UART
+    if (IER0) {Return (0x0f)}    
+    Return (0x00)
+  } // end of Method _STA    
+  //*****************************************************
+  //  Method _CRS:  Return Current Resource Settings
+  //*****************************************************
+  Method (_CRS, 0, NotSerialized) {
+    Name (BUF0, ResourceTemplate() {
+      IO (Decode16, 0x2E8, 0x2E8, 0x01, 0x08)
+       IRQNoFlags() {3}
+    })
+    //
+    // Create some ByteFields in the Buffer in order to
+    // permit saving values into the data portions of
+    // each of the descriptors above.
+    //
+    CreateByteField (BUF0, 0x02, IOLO) // IO Port Low
+    CreateByteField (BUF0, 0x03, IOHI) // IO Port Hi
+    CreateByteField (BUF0, 0x04, IORL) // IO Port Low
+    CreateByteField (BUF0, 0x05, IORH) // IO Port High
+    CreateWordField (BUF0, 0x09, IRQL) // IRQ
+    // Enter Configuration Mode
+    //
+    // Get the IO setting from the chip, and copy it
+    // to both the min & max for the IO descriptor.
+    //
+    // Low Bytes:
+    //Store (CR61, IOLO)    // min.
+    //Store (CR61, IORL)    // max.
+    // High Bytes:
+    //Store (CR60, IOHI)   // min.
+    //Store (CR60, IORH)   // max.
+    //
+    // Get the IRQ setting from the chip, and shift
+    // it into the Descriptor byte.
+    //
+    //ShiftLeft (Local0, CR70, IRQL)
+    FRUI (WUR0,IRQL) //get Uart interrupt number
+    Return(BUF0) // return the result
+  } // end _CRS Method
+} // end of Device UART1
+
+Device(UAR2) {  // COM Port
+  Name(_HID, EISAID("PNP0500"))
+//  Name(_CID, EISAID("PNP0500"))
+//  Name(_HID, EISAID("PNP0501"))
+//  Name(_CID, EISAID("PNP0500"))
+  Name(_DDN, "COM2")
+  //*****************************************************
+  // Method _STA:  Return Status
+  //*****************************************************
+  Method (_STA, 0, NotSerialized) { // Return Status of the UART
+    if (IER1) {Return (0x0f)}    
+    Return (0x00)
+  } // end of Method _STA    
+  //*****************************************************
+  //  Method _CRS:  Return Current Resource Settings
+  //*****************************************************
+  Method (_CRS, 0, NotSerialized) {
+    Name (BUF0, ResourceTemplate() {
+      IO (Decode16, 0x2F8, 0x2F8, 0x01, 0x08)
+       IRQNoFlags() {4}
+    })
+    //
+    // Create some ByteFields in the Buffer in order to
+    // permit saving values into the data portions of
+    // each of the descriptors above.
+    //
+    CreateByteField (BUF0, 0x02, IOLO) // IO Port Low
+    CreateByteField (BUF0, 0x03, IOHI) // IO Port Hi
+    CreateByteField (BUF0, 0x04, IORL) // IO Port Low
+    CreateByteField (BUF0, 0x05, IORH) // IO Port High
+    CreateWordField (BUF0, 0x09, IRQL) // IRQ
+    // Enter Configuration Mode
+    //
+    // Get the IO setting from the chip, and copy it
+    // to both the min & max for the IO descriptor.
+    //
+    // Low Bytes:
+    //Store (CR61, IOLO)    // min.
+    //Store (CR61, IORL)    // max.
+    // High Bytes:
+    //Store (CR60, IOHI)   // min.
+    //Store (CR60, IORH)   // max.
+    //
+    // Get the IRQ setting from the chip, and shift
+    // it into the Descriptor byte.
+    //
+    //ShiftLeft (Local0, CR70, IRQL)
+    FRUI (WUR1,IRQL) //get Uart interrupt number
+    Return(BUF0) // return the result
+  } // end _CRS Method
+} // end of Device UART2
+
+Device(UAR3) {  // COM Port
+  Name(_HID, EISAID("PNP0500"))
+//  Name(_CID, EISAID("PNP0500"))
+//  Name(_HID, EISAID("PNP0501"))
+//  Name(_CID, EISAID("PNP0500"))
+  Name(_DDN, "COM3")
+  //*****************************************************
+  // Method _STA:  Return Status
+  //*****************************************************
+  Method (_STA, 0, NotSerialized) { // Return Status of the UART
+    if (IER2) {Return (0x0f)}    
+    Return (0x00)
+  } // end of Method _STA    
+  //*****************************************************
+  //  Method _CRS:  Return Current Resource Settings
+  //*****************************************************
+  Method (_CRS, 0, NotSerialized) {
+    Name (BUF0, ResourceTemplate() {
+      IO (Decode16, 0x3E8, 0x3E8, 0x01, 0x08)
+       IRQNoFlags() {3}
+    })
+    //
+    // Create some ByteFields in the Buffer in order to
+    // permit saving values into the data portions of
+    // each of the descriptors above.
+    //
+    CreateByteField (BUF0, 0x02, IOLO) // IO Port Low
+    CreateByteField (BUF0, 0x03, IOHI) // IO Port Hi
+    CreateByteField (BUF0, 0x04, IORL) // IO Port Low
+    CreateByteField (BUF0, 0x05, IORH) // IO Port High
+    CreateWordField (BUF0, 0x09, IRQL) // IRQ
+    // Enter Configuration Mode
+    //
+    // Get the IO setting from the chip, and copy it
+    // to both the min & max for the IO descriptor.
+    //
+    // Low Bytes:
+    //Store (CR61, IOLO)    // min.
+    //Store (CR61, IORL)    // max.
+    // High Bytes:
+    //Store (CR60, IOHI)   // min.
+    //Store (CR60, IORH)   // max.
+    //
+    // Get the IRQ setting from the chip, and shift
+    // it into the Descriptor byte.
+    //
+    //ShiftLeft (Local0, CR70, IRQL)
+    FRUI (WUR2,IRQL) //get Uart interrupt number
+    Return(BUF0) // return the result
+  } // end _CRS Method
+} // end of Device UART3
+
+Device(UAR4) {  // COM Port
+  Name(_HID, EISAID("PNP0500"))
+//  Name(_CID, EISAID("PNP0500"))
+//  Name(_HID, EISAID("PNP0501"))
+//  Name(_CID, EISAID("PNP0500"))
+  Name(_DDN, "COM4")
+  //*****************************************************
+  // Method _STA:  Return Status
+  //*****************************************************
+  Method (_STA, 0, NotSerialized) { // Return Status of the UART
+    if (IER3) {Return (0x0f)}    
+    Return (0x00)
+  } // end of Method _STA    
+  //*****************************************************
+  //  Method _CRS:  Return Current Resource Settings
+  //*****************************************************
+  Method (_CRS, 0, NotSerialized) {
+    Name (BUF0, ResourceTemplate() {
+      IO (Decode16, 0x3F8, 0x3F8, 0x01, 0x08)
+       IRQNoFlags() {4}
+    })
+    //
+    // Create some ByteFields in the Buffer in order to
+    // permit saving values into the data portions of
+    // each of the descriptors above.
+    //
+    CreateByteField (BUF0, 0x02, IOLO) // IO Port Low
+    CreateByteField (BUF0, 0x03, IOHI) // IO Port Hi
+    CreateByteField (BUF0, 0x04, IORL) // IO Port Low
+    CreateByteField (BUF0, 0x05, IORH) // IO Port High
+    CreateWordField (BUF0, 0x09, IRQL) // IRQ
+    // Enter Configuration Mode
+    //
+    // Get the IO setting from the chip, and copy it
+    // to both the min & max for the IO descriptor.
+    //
+    // Low Bytes:
+    //Store (CR61, IOLO)    // min.
+    //Store (CR61, IORL)    // max.
+    // High Bytes:
+    //Store (CR60, IOHI)   // min.
+    //Store (CR60, IORH)   // max.
+    //
+    // Get the IRQ setting from the chip, and shift
+    // it into the Descriptor byte.
+    //
+    //ShiftLeft (Local0, CR70, IRQL)
+    FRUI (WUR3,IRQL) //get Uart interrupt number
+    Return(BUF0) // return the result
+  } // end _CRS Method
+} // end of Device UART4
+} // Scope SB
+

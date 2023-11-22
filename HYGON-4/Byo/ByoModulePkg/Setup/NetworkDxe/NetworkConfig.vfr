@@ -1,0 +1,92 @@
+/** @file
+
+Copyright (c) 2023, Byosoft Corporation.<BR>
+All rights reserved.This software and associated documentation (if any)
+is furnished under a license and may only be used or copied in
+accordance with the terms of the license. Except as permitted by such
+license, no part of this software or documentation may be reproduced,
+stored in a retrieval system, or transmitted in any form or by any
+means without the express written consent of Byosoft Corporation.
+
+File Name:
+  NetworkConfig.vfr
+
+Abstract:
+
+Revision History:
+
+**/
+
+#include "NetworkDxe.h"
+
+formset
+  guid     = SETUP_NETWORK_CONFIGURATION_FORMSET_GUID,
+  title    = STRING_TOKEN(STR_NETWORK_STACK_TITLE),
+  help     = STRING_TOKEN(STR_NETWORK_STACK_TITLE_HELP),
+  class    = NETWORK_FORMSET_CLASS_ID,
+  subclass = 0,
+
+  efivarstore PXE_CONTROL_VARIABLE,
+    attribute = 0x7,
+    name      = PxeControl,
+    guid      = PXE_CONTROL_GUID;
+
+  form formid = NETWORD_FORM_ID,
+    title = STRING_TOKEN(STR_NETWORK_STACK_TITLE);
+    oneof varid  = PXE_CONTROL_VARIABLE.UefiNetworkStack,
+          prompt = STRING_TOKEN(STR_NETWORK_STACK),
+          help   = STRING_TOKEN(STR_NETWORK_STACK_HELP),
+          option text = STRING_TOKEN(STR_ENABLED),  value = 1, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING;
+          option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+    endoneof;
+
+    suppressif ideqval PXE_CONTROL_VARIABLE.UefiNetworkStack == 0;
+    oneof varid  = PXE_CONTROL_VARIABLE.Ipv4Pxe,
+          prompt = STRING_TOKEN(STR_IPV4_PXE_SUPPORT),
+          help = STRING_TOKEN(STR_IPV4_PXE_SUPPORT_HELP),
+          option text = STRING_TOKEN(STR_ENABLED),  value = 1, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING;
+          option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+    endoneof;
+
+    oneof varid  = PXE_CONTROL_VARIABLE.Ipv4Https,
+          prompt = STRING_TOKEN(STR_IPV4_HTTP_SUPPORT),
+          help = STRING_TOKEN(STR_IPV4_HTTP_SUPPORT_HELP),
+          option text = STRING_TOKEN(STR_ENABLED),  value = 1, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING;
+          option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+    endoneof;
+
+    oneof varid  = PXE_CONTROL_VARIABLE.Ipv6Pxe,
+          prompt = STRING_TOKEN(STR_IPV6_PXE_SUPPORT),
+          help = STRING_TOKEN(STR_IPV6_PXE_SUPPORT_HELP),
+          option text = STRING_TOKEN(STR_ENABLED),  value = 1, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING;
+          option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+    endoneof;
+
+    oneof varid  = PXE_CONTROL_VARIABLE.Ipv6Https,
+          prompt = STRING_TOKEN(STR_IPV6_HTTP_SUPPORT),
+          help = STRING_TOKEN(STR_IPV6_HTTP_SUPPORT),
+          option text = STRING_TOKEN(STR_ENABLED),  value = 1, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING;
+          option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+    endoneof;
+
+    numeric varid = PXE_CONTROL_VARIABLE.WaitSeconds,
+        prompt    = STRING_TOKEN(STR_PXE_WAIT_TIME),
+        help      = STRING_TOKEN(STR_PXE_WAIT_TIME_HELP),
+        minimum   = 0,
+        maximum   = 5,
+        step      = 1,
+        default   = 0,
+    endnumeric;
+
+    numeric varid = PXE_CONTROL_VARIABLE.DetectMediaTimes,
+        prompt    = STRING_TOKEN(STR_PXE_DETECT_MEDIA_TIME),
+        help      = STRING_TOKEN(STR_PXE_DETECT_MEDIA_TIME_HELP),
+        minimum   = 1,
+        maximum   = 50,
+        step      = 1,
+        default   = 1,
+    endnumeric;
+    endif;
+
+  endform;
+endformset;

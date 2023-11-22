@@ -1,0 +1,50 @@
+#/** @file
+#
+# Copyright (c) 2006 - 2020, Byosoft Corporation.<BR>
+# All rights reserved.This software and associated documentation (if any)
+# is furnished under a license and may only be used or copied in
+# accordance with the terms of the license. Except as permitted by such
+# license, no part of this software or documentation may be reproduced,
+# stored in a retrieval system, or transmitted in any form or by any
+# means without the express written consent of Byosoft Corporation.
+#
+# File Name:
+#   ByoSafeMemoryLib.inf
+#
+# Abstract:
+#   Safe Memory Operation Library Information file
+#
+# Revision History:
+#
+# TIME:
+# $AUTHOR:
+# $REVIEWERS:
+# $SCOPE:
+# $TECHNICAL:
+#
+#*/
+
+[Defines]
+  INF_VERSION                    = 0x00010019
+  BASE_NAME                      = SafeMemoryLib
+  FILE_GUID                      = 58A431B8-DC1B-42f2-911D-22A0D7A00CF7
+  VERSION_STRING                 = 1.0
+  MODULE_TYPE                    = BASE
+  LIBRARY_CLASS                  = SafeMemoryLib
+
+[Sources]
+  SafeMemLibInternal.h
+  SafeMemLibInternal.c
+  SafeCopyMem.c
+  SafeSetMem.c
+
+[LibraryClasses]
+  BaseLib
+  BaseMemoryLib
+  PcdLib
+  DebugLib
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  ByoModulePkg/ByoModulePkg.dec

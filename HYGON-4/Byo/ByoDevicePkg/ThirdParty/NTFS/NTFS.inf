@@ -1,0 +1,32 @@
+## @file
+#
+#  Binary FAT32 EFI Driver for IA32, X64, IPF and EBC arch.
+#
+#  This UEFI driver detects the FAT file system in the disk.
+#  It also produces the Simple File System protocol for the consumer to
+#  perform file and directory operations on the disk.
+#
+#  Copyright (c) 2007 - 2022, Byosoft Corporation.<BR>
+#
+#  All rights reserved.This software and associated documentation (if any)
+#  is furnished under a license and may only be used or copied in
+#  accordance with the terms of the license. Except as permitted by such
+#  license, no part of this software or documentation may be reproduced,
+#  stored in a retrieval system, or transmitted in any form or by any
+#  means without the express written consent of Byosoft Corporation.
+#
+#
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = NTFS
+  FILE_GUID                      = B3913B4C-4618-4dad-8F77-D99E9BD8931B
+  MODULE_TYPE                    = UEFI_DRIVER
+  VERSION_STRING                 = 1.0
+
+[Binaries.AArch64]
+  PE32|AArch64/NTFS.efi|*
+
+[Binaries.X64]
+  PE32|X64/NTFS.efi|*

@@ -1,0 +1,73 @@
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = TextScreen
+  FILE_GUID                      = D7F961D4-77B5-4a5f-9776-6992666FE2D8
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = TextScreenEntry
+
+
+#
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           = IA32 X64
+#
+
+[Sources]
+  TextScreen.c
+  TextScreen.uni
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  Platform4Pkg/Platform4Pkg.dec
+  ByoModulePkg/ByoModulePkg.dec 
+  ByoServerPkg/ByoServerPkg.dec
+  NetworkPkg/NetworkPkg.dec
+  YudiProjectPkg/ProjectPkg.dec
+
+[LibraryClasses]
+  UefiDriverEntryPoint
+  BaseLib
+  MemoryAllocationLib
+  UefiBootServicesTableLib
+  UefiRuntimeServicesTableLib
+  BaseMemoryLib
+  DebugLib
+  PcdLib
+  PrintLib
+  UefiLib
+  HobLib
+  DxeServicesLib
+  HiiLib
+  IpmiBaseLib
+  PlatformCommLib
+  ByoCommLib
+  NetLib
+  ProjectCommonLib
+
+[Guids]
+  gPlatformSetupVariableGuid
+
+[Protocols]
+  gEfiIpmiTransportProtocolGuid
+  gEfiSmbiosProtocolGuid
+  gEfiDiskInfoProtocolGuid
+  gEfiBlockIoProtocolGuid 
+  gByoBdsWaitHookProtocolGuid
+  gByoBeforeHotKeyBootProtocolGuid
+  gPlatHostInfoProtocolGuid
+  gEfiAtaPassThruProtocolGuid
+  gEfiBootManagerProtocolGuid
+  gPlatformHwInfoReadyProtocolGuid
+  
+
+[Pcd]
+  gEfiByoModulePkgTokenSpaceGuid.PcdSystemMiscConfig
+  gEfiMdePkgTokenSpaceGuid.PcdPlatformBootTimeOut
+  gPlatformModuleTokenSpaceGuid.PcdPostTextScreenEnable
+  gServerCommonPkgModuleTokenSpaceGuid.PcdBmcFwVerStr8
+  gEfiProjectPkgTokenSpaceGuid.PcdForceCloseQuietBoot
+
+[Depex]
+  TRUE

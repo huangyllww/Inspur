@@ -1,0 +1,10 @@
+Version 1.00.04.00 - 12/22/2022
+1. Set pointer as NULL after freepool.
+
+Version 1.00.03.00 - 09/14/2022
+1. Optimize performance using shadowfb.
+
+Version 1.00.02.00 - 09/23/2021
+1. Update PLL values.
+
+Version 1.00.01 - Beta release - 07/06/2020

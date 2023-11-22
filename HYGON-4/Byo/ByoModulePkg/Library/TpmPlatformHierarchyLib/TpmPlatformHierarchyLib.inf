@@ -1,0 +1,67 @@
+### @file
+#
+#   TPM Platform Hierarchy configuration library.
+#
+#   This library provides functions for customizing the TPM's Platform Hierarchy
+#   Authorization Value (platformAuth) and Platform Hierarchy Authorization
+#   Policy (platformPolicy) can be defined through this function.
+#
+# Copyright (c) 2019 - 2022, Byosoft Corporation. All rights reserved.<BR>
+#
+# This software and associated documentation (if any)
+# is furnished under a license and may only be used or copied in
+# accordance with the terms of the license. Except as permitted by such
+# license, no part of this software or documentation may be reproduced,
+# stored in a retrieval system, or transmitted in any form or by any
+# means without the express written consent of Byosoft Corporation.
+
+#
+###
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = TpmPlatformHierarchyLib
+  FILE_GUID                      = 7794F92C-4E8E-4E57-9E4A-49A0764C7D73
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = TpmPlatformHierarchyLib
+
+[LibraryClasses]
+  MemoryAllocationLib
+  BaseLib
+  UefiBootServicesTableLib
+  UefiDriverEntryPoint
+  BaseMemoryLib
+  DebugLib
+  Tpm2CommandLib
+  Tpm2DeviceLib
+  RngLib
+  UefiLib
+  BaseCryptLib
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  SecurityPkg/SecurityPkg.dec
+  CryptoPkg/CryptoPkg.dec
+  ByoModulePkg/ByoModulePkg.dec
+
+[Pcd]
+  gEfiByoModulePkgTokenSpaceGuid.PcdTpm2HierarchyChangeAuthPlatform
+  gEfiByoModulePkgTokenSpaceGuid.PcdTpm2ChangeEps
+  gEfiByoModulePkgTokenSpaceGuid.PcdTpm2ChangePps
+  gEfiByoModulePkgTokenSpaceGuid.PcdTpm2Clear
+  gEfiByoModulePkgTokenSpaceGuid.PcdTpm2HierarchyControlPlatform
+  gEfiByoModulePkgTokenSpaceGuid.PcdTpm2HierarchyControlEndorsement
+  gEfiByoModulePkgTokenSpaceGuid.PcdTpm2HierarchyControlOwner
+  gEfiByoModulePkgTokenSpaceGuid.PcdTpm2TxtProvisionSupport
+  gEfiByoModulePkgTokenSpaceGuid.PcdTpm2TxtProvisionSHA384
+
+[Sources]
+  TpmPlatformHierarchyLib.c
+
+[Protocols]
+  gEfiTcg2ProtocolGuid
+
+[Depex]
+  gEfiTcg2ProtocolGuid

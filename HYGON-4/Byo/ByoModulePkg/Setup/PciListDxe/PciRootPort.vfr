@@ -1,0 +1,36 @@
+// /*++
+//  Copyright (c) 2013 - 2019 Byosoft Corporation. All rights reserved.
+//  This program and associated documentation (if any) is furnished
+//  under a license. Except as permitted by such license,no part of this
+//  program or documentation may be reproduced, stored divulged or used
+//  in a public system, or transmitted in any form or by any means
+//  without the express written consent of Byosoft Corporation.
+//
+// Name:  EventLog.vfr
+//
+// Description: Setup strings
+//
+//**********************************************************************
+//=#
+
+#include "PciRootPort.h"
+
+formset
+  guid     = SETUP_PCI_ROOT_PORT_FORMSET_GUID,
+  title    = STRING_TOKEN(STR_PCI_ROOT_FORMSET_TITLE),
+  help     = STRING_TOKEN(STR_PCI_ROOT_FORMSET_HELP),
+
+  form formid = PCI_ROOT_PORT_MAIN_FORM_ID,
+    title   = STRING_TOKEN(STR_PCI_ROOT_FORMSET_TITLE);
+      label LABEL_PCI_RP_MAIN_FORM_START;
+      label LABEL_PCI_RP_MAIN_FORM_END;
+  endform;
+
+  form formid = PCI_ROOT_PORT_SUBFORM_ID,
+    title   = STRING_TOKEN(STR_PCI_ROOT_FORMSET_SUBTITLE);
+      label LABEL_PCI_RP_SUBFORM_START;
+      label LABEL_PCI_RP_SUBFORM_END;
+  endform;
+endformset;
+
+

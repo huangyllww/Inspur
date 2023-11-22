@@ -1,0 +1,55 @@
+/** @file
+
+Copyright (c) 2023, Byosoft Corporation.<BR>
+All rights reserved.This software and associated documentation (if any)
+is furnished under a license and may only be used or copied in
+accordance with the terms of the license. Except as permitted by such
+license, no part of this software or documentation may be reproduced,
+stored in a retrieval system, or transmitted in any form or by any
+means without the express written consent of Byosoft Corporation.
+
+**/
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = PeiDebugCallStackLib
+  FILE_GUID                      = DD5EFC24-C5EF-4805-942D-96768113FFA8
+  MODULE_TYPE                    = PEIM
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = DebugCallStackLib|SEC PEI_CORE PEIM
+
+#
+#  VALID_ARCHITECTURES           = IA32 X64 EBC ARM AARCH64 RISCV64
+#
+
+[Binaries.Ia32]
+  LIB|Ia32/Pei/PeiDebugCallStackLib.lib
+  
+[Binaries.AARCH64]
+  LIB|AArch64/Pei/PeiDebugCallStackLib.lib
+  
+[Binaries.RiscV64]
+  LIB|RiscV64/Pei/PeiDebugCallStackLib.lib
+
+[LibraryClasses]
+  BaseLib
+  DebugLib
+  PeCoffLib
+  PeCoffGetEntryPointLib
+  BaseMemoryLib
+  HobLib
+  PeiServicesLib
+  SerialPortLib
+  PrintLib
+
+[Packages]
+  MdePkg/MdePkg.dec
+  ByoInstantDebugPkg/ByoInstantDebugPkg.dec
+
+[Ppis]
+  gEfiPeiFirmwareVolumeInfoPpiGuid
+  gEfiPeiFirmwareVolumeInfo2PpiGuid
+
+[Guids]
+  gEfiDebugFvGuid
+

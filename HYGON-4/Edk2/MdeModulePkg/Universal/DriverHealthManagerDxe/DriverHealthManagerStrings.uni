@@ -1,0 +1,46 @@
+///** @file
+//
+//    String definitions for the DriverHealthManager.
+//
+//  Copyright (c) 2013 - 2018, Intel Corporation. All rights reserved.<BR>
+//  SPDX-License-Identifier: BSD-2-Clause-Patent
+
+
+//**/
+
+/=#
+
+
+#langdef   en-US "English"
+#langdef   fr-FR "Français"
+#langdef   zh-Hans "\wide中文\narrow"
+
+#string STR_FORM_TITLE                 #language en-US  "Driver Health Manager"
+                                       #language fr-FR  "Driver Health Manager"
+                                       #language zh-Hans "\wide驱动程序运行状况管理器\narrow"
+#string STR_FORM_HELP                  #language en-US  "List all the Driver Health instances to manage"
+                                       #language fr-FR  "List all the Driver Health instances to manage"
+                                       #language zh-Hans "\wide列出所有需要管理的驱动健康实例\narrow"
+#string STR_NULL                       #language en-US  ""
+                                       #lauguage fr-FR  ""
+                                       #language zh-Hans ""
+
+#string STR_REPAIR_REQUIRED            #language en-US  "Repair Required"
+                                       #language fr-FR  "Repair Required"
+                                       #language zh-Hans "\wide需要修复\narrow"
+#string STR_CONFIGURATION_REQUIRED     #language en-US  "Configuration Required"
+                                       #language fr-FR  "Configuration Required"
+                                       #language zh-Hans "\wide需要配置\narrow"
+#string STR_FAILED                     #language en-US  "Failed"
+                                       #language fr-FR  "Failed"
+                                       #language zh-Hans "\wide失败\narrow"
+#string STR_RECONNECT_REQUIRED         #language en-US  "Reconnect Required"
+                                       #language fr-FR  "Reconnect Required"
+                                       #language zh-Hans "\wide请重新连接\narrow"
+#string STR_REBOOT_REQUIRED            #language en-US  "Reboot Required"
+                                       #language fr-FR  "Reboot Required"
+                                       #language zh-Hans "\wide需要重启\narrow"
+#string STR_HEALTHY                    #language en-US  "Healthy"
+                                       #language fr-FR  "Healthy"
+                                       #language zh-Hans "\wide健康\narrow"
+

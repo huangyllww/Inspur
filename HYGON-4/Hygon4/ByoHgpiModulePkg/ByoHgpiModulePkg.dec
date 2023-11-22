@@ -1,0 +1,56 @@
+## @file
+#
+# Copyright (c) 2006 - 2023, Byosoft Corporation.<BR>
+# All rights reserved.This software and associated documentation (if any)
+# is furnished under a license and may only be used or copied in
+# accordance with the terms of the license. Except as permitted by such
+# license, no part of this software or documentation may be reproduced,
+# stored in a retrieval system, or transmitted in any form or by any
+# means without the express written consent of Byosoft Corporation.
+#
+# File Name:
+#
+# Abstract:
+#
+# Revision History:
+#
+##
+
+[Defines]
+  DEC_SPECIFICATION              = 0x00010005
+  PACKAGE_NAME                   = ByoAgesaModulePkg
+  PACKAGE_GUID                   = 88F0D748-E1D0-469B-8D0B-F04816EA919F
+  PACKAGE_VERSION                = 0.1
+
+
+
+[Includes]
+  Include
+
+
+[Guids]
+  gByoAgesaTokenSpaceGuid = { 0xe23b057d, 0x55d9, 0x484f, { 0x81, 0x51, 0x37, 0x4f, 0x81, 0xe2, 0x5d, 0x1b } }
+  gHygonHsioInfoHobGuid   = { 0xc7acffe7, 0xb289, 0x42ce, { 0x91, 0x9a, 0x68, 0xbe, 0x7b, 0x50, 0xd9, 0x36 } }
+  gHygonReportRasUceVariableGuid = { 0x3f72787a, 0xbd09, 0x4d6c, { 0x94, 0xb, 0x46, 0xe6, 0xe1, 0x67, 0x58, 0xe9 } }
+  gHygonCbsVariableHobGuid       = { 0x82b4c4c6, 0x9705, 0x49d2, { 0xbc, 0xeb, 0x8d, 0xce, 0x92, 0x59, 0x55, 0x16 } }
+  gHygonCbsVariableHgDefValHobGuid = { 0xe613be29, 0x9fde, 0x446f, { 0xa6, 0x98, 0x7f, 0x6d, 0x40, 0x70, 0xd2, 0xa0 } }
+
+[Ppis]
+  gByoHygonCpmTableOverrideHookPpiGuid = { 0x941cb93b, 0xd36f, 0x47a5, { 0x89, 0xa4, 0xfe, 0x61, 0x24, 0xec, 0x2c, 0x10 } }
+
+
+[Protocols]
+  gHygonSetupSlotDevInfoProtoclGuid = { 0x7ee5f811, 0xd387, 0x432b, { 0x95, 0x7b, 0x78, 0x57, 0x2, 0x09, 0x84, 0x10 } }
+  gHygonReportRasUceProtocolGuid    = { 0xf2ad0a7a, 0x2bc9, 0x495b, { 0x87, 0x84, 0x7d, 0xcc, 0xff, 0x43, 0x85, 0x65 } }
+  gByoCustomPStateProtocolGuid      = { 0xbd55c5a8, 0x6ffb, 0x45f7, { 0xa2, 0x46, 0x8d, 0x70, 0x8f, 0x54, 0xfd, 0x10 } } 
+
+[PcdsFixedAtBuild]
+
+
+[PcdsDynamic]
+  gByoAgesaTokenSpaceGuid.PcdByoSharedSmmDataAddr|0|UINT64|0x00000000
+  gByoAgesaTokenSpaceGuid.PcdHygonCpuPstateMode|1|UINT8|0x00000001
+# gByoAgesaTokenSpaceGuid.PcdCfgMaxPayloadValue|0|UINT8|0x00000002
+  gByoAgesaTokenSpaceGuid.PcdHygonCpuAesInsSupport|TRUE|BOOLEAN|0x00000003
+
+
