@@ -1,0 +1,142 @@
+/*++
+
+Copyright (c) 2006 - 2019, Byosoft Corporation.<BR>
+All rights reserved.This software and associated documentation (if any)
+is furnished under a license and may only be used or copied in
+accordance with the terms of the license. Except as permitted by such
+license, no part of this software or documentation may be reproduced,
+stored in a retrieval system, or transmitted in any form or by any
+means without the express written consent of Byosoft Corporation.
+
+File Name:
+
+Abstract:
+
+Revision History:
+
+
+--*/
+
+#ifdef FORM_SET_TYPEDEF
+
+#endif
+
+
+#ifdef EXIT_FORM_SET
+//------------------------------------------------------------------------------
+
+
+#ifdef FORM_SET_VARSTORE
+
+
+#endif
+
+
+
+#ifdef FORM_SET_ITEM
+
+  LOGIN_TYPE_ADMIN;
+
+  text
+      help  = STRING_TOKEN(STR_SAVE_ONLY_HELP),
+      text  = STRING_TOKEN(STR_SAVE_ONLY),
+      text  = STRING_TOKEN(STR_EMPTY),
+      flags = INTERACTIVE | RESET_REQUIRED,
+      key   = AUTO_ID(KEY_SAVE_VALUE);  
+
+    text
+      help  = STRING_TOKEN(STR_SAVE_EXIT_HELP),
+      text  = STRING_TOKEN(STR_SAVE_EXIT),
+      text  = STRING_TOKEN(STR_EMPTY),
+      flags = INTERACTIVE | RESET_REQUIRED,
+      key   = AUTO_ID(KEY_SAVE_AND_EXIT_VALUE);  
+
+    text
+      help  = STRING_TOKEN(STR_DISCARD_EXIT_HELP),
+      text  = STRING_TOKEN(STR_DISCARD_EXIT),
+      text  = STRING_TOKEN(STR_EMPTY),
+      flags = INTERACTIVE | RESET_REQUIRED,
+      key   = AUTO_ID(KEY_DISCARD_AND_EXIT_VALUE);  
+  END_LOGIN_TYPE; 
+      
+  LOGIN_TYPE_ADMIN;  
+    
+    text
+      help  = STRING_TOKEN(STR_RESTORE_DEFAULTS_HELP),
+      text  = STRING_TOKEN(STR_RESTORE_DEFAULTS),
+      text  = STRING_TOKEN(STR_EMPTY),
+      flags = INTERACTIVE | RESET_REQUIRED,
+      key   = AUTO_ID(KEY_RESTORE_DEFAULTS_VALUE);
+
+/*
+    text
+      help  = STRING_TOKEN(STR_SAVE_USER_DEFAULTS_HELP),
+      text  = STRING_TOKEN(STR_SAVE_USER_DEFAULTS),
+      text  = STRING_TOKEN(STR_EMPTY),
+      flags = INTERACTIVE | RESET_REQUIRED,
+      key   = AUTO_ID(KEY_SAVE_USER_DEFAULTS_VALUE);  
+     
+    text
+      help  = STRING_TOKEN(STR_RESTORE_USER_DEFAULTS_HELP),
+      text  = STRING_TOKEN(STR_RESTORE_USER_DEFAULTS),
+      text  = STRING_TOKEN(STR_EMPTY),
+      flags = INTERACTIVE | RESET_REQUIRED,
+      key   = AUTO_ID(KEY_RESTORE_USER_DEFAULTS_VALUE);
+*/
+      
+    subtitle text = STRING_TOKEN(STR_EMPTY);    
+    
+    oneof varid   = SETUP_DATA.BiosUpdateParm,
+      prompt      = STRING_TOKEN(STR_BIOS_UPDATE_PARM),
+      help        = STRING_TOKEN(STR_BIOS_UPDATE_PARM_HELP),
+      #if BC_TENCENT
+      option text = STRING_TOKEN(STR_RESERVED_CONFIGURATION),  value = 0, flags = DEFAULT | MANUFACTURING |RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_FULL_BRUSH),  value = 1, flags = RESET_REQUIRED;
+      #else
+      option text = STRING_TOKEN(STR_RESERVED_CONFIGURATION),  value = 0, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_FULL_BRUSH),  value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      #endif
+    endoneof; 
+    
+    text
+      help  = STRING_TOKEN(STR_BIOS_UPDATE_HELP),
+      text  = STRING_TOKEN(STR_BIOS_UPDATE),
+      text  = STRING_TOKEN(STR_EMPTY),
+      flags = INTERACTIVE | RESET_REQUIRED,
+      key   = AUTO_ID(KEY_BIOS_UPDATE);      
+ 
+  END_LOGIN_TYPE;
+
+    subtitle text = STRING_TOKEN(STR_EMPTY); 
+
+	text
+      help  = STRING_TOKEN(STR_SYS_SHUTDOWN_HELP),
+      text  = STRING_TOKEN(STR_SYS_SHUTDOWN),
+      text  = STRING_TOKEN(STR_EMPTY),
+      flags = INTERACTIVE | RESET_REQUIRED,
+      key   = AUTO_ID(KEY_SYS_SHUTDOWN);
+	
+    text
+      help  = STRING_TOKEN(STR_SYS_RESET_HELP),
+      text  = STRING_TOKEN(STR_SYS_RESET),
+      text  = STRING_TOKEN(STR_EMPTY),
+      flags = INTERACTIVE | RESET_REQUIRED,
+      key   = AUTO_ID(KEY_SYS_RESET); 
+      
+#endif
+
+
+
+#ifdef FORM_SET_GOTO
+   
+#endif
+
+#ifdef FORM_SET_FORM
+
+#endif
+
+//------------------------------------------------------------------------------
+#endif           // EXIT_FORM_SET
+
+
+

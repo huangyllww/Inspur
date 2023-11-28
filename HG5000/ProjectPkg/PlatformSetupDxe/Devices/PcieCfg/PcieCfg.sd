@@ -1,0 +1,271 @@
+/** @file
+
+Copyright (c) 2006 - 2020, Byosoft Corporation.<BR>
+All rights reserved.This software and associated documentation (if any)
+is furnished under a license and may only be used or copied in
+accordance with the terms of the license. Except as permitted by such
+license, no part of this software or documentation may be reproduced,
+stored in a retrieval system, or transmitted in any form or by any
+means without the express written consent of Byosoft Corporation.
+
+File Name:
+  PcieCfg.sd
+
+Abstract:
+  Nvme setting.
+
+Revision History:
+
+$END--------------------------------------------------------------------
+
+**/
+
+#ifdef MAIN_FORM_SET  
+  #ifdef FORM_SET_GOTO
+    goto PCIE_FORM_ID,
+        prompt = STRING_TOKEN(STR_PCIE_FORM),
+        help   = STRING_TOKEN(STR_PCIE_FORM);
+  #endif
+
+  #ifdef FORM_SET_FORM
+
+    form formid = PCIE_FORM_ID,
+    title = STRING_TOKEN(STR_PCIE_FORM);
+      
+    subtitle text = STRING_TOKEN(STR_EMPTY);
+
+/*
+    suppressif TRUE;  //tang-
+    
+    oneof varid   = SETUP_DATA.PcieJ47Dis,
+      prompt      = STRING_TOKEN(STR_SLOT_J47),
+      help        = STRING_TOKEN(STR_EMPTY),
+      option text = STRING_TOKEN(STR_ENABLED),  value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_DISABLED), value = 1, flags = RESET_REQUIRED;
+    endoneof;    
+    
+    oneof varid   = SETUP_DATA.PcieJ48Dis,
+      prompt      = STRING_TOKEN(STR_SLOT_J48),
+      help        = STRING_TOKEN(STR_EMPTY),
+      option text = STRING_TOKEN(STR_ENABLED),  value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_DISABLED), value = 1, flags = RESET_REQUIRED;
+    endoneof;
+    
+    oneof varid   = SETUP_DATA.PcieJ49Dis,
+      prompt      = STRING_TOKEN(STR_SLOT_J49),
+      help        = STRING_TOKEN(STR_EMPTY),
+      option text = STRING_TOKEN(STR_ENABLED),  value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_DISABLED), value = 1, flags = RESET_REQUIRED;
+    endoneof;    
+    oneof varid   = SETUP_DATA.PcieJ50Dis,
+      prompt      = STRING_TOKEN(STR_SLOT_J50),
+      help        = STRING_TOKEN(STR_EMPTY),
+      option text = STRING_TOKEN(STR_ENABLED),  value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_DISABLED), value = 1, flags = RESET_REQUIRED;
+    endoneof;
+    
+    oneof varid   = SETUP_DATA.PcieJ51Dis0,
+      prompt      = STRING_TOKEN(STR_SLOT_J51_0),
+      help        = STRING_TOKEN(STR_EMPTY),
+      option text = STRING_TOKEN(STR_ENABLED),  value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_DISABLED), value = 1, flags = RESET_REQUIRED;
+    endoneof;     
+    oneof varid   = SETUP_DATA.PcieJ51Dis1,
+      prompt      = STRING_TOKEN(STR_SLOT_J51_1),
+      help        = STRING_TOKEN(STR_EMPTY),
+      option text = STRING_TOKEN(STR_ENABLED),  value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_DISABLED), value = 1, flags = RESET_REQUIRED;
+    endoneof;
+    oneof varid   = SETUP_DATA.PcieJ52Dis0,
+      prompt      = STRING_TOKEN(STR_SLOT_J52_0),
+      help        = STRING_TOKEN(STR_EMPTY),
+      option text = STRING_TOKEN(STR_ENABLED),  value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_DISABLED), value = 1, flags = RESET_REQUIRED;
+    endoneof;     
+    oneof varid   = SETUP_DATA.PcieJ52Dis1,
+      prompt      = STRING_TOKEN(STR_SLOT_J52_1),
+      help        = STRING_TOKEN(STR_EMPTY),
+      option text = STRING_TOKEN(STR_ENABLED),  value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_DISABLED), value = 1, flags = RESET_REQUIRED;
+    endoneof;
+
+    subtitle text = STRING_TOKEN(STR_EMPTY);
+    endif;
+    
+    subtitle text = STRING_TOKEN(STR_PCIE_RISER1); 
+    
+    suppressif NOT ideqval SETUP_VOLATILE_DATA.Riser1SlotCount > 0;  
+      oneof varid   = SETUP_DATA.Riser1En[0],
+        prompt      = STRING_TOKEN(STR_SLOT0),
+        help        = STRING_TOKEN(STR_EMPTY),
+        option text = STRING_TOKEN(STR_ENABLED),  value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+      endoneof;      
+    endif;
+    
+    suppressif NOT ideqval SETUP_VOLATILE_DATA.Riser1SlotCount > 1; 
+      oneof varid   = SETUP_DATA.Riser1En[1],
+        prompt      = STRING_TOKEN(STR_SLOT1),
+        help        = STRING_TOKEN(STR_EMPTY),
+        option text = STRING_TOKEN(STR_ENABLED),  value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+      endoneof; 
+    endif;
+    
+    suppressif NOT ideqval SETUP_VOLATILE_DATA.Riser1SlotCount > 2; 
+      oneof varid   = SETUP_DATA.Riser1En[2],
+        prompt      = STRING_TOKEN(STR_SLOT2),
+        help        = STRING_TOKEN(STR_EMPTY),
+        option text = STRING_TOKEN(STR_ENABLED),  value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+      endoneof; 
+    endif;
+
+    suppressif NOT ideqval SETUP_VOLATILE_DATA.Riser1SlotCount > 3;     
+      oneof varid   = SETUP_DATA.Riser1En[3],
+        prompt      = STRING_TOKEN(STR_SLOT3),
+        help        = STRING_TOKEN(STR_EMPTY),
+        option text = STRING_TOKEN(STR_ENABLED),  value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+      endoneof; 
+    endif;
+    
+    suppressif NOT ideqval SETUP_VOLATILE_DATA.Riser1SlotCount > 4; 
+      oneof varid   = SETUP_DATA.Riser1En[4],
+        prompt      = STRING_TOKEN(STR_SLOT4),
+        help        = STRING_TOKEN(STR_EMPTY),
+        option text = STRING_TOKEN(STR_ENABLED),  value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+      endoneof;
+    endif;
+    
+    suppressif NOT ideqval SETUP_VOLATILE_DATA.Riser1SlotCount > 5;     
+      oneof varid   = SETUP_DATA.Riser1En[5],
+        prompt      = STRING_TOKEN(STR_SLOT5),
+        help        = STRING_TOKEN(STR_EMPTY),
+        option text = STRING_TOKEN(STR_ENABLED),  value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+      endoneof;    
+    endif;
+    
+    subtitle text = STRING_TOKEN(STR_EMPTY);
+    subtitle text = STRING_TOKEN(STR_PCIE_RISER2);     
+    
+    suppressif NOT ideqval SETUP_VOLATILE_DATA.Riser2SlotCount > 0; 
+      oneof varid   = SETUP_DATA.Riser2En[0],
+        prompt      = STRING_TOKEN(STR_SLOT0),
+        help        = STRING_TOKEN(STR_EMPTY),
+        option text = STRING_TOKEN(STR_ENABLED),  value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+      endoneof;
+    endif;
+    
+    suppressif NOT ideqval SETUP_VOLATILE_DATA.Riser2SlotCount > 1;     
+      oneof varid   = SETUP_DATA.Riser2En[1],
+        prompt      = STRING_TOKEN(STR_SLOT1),
+        help        = STRING_TOKEN(STR_EMPTY),
+        option text = STRING_TOKEN(STR_ENABLED),  value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+      endoneof; 
+    endif;
+    
+    suppressif NOT ideqval SETUP_VOLATILE_DATA.Riser2SlotCount > 2;    
+      oneof varid   = SETUP_DATA.Riser2En[2],
+        prompt      = STRING_TOKEN(STR_SLOT2),
+        help        = STRING_TOKEN(STR_EMPTY),
+        option text = STRING_TOKEN(STR_ENABLED),  value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+      endoneof;
+    endif;
+
+    suppressif NOT ideqval SETUP_VOLATILE_DATA.Riser2SlotCount > 3;     
+      oneof varid   = SETUP_DATA.Riser2En[3],
+        prompt      = STRING_TOKEN(STR_SLOT3),
+        help        = STRING_TOKEN(STR_EMPTY),
+        option text = STRING_TOKEN(STR_ENABLED),  value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+      endoneof; 
+    endif;
+    
+    suppressif NOT ideqval SETUP_VOLATILE_DATA.Riser2SlotCount > 4;     
+      oneof varid   = SETUP_DATA.Riser2En[4],
+        prompt      = STRING_TOKEN(STR_SLOT4),
+        help        = STRING_TOKEN(STR_EMPTY),
+        option text = STRING_TOKEN(STR_ENABLED),  value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+      endoneof;   
+    endif;    
+    
+    suppressif NOT ideqval SETUP_VOLATILE_DATA.Riser2SlotCount > 5; 
+      oneof varid   = SETUP_DATA.Riser2En[5],
+        prompt      = STRING_TOKEN(STR_SLOT5),
+        help        = STRING_TOKEN(STR_EMPTY),
+        option text = STRING_TOKEN(STR_ENABLED),  value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+      endoneof;
+    endif;    
+
+    subtitle text = STRING_TOKEN(STR_EMPTY);
+    subtitle text = STRING_TOKEN(STR_PCIE_RISER3);  
+    
+    suppressif NOT ideqval SETUP_VOLATILE_DATA.Riser3SlotCount > 0; 
+      oneof varid   = SETUP_DATA.Riser3En[0],
+        prompt      = STRING_TOKEN(STR_SLOT0),
+        help        = STRING_TOKEN(STR_EMPTY),
+        option text = STRING_TOKEN(STR_ENABLED),  value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+      endoneof;      
+    endif;
+    
+    suppressif NOT ideqval SETUP_VOLATILE_DATA.Riser3SlotCount > 1; 
+      oneof varid   = SETUP_DATA.Riser3En[1],
+        prompt      = STRING_TOKEN(STR_SLOT1),
+        help        = STRING_TOKEN(STR_EMPTY),
+        option text = STRING_TOKEN(STR_ENABLED),  value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+      endoneof;
+    endif;
+    
+    suppressif NOT ideqval SETUP_VOLATILE_DATA.Riser3SlotCount > 2; 
+      oneof varid   = SETUP_DATA.Riser3En[2],
+        prompt      = STRING_TOKEN(STR_SLOT2),
+        help        = STRING_TOKEN(STR_EMPTY),
+        option text = STRING_TOKEN(STR_ENABLED),  value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+      endoneof; 
+    endif;
+    
+    suppressif NOT ideqval SETUP_VOLATILE_DATA.Riser3SlotCount > 3;     
+      oneof varid   = SETUP_DATA.Riser3En[3],
+        prompt      = STRING_TOKEN(STR_SLOT3),
+        help        = STRING_TOKEN(STR_EMPTY),
+        option text = STRING_TOKEN(STR_ENABLED),  value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+      endoneof;     
+    endif;
+*/
+    LOGIN_TYPE_ADMIN;
+    oneof varid   = SETUP_DATA.RetimerCard,
+      prompt      = STRING_TOKEN(STR_PCI_RETIMER_CARD),
+      help        = STRING_TOKEN(STR_PCI_RETIMER_CARD_HELP),
+      option text = STRING_TOKEN(STR_DISABLED),  value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_ENABLED),   value = 1, flags = RESET_REQUIRED;
+    endoneof;   
+    END_LOGIN_TYPE;
+
+    subtitle text = STRING_TOKEN(STR_EMPTY);
+    goto
+        formsetguid = SETUP_PCI_LIST_FORMSET_GUID,
+        formid   = 1,
+        question = 1,
+        prompt   = STRING_TOKEN(STR_PCI_LIST_FORMSET_TITLE),
+        help     = STRING_TOKEN(STR_PCI_LIST_FORMSET_HELP);      
+    subtitle text = STRING_TOKEN(STR_EMPTY);
+    subtitle text = STRING_TOKEN(STR_PCIE_STATUS_LIST);
+    label ADV_PCIE_DYNAMIC_LABEL;
+    label ADV_PCIE_DYNAMIC_LABEL_END;
+
+    endform;  
+
+  #endif  //end, FORM_SET_FORM
+#endif  //end, DEVICES_FORM_SET

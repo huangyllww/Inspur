@@ -1,0 +1,73 @@
+## @file
+#
+#  Copyright (c) 2006 - 2020, Byosoft Corporation.<BR>
+#  All rights reserved.This software and associated documentation (if any)
+#  is furnished under a license and may only be used or copied in
+#  accordance with the terms of the license. Except as permitted by such
+#  license, no part of this software or documentation may be reproduced,
+#  stored in a retrieval system, or transmitted in any form or by any
+#  means without the express written consent of Byosoft Corporation.
+#
+##
+
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = ProjectDxe
+  FILE_GUID                      = 902230E3-C56E-4a04-9015-C28E135D3996
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = ProjectEarlyDxeEntry
+
+#
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           = IA32 X64 IPF EBC
+#
+
+[Sources]
+  ProjectEarlyDxe.c
+
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  ByoModulePkg/ByoModulePkg.dec
+  PlatformPkg/PlatformPkg.dec
+
+
+
+  
+[LibraryClasses]
+  MemoryAllocationLib
+  BaseLib
+  UefiBootServicesTableLib
+  HobLib
+  UefiDriverEntryPoint
+  UefiRuntimeServicesTableLib
+  BaseMemoryLib
+  DebugLib
+  UefiLib
+  IoLib
+  BiosIdLib
+  PrintLib
+
+  
+  
+
+[Guids]
+
+  
+  
+[Protocols]
+  gBiosIdInfoProtocolGuid
+
+  
+[Pcd]
+  gPlatformModuleTokenSpaceGuid.PcdSmbiosBiosVersion
+  
+[Depex]
+  TRUE
+
+
+  

@@ -1,0 +1,64 @@
+## @file
+# Byosoft IPMI Interface module for DXE phase.
+#
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = IpmiInterfaceDxe
+  FILE_GUID                      = c0a9a85f-4b54-4e41-8684-0f0ff942fe24
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = IpmiInterfaceDxeEntry
+
+
+[Sources]
+  IpmiInterfaceDxe.c
+  IpmiInterfaceCommon.c
+  IpmiSystemInterfaceKcs.c
+  IpmiInterfaceSpmi.c
+
+[Packages]
+  PlatformPkg/PlatformPkg.dec
+  ServerCommonPkg/ServerCommonPkg.dec
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  ByoModulePkg/ByoModulePkg.dec
+
+  AgesaPkg/AgesaPkg.dec
+  AgesaModulePkg/AgesaModuleNbioPkg.dec
+  AmdCpmPkg/AmdCpmPkg.dec
+
+[LibraryClasses]
+  BaseMemoryLib
+  MemoryAllocationLib
+  PcdLib
+  DebugLib
+  UefiDriverEntryPoint
+  UefiBootServicesTableLib
+  UefiLib
+  TimerLib
+  UefiRuntimeServicesTableLib
+  #PlatformLpcLib
+  IoLib
+  HobLib
+
+[Guids]
+  gPlatformSetupVariableGuid
+  
+[Protocols]
+  gEfiSmbiosProtocolGuid
+  gByoIpmiInterfaceProtocolGuid              # Produce
+  gEfiAcpiTableProtocolGuid
+  gAmdCpmTableProtocolGuid
+  
+[Pcd]
+  gServerCommonPkgModuleTokenSpaceGuid.PcdIpmiExecuteTime
+  gServerCommonPkgModuleTokenSpaceGuid.PcdIpmiInterfaceType
+  gServerCommonPkgModuleTokenSpaceGuid.PcdIpmiMaxIpmbWaitMessageTime
+  gServerCommonPkgModuleTokenSpaceGuid.PcdIpmiInterfaceType
+  gServerCommonPkgModuleTokenSpaceGuid.PcdIpmiPostBaseAddress
+  gServerCommonPkgModuleTokenSpaceGuid.PcdIpmiPostRegOffset
+  
+[Depex]
+  gEfiVariableArchProtocolGuid AND
+  gEfiVariableWriteArchProtocolGuid

@@ -1,0 +1,299 @@
+//
+// Copyright (c) 2006-2019, Intel Corporation
+// All rights reserved. This program and the accompanying materials
+// are licensed and made available under the terms and conditions of the BSD License
+// which accompanies this distribution.  The full text of the license may be found at
+// http://opensource.org/licenses/bsd-license.php
+//
+// THE PROGRAM IS DISTRIBUTED UNDER THE BSD LICENSE ON AN "AS IS" BASIS,
+// WITHOUT WARRANTIES OR REPRESENTATIONS OF ANY KIND, EITHER EXPRESS OR IMPLIED.
+//
+// Module Description:
+//
+//    Boot Maintenance Utility Formset
+//
+
+#include "FormGuid.h"
+#include "../../PlatformPkg/Include/SetupVariable.h"
+#include <Guid/ByoSetupFormsetGuid.h>
+#include <ByoPlatformSetupConfig.h>
+#include <SystemPasswordVariable.h>
+#include <SysMiscCfg2.h>
+#include <Token.h>
+#include "../PlatformSetupDxe/SetupDefinitions.h"
+#define BOOT_FORM_SET  
+
+
+formset
+  guid     = FORMSET_GUID_BOOT,
+  title    = STRING_TOKEN(FORMSET_TITLE_BOOT),
+  help     = STRING_TOKEN(FORMSET_TITLE_BOOT_HELP),
+  class    = BYO_FORMSET_CLASS,
+  subclass = BYO_FORMSET_SUB_CLASS,
+
+  #define FORM_SET_VARSTORE
+
+  efivarstore SETUP_DATA, 
+    varid     = SETUP_DATA_ID, 
+    attribute = 0x7, 
+    name      = Setup, 
+    guid      = PLATFORM_SETUP_VARIABLE_GUID; 
+
+    efivarstore SETUP_VOLATILE_DATA,
+    varid = SETUP_VOLATILE_DATA_ID,
+    attribute = 0x6,
+    name  = SetupVolatileData,
+    guid  = PLATFORM_SETUP_VARIABLE_GUID;
+  
+  #undef FORM_SET_VARSTORE
+  
+  SYSTEM_PASSWORD_VARSTORE
+
+  varstore BMM_FAKE_NV_DATA,
+    varid = VARSTORE_ID_BOOT_MAINT,
+    name = BmmData,
+    guid = FORMSET_GUID_BOOT;
+  
+  
+  form formid = ROOT_FORM_ID,
+      title = STRING_TOKEN(FORMSET_TITLE_BOOT);
+
+      LOGIN_TYPE_ADMIN;
+      grayoutif ideqval SETUP_DATA.QuiteBoot == 1;
+      numeric varid = SETUP_DATA.BootTimeout,
+        prompt    = STRING_TOKEN(STR_BOOT_TIMEOUT),
+        help      = STRING_TOKEN(STR_BOOT_TIMEOUT_HELP),
+        minimum   = 1,
+        maximum   = 65535,
+        step      = 1,
+        default   = DEFAULT_BOOT_TIMEOUT,
+      endnumeric;
+      endif;
+  
+      oneof varid   = SETUP_DATA.QuiteBoot,
+        prompt      = STRING_TOKEN(STR_QUIET_BOOT),
+        help        = STRING_TOKEN(STR_QUIET_BOOT_HELP),
+        option text = STRING_TOKEN(STR_ENABLED), value=1, flags= RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_DISABLED), value=0, flags= DEFAULT | RESET_REQUIRED;
+      endoneof;
+  
+      oneof varid   = SETUP_DATA.Numlock,
+        prompt      = STRING_TOKEN(STR_CSM_BOOTUP_NUMLOCK),
+        help        = STRING_TOKEN(STR_CSM_BOOTUP_NUMLOCK_HELP),
+        option text = STRING_TOKEN(STR_CSM_BOOTUP_NUMLOCK_ON),  value = 1, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING;
+        option text = STRING_TOKEN(STR_CSM_BOOTUP_NUMLOCK_OFF), value = 0, flags = RESET_REQUIRED;
+      endoneof;
+
+    suppressif ideqval SETUP_DATA.BootModeType == BIOS_BOOT_UEFI_OS;
+      oneof varid  = SETUP_DATA.OpromMessage,
+        prompt = STRING_TOKEN(STR_OPROM_MESSAGE),
+        help = STRING_TOKEN(STR_OPROM_MESSAGE_HELP),
+        option text = STRING_TOKEN(STR_ENABLED),  value = 1, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING;
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+      endoneof;
+    endif;
+      
+/*
+        oneof varid  = SETUP_DATA.Csm,
+          prompt = STRING_TOKEN(STR_ENABLE_CSM),
+          help = STRING_TOKEN(STR_ENABLE_CSM_HELP),
+          option text = STRING_TOKEN(STR_ENABLED),  value = 1, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING;
+        endoneof;
+*/
+
+      oneof varid = SETUP_DATA.BootModeType,
+        questionid = KEY_VALUE_BOOTTYPE_CONFIGURATION,
+        prompt = STRING_TOKEN(STR_BOOT_MODE),
+        help   = STRING_TOKEN(STR_BOOT_MODE_HELP),
+        flags  = INTERACTIVE,
+#if CSM_DEFAULT_VALUE
+        //option text = STRING_TOKEN(STR_ALL),         value = BIOS_BOOT_ALL_OS,    flags = MANUFACTURING;
+        option text = STRING_TOKEN(STR_UEFI_ONLY),   value = BIOS_BOOT_UEFI_OS,   flags = RESET_REQUIRED | DEFAULT | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_LEGACY_ONLY), value = BIOS_BOOT_LEGACY_OS, flags = RESET_REQUIRED;
+#else        
+        //option text = STRING_TOKEN(STR_ALL),         value = BIOS_BOOT_ALL_OS,    flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_UEFI_ONLY),   value = BIOS_BOOT_UEFI_OS,   flags = RESET_REQUIRED | DEFAULT | MANUFACTURING;
+        option text = STRING_TOKEN(STR_LEGACY_ONLY), value = BIOS_BOOT_LEGACY_OS, flags = RESET_REQUIRED;
+#endif
+
+      endoneof;
+
+      oneof varid  = SETUP_DATA.ShellEn,
+        prompt = STRING_TOKEN(STR_SHELL_ENABLE),
+        help   = STRING_TOKEN(STR_SHELL_ENABLE_HELP),
+#if INTERNAL_SHELL_DEFAULT_ENABLE   
+        option text = STRING_TOKEN(STR_ENABLED),  value = 1, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING;
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+#else        
+        option text = STRING_TOKEN(STR_ENABLED),  value = 1, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING;
+#endif        
+      endoneof; 
+
+      suppressif ideqval SETUP_DATA.LanBoot == 1 OR NOT ideqval SETUP_DATA.BootModeType == BIOS_BOOT_UEFI_OS;
+        oneof varid  = SETUP_DATA.UefiNetworkStack,
+          prompt = STRING_TOKEN(STR_UEFI_NETWORK_STACK),
+          help   = STRING_TOKEN(STR_UEFI_NETWORK_STACK_HELP),
+          #if BC_TENCENT
+          option text = STRING_TOKEN(STR_ENABLED),  value = 1, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING;
+          option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+          #else
+          option text = STRING_TOKEN(STR_ENABLED),  value = 1, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING;
+          #endif
+        endoneof;   
+      endif;      
+     
+      oneof varid  = SETUP_DATA.LanBoot,
+        prompt = STRING_TOKEN(STR_OBLAN_BOOT),
+        help   = STRING_TOKEN(STR_OBLAN_BOOT_HELP),
+        option text = STRING_TOKEN(STR_ENABLED),  value = 1, flags = RESET_REQUIRED  | DEFAULT | MANUFACTURING;
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+      endoneof; 
+	  
+      suppressif ideqval SETUP_DATA.LanBoot == 0 OR NOT ideqval SETUP_DATA.BootModeType == BIOS_BOOT_UEFI_OS;
+      label LABEL_PXE_START;
+      label LABEL_PXE_END;
+
+      suppressif TRUE;
+      numeric varid = SETUP_DATA.PxeNicVid,
+        prompt    = STRING_TOKEN(STR_BOOT_TIMEOUT),
+        help      = STRING_TOKEN(STR_BOOT_TIMEOUT_HELP),
+        minimum   = 0,
+        maximum   = 0xFFFF,
+        step      = 1,
+        default   = 0,
+      endnumeric;
+	  
+      numeric varid = SETUP_DATA.PxeNicDid,
+        prompt    = STRING_TOKEN(STR_BOOT_TIMEOUT),
+        help      = STRING_TOKEN(STR_BOOT_TIMEOUT_HELP),
+        minimum   = 0,
+        maximum   = 0xFFFF,
+        step      = 1,
+        default   = 0,
+      endnumeric;
+	  
+      numeric varid = SETUP_DATA.PxeNicMacCrc,
+        prompt    = STRING_TOKEN(STR_BOOT_TIMEOUT),
+        help      = STRING_TOKEN(STR_BOOT_TIMEOUT_HELP),
+        minimum   = 0,
+        maximum   = 0xFFFF,
+        step      = 1,
+        default   = 0,
+      endnumeric;	  
+      endif;
+      endif;      
+
+	  
+    suppressif ideqval SETUP_DATA.BootModeType == 2 OR ideqval SETUP_DATA.LanBoot == 0;
+      oneof varid   = SETUP_DATA.RetryPxeBoot,
+        prompt      = STRING_TOKEN(STR_RETRY_PXE_BOOT_PROMPT),
+        help        = STRING_TOKEN(STR_RETRY_PXE_BOOT_PROMPT_HELP),
+        option text = STRING_TOKEN(STR_ENABLED),  value = 1, flags = DEFAULT | MANUFACTURING |RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+      endoneof;
+      endif;
+      
+     suppressif ideqval SETUP_DATA.LanBoot == 0 OR NOT ideqval SETUP_DATA.BootModeType == BIOS_BOOT_UEFI_OS;
+      oneof varid  = SETUP_DATA.NetBootIpVer,
+        prompt = STRING_TOKEN(STR_NET_BOOT_IP_VERSION),
+        help = STRING_TOKEN(STR_NET_BOOT_IP_VERSION_HELP),
+        option text = STRING_TOKEN(STR_ALL_IP), value = NET_BOOT_IP_ALL, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_IPV4),   value = NET_BOOT_IP_V4,  flags = RESET_REQUIRED | DEFAULT | MANUFACTURING;
+        option text = STRING_TOKEN(STR_IPV6),   value = NET_BOOT_IP_V6,  flags = RESET_REQUIRED;
+      endoneof;
+     endif;
+     
+     suppressif NOT ideqval SETUP_DATA.SelectPxeNic==0 OR ideqval SETUP_DATA.LanBoot == 0 OR ideqval SETUP_DATA.ObLanEn ==0;
+      oneof varid  = SETUP_DATA.PXEBootPriority,
+        prompt = STRING_TOKEN(STR_PXE_BOOT_PRIORITY),
+        help = STRING_TOKEN(STR_PXE_BOOT_PRIORITY_HELP),
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING ;
+        option text = STRING_TOKEN(STR_ONBOARD_PXE_FIRST), value = 1, flags = RESET_REQUIRED ;
+        option text = STRING_TOKEN(STR_ADDON_PXE_FIRST), value = 2, flags = RESET_REQUIRED;
+      endoneof;
+      endif;
+
+     suppressif TRUE;       
+      oneof varid  = SETUP_DATA.NvmeOpRomPriority,
+        prompt = STRING_TOKEN(STR_NVME_OPTIONROM_PRIORITY),
+        help = STRING_TOKEN(STR_NVME_OPTIONROM_PRIORITY_HELP),
+        option text = STRING_TOKEN(STR_BIOS_FIRST),  value = 0, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING;
+        option text = STRING_TOKEN(STR_ADDON_FIRST), value = 1, flags = RESET_REQUIRED;
+      endoneof;
+     endif;
+     END_LOGIN_TYPE;
+
+      suppressif TRUE;       
+      goto FORM_OPROM_PRIORITY,
+        prompt = STRING_TOKEN(STR_PCI_OPTION_ROM_POST),
+        help   = STRING_TOKEN(STR_PCI_OPTION_ROM_POST_HELP); 
+      endif;      
+
+      LOGIN_TYPE_ADMIN;      
+      subtitle text = STRING_TOKEN(STR_NULL_STRING);
+      grayoutif ideqval SETUP_DATA.BootModeType == BIOS_BOOT_LEGACY_OS;  
+        subtitle text = STRING_TOKEN(STR_UEFI_BOOT_ORDER);	
+        label UEFI_BOOT_ITEM_ID;
+        label UEFI_BOOT_ITEM_END_ID;
+      endif;
+
+        subtitle text = STRING_TOKEN(STR_NULL_STRING);
+    
+        grayoutif ideqval SETUP_DATA.BootModeType == BIOS_BOOT_UEFI_OS;    
+          subtitle text = STRING_TOKEN(STR_LEGACY_BOOT_ORDER);	
+          label LEGACY_BOOT_ITEM_ID;
+          label LEGACY_BOOT_ITEM_END_ID;
+        endif;  
+   
+   END_LOGIN_TYPE;
+   
+  endform;
+
+  form formid = FORM_OPROM_PRIORITY,
+      title = STRING_TOKEN(STR_PCI_OPTION_ROM_POST);
+  LOGIN_TYPE_ADMIN;
+
+      oneof varid  = SETUP_DATA.VideoRomPolicy,
+        prompt = STRING_TOKEN(STR_VIDEO_ROM_PRIORITY),
+        help   = STRING_TOKEN(STR_ROM_PRIORITY_HELP),
+        option text = STRING_TOKEN(STR_LEGACY_FIRST), value = ROM_POLICY_LEGACY_FIRST, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_UEFI_FIRST),   value = ROM_POLICY_UEFI_FIRST, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING;
+//-     option text = STRING_TOKEN(STR_NO_LAUNCH),    value = ROM_POLICY_NO_LAUNCH, flags = RESET_REQUIRED;
+      endoneof;
+
+      oneof varid = SETUP_DATA.PxeRomPolicy,
+        prompt = STRING_TOKEN(STR_NETWORK_ROM_PRIORITY),
+        help   = STRING_TOKEN(STR_ROM_PRIORITY_HELP),
+        option text = STRING_TOKEN(STR_LEGACY_FIRST), value = ROM_POLICY_LEGACY_FIRST, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_UEFI_FIRST),   value = ROM_POLICY_UEFI_FIRST, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING;
+        option text = STRING_TOKEN(STR_NO_LAUNCH),    value = ROM_POLICY_NO_LAUNCH, flags = RESET_REQUIRED;
+        //option text = STRING_TOKEN(STR_BY_CSM),       value = ROM_POLICY_BY_CSM, flags = RESET_REQUIRED;        
+      endoneof;
+
+      oneof varid = SETUP_DATA.StorageRomPolicy,
+        prompt = STRING_TOKEN(STR_SATA_ROM_PRIORITY),
+        help   = STRING_TOKEN(STR_ROM_PRIORITY_HELP),
+        option text = STRING_TOKEN(STR_LEGACY_FIRST), value = ROM_POLICY_LEGACY_FIRST, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_UEFI_FIRST),   value = ROM_POLICY_UEFI_FIRST, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING;
+        option text = STRING_TOKEN(STR_NO_LAUNCH),    value = ROM_POLICY_NO_LAUNCH, flags = RESET_REQUIRED;
+      endoneof;
+
+      oneof varid = SETUP_DATA.OtherRomPolicy,
+        prompt = STRING_TOKEN(STR_OTHER_ROM_PRIORITY),
+        help   = STRING_TOKEN(STR_ROM_PRIORITY_HELP),
+        option text = STRING_TOKEN(STR_LEGACY_FIRST), value = ROM_POLICY_LEGACY_FIRST, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_UEFI_FIRST),   value = ROM_POLICY_UEFI_FIRST, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING;
+        option text = STRING_TOKEN(STR_NO_LAUNCH),    value = ROM_POLICY_NO_LAUNCH, flags = RESET_REQUIRED;
+      endoneof;
+
+      subtitle text = STRING_TOKEN(STR_NULL_STRING);
+      subtitle text = STRING_TOKEN(STR_OPROM_PRIORITY_NOTES);
+	  END_LOGIN_TYPE;
+      
+  endform;    
+  
+
+endformset;

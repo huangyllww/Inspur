@@ -1,0 +1,188 @@
+#;*****************************************************************************
+#;
+#; 
+#; Copyright 2016 - 2019 CHENGDU HAIGUANG IC DESIGN CO., LTD. All Rights Reserved.
+#; 
+#; HYGON is granting you permission to use this software (the Materials)
+#; pursuant to the terms and conditions of your Software License Agreement
+#; with HYGON.  This header does *NOT* give you permission to use the Materials
+#; or any rights under HYGON's intellectual property.  Your use of any portion
+#; of these Materials shall constitute your acceptance of those terms and
+#; conditions.  If you do not agree to the terms and conditions of the Software
+#; License Agreement, please do not use any portion of these Materials.
+#; 
+#; CONFIDENTIALITY:  The Materials and all other information, identified as
+#; confidential and provided to you by HYGON shall be kept confidential in
+#; accordance with the terms and conditions of the Software License Agreement.
+#; 
+#; LIMITATION OF LIABILITY: THE MATERIALS AND ANY OTHER RELATED INFORMATION
+#; PROVIDED TO YOU BY HYGON ARE PROVIDED "AS IS" WITHOUT ANY EXPRESS OR IMPLIED
+#; WARRANTY OF ANY KIND, INCLUDING BUT NOT LIMITED TO WARRANTIES OF
+#; MERCHANTABILITY, NONINFRINGEMENT, TITLE, FITNESS FOR ANY PARTICULAR PURPOSE,
+#; OR WARRANTIES ARISING FROM CONDUCT, COURSE OF DEALING, OR USAGE OF TRADE.
+#; IN NO EVENT SHALL HYGON OR ITS LICENSORS BE LIABLE FOR ANY DAMAGES WHATSOEVER
+#; (INCLUDING, WITHOUT LIMITATION, DAMAGES FOR LOSS OF PROFITS, BUSINESS
+#; INTERRUPTION, OR LOSS OF INFORMATION) ARISING OUT OF HYGON'S NEGLIGENCE,
+#; GROSS NEGLIGENCE, THE USE OF OR INABILITY TO USE THE MATERIALS OR ANY OTHER
+#; RELATED INFORMATION PROVIDED TO YOU BY HYGON, EVEN IF HYGON HAS BEEN ADVISED OF
+#; THE POSSIBILITY OF SUCH DAMAGES.  BECAUSE SOME JURISDICTIONS PROHIBIT THE
+#; EXCLUSION OR LIMITATION OF LIABILITY FOR CONSEQUENTIAL OR INCIDENTAL DAMAGES,
+#; THE ABOVE LIMITATION MAY NOT APPLY TO YOU.
+#; 
+#; HYGON does not assume any responsibility for any errors which may appear in
+#; the Materials or any other related information provided to you by HYGON, or
+#; result from use of the Materials or any related information.
+#; 
+#; You agree that you will not reverse engineer or decompile the Materials.
+#; 
+#; NO SUPPORT OBLIGATION: HYGON is not obligated to furnish, support, or make any
+#; further information, software, technical information, know-how, or show-how
+#; available to you.  Additionally, HYGON retains the right to modify the
+#; Materials at any time, without notice, and is not obligated to provide such
+#; modified Materials to you.
+#; 
+#; AMD GRANT HYGON DECLARATION: ADVANCED MICRO DEVICES, INC.(AMD) granted HYGON has
+#; the right to redistribute HYGON's Agesa version to BIOS Vendors and HYGON has
+#; the right to make the modified version available for use with HYGON's PRODUCT.
+#;*****************************************************************************
+
+#This file is auto generated, don't edit it manually
+
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = CbsSetAgesaPcdLib
+  FILE_GUID                      = CFBC986E-808D-42A7-B7B7-55D13A626802
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = CbsSetAgesaPcdLib 
+
+#
+#  VALID_ARCHITECTURES           = IA32 X64 IPF EBC
+#
+
+[sources.common]
+  CbsSetAgesaPcdLibZP.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  AmdCbsPkg/AmdCbsPkg.dec
+  AgesaPkg/AgesaPkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModuleCcxPkg.dec
+  AgesaModulePkg/AgesaModuleDfPkg.dec
+  AgesaModulePkg/AgesaModuleFchPkg.dec
+  AgesaModulePkg/AgesaModuleMemPkg.dec
+  AgesaModulePkg/AgesaModuleNbioPkg.dec
+  AgesaModulePkg/AgesaModulePspPkg.dec
+  AgesaModulePkg/Fch/Taishan/FchTaishan.dec
+  AmdCbsPkg/AmdCbsPkg.dec
+
+[LibraryClasses]
+  PcdLib
+  DebugLib
+
+
+[Guids]
+
+
+[Ppis]
+
+[DEPEX]
+  TRUE
+
+[Pcd]
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdAmdCcxCfgPFEHEnable
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdCpbMode
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdCStateMode
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdDownCoreMode
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdL1StreamPrefetcher
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdL2StreamPrefetcher
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdNbioPoisonConsumption
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdNbioRASControl
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdDeterminismControl
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdEfficiencyOptimizedMode
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdPSIDisable
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdCfgACSEnable
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdCfgPcieAriSupport
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgPcieLoopbackMode
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgPcieCrsDelay
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgPcieCrsLimit
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdCfgIommuSupport
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdPcieSyncReset
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdDisableSideband
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdDisableL1wa
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdDisableBridgeDis
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdDisableIrqPoll
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdIrqSetBridgeDis
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdSataEnable
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdSataClass
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdSataRasSupport
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdSataAhciDisPrefetchFunction
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdSataDevSlpPort0
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdSataDevSlpPort0Num
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdSataDevSlpPort1
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdSataDevSlpPort1Num
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdXhci0Enable
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdXhci1Enable
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdXhci2Enable
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdXhci3Enable
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdSdConfig
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdPwrFailShadow
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.FchUart0LegacyEnable
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.FchUart1LegacyEnable
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.FchUart2LegacyEnable
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.FchUart3LegacyEnable
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdPTSataPortEnable
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdPTSataMode
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdPTSataAggresiveDevSlpP0
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdPTSataAggresiveDevSlpP1
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdPTXhciGen1
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdPTXhciGen2
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdPTUsbEqualization4
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdPTUsbRedriver
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdPTUsb31P0
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdPTUsb31P1
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdPTUsb30P0
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdPTUsb30P1
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdPTUsb30P2
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdPTUsb30P3
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdPTUsb30P4
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdPTUsb30P5
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdPTUsb20P0
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdPTUsb20P1
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdPTUsb20P2
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdPTUsb20P3
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdPTUsb20P4
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdPTUsb20P5
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdPTProm2Usb31P0
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdPTProm2Usb31P1
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdPTProm2Usb30P0
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdPTProm2Usb30P1
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdPTProm2Usb20P0
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdPTProm2Usb20P1
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdPTProm2Usb20P2
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdPTProm2Usb20P3
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdPTProm2Usb20P4
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdPTProm2Usb20P5
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdPTProm1Usb31P0
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdPTProm1Usb31P1
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdPTProm1Usb30P0
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdPTProm1Usb20P0
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdPTProm1Usb20P1
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdPTProm1Usb20P2
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdPTProm1Usb20P3
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdPTProm1Usb20P4
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdPTProm1Usb20P5
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgNTBEnable
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgNTBLocation
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgNTBPcieCoreSel
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgNTBMode
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgNTBLinkSpeed
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgPcieHotplugSupport
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgNTBBAR1Size
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgNTBBAR23Size
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdCfgNTBBAR45Size
+  gAmdCbsPkgTokenSpaceGuid.PcdAmdSVMCtrl
+  gAmdCbsPkgTokenSpaceGuid.PcdAmdNbIOMMU

@@ -1,0 +1,149 @@
+## @file
+#  This module will initialize TPM device and measure FVs in PEI phase.
+#
+# Copyright (c) 2006 - 2011, Intel Corporation. All rights reserved.<BR>
+# This program and the accompanying materials
+# are licensed and made available under the terms and conditions of the BSD License
+# which accompanies this distribution. The full text of the license may be found at
+# http://opensource.org/licenses/bsd-license.php
+# THE PROGRAM IS DISTRIBUTED UNDER THE BSD LICENSE ON AN "AS IS" BASIS,
+# WITHOUT WARRANTIES OR REPRESENTATIONS OF ANY KIND, EITHER EXPRESS OR IMPLIED.
+#
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = PlatformEarlyDxe
+  FILE_GUID                      = 1EDCF8B7-719E-4bae-8A99-6BB2011AB460
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = PlatformEarlyDxeEntry
+
+#
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           = IA32 X64 IPF EBC
+#
+
+[Sources]
+  PlatformEarlyDxe.c
+  PlatHost.c
+  PlatHostMisc.c
+  PlatHostLegacyOpRom.c
+  
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  IntelFrameworkPkg/IntelFrameworkPkg.dec
+  IntelFrameworkModulePkg/IntelFrameworkModulePkg.dec
+  PlatformPkg/PlatformPkg.dec 
+  ByoModulePkg/ByoModulePkg.dec
+  UefiCpuPkg/UefiCpuPkg.dec
+  AgesaPkg/AgesaPkg.dec
+  AgesaModulePkg/Fch/Taishan/FchTaishan.dec
+  AgesaModulePkg/AgesaModuleFchPkg.dec
+  
+[LibraryClasses]
+  BaseLib
+  UefiBootServicesTableLib
+  HobLib
+  UefiDriverEntryPoint
+  UefiRuntimeServicesTableLib
+  BaseMemoryLib
+  DebugLib
+  IoLib
+  UefiLib
+  TimerLib
+  ReportStatusCodeLib
+  PlatformCommLib
+  DxeServicesTableLib
+  MtrrLib
+  IpmiBaseLib
+  
+  
+[Guids]
+  gPlatformSetupVariableGuid
+  gSetupPasswordVariableTseGuid
+  gEfiCapsuleVendorGuid
+  gMtcVendorGuid
+  gEfiDiskInfoIdeInterfaceGuid
+  gEfiDiskInfoAhciInterfaceGuid
+  gEfiSetupEnterGuid
+  gByoCsmOnDpxGuid
+  gByoCsmOffDpxGuid
+
+  
+[Protocols]
+  gEfiVariableWriteArchProtocolGuid
+  gEfiFirmwareVolume2ProtocolGuid
+  gObLanUndiDxeDepexProtocolGuid
+  gIgdGopDepexProtocolGuid
+  gPlatHostInfoProtocolGuid
+  gEfiDiskInfoProtocolGuid
+
+  
+[Pcd]
+  gEfiMdePkgTokenSpaceGuid.PcdPciExpressBaseAddress
+  gEfiMdePkgTokenSpaceGuid.PcdPciExpressLength
+  gEfiByoModulePkgTokenSpaceGuid.PcdUCREnable  
+  gEfiByoModulePkgTokenSpaceGuid.PcdBiosBootModeType
+  gEfiByoModulePkgTokenSpaceGuid.PcdSystemMiscConfig
+  gEfiByoModulePkgTokenSpaceGuid.PcdFlashAreaBaseAddress
+  gEfiByoModulePkgTokenSpaceGuid.PcdFlashAreaSize
+  gEfiByoModulePkgTokenSpaceGuid.PcdLegacyBiosSupport
+  gEfiByoModulePkgTokenSpaceGuid.PcdDisplayOptionRomMessage
+  gEfiByoModulePkgTokenSpaceGuid.PcdKeyboardNumberLockInitState
+  gEfiMdeModulePkgTokenSpaceGuid.PcdSetupConOutColumn
+  gEfiMdeModulePkgTokenSpaceGuid.PcdSetupConOutRow
+  gEfiMdeModulePkgTokenSpaceGuid.PcdSetupVideoHorizontalResolution
+  gEfiMdeModulePkgTokenSpaceGuid.PcdSetupVideoVerticalResolution 
+  gEfiByoModulePkgTokenSpaceGuid.PcdEnableSetupHotkeyF3F4
+  gEfiByoModulePkgTokenSpaceGuid.PcdVideoOpRomLaunchPolicy
+  gEfiByoModulePkgTokenSpaceGuid.PcdPxeOpRomLaunchPolicy
+  gEfiByoModulePkgTokenSpaceGuid.PcdStorageOpRomLaunchPolicy
+  gEfiByoModulePkgTokenSpaceGuid.PcdOtherOpRomLaunchPolicy
+  gEfiByoModulePkgTokenSpaceGuid.PcdFlashFvMainBase
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdFchCfgAcpiPm1CntBlkAddr
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdSataPortPowerPort0
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdSataPortPowerPort1
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdSataPortPowerPort2
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdSataPortPowerPort3
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdSataPortPowerPort4
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdSataPortPowerPort5
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdSataPortPowerPort6
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdSataPortPowerPort7
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdSataMultiDiePortShutDown
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdSataModePort0
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdSataModePort1
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdSataModePort2
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdSataModePort3
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdSataModePort4
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdSataModePort5
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdSataModePort6
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdSataModePort7
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdSataMultiDiePortMode
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdPstateMode
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdCStateMode
+  gEfiMdeModulePkgTokenSpaceGuid.PcdSrIovSupport
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdPwrFailShadow
+  
+  gPlatformModuleTokenSpaceGuid.PcdAhciOpRomFile
+  gPlatformModuleTokenSpaceGuid.PcdNvmeOpRomFile
+  gPlatformModuleTokenSpaceGuid.PcdObLanOpRomFile
+  
+  gEfiByoModulePkgTokenSpaceGuid.PcdNetBootIp4Ip6
+  gEfiByoModulePkgTokenSpaceGuid.PcdPostPromptTimeOut
+  gEfiByoModulePkgTokenSpaceGuid.PcdRetryPxeBoot
+  gPlatformModuleTokenSpaceGuid.PcdBmcBiosConfigFlag
+  gEfiByoModulePkgTokenSpaceGuid.PcdIpmiBootMode
+  gEfiByoModulePkgTokenSpaceGuid.PcdIpmiBootflag
+  gEfiByoModulePkgTokenSpaceGuid.PcdBiosLastBootModeType
+  gEfiByoModulePkgTokenSpaceGuid.PcdDealDimmError
+  gEfiByoModulePkgTokenSpaceGuid.PcdPxeNicVidDid
+  gEfiByoModulePkgTokenSpaceGuid.PcdPxeNicMacCrc
+  
+[Depex]
+  TRUE
+
+  

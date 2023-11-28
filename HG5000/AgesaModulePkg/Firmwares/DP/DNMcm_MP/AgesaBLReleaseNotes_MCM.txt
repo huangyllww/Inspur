@@ -1,0 +1,59 @@
+// ------------------------------------------------------------------------------
+// Copyright 2016-2020 Chengdu Haiguang IC Design Co., Ltd. All rights reserved.
+//
+// PSP FW Delivery Release Notes
+// 
+// Lastest Version: 1.2.10.0
+// Files:
+//   AgesaBootloader0_prod_Mcm_DN.esbin     - PSP Entry: 0x30
+//   AgesaBootloader1_prod_Mcm_DN.esbin     - PSP Entry: 0x31
+//   AgesaBootloader2_prod_Mcm_DN.esbin     - PSP Entry: 0x32
+//   AgesaBootloader3_prod_Mcm_DN.esbin     - PSP Entry: 0x33
+//   AgesaBootloader4_prod_Mcm_DN.esbin     - PSP Entry: 0x34
+//   AgesaBootloader5_prod_Mcm_DN.esbin     - PSP Entry: 0x35
+//   AgesaBootloader6_prod_Mcm_DN.esbin     - PSP Entry: 0x36
+//-------------------------------------------------------------------------------
+
+Features and fixes in 1.2.16.0 (2020/10/26):
+PRODUCT-1034: Add xGMI TxEQ Support For different SocGen/PKG.  
+
+Features and fixes in 1.2.15.0 (2020/10/15):
+PRODUCT-1034: Set GOP PCS WatchDogTimer to zero.  
+
+Features and fixes in 1.2.14.0 (2020/09/24):
+SEONPS-662: Disable DFI PHY Update Feature.  
+
+Features and fixes in 1.2.13.0 (2020/09/23):
+SEONPS-286: Apply the 8.5Gbps TXEQ Configure for 7.5/6.4/5.3Gbps.  
+
+Features and fixes in 1.2.12.0 (2020/09/22):
+SEONPS-286: Fix the GOP hang problem.  
+
+Features and fixes in 1.2.11.0 (2020/08/28):
+D2SEC14A1-25: Add Support For C0/C1
+
+Features and fixes in 1.2.10.0 (2020/08/27):
+SEONPS-591: Apply GOP TX EQ Preset by ABL hardcode for 5.3/6.4/7.5Gbps.
+
+Features and fixes in 1.2.9.0 (2020/08/22):
+SEONPS-589: Apply GOP TX EQ Preset by APCB configuration 
+
+Features and fixes in 1.2.8.0 (2020/08/19):
+SEONPS-496: Switch Default GOP TX Preset EQ From Preset4 to Preset0 to stablize GOP performance in Stress test
+
+Features and fixes in 1.2.7.0 (2020/08/15):
+PRODUCT-856: default switch to eeprom page 0 when start to read dimm spd info [to fix] read page 1 twice after warmreset
+
+Features and fixes in 1.2.6.0 (2020/08/11):
+SL1R2-255: Fix GMI ODPR mapping problem
+
+Features and fixes in 1.2.5.0 (2020/07/20):
+SEONPS-220: GOP Skip calibration training failed
+
+Features and fixes in 1.2.4.0 (2020/06/29):
+PS-998: Fix S3 Restore Failed
+
+
+
+
+

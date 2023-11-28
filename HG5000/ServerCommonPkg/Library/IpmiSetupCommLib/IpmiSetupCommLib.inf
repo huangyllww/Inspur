@@ -1,0 +1,42 @@
+#
+#  Byosoft IpmiSetupCommLib for BIOS Setup.
+#
+
+[Defines]
+  INF_VERSION                    = 0x0001001A
+  BASE_NAME                      = IpmiSetupCommLib
+  FILE_GUID                      = 251aecbe-266b-4d9b-8040-352942a2eb10
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = IpmiSetupCommLib|DXE_DRIVER
+  CONSTRUCTOR                    = IpmiSetupCommLibConstructor
+
+[Sources]
+  IpmiSetupCommLib.c
+
+[Packages]
+  ServerCommonPkg/ServerCommonPkg.dec
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  IntelFrameworkPkg/IntelFrameworkPkg.dec
+
+[LibraryClasses]
+  UefiBootServicesTableLib
+  UefiRuntimeServicesTableLib
+  UefiLib
+  BaseMemoryLib
+  MemoryAllocationLib
+  HiiLib
+  PcdLib
+  PrintLib
+  DebugLib
+
+[Guids]
+
+[Protocols]
+  gByoIpmiInterfaceProtocolGuid
+
+[Pcd]
+
+[Depex]
+  gByoIpmiInterfaceProtocolGuid

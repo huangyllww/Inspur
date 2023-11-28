@@ -1,0 +1,6 @@
+<DIRS AddressMode="1">
+ <COMBO_DIR Base="0x97000" LookUpMode="0">
+ <COMBO_ENTRY Address="0xff098000" Id="0xBC090000" IdSelect="0x00" />
+<COMBO_ENTRY Address="0xff24a000" Id="0xBC090200" IdSelect="0x00" />
+ </COMBO_DIR>
+</DIRS>

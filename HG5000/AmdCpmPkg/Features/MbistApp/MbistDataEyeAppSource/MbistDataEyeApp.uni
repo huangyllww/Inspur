@@ -1,0 +1,5 @@
+
+#string STR_MODULE_ABSTRACT             #language en-US "MBIST data eye reporting App"
+
+#string STR_MODULE_DESCRIPTION          #language en-US "This is an application to report the HYGON MBIST Data Eye test results"
+

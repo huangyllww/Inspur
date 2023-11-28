@@ -1,0 +1,122 @@
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = GuidNameLib
+  FILE_GUID                      = 2FBC0144-A1D6-442d-B82E-2A93F64F941A
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  CONSTRUCTOR                    = GuidNameLibConstructor
+  
+#
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           = IA32 X64 IPF EBC (EBC is for build only)
+#
+
+[Sources]
+  GuidNameLib.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  IntelFrameworkModulePkg/IntelFrameworkModulePkg.dec
+  ByoModulePkg/ByoModulePkg.dec
+  UefiCpuPkg/UefiCpuPkg.dec
+
+[LibraryClasses]
+  BaseMemoryLib
+  BaseLib
+  UefiLib
+  DebugLib
+  UefiBootServicesTableLib
+
+
+[Protocols]
+  gEfiDecompressProtocolGuid
+  gEfiLoadPeImageProtocolGuid                   ## SOMETIMES_PRODUCES   # Produces when PcdFrameworkCompatibilitySupport is set
+  gEfiSimpleFileSystemProtocolGuid              ## SOMETIMES_CONSUMES
+  gEfiLoadFileProtocolGuid                      ## SOMETIMES_CONSUMES
+  gEfiLoadFile2ProtocolGuid                     ## SOMETIMES_CONSUMES
+  gEfiBusSpecificDriverOverrideProtocolGuid     ## SOMETIMES_CONSUMES
+  gEfiDriverFamilyOverrideProtocolGuid          ## SOMETIMES_CONSUMES
+  gEfiPlatformDriverOverrideProtocolGuid        ## SOMETIMES_CONSUMES
+  gEfiDriverBindingProtocolGuid                 ## SOMETIMES_CONSUMES
+  gEfiFirmwareVolumeBlockProtocolGuid
+  gEfiFirmwareVolume2ProtocolGuid
+  gEfiDevicePathProtocolGuid
+  gEfiLoadedImageProtocolGuid                   ## PRODUCES
+  gEfiLoadedImageDevicePathProtocolGuid         ## PRODUCES
+  gEfiHiiPackageListProtocolGuid                ## SOMETIMES_PRODUCES
+  gEfiEbcProtocolGuid                           ## SOMETIMES_CONSUMES
+  gEfiSmmBase2ProtocolGuid                      ## SOMETIMES_CONSUMES
+  gEfiBlockIoProtocolGuid                       ## SOMETIMES_CONSUMES
+  gEfiBdsArchProtocolGuid                       ## CONSUMES
+  gEfiCpuArchProtocolGuid                       ## CONSUMES
+  gEfiMetronomeArchProtocolGuid                 ## CONSUMES
+  gEfiMonotonicCounterArchProtocolGuid          ## CONSUMES
+  gEfiRealTimeClockArchProtocolGuid             ## CONSUMES
+  gEfiResetArchProtocolGuid                     ## CONSUMES
+  gEfiRuntimeArchProtocolGuid                   ## CONSUMES
+  gEfiSecurityArchProtocolGuid                  ## CONSUMES
+  gEfiSecurity2ArchProtocolGuid                 ## SOMETIMES_CONSUMES
+  gEfiTimerArchProtocolGuid                     ## CONSUMES
+  gEfiVariableWriteArchProtocolGuid             ## CONSUMES
+  gEfiVariableArchProtocolGuid                  ## CONSUMES
+  gEfiCapsuleArchProtocolGuid                   ## CONSUMES
+  gEfiWatchdogTimerArchProtocolGuid             ## CONSUMES
+  gEfiUsbIoProtocolGuid
+  gEfiDiskInfoProtocolGuid
+  gEfiDiskIoProtocolGuid  
+  gEfiHiiConfigAccessProtocolGuid
+  gEfiFirmwareManagementProtocolGuid
+  gEfiScsiPassThruProtocolGuid
+  gEfiExtScsiPassThruProtocolGuid
+  gEfiAtaPassThruProtocolGuid
+  gEfiScsiIoProtocolGuid
+  gEfiPciIoProtocolGuid
+  gEfiUsbHcProtocolGuid
+  gEfiUsb2HcProtocolGuid
+  gEfiBlockIo2ProtocolGuid
+  gEfiDecompressProtocolGuid
+  gEfiFirmwareVolumeBlock2ProtocolGuid
+  gEfiFirmwareVolume2ProtocolGuid
+  gEfiIsaIoProtocolGuid
+  gEfiSimpleTextInProtocolGuid
+  gEfiSimpleTextInputExProtocolGuid
+  gEfiSimplePointerProtocolGuid
+  gEfiIsaAcpiProtocolGuid
+  gEfiSerialIoProtocolGuid
+  gEfiIp6ServiceBindingProtocolGuid
+  gEfiIp6ProtocolGuid
+  gEfiSmmCpuProtocolGuid
+  gEfiSmmCpuServiceProtocolGuid
+  gEfiSmmSxDispatch2ProtocolGuid
+  gEfiSmmSwDispatch2ProtocolGuid
+  gEfiSmmPowerButtonDispatch2ProtocolGuid
+  gEfiSmmPeriodicTimerDispatch2ProtocolGuid
+  gEfiSmmUsbDispatch2ProtocolGuid
+  gEfiSmmFirmwareVolumeBlockProtocolGuid
+  gEfiPnpSmbiosProtocolGuid
+  gEfiSmmFaultTolerantWriteProtocolGuid
+  gByoSmiFlashSmmProtocolGuid
+  gEfiSimpleTextOutProtocolGuid
+  gEfiSmmReadyToLockProtocolGuid
+  gEfiComponentName2ProtocolGuid
+  gEfiPciRootBridgeIoProtocolGuid
+  gEfiComponentNameProtocolGuid
+  gEfiDriverBindingProtocolGuid
+  gEfiAbsolutePointerProtocolGuid
+  gEfiDevicePathUtilitiesProtocolGuid
+  gEfiDevicePathToTextProtocolGuid
+  gEfiDevicePathFromTextProtocolGuid
+  gEfiAcpiTableProtocolGuid
+  gEfiAcpiSdtProtocolGuid
+  gEfiDxeSmmReadyToLockProtocolGuid
+  gEfiEdidDiscoveredProtocolGuid
+
+
+  
+[Guids]
+  gEfiConsoleInDeviceGuid  
+  gEfiConsoleOutDeviceGuid
+

@@ -1,0 +1,65 @@
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = PlatEarlyGopPciInit
+  FILE_GUID                      = 831999BC-DBB2-4940-8694-693E0FE9A635
+  MODULE_TYPE                    = PEIM
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = PlatEarlyGopPciInitEntry
+
+#
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           = IA32 X64 IPF EBC
+#
+
+[Sources]
+  PlatEarlyGopPciInit.c
+
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  ByoModulePkg/ByoModulePkg.dec 
+  AgesaModulePkg/Fch/Taishan/FchTaishan.dec  
+  AgesaPkg/AgesaPkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AmdCpmPkg/AmdCpmPkg.dec
+  PlatformPkg/PlatformPkg.dec
+
+  
+  
+[LibraryClasses]
+  HobLib
+  PeimEntryPoint
+  PeiServicesLib
+  BaseMemoryLib
+  DebugLib
+  IoLib
+  PlatformCommLib
+  ByoCommLib
+  FabricResourceManagerLib
+  MemoryAllocationLib
+  TimerLib
+  
+  
+
+[Guids]
+  gByoEarlyGopLogoFileGuid
+  
+  
+[Ppis]
+  gByoEarlyGopInfoPpiGuid
+  
+
+  
+  
+[Pcd]
+  gEfiMdePkgTokenSpaceGuid.PcdPciExpressBaseAddress
+  gEfiByoModulePkgTokenSpaceGuid.PcdFlashNvLogoBase
+  gEfiByoModulePkgTokenSpaceGuid.PcdFlashNvLogoSize
+  
+[Depex]
+  gAmdPcdInitReadyPpiGuid AND gEfiPeiMemoryDiscoveredPpiGuid
+
+  

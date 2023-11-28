@@ -1,0 +1,81 @@
+
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = CpuDxe
+  FILE_GUID                      = E03ABADF-E536-4e88-B3A0-B77F78EB34FE
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = DxeInitializeCpu
+
+#
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           = IA32 X64
+#
+#
+
+[Sources]
+  CpuDxe.c
+  CpuDxe.h
+  CpuBoard.c
+  CpuBoard.h
+  CpuCache.c  
+  CpuMpDxe.c
+  AMD64MP.asm
+  CpuSupport.asm
+     
+ 
+[Packages]
+  MdePkg/MdePkg.dec  
+  IntelFrameworkPkg/IntelFrameworkPkg.dec
+  UefiCpuPkg\UefiCpuPkg.dec
+  AgesaModulePkg\AgesaCommonModulePkg.dec
+  AgesaPkg\AgesaPkg.dec
+  ByoModulePkg/ByoModulePkg.dec
+  PlatformPkg/PlatformPkg.dec
+  
+  
+[LibraryClasses]
+  UefiBootServicesTableLib
+  UefiDriverEntryPoint
+  UefiRuntimeServicesTableLib
+  MemoryAllocationLib
+  PcdLib
+  MtrrLib
+  HobLib
+  DebugLib
+  IoLib
+  PciLib
+  ByoCommLib
+  
+  
+  
+[Guids]
+  gEfiCpuInfoHobGuid
+
+
+[Protocols]
+  gEfiCpuArchProtocolGuid #PRODUCED
+  gEfiSmmBaseProtocolGuid
+  gEfiMpServiceProtocolGuid         # CONSUMED
+  gEfiDataHubProtocolGuid
+  gByoBdsEnterHookGuid
+
+
+  
+[Ppis]
+  gEfiPeiReadOnlyVariable2PpiGuid
+
+[FixedPcd]
+  gPlatformModuleTokenSpaceGuid.PcdCpuMaxCores
+  gPlatformModuleTokenSpaceGuid.PcdCmosAgesaSpecified  # CONSUMED
+
+[Depex]
+  gAmdMpServicesPreReqProtocolGuid
+
+  
+  
+[BuildOptions.X64]
+  *_*_X64_CC_FLAGS = /D EFIx64 /D x64_BUILD=1
+  *_*_X64_ASM_FLAGS = /D EFIx64

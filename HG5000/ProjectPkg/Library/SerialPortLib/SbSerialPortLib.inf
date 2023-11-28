@@ -1,0 +1,48 @@
+
+[Defines]
+  INF_VERSION = 0x00010005
+  VERSION_STRING = 1.0
+  BASE_NAME = SbSerialPortLib
+  MODULE_TYPE = BASE
+  LIBRARY_CLASS = SerialPortLib
+  FILE_GUID = 15B26F43-A389-4bae-BDE3-4BB0719B7D4F
+
+  
+[Sources]
+  SbSerialPortLib.c
+
+  
+[LibraryClasses]
+  BaseLib
+  PcdLib
+  IoLib
+  PciLib
+  TimerLib
+  DebugLib
+
+  
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  PlatformPkg/PlatformPkg.dec
+  AgesaModulePkg/Fch/Taishan/FchTaishan.dec
+  AgesaPkg/AgesaPkg.dec
+
+  
+[Pcd]  
+  gEfiMdeModulePkgTokenSpaceGuid.PcdSerialUseMmio                 ## CONSUMES
+  gEfiMdeModulePkgTokenSpaceGuid.PcdSerialUseHardwareFlowControl  ## CONSUMES
+  gEfiMdeModulePkgTokenSpaceGuid.PcdSerialDetectCable             ## SOMETIMES_CONSUMES
+  gEfiMdeModulePkgTokenSpaceGuid.PcdSerialRegisterBase            ## CONSUMES
+  gEfiMdeModulePkgTokenSpaceGuid.PcdSerialBaudRate                ## CONSUMES
+  gEfiMdeModulePkgTokenSpaceGuid.PcdSerialLineControl             ## CONSUMES
+  gEfiMdeModulePkgTokenSpaceGuid.PcdSerialFifoControl             ## CONSUMES
+  gEfiMdeModulePkgTokenSpaceGuid.PcdSerialClockRate               ## CONSUMES
+  gEfiMdeModulePkgTokenSpaceGuid.PcdSerialPciDeviceInfo           ## CONSUMES
+  gEfiMdeModulePkgTokenSpaceGuid.PcdSerialExtendedTxFifoSize      ## CONSUMES
+  gEfiMdeModulePkgTokenSpaceGuid.PcdSerialRegisterStride          ## CONSUMES
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdIdsDebugPrintSerialPort  
+  gEfiMdePkgTokenSpaceGuid.PcdUartDefaultBaudRate
+  
+  
+  

@@ -1,0 +1,83 @@
+#/** @file
+#
+#Copyright (c) 2018, Byosoft Corporation.<BR>
+#All rights reserved.This software and associated documentation (if any)
+#is furnished under a license and may only be used or copied in
+#accordance with the terms of the license. Except as permitted by such
+#license, no part of this software or documentation may be reproduced,
+#stored in a retrieval system, or transmitted in any form or by any
+#means without the express written consent of Byosoft Corporation.
+#
+#File Name:
+#  Scm.inf
+#
+#Abstract:
+#  System configuration manager.
+#    current for Unit test under simics.
+#    but this file can be used for remote Sct.
+#
+#Revision History:
+#
+#TIME:       2018-7-26
+#$AUTHOR:    Phinux Qin
+#$REVIEWERS:
+#$SCOPE:     All Byosoft IA32/X64 Platforms
+#$TECHNICAL:
+#
+#
+#
+#--*/
+
+[Defines]
+  INF_VERSION         = 0x00010005
+  BASE_NAME           = ScHii
+  FILE_GUID           = 95147FC8-1BDB-41D8-A031-DD45CEAA8F30
+  MODULE_TYPE         = DXE_DRIVER
+  VERSION_STRING      = 1.0
+  ENTRY_POINT         = ScHiiEntry
+
+  
+[Sources]
+  ScHii.c
+
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  ByoModulePkg/ByoModulePkg.dec
+  
+  
+[LibraryClasses]
+  BaseLib
+  BaseMemoryLib
+  MemoryAllocationLib
+  UefiLib
+  UefiBootServicesTableLib
+  UefiRuntimeServicesTableLib
+  UefiHiiServicesLib
+  UefiDriverEntryPoint
+  DebugLib
+  PrintLib
+  DxeServicesLib
+  HiiLib
+  ByoCommLib
+  
+
+[Protocols]
+  gEfiHiiDatabaseProtocolGuid
+  gPlatCollectHiiResourceHookGuid
+
+  
+[Guids]
+  gByoScVarGuid
+
+  
+[Depex]
+  TRUE
+
+
+
+
+
+
+

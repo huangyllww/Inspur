@@ -1,0 +1,16 @@
+/=#
+
+#langdef   en-US "English"
+
+#string STR_POST_TEXT_MESSAGE          #language en-US  "\n\n"
+                                                        "Product Name: SR558H\n"
+                                                        "BIOS Version: %s %s\n"														
+                                                        "BMC IP Address: %s\n"
+                                                        "BMC Version: %s\n"
+                                                        "%s\n"
+                                                        "System Memory Detected: %d GB\n"
+                                                        "HD Model: %a size: %d.%d GB\n"
+                                     
+                                                         
+#string STR_POST_TEXT_MESSAGE2         #language en-US  "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n" 
+                                                        "Press Del to enter System Setup, F11 to enter Boot Menu, F12 to boot PXE"  

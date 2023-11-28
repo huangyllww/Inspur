@@ -1,0 +1,89 @@
+## @file
+#
+# Copyright (c) 2006 - 2020, Byosoft Corporation.<BR>
+# All rights reserved.This software and associated documentation (if any)
+# is furnished under a license and may only be used or copied in
+# accordance with the terms of the license. Except as permitted by such
+# license, no part of this software or documentation may be reproduced,
+# stored in a retrieval system, or transmitted in any form or by any
+# means without the express written consent of Byosoft Corporation.
+#
+# File Name:
+#  SystemPassword2.inf
+#
+# Abstract:
+#  Implementation of basic setup password function.
+#
+# Revision History:
+#
+#
+#--*/
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = HddBindDxe
+  FILE_GUID                      = EB2278F0-06C3-48b7-A03D-8866AE61B723
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = HddBindDxeInit
+
+
+[Sources]
+  HddBindDxe.c
+  HddBindDxeUni.uni
+  HddBindDxeVfr.vfr
+  
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  ByoModulePkg/ByoModulePkg.dec
+  IntelFrameworkPkg/IntelFrameworkPkg.dec
+  PlatformPkg/PlatformPkg.dec
+
+[LibraryClasses]
+  BaseLib
+  MemoryAllocationLib
+  UefiBootServicesTableLib
+  UefiDriverEntryPoint
+  UefiHiiServicesLib
+  UefiRuntimeServicesTableLib
+  BaseMemoryLib
+  DebugLib
+  HiiLib
+  PrintLib
+  PcdLib
+  IoLib
+  UefiLib
+  ByoCommLib
+  SetupUiLib
+  LegacyBootOptionalDataLib
+
+[Guids]
+  gByoHddBindFormsetGuid
+  gEfiSetupEnterGuid
+  gEfiIfrTianoGuid
+  gPlatformSetupVariableGuid
+
+[Protocols]
+  gByoDiskInfoProtocolGuid
+  gEfiHiiConfigAccessProtocolGuid
+  gByoBmBootHookProtocolGuid
+  gEfiLegacyBiosProtocolGuid
+  gEfiPciIoProtocolGuid
+  gPlatAfterConsoleEndProtocolGuid
+  gByoAfterRefreshBbsHookProtocolGuid
+  gUefiBbsRelationProtocolGuid
+  gEfiSimpleFileSystemProtocolGuid
+  gUefiBbsRelationProtocolGuid
+
+[Pcd]
+  gEfiByoModulePkgTokenSpaceGuid.PcdAhciOrPortNameIndexBase0
+  gEfiByoModulePkgTokenSpaceGuid.PcdIsPlatformCmosBad
+  gEfiByoModulePkgTokenSpaceGuid.PcdFceLoadDefault
+
+
+[Depex]
+  TRUE
+  
+  

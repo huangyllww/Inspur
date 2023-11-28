@@ -1,0 +1,17 @@
+
+INF AmdCpmPkg/Features/I2cMaster/Pei/AmdI2cMasterPei.inf
+INF AmdCpmPkg/Kernel/Pei/AmdCpmInitPeim.inf
+INF AmdCpmPkg/Features/BoardId/Pei/AmdBoardIdPei.inf
+INF AmdCpmPkg/Features/GpioInit/Pei/AmdCpmGpioInitPeim.inf
+INF AmdCpmPkg/Features/PcieInit/Pei/AmdCpmPcieInitPeim.inf
+INF AmdCpmPkg/Features/SataTxEq/Pei/SataTxEqPei.inf
+INF AmdCpmPkg/Devices/Ds125Br401a/Pei/Ds125Br401aPei.inf
+INF AmdCpmPkg/Devices/M24LC128/Pei/M24Lc128Pei.inf
+INF AmdCpmPkg/Devices/Pca9535a/Pei/Pca9535aPei.inf
+INF AmdCpmPkg/Devices/Pca9545a/Pei/Pca9545aPei.inf
+INF AmdCpmPkg/Devices/Sff8472/Pei/Sff8472Pei.inf
+INF AmdCpmPkg/Addendum/Oem/Hygon35N16For24D/Pei/HygonCpmOemInitPei35N16/HygonCpmOemInitPeim35N16.inf
+INF AmdCpmPkg/Addendum/Oem/Hygon35N16For24D/Pei/HygonCpmOemInitPei35N16SL1r2/HygonCpmOemInitPeim35N16SL1r2.inf
+INF AmdCpmPkg/Addendum/Oem/Hygon35N16For24D/Pei/HygonSataWorkaround/HygonSataWorkaround.inf
+
+

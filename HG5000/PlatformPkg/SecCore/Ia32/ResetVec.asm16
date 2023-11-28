@@ -1,0 +1,54 @@
+;
+;      NOTICE: Copyright (c) 2006 - 2020 Byosoft Corporation. All rights reserved.
+;              This program and associated documentation (if any) is furnished
+;              under a license. Except as permitted by such license,no part of this
+;              program or documentation may be reproduced, stored divulged or used
+;              in a public system, or transmitted in any form or by any means
+;              without the express written consent of Byosoft Corporation.
+;
+;
+; Module Name:
+;
+;  ResetVec.asm16
+;
+; Abstract:
+;
+;  Reset Vector Data structure
+;
+;------------------------------------------------------------------------------
+
+    .model  tiny
+    .686p
+    .stack  0h
+    .code
+
+
+THIS_BINARY_BASE equ 0FFFFFFE0h
+
+    org     (0FFFFFFE0h - THIS_BINARY_BASE) 
+PeiCoreEntryPoint        dd      12345678h
+
+
+    org     (0FFFFFFF0h - THIS_BINARY_BASE) 
+    nop
+    nop
+    DB      0e9h
+    DW      -3
+
+		org     (0FFFFFFF8h - THIS_BINARY_BASE)
+; This will be fixed up by some build tool,
+; so if the value 1..8 appears in the final FD image,
+; tool failure occurs
+ApSegAddress   					 dd      12345678h
+
+		org     (0FFFFFFFCh - THIS_BINARY_BASE)
+; This will be fixed up by some build tool,
+; so if the value 1..8 appears in the final FD image,
+; tool failure occurs.
+BfvBase     						DD      12345678h
+
+;
+; Nothing can go here, otherwise the layout of this file would change.
+;
+
+    END

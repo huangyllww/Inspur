@@ -1,0 +1,62 @@
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = DisplayTextModeLib
+  FILE_GUID                      = CC087BA5-C97C-4E37-8ABB-FED7142D3ED8
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = DisplayTextModeLib
+  PI_SPECIFICATION_VERSION       = 0x0001000A
+  CONSTRUCTOR                    = DisplayTextModeConstructor
+
+#
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           = IA32 X64
+#
+
+[Sources]
+  DisplayTextModeLib.c
+  Strings.uni
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  PlatformPkg/PlatformPkg.dec
+  ByoModulePkg/ByoModulePkg.dec 
+  ServerCommonPkg/ServerCommonPkg.dec
+
+[LibraryClasses]
+  BaseLib
+  MemoryAllocationLib
+  UefiBootServicesTableLib
+  UefiRuntimeServicesTableLib
+  BaseMemoryLib
+  DebugLib
+  PcdLib
+  PrintLib
+  UefiLib
+  HobLib
+  DxeServicesLib
+  HiiLib
+  IpmiBaseLib
+  PlatformCommLib
+  PlatformLanguageLib
+  ByoCommLib
+  ByoUefiBootManagerLib
+  PcdLib
+
+[Protocols]
+  gEfiUsbIoProtocolGuid
+  gEfiIpmiTransportProtocolGuid
+  gEfiSmbiosProtocolGuid
+  gEfiDiskInfoProtocolGuid
+  gEfiBlockIoProtocolGuid 
+  gByoBdsWaitHookProtocolGuid
+  gByoIpmiInterfaceProtocolGuid
+  gPlatHostInfoProtocolGuid
+  gByoDiskInfoProtocolGuid
+  gEfiSimpleFileSystemProtocolGuid
+[Pcd]
+ gEfiByoModulePkgTokenSpaceGuid.PcdLegacyBiosSupport
+ gEfiByoModulePkgTokenSpaceGuid.IsByoDesc
+

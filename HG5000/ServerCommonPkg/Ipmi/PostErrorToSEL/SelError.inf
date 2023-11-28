@@ -1,0 +1,69 @@
+## @file
+#
+#Copyright (c) 2006 - 2016, Byosoft Corporation.<BR>
+#All rights reserved.This software and associated documentation (if any)
+#is furnished under a license and may only be used or copied in
+#accordance with the terms of the license. Except as permitted by such
+#license, no part of this software or documentation may be reproduced,
+#stored in a retrieval system, or transmitted in any form or by any
+#means without the express written consent of Byosoft Corporation.
+#
+#File Name:
+#  GenericIpmi.inf
+#
+#Abstract:
+#
+#Revision History:
+#
+##
+
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = PostErrorToSel
+  FILE_GUID                      = BA1BD19A-9C8A-44d1-A084-AED58AB09B78
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = PostErrorToSelEntry
+
+#
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           = IA32 X64
+#
+
+[Sources]
+  SelError.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  IntelFrameworkPkg/IntelFrameworkPkg.dec
+  IntelFrameworkModulePkg/IntelFrameworkModulePkg.dec
+  ByoModulePkg/ByoModulePkg.dec 
+  ServerCommonPkg/ServerCommonPkg.dec
+
+[Protocols]
+  gByoIpmiInterfaceProtocolGuid           ## CONSUMES
+  gEfiGenericElogProtocolGuid             ## CONSUMES
+  gEfiDataHubProtocolGuid
+  
+
+[LibraryClasses]
+  UefiDriverEntryPoint
+  BaseLib
+  UefiBootServicesTableLib
+  UefiRuntimeServicesTableLib
+  DebugLib
+  UefiLib
+  EfiServerManagementLib
+  PostErrorTableLib
+
+[Guids]
+  gEfiGlobalVariableGuid
+  gEfiSetupEnterGuid
+  gEfiStatusCodeDataTypeStringGuid
+  gEfiDataHubStatusCodeRecordGuid
+
+[Depex]
+ gByoIpmiInterfaceProtocolGuid AND
+ gEfiGenericElogProtocolGuid

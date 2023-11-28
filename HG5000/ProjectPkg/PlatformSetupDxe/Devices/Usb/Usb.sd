@@ -1,0 +1,55 @@
+/** @file
+
+Copyright (c) 2006 - 2020, Byosoft Corporation.<BR>
+All rights reserved.This software and associated documentation (if any)
+is furnished under a license and may only be used or copied in
+accordance with the terms of the license. Except as permitted by such
+license, no part of this software or documentation may be reproduced,
+stored in a retrieval system, or transmitted in any form or by any
+means without the express written consent of Byosoft Corporation.
+
+File Name:
+   UsbSetup.sd
+
+Abstract:
+   USB setting.
+
+Revision History:
+
+$END--------------------------------------------------------------------
+
+**/
+
+#ifdef ADVANCED_FORM_SET
+
+    #ifdef FORM_SET_GOTO
+    goto USB_PORT_FORM_ID,
+      prompt = STRING_TOKEN(STR_USB_FORM),
+      help = STRING_TOKEN(STR_USB_FORM_HELP);
+    #endif
+
+    #ifdef FORM_SET_FORM
+    form formid = USB_PORT_FORM_ID,
+    title = STRING_TOKEN(STR_USB_FORM);
+
+      goto USB_FORM_ID,
+          prompt = STRING_TOKEN(STR_USB_PORT_FORM),
+          help   = STRING_TOKEN(STR_USB_PORT_FORM);
+	  
+      LOGIN_TYPE_ADMIN;
+        oneof varid     = SETUP_DATA.UsbMassSupport,
+            prompt      = STRING_TOKEN(STR_USB_MASS_SUPPORT),
+            help        = STRING_TOKEN(STR_USB_MASS_SUPPORT_HELP),
+            option text = STRING_TOKEN(STR_ENABLED),  value = 1, flags = RESET_REQUIRED | MANUFACTURING | DEFAULT;
+            option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+        endoneof;     
+       END_LOGIN_TYPE;
+    
+      subtitle text = STRING_TOKEN(STR_EMPTY);    
+      subtitle text = STRING_TOKEN(STR_USB_DEVICE_LIST);    
+      label USB_DEV_LIST_LABEL;
+      label USB_DEV_LIST_LABEL_END;        
+        
+    endform;
+    #endif
+#endif

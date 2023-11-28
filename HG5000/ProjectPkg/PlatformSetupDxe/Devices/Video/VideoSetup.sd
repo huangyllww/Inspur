@@ -1,0 +1,64 @@
+/** @file
+
+Copyright (c) 2006 - 2020, Byosoft Corporation.<BR>
+All rights reserved.This software and associated documentation (if any)
+is furnished under a license and may only be used or copied in
+accordance with the terms of the license. Except as permitted by such
+license, no part of this software or documentation may be reproduced,
+stored in a retrieval system, or transmitted in any form or by any
+means without the express written consent of Byosoft Corporation.
+
+File Name:
+   VideoSetup.sd
+
+Abstract:
+   Video devices setting.
+
+Revision History:
+
+$END--------------------------------------------------------------------
+
+**/
+
+  #ifdef ADVANCED_FORM_SET
+  #ifdef FORM_SET_GOTO
+      goto VIDEO_FORM_ID,
+        prompt = STRING_TOKEN(STR_VIDEO_FORM),
+        help = STRING_TOKEN(STR_VIDEO_FORM_HELP);
+  #endif
+
+  #ifdef FORM_SET_FORM
+
+    form formid = VIDEO_FORM_ID,
+    title = STRING_TOKEN(STR_VIDEO_FORM);
+    LOGIN_TYPE_ADMIN;
+
+      subtitle text = STRING_TOKEN(STR_COM_EMPTY);
+      
+      grayoutif TKN_IGD_NOT_PHYSICAL_PRESENT;
+        oneof varid   = SETUP_DATA.VideoPrimaryAdapter,
+          prompt      = STRING_TOKEN(STR_VIDEO_PRIMARY_ADAPTER),
+          help        = STRING_TOKEN(STR_VIDEO_PRIMARY_ADAPTER_HELP),
+          option text = STRING_TOKEN(STR_VIDEO_PRIMARY_PCIE), value = 0, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_VIDEO_PRIMARY_IGD), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+        endoneof;
+      endif;  
+
+      subtitle text = STRING_TOKEN(STR_COM_EMPTY);      
+      
+      text
+        help   = STRING_TOKEN(STR_COM_EMPTY),
+        text   = STRING_TOKEN(STR_IGD),
+        text   = STRING_TOKEN(STR_IGD_NAME);      
+        
+      text
+        help   = STRING_TOKEN(STR_COM_EMPTY),
+        text   = STRING_TOKEN(STR_ADDON_GFX),
+        text   = STRING_TOKEN(STR_ADDON_GFX_NAME);  
+        
+      END_LOGIN_TYPE;
+    endform;
+
+  #endif  //end, FORM_SET_FORM
+#endif  //end, DEVICES_FORM_SET
+

@@ -1,0 +1,33 @@
+// ------------------------------------------------------------------------------
+// Copyright 2016-2020 Chengdu Haiguang IC Design Co., Ltd. All rights reserved.
+//
+// PSP FW Delivery Release Notes
+// 
+// Lastest Version: 1.1.32.0
+// Files:
+//   AgesaBootloader0_prod_Mcm_DN.esbin     - PSP Entry: 0x30
+//   AgesaBootloader1_prod_Mcm_DN.esbin     - PSP Entry: 0x31
+//   AgesaBootloader2_prod_Mcm_DN.esbin     - PSP Entry: 0x32
+//   AgesaBootloader3_prod_Mcm_DN.esbin     - PSP Entry: 0x33
+//   AgesaBootloader4_prod_Mcm_DN.esbin     - PSP Entry: 0x34
+//   AgesaBootloader5_prod_Mcm_DN.esbin     - PSP Entry: 0x35
+//   AgesaBootloader6_prod_Mcm_DN.esbin     - PSP Entry: 0x36
+//-------------------------------------------------------------------------------
+
+Features and fixes in 1.1.33.0 (2020/10/26):
+PRODUCT-1034: Add xGMI TxEQ Support For different SocGen/PKG.
+
+Features and fixes in 1.1.32.0 (2020/08/15):
+PRODUCT-856: default switch to eeprom page 0 when start to read dimm spd info [to fix] read page 1 twice after warmreset
+
+Features and fixes in 1.1.31.0 (2020/07/03):
+-: Update Version Format
+
+Features and fixes in 0x20052217 (2020/05/22):
+PS-998: Fix S3 Restore Failed
+
+Features and fixes in 0x20032310 (2020/03/23):
+PRODUCT-502: Add PCI Bus Number assign as user's define
+
+Features and fixes in 0x20031801 (2020/03/18):
+-: Add Support for APCB Mapping

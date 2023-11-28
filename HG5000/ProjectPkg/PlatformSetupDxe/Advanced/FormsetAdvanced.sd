@@ -1,0 +1,1024 @@
+
+
+  #ifdef ADVANCED_FORM_SET
+
+    #ifdef FORM_SET_ITEM
+
+
+    #endif
+  
+    #ifdef FORM_SET_GOTO
+
+/*
+      goto BIOS_POWERON_FORM_ID,
+          prompt = STRING_TOKEN(STR_BIOS_POWERON),
+          help   = STRING_TOKEN(STR_BIOS_POWERON_HELP);
+
+
+      goto SATA_FORM_ID,
+          prompt = STRING_TOKEN(STR_SATA_FORM),
+          help   = STRING_TOKEN(STR_SATA_FORM);
+          
+      goto USB_FORM_ID,
+          prompt = STRING_TOKEN(STR_USB_FORM),
+          help   = STRING_TOKEN(STR_USB_FORM);
+*/                   
+               
+    #endif
+
+    #ifdef FORM_SET_FORM
+  form formid = ADVANCE_MISC_FORM_ID,
+    title = STRING_TOKEN(STR_ADVANCE_MISC_CONFIG);
+ LOGIN_TYPE_ADMIN;
+
+      #if BC_TENCENT
+      oneof varid   = SETUP_DATA.UmaAbove4G,
+        prompt      = STRING_TOKEN(STR_ABOVE4GB),
+        help        = STRING_TOKEN(STR_ABOVE4GB_HELP),
+        option text = STRING_TOKEN(STR_ENABLED),  value=1, flags= DEFAULT | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_DISABLED), value=0, flags= RESET_REQUIRED;
+      endoneof;
+      suppressif TRUE;
+      oneof varid   = SETUP_DATA.Pci64Limit,
+        prompt      = STRING_TOKEN(STR_ABOVE4GB_LIMIT),
+        help        = STRING_TOKEN(STR_ABOVE4GB_LIMIT_HELP),
+        option text = STRING_TOKEN(STR_64T), value=0, flags= RESET_REQUIRED | DEFAULT;
+        option text = STRING_TOKEN(STR_32T), value=1, flags= RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_16T), value=2, flags= RESET_REQUIRED;
+      endoneof; 
+      endif;
+      #else
+      suppressif ideqval SETUP_VOLATILE_DATA.AdvanceControl == 0;
+      oneof varid   = SETUP_DATA.UmaAbove4G,
+        prompt      = STRING_TOKEN(STR_ABOVE4GB),
+        help        = STRING_TOKEN(STR_ABOVE4GB_HELP),
+        option text = STRING_TOKEN(STR_ENABLED),  value=1, flags= DEFAULT | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_DISABLED), value=0, flags= RESET_REQUIRED;
+      endoneof;
+      oneof varid   = SETUP_DATA.Pci64Limit,
+        prompt      = STRING_TOKEN(STR_ABOVE4GB_LIMIT),
+        help        = STRING_TOKEN(STR_ABOVE4GB_LIMIT_HELP),
+        option text = STRING_TOKEN(STR_64T), value=0, flags= RESET_REQUIRED | DEFAULT;
+        option text = STRING_TOKEN(STR_32T), value=1, flags= RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_16T), value=2, flags= RESET_REQUIRED;
+      endoneof; 
+      oneof varid   = SETUP_DATA.HideBrandLogo,
+        prompt      = STRING_TOKEN(STR_HIDE_BRAND_LOGO),
+        help        = STRING_TOKEN(STR_HIDE_BRAND_LOGO_HELP),
+        option text = STRING_TOKEN(STR_ENABLED),  value=1, flags= RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_DISABLED), value=0, flags= DEFAULT | RESET_REQUIRED;
+      endoneof;
+      endif;
+      #endif	
+      
+
+      oneof varid   = SETUP_DATA.BIOSLock,
+        prompt      = STRING_TOKEN(STR_BIOS_LOCK),
+        help        = STRING_TOKEN(STR_BIOS_LOCK_HELP),
+        option text = STRING_TOKEN(STR_ENABLED),  value=1, flags=  RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_DISABLED), value=0, flags= DEFAULT |RESET_REQUIRED;
+      endoneof;
+
+      oneof varid   = SETUP_DATA.PcieMaxPayloadSize,
+        prompt      = STRING_TOKEN(STR_PCIESLOT_MAXPAYLOAD),
+        help        = STRING_TOKEN(STR_PCIESLOT_MAXPAYLOAD_HELP),
+        option text = STRING_TOKEN(STR_AUTO),  value=PCIE_MAX_PAYLOAD_AUTO, flags= RESET_REQUIRED | DEFAULT;
+        option text = STRING_TOKEN(STR_MP128), value=PCIE_MAX_PAYLOAD_128,  flags= RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_MP256), value=PCIE_MAX_PAYLOAD_256,  flags= RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_MP512), value=PCIE_MAX_PAYLOAD_512,  flags= RESET_REQUIRED;        
+      endoneof; 
+      
+     #if BC_TENCENT
+      oneof varid   = SETUP_DATA.PcieAspm,
+        prompt      = STRING_TOKEN(STR_PCIESLOT_ASPM),
+        help        = STRING_TOKEN(STR_PCIESLOT_ASPM_HELP),
+        option text = STRING_TOKEN(STR_DISABLED), value=PCIE_ASPM_DISABLE, flags= RESET_REQUIRED | DEFAULT;
+        //option text = STRING_TOKEN(STR_L0S),      value=PCIE_ASPM_L0S,     flags= RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_L1),       value=PCIE_ASPM_L1,      flags= RESET_REQUIRED;
+        //option text = STRING_TOKEN(STR_L0SL1),    value=PCIE_ASPM_L0SL1 ,  flags= RESET_REQUIRED;        
+      endoneof; 
+      #endif
+
+      oneof varid   = SETUP_DATA.AesSupport,
+        prompt      = STRING_TOKEN(STR_AES_SUPPORT),
+        help        = STRING_TOKEN(STR_AES_SUPPORT_HELP),
+        #if BC_TENCENT
+        option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = DEFAULT | MANUFACTURING |RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_DISABLED),  value = 0, flags = RESET_REQUIRED;
+        #else
+        option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_DISABLED),  value = 0, flags = DEFAULT | MANUFACTURING |RESET_REQUIRED;
+        #endif
+      endoneof;
+    
+      oneof varid   = SETUP_DATA.AmdSmtMode,
+        prompt      = STRING_TOKEN(STR_HYPER_THREAD),
+        help        = STRING_TOKEN(STR_HYPER_THREAD_HELP),
+        option text = STRING_TOKEN(STR_ENABLED),  value=1, flags= DEFAULT | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_DISABLED), value=0, flags= RESET_REQUIRED;
+      endoneof;
+
+      oneof varid   = SETUP_DATA.PerfMode,
+        prompt      = STRING_TOKEN(STR_PERF_MODE),
+        help        = STRING_TOKEN(STR_PERF_MODE_HELP),
+        option text = STRING_TOKEN(STR_PERF_MODE_OEM),  value=0, flags= RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_PERF_MODE_HIGH), value=1, flags= DEFAULT | RESET_REQUIRED;
+      endoneof;
+ 
+      grayoutif ideqval SETUP_DATA.PerfMode == 1;
+        oneof varid   = SETUP_DATA.AMDPstate,
+          prompt      = STRING_TOKEN(STR_P_STATE),
+          help        = STRING_TOKEN(STR_P_STATE_HELP),
+          option text = STRING_TOKEN(STR_P0P1P2), value=0, flags= RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_P0P1),   value=1, flags= RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_P0),     value=2, flags= DEFAULT | RESET_REQUIRED;  
+        endoneof; 
+
+        oneof varid   = SETUP_DATA.AMDCstate,
+          prompt      = STRING_TOKEN(STR_C_STATE),
+          help        = STRING_TOKEN(STR_C_STATE_HELP),
+          option text = STRING_TOKEN(STR_ENABLED),       value=1, flags= RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_DISABLED),      value=0, flags= DEFAULT | RESET_REQUIRED;
+        endoneof;
+      endif;
+
+      suppressif NOT ideqval SETUP_DATA.AMDPstate == 2 
+              OR NOT ideqval SETUP_DATA.PerfMode == 0;
+        oneof varid   = SETUP_DATA.CpuSpeed,
+          prompt      = STRING_TOKEN(STR_CPU_SPEED_SET),
+          help        = STRING_TOKEN(STR_CPU_SPEED_SET_HELP),
+          option text = STRING_TOKEN(STR_SPEED1_VALUE), value=0, flags = RESET_REQUIRED | DEFAULT;
+          option text = STRING_TOKEN(STR_SPEED2_VALUE), value=1, flags = RESET_REQUIRED;
+          option text = STRING_TOKEN(STR_SPEED3_VALUE), value=2, flags = RESET_REQUIRED;
+        endoneof;    
+      endif;  
+	  
+     /* oneof varid   = SETUP_DATA.SriovDis,
+        prompt      = STRING_TOKEN(STR_SR_IOV),
+        help        = STRING_TOKEN(STR_SR_IOV_HELP),
+        option text = STRING_TOKEN(STR_ENABLED),  value=0, flags= DEFAULT | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_DISABLED), value=1, flags= RESET_REQUIRED;
+      endoneof;*/
+
+  /*    suppressif TRUE;
+      oneof varid   = SETUP_DATA.AfterPowerLoss,
+        prompt      = STRING_TOKEN(STR_AFTER_POWER_LOSS),
+        help        = STRING_TOKEN(STR_AFTER_POWER_LOSS_HELP),
+        option text = STRING_TOKEN(STR_OFF),            value = AFTER_POWER_LOSS_OFF,      flags = RESET_REQUIRED | DEFAULT | MANUFACTURING;
+        option text = STRING_TOKEN(STR_ON),             value = AFTER_POWER_LOSS_ON,       flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_PREVIOUS_STATE), value = AFTER_POWER_LOSS_PREVIOUS, flags = RESET_REQUIRED;
+      endoneof;      
+      endif;*/
+/*	  
+      // Core Performance Boost
+      // Disable CPB
+      oneof
+        varid       = SETUP_DATA.CbsCmnCpuCpb,
+        prompt      = STRING_TOKEN (STR_CORE_PERFORMANCE_BOOST),
+        help        = STRING_TOKEN (STR_CORE_PERFORMANCE_BOOST_HELP),
+        option text = STRING_TOKEN (STR_DISABLED),        value = 0,    flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (STR_ENABLED),            value = 1,    flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+      endoneof;
+*/
+
+  END_LOGIN_TYPE;
+
+  endform;    
+  
+  form formid = BIOS_POWERON_FORM_ID,
+    title = STRING_TOKEN(STR_BIOS_POWERON);
+
+    oneof varid   = SETUP_DATA.UserDefSun,
+      prompt      = STRING_TOKEN(STR_SUNDAY),
+      help        = STRING_TOKEN(STR_BIOS_POWERON_EVERYDAY_HELP),
+      option text = STRING_TOKEN(STR_ENABLED),  value = 1, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING;
+    endoneof;
+
+    oneof varid   = SETUP_DATA.UserDefMon,
+      prompt      = STRING_TOKEN(STR_MONDAY),
+      help        = STRING_TOKEN(STR_BIOS_POWERON_EVERYDAY_HELP),
+      option text = STRING_TOKEN(STR_ENABLED),  value = 1, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING;
+    endoneof;
+
+    oneof varid   = SETUP_DATA.UserDefTue,
+      prompt      = STRING_TOKEN(STR_TUESDAY),
+      help        = STRING_TOKEN(STR_BIOS_POWERON_EVERYDAY_HELP),
+      option text = STRING_TOKEN(STR_ENABLED),  value = 1, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING;
+    endoneof;
+
+    oneof varid   = SETUP_DATA.UserDefWed,
+      prompt      = STRING_TOKEN(STR_WEDNESDAY),
+      help        = STRING_TOKEN(STR_BIOS_POWERON_EVERYDAY_HELP),
+      option text = STRING_TOKEN(STR_ENABLED),  value = 1, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING;
+    endoneof;
+
+    oneof varid   = SETUP_DATA.UserDefThu,
+      prompt      = STRING_TOKEN(STR_THURSDAY),
+      help        = STRING_TOKEN(STR_BIOS_POWERON_EVERYDAY_HELP),
+      option text = STRING_TOKEN(STR_ENABLED),  value = 1, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING;
+    endoneof;
+
+    oneof varid   = SETUP_DATA.UserDefFri,
+      prompt      = STRING_TOKEN(STR_FIRDAY),
+      help        = STRING_TOKEN(STR_BIOS_POWERON_EVERYDAY_HELP),
+      option text = STRING_TOKEN(STR_ENABLED),  value = 1, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING;
+    endoneof;
+
+    oneof varid   = SETUP_DATA.UserDefSat,
+      prompt      = STRING_TOKEN(STR_SATURDAY),
+      help        = STRING_TOKEN(STR_BIOS_POWERON_EVERYDAY_HELP),
+      option text = STRING_TOKEN(STR_ENABLED),  value = 1, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED | DEFAULT | MANUFACTURING;
+    endoneof;
+
+    time
+      varid   = SETUP_DATA.RTCWakeupTime,
+      prompt  = STRING_TOKEN(STR_RTC_TIME),
+      help    = STRING_TOKEN(STR_RTC_TIME_HELP),
+      flags   = STORAGE_NORMAL,
+      default = 00:00:00,
+    endtime;
+
+  endform;    
+    
+    
+  form formid = AUTO_ID(ERRMGMT_FORM_ID),
+      title  = STRING_TOKEN (STR_ERRMGMT_FORM);
+
+      LOGIN_TYPE_ADMIN;
+      
+    oneof varid = SETUP_DATA.Pfeh,
+      prompt      = STRING_TOKEN(STR_PLATFORM_FIRST_ERROR_HANDLING),
+      help        = STRING_TOKEN(STR_PLATFORM_FIRST_ERROR_HANDLING_HELP),
+      option text = STRING_TOKEN(STR_ENABLED),  value = 1, flags = DEFAULT | MANUFACTURING |RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED ;
+    endoneof;
+    
+    suppressif ideqval SETUP_DATA.Pfeh == 0;
+      oneof varid = SETUP_DATA.McaErrThreshCount,
+        prompt      = STRING_TOKEN(STR_MCA_ERR_THRESH_COUNT),
+        help        = STRING_TOKEN(STR_MCA_ERR_THRESH_COUNT_HELP),
+        #if BC_TENCENT
+        option text = STRING_TOKEN(STR_0), value = 0, flags = RESET_REQUIRED ;
+        option text = STRING_TOKEN(STR_1), value = 0xFFE, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_5), value = 0xFFA, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_10), value = 0xFF5, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_100), value = 0xF9B, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_1000), value = 0xC17, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_2000), value = 0x82f, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+        #else
+        option text = STRING_TOKEN(STR_0), value = 0, flags = RESET_REQUIRED ;
+        option text = STRING_TOKEN(STR_1), value = 0xFFE, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_5), value = 0xFFA, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_10), value = 0xFF5, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_100), value = 0xF9B, flags = RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_1000), value = 0xC17, flags = RESET_REQUIRED;
+        #endif
+      endoneof;
+    endif;
+    END_LOGIN_TYPE;
+  endform;  // ERRMGMT_FORM_ID  
+
+
+  form formid = AUTO_ID(USB_FORM_ID),
+  title = STRING_TOKEN(STR_USB_FORM);
+  LOGIN_TYPE_ADMIN;
+  
+    oneof varid   = SETUP_DATA.USBRearCtrl,
+//      questionid  = AUTO_ID(KEY_VALUE_ADVANCED_USBCtrl0_VAL),
+      prompt      = STRING_TOKEN(STR_USB_0_FORM),
+      help        = STRING_TOKEN(STR_USB_PORT_HELP),
+//      flags       = INTERACTIVE,
+      option text = STRING_TOKEN(STR_ENABLED),  value=1, flags = DEFAULT | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_DISABLED), value=0, flags = RESET_REQUIRED;
+    endoneof;
+    
+    oneof varid   = SETUP_DATA.USBFronCtrl,
+//      questionid  = AUTO_ID(KEY_VALUE_ADVANCED_USBCtrl1_VAL),
+      prompt      = STRING_TOKEN(STR_USB_1_FORM),
+      help        = STRING_TOKEN(STR_USB_PORT_HELP),
+//      flags       = INTERACTIVE,
+      option text = STRING_TOKEN(STR_ENABLED),  value=1, flags = DEFAULT | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_DISABLED), value=0, flags = RESET_REQUIRED;
+    endoneof;
+    END_LOGIN_TYPE;
+ 
+  suppressif TRUE;
+    goto USB_0_FORM_ID,
+        prompt = STRING_TOKEN(STR_USB_0_FORM),
+        help   = STRING_TOKEN(STR_USB_0_FORM);
+
+    goto USB_1_FORM_ID,
+        prompt = STRING_TOKEN(STR_USB_1_FORM),
+        help   = STRING_TOKEN(STR_USB_1_FORM);
+   endif;
+    /*
+    
+    goto USB_2_FORM_ID,
+        prompt = STRING_TOKEN(STR_USB_2_FORM),
+        help   = STRING_TOKEN(STR_USB_2_FORM);
+    
+    goto USB_3_FORM_ID,
+        prompt = STRING_TOKEN(STR_USB_3_FORM),
+        help   = STRING_TOKEN(STR_USB_3_FORM);
+        */
+  endform;
+  
+  form formid = AUTO_ID(SATA_FORM_ID),
+  title = STRING_TOKEN(STR_SATA_FORM);
+    goto SATA_CONTROL0_FORM_ID,
+        prompt = STRING_TOKEN(STR_SATA_CONTROL1),
+        help   = STRING_TOKEN(STR_SATA_CONTROL1);
+        
+    goto SATA_CONTROL1_FORM_ID,
+        prompt = STRING_TOKEN(STR_SATA_CONTROL2),
+        help   = STRING_TOKEN(STR_SATA_CONTROL2);
+    
+    goto SATA_CONTROL2_FORM_ID,
+        prompt = STRING_TOKEN(STR_SATA_CONTROL3),
+        help   = STRING_TOKEN(STR_SATA_CONTROL3);
+        
+    goto SATA_CONTROL3_FORM_ID,
+        prompt = STRING_TOKEN(STR_SATA_CONTROL4),
+        help   = STRING_TOKEN(STR_SATA_CONTROL4);
+            
+  endform;
+
+  form formid = AUTO_ID(SATA_CONTROL0_FORM_ID),
+  title = STRING_TOKEN(STR_SATA_CONTROL1);
+    subtitle text = STRING_TOKEN(STR_SATA_PORT);
+
+    oneof varid   = SETUP_DATA.SATAPort[0],
+      prompt      = STRING_TOKEN(STR_SATA_PORT0),
+      help        = STRING_TOKEN(STR_SATA_PORT_HELP),
+      option text = STRING_TOKEN(STR_ENABLED), value=1,  flags= DEFAULT | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_DISABLED), value=0, flags= RESET_REQUIRED;
+    endoneof;
+
+    oneof varid   = SETUP_DATA.SATAPortSpeed[0],
+      prompt      = STRING_TOKEN(STR_SATA_PORT0_SPEED),
+      help        = STRING_TOKEN(STR_SATA_PORT_SPEED_HELP),
+      option text = STRING_TOKEN(STR_GENMAX), value=0,  flags= DEFAULT | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_GEN1), value=1,  flags= RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_GEN2), value=2,  flags= RESET_REQUIRED;
+    endoneof;
+
+    oneof varid   = SETUP_DATA.SATAPort[1],
+      prompt      = STRING_TOKEN(STR_SATA_PORT1),
+      help        = STRING_TOKEN(STR_SATA_PORT_HELP),
+      option text = STRING_TOKEN(STR_ENABLED), value=1,  flags= DEFAULT | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_DISABLED), value=0, flags= RESET_REQUIRED;
+    endoneof;
+
+    oneof varid   = SETUP_DATA.SATAPortSpeed[1],
+      prompt      = STRING_TOKEN(STR_SATA_PORT1_SPEED),
+      help        = STRING_TOKEN(STR_SATA_PORT_SPEED_HELP),
+      option text = STRING_TOKEN(STR_GENMAX), value=0,  flags= DEFAULT | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_GEN1), value=1,  flags= RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_GEN2), value=2,  flags= RESET_REQUIRED;
+    endoneof;
+
+    oneof varid   = SETUP_DATA.SATAPort[2],
+      prompt      = STRING_TOKEN(STR_SATA_PORT2),
+      help        = STRING_TOKEN(STR_SATA_PORT_HELP),
+      option text = STRING_TOKEN(STR_ENABLED), value=1,  flags= DEFAULT | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_DISABLED), value=0, flags= RESET_REQUIRED;
+    endoneof;
+
+    oneof varid   = SETUP_DATA.SATAPortSpeed[2],
+      prompt      = STRING_TOKEN(STR_SATA_PORT2_SPEED),
+      help        = STRING_TOKEN(STR_SATA_PORT_SPEED_HELP),
+      option text = STRING_TOKEN(STR_GENMAX), value=0,  flags= DEFAULT | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_GEN1), value=1,  flags= RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_GEN2), value=2,  flags= RESET_REQUIRED;
+    endoneof;
+
+    oneof varid   = SETUP_DATA.SATAPort[3],
+      prompt      = STRING_TOKEN(STR_SATA_PORT3),
+      help        = STRING_TOKEN(STR_SATA_PORT_HELP),
+      option text = STRING_TOKEN(STR_ENABLED), value=1,  flags= DEFAULT | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_DISABLED), value=0, flags= RESET_REQUIRED;
+    endoneof;
+
+    oneof varid   = SETUP_DATA.SATAPortSpeed[3],
+      prompt      = STRING_TOKEN(STR_SATA_PORT3_SPEED),
+      help        = STRING_TOKEN(STR_SATA_PORT_SPEED_HELP),
+      option text = STRING_TOKEN(STR_GENMAX), value=0,  flags= DEFAULT | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_GEN1), value=1,  flags= RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_GEN2), value=2,  flags= RESET_REQUIRED;
+    endoneof;
+
+    oneof varid   = SETUP_DATA.SATAPort[4],
+      prompt      = STRING_TOKEN(STR_SATA_PORT4),
+      help        = STRING_TOKEN(STR_SATA_PORT_HELP),
+      option text = STRING_TOKEN(STR_ENABLED), value=1,  flags= DEFAULT | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_DISABLED), value=0, flags= RESET_REQUIRED;
+    endoneof;
+
+    oneof varid   = SETUP_DATA.SATAPortSpeed[4],
+      prompt      = STRING_TOKEN(STR_SATA_PORT4_SPEED),
+      help        = STRING_TOKEN(STR_SATA_PORT_SPEED_HELP),
+      option text = STRING_TOKEN(STR_GENMAX), value=0,  flags= DEFAULT | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_GEN1), value=1,  flags= RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_GEN2), value=2,  flags= RESET_REQUIRED;
+    endoneof;
+
+    oneof varid   = SETUP_DATA.SATAPort[5],
+      prompt      = STRING_TOKEN(STR_SATA_PORT5),
+      help        = STRING_TOKEN(STR_SATA_PORT_HELP),
+      option text = STRING_TOKEN(STR_ENABLED), value=1,  flags= DEFAULT | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_DISABLED), value=0, flags= RESET_REQUIRED;
+    endoneof;
+
+    oneof varid   = SETUP_DATA.SATAPortSpeed[5],
+      prompt      = STRING_TOKEN(STR_SATA_PORT5_SPEED),
+      help        = STRING_TOKEN(STR_SATA_PORT_SPEED_HELP),
+      option text = STRING_TOKEN(STR_GENMAX), value=0,  flags= DEFAULT | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_GEN1), value=1,  flags= RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_GEN2), value=2,  flags= RESET_REQUIRED;
+    endoneof;
+
+    oneof varid   = SETUP_DATA.SATAPort[6],
+      prompt      = STRING_TOKEN(STR_SATA_PORT6),
+      help        = STRING_TOKEN(STR_SATA_PORT_HELP),
+      option text = STRING_TOKEN(STR_ENABLED), value=1,  flags= DEFAULT | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_DISABLED), value=0, flags= RESET_REQUIRED;
+    endoneof;
+
+    oneof varid   = SETUP_DATA.SATAPortSpeed[6],
+      prompt      = STRING_TOKEN(STR_SATA_PORT6_SPEED),
+      help        = STRING_TOKEN(STR_SATA_PORT_SPEED_HELP),
+      option text = STRING_TOKEN(STR_GENMAX), value=0,  flags= DEFAULT | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_GEN1), value=1,  flags= RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_GEN2), value=2,  flags= RESET_REQUIRED;
+    endoneof;
+
+    oneof varid   = SETUP_DATA.SATAPort[7],
+      prompt      = STRING_TOKEN(STR_SATA_PORT7),
+      help        = STRING_TOKEN(STR_SATA_PORT_HELP),
+      option text = STRING_TOKEN(STR_ENABLED), value=1,  flags= DEFAULT | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_DISABLED), value=0, flags= RESET_REQUIRED;
+    endoneof;
+
+    oneof varid   = SETUP_DATA.SATAPortSpeed[7],
+      prompt      = STRING_TOKEN(STR_SATA_PORT7_SPEED),
+      help        = STRING_TOKEN(STR_SATA_PORT_SPEED_HELP),
+      option text = STRING_TOKEN(STR_GENMAX), value=0,  flags= DEFAULT | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_GEN1), value=1,  flags= RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_GEN2), value=2,  flags= RESET_REQUIRED;
+    endoneof;
+  endform;
+
+  form formid = AUTO_ID(SATA_CONTROL1_FORM_ID),
+  title = STRING_TOKEN(STR_SATA_CONTROL2);
+    subtitle text = STRING_TOKEN(STR_SATA_PORT);
+
+    oneof varid   = SETUP_DATA.SATAPort[8],
+      prompt      = STRING_TOKEN(STR_SATA_PORT0),
+      help        = STRING_TOKEN(STR_SATA_PORT_HELP),
+      option text = STRING_TOKEN(STR_ENABLED), value=1,  flags= DEFAULT | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_DISABLED), value=0, flags= RESET_REQUIRED;
+    endoneof;
+
+    oneof varid   = SETUP_DATA.SATAPortSpeed[8],
+      prompt      = STRING_TOKEN(STR_SATA_PORT0_SPEED),
+      help        = STRING_TOKEN(STR_SATA_PORT_SPEED_HELP),
+      option text = STRING_TOKEN(STR_GENMAX), value=0,  flags= DEFAULT | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_GEN1), value=1,  flags= RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_GEN2), value=2,  flags= RESET_REQUIRED;
+    endoneof;
+
+    oneof varid   = SETUP_DATA.SATAPort[9],
+      prompt      = STRING_TOKEN(STR_SATA_PORT1),
+      help        = STRING_TOKEN(STR_SATA_PORT_HELP),
+      option text = STRING_TOKEN(STR_ENABLED), value=1,  flags= DEFAULT | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_DISABLED), value=0, flags= RESET_REQUIRED;
+    endoneof;
+
+    oneof varid   = SETUP_DATA.SATAPortSpeed[9],
+      prompt      = STRING_TOKEN(STR_SATA_PORT1_SPEED),
+      help        = STRING_TOKEN(STR_SATA_PORT_SPEED_HELP),
+      option text = STRING_TOKEN(STR_GENMAX), value=0,  flags= DEFAULT | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_GEN1), value=1,  flags= RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_GEN2), value=2,  flags= RESET_REQUIRED;
+    endoneof;
+
+    oneof varid   = SETUP_DATA.SATAPort[10],
+      prompt      = STRING_TOKEN(STR_SATA_PORT2),
+      help        = STRING_TOKEN(STR_SATA_PORT_HELP),
+      option text = STRING_TOKEN(STR_ENABLED), value=1,  flags= DEFAULT | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_DISABLED), value=0, flags= RESET_REQUIRED;
+    endoneof;
+
+    oneof varid   = SETUP_DATA.SATAPortSpeed[10],
+      prompt      = STRING_TOKEN(STR_SATA_PORT2_SPEED),
+      help        = STRING_TOKEN(STR_SATA_PORT_SPEED_HELP),
+      option text = STRING_TOKEN(STR_GENMAX), value=0,  flags= DEFAULT | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_GEN1), value=1,  flags= RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_GEN2), value=2,  flags= RESET_REQUIRED;
+    endoneof;
+
+    oneof varid   = SETUP_DATA.SATAPort[11],
+      prompt      = STRING_TOKEN(STR_SATA_PORT3),
+      help        = STRING_TOKEN(STR_SATA_PORT_HELP),
+      option text = STRING_TOKEN(STR_ENABLED), value=1,  flags= DEFAULT | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_DISABLED), value=0, flags= RESET_REQUIRED;
+    endoneof;
+
+    oneof varid   = SETUP_DATA.SATAPortSpeed[11],
+      prompt      = STRING_TOKEN(STR_SATA_PORT3_SPEED),
+      help        = STRING_TOKEN(STR_SATA_PORT_SPEED_HELP),
+      option text = STRING_TOKEN(STR_GENMAX), value=0,  flags= DEFAULT | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_GEN1), value=1,  flags= RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_GEN2), value=2,  flags= RESET_REQUIRED;
+    endoneof;
+
+    oneof varid   = SETUP_DATA.SATAPort[12],
+      prompt      = STRING_TOKEN(STR_SATA_PORT4),
+      help        = STRING_TOKEN(STR_SATA_PORT_HELP),
+      option text = STRING_TOKEN(STR_ENABLED), value=1,  flags= DEFAULT | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_DISABLED), value=0, flags= RESET_REQUIRED;
+    endoneof;
+
+    oneof varid   = SETUP_DATA.SATAPortSpeed[12],
+      prompt      = STRING_TOKEN(STR_SATA_PORT4_SPEED),
+      help        = STRING_TOKEN(STR_SATA_PORT_SPEED_HELP),
+      option text = STRING_TOKEN(STR_GENMAX), value=0,  flags= DEFAULT | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_GEN1), value=1,  flags= RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_GEN2), value=2,  flags= RESET_REQUIRED;
+    endoneof;
+
+    oneof varid   = SETUP_DATA.SATAPort[13],
+      prompt      = STRING_TOKEN(STR_SATA_PORT5),
+      help        = STRING_TOKEN(STR_SATA_PORT_HELP),
+      option text = STRING_TOKEN(STR_ENABLED), value=1,  flags= DEFAULT | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_DISABLED), value=0, flags= RESET_REQUIRED;
+    endoneof;
+
+    oneof varid   = SETUP_DATA.SATAPortSpeed[13],
+      prompt      = STRING_TOKEN(STR_SATA_PORT5_SPEED),
+      help        = STRING_TOKEN(STR_SATA_PORT_SPEED_HELP),
+      option text = STRING_TOKEN(STR_GENMAX), value=0,  flags= DEFAULT | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_GEN1), value=1,  flags= RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_GEN2), value=2,  flags= RESET_REQUIRED;
+    endoneof;
+
+    oneof varid   = SETUP_DATA.SATAPort[14],
+      prompt      = STRING_TOKEN(STR_SATA_PORT6),
+      help        = STRING_TOKEN(STR_SATA_PORT_HELP),
+      option text = STRING_TOKEN(STR_ENABLED), value=1,  flags= DEFAULT | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_DISABLED), value=0, flags= RESET_REQUIRED;
+    endoneof;
+
+    oneof varid   = SETUP_DATA.SATAPortSpeed[14],
+      prompt      = STRING_TOKEN(STR_SATA_PORT6_SPEED),
+      help        = STRING_TOKEN(STR_SATA_PORT_SPEED_HELP),
+      option text = STRING_TOKEN(STR_GENMAX), value=0,  flags= DEFAULT | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_GEN1), value=1,  flags= RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_GEN2), value=2,  flags= RESET_REQUIRED;
+    endoneof;
+
+    oneof varid   = SETUP_DATA.SATAPort[15],
+      prompt      = STRING_TOKEN(STR_SATA_PORT7),
+      help        = STRING_TOKEN(STR_SATA_PORT_HELP),
+      option text = STRING_TOKEN(STR_ENABLED), value=1,  flags= DEFAULT | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_DISABLED), value=0, flags= RESET_REQUIRED;
+    endoneof;
+
+    oneof varid   = SETUP_DATA.SATAPortSpeed[15],
+      prompt      = STRING_TOKEN(STR_SATA_PORT7_SPEED),
+      help        = STRING_TOKEN(STR_SATA_PORT_SPEED_HELP),
+      option text = STRING_TOKEN(STR_GENMAX), value=0,  flags= DEFAULT | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_GEN1), value=1,  flags= RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_GEN2), value=2,  flags= RESET_REQUIRED;
+    endoneof;
+  endform;
+
+  form formid = AUTO_ID(SATA_CONTROL2_FORM_ID),
+  title = STRING_TOKEN(STR_SATA_CONTROL3);
+    subtitle text = STRING_TOKEN(STR_SATA_PORT);
+
+    oneof varid   = SETUP_DATA.SATAPort[16],
+      prompt      = STRING_TOKEN(STR_SATA_PORT0),
+      help        = STRING_TOKEN(STR_SATA_PORT_HELP),
+      option text = STRING_TOKEN(STR_ENABLED), value=1,  flags= DEFAULT | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_DISABLED), value=0, flags= RESET_REQUIRED;
+    endoneof;
+
+    oneof varid   = SETUP_DATA.SATAPortSpeed[16],
+      prompt      = STRING_TOKEN(STR_SATA_PORT0_SPEED),
+      help        = STRING_TOKEN(STR_SATA_PORT_SPEED_HELP),
+      option text = STRING_TOKEN(STR_GENMAX), value=0,  flags= DEFAULT | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_GEN1), value=1,  flags= RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_GEN2), value=2,  flags= RESET_REQUIRED;
+    endoneof;
+
+    oneof varid   = SETUP_DATA.SATAPort[17],
+      prompt      = STRING_TOKEN(STR_SATA_PORT1),
+      help        = STRING_TOKEN(STR_SATA_PORT_HELP),
+      option text = STRING_TOKEN(STR_ENABLED), value=1,  flags= DEFAULT | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_DISABLED), value=0, flags= RESET_REQUIRED;
+    endoneof;
+
+    oneof varid   = SETUP_DATA.SATAPortSpeed[17],
+      prompt      = STRING_TOKEN(STR_SATA_PORT1_SPEED),
+      help        = STRING_TOKEN(STR_SATA_PORT_SPEED_HELP),
+      option text = STRING_TOKEN(STR_GENMAX), value=0,  flags= DEFAULT | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_GEN1), value=1,  flags= RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_GEN2), value=2,  flags= RESET_REQUIRED;
+    endoneof;
+
+    oneof varid   = SETUP_DATA.SATAPort[18],
+      prompt      = STRING_TOKEN(STR_SATA_PORT2),
+      help        = STRING_TOKEN(STR_SATA_PORT_HELP),
+      option text = STRING_TOKEN(STR_ENABLED), value=1,  flags= DEFAULT | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_DISABLED), value=0, flags= RESET_REQUIRED;
+    endoneof;
+
+    oneof varid   = SETUP_DATA.SATAPortSpeed[18],
+      prompt      = STRING_TOKEN(STR_SATA_PORT2_SPEED),
+      help        = STRING_TOKEN(STR_SATA_PORT_SPEED_HELP),
+      option text = STRING_TOKEN(STR_GENMAX), value=0,  flags= DEFAULT | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_GEN1), value=1,  flags= RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_GEN2), value=2,  flags= RESET_REQUIRED;
+    endoneof;
+
+    oneof varid   = SETUP_DATA.SATAPort[19],
+      prompt      = STRING_TOKEN(STR_SATA_PORT3),
+      help        = STRING_TOKEN(STR_SATA_PORT_HELP),
+      option text = STRING_TOKEN(STR_ENABLED), value=1,  flags= DEFAULT | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_DISABLED), value=0, flags= RESET_REQUIRED;
+    endoneof;
+
+    oneof varid   = SETUP_DATA.SATAPortSpeed[19],
+      prompt      = STRING_TOKEN(STR_SATA_PORT3_SPEED),
+      help        = STRING_TOKEN(STR_SATA_PORT_SPEED_HELP),
+      option text = STRING_TOKEN(STR_GENMAX), value=0,  flags= DEFAULT | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_GEN1), value=1,  flags= RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_GEN2), value=2,  flags= RESET_REQUIRED;
+    endoneof;
+
+    oneof varid   = SETUP_DATA.SATAPort[20],
+      prompt      = STRING_TOKEN(STR_SATA_PORT4),
+      help        = STRING_TOKEN(STR_SATA_PORT_HELP),
+      option text = STRING_TOKEN(STR_ENABLED), value=1,  flags= DEFAULT | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_DISABLED), value=0, flags= RESET_REQUIRED;
+    endoneof;
+
+    oneof varid   = SETUP_DATA.SATAPortSpeed[20],
+      prompt      = STRING_TOKEN(STR_SATA_PORT4_SPEED),
+      help        = STRING_TOKEN(STR_SATA_PORT_SPEED_HELP),
+      option text = STRING_TOKEN(STR_GENMAX), value=0,  flags= DEFAULT | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_GEN1), value=1,  flags= RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_GEN2), value=2,  flags= RESET_REQUIRED;
+    endoneof;
+
+    oneof varid   = SETUP_DATA.SATAPort[21],
+      prompt      = STRING_TOKEN(STR_SATA_PORT5),
+      help        = STRING_TOKEN(STR_SATA_PORT_HELP),
+      option text = STRING_TOKEN(STR_ENABLED), value=1,  flags= DEFAULT | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_DISABLED), value=0, flags= RESET_REQUIRED;
+    endoneof;
+
+    oneof varid   = SETUP_DATA.SATAPortSpeed[21],
+      prompt      = STRING_TOKEN(STR_SATA_PORT5_SPEED),
+      help        = STRING_TOKEN(STR_SATA_PORT_SPEED_HELP),
+      option text = STRING_TOKEN(STR_GENMAX), value=0,  flags= DEFAULT | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_GEN1), value=1,  flags= RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_GEN2), value=2,  flags= RESET_REQUIRED;
+    endoneof;
+
+    oneof varid   = SETUP_DATA.SATAPort[22],
+      prompt      = STRING_TOKEN(STR_SATA_PORT6),
+      help        = STRING_TOKEN(STR_SATA_PORT_HELP),
+      option text = STRING_TOKEN(STR_ENABLED), value=1,  flags= DEFAULT | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_DISABLED), value=0, flags= RESET_REQUIRED;
+    endoneof;
+
+    oneof varid   = SETUP_DATA.SATAPortSpeed[22],
+      prompt      = STRING_TOKEN(STR_SATA_PORT6_SPEED),
+      help        = STRING_TOKEN(STR_SATA_PORT_SPEED_HELP),
+      option text = STRING_TOKEN(STR_GENMAX), value=0,  flags= DEFAULT | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_GEN1), value=1,  flags= RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_GEN2), value=2,  flags= RESET_REQUIRED;
+    endoneof;
+
+    oneof varid   = SETUP_DATA.SATAPort[23],
+      prompt      = STRING_TOKEN(STR_SATA_PORT7),
+      help        = STRING_TOKEN(STR_SATA_PORT_HELP),
+      option text = STRING_TOKEN(STR_ENABLED), value=1,  flags= DEFAULT | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_DISABLED), value=0, flags= RESET_REQUIRED;
+    endoneof;
+
+    oneof varid   = SETUP_DATA.SATAPortSpeed[23],
+      prompt      = STRING_TOKEN(STR_SATA_PORT7_SPEED),
+      help        = STRING_TOKEN(STR_SATA_PORT_SPEED_HELP),
+      option text = STRING_TOKEN(STR_GENMAX), value=0,  flags= DEFAULT | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_GEN1), value=1,  flags= RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_GEN2), value=2,  flags= RESET_REQUIRED;
+    endoneof;
+  endform;
+
+  form formid = AUTO_ID(SATA_CONTROL3_FORM_ID),
+  title = STRING_TOKEN(STR_SATA_CONTROL4);
+    subtitle text = STRING_TOKEN(STR_SATA_PORT);
+
+    oneof varid   = SETUP_DATA.SATAPort[24],
+      prompt      = STRING_TOKEN(STR_SATA_PORT0),
+      help        = STRING_TOKEN(STR_SATA_PORT_HELP),
+      option text = STRING_TOKEN(STR_ENABLED), value=1,  flags= DEFAULT | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_DISABLED), value=0, flags= RESET_REQUIRED;
+    endoneof;
+
+    oneof varid   = SETUP_DATA.SATAPortSpeed[24],
+      prompt      = STRING_TOKEN(STR_SATA_PORT0_SPEED),
+      help        = STRING_TOKEN(STR_SATA_PORT_SPEED_HELP),
+      option text = STRING_TOKEN(STR_GENMAX), value=0,  flags= DEFAULT | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_GEN1), value=1,  flags= RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_GEN2), value=2,  flags= RESET_REQUIRED;
+    endoneof;
+
+    oneof varid   = SETUP_DATA.SATAPort[25],
+      prompt      = STRING_TOKEN(STR_SATA_PORT1),
+      help        = STRING_TOKEN(STR_SATA_PORT_HELP),
+      option text = STRING_TOKEN(STR_ENABLED), value=1,  flags= DEFAULT | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_DISABLED), value=0, flags= RESET_REQUIRED;
+    endoneof;
+
+    oneof varid   = SETUP_DATA.SATAPortSpeed[25],
+      prompt      = STRING_TOKEN(STR_SATA_PORT1_SPEED),
+      help        = STRING_TOKEN(STR_SATA_PORT_SPEED_HELP),
+      option text = STRING_TOKEN(STR_GENMAX), value=0,  flags= DEFAULT | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_GEN1), value=1,  flags= RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_GEN2), value=2,  flags= RESET_REQUIRED;
+    endoneof;
+
+    oneof varid   = SETUP_DATA.SATAPort[26],
+      prompt      = STRING_TOKEN(STR_SATA_PORT2),
+      help        = STRING_TOKEN(STR_SATA_PORT_HELP),
+      option text = STRING_TOKEN(STR_ENABLED), value=1,  flags= DEFAULT | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_DISABLED), value=0, flags= RESET_REQUIRED;
+    endoneof;
+
+    oneof varid   = SETUP_DATA.SATAPortSpeed[26],
+      prompt      = STRING_TOKEN(STR_SATA_PORT2_SPEED),
+      help        = STRING_TOKEN(STR_SATA_PORT_SPEED_HELP),
+      option text = STRING_TOKEN(STR_GENMAX), value=0,  flags= DEFAULT | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_GEN1), value=1,  flags= RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_GEN2), value=2,  flags= RESET_REQUIRED;
+    endoneof;
+
+    oneof varid   = SETUP_DATA.SATAPort[27],
+      prompt      = STRING_TOKEN(STR_SATA_PORT3),
+      help        = STRING_TOKEN(STR_SATA_PORT_HELP),
+      option text = STRING_TOKEN(STR_ENABLED), value=1,  flags= DEFAULT | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_DISABLED), value=0, flags= RESET_REQUIRED;
+    endoneof;
+
+    oneof varid   = SETUP_DATA.SATAPortSpeed[27],
+      prompt      = STRING_TOKEN(STR_SATA_PORT3_SPEED),
+      help        = STRING_TOKEN(STR_SATA_PORT_SPEED_HELP),
+      option text = STRING_TOKEN(STR_GENMAX), value=0,  flags= DEFAULT | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_GEN1), value=1,  flags= RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_GEN2), value=2,  flags= RESET_REQUIRED;
+    endoneof;
+
+    oneof varid   = SETUP_DATA.SATAPort[28],
+      prompt      = STRING_TOKEN(STR_SATA_PORT4),
+      help        = STRING_TOKEN(STR_SATA_PORT_HELP),
+      option text = STRING_TOKEN(STR_ENABLED), value=1,  flags= DEFAULT | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_DISABLED), value=0, flags= RESET_REQUIRED;
+    endoneof;
+
+    oneof varid   = SETUP_DATA.SATAPortSpeed[28],
+      prompt      = STRING_TOKEN(STR_SATA_PORT4_SPEED),
+      help        = STRING_TOKEN(STR_SATA_PORT_SPEED_HELP),
+      option text = STRING_TOKEN(STR_GENMAX), value=0,  flags= DEFAULT | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_GEN1), value=1,  flags= RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_GEN2), value=2,  flags= RESET_REQUIRED;
+    endoneof;
+
+    oneof varid   = SETUP_DATA.SATAPort[29],
+      prompt      = STRING_TOKEN(STR_SATA_PORT5),
+      help        = STRING_TOKEN(STR_SATA_PORT_HELP),
+      option text = STRING_TOKEN(STR_ENABLED), value=1,  flags= DEFAULT | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_DISABLED), value=0, flags= RESET_REQUIRED;
+    endoneof;
+
+    oneof varid   = SETUP_DATA.SATAPortSpeed[29],
+      prompt      = STRING_TOKEN(STR_SATA_PORT5_SPEED),
+      help        = STRING_TOKEN(STR_SATA_PORT_SPEED_HELP),
+      option text = STRING_TOKEN(STR_GENMAX), value=0,  flags= DEFAULT | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_GEN1), value=1,  flags= RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_GEN2), value=2,  flags= RESET_REQUIRED;
+    endoneof;
+
+    oneof varid   = SETUP_DATA.SATAPort[30],
+      prompt      = STRING_TOKEN(STR_SATA_PORT6),
+      help        = STRING_TOKEN(STR_SATA_PORT_HELP),
+      option text = STRING_TOKEN(STR_ENABLED), value=1,  flags= DEFAULT | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_DISABLED), value=0, flags= RESET_REQUIRED;
+    endoneof;
+
+    oneof varid   = SETUP_DATA.SATAPortSpeed[30],
+      prompt      = STRING_TOKEN(STR_SATA_PORT6_SPEED),
+      help        = STRING_TOKEN(STR_SATA_PORT_SPEED_HELP),
+      option text = STRING_TOKEN(STR_GENMAX), value=0,  flags= DEFAULT | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_GEN1), value=1,  flags= RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_GEN2), value=2,  flags= RESET_REQUIRED;
+    endoneof;
+
+    oneof varid   = SETUP_DATA.SATAPort[31],
+      prompt      = STRING_TOKEN(STR_SATA_PORT7),
+      help        = STRING_TOKEN(STR_SATA_PORT_HELP),
+      option text = STRING_TOKEN(STR_ENABLED), value=1,  flags= DEFAULT | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_DISABLED), value=0, flags= RESET_REQUIRED;
+    endoneof;
+
+    oneof varid   = SETUP_DATA.SATAPortSpeed[31],
+      prompt      = STRING_TOKEN(STR_SATA_PORT7_SPEED),
+      help        = STRING_TOKEN(STR_SATA_PORT_SPEED_HELP),
+      option text = STRING_TOKEN(STR_GENMAX), value=0,  flags= DEFAULT | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_GEN1), value=1,  flags= RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_GEN2), value=2,  flags= RESET_REQUIRED;
+    endoneof;
+  endform;
+
+  suppressif TRUE;
+  form formid = AUTO_ID(USB_0_FORM_ID),
+    title = STRING_TOKEN(STR_USB_0_FORM);
+    subtitle text = STRING_TOKEN(STR_USB_PORT);
+
+    oneof varid   = SETUP_DATA.Die0XHCIPort[0],
+      questionid  = AUTO_ID(KEY_VALUE_ADVANCED_USBPORT0_VAL),
+      prompt      = STRING_TOKEN(STR_USB_PORT0),
+      help        = STRING_TOKEN(STR_USB_PORT_HELP),
+      flags       = INTERACTIVE,
+      option text = STRING_TOKEN(STR_ENABLED),  value=1, flags = DEFAULT | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_DISABLED), value=0, flags = RESET_REQUIRED;
+    endoneof;
+
+    grayoutif ideqval SETUP_DATA.Die0XHCIPort[0] == 0;
+    oneof varid   = SETUP_DATA.Die0XHCIPort[1],
+      prompt      = STRING_TOKEN(STR_USB_PORT1),
+      help        = STRING_TOKEN(STR_USB_PORT_HELP),
+      option text = STRING_TOKEN(STR_ENABLED),  value=1, flags = DEFAULT | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_DISABLED), value=0, flags = RESET_REQUIRED;
+    endoneof;
+    endif;
+
+    oneof varid   = SETUP_DATA.Die0XHCIPort[2],
+      questionid  = AUTO_ID(KEY_VALUE_ADVANCED_USBPORT1_VAL),
+      prompt      = STRING_TOKEN(STR_USB_PORT2),
+      help        = STRING_TOKEN(STR_USB_PORT_HELP),
+      flags       = INTERACTIVE,
+      option text = STRING_TOKEN(STR_ENABLED),  value=1, flags = DEFAULT | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_DISABLED), value=0, flags = RESET_REQUIRED;
+    endoneof;
+
+    grayoutif ideqval SETUP_DATA.Die0XHCIPort[2] == 0;
+    oneof varid   = SETUP_DATA.Die0XHCIPort[3],
+      prompt      = STRING_TOKEN(STR_USB_PORT3),
+      help        = STRING_TOKEN(STR_USB_PORT_HELP),
+      option text = STRING_TOKEN(STR_ENABLED),  value=1, flags = DEFAULT | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_DISABLED), value=0, flags = RESET_REQUIRED;
+    endoneof;
+    endif;
+  endform;
+  
+  form formid = AUTO_ID(USB_1_FORM_ID),
+    title = STRING_TOKEN(STR_USB_1_FORM);
+    subtitle text = STRING_TOKEN(STR_USB_PORT);
+
+    oneof varid   = SETUP_DATA.Die1XHCIPort[0],
+      questionid  = AUTO_ID(KEY_VALUE_ADVANCED_USBPORT2_VAL),
+      prompt      = STRING_TOKEN(STR_USB_PORT0),
+      help        = STRING_TOKEN(STR_USB_PORT_HELP),
+      flags       = INTERACTIVE,
+      option text = STRING_TOKEN(STR_ENABLED),  value=1, flags = DEFAULT | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_DISABLED), value=0, flags = RESET_REQUIRED;
+    endoneof;
+
+    grayoutif ideqval SETUP_DATA.Die1XHCIPort[0] == 0;
+    oneof varid   = SETUP_DATA.Die1XHCIPort[1],
+      prompt      = STRING_TOKEN(STR_USB_PORT1),
+      help        = STRING_TOKEN(STR_USB_PORT_HELP),
+      option text = STRING_TOKEN(STR_ENABLED),  value=1, flags = DEFAULT | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_DISABLED), value=0, flags = RESET_REQUIRED;
+    endoneof;
+    endif;
+
+    oneof varid   = SETUP_DATA.Die1XHCIPort[2],
+      questionid  = AUTO_ID(KEY_VALUE_ADVANCED_USBPORT3_VAL),
+      prompt      = STRING_TOKEN(STR_USB_PORT2),
+      help        = STRING_TOKEN(STR_USB_PORT_HELP),
+      flags       = INTERACTIVE,
+      option text = STRING_TOKEN(STR_ENABLED),  value=1, flags = DEFAULT | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_DISABLED), value=0, flags = RESET_REQUIRED;
+    endoneof;
+
+    grayoutif ideqval SETUP_DATA.Die1XHCIPort[2] == 0;
+    oneof varid   = SETUP_DATA.Die1XHCIPort[3],
+      prompt      = STRING_TOKEN(STR_USB_PORT3),
+      help        = STRING_TOKEN(STR_USB_PORT_HELP),
+      option text = STRING_TOKEN(STR_ENABLED),  value=1, flags = DEFAULT | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_DISABLED), value=0, flags = RESET_REQUIRED;
+    endoneof;
+    endif;
+  endform;
+  
+  form formid = AUTO_ID(USB_2_FORM_ID),
+    title = STRING_TOKEN(STR_USB_2_FORM);
+    subtitle text = STRING_TOKEN(STR_USB_PORT);
+
+    oneof varid   = SETUP_DATA.Die4XHCIPort[0],
+      questionid  = AUTO_ID(KEY_VALUE_ADVANCED_USBPORT4_VAL),
+      prompt      = STRING_TOKEN(STR_USB_PORT0),
+      help        = STRING_TOKEN(STR_USB_PORT_HELP),
+      flags       = INTERACTIVE,
+      option text = STRING_TOKEN(STR_ENABLED),  value=1, flags = DEFAULT | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_DISABLED), value=0, flags = RESET_REQUIRED;
+    endoneof;
+
+    grayoutif ideqval SETUP_DATA.Die4XHCIPort[0] == 0;
+    oneof varid   = SETUP_DATA.Die4XHCIPort[1],
+      prompt      = STRING_TOKEN(STR_USB_PORT1),
+      help        = STRING_TOKEN(STR_USB_PORT_HELP),
+      option text = STRING_TOKEN(STR_ENABLED),  value=1, flags = DEFAULT | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_DISABLED), value=0, flags = RESET_REQUIRED;
+    endoneof;
+    endif;
+
+    oneof varid   = SETUP_DATA.Die4XHCIPort[2],
+      questionid  = AUTO_ID(KEY_VALUE_ADVANCED_USBPORT5_VAL),
+      prompt      = STRING_TOKEN(STR_USB_PORT2),
+      help        = STRING_TOKEN(STR_USB_PORT_HELP),
+      flags       = INTERACTIVE,
+      option text = STRING_TOKEN(STR_ENABLED),  value=1, flags= DEFAULT | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_DISABLED), value=0, flags= RESET_REQUIRED;
+    endoneof;
+
+    grayoutif ideqval SETUP_DATA.Die4XHCIPort[2] == 0;
+    oneof varid   = SETUP_DATA.Die4XHCIPort[3],
+      prompt      = STRING_TOKEN(STR_USB_PORT3),
+      help        = STRING_TOKEN(STR_USB_PORT_HELP),
+      option text = STRING_TOKEN(STR_ENABLED),  value=1, flags= DEFAULT | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_DISABLED), value=0, flags= RESET_REQUIRED;
+    endoneof;
+    endif;
+  endform;
+  
+  form formid = AUTO_ID(USB_3_FORM_ID),
+    title = STRING_TOKEN(STR_USB_3_FORM);
+    subtitle text = STRING_TOKEN(STR_USB_PORT);
+
+    oneof varid   = SETUP_DATA.Die5XHCIPort[0],
+      questionid  = AUTO_ID(KEY_VALUE_ADVANCED_USBPORT6_VAL),
+      prompt      = STRING_TOKEN(STR_USB_PORT0),
+      help        = STRING_TOKEN(STR_USB_PORT_HELP),
+      flags       = INTERACTIVE,
+      option text = STRING_TOKEN(STR_ENABLED),  value=1, flags= DEFAULT | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_DISABLED), value=0, flags= RESET_REQUIRED;
+    endoneof;
+
+    grayoutif ideqval SETUP_DATA.Die5XHCIPort[0] == 0;
+    oneof varid   = SETUP_DATA.Die5XHCIPort[1],
+      prompt      = STRING_TOKEN(STR_USB_PORT1),
+      help        = STRING_TOKEN(STR_USB_PORT_HELP),
+      option text = STRING_TOKEN(STR_ENABLED),  value=1, flags= DEFAULT | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_DISABLED), value=0, flags= RESET_REQUIRED;
+    endoneof;
+    endif;
+
+    oneof varid   = SETUP_DATA.Die5XHCIPort[2],
+      questionid  = AUTO_ID(KEY_VALUE_ADVANCED_USBPORT7_VAL),
+      prompt      = STRING_TOKEN(STR_USB_PORT2),
+      help        = STRING_TOKEN(STR_USB_PORT_HELP),
+      flags       = INTERACTIVE,
+      option text = STRING_TOKEN(STR_ENABLED),  value=1, flags= DEFAULT | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_DISABLED), value=0, flags= RESET_REQUIRED;
+    endoneof;
+
+    grayoutif ideqval SETUP_DATA.Die5XHCIPort[2] == 0;
+    oneof varid   = SETUP_DATA.Die5XHCIPort[3],
+      prompt      = STRING_TOKEN(STR_USB_PORT3),
+      help        = STRING_TOKEN(STR_USB_PORT_HELP),
+      option text = STRING_TOKEN(STR_ENABLED),  value=1, flags= DEFAULT | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_DISABLED), value=0, flags= RESET_REQUIRED;
+    endoneof;
+    endif;
+    
+  endform; 
+  endif;
+
+  
+#endif
+    
+#endif //ifdef ADVANCED_FORM_SET
+  

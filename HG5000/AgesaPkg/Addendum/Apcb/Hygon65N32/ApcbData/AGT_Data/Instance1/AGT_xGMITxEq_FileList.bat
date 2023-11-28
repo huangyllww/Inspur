@@ -1,0 +1,1 @@
+SET AGT_XGMI_TXEQ_FILE_LIST=xgmi_apcb_settings_8.h xgmi_apcb_settings_9.h xgmi_apcb_settings_10.h

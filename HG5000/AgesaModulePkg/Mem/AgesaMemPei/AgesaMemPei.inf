@@ -1,0 +1,46 @@
+
+#
+# This file contains code for AGESA initialization in the Pei stage.
+#
+
+[Defines]
+    INF_VERSION    = 0x00010005
+    VERSION_STRING = 1.0
+    BASE_NAME      = AgesaMemPei
+    FILE_GUID      = 586032e3-1386-4ecc-b547-eb285e21066d
+    MODULE_TYPE    = PEIM
+    ENTRY_POINT    = AgesaMemPeiEntry
+
+[Sources]
+    AgesaMemPei.c
+    AgesaMemPei.h
+
+[Packages]
+    MdePkg/MdePkg.dec
+    IntelFrameworkPkg/IntelFrameworkPkg.dec
+    AgesaModulePkg/AgesaCommonModulePkg.dec
+    AgesaPkg/AgesaPkg.dec
+    AmdCpmPkg/AmdCpmPkg.dec
+
+[LibraryClasses]
+    PeimEntryPoint
+    AmdBaseLib
+    IdsLib
+    BaseLib
+    PcdLib
+    HobLib
+    AmdSocBaseLib
+    IoLib
+
+[Guids]
+
+[Ppis]
+    gEfiPeiSmbus2PpiGuid					#Consumed
+    gAmdPlatformDimmSpdPpiGuid   				#Produced
+
+[Pcd]
+    gAmdCpmPkgTokenSpaceGuid.PcdPlatformSelect
+
+[Depex]
+#    gEfiPeiReadOnlyVariable2PpiGuid AND
+    gEfiPeiSmbus2PpiGuid

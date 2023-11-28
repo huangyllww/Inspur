@@ -1,0 +1,61 @@
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = CpuPei
+  FILE_GUID                      = 2BB5AFA9-FF33-417b-8497-CB773C2B93BF
+  MODULE_TYPE                    = PEIM
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = CpuPeiEntry
+
+#
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           = IA32
+#
+#  HOB Guid C Name: gEfiHtBistHobGuid Hob Type: GUID_EXTENSION
+#
+
+[Sources]
+  CpuPei.c
+
+
+[Packages]
+  MdePkg/MdePkg.dec  
+  IntelFrameworkPkg/IntelFrameworkPkg.dec
+  AgesaPkg/AgesaPkg.dec
+  PlatformPkg/PlatformPkg.dec
+  ByoModulePkg/ByoModulePkg.dec
+  
+[LibraryClasses]
+  BaseLib
+  PeimEntryPoint
+  PcdLib
+  DebugLib
+  IoLib
+  BaseMemoryLib
+  MemoryAllocationLib
+  PeiServicesLib
+
+
+[Guids]
+  gEfiCpuInfoHobGuid
+
+
+[Ppis]
+  gEfiPeiMasterBootModePpiGuid  # PPI_NOTIFY SOMETIMES_CONSUMED
+  gEfiPeiStallPpiGuid
+  gEfiPeiReadOnlyVariable2PpiGuid
+  gEfiEndOfPeiSignalPpiGuid
+  gEfiPeiMemoryDiscoveredPpiGuid
+  
+  
+[FixedPcd]
+  gPlatformModuleTokenSpaceGuid.PcdCpuMaxCores  # CONSUMED
+
+  
+[Depex]
+  TRUE
+
+[BuildOptions]                
+  *_*_*_CC_FLAGS = /D PEI_COMPILE 
+  *_*_*_ASM_FLAGS == /nologo /c /WX /W3 /coff /Cx

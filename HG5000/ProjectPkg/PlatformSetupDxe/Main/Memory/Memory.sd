@@ -1,0 +1,178 @@
+/** @file
+
+Copyright (c) 2006 - 2020, Byosoft Corporation.<BR>
+All rights reserved.This software and associated documentation (if any)
+is furnished under a license and may only be used or copied in
+accordance with the terms of the license. Except as permitted by such
+license, no part of this software or documentation may be reproduced,
+stored in a retrieval system, or transmitted in any form or by any
+means without the express written consent of Byosoft Corporation.
+
+File Name:
+  AtaDriverCfg.sd
+
+Abstract:
+  ATA setting.
+
+Revision History:
+
+$END--------------------------------------------------------------------
+
+**/
+
+#ifdef MAIN_FORM_SET
+
+  #ifdef FORM_SET_FORM
+    form formid = MAIN_MEMORY_FORM_ID,
+    title = STRING_TOKEN(STR_MEMORY_FORM);
+
+      text 
+        help   = STRING_TOKEN(STR_EMPTY),
+        text   = STRING_TOKEN(STR_MEMORY_SIZE_NAME),
+        text   = STRING_TOKEN(STR_MEMORY_SIZE_VALUE),
+        flags  = 0,
+        key    = 0;      
+      
+      text 
+        help   = STRING_TOKEN(STR_EMPTY),
+        text   = STRING_TOKEN(STR_MEMORY_SPEED_NAME),
+        text   = STRING_TOKEN(STR_MEMORY_SPEED_VALUE),
+        flags  = 0,
+        key    = 0;       
+      
+      subtitle text = STRING_TOKEN(STR_EMPTY);
+
+
+      text 
+        help   = STRING_TOKEN(STR_EMPTY),
+        text   = STRING_TOKEN(STR_CPU_0_STRING),
+        flags  = 0, 
+        key    = 0;
+        
+      text 
+        help   = STRING_TOKEN(STR_EMPTY),
+        text   = STRING_TOKEN(STR_MEM_SLOT0_STRING),
+        text   = STRING_TOKEN(STR_MEM_SLOT0_VALUE),
+        flags  = 0, 
+        key    = 0; 
+      
+      text 
+        help   = STRING_TOKEN(STR_EMPTY),
+        text   = STRING_TOKEN(STR_MEM_SLOT1_STRING),
+        text   = STRING_TOKEN(STR_MEM_SLOT1_VALUE),
+        flags  = 0, 
+        key    = 0; 
+
+      text 
+        help   = STRING_TOKEN(STR_EMPTY),
+        text   = STRING_TOKEN(STR_MEM_SLOT2_STRING),
+        text   = STRING_TOKEN(STR_MEM_SLOT2_VALUE),
+        flags  = 0, 
+        key    = 0; 
+      
+      text 
+        help   = STRING_TOKEN(STR_EMPTY),
+        text   = STRING_TOKEN(STR_MEM_SLOT3_STRING),
+        text   = STRING_TOKEN(STR_MEM_SLOT3_VALUE),
+        flags  = 0, 
+        key    = 0;  
+
+      text 
+        help   = STRING_TOKEN(STR_EMPTY),
+        text   = STRING_TOKEN(STR_MEM_SLOT4_STRING),
+        text   = STRING_TOKEN(STR_MEM_SLOT4_VALUE),
+        flags  = 0, 
+        key    = 0; 
+      
+      text 
+        help   = STRING_TOKEN(STR_EMPTY),
+        text   = STRING_TOKEN(STR_MEM_SLOT5_STRING),
+        text   = STRING_TOKEN(STR_MEM_SLOT5_VALUE),
+        flags  = 0, 
+        key    = 0; 
+
+      text 
+        help   = STRING_TOKEN(STR_EMPTY),
+        text   = STRING_TOKEN(STR_MEM_SLOT6_STRING),
+        text   = STRING_TOKEN(STR_MEM_SLOT6_VALUE),
+        flags  = 0, 
+        key    = 0; 
+      
+      text 
+        help   = STRING_TOKEN(STR_EMPTY),
+        text   = STRING_TOKEN(STR_MEM_SLOT7_STRING),
+        text   = STRING_TOKEN(STR_MEM_SLOT7_VALUE),
+        flags  = 0, 
+        key    = 0; 
+
+
+
+
+      subtitle text = STRING_TOKEN(STR_EMPTY);
+      
+      text 
+        help   = STRING_TOKEN(STR_EMPTY),
+        text   = STRING_TOKEN(STR_CPU_1_STRING),
+        flags  = 0, 
+        key    = 0;
+
+      text 
+        help   = STRING_TOKEN(STR_EMPTY),
+        text   = STRING_TOKEN(STR_MEM_SLOT8_STRING),
+        text   = STRING_TOKEN(STR_MEM_SLOT8_VALUE),
+        flags  = 0, 
+        key    = 0; 
+      
+      text 
+        help   = STRING_TOKEN(STR_EMPTY),
+        text   = STRING_TOKEN(STR_MEM_SLOT9_STRING),
+        text   = STRING_TOKEN(STR_MEM_SLOT9_VALUE),
+        flags  = 0, 
+        key    = 0; 
+
+      text 
+        help   = STRING_TOKEN(STR_EMPTY),
+        text   = STRING_TOKEN(STR_MEM_SLOT10_STRING),
+        text   = STRING_TOKEN(STR_MEM_SLOT10_VALUE),
+        flags  = 0, 
+        key    = 0; 
+      
+      text 
+        help   = STRING_TOKEN(STR_EMPTY),
+        text   = STRING_TOKEN(STR_MEM_SLOT11_STRING),
+        text   = STRING_TOKEN(STR_MEM_SLOT11_VALUE),
+        flags  = 0, 
+        key    = 0;  
+
+      text 
+        help   = STRING_TOKEN(STR_EMPTY),
+        text   = STRING_TOKEN(STR_MEM_SLOT12_STRING),
+        text   = STRING_TOKEN(STR_MEM_SLOT12_VALUE),
+        flags  = 0, 
+        key    = 0; 
+      
+      text 
+        help   = STRING_TOKEN(STR_EMPTY),
+        text   = STRING_TOKEN(STR_MEM_SLOT13_STRING),
+        text   = STRING_TOKEN(STR_MEM_SLOT13_VALUE),
+        flags  = 0, 
+        key    = 0; 
+
+      text 
+        help   = STRING_TOKEN(STR_EMPTY),
+        text   = STRING_TOKEN(STR_MEM_SLOT14_STRING),
+        text   = STRING_TOKEN(STR_MEM_SLOT14_VALUE),
+        flags  = 0, 
+        key    = 0; 
+      
+      text 
+        help   = STRING_TOKEN(STR_EMPTY),
+        text   = STRING_TOKEN(STR_MEM_SLOT15_STRING),
+        text   = STRING_TOKEN(STR_MEM_SLOT15_VALUE),
+        flags  = 0, 
+        key    = 0; 
+    endform;
+    
+
+  #endif  //end, FORM_SET_FORM
+#endif  //end, DEVICES_FORM_SET

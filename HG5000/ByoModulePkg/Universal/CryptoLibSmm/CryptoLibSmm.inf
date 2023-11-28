@@ -1,0 +1,58 @@
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = CryptoLibSmm
+  FILE_GUID                      = 079728EE-3F6D-4dd1-9523-E01E51F4BD6A
+  MODULE_TYPE                    = DXE_SMM_DRIVER
+  VERSION_STRING                 = 1.0
+  PI_SPECIFICATION_VERSION       = 0x0001000A
+  ENTRY_POINT                    = CryptoLibSmmEntry
+
+#
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           = IA32 X64 IPF EBC
+#
+
+[Sources]
+  CryptoLibSmm.c
+  ../CryptoLibComm/CryptoLibComm.c
+  
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  CryptoPkg/CryptoPkg.dec
+  ByoModulePkg/ByoModulePkg.dec
+
+  
+[LibraryClasses]
+  MemoryAllocationLib
+  BaseLib
+  UefiBootServicesTableLib
+  UefiDriverEntryPoint
+  UefiRuntimeServicesTableLib
+  BaseMemoryLib
+  DebugLib
+  BaseCryptLib
+  SmmServicesTableLib
+
+  
+
+[Guids]
+
+  
+  
+[Protocols]
+  gCryptoLibSmmProtocolGuid
+  
+  
+[Pcd]
+ 
+
+  
+[Depex]
+  TRUE
+
+
+  

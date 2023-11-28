@@ -1,0 +1,103 @@
+    INF AgesaModulePkg/Debug/AmdIdsDebugPrintDxe/AmdIdsDebugPrintDxe.inf                            <ALL>
+
+    INF AgesaModulePkg/Mem/AmdMemAm4Dxe/AmdMemAm4Dxe.inf                                            <ALL>
+    INF AgesaModulePkg/Soc/AmdSocAm4BrDxe/AmdSocAm4BrDxe.inf                                        <AM4BR>
+    INF AgesaModulePkg/Soc/AmdSocAm4RvDxe/AmdSocAm4RvDxe.inf                                        <AM4RV>
+    INF AgesaModulePkg/Soc/AmdSocAm4SmDxe/AmdSocAm4SmDxe.inf                                        <AM4SM>
+    INF AgesaModulePkg/Soc/AmdSocSp3ZpDxe/AmdSocSp3ZpDxe.inf                                        <SP3ZP>
+    INF AgesaModulePkg/Soc/AmdSocSp4ZpDxe/AmdSocSp4ZpDxe.inf                                        <SP4ZP>
+    INF AgesaModulePkg/Soc/AmdSocFp5RvDxe/AmdSocFp5RvDxe.inf                                        <FP5RV>
+    INF AgesaModulePkg/Soc/AmdSocSp3r2TrDxe/AmdSocSp3r2TrDxe.inf                                    <SP3r2TR>
+    INF AgesaModulePkg/ErrorLog/AmdErrorLogDxe/AmdErrorLogDxe.inf                                   <ALL>
+
+#   ##PSP Dxe Drivers
+    INF  AgesaModulePkg/Psp/AmdPspFtpmDxe/AmdPspFtpmDxe.inf                                         <AM4|RV|SP3r2TR>
+    INF AgesaModulePkg/Psp/AmdPspDxeV1/AmdPspDxeV1.inf                                              <FAMILY15H>
+    INF AgesaModulePkg/Psp/AmdPspSmmV1/AmdPspSmmV1.inf                                              <FAMILY15H>
+    INF AgesaModulePkg/Psp/AmdPspP2CmboxV1/AmdPspP2CmboxV1.inf                                      <FAMILY15H>
+    INF AgesaModulePkg/Psp/AmdPspDxeV2/AmdPspDxeV2.inf                                              <FAMILY18H>
+    INF AgesaModulePkg/Psp/AmdPspP2CmboxV2/AmdPspP2CmboxV2.inf                                      <FAMILY18H>
+    INF AgesaModulePkg/Psp/AmdPspSmmV2/AmdPspSmmV2.inf                                              <FAMILY18H>
+    INF AgesaModulePkg/Psp/AmdHstiV1/AmdHstiV1.inf                                                  <FAMILY15H>
+    INF AgesaModulePkg/Psp/AmdHstiV2/AmdHstiV2.inf                                                  <FAMILY18H>
+
+#    ## Ccx & DF Dxe Drivers
+    INF AgesaModulePkg/Fabric/ZP/FabricZpDxe/AmdFabricZpDxe.inf                                     <FAMILY18H>
+    INF AgesaModulePkg/Fabric/ZP/FabricZpSmm/AmdFabricZpSmm.inf                                     <ZP>
+    INF AgesaModulePkg/Fabric/XV/UnbXvDxe/AmdUnbXvDxe.inf                                           <FAMILY15H>
+    INF AgesaModulePkg/Ccx/Zen/CcxZenZpDxe/AmdCcxZenZpDxe.inf                                       <FAMILY18H>
+    INF AgesaModulePkg/Ccx/Xv/CcxXvDxe/AmdCcxXvDxe.inf                                              <FAMILY15H>
+    INF AgesaModulePkg/Ccx/Xv/CcxXvSmm/AmdCcxXvSmm.inf                                              <FAMILY15H>
+    INF AgesaModulePkg/Ccx/Zen/CcxZenZpSmm/AmdCcxZenZpSmm.inf                                       <FAMILY18H>
+
+#    ## Mem Dxe Drivers
+    INF AgesaModulePkg/Mem/AmdMemSmbiosDxe/AmdMemSmbiosDxe.inf                                      <FAMILY15H>
+    INF AgesaModulePkg/Mem/AmdMemSmbiosV2Dxe/AmdMemSmbiosV2Dxe.inf                                  <FAMILY18H>
+    INF AgesaModulePkg/Mem/AmdMemS3CzDxe/AmdMemS3CzDxe.inf                                          <FAMILY15H>
+
+#    ## GNb Dxe Drivers
+    INF AgesaModulePkg/Nbio/NbioBase/AmdNbioBaseCZDxe/AmdNbioBaseCZDxe.inf                          <FAMILY15H>
+    INF AgesaModulePkg/Nbio/NbioBase/AmdNbioBaseZPDxe/AmdNbioBaseZPDxe.inf                          <ZP>
+    INF AgesaModulePkg/Nbio/SMU/AmdNbioSmuV9Dxe/AmdNbioSmuV9Dxe.inf                                 <ZP>
+    INF AgesaModulePkg/Nbio/NbioBase/AmdNbioBaseRVDxe/AmdNbioBaseRVDxe.inf                          <RV>
+    INF AgesaModulePkg/Nbio/SMU/AmdNbioSmuV10Dxe/AmdNbioSmuV10Dxe.inf                               <RV>
+    INF AgesaModulePkg/Nbio/PCIe/AmdNbioPcieZPDxe/AmdNbioPcieZPDxe.inf                              <ZP>
+    INF AgesaModulePkg/Nbio/PCIe/AmdNbioPcieRVDxe/AmdNbioPcieRVDxe.inf                              <RV>
+    INF AgesaModulePkg/Nbio/IOMMU/AmdNbioIOMMUZPDxe/AmdNbioIOMMUZPDxe.inf                           <FAMILY18H>
+    INF AgesaModulePkg/Nbio/GFX/AmdNbioGfxRVDxe/AmdNbioGfxRVDxe.inf                                 <RV>
+    INF AgesaModulePkg/Nbio/NbioALib/AmdNbioAlibZPDxe/AmdNbioAlibZPDxe.inf                          <FAMILY18H>
+
+#   ## Fch Dxe Drivers
+    INF AgesaModulePkg/Fch/Taishan/FchTaishanDxe/FchDxe.inf                                         <ZP>
+    INF AgesaModulePkg/Fch/Taishan/FchTaishanSmm/FchSmm.inf                                         <ZP>
+    INF AgesaModulePkg/Fch/Taishan/FchTaishanSmbusDxe/SmbusLight.inf                                <ZP>
+    INF AgesaModulePkg/Fch/Taishan/FchTaishanCf9ResetDxe/Cf9Reset.inf                               <ZP>
+    INF AgesaModulePkg/Fch/Taishan/FchTaishanLegacyInterruptDxe/LegacyInterrupt.inf                 <ZP>
+    INF AgesaModulePkg/Fch/Taishan/FchTaishanSmmControlDxe/SmmControl.inf                           <ZP>
+    INF AgesaModulePkg/Fch/Taishan/FchTaishanSmmDispatcher/FchSmmDispatcher.inf                     <ZP>
+    INF AgesaModulePkg/Fch/Taishan/FchTaishanMultiFchDxe/FchMultiFchDxe.inf                         <ZP>
+    INF AgesaModulePkg/Fch/Taishan/FchTaishanMultiFchSmm/FchMultiFchSmm.inf                         <ZP>
+    INF AgesaModulePkg/Fch/Kern/FchKernDxe/FchDxe.inf                                               <FAMILY15H>
+    INF AgesaModulePkg/Fch/Kern/FchKernSmm/FchSmm.inf                                               <FAMILY15H>
+    INF AgesaModulePkg/Fch/Kern/FchKernSmbusDxe/SmbusLight.inf                                      <FAMILY15H>
+    INF AgesaModulePkg/Fch/Kern/FchKernCf9ResetDxe/Cf9Reset.inf                                     <FAMILY15H>
+    INF AgesaModulePkg/Fch/Kern/FchKernLegacyInterruptDxe/LegacyInterrupt.inf                       <FAMILY15H>
+    INF AgesaModulePkg/Fch/Kern/FchKernSmmControlDxe/SmmControl.inf                                 <FAMILY15H>
+    INF AgesaModulePkg/Fch/Kern/FchKernSmmDispatcher/FchSmmDispatcher.inf                           <FAMILY15H>
+    INF AgesaModulePkg/Fch/Kern/FchKernComplement/ImcControl/ImcControl.inf                         <FAMILY15H>
+    INF AgesaModulePkg/Fch/Taishan/FchTaishanDxe/FchTaishanSsdt.inf                                 <AM4SM>
+    INF RuleOverride = ACPITABLE AgesaModulePkg/Fch/Taishan/FchTaishanDxe/FchTaishanAml.inf         <AM4SM>
+    INF AgesaModulePkg/Fch/Sandstone/FchSandstoneDxe/FchDxe.inf                                     <RV>
+    INF AgesaModulePkg/Fch/Sandstone/FchSandstoneSmm/FchSmm.inf                                     <RV>
+    INF AgesaModulePkg/Fch/Sandstone/FchSandstoneSmbusDxe/SmbusLight.inf                            <RV>
+    INF AgesaModulePkg/Fch/Sandstone/FchSandstoneCf9ResetDxe/Cf9Reset.inf                           <RV>
+    INF AgesaModulePkg/Fch/Sandstone/FchSandstoneLegacyInterruptDxe/LegacyInterrupt.inf             <RV>
+    INF AgesaModulePkg/Fch/Sandstone/FchSandstoneSmmControlDxe/SmmControl.inf                       <RV>
+    INF AgesaModulePkg/Fch/Sandstone/FchSandstoneSmmDispatcher/FchSmmDispatcher.inf                 <RV>
+
+#   ## APCB Dxe Drivers
+    INF AgesaModulePkg/Psp/ApcbDrv/ApcbZpDxe/ApcbZpDxe.inf                                          <ZP>
+
+#   ## APCB Smm Drivers
+    INF AgesaModulePkg/Psp/ApcbDrv/ApcbZpSmm/ApcbZpSmm.inf                                          <ZP>
+
+#   ## Universal
+    INF AgesaModulePkg/Universal/Smbios/AmdSmbiosDxe.inf                                            <ALL>
+    INF AgesaModulePkg/Universal/Acpi/AmdAcpiDxe.inf                                                <ALL>
+    INF AgesaModulePkg/Universal/AmdSmmCommunication/AmdSmmCommunication.inf                        <ALL>
+    INF AgesaModulePkg/Universal/Version/AmdVersionDxe/AmdVersionDxe.inf                            <ALL>
+
+#   ## PT Dxe Drivers
+    INF AgesaModulePkg/Fch/Promontory/PromontoryDxe/FchPromontoryGpioDxe.inf                        <AM4BR|AM4SM|SP3r2TR>
+    INF AgesaModulePkg/Fch/Promontory/PromontoryDxe/FchPromontorySsdt.inf                           <AM4BR|AM4SM|SP3r2TR>
+    INF AgesaModulePkg/Fch/Promontory/PromontorySmm/FchPromontorySmm.inf                            <AM4BR|AM4SM|SP3r2TR>
+    INF AgesaModulePkg/Fch/Promontory/PromontorySmm/FchPromontoryGpioSmm.inf                        <AM4BR|AM4SM|SP3r2TR>
+    INF RuleOverride = ACPITABLE AgesaModulePkg/Fch/Promontory/PromontoryDxe/FchPromontoryAml.inf   <AM4BR|AM4SM|SP3r2TR>
+
+#   ## Ras Dxe Drivers
+    INF AgesaModulePkg/Ras/AmdRasApeiDxe/AmdRasApeiDxe.inf                                          <SP3ZP>
+    INF AgesaModulePkg/Ras/AmdRasDxe/AmdRasDxe.inf                                                  <SP3ZP>
+    INF AgesaModulePkg/Ras/AmdRasSmm/AmdRasSmm.inf                                                  <SP3ZP>
+
+#   ## Nvdimm Dxe Drivers
+    INF AgesaModulePkg/JedecNvdimm/JedecNvdimm.inf                                                  <SP3ZP>

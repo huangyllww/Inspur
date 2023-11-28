@@ -1,0 +1,33 @@
+    INF AgesaModulePkg/Debug/AmdIdsDebugPrintPei/AmdIdsDebugPrintPei.inf
+
+    INF AgesaModulePkg/Psp/AmdPspPeiV2/AmdPspPeiV2.inf
+
+    INF AgesaModulePkg/Mem/AmdMemAm4Pei/AmdMemAm4Pei.inf
+    INF AgesaModulePkg/Soc/AmdSocSp3ZpPei/AmdSocSp3ZpPei.inf
+    INF AgesaModulePkg/ErrorLog/AmdErrorLogPei/AmdErrorLogPei.inf
+
+#   ## DF Pei Drivers
+    INF AgesaModulePkg/Fabric/ZP/FabricZpPei/AmdFabricZpPei.inf
+
+#   ## Fch Pei Drivers
+    INF AgesaModulePkg/Fch/Taishan/FchTaishanPei/FchPei.inf
+    INF AgesaModulePkg/Fch/Taishan/FchTaishanMultiFchPei/FchMultiFchPei.inf
+    INF AgesaModulePkg/Fch/Taishan/FchTaishanSmbusPei/Smbus.inf
+
+#   ## GNb Pei Drivers
+    INF AgesaModulePkg/Nbio/NbioBase/AmdNbioBaseZPPei/AmdNbioBaseZPPei.inf
+    INF AgesaModulePkg/Nbio/SMU/AmdNbioSmuV9Pei/AmdNbioSmuV9Pei.inf
+    INF AgesaModulePkg/Nbio/PCIe/AmdNbioPcieZPPei/AmdNbioPcieZPPei.inf
+    INF AgesaModulePkg/Nbio/IOMMU/AmdNbioIOMMUZPPei/AmdNbioIOMMUZPPei.inf
+
+#   ## Ccx Pei Drivers
+    INF AgesaModulePkg/Ccx/Zen/CcxZenZpPei/AmdCcxZenZpPei.inf
+
+#   ## Universal AmdMeoryInfoHob PEIM
+    INF AgesaModulePkg/Universal/AmdMemoryHobInfoPeim/AmdMemoryHobInfoPeim.inf
+    INF AgesaModulePkg/Universal/Version/AmdVersionPei/AmdVersionPei.inf
+
+#   ## MEM PEIMs
+    INF AgesaModulePkg/Mem/AgesaMemPei/AgesaMemPei.inf
+    INF AgesaModulePkg/Mem/AmdMemChanXLatZpPei/MemChanXLatZpPei.inf
+    INF AgesaModulePkg/Mem/AmdMemSmbiosV2Pei/MemSmbiosV2Pei.inf

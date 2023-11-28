@@ -1,0 +1,91 @@
+
+  OperationRegion(GNVS,SystemMemory,0xFFFF0000,0xAA55)
+  Field(GNVS,AnyAcc,Lock,Preserve)
+  {
+      Offset(8),    // Signature
+      
+      RP0B, 32,
+      RP1B, 32,
+      RP2B, 32,
+      RP3B, 32,
+      RP4B, 32,
+      RP5B, 32,
+      RP6B, 32,
+      RP7B, 32,  
+      
+      RP0L, 32,
+      RP1L, 32,
+      RP2L, 32,
+      RP3L, 32,
+      RP4L, 32,
+      RP5L, 32,
+      RP6L, 32,
+      RP7L, 32, 
+
+      R0IB, 16,
+      R1IB, 16, 
+      R2IB, 16,
+      R3IB, 16, 
+      R4IB, 16,
+      R5IB, 16, 
+      R6IB, 16,
+      R7IB, 16, 
+
+      R0IL, 16,
+      R1IL, 16, 
+      R2IL, 16,
+      R3IL, 16, 
+      R4IL, 16,
+      R5IL, 16, 
+      R6IL, 16,
+      R7IL, 16, 
+
+      R0HB, 64,
+      R1HB, 64,
+      R2HB, 64,
+      R3HB, 64,
+      R4HB, 64,
+      R5HB, 64,
+      R6HB, 64,
+      R7HB, 64,  
+
+      R0HL, 64,
+      R1HL, 64,
+      R2HL, 64,
+      R3HL, 64,
+      R4HL, 64,
+      R5HL, 64,
+      R6HL, 64,
+      R7HL, 64,     
+
+      RPCT, 8,
+      
+      R0BB, 8,
+      R1BB, 8, 
+      R2BB, 8,
+      R3BB, 8,
+      R4BB, 8,
+      R5BB, 8, 
+      R6BB, 8,
+      R7BB, 8,  
+
+      R0BL, 8,
+      R1BL, 8, 
+      R2BL, 8,
+      R3BL, 8,
+      R4BL, 8,
+      R5BL, 8, 
+      R6BL, 8,
+      R7BL, 8, 
+
+      GFX0, 8,
+      GFX1, 8, 
+      GFX2, 8,
+      GFX3, 8,
+      GFX4, 8,
+      GFX5, 8, 
+      GFX6, 8,
+      GFX7, 8,   
+      
+      FTPP, 8,  
+  }

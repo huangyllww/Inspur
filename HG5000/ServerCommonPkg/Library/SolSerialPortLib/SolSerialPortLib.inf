@@ -1,0 +1,48 @@
+#/*++
+#
+#  Copyright (c) 2006 - 2019 Byosoft Corporation. All rights reserved.
+#  This program and associated documentation (if any) is furnished
+#  under a license. Except as permitted by such license,no part of this
+#  program or documentation may be reproduced, stored divulged or used
+#  in a public system, or transmitted in any form or by any means
+#  without the express written consent of Byosoft Corporation.
+#
+#Module Name:
+#
+#Abstract:
+#
+#Revision History:
+#  ----------------------------------------------------------------------------------------
+#  Rev   Date               Name      Description
+#  ----------------------------------------------------------------------------------------
+#
+#--*/
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = SolSerialPortLib
+  FILE_GUID                      = D709BF32-60E0-4894-9C96-C172D29EF0A2
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.1
+  LIBRARY_CLASS                  = SolSerialPortLib
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  ServerCommonPkg/ServerCommonPkg.dec
+  
+[LibraryClasses]
+  PcdLib
+  IoLib
+
+[Sources]
+  SolSerialPortLib.c
+  
+[Pcd]
+  gEfiMdeModulePkgTokenSpaceGuid.PcdSerialUseHardwareFlowControl  ## CONSUMES
+  gEfiMdeModulePkgTokenSpaceGuid.PcdSerialDetectCable             ## SOMETIMES_CONSUMES
+  gEfiMdeModulePkgTokenSpaceGuid.PcdSerialBaudRate                ## CONSUMES
+  gEfiMdeModulePkgTokenSpaceGuid.PcdSerialLineControl             ## CONSUMES
+  gEfiMdeModulePkgTokenSpaceGuid.PcdSerialFifoControl             ## CONSUMES
+  gEfiMdeModulePkgTokenSpaceGuid.PcdSerialExtendedTxFifoSize      ## CONSUMES
+  gEfiByoModulePkgTokenSpaceGuid.PcdIpmiBmcSioDecodePort

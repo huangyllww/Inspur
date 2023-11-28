@@ -1,0 +1,82 @@
+/** @file
+
+Copyright (c) 2006 - 2018, Byosoft Corporation.<BR>
+All rights reserved.This software and associated documentation (if any)
+is furnished under a license and may only be used or copied in
+accordance with the terms of the license. Except as permitted by such
+license, no part of this software or documentation may be reproduced,
+stored in a retrieval system, or transmitted in any form or by any
+means without the express written consent of Byosoft Corporation.
+
+File Name:
+  AtaDriverCfg.sd
+
+Abstract:
+  ATA setting.
+
+Revision History:
+
+$END--------------------------------------------------------------------
+
+**/
+
+
+
+  #ifdef ADVANCED_FORM_SET
+  #ifdef FORM_SET_GOTO
+    goto VIRTUALIZATION_CTRL_FORM_ID, 
+      prompt = STRING_TOKEN(STR_VIRTUALIZATION_CTRL_FORM),
+      help   = STRING_TOKEN(STR_VIRTUALIZATION_CTRL_FORM_HELP);
+  #endif
+
+  #ifdef FORM_SET_FORM
+
+    form formid = AUTO_ID(VIRTUALIZATION_CTRL_FORM_ID),
+    title = STRING_TOKEN(STR_VIRTUALIZATION_CTRL_FORM);
+        
+//DLA_ADD_1115_S
+LOGIN_TYPE_ADMIN;
+	oneof
+      varid       = SETUP_DATA.CbsCmnGnbNbIOMMU,
+      prompt      = STRING_TOKEN (AMD_CBS_STR_IOMMU),
+      help        = STRING_TOKEN (AMD_CBS_STR_IOMMU_HELP),
+      option text = STRING_TOKEN (AMD_CBS_STR_DISABLED),        value = 0,    flags = 0 |RESET_REQUIRED;
+      option text = STRING_TOKEN (AMD_CBS_STR_ENABLED),         value = 1,    flags = DEFAULT | MANUFACTURING | RESET_REQUIRED ;
+      option text = STRING_TOKEN (AMD_CBS_STR_AUTO),            value = 0xf,  flags = 0 | RESET_REQUIRED;
+    endoneof;
+	
+    oneof
+      varid       = SETUP_DATA.CbsCmnSVMCtrl,
+      prompt      = STRING_TOKEN (AMD_CBS_STR_CPU_SVM_CONTROL),
+      help        = STRING_TOKEN (AMD_CBS_STR_CPU_SVM_CONTROL_HELP),
+      #if BC_TENCENT
+      option text = STRING_TOKEN (AMD_CBS_STR_DISABLED),        value = 0,    flags = RESET_REQUIRED;
+      option text = STRING_TOKEN (AMD_CBS_STR_ENABLED),         value = 1,    flags = DEFAULT | RESET_REQUIRED;
+      #elif BC_INSPUR_ST
+      option text = STRING_TOKEN (AMD_CBS_STR_DISABLED),        value = 0,    flags = RESET_REQUIRED;
+      option text = STRING_TOKEN (AMD_CBS_STR_ENABLED),         value = 1,    flags = DEFAULT | RESET_REQUIRED;
+      #else
+      option text = STRING_TOKEN (AMD_CBS_STR_DISABLED),        value = 0,    flags = DEFAULT | RESET_REQUIRED;
+      option text = STRING_TOKEN (AMD_CBS_STR_ENABLED),         value = 1,    flags = RESET_REQUIRED;
+      #endif
+    endoneof;   
+	  
+    oneof varid   = SETUP_DATA.SriovDis,
+        prompt      = STRING_TOKEN(STR_SR_IOV),
+        help        = STRING_TOKEN(STR_SR_IOV_HELP),
+        #if BC_INSPUR_ST
+        option text = STRING_TOKEN(STR_ENABLED),  value=0, flags= DEFAULT | RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_DISABLED), value=1, flags= 0 |RESET_REQUIRED;
+        #else
+        option text = STRING_TOKEN(STR_ENABLED),  value=0, flags= DEFAULT |RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_DISABLED), value=1, flags=  RESET_REQUIRED;	
+        #endif
+      endoneof;
+END_LOGIN_TYPE;  
+//DLA_ADD_1115_E
+    endform; //end VIRTUALIZATION_CTRL_FORM_ID    
+    
+  #endif  // FORM_SET_FORM
+#endif  // ADVANCED_FORM_SET
+
+

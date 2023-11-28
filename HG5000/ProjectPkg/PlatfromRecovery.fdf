@@ -1,0 +1,116 @@
+
+INF  MdeModulePkg/Core/Pei/PeiMain.inf
+INF  MdeModulePkg/Universal/PCD/Pei/Pcd.inf
+INF  MdeModulePkg/Universal/PcatSingleSegmentPciCfg2Pei/PcatSingleSegmentPciCfg2Pei.inf
+INF  $(PLATFORM_PACKAGE)/PlatformEarlyPei/PlatformEarlyPei.inf
+INF  ProjectPkg/ProjectEarlyPei/ProjectEarlyPei.inf
+INF  UefiCpuPkg/CpuIoPei/CpuIoPei.inf 
+INF  MdeModulePkg/Universal/ReportStatusCodeRouter/Pei/ReportStatusCodeRouterPei.inf
+INF  ByoModulePkg/StatusCodeHandler/Pei/StatusCodeHandlerPei.inf
+INF  MdeModulePkg/Universal/FaultTolerantWritePei/FaultTolerantWritePei.inf
+INF  MdeModulePkg/Universal/Variable/Pei/VariablePei.inf
+!if $(IPMI_SUPPORT) == TRUE
+INF  ServerCommonPkg/Ipmi/GenericPei/PeiGenericIpmi.inf
+!endif
+INF  $(PLATFORM_PACKAGE)/BootModePei/BootModePei.inf
+
+
+INF  $(PLATFORM_PACKAGE)/Cpu/Pei/CpuPei.inf
+INF  $(PLATFORM_PACKAGE)/PlatformPei/PlatformPei.inf
+INF  $(PLATFORM_PACKAGE)/MemoryInit/MemDetect.inf
+INF  AgesaModulePkg/Mem/AgesaMemPei/AgesaMemPei.inf
+
+INF  AmdCbsPkg/CbsBasePei/CbsBasePei.inf
+INF  HygonWrapperPkg/CpmWrapper/Features/BoardId/Pei/HygonBoardIdPei.inf
+
+##PSP Drivers
+INF  AgesaModulePkg/Debug/AmdIdsDebugPrintPei/AmdIdsDebugPrintPei.inf
+
+INF  AgesaModulePkg/Psp/AmdPspPeiV2/AmdPspPeiV2.inf
+
+INF  AgesaModulePkg/Mem/AmdMemAm4Pei/AmdMemAm4Pei.inf
+INF  AgesaModulePkg/Soc/AmdSocSp3ZpPei/AmdSocSp3ZpPei.inf
+INF  AgesaModulePkg/ErrorLog/AmdErrorLogPei/AmdErrorLogPei.inf
+
+#   ## DF Pei Drivers
+INF  AgesaModulePkg/Fabric/ZP/FabricZpPei/AmdFabricZpPei.inf
+
+#   ## Fch Pei Drivers
+INF  AgesaModulePkg/Fch/Taishan/FchTaishanPei/FchPei.inf
+INF  AgesaModulePkg/Fch/Taishan/FchTaishanMultiFchPei/FchMultiFchPei.inf
+INF  AgesaModulePkg/Fch/Taishan/FchTaishanSmbusPei/Smbus.inf
+
+#   ## GNb Pei Drivers
+INF  AgesaModulePkg/Nbio/NbioBase/AmdNbioBaseZPPei/AmdNbioBaseZPPei.inf
+INF  AgesaModulePkg/Nbio/SMU/AmdNbioSmuV9Pei/AmdNbioSmuV9Pei.inf
+INF  AgesaModulePkg/Nbio/PCIe/AmdNbioPcieZPPei/AmdNbioPcieZPPei.inf
+INF  AgesaModulePkg/Nbio/IOMMU/AmdNbioIOMMUZPPei/AmdNbioIOMMUZPPei.inf
+
+#   ## Ccx Pei Drivers
+INF  AgesaModulePkg/Ccx/Zen/CcxZenZpPei/AmdCcxZenZpPei.inf
+
+#   ## Universal AmdMeoryInfoHob PEIM
+INF  AgesaModulePkg/Universal/AmdMemoryHobInfoPeim/AmdMemoryHobInfoPeim.inf
+INF  AgesaModulePkg/Universal/Version/AmdVersionPei/AmdVersionPei.inf
+
+#   ## MEM PEIMs
+INF  AgesaModulePkg/Mem/AmdMemChanXLatZpPei/MemChanXLatZpPei.inf
+INF  AgesaModulePkg/Mem/AmdMemSmbiosV2Pei/MemSmbiosV2Pei.inf
+
+INF  AmdCpmPkg/Features/I2cMaster/Pei/AmdI2cMasterPei.inf
+INF  AmdCpmPkg/Kernel/Pei/AmdCpmInitPeim.inf
+#INF AmdCpmPkg/Features/BoardId/Pei/AmdBoardIdPei.inf
+INF  AmdCpmPkg/Features/GpioInit/Pei/AmdCpmGpioInitPeim.inf
+INF  AmdCpmPkg/Features/PcieInit/Pei/AmdCpmPcieInitPeim.inf
+#INF  AmdCpmPkg/Devices/Ds125Br401a/Pei/Ds125Br401aPei.inf
+INF  AmdCpmPkg/Devices/M24LC128/Pei/M24Lc128Pei.inf
+#INF  AmdCpmPkg/Devices/Pca9535a/Pei/Pca9535aPei.inf
+#INF  AmdCpmPkg/Devices/Pca9545a/Pei/Pca9545aPei.inf
+#INF  AmdCpmPkg/Devices/Sff8472/Pei/Sff8472Pei.inf
+
+INF   ProjectPkg/Feature/UsbEq/UsbTxEqPei.inf
+
+INF  ProjectPkg/AmdCpmOemInitPei/AmdCpmOemInitPeimHygon52D16.inf
+#INF AmdCpmPkg/Addendum/Oem/AmdSataWorkaround/AmdSataWorkaround.inf
+
+INF  UefiCpuPkg/PiSmmCommunication/PiSmmCommunicationPei.inf
+#INF UefiCpuPkg/Universal/Acpi/S3Resume2Pei/S3Resume2Pei.inf
+INF  MdeModulePkg/Core/DxeIplPeim/DxeIpl.inf
+INF  MdeModulePkg/Universal/Acpi/FirmwarePerformanceDataTablePei/FirmwarePerformancePei.inf
+
+!if $(TCM_ENABLE) == TRUE
+FILE PEIM = 7ED58C01-51BE-4364-832E-7747B1D79FF7 {
+  SECTION Align=Auto PE32=ByoModulePkg/Security/Tcm/Binary/Sm3HashPei.efi
+  SECTION       PEI_DEPEX=ByoModulePkg/Security/Tcm/Binary/Sm3HashPei.depex
+}
+INF ByoModulePkg/Security/Tcm/Pei/TcmPei.inf
+!endif
+
+!if $(TPM_ENABLE) == TRUE
+INF  SecurityPkg/Tcg/Tcg2Config/Tcg2ConfigPei.inf
+INF  SecurityPkg/Tcg/PhysicalPresencePei/PhysicalPresencePei.inf
+INF  SecurityPkg/Tcg/TcgPei/TcgPei.inf
+INF  SecurityPkg/Tcg/Tcg2Pei/Tcg2Pei.inf
+!endif
+
+#!if $(HDD_PASSWORD_ENABLE) == TRUE
+#  INF ByoModulePkg/Security/HddPassword/Pei/HddPasswordPei.inf
+#!endif
+
+
+
+#LZMA : EE4E5898-3914-4259-9D6E-DC7BD79403CF
+#TIANO: A31280AD-481E-41B6-95E8-127F4C984779
+# Recovery PEIMs
+!if $(RECOVERY_ENABLE) == TRUE
+FILE FV_IMAGE = 1E9D7604-EF45-46a0-BD8A-71AC78C17AC1 {
+       SECTION PEI_DEPEX_EXP = {gEfiPeiMemoryDiscoveredPpiGuid AND gEfiPeiBootInRecoveryModePpiGuid}
+       SECTION GUIDED A31280AD-481E-41B6-95E8-127F4C984779 {
+          SECTION FV_IMAGE = FVRECOVERY_COMPONENTS
+       }
+     }
+!endif
+
+FILE FREEFORM = 2C29F722-CA20-4f49-A82D-CBDA974B1283 {
+    SECTION Align=16 RAW = ByoModulePkg/BiosSign/Pubkeyhash.bin //pubkey.bin
+  }

@@ -1,0 +1,9 @@
+
+/=#
+
+#langdef en-US "English"
+
+#string STR_MBIST_HELP_INFORMATION        #language en-US ""
+".TH MbistApp 0 "Displays MBIST Data Eye."\r\n"
+".SH NAME\r\n"
+"MBIST application.\r\n"

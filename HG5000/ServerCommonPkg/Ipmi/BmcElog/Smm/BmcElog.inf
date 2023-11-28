@@ -1,0 +1,53 @@
+## @file
+#
+#Copyright (c) 2006 - 2016, Byosoft Corporation.<BR>
+#All rights reserved.This software and associated documentation (if any)
+#is furnished under a license and may only be used or copied in
+#accordance with the terms of the license. Except as permitted by such
+#license, no part of this software or documentation may be reproduced,
+#stored in a retrieval system, or transmitted in any form or by any
+#means without the express written consent of Byosoft Corporation.
+#
+#File Name:
+#  BmcElog.inf
+#
+#Abstract:
+#
+#Revision History:
+#
+##
+
+
+[Defines]
+  INF_VERSION              = 0x00010005
+  BASE_NAME                = SmBmcElog
+  FILE_GUID                = BE29A700-9D5A-4bb9-86B1-D1DB7A05D594
+  MODULE_TYPE              = DXE_SMM_DRIVER
+  PI_SPECIFICATION_VERSION = 0x0001000A
+  VERSION_STRING           = 1.0
+  ENTRY_POINT              = InitializeSmBmcElogLayer
+
+[Sources]
+  BmcElog.c
+  BmcElog.h
+
+[Packages]
+  MdePkg/MdePkg.dec
+  ServerCommonPkg/ServerCommonPkg.dec
+
+[LibraryClasses]
+  UefiDriverEntryPoint
+  DebugLib
+  UefiRuntimeServicesTableLib
+  UefiBootServicesTableLib
+  ReportStatusCodeLib
+  SmmServicesTableLib
+  IpmiBaseLib
+  EfiServerManagementLib
+
+[Protocols]
+  gSmmRedirElogProtocolGuid   # PROTOCOL ALWAYS_PRODUCED
+
+[Depex]
+  gSmmIpmiTransportProtocolGuid
+

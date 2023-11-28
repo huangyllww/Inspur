@@ -1,0 +1,49 @@
+;/** @file
+;
+;Copyright (c) 2006 - 2019, Byosoft Corporation.<BR> 
+;All rights reserved.This software and associated documentation (if any)
+;is furnished under a license and may only be used or copied in 
+;accordance with the terms of the license. Except as permitted by such
+;license, no part of this software or documentation may be reproduced, 
+;stored in a retrieval system, or transmitted in any form or by any 
+;means without the express written consent of Byosoft Corporation.
+;
+;File Name:
+;
+;Abstract: 
+;
+;Revision History:
+;
+;**/
+;
+; Module Name:
+; 
+;
+        NAME    INT18HDSR
+        TITLE   INT18HDSR
+
+
+;************************************************************************
+;*      Include Files                                                   *
+;************************************************************************
+.586
+
+
+
+
+;************************************************************************
+;*      Code Segment                                                    *
+;************************************************************************
+
+TcgS SEGMENT USE16
+        assume  ds:nothing, es:nothing
+
+; to be fixed in runtime, original INT1A handler
+OldIntHandler LABEL DWORD
+        NextVectorOffset          DW      4624h ;F$
+        NextVectorSeg             DW      5849h ;XI
+        
+        iret
+
+TcgS ENDS
+        END

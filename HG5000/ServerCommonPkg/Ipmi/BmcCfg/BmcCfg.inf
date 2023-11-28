@@ -1,0 +1,100 @@
+## @file
+#
+#Copyright (c) 2006 - 2016, Byosoft Corporation.<BR>
+#All rights reserved.This software and associated documentation (if any)
+#is furnished under a license and may only be used or copied in
+#accordance with the terms of the license. Except as permitted by such
+#license, no part of this software or documentation may be reproduced,
+#stored in a retrieval system, or transmitted in any form or by any
+#means without the express written consent of Byosoft Corporation.
+#
+#File Name:
+#  WheaElog.inf
+#
+#Abstract:
+#
+#Revision History:
+#
+##
+
+[defines]
+  INF_VERSION          = 0x00010005
+  BASE_NAME            = BmcCfgDriver
+  FILE_GUID            = 78A04816-9E99-42EE-9FA2-16F5C319835C
+  MODULE_TYPE          = DXE_DRIVER
+  VERSION_STRING       = 1.0
+  ENTRY_POINT          = BmcCfgDriverEntryPoint
+
+[Sources]
+  BmcCfg.c
+  BmcCfg.h
+  JEP106.c
+  JEP106.h
+
+[Packages]  
+  MdePkg/MdePkg.dec
+  ServerCommonPkg/ServerCommonPkg.dec
+  ByoModulePkg/ByoModulePkg.dec
+  PlatformPkg/PlatformPkg.dec
+  AgesaPkg/AgesaPkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec  
+  AgesaModulePkg/AgesaModuleNbioPkg.dec
+  
+[LibraryClasses]
+  UefiBootServicesTableLib
+  UefiRuntimeServicesTableLib
+  UefiDriverEntryPoint
+  UefiLib
+  ReportStatusCodeLib
+  MemoryAllocationLib
+  DebugLib
+  BaseMemoryLib
+  IpmiBaseLib
+  PcdLib
+  DevicePathLib
+  HobLib
+  ByoCommLib
+  NbioRegisterAccLib
+  PcieConfigLib
+  NbioHandleLib
+  NbioRegisterAccLib
+  BiosIdLib
+  NbioSmuV9Lib
+  PcieConfigLib
+  PlatformCommLib
+
+[Protocols]
+  gEfiSmBmcConfigGuid         # PROTOCOL ALWAYS_PRODUCED
+  gEfiBmcWdtProtocolGuid      # PROTOCOL ALWAYS_CONSUMED
+  gBdsAllDriversConnectedProtocolGuid
+  gEfiSmbiosProtocolGuid
+  gEfiPciIoProtocolGuid
+  gPlatHostInfoProtocolGuid
+  gEfiAtaPassThruProtocolGuid
+  gEfiAtaPassThruProtocolGuid
+  gEfiDiskInfoProtocolGuid
+  gEfiDevicePathProtocolGuid
+  gEfiNvmExpressPassThruProtocolGuid
+  gByoDiskInfoProtocolGuid
+  gHygonProcessorServicesProtocolGuid
+  gAmdNbioPcieServicesProtocolGuid
+
+[Guids]
+  gGnbPcieHobInfoGuid
+  gPlatformSetupVariableGuid
+  gByoGlobalVariableGuid
+
+[Pcd]
+  gEfiByoModulePkgTokenSpaceGuid.PcdFlashFvMainBase
+  gPlatformModuleTokenSpaceGuid.PcdBmcBiosConfigFlag
+  gEfiByoModulePkgTokenSpaceGuid.PcdBiosBootModeType
+  gEfiByoModulePkgTokenSpaceGuid.PcdIpmiBootMode
+  gEfiByoModulePkgTokenSpaceGuid.PcdIpmiBootflag
+
+  gEfiByoModulePkgTokenSpaceGuid.PcdIpmiSetBootOrder
+
+[Depex]
+  gByoIpmiInterfaceProtocolGuid AND
+  gEfiVariableArchProtocolGuid AND
+  gEfiVariableWriteArchProtocolGuid AND
+  gEfiBmcWdtProtocolGuid

@@ -1,0 +1,86 @@
+## @file  
+#
+# Copyright (c) 2006 - 2018, Byosoft Corporation.<BR> 
+# All rights reserved.This software and associated documentation (if any)
+# is furnished under a license and may only be used or copied in 
+# accordance with the terms of the license. Except as permitted by such
+# license, no part of this software or documentation may be reproduced, 
+# stored in a retrieval system, or transmitted in any form or by any 
+# means without the express written consent of Byosoft Corporation.
+#
+# File Name:
+#   SmmPlatform.inf
+#
+# Abstract: 
+#   Component description file for SMM Platform module
+#
+# Revision History:
+# 
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = SmmPlatform
+  FILE_GUID                      = 5ED85695-F91D-43e0-BC62-9B32E401B787
+  MODULE_TYPE                    = DXE_SMM_DRIVER
+  VERSION_STRING                 = 1.0
+  PI_SPECIFICATION_VERSION       = 0x0001000A
+  ENTRY_POINT                    = InitializePlatformSmm
+
+
+[Sources]
+  SmmPlatform.c
+
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  PlatformPkg/PlatformPkg.dec
+  AgesaPkg/AgesaPkg.dec
+  ByoModulePkg/ByoModulePkg.dec
+  IntelFrameworkPkg/IntelFrameworkPkg.dec
+  AgesaModulePkg/Fch/Taishan/FchTaishan.dec
+
+  
+  
+[LibraryClasses]
+  UefiDriverEntryPoint
+  DebugLib
+  PcdLib
+  IoLib
+  PciLib
+  BaseLib
+  BaseMemoryLib
+  SmmServicesTableLib
+  MemoryAllocationLib
+  UefiRuntimeServicesTableLib
+  HobLib
+  ReportStatusCodeLib
+  TimerLib
+  UefiLib
+  PlatformCommLib
+  
+  
+[Protocols]
+  gFchSmmSwDispatch2ProtocolGuid
+  gEfiLegacyUsbInfProtocolGuid
+  gFchSmmSxDispatch2ProtocolGuid
+  gByoCommSmiSvcProtocolGuid
+  gEfiSmmPowerButtonDispatch2ProtocolGuid
+  gEdkiiSmmReadyToBootProtocolGuid
+  
+[Guids]
+  gEfiCapsuleVendorGuid
+  gPlatformSetupVariableGuid
+  
+[Pcd]
+  gEfiMdePkgTokenSpaceGuid.PcdPciExpressBaseAddress
+  gEfiByoModulePkgTokenSpaceGuid.AcpiIoPortBaseAddress 
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdFchOemEnableAcpiSwSmi
+  gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiS3Enable
+
+[Ppis]
+  gEfiPeiSmmCommunicationPpiGuid
+  
+[Depex]
+  gFchSmmSwDispatch2ProtocolGuid
+ 

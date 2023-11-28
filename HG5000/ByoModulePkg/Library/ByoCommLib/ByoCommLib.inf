@@ -1,0 +1,75 @@
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = ByoCommLib
+  FILE_GUID                      = 4F3B6AF1-06EF-4512-9223-6AD61362653B
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = ByoCommLib
+
+
+#
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           = IA32 X64 IPF EBC
+#
+
+[Sources]
+  ByoCommLib.c
+
+
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  ByoModulePkg/ByoModulePkg.dec  
+  UefiCpuPkg/UefiCpuPkg.dec
+  PlatformPkg/PlatformPkg.dec
+
+
+[LibraryClasses]
+  PcdLib
+  IoLib
+  BaseLib
+  TimerLib
+  HobLib
+  PciLib
+
+
+[Guids]
+  gEfiConsoleOutDeviceGuid
+  gEfiDiskInfoIdeInterfaceGuid
+  gEfiDiskInfoAhciInterfaceGuid
+  gEfiAcpiTableGuid
+  gEfiFileInfoGuid
+  gEfiFileSystemInfoGuid
+  gByoSysCfgAndStsHobGuid
+  
+  
+[Protocols]
+  gEfiGraphicsOutputProtocolGuid  
+  gEfiExtScsiPassThruProtocolGuid
+  gEfiAtaPassThruProtocolGuid
+  gEfiPciIoProtocolGuid
+  gEfiDevicePathProtocolGuid
+  gEfiDiskInfoProtocolGuid
+  gEfiDevicePathToTextProtocolGuid
+  gEfiScsiIoProtocolGuid
+  gPlatHostInfoProtocolGuid
+  gEfiFirmwareVolume2ProtocolGuid
+  gEfiBootLogoProtocolGuid
+  gEfiComponentNameProtocolGuid
+  gEfiComponentName2ProtocolGuid
+  gEfiNvmExpressPassThruProtocolGuid
+  
+  
+[Pcd]
+  gEfiMdePkgTokenSpaceGuid.PcdPciExpressBaseAddress
+  gEfiByoModulePkgTokenSpaceGuid.AcpiIoPortBaseAddress
+  gEfiMdeModulePkgTokenSpaceGuid.PcdRealTimeClockUpdateTimeout
+  gEfiByoModulePkgTokenSpaceGuid.PcdAhciOrPortNameIndexBase0
+  gPlatformModuleTokenSpaceGuid.PcdSmileline
+
+  
+  
+  

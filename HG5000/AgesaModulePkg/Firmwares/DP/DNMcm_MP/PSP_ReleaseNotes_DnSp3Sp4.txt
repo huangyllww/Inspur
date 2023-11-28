@@ -1,0 +1,64 @@
+// ------------------------------------------------------------------------------
+// Copyright 2016-2020 Chengdu Haiguang IC Design Co., Ltd. All rights reserved.
+//
+// PSP FW Delivery Release Notes
+// 
+// Files && Lastest Version:
+//   [P] PspBootLoader_prod_DnSp3Sp4.esbin  [1.2.71.0]
+//        - PSP offchip BootLoader binary, encrypted and signed with production key
+//        - PSP Entry: 0x1
+//   [D] DebugUnlock_DN.esbin               [0.1.0.7]
+//        - Secure Debug Unlock binary, encrypted and signed with production key
+//        - PSP Entry: 0x13
+//   [R] RsmuSecurityPolicy_DN              [0.1.0.4]
+//        - Security Policy binary,  encrypted and signed with production key
+//        - PSP Entry: 0x24
+//-------------------------------------------------------------------------------
+
+Features and fixes in [P]1.2.71.0 (2020/10/23):
+SEONPS-709: Update Unlock Flow [to] Support that UnlockToken can be reused before time expired
+
+Features and fixes in [P]1.2.69.0 (2020/10/14):
+SEONPS-502: Add Support for SPI ROM Write Protection
+
+Features and fixes in [P]1.2.68.0 (2020/09/30):
+SEONPS-681: Remove MCE log [to fix] mp0 hung in SMI polling 
+
+Features and fixes in [P]1.2.66.0 (2020/09/27):
+SEONPS-680: Add DBGU1 Postcode [to] get postcode stream using JTAG tool
+
+Features and fixes in [P]1.2.65.0 (2020/09/22):
+SEONPS-671: Update HMAC KEY generated flow [to fix] access register failed when warmreset after unlocked
+
+Features and fixes in [P]1.2.64.0 (2020/09/22):
+SEONPS-669: Don't load SecurityGasket if EarlyUnlock is done [to fix] access register failed when reboot after unlocked
+
+Features and fixes in [P]1.2.63.0 (2020/08/25):
+SEONPS-602:
+- Update CPU Logical Id define [to] simplify cpu version comparation
+- Add Support for CPU Logical Id C1
+
+Features and fixes in [P]1.2.62.0 (2020/08/21):
+-: add bios measure [to] support root measure for TPM
+
+Features and fixes in [P]1.2.61.0 (2020/08/15):
+PS-1155: update mbist check stratgy [to fix] bootloader mbist hung problem on normal chip
+
+Features and fixes in [P]1.2.60.0 && [D]0.1.0.7 (2020/08/15):
+PS-1152: Remove DF Config in SecureUnlock flow [to Fix] PSP Hung when DF is in CState
+
+Features and fixes in [P]1.2.59.0 (2020/08/11):
+SEONPS-562: Only Enable CSV Feature After CSV loaded [to Fix] OS Boot Failed when CSV fw isn't existed in BIOS
+
+Features and fixes in [P]1.2.58.0 (2020/08/06):
+PRODUCT-862: Update CSV Loading and notifying sequence [to Fix] BIOS Hang when Disable SMT and BMC
+
+Features and fixes in [P]1.2.57.0 (2020/08/03):
+PS-1122: Add MBIST Check [to] Detect BIST Failed
+
+Features and fixes in [D]0.1.0.6 && [R]0.1.0.4 (2020/07/27):
+SEONPS-338: Update config sequence [to Fix] Mp1 Double Exception on SecureUnlock
+
+Features and fixes in [P]1.2.56.0 (2020/07/27):
+SEONPS-494: Add Debug Point [to] Trace unlock position
+

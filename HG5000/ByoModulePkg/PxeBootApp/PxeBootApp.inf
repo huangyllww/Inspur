@@ -1,0 +1,43 @@
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = PxeBootApp
+  FILE_GUID                      = 80AF95D2-A9BC-41ee-9518-1CA7F9F7858C
+  MODULE_TYPE                    = UEFI_APPLICATION
+  VERSION_STRING                 = 1.0 
+  ENTRY_POINT                    = PxeBootAppEntry
+
+#
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           = IA32 X64 IPF EBC
+#
+
+[Sources]
+  PxeBootApp.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  ByoModulePkg/ByoModulePkg.dec
+
+[LibraryClasses]
+  DebugLib
+  UefiLib
+  MemoryAllocationLib
+  UefiBootServicesTableLib
+  UefiApplicationEntryPoint
+  ByoCommLib
+  DevicePathLib
+    
+
+[Pcd]
+
+[Guids]
+
+[Protocols]
+  gEfiDevicePathProtocolGuid
+  gEfiLoadFileProtocolGuid
+  gEfiBootManagerProtocolGuid
+
+

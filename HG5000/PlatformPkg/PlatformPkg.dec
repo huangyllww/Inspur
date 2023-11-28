@@ -1,0 +1,102 @@
+## @file  
+#
+# Copyright (c) 2006 - 2018, Byosoft Corporation.<BR> 
+# All rights reserved.This software and associated documentation (if any)
+# is furnished under a license and may only be used or copied in 
+# accordance with the terms of the license. Except as permitted by such
+# license, no part of this software or documentation may be reproduced, 
+# stored in a retrieval system, or transmitted in any form or by any 
+# means without the express written consent of Byosoft Corporation.
+#
+# File Name:
+#   PlatformPkg.dec
+#
+# Abstract: 
+#   Platform Configuration File
+#
+# Revision History:
+#
+##
+
+[Defines]
+  DEC_SPECIFICATION              = 0x00010005
+  PACKAGE_NAME                   = PlatformPkg
+  PACKAGE_GUID                   = 463B3B00-0D18-4a5f-90C0-D5B851D2574B
+  PACKAGE_VERSION                = 0.1
+
+[Includes]              
+  Include
+  ..
+
+[Guids]
+  gPlatformModuleTokenSpaceGuid    = { 0x69d13bf0, 0xaf91, 0x4d96, { 0xaa, 0x9f, 0x21, 0x84, 0xc5, 0xce, 0x3b, 0xc0 }}
+  gEfiBootStateGuid                = { 0x60b5e939, 0x0fcf, 0x4227, { 0xba, 0x83, 0x6b, 0xbe, 0xd4, 0x5b, 0xc0, 0xe3 }}
+  gPlatformSetupVariableGuid       = { 0xec87d643, 0xeba4, 0x4bb5, { 0xa1, 0xe5, 0x3f, 0x3e, 0x36, 0xb2, 0x0d, 0xa9 }}
+  gEfiPlatformCommInfoGuid         = { 0x21b3eb6a, 0x6a00, 0x419c, { 0xba, 0xe5, 0xe0, 0xcd, 0xf3, 0x93, 0xb0, 0x20 }}
+
+# Formset guid defined in Byo platform setup.
+  gSignCapsuleHeaderGuild          = {0x8a841796, 0x27f1, 0x4045, { 0xb1, 0x5b, 0xd5, 0x60, 0xdd, 0xdc, 0xe3, 0xd8 }}
+  gCarTopDataHobGuid               = {0xa1005eac, 0xcfd3, 0x4124, { 0x85, 0xa9, 0x6c, 0xea, 0x5e, 0x0e, 0x8b, 0x4a }}
+  gSmramDescTableGuid              = {0x449a95a9, 0xf7c6, 0x4b36, { 0x80, 0x38, 0x77, 0x07, 0x9c, 0x8c, 0xf1, 0x88 }}
+  gCpuS3ResumeGuid                 = {0x30b98b95, 0xdfa3, 0x4501, { 0xa3, 0xce, 0xe3, 0x8c, 0x18, 0x63, 0x84, 0xa0 }}
+  gEfiCpuInfoHobGuid               = {0x114b3200, 0xca8b, 0x439b, { 0xa6, 0x7f, 0xb8, 0x61, 0xa8, 0x0d, 0xd5, 0x96 }}
+  
+[Ppis]
+  gAmdMemoryAgesaReadSpdPpiGuid    = {0x41a51028, 0x9d80, 0x4eca, {0xa6, 0x46, 0x81, 0xd8, 0xb2, 0x9c, 0xec, 0xb3}}
+
+
+  
+[Protocols]
+  gPlatformInfoProtocolGuid                      = { 0xd9035175, 0x8ce2, 0x47de, { 0xa8, 0xb8, 0xcc, 0x98, 0xe5, 0xe2, 0xa8, 0x85 }}
+  gIgdGopDepexProtocolGuid                       = { 0xe0b039a9, 0x5f36, 0x4b93, { 0x9a, 0xe8, 0x77, 0x9b, 0xcf, 0xdc, 0x2e, 0xed }}
+  gObLanUndiDxeDepexProtocolGuid                 = { 0x0d122fb8, 0x54bd, 0x4e7a, { 0xaf, 0x81, 0x66, 0x60, 0x54, 0xed, 0xaf, 0x52 }}
+
+  
+  
+[PcdsFixedAtBuild]
+  gPlatformModuleTokenSpaceGuid.PcdCsm16File|{0xF3,0xB4,0x47,0x15,0x8A,0x3E,0xEF,0x4F,0x81,0xC8,0x32,0x8E,0xD6,0x47,0xAB,0x1A}|VOID*|0x20000006
+  gPlatformModuleTokenSpaceGuid.PcdSetupFileGuid    |{0x21, 0xaa, 0x2c, 0x46, 0x14, 0x76, 0x03, 0x45, 0x83, 0x6e, 0x8a, 0xb6, 0xf4, 0x66, 0x23, 0x31 }|VOID*|0x2000000D
+  gPlatformModuleTokenSpaceGuid.PcdBootMenuFileGuid |{0xDC, 0x5B, 0xC2, 0xEE, 0xF2, 0x67, 0x95, 0x4D, 0xB1, 0xD5, 0xF8, 0x1B, 0x20, 0x39, 0xD1, 0x1D }|VOID*|0x2000000E  
+  gPlatformModuleTokenSpaceGuid.PcdPspFlashBase|0|UINT32|0x40000110
+  gPlatformModuleTokenSpaceGuid.PcdPspFlashSize|0|UINT32|0x40000111
+  gPlatformModuleTokenSpaceGuid.PcdFchFwFlashBase|0|UINT32|0x40000112
+  gPlatformModuleTokenSpaceGuid.PcdFchFwFlashSize|0|UINT32|0x40000113   
+  gPlatformModuleTokenSpaceGuid.PcdTemporaryRamBase|0xFEF00000|UINT32|0x40000010
+  gPlatformModuleTokenSpaceGuid.PcdTemporaryRamSize|0x00004000|UINT32|0x40000011
+  gPlatformModuleTokenSpaceGuid.PcdPeiTemporaryRamStackSize|0|UINT32|0x40000016
+  gPlatformModuleTokenSpaceGuid.PcdSecCoreMaxPpiSupported|0x6|UINT32|0x40000017
+  gPlatformModuleTokenSpaceGuid.PcdCpuMaxCores|256|UINT32|0x40000018  
+  gPlatformModuleTokenSpaceGuid.PcdCmosAgesaSpecified|0x84|UINT8|0x40000019
+  gPlatformModuleTokenSpaceGuid.PcdSmbiosBaseBoardVersion|"1"|VOID*|0x4000001A
+  gPlatformModuleTokenSpaceGuid.PcdSmbiosManufacturer|"Higon"|VOID*|0x00000004  
+  gPlatformModuleTokenSpaceGuid.PcdSmbiosSystemInfoVersion|"V1.0"|VOID*|0x00000005
+  gPlatformModuleTokenSpaceGuid.PcdSmbiosSystemInfoFamily|" "|VOID*|0x00000006
+  gPlatformModuleTokenSpaceGuid.PcdSmbiosSystemInfoProductName|" "|VOID*|0x00000007
+  gPlatformModuleTokenSpaceGuid.PcdSmbiosChassisVersion|" "|VOID*|0x0000000B
+  gPlatformModuleTokenSpaceGuid.PcdSmbiosBiosVersion|" "|VOID*|0x0000000C
+
+  gPlatformModuleTokenSpaceGuid.PcdAhciOpRomFile |{0xb2,0xee,0x58,0x85,0xe6,0xf5,0x9a,0x4f,0xa4,0x54,0x9e,0xd4,0x85,0xd9,0xee,0x7b}|VOID*|0x21000012
+  gPlatformModuleTokenSpaceGuid.PcdNvmeOpRomFile |{0xa9,0xa2,0x41,0x54,0xf1,0xb4,0xf1,0x49,0x88,0x4a,0x54,0xf5,0x4c,0xbb,0x3d,0x36}|VOID*|0x21000013
+  gPlatformModuleTokenSpaceGuid.PcdObLanOpRomFile|{0xd0,0xe2,0xd0,0x8e,0x85,0xb5,0x19,0x4d,0xb1,0xb0,0x4c,0x95,0xeb,0x20,0xcd,0xc6}|VOID*|0x21000014
+
+  gPlatformModuleTokenSpaceGuid.PcdUartSelection|0|UINT8|0x00000008
+  gPlatformModuleTokenSpaceGuid.PcdTestBiosVersion|0|UINT8|0x00000009
+
+# 0 - Disable  
+# 1 - LPC
+# 2 - SPI  
+  gPlatformModuleTokenSpaceGuid.PcdTpmDecode|0|UINT8|0x0000000A
+ 
+  
+  
+[PcdsDynamic]
+  gPlatformModuleTokenSpaceGuid.PcdAcpiWakeupSrc|0|UINT8|0xA0000004
+  gPlatformModuleTokenSpaceGuid.PcdPci32AllocLimitAddr|0xEFFFFFFF|UINT32|0xA0000012
+  gPlatformModuleTokenSpaceGuid.PcdPciIoAllocLimitAddr|0xFFFF|UINT16|0xA0000013 
+  gPlatformModuleTokenSpaceGuid.PcdS3RecordAddr|0|UINT32|0xA0000014
+  gPlatformModuleTokenSpaceGuid.PcdBmcBiosConfigFlag|0|UINT8|0xA0000016
+  gPlatformModuleTokenSpaceGuid.PcdSmileline|3|UINT8|0xA0000018
+  gPlatformModuleTokenSpaceGuid.PcdObLanEn|1|UINT8|0xA0000019
+  gPlatformModuleTokenSpaceGuid.PcdSetUpUpdate|0|UINT8|0xA0000020
+  gPlatformModuleTokenSpaceGuid.PcdVersionCheck|0|UINT8|0xA0000021
+  

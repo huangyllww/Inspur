@@ -1,0 +1,81 @@
+## @file
+#
+#Copyright (c) 2006 - 2016, Byosoft Corporation.<BR>
+#All rights reserved.This software and associated documentation (if any)
+#is furnished under a license and may only be used or copied in
+#accordance with the terms of the license. Except as permitted by such
+#license, no part of this software or documentation may be reproduced,
+#stored in a retrieval system, or transmitted in any form or by any
+#means without the express written consent of Byosoft Corporation.
+#
+#File Name:
+#  WheaElog.inf
+#
+#Abstract:
+#
+#Revision History:
+#
+##
+
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = WheaElog
+  FILE_GUID                      = 79ED865D-7470-4596-A2ED-E7550E2B73A7
+  MODULE_TYPE                    = DXE_SMM_DRIVER
+  PI_SPECIFICATION_VERSION       = 0x0001000A  
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = WheaElogInit
+
+  
+[Sources]
+   WheaElog.c
+
+   
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec  
+  ServerCommonPkg/ServerCommonPkg.dec
+  ByoNvMediaPkg/ByoNvMediaPkg.dec
+
+
+[LibraryClasses]
+  UefiDriverEntryPoint
+  UefiBootServicesTableLib
+  BaseMemoryLib
+  DebugLib
+  IoLib
+  SmmServicesTableLib
+  BaseLib
+  
+  
+[Guids]
+ gEfiWheaElogFvGuid
+
+ 
+[Protocols]
+ gEfiSmmNvMediaAccessProtocolGuid
+ gEfiSmmSwDispatch2ProtocolGuid
+ gEfiAcpiTableProtocolGuid
+
+ 
+
+[Pcd]
+  gServerCommonPkgModuleTokenSpaceGuid.PcdFlashNvStorageApeiBase
+  gServerCommonPkgModuleTokenSpaceGuid.PcdFlashNvStorageApeiSize 
+  gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultOemId            ## SOMETIMES_CONSUMES
+  gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultOemTableId       ## SOMETIMES_CONSUMES
+  gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultOemRevision      ## SOMETIMES_CONSUMES
+  gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultCreatorId        ## SOMETIMES_CONSUMES
+  gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultCreatorRevision  ## SOMETIMES_CONSUMES  
+  gEfiMdeModulePkgTokenSpaceGuid.PcdSwSmiCmdPort
+ 
+
+[Depex]
+  gEfiSmmSwDispatch2ProtocolGuid AND 
+  gEfiNvMediaAccessSpiReadyGuid  AND
+  gEfiAcpiTableProtocolGuid
+  
+
+  
+  

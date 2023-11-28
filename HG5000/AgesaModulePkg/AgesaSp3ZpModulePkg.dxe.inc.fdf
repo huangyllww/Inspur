@@ -1,0 +1,59 @@
+    INF AgesaModulePkg/Debug/AmdIdsDebugPrintDxe/AmdIdsDebugPrintDxe.inf
+
+    INF AgesaModulePkg/Mem/AmdMemAm4Dxe/AmdMemAm4Dxe.inf
+    INF AgesaModulePkg/Soc/AmdSocSp3ZpDxe/AmdSocSp3ZpDxe.inf
+    INF AgesaModulePkg/ErrorLog/AmdErrorLogDxe/AmdErrorLogDxe.inf
+
+#   ##PSP Dxe Drivers
+    INF AgesaModulePkg/Psp/AmdPspDxeV2/AmdPspDxeV2.inf
+    INF AgesaModulePkg/Psp/AmdPspP2CmboxV2/AmdPspP2CmboxV2.inf
+    INF AgesaModulePkg/Psp/AmdPspSmmV2/AmdPspSmmV2.inf
+    INF AgesaModulePkg/Psp/AmdHstiV2/AmdHstiV2Src.inf
+#    ## Ccx & DF Dxe Drivers
+    INF AgesaModulePkg/Fabric/ZP/FabricZpDxe/AmdFabricZpDxe.inf
+    INF AgesaModulePkg/Fabric/ZP/FabricZpSmm/AmdFabricZpSmm.inf
+    INF AgesaModulePkg/Ccx/Zen/CcxZenZpDxe/AmdCcxZenZpDxe.inf
+    INF AgesaModulePkg/Ccx/Zen/CcxZenZpSmm/AmdCcxZenZpSmm.inf
+
+#    ## Mem Dxe Drivers
+    INF AgesaModulePkg/Mem/AmdMemSmbiosV2Dxe/AmdMemSmbiosV2Dxe.inf
+
+#    ## GNb Dxe Drivers
+    INF AgesaModulePkg/Nbio/NbioBase/AmdNbioBaseZPDxe/AmdNbioBaseZPDxe.inf
+    INF AgesaModulePkg/Nbio/SMU/AmdNbioSmuV9Dxe/AmdNbioSmuV9Dxe.inf
+    INF AgesaModulePkg/Nbio/PCIe/AmdNbioPcieZPDxe/AmdNbioPcieZPDxe.inf
+    INF AgesaModulePkg/Nbio/IOMMU/AmdNbioIOMMUZPDxe/AmdNbioIOMMUZPDxe.inf
+    INF AgesaModulePkg/Nbio/NbioALib/AmdNbioAlibZPDxe/AmdNbioAlibZPDxe.inf
+
+#   ## Fch Dxe Drivers
+    INF AgesaModulePkg/Fch/Taishan/FchTaishanDxe/FchDxe.inf
+    INF AgesaModulePkg/Fch/Taishan/FchTaishanDxe/FchTaishanSsdt.inf
+    INF AgesaModulePkg/Fch/Taishan/FchTaishanSmm/FchSmm.inf
+    INF AgesaModulePkg/Fch/Taishan/FchTaishanSmbusDxe/SmbusLight.inf
+    INF AgesaModulePkg/Fch/Taishan/FchTaishanCf9ResetDxe/Cf9Reset.inf
+    INF AgesaModulePkg/Fch/Taishan/FchTaishanLegacyInterruptDxe/LegacyInterrupt.inf
+    INF AgesaModulePkg/Fch/Taishan/FchTaishanSmmControlDxe/SmmControl.inf
+    INF AgesaModulePkg/Fch/Taishan/FchTaishanSmmDispatcher/FchSmmDispatcher.inf
+    INF AgesaModulePkg/Fch/Taishan/FchTaishanMultiFchDxe/FchMultiFchDxe.inf
+    INF AgesaModulePkg/Fch/Taishan/FchTaishanMultiFchSmm/FchMultiFchSmm.inf
+
+#   ## APCB Dxe Drivers
+    INF AgesaModulePkg/Psp/ApcbDrv/ApcbZpDxe/ApcbZpDxe.inf
+
+#   ## APCB Smm Drivers
+    INF AgesaModulePkg/Psp/ApcbDrv/ApcbZpSmm/ApcbZpSmm.inf
+
+#   ## Universal
+    INF AgesaModulePkg/Universal/Smbios/AmdSmbiosDxe.inf
+    INF AgesaModulePkg/Universal/Acpi/AmdAcpiDxe.inf
+    INF AgesaModulePkg/Universal/AmdSmmCommunication/AmdSmmCommunication.inf
+    INF AgesaModulePkg/Universal/Version/AmdVersionDxe/AmdVersionDxe.inf
+
+#   ## Ras Dxe Drivers
+    INF AgesaModulePkg/Ras/AmdRasApeiDxe/AmdRasApeiDxe.inf
+    INF AgesaModulePkg/Ras/AmdRasDxe/AmdRasDxe.inf
+    INF AgesaModulePkg/Ras/AmdRasSmm/AmdRasSmm.inf
+
+#   ## Nvdimm Dxe Drivers
+    INF AgesaModulePkg/JedecNvdimm/JedecNvdimm.inf
+    #INF AgesaPkg/Addendum/Nbio/ServerHotplugDxe/ServerHotplugDxe.inf

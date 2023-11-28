@@ -1,0 +1,139 @@
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = PlatformPei
+  FILE_GUID                      = 064987B3-9780-4ce7-A55B-1ADCB3821205
+  MODULE_TYPE                    = PEIM
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = PlatformPeiEntry
+
+#
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           = IA32 X64 IPF EBC
+#
+
+[Sources]
+  PlatformPei.c
+  MemoryCallBack.c
+  Recovery.c
+  SmmAccess.c
+  SmmControl.c
+  
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  IntelFrameworkPkg/IntelFrameworkPkg.dec
+  ByoModulePkg/ByoModulePkg.dec
+  PlatformPkg/PlatformPkg.dec
+  UefiCpuPkg/UefiCpuPkg.dec
+  IntelFrameworkModulePkg/IntelFrameworkModulePkg.dec
+  AgesaModulePkg/Fch/Taishan/FchTaishan.dec
+  AgesaPkg/AgesaPkg.dec 
+  AgesaModulePkg/AgesaModuleCcxPkg.dec
+  AmdCbsPkg/AmdCbsPkg.dec
+  ServerCommonPkg/ServerCommonPkg.dec
+  SecurityPkg/SecurityPkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModulePspPkg.dec
+  
+[LibraryClasses]
+  HobLib
+  PeimEntryPoint
+  PeiServicesLib
+  BaseMemoryLib
+  DebugLib
+  IoLib
+  PeiServicesTablePointerLib
+  MtrrLib
+  TimerLib
+  MultiPlatSupportLib
+  ReportStatusCodeLib
+  PerformanceLib
+  PlatformCommLib
+  PciLib
+  ByoCommLib
+  
+
+[Guids]
+  gEfiMemoryTypeInformationGuid
+  gPlatformSetupVariableGuid
+  gMtcVendorGuid
+  gEfiAcpiVariableGuid
+  gEfiCapsuleVendorGuid
+  gSmramDescTableGuid
+  gBMCConfigSetupVariableGuid
+
+  
+[Ppis]
+  gEfiPeiMasterBootModePpiGuid                  # PPI ALWAYS_PRODUCED
+  gEfiPeiBootInRecoveryModePpiGuid              # PPI SOMETIMES_PRODUCED  
+  gEfiPeiReadOnlyVariable2PpiGuid
+  gEfiPeiMemoryDiscoveredPpiGuid
+  gEfiEndOfPeiSignalPpiGuid
+  gPeiSmmAccessPpiGuid
+  gPeiSmmControlPpiGuid
+  gPeiCapsulePpiGuid
+  gPeiAtaControllerPpiGuid
+  gEfiPeiBootInRecoveryModePpiGuid
+  gEfiPeiReadOnlyVariable2PpiGuid
+  gByoSetupDataReadyPpiGuid
+  gPeiIpmiTransportPpiGuid
+
+
+  
+  
+[Pcd]
+  gEfiMdePkgTokenSpaceGuid.PcdPciExpressBaseAddress 
+  gEfiMdePkgTokenSpaceGuid.PcdPciExpressLength
+  gEfiByoModulePkgTokenSpaceGuid.PcdFlashFvMainBase
+  gEfiByoModulePkgTokenSpaceGuid.PcdFlashFvMainSize
+  gEfiByoModulePkgTokenSpaceGuid.PcdFlashFvMain2Base
+  gEfiByoModulePkgTokenSpaceGuid.PcdFlashFvMain2Size  
+  gEfiByoModulePkgTokenSpaceGuid.PcdFlashFvRecoveryBase  
+  gEfiByoModulePkgTokenSpaceGuid.PcdFlashAreaBaseAddress
+  gEfiByoModulePkgTokenSpaceGuid.PcdFlashAreaSize
+  gEfiByoModulePkgTokenSpaceGuid.PcdFlashNvLogoBase
+  gEfiByoModulePkgTokenSpaceGuid.PcdFlashNvLogoSize  
+  gEfiByoModulePkgTokenSpaceGuid.PcdFlashFvNetworkBase
+  gEfiByoModulePkgTokenSpaceGuid.PcdFlashFvNetworkSize
+  gEfiByoModulePkgTokenSpaceGuid.AcpiIoPortBaseAddress  
+  gEfiIntelFrameworkModulePkgTokenSpaceGuid.PcdBootState
+  gPlatformModuleTokenSpaceGuid.PcdAcpiWakeupSrc
+  gEfiByoModulePkgTokenSpaceGuid.PcdFlashNvStorageMicrocodeBase
+  gEfiByoModulePkgTokenSpaceGuid.PcdFlashNvStorageMicrocodeSize 
+  gEfiIntelFrameworkModulePkgTokenSpaceGuid.PcdHighPmmMemorySize
+  gEfiByoModulePkgTokenSpaceGuid.PcdCpuS3ApVectorAddress
+  gEfiByoModulePkgTokenSpaceGuid.PcdCpuS3ApVectorMaxSize
+  gEfiByoModulePkgTokenSpaceGuid.PcdLogoDataAddress
+  gEfiByoModulePkgTokenSpaceGuid.PcdLogoDataSize
+  gEfiByoModulePkgTokenSpaceGuid.PcdHighPmmMemoryAddress
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdSmtMode
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdAmdCcxCfgPFEHEnable
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdMcaErrThreshEn
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdMcaErrThreshCount
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdXhciPlatformPortDisableMap
+  gEfiByoModulePkgTokenSpaceGuid.PcdIsPlatformCmosBad
+  gEfiByoModulePkgTokenSpaceGuid.PcdFceLoadDefault
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdCfgPcieAriSupport
+  gEfiByoModulePkgTokenSpaceGuid.PcdSwSmiCmdPort
+  gEfiByoModulePkgTokenSpaceGuid.PcdSetupDataVersionCheck
+  gAmdCbsPkgTokenSpaceGuid.PcdAmdSVMCtrl
+  gAmdCbsPkgTokenSpaceGuid.PcdAmdNbIOMMU
+  gPlatformModuleTokenSpaceGuid.PcdBmcBiosConfigFlag
+  gEfiByoModulePkgTokenSpaceGuid.PcdCpbMode
+  gPlatformModuleTokenSpaceGuid.PcdSetUpUpdate
+  gPlatformModuleTokenSpaceGuid.PcdVersionCheck
+  gEfiSecurityPkgTokenSpaceGuid.PcdTpmSelect
+  gPlatformModuleTokenSpaceGuid.PcdTpmDecode
+  gEfiSecurityPkgTokenSpaceGuid.PcdDtpmSupport
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdHygonFtpmEnable
+  gEfiByoModulePkgTokenSpaceGuid.PcdIpmiBootMode
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdCpbMode
+  
+[Depex]
+  gEfiPeiReadOnlyVariable2PpiGuid AND gEfiPeiMasterBootModePpiGuid
+
+
+  

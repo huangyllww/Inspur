@@ -1,0 +1,217 @@
+## @file  
+#
+# Copyright (c) 2006 - 2018, Byosoft Corporation.<BR> 
+# All rights reserved.This software and associated documentation (if any)
+# is furnished under a license and may only be used or copied in 
+# accordance with the terms of the license. Except as permitted by such
+# license, no part of this software or documentation may be reproduced, 
+# stored in a retrieval system, or transmitted in any form or by any 
+# means without the express written consent of Byosoft Corporation.
+#
+# File Name:
+#   PlatformSetupDxe.inf
+#
+# Abstract: 
+#   Component description file for Setup module
+#
+# Revision History:
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = PlatformSetupDxe
+  MODULE_UNI_FILE                = PlatformSetupDxe.uni
+  FILE_GUID                      = 03068E4C-E69B-4056-9E98-40BAF502FC03
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0 
+  ENTRY_POINT                    = PlatformSetupEntry
+  
+[Sources]
+
+  Main/FormsetMain.vfr
+  Main/PlatformInfo.sd
+  Main/PlatformInfo.uni
+  Main/Memory/Memory.sd
+  Main/Memory/Memory.uni
+  Main/PspInfo.sd
+  Main/PspInfo.uni  
+  Main/PspInfo.c  
+  
+  Devices/FormsetDevices.vfr
+  Devices/FormsetDevices.uni
+  Devices/AtaDriveCfg/AtaDriveCfg.uni
+  Devices/AtaDriveCfg/AtaDriveCfg.sd
+  Devices/NvmeCfg/NvmeCfg.uni
+  Devices/NvmeCfg/NvmeCfg.sd    
+  Devices/Network/Network.uni
+  Devices/Network/Network.sd
+  Devices/Usb/Usb.uni
+  Devices/Usb/Usb.sd  
+  Devices/Video/VideoSetup.sd
+  Devices/Video/VideoSetup.uni 
+  Devices/PcieCfg/PcieCfg.sd
+  Devices/PcieCfg/PcieCfg.uni   
+  
+  Advanced/FormsetAdvanced.vfr
+  Advanced/ConsoleRedirection/ConsoleRedirection.sd
+  Advanced/ConsoleRedirection/ConsoleRedirection.uni
+  Advanced/Virtualization/Virtualization.sd
+  Advanced/Virtualization/Virtualization.uni
+  Advanced/AdvancedCallback.c
+  Advanced/FormsetAdvanced.uni
+  Advanced/FormsetAdvanced.sd
+
+  #Power/FormsetPower.vfr
+  #Power/FormsetPower.uni
+
+  Security/FormsetSecurity.vfr
+  Security/Security.uni
+  Security/PasswordCallback.c
+
+  Exit/FormsetExit.vfr
+  Exit/ExitSetup.c
+  Exit/FormsetExit.sd
+
+  SetupCallback.h
+  PlatformSetupDxe.c
+  PlatformSetupDxe.h
+  Setup.uni
+  UqiList.uni
+  SetupDefinitions.h
+  SetupItemId.h
+  SetupFormInit.c
+  SetupFormInit.h
+  ByoSetupProtocol.c
+  OemReset.c
+  PcieStatusList.c
+  ClassCode.c
+
+  
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  PlatformPkg/PlatformPkg.dec
+  ByoModulePkg/ByoModulePkg.dec
+  IntelFrameworkPkg/IntelFrameworkPkg.dec
+  IntelFrameworkModulePkg/IntelFrameworkModulePkg.dec
+  SecurityPkg/SecurityPkg.dec
+  CryptoPkg/CryptoPkg.dec
+  AgesaModulePkg\AgesaModuleMemPkg.dec
+  ServerCommonPkg/ServerCommonPkg.dec
+  AgesaPkg/AgesaPkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec  
+  AgesaModulePkg/AgesaModuleNbioPkg.dec
+[LibraryClasses]
+  UefiBootServicesTableLib
+  UefiRuntimeServicesTableLib
+  UefiDriverEntryPoint
+  HiiLib
+  HobLib
+  UefiLib
+  UefiHiiServicesLib
+  PrintLib
+  IoLib
+  PerformanceLib
+  MemoryAllocationLib
+  BaseMemoryLib
+  BaseLib
+  DebugLib
+  PcdLib
+  BiosIdLib
+  DxeServicesLib
+  BaseCryptLib
+  PlatformCommLib
+  PciLib
+  ByoCommLib
+  SetupUiLib
+
+  SystemPasswordLib
+  NbioRegisterAccLib
+  PcieConfigLib
+  NbioHandleLib
+  PcieConfigLib
+  AmdPspBaseLibV2
+  NbioSmuV9Lib
+  ByoUefiBootManagerLib
+[Guids]
+  gEfiGlobalVariableGuid             ## Consumed
+  gEfiEventReadyToBootGuid           ## Consumed
+  gEfiHobListGuid                    ## Consumed
+  gEfiHddPasswordSecurityVariableGuid
+  gPlatformSetupVariableGuid         ## Consumed
+  gSetupPasswordVariableTseGuid
+  gEfiSmbiosTableGuid                ## Consumed      #chentaiyuan20131226+
+  gEfiIfrTianoGuid
+  gEfiSetupEnterGuid  
+  gEfiFormsetGuidMain  
+  gEfiFormsetGuidAdvance
+  gEfiFormsetGuidDevices
+  gEfiFormsetGuidPower
+  gEfiFormsetGuidBoot
+  gEfiFormsetGuidSecurity
+  gEfiFormsetGuidExit
+  gEfiSystemPasswordVariableGuid
+  gEfiDiskInfoUsbInterfaceGuid
+  gByoPciIdDataFileGuid
+  gGnbPcieHobInfoGuid
+
+
+[Protocols]
+  gEfiVariableArchProtocolGuid       ## Consumed 
+  gEfiVariableWriteArchProtocolGuid  ## Consumed
+  gEfiHiiDatabaseProtocolGuid        ## Consumed
+  gEfiHiiConfigAccessProtocolGuid    ## Consumed
+  gEfiAcpiSupportProtocolGuid        ## Consumed
+  gEfiSerialIoProtocolGuid           ## Consumed
+  gEfiMpServiceProtocolGuid          ## Consumed
+  gEfiLegacyBiosProtocolGuid         ## Consumed
+  gPlatformInfoProtocolGuid          ## Consumes
+  gEfiDevicePathProtocolGuid         ## Consumed
+  gEfiDiskInfoProtocolGuid           ## Consumed
+  gEfiPciRootBridgeIoProtocolGuid    ## Consumed
+  gEfiAtaPassThruProtocolGuid        ## Consumed
+  gEfiPciIoProtocolGuid              ## Consumed 
+  gSetupSaveNotifyProtocolGuid 
+  gEfiGraphicsOutputProtocolGuid
+  gEfiByoFormBrowserExProtocolGuid
+  gEfiByoFormsetManagerProtocolGuid  ## PROTOCOL CONSUMES
+  gEfiBootManagerProtocolGuid
+  gEfiSmbiosProtocolGuid
+  gPlatHostInfoProtocolGuid
+  gEfiByoPlatformSetupGuid
+  gEdkiiFormBrowserEx2ProtocolGuid
+  gEfiSystemPasswordProtocolGuid
+  gPlatCollectHiiResourceHookGuid
+  gEfiSimpleTextInputExProtocolGuid
+  gByoSetupBiosUpdateProtocolGuid
+  gEfiUsbIoProtocolGuid
+  gByoDiskInfoProtocolGuid
+  gEfiBlockIoProtocolGuid
+  gByoCustomPStateProtocolGuid
+  gEfiDevicePathToTextProtocolGuid
+  gAmdNbioPcieServicesProtocolGuid
+  gUpdateFlashProtocolGuid
+  gByoSmiFlashProtocolGuid
+  
+[Pcd]  
+  gEfiMdePkgTokenSpaceGuid.PcdPciExpressBaseAddress
+  gEfiIntelFrameworkModulePkgTokenSpaceGuid.PcdBootState
+  gEfiMdePkgTokenSpaceGuid.PcdUefiVariableDefaultLangCodes
+  gEfiMdePkgTokenSpaceGuid.PcdUefiVariableDefaultLang
+  gEfiMdePkgTokenSpaceGuid.PcdUefiVariableDefaultPlatformLangCodes
+  gEfiMdePkgTokenSpaceGuid.PcdUefiVariableDefaultPlatformLang
+  gServerCommonPkgModuleTokenSpaceGuid.PcdBmcVersion
+  gServerCommonPkgModuleTokenSpaceGuid.PcdCpldVersion
+  gPlatformModuleTokenSpaceGuid.PcdTestBiosVersion
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdSmbiosSocketDesignationSocket0
+  gEfiAmdAgesaPkgTokenSpaceGuid.PcdAmdSmbiosSocketDesignationSocket1
+  gEfiByoModulePkgTokenSpaceGuid.PcdFvPswBase
+  gEfiByoModulePkgTokenSpaceGuid.PcdFlashAreaBaseAddress
+  gEfiMdeModulePkgTokenSpaceGuid.PcdUnilcRank
+  
+[Depex]
+  gEfiVariableArchProtocolGuid      AND 
+  gEfiVariableWriteArchProtocolGuid AND 
+  gEfiHiiDatabaseProtocolGuid       AND 
+  gEfiMpServiceProtocolGuid
+      

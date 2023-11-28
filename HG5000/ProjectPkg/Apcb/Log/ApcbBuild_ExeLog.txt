@@ -1,0 +1,63 @@
+
+
+ApcbTool Version:0.1
+Comply with APCB version 2.0
+APCB BIN Filename: D:\nvwa\ProjectPkg\Apcb\Release\APCB_DN_D4.bin
+WARN: Data size between signatures, 0x0000001C (28), is not equal to size, 0x00000010 (16), in type header!
+      Data between signatures is used!
+      Data size of the type is updated to 0x0000001C (28), in type header
+WARN: Data size between signatures, 0x00000020 (32), is not equal to size, 0x00000010 (16), in type header!
+      Data between signatures is used!
+      Data size of the type is updated to 0x00000020 (32), in type header
+WARN: Data size between signatures, 0x00000058 (88), is not equal to size, 0x00000010 (16), in type header!
+      Data between signatures is used!
+      Data size of the type is updated to 0x00000058 (88), in type header
+WARN: Data size between signatures, 0x0000044C (1100), is not equal to size, 0x00000010 (16), in type header!
+      Data between signatures is used!
+      Data size of the type is updated to 0x0000044C (1100), in type header
+WARN: Data size between signatures, 0x00000024 (36), is not equal to size, 0x00000014 (20), in type header!
+      Data between signatures is used!
+      Data size of the type is updated to 0x00000024 (36), in type header
+WARN: Data size between signatures, 0x00000010 (16), is not equal to size, 0x00000018 (24), in type header!
+      Data between signatures is used!
+      Data size of the type is updated to 0x00000010 (16), in type header
+WARN: Data size between signatures, 0x00000110 (272), is not equal to size, 0x00000018 (24), in type header!
+      Data between signatures is used!
+      Data size of the type is updated to 0x00000110 (272), in type header
+WARN: Data size between signatures, 0x000001AC (428), is not equal to size, 0x00000010 (16), in type header!
+      Data between signatures is used!
+      Data size of the type is updated to 0x000001AC (428), in type header
+WARN: Data size between signatures, 0x000004FC (1276), is not equal to size, 0x00000448 (1096), in type header!
+      Data between signatures is used!
+      Data size of the type is updated to 0x000004FC (1276), in type header
+WARN: Data size between signatures, 0x000001C8 (456), is not equal to size, 0x00000538 (1336), in type header!
+      Data between signatures is used!
+      Data size of the type is updated to 0x000001C8 (456), in type header
+WARN: Data size between signatures, 0x000000B0 (176), is not equal to size, 0x00000074 (116), in type header!
+      Data between signatures is used!
+      Data size of the type is updated to 0x000000B0 (176), in type header
+WARN: Data size between signatures, 0x000002E0 (736), is not equal to size, 0x00000010 (16), in type header!
+      Data between signatures is used!
+      Data size of the type is updated to 0x000002E0 (736), in type header
+WARN: Data size between signatures, 0x00000118 (280), is not equal to size, 0x00000010 (16), in type header!
+      Data between signatures is used!
+      Data size of the type is updated to 0x00000118 (280), in type header
+WARN: Data size between signatures, 0x0000004C (76), is not equal to size, 0x00000074 (116), in type header!
+      Data between signatures is used!
+      Data size of the type is updated to 0x0000004C (76), in type header
+WARN: Data size between signatures, 0x000000D0 (208), is not equal to size, 0x00000010 (16), in type header!
+      Data between signatures is used!
+      Data size of the type is updated to 0x000000D0 (208), in type header
+WARN: Data size between signatures, 0x00000030 (48), is not equal to size, 0x00000010 (16), in type header!
+      Data between signatures is used!
+      Data size of the type is updated to 0x00000030 (48), in type header
+WARN: Data size between signatures, 0x00000020 (32), is not equal to size, 0x00000010 (16), in type header!
+      Data between signatures is used!
+      Data size of the type is updated to 0x00000020 (32), in type header
+WARN: Data size between signatures, 0x00000060 (96), is not equal to size, 0x00000010 (16), in type header!
+      Data between signatures is used!
+      Data size of the type is updated to 0x00000060 (96), in type header
+WARN: Data size between signatures, 0x00000024 (36), is not equal to size, 0x00000010 (16), in type header!
+      Data between signatures is used!
+      Data size of the type is updated to 0x00000024 (36), in type header
+Generating output file ...

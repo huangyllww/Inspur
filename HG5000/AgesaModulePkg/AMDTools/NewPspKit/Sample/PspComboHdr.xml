@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+<DIRS AddressMode="0">
+    <COMBO_DIR Base= "0x00330000" LookUpMode="0">
+        <!-- ZP PSP Direcotry -->
+        <COMBO_ENTRY IdSelect="0x00" Id="0xBC090000" Address="0x00120000"/>
+        <!-- RV PSP Directory -->
+        <COMBO_ENTRY IdSelect="0x00" Id="0xBC0A0000" Address="0x00230000"/>
+    </COMBO_DIR>
+</DIRS>

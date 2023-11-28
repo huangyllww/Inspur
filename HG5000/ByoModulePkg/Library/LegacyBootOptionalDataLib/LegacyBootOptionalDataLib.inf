@@ -1,0 +1,53 @@
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = LegacyBootOptionalDataLib
+  FILE_GUID                      = 5554C176-31C4-41c8-BF4F-A86F73BE79A6
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = LegacyBootOptionalDataLib|DXE_DRIVER UEFI_APPLICATION
+
+#
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           = IA32 X64 EBC
+#
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  IntelFrameworkPkg/IntelFrameworkPkg.dec
+  IntelFrameworkModulePkg/IntelFrameworkModulePkg.dec
+  ByoModulePkg/ByoModulePkg.dec
+
+  
+  
+[Sources]
+  LegacyBootOptionalDataLib.c
+
+
+[LibraryClasses]
+  BaseLib
+  BaseMemoryLib
+  UefiBootServicesTableLib
+  UefiRuntimeServicesTableLib
+  DevicePathLib
+  MemoryAllocationLib
+  UefiLib
+  DebugLib
+  HobLib
+  ByoCommLib
+  
+
+[Guids]
+
+
+[Protocols]
+
+
+[Pcd]
+
+
+
+
+  

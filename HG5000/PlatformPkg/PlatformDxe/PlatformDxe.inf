@@ -1,0 +1,177 @@
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = PlatformDxe
+  FILE_GUID                      = 243B9DC8-2380-40e6-BB30-0D85D9618E94
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = PlatformDxeEntry
+
+#
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           = IA32 X64 IPF EBC
+#
+
+[Sources]
+  PlatformDxe.c
+  LegacyBiosPlatform.c
+  LegacyRegion2.c
+  PciPlatform.c
+  SataController.c
+  PlatformMisc.c  
+  IncompatiblePciDeviceSupport.c
+  Smbios.c
+  SmmAccess2.c
+# NbPciDxeInit.c
+
+  
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  IntelFrameworkPkg/IntelFrameworkPkg.dec
+  PlatformPkg/PlatformPkg.dec 
+  IntelFrameworkModulePkg/IntelFrameworkModulePkg.dec  
+  ByoModulePkg/ByoModulePkg.dec
+  UefiCpuPkg/UefiCpuPkg.dec
+  ByoNvMediaPkg/ByoNvMediaPkg.dec
+  PcAtChipsetPkg/PcAtChipsetPkg.dec
+  AgesaPkg/AgesaPkg.dec
+  SecurityPkg/SecurityPkg.dec
+  ServerCommonPkg/ServerCommonPkg.dec
+  AmdCbsPkg/AmdCbsPkg.dec
+  
+[LibraryClasses]
+  MemoryAllocationLib
+  BaseLib
+  UefiBootServicesTableLib
+  HobLib
+  UefiDriverEntryPoint
+  UefiRuntimeServicesTableLib
+  BaseMemoryLib
+  DebugLib
+  PrintLib
+  UefiLib
+  IoLib
+  DxeServicesLib
+  DxeServicesTableLib
+  TimerLib
+  SynchronizationLib
+  LocalApicLib
+  S3BootScriptLib
+  LockBoxLib
+  PerformanceLib
+  MtrrLib
+  PlatformCommLib
+  #TcgPhysicalPresenceLib
+  #Tcg2PhysicalPresenceLib
+  SerialPortLib  
+  ByoCommLib
+  ReportStatusCodeLib
+  IpmiBaseLib
+  LogoLib
+
+[Guids]
+  gPlatformSetupVariableGuid
+  gEfiGlobalVariableGuid
+  gEfiAcpiTableGuid
+  gEfiAcpiS3ContextGuid
+  gEfiSetupEnterGuid
+  gSmramDescTableGuid
+  gByoGlobalVariableGuid
+  
+  gEfiTpmDeviceInstanceTpm20DtpmGuid   
+  gEfiTpmDeviceInstanceTpm12Guid       
+  gEfiTpmDeviceInstanceTpm20HgfTpmGuid 
+  gCbsSystemConfigurationGuid
+  
+[Protocols]
+  gEfiLegacyInterruptProtocolGuid
+  gEfiLegacyBiosPlatformProtocolGuid
+  gEfiSmmAccess2ProtocolGuid
+  gEfiLegacyRegion2ProtocolGuid
+  gEfiCpuArchProtocolGuid
+  gEfiResetArchProtocolGuid
+  gEfiPciIoProtocolGuid
+  gEfiPciPlatformProtocolGuid
+  gEfiTimerArchProtocolGuid
+  gEfiLegacy8259ProtocolGuid
+  gExitPmAuthProtocolGuid
+  gEfiIdeControllerInitProtocolGuid
+  gSwSmiValuePolicyGuid
+  gEfiVariableWriteArchProtocolGuid
+  gEfiIncompatiblePciDeviceSupportProtocolGuid
+  gEfiLegacyBiosProtocolGuid
+  gEfiAtaPassThruProtocolGuid
+  gEfiMpServiceProtocolGuid
+  gEfiSmbiosProtocolGuid
+  gUsbPolicyGuid
+  gBdsAllDriversConnectedProtocolGuid
+  gEfiPciRootBridgeIoProtocolGuid
+  gEfiPs2PolicyProtocolGuid
+  gEfiSmmCommunicationProtocolGuid
+  gEfiHiiConfigAccessProtocolGuid
+  gEfiHiiDatabaseProtocolGuid
+  gEfiPciHotPlugInitProtocolGuid
+  gEfiAcpiTableProtocolGuid
+  gEfiNvMediaAccessSpiReadyGuid
+  gEfiNvMediaAccessProtocolGuid
+  gLegacyOptionRomInfoProtocolGuid
+  gIsaAcpiDeviceListGuid
+  gFchInitDonePolicyProtocolGuid
+  gEfiBeforeConnectPciRootBridgeGuid
+  gBiosIdInfoProtocolGuid
+  gPlatHostInfoProtocolGuid
+  gPlatAfterConsoleStartProtocolGuid
+  gPlatAfterConsoleEndProtocolGuid
+  gEfiBeforeConnectPciRootBridgeGuid
+  gPlatBeforeBiosUpdateProtocolGuid
+  gEfiAfterConnectPciRootBridgeGuid
+  gEfiSerialIoProtocolGuid
+  gEfiBootMenuEnterGuid
+  gEfiAfterAllPciIoGuid
+  gPciPreprocessControllerHookProtocolGuid
+  gEfiIpmiTransportProtocolGuid
+
+[Pcd]
+  gEfiMdePkgTokenSpaceGuid.PcdPciExpressBaseAddress
+  gPlatformModuleTokenSpaceGuid.PcdCsm16File  
+  gEfiByoModulePkgTokenSpaceGuid.AcpiIoPortBaseAddress   
+  gEfiByoModulePkgTokenSpaceGuid.PcdFlashAreaSize
+  gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultOemId            ## SOMETIMES_CONSUMES
+  gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultOemTableId       ## SOMETIMES_CONSUMES
+  gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultOemRevision      ## SOMETIMES_CONSUMES
+  gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultCreatorId        ## SOMETIMES_CONSUMES
+  gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiDefaultCreatorRevision  ## SOMETIMES_CONSUMES
+  gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVendor
+  gEfiByoModulePkgTokenSpaceGuid.PcdVideoOpRomLaunchPolicy 
+  gEfiByoModulePkgTokenSpaceGuid.PcdSwSmiCmdPort  
+  gEfiIntelFrameworkModulePkgTokenSpaceGuid.PcdBootState
+  gEfiByoModulePkgTokenSpaceGuid.PcdDisplayOptionRomMessage
+  gEfiByoModulePkgTokenSpaceGuid.PcdFirstVideoHostHandle
+  gPlatformModuleTokenSpaceGuid.PcdSmbiosBaseBoardVersion
+  gPlatformModuleTokenSpaceGuid.PcdSmbiosManufacturer
+  gEfiByoModulePkgTokenSpaceGuid.PcdIsPlatformCmosBad
+  gPlatformModuleTokenSpaceGuid.PcdSmbiosSystemInfoVersion
+  gPlatformModuleTokenSpaceGuid.PcdSmbiosSystemInfoFamily
+  gPlatformModuleTokenSpaceGuid.PcdSmbiosSystemInfoProductName
+  gPlatformModuleTokenSpaceGuid.PcdSmbiosChassisVersion
+  gEfiMdePkgTokenSpaceGuid.PcdUefiVariableDefaultPlatformLang
+  gPlatformModuleTokenSpaceGuid.PcdBmcBiosConfigFlag
+  gEfiByoModulePkgTokenSpaceGuid.PcdIpmiBootMode
+  gEfiByoModulePkgTokenSpaceGuid.PcdIpmiBootflag
+  gEfiByoModulePkgTokenSpaceGuid.PcdIpmiBootOnce
+  gPlatformModuleTokenSpaceGuid.PcdObLanEn
+  gPlatformModuleTokenSpaceGuid.PcdSmileline
+  gEfiByoModulePkgTokenSpaceGuid.PcdWaringPrintEvent
+  gEfiByoModulePkgTokenSpaceGuid.PcdStopWdg
+  gEfiByoModulePkgTokenSpaceGuid.PcdFceLoadDefault
+  gPlatformModuleTokenSpaceGuid.PcdSetUpUpdate
+  gPlatformModuleTokenSpaceGuid.PcdVersionCheck
+  gEfiSecurityPkgTokenSpaceGuid.PcdFtpmSupport
+  gEfiSecurityPkgTokenSpaceGuid.PcdDtpmSupport
+  
+[Depex]
+  gEfiCpuArchProtocolGuid AND gEfiPciRootBridgeIoProtocolGuid AND gBiosIdInfoProtocolGuid 
+  

@@ -1,0 +1,137 @@
+/*++
+
+Copyright (c) 2010 - 2020, Byosoft Corporation.<BR>
+All rights reserved.This software and associated documentation (if any)
+is furnished under a license and may only be used or copied in
+accordance with the terms of the license. Except as permitted by such
+license, no part of this software or documentation may be reproduced,
+stored in a retrieval system, or transmitted in any form or by any
+means without the express written consent of Byosoft Corporation.
+
+File Name:
+
+Abstract:
+  Platform configuration setup.
+
+Revision History:
+
+
+--*/
+
+#include "FormsetConfiguration.h"
+#include <SysMiscCfg2.h>
+
+#define ADVANCED_FORM_SET
+
+#define SETUP_HDD_BIND_FORMSET_GUID       { 0x8e71b361, 0x0099, 0x4dd2, { 0xbc, 0x1f, 0xcd, 0x54, 0x8c, 0xd7, 0x5b, 0x8f } }
+
+#define FORM_SET_TYPEDEF
+  #include <SetupDefinitions.h>
+#undef FORM_SET_TYPEDEF
+
+#if !defined(TKN_BYO_CBS)
+  #define TKN_BYO_CBS    0
+#endif
+
+formset
+  guid     = FORMSET_GUID_ADVANCE,
+  title    = STRING_TOKEN(FORMSET_TITLE_ADVANCED),
+  help     = STRING_TOKEN(FORMSET_TITLE_ADVANCED_HELP),
+  class    = BYO_FORMSET_CLASS,
+  subclass = BYO_FORMSET_SUB_CLASS,
+
+  #define FORM_SET_VARSTORE
+    #include <SetupDefinitions.h>
+  #undef FORM_SET_VARSTORE
+  
+  SYSTEM_PASSWORD_VARSTORE
+ 
+  form formid = ROOT_FORM_ID,
+    title = STRING_TOKEN(FORMSET_TITLE_ADVANCED);
+
+   //LOGIN_TYPE_ADMIN; 
+
+    #define FORM_SET_ITEM
+      #include <SetupDefinitions.h>
+    #undef FORM_SET_ITEM
+      
+    #define FORM_SET_GOTO
+      #include <SetupDefinitions.h>
+    #undef FORM_SET_GOTO
+	
+	//END_LOGIN_TYPE;
+    goto ADVANCE_MISC_FORM_ID,
+      prompt = STRING_TOKEN(STR_ADVANCE_MISC_CONFIG),
+      help   = STRING_TOKEN(STR_ADVANCE_MISC_CONFIG);    
+ 
+    grayoutif ideqval SETUP_VOLATILE_DATA.BmcPresent == 0;  
+	LOGIN_TYPE_ADMIN;
+      goto
+        formsetguid = SETUP_BMC_CFG_GUID,
+        formid   = 0x402C,
+        question = 1,
+        prompt   = STRING_TOKEN(STR_SERVER_MGMT),
+        help     = STRING_TOKEN(STR_SERVER_MGMT_HELP); 
+	  END_LOGIN_TYPE;
+    endif;
+	
+    suppressif TKN_BYO_CBS == 0;
+   LOGIN_TYPE_ADMIN;
+   suppressif ideqval SETUP_VOLATILE_DATA.AdvanceControl == 0;
+
+   goto ERRMGMT_FORM_ID,
+         prompt = STRING_TOKEN(STR_ERRMGMT_FORM),
+         help = STRING_TOKEN(STR_ERRMGMT_FORM_HELP);  
+    goto
+      formsetguid = FORMSET_ID_GUID_AMD_CBS,
+      formid   = 0x7000,
+      question = 1,
+      prompt   = STRING_TOKEN(STR_HYGON_CBS),
+      help     = STRING_TOKEN(STR_HYGON_CBS_HELP);
+    oneof varid   = SETUP_DATA.DealErrorDimm,
+        prompt      = STRING_TOKEN(STR_DIMM_ERROR),
+        help        = STRING_TOKEN(STR_DIMM_ERROR_HELP),
+        option text = STRING_TOKEN(STR_SYS_SHUTDOWN), value=0, flags=  RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_CONTINUE_START), value=1, flags= DEFAULT |RESET_REQUIRED;
+    endoneof; 
+    endif;
+	END_LOGIN_TYPE;
+
+    endif;
+
+	
+    subtitle text = STRING_TOKEN(STR_EMPTY);
+	LOGIN_TYPE_ADMIN;
+	
+      goto
+        formsetguid = SETUP_HDD_BIND_FORMSET_GUID,
+        formid   = 1,
+        question = 1,
+        prompt   = STRING_TOKEN(STR_HDD_BIND_FORMSET_TITLE),
+        help     = STRING_TOKEN(STR_HDD_BIND_FORMSET_HELP);  	
+
+    suppressif ideqval SETUP_DATA.BootModeType == BIOS_BOOT_LEGACY_OS;
+    goto ADV_DYNAMIC_FORM_ID,
+      prompt = STRING_TOKEN(STR_UEFI_HII_CONFIG),
+      help   = STRING_TOKEN(STR_UEFI_HII_CONFIG_HELP);    
+    endif;
+
+    END_LOGIN_TYPE;
+
+  endform;
+  
+  #define FORM_SET_FORM
+    #include <SetupDefinitions.h>
+  #undef FORM_SET_FORM
+  
+  form formid = ADV_DYNAMIC_FORM_ID,
+    title = STRING_TOKEN(STR_UEFI_HII_CONFIG);
+  LOGIN_TYPE_ADMIN;
+    label ADV_DYNAMIC_LABEL;
+    label ADV_DYNAMIC_LABEL_END;
+  END_LOGIN_TYPE;
+  endform;    
+  
+endformset;
+
+

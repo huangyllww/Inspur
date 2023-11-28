@@ -1,0 +1,140 @@
+/*++
+
+Copyright (c) 2006 - 2019, Byosoft Corporation.<BR>
+All rights reserved.This software and associated documentation (if any)
+is furnished under a license and may only be used or copied in
+accordance with the terms of the license. Except as permitted by such
+license, no part of this software or documentation may be reproduced,
+stored in a retrieval system, or transmitted in any form or by any
+means without the express written consent of Byosoft Corporation.
+
+File Name:
+
+Abstract:
+
+Revision History:
+
+
+--*/
+
+#ifdef FORM_SET_TYPEDEF
+
+#endif
+
+
+#ifdef SECURITY_FORM_SET
+//------------------------------------------------------------------------------
+
+
+#ifdef FORM_SET_VARSTORE
+
+
+#endif
+
+
+#ifdef FORM_SET_ITEM
+
+    grayoutif TRUE;
+      suppressif ideqval SYS_PD.bHaveAdmin == 0x00;
+      text
+        help   = STRING_TOKEN(STR_EMPTY),
+        text   = STRING_TOKEN(STR_ADMIN_PASSWORD),
+        text   = STRING_TOKEN(STR_PASSWORD_INSTALLED),
+        flags  = 0,
+        key    = 0;
+      endif;
+
+      suppressif NOT ideqval SYS_PD.bHaveAdmin == 0x00;
+      text
+        help   = STRING_TOKEN(STR_EMPTY),
+        text   = STRING_TOKEN(STR_ADMIN_PASSWORD),
+        text   = STRING_TOKEN(STR_PASSWORD_UNINSTALLED),
+        flags  = 0,
+        key    = 0;
+      endif;
+    endif;
+	
+    grayoutif TRUE;
+      suppressif ideqval SYS_PD.bHavePowerOn == 0x00;
+      text
+          help   = STRING_TOKEN(STR_EMPTY),
+          text   = STRING_TOKEN(STR_USER_PASSWORD),
+          text   = STRING_TOKEN(STR_PASSWORD_INSTALLED),
+          flags  = 0,
+          key    = 0;
+      endif;
+
+      suppressif NOT ideqval SYS_PD.bHavePowerOn == 0x00;
+      text
+          help   = STRING_TOKEN(STR_EMPTY),
+          text   = STRING_TOKEN(STR_USER_PASSWORD),
+          text   = STRING_TOKEN(STR_PASSWORD_UNINSTALLED),
+          flags  = 0,
+          key    = 0;
+      endif;
+    endif;
+
+    subtitle text = STRING_TOKEN(STR_EMPTY);
+    LOGIN_TYPE_ADMIN;
+    password varid  = SYS_PD.Admin, 
+        prompt      = STRING_TOKEN(STR_SET_ADMIN_PASSWORD),
+        help        = STRING_TOKEN(STR_ADMIN_PASSWORD_HELP),
+        flags       = 0 | RESET_REQUIRED | INTERACTIVE, key = SEC_KEY_ADMIN_PD,
+        minsize     = 6,
+        maxsize     = SYSTEM_PASSWORD_LENGTH,
+    endpassword;
+    END_LOGIN_TYPE;
+
+    grayoutif ideqval SYS_PD.ChangePopByUser == 0x0;
+    password varid  = SYS_PD.PowerOn,
+        prompt      = STRING_TOKEN(STR_SET_USER_PASSWORD),
+        help        = STRING_TOKEN(STR_USER_PASSWORD_HELP),
+        flags       = 0 | RESET_REQUIRED | INTERACTIVE, key = SEC_KEY_POWER_ON_PD,
+        minsize     = 6,
+        maxsize     = SYSTEM_PASSWORD_LENGTH,
+    endpassword;
+    endif;
+
+    subtitle text = STRING_TOKEN(STR_EMPTY);
+    
+    LOGIN_TYPE == LOGIN_USER_POP;	
+      suppressif ideqval SYS_PD.bHaveAdmin == 0x00;
+      oneof varid   = SYS_PD.ChangePopByUser,
+        prompt      = STRING_TOKEN(STR_CHANGE_POP_BY_USER),
+        help        = STRING_TOKEN(STR_CHANGE_POP_BY_USER_HELP),
+        option text = STRING_TOKEN(STR_ENABLED),  value = 1, flags = DEFAULT | MANUFACTURING |RESET_REQUIRED;
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = RESET_REQUIRED;
+      endoneof;
+      endif;
+    END_LOGIN_TYPE;	
+
+    LOGIN_TYPE_ADMIN;	
+      suppressif ideqval SYS_PD.bHavePowerOn == 0x00 OR ideqval SYS_PD.ChangePopByUser == 0;
+      suppressif ideqval SYS_PD.bHaveAdmin == 0x00;
+      text 
+        help   = STRING_TOKEN(STR_CLEAR_USER_PASSWORD_HELP),
+        text   = STRING_TOKEN(STR_CLEAR_USER_PASSWORD),
+        flags  = RESET_REQUIRED | INTERACTIVE,
+        key    = SEC_KEY_CLEAR_USER_PD;      
+      endif;
+      endif;
+    END_LOGIN_TYPE;
+    
+#endif
+
+
+#ifdef FORM_SET_GOTO
+   
+#endif
+
+#ifdef FORM_SET_FORM
+
+#endif
+
+
+
+//------------------------------------------------------------------------------
+#endif           // SECURITY_FORM_SET
+
+
+

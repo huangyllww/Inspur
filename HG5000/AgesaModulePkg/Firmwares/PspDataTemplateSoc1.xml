@@ -1,0 +1,77 @@
+<DIRS AddressMode="0">
+  <PSP_DIR Base="0x24a000" Level="1" Size="0x180000" SpiBlockSize=" 0x1000">
+    <IMAGE_ENTRY File="AgesaModulePkg\Firmwares\FW_VERSION\FW_SECURE_MODE\HygonPubKeyDN.bin" Type="0x0" />
+    <POINT_ENTRY Address="0x5b7400" Size="0x10000" Type="0x1" />
+    <IMAGE_ENTRY File="AgesaModulePkg\Firmwares\FW_VERSION\FW_SECURE_MODE\SmuFirmwareMcmDN.esbin" Type="0x8" />
+    <VALUE_ENTRY Type="0xB" Value="0x01" />
+    <IMAGE_ENTRY File="AgesaModulePkg\Firmwares\FW_VERSION\FW_SECURE_MODE\SmuFirmware2McmDN.esbin" Type="0x12" />
+    <IMAGE_ENTRY File="AgesaModulePkg\Firmwares\FW_VERSION\FW_SECURE_MODE\DebugUnlock_DN.esbin" Type="0x13" />
+    <IMAGE_ENTRY File="AgesaModulePkg\Firmwares\FW_VERSION\FW_SECURE_MODE\PspIkekDN.bin" Type="0x21" />
+    <IMAGE_ENTRY File="AgesaModulePkg\Firmwares\FW_VERSION\FW_SECURE_MODE\SecureEmptyToken.bin" Type="0x22" />
+    <IMAGE_ENTRY File="AgesaModulePkg\Firmwares\FW_VERSION\FW_SECURE_MODE\RsmuSecurityPolicy_DN.esbin" Type="0x24" />
+    <IMAGE_ENTRY File="AgesaModulePkg\Firmwares\FW_VERSION\FW_SECURE_MODE\AgesaBootloader0_prod_Mcm_DN.esbin" Type="0x30" />
+    <IMAGE_ENTRY File="AgesaModulePkg\Firmwares\FW_VERSION\FW_SECURE_MODE\AgesaBootloader1_prod_Mcm_DN.esbin" Type="0x31" />
+    <IMAGE_ENTRY File="AgesaModulePkg\Firmwares\FW_VERSION\FW_SECURE_MODE\AgesaBootloader2_prod_Mcm_DN.esbin" Type="0x32" />
+    <IMAGE_ENTRY File="AgesaModulePkg\Firmwares\FW_VERSION\FW_SECURE_MODE\AgesaBootloader3_prod_Mcm_DN.esbin" Type="0x33" />
+    <IMAGE_ENTRY File="AgesaModulePkg\Firmwares\FW_VERSION\FW_SECURE_MODE\AgesaBootloader4_prod_Mcm_DN.esbin" Type="0x34" />
+    <IMAGE_ENTRY File="AgesaModulePkg\Firmwares\FW_VERSION\FW_SECURE_MODE\AgesaBootloader5_prod_Mcm_DN.esbin" Type="0x35" />
+    <IMAGE_ENTRY File="AgesaModulePkg\Firmwares\FW_VERSION\FW_SECURE_MODE\AgesaBootloader6_prod_Mcm_DN.esbin" Type="0x36" />
+    <IMAGE_ENTRY File="AgesaModulePkg\Firmwares\FW_VERSION\FW_SECURE_MODE\UcodePatch_DN_Ax.esbin" Type="0x19000" />
+    <IMAGE_ENTRY File="AgesaModulePkg\Firmwares\FW_VERSION\FW_SECURE_MODE\UcodePatch_DN_Ax.esbin" Type="0x19001" />
+    <IMAGE_ENTRY File="AgesaModulePkg\Firmwares\FW_VERSION\FW_SECURE_MODE\UcodePatch_DN_Ax.esbin" Type="0x19002" />
+    <IMAGE_ENTRY File="AgesaModulePkg\Firmwares\FW_VERSION\FW_SECURE_MODE\UcodePatch_DN_B0.esbin" Type="0x19010" />
+	<IMAGE_ENTRY File="AgesaModulePkg\Firmwares\FW_VERSION\FW_SECURE_MODE\UcodePatch_DN_B1.esbin" Type="0x19011" />
+    <POINT_ENTRY Address="0x5b7000" Size="0x400" Type="0x40" />
+  </PSP_DIR>
+  <BIOS_DIR Base="0x3ca000" Level="1" Size="0x34000" SpiBlockSize="0x1000">
+    <IMAGE_ENTRY File="Build\Apcb\Release\APCB_DN_D4.bin" Instance="0x00" Size="0x4000" Type="0x60" />
+    <IMAGE_ENTRY File="Build\Apcb\Release\APCB_DN_D4.bin" Instance="0x00" Size="0x4000" Type="0x68" />
+    <POINT_ENTRY Address="0x0" Destination="0x4000000" Size="0x0" Type="0x61" />
+    <POINT_ENTRY Address="0xdb0000" Destination="0x31db0000" Size="0x250000" Type="0x62">
+     <TypeAttrib Compressed="0x0" Copy="0x1" ReadOnly="0x0" RegionType="0x0" ResetImage="0x1" />
+    </POINT_ENTRY>
+    <IMAGE_ENTRY File="AgesaModulePkg\Firmwares\FW_VERSION\FW_SECURE_MODE\Appb_Dn_1D_Ddr4_Udimm_Imem_Mcm.esbin" Instance="0x01" Type="0x64" />
+    <IMAGE_ENTRY File="AgesaModulePkg\Firmwares\FW_VERSION\FW_SECURE_MODE\Appb_Dn_1D_Ddr4_Udimm_Dmem_Mcm.esbin" Instance="0x01" Type="0x65" />
+    <IMAGE_ENTRY File="AgesaModulePkg\Firmwares\FW_VERSION\FW_SECURE_MODE\Appb_Dn_1D_Ddr4_Rdimm_Imem_Mcm.esbin" Instance="0x02" Type="0x64" />
+    <IMAGE_ENTRY File="AgesaModulePkg\Firmwares\FW_VERSION\FW_SECURE_MODE\Appb_Dn_1D_Ddr4_Rdimm_Dmem_Mcm.esbin" Instance="0x02" Type="0x65" />
+    <IMAGE_ENTRY File="AgesaModulePkg\Firmwares\FW_VERSION\FW_SECURE_MODE\Appb_Dn_1D_Ddr4_Lrdimm_Imem_Mcm.esbin" Instance="0x03" Type="0x64" />
+    <IMAGE_ENTRY File="AgesaModulePkg\Firmwares\FW_VERSION\FW_SECURE_MODE\Appb_Dn_1D_Ddr4_Lrdimm_Dmem_Mcm.esbin" Instance="0x03" Type="0x65" />
+    <IMAGE_ENTRY File="AgesaModulePkg\Firmwares\FW_VERSION\FW_SECURE_MODE\Appb_Dn_2D_Ddr4_Imem_Mcm.esbin" Instance="0x04" Type="0x64" />
+    <IMAGE_ENTRY File="AgesaModulePkg\Firmwares\FW_VERSION\FW_SECURE_MODE\Appb_Dn_2D_Ddr4_Dmem_Mcm.esbin" Instance="0x04" Type="0x65" />
+    <POINT_ENTRY Address="0x6b7000" Size="0x400" Type="0x70" />
+  </BIOS_DIR>
+  <PSP_DIR Base="0x5b7000" Level="2" Size="0x100000" SpiBlockSize="0x1000">
+    <IMAGE_ENTRY File="AgesaModulePkg\Firmwares\FW_VERSION\FW_SECURE_MODE\PspBootLoader_prod_DnSp3Sp4.esbin" Size="0x10000" Type="0x1" />
+    <IMAGE_ENTRY File="AgesaModulePkg\Firmwares\FW_VERSION\FW_SECURE_MODE\SmuFirmwareMcmDN.esbin" Type="0x8" />
+    <VALUE_ENTRY Type="0xB" Value="0x01" />
+    <IMAGE_ENTRY File="AgesaModulePkg\Firmwares\FW_VERSION\FW_SECURE_MODE\DebugUnlock_DN.esbin" Type="0x13" />
+    <IMAGE_ENTRY File="AgesaModulePkg\Firmwares\FW_VERSION\FW_SECURE_MODE\PspIkekDN.bin" Type="0x21" />
+    <IMAGE_ENTRY File="AgesaModulePkg\Firmwares\FW_VERSION\FW_SECURE_MODE\SecureEmptyToken.bin" Type="0x22" />
+    <IMAGE_ENTRY File="AgesaModulePkg\Firmwares\FW_VERSION\FW_SECURE_MODE\RsmuSecurityPolicy_DN.esbin" Type="0x24" />
+    <IMAGE_ENTRY File="AgesaModulePkg\Firmwares\FW_VERSION\FW_SECURE_MODE\AgesaBootloader0_prod_Mcm_DN.esbin" Type="0x30" />
+    <IMAGE_ENTRY File="AgesaModulePkg\Firmwares\FW_VERSION\FW_SECURE_MODE\AgesaBootloader1_prod_Mcm_DN.esbin" Type="0x31" />
+    <IMAGE_ENTRY File="AgesaModulePkg\Firmwares\FW_VERSION\FW_SECURE_MODE\AgesaBootloader2_prod_Mcm_DN.esbin" Type="0x32" />
+    <IMAGE_ENTRY File="AgesaModulePkg\Firmwares\FW_VERSION\FW_SECURE_MODE\AgesaBootloader3_prod_Mcm_DN.esbin" Type="0x33" />
+    <IMAGE_ENTRY File="AgesaModulePkg\Firmwares\FW_VERSION\FW_SECURE_MODE\AgesaBootloader4_prod_Mcm_DN.esbin" Type="0x34" />
+    <IMAGE_ENTRY File="AgesaModulePkg\Firmwares\FW_VERSION\FW_SECURE_MODE\AgesaBootloader5_prod_Mcm_DN.esbin" Type="0x35" />
+    <IMAGE_ENTRY File="AgesaModulePkg\Firmwares\FW_VERSION\FW_SECURE_MODE\AgesaBootloader6_prod_Mcm_DN.esbin" Type="0x36" />
+  </PSP_DIR>
+  <BIOS_DIR Base="0x6b7000" Level="2" Size="0xBD000" SpiBlockSize=" 0x1000">
+    <IMAGE_ENTRY File="Build\Apcb\Release\APCB_DN_D4.bin" Instance="0x00" Size="0x4000" Type="0x60" />
+    <IMAGE_ENTRY File="Build\Apcb\Release\APCB_DN_D4.bin" Instance="0x00" Size="0x4000" Type="0x68" />
+    <POINT_ENTRY Address="0x0" Destination="0x4000000" Size="0x0" Type="0x61" />
+    <POINT_ENTRY Address="0xdb0000" Destination="0x31db0000" Size="0x250000" Type="0x62">
+     <TypeAttrib Compressed="0x0" Copy="0x1" ReadOnly="0x0" RegionType="0x0" ResetImage="0x1" />
+    </POINT_ENTRY>
+    <IMAGE_ENTRY File="AgesaModulePkg\Firmwares\FW_VERSION\FW_SECURE_MODE\APOB_NV_DN.bin" Type="0x63" />
+    <IMAGE_ENTRY File="AgesaModulePkg\Firmwares\FW_VERSION\FW_SECURE_MODE\Appb_Dn_1D_Ddr4_Udimm_Imem_Mcm.esbin" Instance="0x01" Type="0x64" />
+    <IMAGE_ENTRY File="AgesaModulePkg\Firmwares\FW_VERSION\FW_SECURE_MODE\Appb_Dn_1D_Ddr4_Udimm_Dmem_Mcm.esbin" Instance="0x01" Type="0x65" />
+    <IMAGE_ENTRY File="AgesaModulePkg\Firmwares\FW_VERSION\FW_SECURE_MODE\Appb_Dn_1D_Ddr4_Rdimm_Imem_Mcm.esbin" Instance="0x02" Type="0x64" />
+    <IMAGE_ENTRY File="AgesaModulePkg\Firmwares\FW_VERSION\FW_SECURE_MODE\Appb_Dn_1D_Ddr4_Rdimm_Dmem_Mcm.esbin" Instance="0x02" Type="0x65" />
+    <IMAGE_ENTRY File="AgesaModulePkg\Firmwares\FW_VERSION\FW_SECURE_MODE\Appb_Dn_1D_Ddr4_Lrdimm_Imem_Mcm.esbin" Instance="0x03" Type="0x64" />
+    <IMAGE_ENTRY File="AgesaModulePkg\Firmwares\FW_VERSION\FW_SECURE_MODE\Appb_Dn_1D_Ddr4_Lrdimm_Dmem_Mcm.esbin" Instance="0x03" Type="0x65" />
+    <IMAGE_ENTRY File="AgesaModulePkg\Firmwares\FW_VERSION\FW_SECURE_MODE\Appb_Dn_2D_Ddr4_Imem_Mcm.esbin" Instance="0x04" Type="0x64" />
+    <IMAGE_ENTRY File="AgesaModulePkg\Firmwares\FW_VERSION\FW_SECURE_MODE\Appb_Dn_2D_Ddr4_Dmem_Mcm.esbin" Instance="0x04" Type="0x65" />
+    <IMAGE_ENTRY File="AgesaModulePkg\Firmwares\FW_VERSION\FW_SECURE_MODE\CoreMceEmptyData.bin" Instance="0x00" Type="0x67" />
+  </BIOS_DIR>
+</DIRS>

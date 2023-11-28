@@ -1,0 +1,696 @@
+///** @file
+//
+//Copyright (c) 2006 - 2020, Byosoft Corporation.<BR> 
+//All rights reserved.This software and associated documentation (if any)
+//is furnished under a license and may only be used or copied in 
+//accordance with the terms of the license. Except as permitted by such
+//license, no part of this software or documentation may be reproduced, 
+//stored in a retrieval system, or transmitted in any form or by any 
+//means without the express written consent of Byosoft Corporation.
+//
+//File Name:
+//  HddPassword.vfr
+//
+//Abstract: 
+//  vfr file for Hdd password DXE driver.
+//
+//Revision History:
+//
+
+#include <BmcConfig.h>
+#include <SetupVariable.h>
+
+#define  TIME_1MIN    60
+#define  TIME_100S    100
+#define  TIME_120S    120
+#define  TIME_150S    150
+#define  TIME_180S    180
+#define  TIME_300S    300
+#define  TIME_450S    450
+#define  TIME_500S    500
+#define  TIME_600S    600
+#define  TIME_5MIN    300
+#define  TIME_6MIN    360
+#define  TIME_10MIN   600
+#define  TIME_15MIN   900
+#define  TIME_30MIN   1800
+#define  IPV6_ENABLE  1
+
+
+formset
+  guid      = SETUP_BMC_CFG_GUID,
+  title     = STRING_TOKEN(STR_SERVER_MGMT),
+  help      = STRING_TOKEN(STR_SERVER_MGMT_HELP),
+  class     = 0,
+  subclass  = 0,
+
+  BMC_SETUP_DATA_VARSTORE
+
+  varstore BMC_LAN_CONFIG,
+  name = BmcLanConfig,
+  guid = SYSTEM_CONFIGURATION_GUID;
+
+  form formid = 0x402C,
+    title = STRING_TOKEN(STR_SERVER_MGMT);
+
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+    // BMC status 
+    text 
+      help   = STRING_TOKEN(STR_NULL_STRING),
+      text   = STRING_TOKEN(STR_BMC_SELF_TEST_STATUS_PROMPT),
+      text   = STRING_TOKEN(STR_BMC_SELF_TEST_STATUS_VALUE),
+      flags  = 0, key = 0;
+    text 
+      help   = STRING_TOKEN(STR_NULL_STRING),
+      text   = STRING_TOKEN(STR_BMC_STATUS_STRING),
+      text   = STRING_TOKEN(STR_BMC_STATUS_VALUE),
+      flags  = 0, key = 0;  
+    //
+    // BMC Revision Display
+    //
+    text 
+      help   = STRING_TOKEN(STR_NULL_STRING),
+      text   = STRING_TOKEN(STR_BMC_FIRMWARE_REVISION_PROMPT),
+      text   = STRING_TOKEN(STR_BMC_FIRMWARE_REVISION_VALUE),
+      flags  = 0, key = 0;
+
+    //
+    // BMC Revision Display
+    //
+    text 
+      help   = STRING_TOKEN(STR_NULL_STRING),
+      text   = STRING_TOKEN(STR_IPMI_REVISION_PROMPT),
+      text   = STRING_TOKEN(STR_IPMI_REVISION_VALUE),
+      flags  = 0, key = 0;
+
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);   
+
+    text
+      help   = STRING_TOKEN(STR_NULL_STRING),
+      text   = STRING_TOKEN(STR_WATCHDOG_TIMER_CONFIG),
+      flags  = 0,
+      key    = 0;  
+    //
+    // FRB2 Watchdog Timer Enable
+    //
+    oneof varid     = BMC_SETUP_DATA.WdtEnable[1],
+      prompt        = STRING_TOKEN(STR_BIOS_FRB2_WD_TIMER),
+      help          = STRING_TOKEN(STR_BIOS_FRB2_WD_TIMER_HELP),
+      option text = STRING_TOKEN(STR_ENABLED),  value=1, flags= DEFAULT | RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_DISABLED), value=0, flags= RESET_REQUIRED | MANUFACTURING;
+    endoneof;
+
+    suppressif ideqval BMC_SETUP_DATA.WdtEnable[1] == 0; 
+      oneof varid   = BMC_SETUP_DATA.WdtPolicy[1], 
+        prompt      = STRING_TOKEN(STR_BIOS_FRB2_WD_TIMER_POLICY), 
+        help        = STRING_TOKEN(STR_BIOS_FRB2_WD_TIMER_POLICY_HELP), 
+        option text = STRING_TOKEN(STR_BIOS_FRB2_WD_TIMER_RESET),     value = 1, flags = RESET_REQUIRED | DEFAULT| MANUFACTURING; 
+        option text = STRING_TOKEN(STR_BIOS_FRB2_WD_TIMER_POWER_OFF), value = 2, flags = RESET_REQUIRED; 
+      endoneof; 
+    endif;
+
+    suppressif ideqval BMC_SETUP_DATA.WdtEnable[1] == 0; 
+      oneof varid   = BMC_SETUP_DATA.WdtTimeout[1], 
+        prompt      = STRING_TOKEN(STR_BIOS_FRB2_WD_TIMER_TIMEOUT),  
+        help        = STRING_TOKEN(STR_BIOS_FRB2_WD_TIMER_TIMEOUT_HELP), 
+         #if BC_TENCENT
+        option text = STRING_TOKEN (STR_TIME_5MIN),  value = TIME_5MIN,  flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (STR_TIME_6MIN),  value = TIME_6MIN,  flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+        option text = STRING_TOKEN (STR_TIME_10MIN), value = TIME_10MIN,   flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (STR_TIME_15MIN), value = TIME_15MIN,   flags = 0 | RESET_REQUIRED;  
+        option text = STRING_TOKEN (STR_TIME_30MIN), value = TIME_30MIN,   flags = 0 | RESET_REQUIRED;
+        #else
+        option text = STRING_TOKEN (STR_TIME_5MIN),  value = TIME_5MIN,  flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (STR_TIME_10MIN),  value = TIME_10MIN,  flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+        option text = STRING_TOKEN (STR_TIME_15MIN), value = TIME_15MIN,   flags = 0 | RESET_REQUIRED;  
+        option text = STRING_TOKEN (STR_TIME_30MIN), value = TIME_30MIN,   flags = 0 | RESET_REQUIRED; 
+        #endif
+      endoneof; 
+    endif;
+    //
+    // OS Watchdog Timer Enable
+    //
+    oneof varid   = BMC_SETUP_DATA.WdtEnable[3],
+      prompt      = STRING_TOKEN(STR_OS_BOOT_WD_TIMER),
+      help        = STRING_TOKEN(STR_OS_BOOT_WD_TIMER_HELP),
+      option text = STRING_TOKEN(STR_ENABLED),  value = 1, flags = RESET_REQUIRED;
+      option text = STRING_TOKEN(STR_DISABLED), value = 0, flags = DEFAULT | RESET_REQUIRED | MANUFACTURING;
+    endoneof;
+    //
+    // OS Watchdog Timer Policy
+    //
+    suppressif ideqval BMC_SETUP_DATA.WdtEnable[3] == 0; 
+      oneof varid   = BMC_SETUP_DATA.WdtPolicy[3], 
+        prompt      = STRING_TOKEN(STR_OS_BOOT_WD_TIMER_POLICY), 
+        help        = STRING_TOKEN(STR_OS_BOOT_WD_TIMER_POLICY_HELP), 
+        option text = STRING_TOKEN(STR_OS_BOOT_WD_TIMER_RESET),     value = 1, flags = RESET_REQUIRED; 
+        option text = STRING_TOKEN(STR_OS_BOOT_WD_TIMER_POWER_OFF), value = 2, flags = DEFAULT | RESET_REQUIRED | MANUFACTURING; 
+      endoneof;
+    endif;
+
+      //
+      // OS Watchdog Timer Timeout
+      //
+    suppressif ideqval BMC_SETUP_DATA.WdtEnable[3] == 0; 
+      oneof varid   = BMC_SETUP_DATA.WdtTimeout[3], 
+        prompt      = STRING_TOKEN(STR_OS_BOOT_WD_TIMER_TIMEOUT),  
+        help        = STRING_TOKEN(STR_OS_BOOT_WD_TIMER_TIMEOUT_HELP), 
+        option text = STRING_TOKEN (STR_TIME_5MIN),  value = TIME_5MIN,  flags = 0 | RESET_REQUIRED;
+        option text = STRING_TOKEN (STR_TIME_10MIN),  value = TIME_10MIN,  flags = DEFAULT | MANUFACTURING | RESET_REQUIRED; 
+        option text = STRING_TOKEN (STR_TIME_15MIN), value = TIME_15MIN,   flags = 0 | RESET_REQUIRED;  
+        option text = STRING_TOKEN (STR_TIME_30MIN), value = TIME_30MIN,   flags = 0 | RESET_REQUIRED; 
+      endoneof;
+    endif;
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    oneof varid   = BMC_SETUP_DATA.SerialOverLanEnable, 
+      prompt      = STRING_TOKEN (STR_SOL_ENABLE_BM1), 
+      help        = STRING_TOKEN (STR_SOL_ENABLE_BM1_HELP), 
+      #if BC_TENCENT
+      option text = STRING_TOKEN (STR_ENABLED), value = 1, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED;
+      option text = STRING_TOKEN (STR_DISABLED), value = 0, flags =  RESET_REQUIRED; 
+      #else
+      option text = STRING_TOKEN (STR_ENABLED), value = 1, flags = RESET_REQUIRED; 
+      option text = STRING_TOKEN (STR_DISABLED), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED; 
+      #endif
+    endoneof;
+    
+  suppressif TRUE;
+    oneof varid   = BMC_SETUP_DATA.FanProfile,
+      questionid  = KEY_BMC_FAN_PROFILE,
+      prompt      = STRING_TOKEN(STR_FAN_PROFILE_TEXT),  
+      help        = STRING_TOKEN(STR_FAN_PROFILE_HELP),
+      option text = STRING_TOKEN (STR_FAN_MANUAL_MODE),value = 0, flags = INTERACTIVE | RESET_REQUIRED; 
+      option text = STRING_TOKEN (STR_FAN_SILENT),     value = 1, flags = INTERACTIVE | RESET_REQUIRED; 
+      option text = STRING_TOKEN (STR_FAN_BALANCE),    value = 2, flags = DEFAULT | MANUFACTURING | INTERACTIVE | RESET_REQUIRED; 
+      option text = STRING_TOKEN (STR_FAN_PERFORMANCE),value = 3, flags = INTERACTIVE | RESET_REQUIRED;  
+    endoneof;
+
+    suppressif NOT ideqval BMC_SETUP_DATA.FanProfile == 0;
+    oneof varid   = BMC_SETUP_DATA.FanSpeedControl, 
+      questionid  = KEY_BMC_FAN_SPEED_CONTROL,
+      prompt      = STRING_TOKEN(STR_FAN_SPEED_CONTROL_TEXT),  
+      help        = STRING_TOKEN(STR_FAN_SPEED_CONTROL_HELP), 
+      option text = STRING_TOKEN (STR_FAN_PWM_30),  value = 30,        flags = INTERACTIVE | RESET_REQUIRED; 
+      option text = STRING_TOKEN (STR_FAN_PWM_50),  value = 50,        flags = DEFAULT | MANUFACTURING | INTERACTIVE | RESET_REQUIRED;  
+      option text = STRING_TOKEN (STR_FAN_PWM_80),  value = 80,        flags = INTERACTIVE | RESET_REQUIRED; 
+      option text = STRING_TOKEN (STR_FAN_PWM_100), value = 100,       flags = INTERACTIVE | RESET_REQUIRED; 
+    endoneof;
+    endif; 
+  endif;
+
+
+     //
+     // Ac restore policy
+     //
+     oneof varid    = BMC_SETUP_DATA.PowerRestorePolicy,
+       prompt       = STRING_TOKEN(STR_RESUME_ON_AC_POWER_LOSS), 
+       help         = STRING_TOKEN(STR_RESUME_ON_AC_POWER_LOSS_HELP),
+       #if BC_TENCENT
+       option text = STRING_TOKEN(STR_STAY_OFF),  value=0, flags= RESET_REQUIRED | MANUFACTURING | DEFAULT;
+       option text = STRING_TOKEN(STR_LASTSTATE), value=1, flags= RESET_REQUIRED;
+       option text = STRING_TOKEN(STR_POWERON),   value=2, flags= RESET_REQUIRED;
+       #else
+       option text = STRING_TOKEN(STR_STAY_OFF),  value=0, flags= RESET_REQUIRED; 
+       option text = STRING_TOKEN(STR_LASTSTATE), value=1, flags= RESET_REQUIRED | MANUFACTURING | DEFAULT;
+       option text = STRING_TOKEN(STR_POWERON),   value=2, flags= RESET_REQUIRED;
+       #endif
+    endoneof;
+
+    //VLAN +TangYan+
+/*    oneof varid   = BMC_SETUP_DATA.ShareLink, 
+      prompt      = STRING_TOKEN (STR_VLAN_SHARE_LINK_ENABLE), 
+      help        = STRING_TOKEN (STR_VLAN_SHARE_LINK_ENABLE_HELP), 
+      option text = STRING_TOKEN (STR_ENABLED), value = 1, flags = RESET_REQUIRED; 
+      option text = STRING_TOKEN (STR_DISABLED), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED; 
+    endoneof;
+
+    oneof varid   = BMC_SETUP_DATA.VLanState, 
+      prompt      = STRING_TOKEN (STR_VLAN_ENABLE), 
+      help        = STRING_TOKEN (STR_VLAN_ENABLE_HELP), 
+      option text = STRING_TOKEN (STR_ENABLED), value = 1, flags = RESET_REQUIRED; 
+      option text = STRING_TOKEN (STR_DISABLED), value = 0, flags = DEFAULT | MANUFACTURING | RESET_REQUIRED; 
+    endoneof;
+
+  grayoutif ideqval BMC_SETUP_DATA.VLanState == 0; 
+    numeric varid = BMC_SETUP_DATA.VLanID,
+         prompt   = STRING_TOKEN(STR_VLANID),
+         help     = STRING_TOKEN(STR_VLANID_HELP),
+         minimum  = 1,
+         maximum  = 4095,
+         step     = 1,
+    endnumeric;
+  endif;*/
+    
+    goto SEL_FORM_ID,
+      prompt = STRING_TOKEN(STR_SEL_FORM_TITLE),
+      help   = STRING_TOKEN(STR_SEL_FORM_TITLE_HELP);    
+    //
+    // Clear System Event Log
+    //
+    text
+      help = STRING_TOKEN(STR_CLEAR_EVENT_LOG_HELP),
+      text = STRING_TOKEN(STR_CLEAR_EVENT_LOG_PROMPT),
+      flags = INTERACTIVE,
+      key = KEY_SERVER_MGMT_CLEAR_SEL;
+
+    //goto HM_FORM_ID,
+    //  prompt = STRING_TOKEN(STR_HM_FORM),
+    //  help   = STRING_TOKEN(STR_HM_FORM);
+
+    goto FRU_FORM_ID,
+      prompt = STRING_TOKEN(STR_SRVRMGMT_FRU_FORM_TITLE),
+      help   = STRING_TOKEN(STR_SRVRMGMT_FRU_VIEW_HELP);
+
+    goto FORM_ID_BMC_LAN_CONFIG,
+      prompt = STRING_TOKEN(STR_BMC_NIC_CNFG_FORM_TITLE),
+      help   = STRING_TOKEN(STR_BMC_NIC_CNFG_FORM_HELP);
+
+    goto FORM_ID_BMC_USER_CONFIG,
+      prompt = STRING_TOKEN(STR_BMC_USER_CNFG_FORM_TITLE),
+      help   = STRING_TOKEN(STR_BMC_USER_CNFG_FORM_HELP);
+   
+  endform;
+
+  form formid = FORM_ID_BMC_LAN_CONFIG,
+    title = STRING_TOKEN(STR_BMC_NIC_CNFG_FORM_TITLE);
+    
+	oneof varid     = BMC_SETUP_DATA.NCSI,
+	    prompt        = STRING_TOKEN(STR_BMC_NCSI),
+		help          = STRING_TOKEN(STR_BMC_NCSI_HELP),
+        option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = DEFAULT | MANUFACTURING;
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags =  0;
+	endoneof;
+		
+	
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+    subtitle text = STRING_TOKEN(STR_BASE_BOARD_NICCNFG);
+    subtitle text = STRING_TOKEN(STR_DUMMY_STRING);
+      
+    oneof varid     = BMC_LAN_CONFIG.OnBoardNIC_IpMode, 
+        prompt        = STRING_TOKEN(STR_IPV4_MODE), 
+        help          = STRING_TOKEN(STR_IPV4_MODE_HELP), 
+        option text   = STRING_TOKEN(STR_STATIC_IP), value=1, flags=0; 
+        option text   = STRING_TOKEN(STR_DHCP_IP),  value=2, flags= DEFAULT | MANUFACTURING; 
+    endoneof; 
+
+    grayoutif NOT ideqval BMC_LAN_CONFIG.OnBoardNIC_IpMode == 1;
+        string    varid    = BMC_LAN_CONFIG.OnBoardNIC_IpAddress,
+            prompt   = STRING_TOKEN(STR_IPV4_ADDRESS_LABEL),
+            help     = STRING_TOKEN(STR_IPV4_ADDRESS_HELP),
+            flags    = INTERACTIVE ,
+            key      = KEY_BMC_ONBOARD_NIC_IPV4_ADDR,
+            minsize  = 6,
+            maxsize  = 15,
+        endstring;
+
+
+        string    varid    = BMC_LAN_CONFIG.OnBoardNIC_SubnetMask,
+            prompt   = STRING_TOKEN(STR_SUBNET_MASK_LABEL),
+            help     = STRING_TOKEN(STR_SUBNET_MASK_HELP),
+            flags    = INTERACTIVE ,
+            key      = KEY_BMC_ONBOARD_NIC_IPV4_SUBNET_MASK_ADDR,
+            minsize  = 6,
+            maxsize  = 15,
+        endstring;
+
+        string    varid    = BMC_LAN_CONFIG.OnBoardNIC_GatewayIp,
+            prompt   = STRING_TOKEN(STR_GATEWAY_IP_LABEL),
+            help     = STRING_TOKEN(STR_GATEWAY_IP_HELP),
+            flags    = INTERACTIVE ,
+            key      = KEY_BMC_ONBOARD_NIC_IPV4_GATEWAY_ADDR,
+            minsize  = 6,
+            maxsize  = 15,
+        endstring;
+    endif;
+#if IPV6_ENABLE
+//
+//IPV6 mode configuration setup options
+//
+    //subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    oneof varid     = BMC_LAN_CONFIG.OnBoardNIC_IpSelection, 
+        prompt      = STRING_TOKEN(STR_IPV6),
+        help        = STRING_TOKEN(STR_IPV6_HELP),
+        option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = DEFAULT | MANUFACTURING ;
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags =  0 ;
+    endoneof;
+
+    suppressif ideqval BMC_LAN_CONFIG.OnBoardNIC_IpSelection == 0;
+        oneof varid     = BMC_LAN_CONFIG.OnBoardNIC_Ipv6Mode,   
+            prompt         = STRING_TOKEN(STR_IPV6_MODE), 
+            help           = STRING_TOKEN(STR_IPV6_MODE_HELP), 
+            option text    = STRING_TOKEN(STR_STATIC_IPV6), value=1, flags= 0 ; 
+            option text    = STRING_TOKEN(STR_DHCP_IPV6),   value=2, flags= DEFAULT | MANUFACTURING |RESET_REQUIRED ; 
+        endoneof; 
+
+        grayoutif NOT ideqval BMC_LAN_CONFIG.OnBoardNIC_Ipv6Mode == 1;
+          string    varid    = BMC_LAN_CONFIG.OnBoardNIC_Ipv6Address,
+              prompt   = STRING_TOKEN(STR_IPV6_ADDRESS_LABEL),
+              help     = STRING_TOKEN(STR_IPV6_ADDRESS_HELP),
+              flags    = INTERACTIVE | RESET_REQUIRED,
+              key      = KEY_BMC_ONBOARD_NIC_IPV6_ADDR,
+              minsize  = 6,
+              maxsize  = 46,
+          endstring;
+  
+          suppressif 1;
+          string    varid    = BMC_LAN_CONFIG.OnBoardNIC_GatewayIpv6,
+              prompt   = STRING_TOKEN(STR_GATEWAY_IPV6_LABEL),
+              help     = STRING_TOKEN(STR_GATEWAY_IPV6_HELP),
+              flags    = INTERACTIVE ,
+              key      = KEY_BMC_ONBOARD_NIC_IPV6_GATEWAY_ADDR,
+              minsize  = 8,
+              maxsize  = 46,
+          endstring;
+          endif;
+    
+          numeric varid = BMC_LAN_CONFIG.OnBoardNIC_Ipv6PreLen,
+              prompt    = STRING_TOKEN(STR_IPV6_PREFIX_LENGTH_LABEL),
+              help      = STRING_TOKEN(STR_IPV6_PREFIX_LENGTH_HELP),
+              flags     = 0,
+              minimum   = 0,
+              maximum   = 128,
+              step      = 1,
+              default   = 64,
+          endnumeric;
+        endif;
+    endif;
+#endif
+
+suppressif ideqval BMC_SETUP_DATA.NCSI == 0;
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+    subtitle text = STRING_TOKEN(STR_NSCI_NICCNFG);
+    subtitle text = STRING_TOKEN(STR_DUMMY_STRING);
+
+    oneof varid     = BMC_LAN_CONFIG.DedicateNIC_IpMode, 
+        prompt        = STRING_TOKEN(STR_IPV4_MODE), 
+        help          = STRING_TOKEN(STR_IPV4_MODE_HELP), 
+        option text   = STRING_TOKEN(STR_STATIC_IP), value=1, flags=0; 
+        option text   = STRING_TOKEN(STR_DHCP_IP),  value=2, flags= DEFAULT | MANUFACTURING; 
+    endoneof; 
+
+    grayoutif NOT ideqval BMC_LAN_CONFIG.DedicateNIC_IpMode == 1;
+        string    varid    = BMC_LAN_CONFIG.DedicateNIC_IpAddress,
+            prompt   = STRING_TOKEN(STR_IPV4_ADDRESS_LABEL),
+            help     = STRING_TOKEN(STR_IPV4_ADDRESS_HELP),
+            flags    = INTERACTIVE ,
+            key      = KEY_BMC_DEDICATE_NIC_IPV4_ADDR,
+            minsize  = 6,
+            maxsize  = 15,
+        endstring;
+
+        string    varid    = BMC_LAN_CONFIG.DedicateNIC_SubnetMask,
+            prompt   = STRING_TOKEN(STR_SUBNET_MASK_LABEL),
+            help     = STRING_TOKEN(STR_SUBNET_MASK_HELP),
+            flags    = INTERACTIVE ,
+            key      = KEY_BMC_DEDICATE_NIC_IPV4_SUBNET_MASK_ADDR,
+            minsize  = 6,
+            maxsize  = 15,
+        endstring;
+
+        string    varid    = BMC_LAN_CONFIG.DedicateNIC_GatewayIp,
+            prompt   = STRING_TOKEN(STR_GATEWAY_IP_LABEL),
+            help     = STRING_TOKEN(STR_GATEWAY_IP_HELP),
+            flags    = INTERACTIVE ,
+            key      = KEY_BMC_DEDICATE_NIC_IPV4_GATEWAY_ADDR,
+            minsize  = 6,
+            maxsize  = 15,
+        endstring;
+    endif;
+
+#if IPV6_ENABLE
+//
+//IPV6 mode configuration setup options
+//
+    //subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+    oneof varid     = BMC_LAN_CONFIG.DedicateNIC_IpSelection, 
+        prompt      = STRING_TOKEN(STR_IPV6),
+        help        = STRING_TOKEN(STR_IPV6_HELP),
+        option text = STRING_TOKEN(STR_ENABLED), value = 1, flags = DEFAULT | MANUFACTURING;
+        option text = STRING_TOKEN(STR_DISABLED), value = 0, flags =  0 ;
+    endoneof;
+
+    suppressif ideqval BMC_LAN_CONFIG.DedicateNIC_IpSelection == 0;
+        oneof varid     = BMC_LAN_CONFIG.DedicateNIC_Ipv6Mode,  
+            prompt         = STRING_TOKEN(STR_IPV6_MODE), 
+            help           = STRING_TOKEN(STR_IPV6_MODE_HELP), 
+            option text    = STRING_TOKEN(STR_STATIC_IPV6), value=1, flags= 0; 
+            option text    = STRING_TOKEN(STR_DHCP_IPV6),   value=2, flags= DEFAULT | MANUFACTURING |RESET_REQUIRED ; 
+        endoneof; 
+
+        grayoutif NOT ideqval BMC_LAN_CONFIG.DedicateNIC_Ipv6Mode == 1;
+          string    varid    = BMC_LAN_CONFIG.DedicateNIC_Ipv6Address,
+              prompt   = STRING_TOKEN(STR_IPV6_ADDRESS_LABEL),
+              help     = STRING_TOKEN(STR_IPV6_ADDRESS_HELP),
+              flags    = INTERACTIVE | RESET_REQUIRED,
+              key      = KEY_BMC_DEDICATE_NIC_IPV6_ADDR,
+              minsize  = 6,
+              maxsize  = 46,
+          endstring;
+
+          suppressif 1;
+          string    varid    = BMC_LAN_CONFIG.DedicateNIC_GatewayIpv6,
+              prompt   = STRING_TOKEN(STR_GATEWAY_IPV6_LABEL),
+              help     = STRING_TOKEN(STR_GATEWAY_IPV6_HELP),
+              flags    = INTERACTIVE ,
+              key      = KEY_BMC_DEDICATE_NIC_IPV6_GATEWAY_ADDR,
+              minsize  = 8,
+              maxsize  = 46,
+          endstring;
+          endif;
+
+          numeric varid = BMC_LAN_CONFIG.DedicateNIC_Ipv6PreLen,
+              prompt    = STRING_TOKEN(STR_IPV6_PREFIX_LENGTH_LABEL),
+              help      = STRING_TOKEN(STR_IPV6_PREFIX_LENGTH_HELP),
+              flags     = 0,
+              minimum   = 0,
+              maximum   = 128,
+              step      = 1,
+              default   = 64,
+          endnumeric;
+        endif;
+    endif;
+#endif
+
+  suppressif TRUE;
+      grayoutif  NOT ideqval BMC_LAN_CONFIG.OnBoardNIC_IpMode == 2 ;
+        string    varid    = BMC_LAN_CONFIG.Dhcp_Name,
+            prompt   = STRING_TOKEN(STR_DHCP_NAME_LABEL),
+            help     = STRING_TOKEN(STR_DHCP_NAME_HELP),
+            flags    = INTERACTIVE ,
+            key      = KEY_BMC_ONBOARD_NIC_DHCP_NAME,
+            minsize  = 2,
+            maxsize  = 63,
+        endstring;
+      endif;
+  endif;
+endif;
+  endform;
+
+ //***********************************
+ //*        User Managerment         *
+ //***********************************
+  form formid = FORM_ID_BMC_USER_CONFIG,
+    title = STRING_TOKEN(STR_BMC_USER_CNFG_FORM_TITLE);
+    //subtitle text = STRING_TOKEN(STR_NULL_STRING);
+    //subtitle text = STRING_TOKEN(STR_USER_CONFIGURATAION);
+    //subtitle text = STRING_TOKEN(STR_DUMMY_STRING);
+    suppressif TRUE;
+      oneof varid     = BMC_LAN_CONFIG.User, 
+        prompt        = STRING_TOKEN(STR_BMC_USER_SELECT), 
+        help          = STRING_TOKEN(STR_BMC_USER_SELECT_HELP), 
+          option text = STRING_TOKEN(STR_USER_RESV),value=0, flags= INTERACTIVE | DEFAULT | MANUFACTURING ; 
+          option text = STRING_TOKEN(STR_USER1),  value=1, flags= 0 ; 
+          option text = STRING_TOKEN(STR_USER2),  value=2, flags= 0 ; 
+          option text = STRING_TOKEN(STR_USER3),  value=3, flags= 0 ; 
+          option text = STRING_TOKEN(STR_USER4),  value=4, flags= 0 ; 
+          option text = STRING_TOKEN(STR_USER5),  value=5, flags= 0 ;
+          option text = STRING_TOKEN(STR_USER6),  value=6, flags= 0 ; 
+          option text = STRING_TOKEN(STR_USER7),  value=7, flags= 0 ; 
+          option text = STRING_TOKEN(STR_USER8),  value=8, flags= 0 ; 
+          option text = STRING_TOKEN(STR_USER9),  value=9, flags= 0 ;
+          option text = STRING_TOKEN(STR_USER10),  value=10, flags= 0 ; 
+          option text = STRING_TOKEN(STR_USER11),  value=11, flags= 0 ; 
+          option text = STRING_TOKEN(STR_USER12),  value=12, flags= 0 ; 
+          option text = STRING_TOKEN(STR_USER13),  value=13, flags= 0 ; 
+          option text = STRING_TOKEN(STR_USER14),  value=14, flags= 0 ; 
+          option text = STRING_TOKEN(STR_USER15),  value=15, flags= 0 ;
+          option text = STRING_TOKEN(STR_USER16),  value=16, flags= 0 ;
+      endoneof; 
+    endif;
+    
+    goto FORM_ID_BMC_USER_ADD,
+      prompt = STRING_TOKEN(STR_BMC_USER_ADD_FORM_TITLE),
+      help   = STRING_TOKEN(STR_BMC_USER_ADD_FORM_HELP);
+
+    
+    goto FORM_ID_BMC_USER_DEL,
+      prompt = STRING_TOKEN(STR_BMC_USER_DEL_FORM_TITLE),
+      help   = STRING_TOKEN(STR_BMC_USER_DEL_FORM_HELP);
+
+    
+    goto FORM_ID_BMC_USER_CHANGE,
+      prompt = STRING_TOKEN(STR_BMC_USER_CHANGE_FORM_TITLE),
+      help   = STRING_TOKEN(STR_BMC_USER_CHANGE_FORM_HELP);
+      
+  endform;
+
+
+ //***********************************
+ //*            Add User             *
+ //***********************************
+  form formid = FORM_ID_BMC_USER_ADD,
+    title = STRING_TOKEN(STR_BMC_USER_ADD_FORM_TITLE);
+    
+    string    varid    = BMC_LAN_CONFIG.BmcUserInfo[0].UserName,
+        prompt   = STRING_TOKEN(STR_BMC_USER_NAME_LABEL),
+        help     = STRING_TOKEN(STR_BMC_USER_NAME_HELP),
+        flags    = INTERACTIVE | RESET_REQUIRED,
+        key      = KEY_BMC_ADD_USER_NAME,
+        minsize  = 1,
+        maxsize  = 16,
+    endstring;
+
+
+    password  varid    = BMC_LAN_CONFIG.BmcUserInfo[0].UserPassword,
+      questionid    = KEY_BMC_ADD_USER_PASSWORD, 
+      prompt   = STRING_TOKEN(STR_BMC_USER_PASSWORD_PROMPT),
+      help     = STRING_TOKEN(STR_BMC_ADD_USER_PSWD_HELP),
+      flags    = INTERACTIVE | RESET_REQUIRED,
+      minsize  = 1,
+      maxsize  = 20, 
+      encoding = 0,
+    endpassword; 
+    
+    grayoutif ideqval BMC_LAN_CONFIG.BmcUserInfo[0].UserPresent == 0;
+      oneof varid     = BMC_LAN_CONFIG.BmcUserInfo[0].Privilege, 
+        questionid    = KEY_BMC_ADD_USER_PRIVILEGE,
+        prompt        = STRING_TOKEN(STR_BMC_USER_PRIVILEGE_LABEL), 
+        help          = STRING_TOKEN(STR_BMC_USER_PRIVILEGE_IP_HELP), 
+          option text = STRING_TOKEN(STR_CALLBACK),     value=1, flags= INTERACTIVE ; 
+          option text = STRING_TOKEN(STR_USER),         value=2, flags= INTERACTIVE ; 
+          option text = STRING_TOKEN(STR_OPERATOR),     value=3, flags= INTERACTIVE ; 
+          option text = STRING_TOKEN(STR_ADMINISTRATOR),value=4, flags= INTERACTIVE ; 
+          option text = STRING_TOKEN(STR_NO_ACCESS),    value=0xf, flags= INTERACTIVE | DEFAULT | MANUFACTURING | RESET_REQUIRED ; 
+      endoneof; 
+
+
+      oneof varid     = BMC_LAN_CONFIG.BmcUserInfo[0].EnabaleChannelUser, 
+        questionid    = KEY_BMC_ADD_USER_ENABALE_CHANNEL_USER,
+        prompt        = STRING_TOKEN(STR_USER_ENABLE_LABEL), 
+        help          = STRING_TOKEN(STR_USER_ENABLE_HELP), 
+        option text = STRING_TOKEN(STR_ENABLED),      value=1, flags= INTERACTIVE ; 
+        option text = STRING_TOKEN(STR_DISABLED),     value=0, flags= INTERACTIVE | DEFAULT | MANUFACTURING | RESET_REQUIRED; 
+      endoneof; 
+    endif;  
+  endform;
+
+
+ //***********************************
+ //*            Del User             *
+ //***********************************
+  form formid = FORM_ID_BMC_USER_DEL,
+    title = STRING_TOKEN(STR_BMC_USER_DEL_FORM_TITLE);
+
+    string    varid    = BMC_LAN_CONFIG.BmcUserInfo[0].UserName,
+        prompt   = STRING_TOKEN(STR_BMC_USER_NAME_LABEL),
+        help     = STRING_TOKEN(STR_BMC_CHANGE_USER_NAME_HELP),
+        flags    = INTERACTIVE | RESET_REQUIRED,
+        key      = KEY_BMC_DEL_USER_NAME,
+        minsize  = 1,
+        maxsize  = 16,
+    endstring;
+
+
+    password  varid    = BMC_LAN_CONFIG.BmcUserInfo[0].UserPassword,
+      questionid    = KEY_BMC_DEL_USER_PASSWORD, 
+      prompt   = STRING_TOKEN(STR_BMC_USER_PASSWORD_PROMPT),
+      help     = STRING_TOKEN(STR_BMC_DEL_USER_PSWD_HELP),
+      flags    = INTERACTIVE | RESET_REQUIRED,
+      minsize  = 1,
+      maxsize  = 20, 
+      encoding = 0,
+    endpassword; 
+
+  endform;
+
+ //***********************************
+ //*           Change User           *
+ //***********************************
+  form formid = FORM_ID_BMC_USER_CHANGE,
+    title = STRING_TOKEN(STR_BMC_USER_CHANGE_FORM_TITLE);
+
+    string    varid    = BMC_LAN_CONFIG.BmcUserInfo[0].UserName,
+        prompt   = STRING_TOKEN(STR_BMC_USER_NAME_LABEL),
+        help     = STRING_TOKEN(STR_BMC_CHANGE_USER_NAME_HELP),
+        flags    = INTERACTIVE | RESET_REQUIRED,
+        key      = KEY_BMC_CHANGE_USER_NAME,
+        minsize  = 1,
+        maxsize  = 16,
+    endstring;
+
+    suppressif ideqval BMC_LAN_CONFIG.UserPwdChanged == 1; 
+      password  varid    = BMC_LAN_CONFIG.BmcUserInfo[0].UserPassword,
+        questionid    = KEY_BMC_VERIFY_USER_PASSWORD, 
+        prompt   = STRING_TOKEN(STR_BMC_USER_PASSWORD_PROMPT),
+        help     = STRING_TOKEN(STR_BMC_CHANGE_USER_PSWD_HELP),
+        flags    = INTERACTIVE | RESET_REQUIRED,
+        minsize  = 1,
+        maxsize  = 20, 
+        encoding = 0,
+      endpassword; 
+    endif;
+    
+    suppressif ideqval BMC_LAN_CONFIG.UserPwdChanged == 0; 
+      password  varid    = BMC_LAN_CONFIG.BmcUserInfo[0].UserPassword,
+        questionid    = KEY_BMC_CHANGE_USER_PASSWORD, 
+        prompt   = STRING_TOKEN(STR_CHANGE_USER_PASSWORD),
+        help     = STRING_TOKEN(STR_BMC_CHANGE_USER_PSWD_HELP),
+        flags    = INTERACTIVE | RESET_REQUIRED,
+        minsize  = 1,
+        maxsize  = 20, 
+        encoding = 0,
+      endpassword; 
+    endif;
+
+    grayoutif ideqval BMC_LAN_CONFIG.BmcUserInfo[0].UserPresent == 0;
+      oneof varid     = BMC_LAN_CONFIG.BmcUserInfo[0].Privilege, 
+        questionid    = KEY_BMC_CHANGE_USER_PRIVILEGE,
+        prompt        = STRING_TOKEN(STR_BMC_USER_PRIVILEGE_LABEL), 
+        help          = STRING_TOKEN(STR_BMC_USER_PRIVILEGE_IP_HELP), 
+          option text = STRING_TOKEN(STR_CALLBACK),     value=1, flags= INTERACTIVE  ; 
+          option text = STRING_TOKEN(STR_USER),         value=2, flags= INTERACTIVE ; 
+          option text = STRING_TOKEN(STR_OPERATOR),     value=3, flags= INTERACTIVE ; 
+          option text = STRING_TOKEN(STR_ADMINISTRATOR),value=4, flags= INTERACTIVE ; 
+          option text = STRING_TOKEN(STR_NO_ACCESS),    value=0xf, flags= INTERACTIVE | DEFAULT | MANUFACTURING | RESET_REQUIRED ; 
+      endoneof; 
+
+
+      oneof varid     = BMC_LAN_CONFIG.BmcUserInfo[0].EnabaleChannelUser, 
+        questionid    = KEY_BMC_CHANGE_USER_ENABALE_CHANNEL_USER,
+        prompt        = STRING_TOKEN(STR_USER_ENABLE_LABEL), 
+        help          = STRING_TOKEN(STR_USER_ENABLE_HELP), 
+        option text = STRING_TOKEN(STR_ENABLED),      value=1, flags= INTERACTIVE ; 
+        option text = STRING_TOKEN(STR_DISABLED),     value=0, flags= INTERACTIVE | DEFAULT | MANUFACTURING | RESET_REQUIRED; 
+      endoneof; 
+    endif;
+
+    suppressif TRUE;
+      oneof varid     = BMC_LAN_CONFIG.UserPwdChanged, 
+        prompt        = STRING_TOKEN(STR_NULL_STRING),
+        help          = STRING_TOKEN(STR_NULL_STRING),
+          option text = STRING_TOKEN(STR_NULL_STRING), value = 1, flags= RESET_REQUIRED ; 
+          option text = STRING_TOKEN(STR_NULL_STRING), value = 0, flags= DEFAULT | MANUFACTURING | RESET_REQUIRED; 
+      endoneof; 
+    endif;
+
+  endform;
+
+
+  //#include <HwMonitor/Hm.sd>
+  #include <FruSetup/FruSetup.sd>
+  #include <SelEvent/SelEvent.sd>
+  
+endformset;

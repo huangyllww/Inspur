@@ -1,0 +1,174 @@
+/*****************************************************************************
+ *
+ * Copyright 2016 - 2019 CHENGDU HAIGUANG IC DESIGN CO., LTD. All Rights Reserved.
+ *
+ * HYGON is granting you permission to use this software (the Materials)
+ * pursuant to the terms and conditions of your Software License Agreement
+ * with HYGON.  This header does *NOT* give you permission to use the Materials
+ * or any rights under HYGON's intellectual property.  Your use of any portion
+ * of these Materials shall constitute your acceptance of those terms and
+ * conditions.  If you do not agree to the terms and conditions of the Software
+ * License Agreement, please do not use any portion of these Materials.
+ *
+ * CONFIDENTIALITY:  The Materials and all other information, identified as
+ * confidential and provided to you by HYGON shall be kept confidential in
+ * accordance with the terms and conditions of the Software License Agreement.
+ *
+ * LIMITATION OF LIABILITY: THE MATERIALS AND ANY OTHER RELATED INFORMATION
+ * PROVIDED TO YOU BY HYGON ARE PROVIDED "AS IS" WITHOUT ANY EXPRESS OR IMPLIED
+ * WARRANTY OF ANY KIND, INCLUDING BUT NOT LIMITED TO WARRANTIES OF
+ * MERCHANTABILITY, NONINFRINGEMENT, TITLE, FITNESS FOR ANY PARTICULAR PURPOSE,
+ * OR WARRANTIES ARISING FROM CONDUCT, COURSE OF DEALING, OR USAGE OF TRADE.
+ * IN NO EVENT SHALL HYGON OR ITS LICENSORS BE LIABLE FOR ANY DAMAGES WHATSOEVER
+ * (INCLUDING, WITHOUT LIMITATION, DAMAGES FOR LOSS OF PROFITS, BUSINESS
+ * INTERRUPTION, OR LOSS OF INFORMATION) ARISING OUT OF HYGON'S NEGLIGENCE,
+ * GROSS NEGLIGENCE, THE USE OF OR INABILITY TO USE THE MATERIALS OR ANY OTHER
+ * RELATED INFORMATION PROVIDED TO YOU BY HYGON, EVEN IF HYGON HAS BEEN ADVISED OF
+ * THE POSSIBILITY OF SUCH DAMAGES.  BECAUSE SOME JURISDICTIONS PROHIBIT THE
+ * EXCLUSION OR LIMITATION OF LIABILITY FOR CONSEQUENTIAL OR INCIDENTAL DAMAGES,
+ * THE ABOVE LIMITATION MAY NOT APPLY TO YOU.
+ *
+ * HYGON does not assume any responsibility for any errors which may appear in
+ * the Materials or any other related information provided to you by HYGON, or
+ * result from use of the Materials or any related information.
+ *
+ * You agree that you will not reverse engineer or decompile the Materials.
+ *
+ * NO SUPPORT OBLIGATION: HYGON is not obligated to furnish, support, or make any
+ * further information, software, technical information, know-how, or show-how
+ * available to you.  Additionally, HYGON retains the right to modify the
+ * Materials at any time, without notice, and is not obligated to provide such
+ * modified Materials to you.
+
+ * AMD GRANT HYGON DECLARATION: ADVANCED MICRO DEVICES, INC.(AMD) granted HYGON has
+ * the right to redistribute HYGON's Agesa version to BIOS Vendors and HYGON has
+ * the right to make the modified version available for use with HYGON's PRODUCT.
+ ******************************************************************************
+ */
+
+
+This document refers to the Hygon Secure Processor technology as
+Platform Security Processor (PSP).
+
+=============================================================================
+PI package:             DhyanaPI_0.0.0.1.zip 
+Release Date:           April 26, 2019    
+
+=============================================================================
+Compliant to specs:                                                    
+- PPR Family 18h Models 00h-0Fh rev 1.01                             
+
+=============================================================================
+
+1. Package contents
+    AgesaModulePkg & AgesaPkg   - Hygon BIOS SDK for Family 18h
+                                  Model 00 platform solution
+    ABL                         - AGESA Boot Loader Version: RABLDHYANA190426
+    AmdCpmPkg                   - Common Platform Module v061
+    AmdCbsPkg                   - Common BIOS Setup Options
+    Platform BIOS               - 65N32 Platform BIOS: 620R114.rom
+                                - 35N16 Platform BIOS: 320R114.rom
+                                - DM1 CRB Platform BIOS: DM1MR235.rom
+    PSP FW                      - PSP Firmware Version: 0.1.1.7
+    SMU FW                      - SMU Firmware Version: 1.2.35
+    uCode                       - Microcode patch level: 09000006
+    Specification               - Hygon BIOS SDK Interface
+                                  Specification v1.01:
+                                  55483_AgesaV9_Interface.pdf
+                                - Preliminary Processor Programming Reference
+                                  (PPR) for Hygon Family 18h Model 00h Revision
+                                  A1,A2 Processors v1.01: ppr_DHYANA_A2_nda.pdf
+
+2. Known Issues/Limitations:
+  - HYGON Binaries are intended for use as a matched set. Mixing binaries from 
+    different releases is not recommended and may not boot or may not function 
+	properly.  Specifically, the SMU FW images, the PSP Firmware, the ABL images, 
+	the secure debug unlock binary, and the security binary must be matched. 
+	These binaries address the assessed vulnerability groups outlined please contact
+	with Hygon Technical Team.
+  - Unused lanes should be declared as PCIe engines in the platform BIOS topology
+    table.  Please reference the BIOS SDK Interface SPEC.
+    section 3.6.2 DXIO Driver Common Structure for more information.
+  - To install or boot Windows Server 2016, OS Build 14393.1378 or later should
+    be used.
+    https://support.microsoft.com/en-us/help/4022723/windows-10-update-kb4022723
+    For older builds of Windows Server 2016, IOMMU should be disabled.
+  - See the Processor Programming Reference, section 7.4.3. It describes the
+    processor routing PCI I/O access using the PCI I/O address map registers
+    (X86IOBaseAddress and X86IOLimitAddress). Failure to program these will cause
+    problems with accesses that cross a 4-byte boundary. Specifically, the access
+    will "complete," but only the first portion of the access will be done. These
+    registers need to be programmed by platform BIOS. The data fabric architecture
+    requires every PCI I/O port to be mapped in the registers and does not support
+    subtractive address space.
+
+3. Changes
+  The DhyanaPI_0.0.0.1 BIOS is the initial Hygon Dhyana PI codes.
+4. Changes
+   1).SL1 Support LRDIMM
+   2).Udate SMU fw 1.2.36 
+-------------------------------------
+ The DhyanaPI_0.0.4
+  1) add dhyana2 support
+  2) add smee/SVM control in agesa CBS
+------------------------------------
+ The DhyanaPI_0.0.5
+  1. 1. Update firmware.
+  2. Fix mapping between physical channel to silk screen.
+------------------------------------
+ The DhyanaPI_0.0.6
+  1. Fixed options loss caused by loading default configuration.
+  2. Fixed remap PCIE ports can't report RAS error issue. [SL1R2-211]
+  3. Add PCIE bad TLP header log 0~3 print in RAS SMI handler.
+  4. [PS-1011] Hide unsupported 1KB and 2KB mem interleave size when hash enabled.
+  5. Add support for injecting processor errors which are not real errors but simulated by setting up MCA state registers.
+  6. delect AMI string in PI.
+-----------------------------------
+ The DhyanaPI_0.07
+ psp version: 0.1.1.18
+ smu version:1.4.27
+ abl version:0x19110700
+ 1. Add FabricResourceManagerServicesProtocol.
+ 2. Add PspPlatformDriver sample code
+ 3. Add a Sata Tx EQ Feature for setting SATA Tx Eq
+ 4. PRODUCT-427 fix build warning issue
+ 5. Add TSHwAcpiEnvService.c(UTF-8) file
+ 6. Combine 2 DIE & 4 DIE within one BIOS binary on same mother board. 
+    Note:Only support 35N16 and 65N32 mother board.
+ 7. Fix free memory ASSERT via GetAcpiTable.
+ 8. Fix JedecNvdimm cannot support both XDSDT and DSDT valid.
+ -----------------------------------
+ The DhyanaPI_0.08
+ psp version: 0.1.1.20
+ smu version:1.4.34
+ abl version:0x20032310
+ 1. Add smbios 3.2 support
+ 2. Disable USB 2.0 Port 2/3 and 3.0 port 2/3 for SP3 Package.
+ 3. Support PCIE hotplug function.
+ 4. Optimize PCIE slot number for hotplug.
+  1)Delete slot number in HotplugDescriptor table.
+  2)NotifyEvent transmit SlotNum from PCI register to SMU after PciEnumerationComplete.
+ 5. Modify APCB build, generate APCB files in Build folder.
+ 6. fix coding error of warning as error.
+ 7. support FIX TxEQ in Dxio table, need specified SMU FW
+ 8. add a bios item for D+£¬ control ccp VQ count in X86
+ 9. Support custom Pstate function.
+
+-----------------------------------------
+CRB release note
+-----------------------------------------
+HG65N32_D06_200612
+ The DhyanaPI_1.0.01
+
+1£¬update for support Hotkey Prompt on logo.
+2,  fix that legacy PXE  not work.
+3,  fix that  keyboard's direction function key cannot work when disable number lock led.
+4,  fix that  can't  get  the right external graphic  card  info.
+5,  fix that  can't  show right lan MAC on setup.
+6,  fix that  can't show boardinfo on setup.
+7,  fix that  warning message on screen when window boot manager run.
+8,  update for raid controller boot option only show " misc device"
+9,  update  for  MXIC25L256 and MicronN25Q256 flash chip support.
+10, fix that i350 lan card window resource error.
+11, fix that system hang at installACPItable (berttable) when MCA error happen.
+12, fix that external graphic card can't set to vga first during legacy mode.

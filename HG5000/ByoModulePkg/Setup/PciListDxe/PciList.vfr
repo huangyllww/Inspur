@@ -1,0 +1,35 @@
+// /*++
+//  Copyright (c) 2013 - 2019 Byosoft Corporation. All rights reserved.
+//  This program and associated documentation (if any) is furnished
+//  under a license. Except as permitted by such license,no part of this
+//  program or documentation may be reproduced, stored divulged or used
+//  in a public system, or transmitted in any form or by any means
+//  without the express written consent of Byosoft Corporation.
+//
+// Name:  EventLog.vfr
+//
+// Description: Setup strings
+//
+//**********************************************************************
+//=#
+
+#include "PciListDxe.h"
+
+formset
+  guid     = SETUP_PCI_LIST_FORMSET_GUID,
+  title    = STRING_TOKEN(STR_PCI_LIST_FORMSET_TITLE),
+  help     = STRING_TOKEN(STR_PCI_LIST_FORMSET_HELP),
+  class    = PCI_LIST_FORMSET_CLASS_ID,
+  subclass = 0,
+
+  form formid = PCI_LIST_FORM_ID,
+    title   = STRING_TOKEN(STR_PCI_LIST_FORMSET_TITLE);
+
+    subtitle text = STRING_TOKEN(STR_PCI_LIST_HEADERS);
+
+    label LABEL_PCI_LIST_START;
+    label LABEL_PCI_LIST_END;
+
+  endform;
+
+endformset;

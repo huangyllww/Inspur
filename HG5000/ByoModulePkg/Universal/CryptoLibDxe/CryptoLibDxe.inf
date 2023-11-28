@@ -1,0 +1,56 @@
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = CryptoLibDxe
+  FILE_GUID                      = 3AFBD5BF-0636-4422-BCCA-2DF0921272CA
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = CryptoLibDxeEntry
+
+#
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           = IA32 X64 IPF EBC
+#
+
+[Sources]
+  CryptoLibDxe.c
+  ../CryptoLibComm/CryptoLibComm.c
+  
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  CryptoPkg/CryptoPkg.dec
+  ByoModulePkg/ByoModulePkg.dec
+
+  
+[LibraryClasses]
+  MemoryAllocationLib
+  BaseLib
+  UefiBootServicesTableLib
+  UefiDriverEntryPoint
+  UefiRuntimeServicesTableLib
+  BaseMemoryLib
+  DebugLib
+  BaseCryptLib
+
+  
+
+[Guids]
+
+  
+  
+[Protocols]
+  gCryptoLibDxeProtocolGuid
+  
+  
+[Pcd]
+ 
+
+  
+[Depex]
+  TRUE
+
+
+  

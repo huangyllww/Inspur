@@ -1,0 +1,100 @@
+#include <BmcConfig.h>
+
+form formid = FRU_FORM_ID,
+    title  = STRING_TOKEN (STR_SRVRMGMT_FRU_FORM_TITLE);
+    subtitle text = STRING_TOKEN (STR_SRVRMGMT_FRU_FORM_TITLE);
+    subtitle text = STRING_TOKEN(STR_NULL_STRING);
+
+
+/*
+  text help  = STRING_TOKEN (STR_CHASSIC_TYPE_HELP),
+       text  = STRING_TOKEN (STR_CHASSIC_TYPE),
+       text  = STRING_TOKEN (STR_CHASSIC_TYPE_VAL),
+       flags = 0,
+       key   = 0;
+*/  
+  text help  = STRING_TOKEN (STR_CHASSIC_PN_HELP),
+       text  = STRING_TOKEN (STR_CHASSIC_PN),
+       text  = STRING_TOKEN (STR_CHASSIC_PN_VAL),
+       flags = 0,
+       key   = 0;
+
+  text help  = STRING_TOKEN (STR_CHASSIC_SN_HELP),
+       text  = STRING_TOKEN (STR_CHASSIC_SN),
+       text  = STRING_TOKEN (STR_CHASSIC_SN_VAL),
+       flags = 0,
+       key   = 0;
+  
+  text help  = STRING_TOKEN (STR_BOARD_MANUFACTURER_HELP),
+       text  = STRING_TOKEN (STR_BOARD_MANUFACTURER),
+       text  = STRING_TOKEN (STR_BOARD_MANUFACTURER_VAL),
+       flags = 0,
+       key   = 0;
+
+  text help  = STRING_TOKEN (STR_BOARD_PRODUCT_NAME_HELP),
+       text  = STRING_TOKEN (STR_BOARD_PRODUCT_NAME),
+       text  = STRING_TOKEN (STR_BOARD_PRODUCT_NAME_VAL),
+       flags = 0,
+       key   = 0;
+
+  text help  = STRING_TOKEN (STR_BOARD_SN_HELP),
+       text  = STRING_TOKEN (STR_BOARD_SN),
+       text  = STRING_TOKEN (STR_BOARD_SN_VAL),
+       flags = 0,
+       key   = 0;
+
+  text help  = STRING_TOKEN (STR_BOARD_PN_HELP),
+       text  = STRING_TOKEN (STR_BOARD_PN),
+       text  = STRING_TOKEN (STR_BOARD_PN_VAL),
+       flags = 0,
+       key   = 0;
+
+  text help  = STRING_TOKEN (STR_PRODUCT_MANUFACTURER_HELP),
+       text  = STRING_TOKEN (STR_PRODUCT_MANUFACTURER),
+       text  = STRING_TOKEN (STR_PRODUCT_MANUFACTURER_VAL),
+       flags = 0,
+       key   = 0;
+
+  text help  = STRING_TOKEN (STR_PRODUCT_NAME_HELP),
+       text  = STRING_TOKEN (STR_PRODUCT_NAME),
+       text  = STRING_TOKEN (STR_PRODUCT_NAME_VAL),
+       flags = 0,
+       key   = 0;
+/*
+  text help  = STRING_TOKEN (STR_PRODUCT_PN_HELP),
+       text  = STRING_TOKEN (STR_PRODUCT_PN),
+       text  = STRING_TOKEN (STR_PRODUCT_PN_VAL),
+       flags = 0,
+       key   = 0;
+*/
+  text help  = STRING_TOKEN (STR_PRODUCT_VERSION_HELP),
+       text  = STRING_TOKEN (STR_PRODUCT_VERSION),
+       text  = STRING_TOKEN (STR_PRODUCT_VERSION_VAL),
+       flags = 0,
+       key   = 0;
+
+  text help  = STRING_TOKEN (STR_PRODUCT_SN_HELP),
+       text  = STRING_TOKEN (STR_PRODUCT_SN),
+       text  = STRING_TOKEN (STR_PRODUCT_SN_VAL),
+       flags = 0,
+       key   = 0;
+/*
+  text help  = STRING_TOKEN (STR_PRODUCT_ASSET_TAG_HELP),
+       text  = STRING_TOKEN (STR_PRODUCT_ASSET_TAG),
+       text  = STRING_TOKEN (STR_PRODUCT_ASSET_TAG_VAL),
+       flags = 0,
+       key   = 0;
+*/
+  text help  = STRING_TOKEN (STR_SYSTEM_UUID_HELP),
+       text  = STRING_TOKEN (STR_SYSTEM_UUID),
+       text  = STRING_TOKEN (STR_SYSTEM_UUID_VAL),
+       flags = 0,
+       key   = 0;
+/*
+  text help  = STRING_TOKEN (STR_SDR_VERSION_HELP),
+       text  = STRING_TOKEN (STR_SDR_VERSION),
+       text  = STRING_TOKEN (STR_SDR_VERSION_VAL),
+       flags = 0,
+       key   = 0;
+*/  // -TangYan- 2020/9/3 
+  endform;

@@ -1,0 +1,56 @@
+// ------------------------------------------------------------------------------
+// Copyright 2016-2020 Chengdu Haiguang IC Design Co., Ltd. All rights reserved.
+//
+// PSP FW Delivery Release Notes
+// 
+// Files && Lastest Version:
+//   [P] PspBootLoader_prod_DnSp3Sp4.esbin  [1.1.39.0]
+//        - PSP offchip BootLoader binary, encrypted and signed with production key
+//        - PSP Entry: 0x1
+//   [D] DebugUnlock_DN.esbin               [0.1.0.7]
+//        - Secure Debug Unlock binary, encrypted and signed with production key
+//        - PSP Entry: 0x13
+//   [R] RsmuSecurityPolicy_DN              [0.1.0.4]
+//        - Security Policy binary,  encrypted and signed with production key
+//        - PSP Entry: 0x24
+//-------------------------------------------------------------------------------
+
+Features and fixes in [P]1.1.39.0(2020/10/23):
+PS-1161: Update Unlock Flow [to] Support that UnlockToken can be reused before time expired
+
+Features and fixes in [P]1.1.37.0(2020/10/22):
+SEONPS-502: Add Support for SPI ROM Write Protection
+
+Features and fixes in [P]1.1.36.0(2020/09/30):
+SEONPS-681: Remove MCE log [to fix] mp0 hung in SMI polling 
+
+Features and fixes in [P]1.1.34.0(2020/09/27):
+SEONPS-680: Add DBGU1 Postcode [to] get postcode stream using JTAG tool
+
+Features and fixes in [P]1.1.33.0(2020/09/22):
+SEONPS-669: Don't load SecurityGasket if EarlyUnlock is done
+
+Features and fixes in [P]1.1.32.0(2020/08/15):
+SEONPS-590: Update ENV identifying flows [to] support TPCM and Normal in one binary
+
+Features and fixes in [P]1.1.31.0(2020/08/15):
+PS-1155: update mbist check stratgy [to fix] bootloader mbist hung problem on normal chip
+
+Features and fixes in [P]1.1.30.0 && [D]0.1.0.7 (2020/08/15):
+PS-1152: Remove DF Config in SecureUnlock flow [to Fix] PSP Hung when DF is in CState
+
+Features and fixes in [P]1.1.29.0 (2020/08/03):
+PS-1122: Add MBIST Check [to] Detect BIST Failed
+
+Features and fixes in [P]1.1.28.0 (2020/07/28):
+SEONPS-494: Add Debug Point [to] Trace unlock position
+
+Features and fixes in [D]0.1.0.6 && [R]0.1.0.4 (2020/07/27):
+SEONPS-338: Update config sequence [to Fix] Mp1 Double Exception on SecureUnlock
+
+Features and fixes in [P]1.1.27.0 (2020/07/27):
+SEONPS-493: Skip log postcode to 80 port in Unlock flow [to Fix] PSP Hung in log postcode
+
+Features and fixes in [P]1.1.26.0 (2020/07/07):
+-: Add support for TPCM
+

@@ -1,0 +1,81 @@
+## @file
+#
+#Copyright (c) 2006 - 2016, Byosoft Corporation.<BR>
+#All rights reserved.This software and associated documentation (if any)
+#is furnished under a license and may only be used or copied in
+#accordance with the terms of the license. Except as permitted by such
+#license, no part of this software or documentation may be reproduced,
+#stored in a retrieval system, or transmitted in any form or by any
+#means without the express written consent of Byosoft Corporation.
+#
+#File Name:
+#  GenericIpmi.inf
+#
+#Abstract:
+#
+#Revision History:
+#
+##
+
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = GenericIpmi
+  FILE_GUID                      = EB7F12D2-A29C-4871-AD6F-A18B93A4CF08
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = GenericIpmiInit
+
+#
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           = IA32 X64
+#
+#  VIRTUAL_ADDRESS_MAP_CALLBACK  =  VariableAddressChangeEvent
+#
+
+[Sources]
+  IpmiBmcInitialize.c
+  IpmiBmc.c
+  KcsBmc.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  ServerCommonPkg/ServerCommonPkg.dec
+  ByoModulePkg/ByoModulePkg.dec
+  AgesaPkg/AgesaPkg.dec
+  AgesaModulePkg/AgesaModuleNbioPkg.dec
+  AmdCpmPkg/AmdCpmPkg.dec
+  
+[LibraryClasses]
+  MemoryAllocationLib
+  BaseLib
+  UefiBootServicesTableLib
+  DebugLib
+  UefiDriverEntryPoint
+  IoLib
+  UefiLib
+  EfiServerManagementLib
+  ReportStatusCodeLib
+  PcdLib
+  
+  
+[Guids]
+  gEfiSetupEnterGuid
+  
+  
+[Protocols]
+  gEfiSmbiosProtocolGuid
+  gEfiAcpiTableProtocolGuid
+  gEfiAcpiSdtProtocolGuid
+  gEfiIpmiTransportProtocolGuid
+  gAmdCpmTableProtocolGuid
+  
+[Pcd]
+  gServerCommonPkgModuleTokenSpaceGuid.IpmiIoBase
+  gServerCommonPkgModuleTokenSpaceGuid.PcdBmcVersion
+  gServerCommonPkgModuleTokenSpaceGuid.PcdCpldVersion
+
+[Depex]
+  gEfiStatusCodeRuntimeProtocolGuid

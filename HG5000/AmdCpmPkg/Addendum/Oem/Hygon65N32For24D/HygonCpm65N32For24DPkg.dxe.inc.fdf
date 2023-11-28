@@ -1,0 +1,18 @@
+INF RuleOverride = ACPITABLE AmdCpmPkg/Kernel/Asl/AmdCpmInitAsl.inf
+INF AmdCpmPkg/Kernel/Dxe/AmdCpmInitDxe.inf
+INF AmdCpmPkg/Kernel/Smm/AmdCpmInitSmm.inf
+
+INF RuleOverride = ACPITABLE AmdCpmPkg/Features/PcieInit/Asl/AmdCpmPcieInitAsl.inf
+INF AmdCpmPkg/Features/PcieInit/Dxe/AmdCpmPcieInitDxe.inf
+INF AmdCpmPkg/Features/GpioInit/Dxe/AmdCpmGpioInitDxe.inf
+INF AmdCpmPkg/Features/GpioInit/Smm/AmdCpmGpioInitSmm.inf
+
+INF AmdCpmPkg/Features/I2cMaster/Dxe/AmdI2cMasterDxe.inf
+INF AmdCpmPkg/Features/PlatformRas/Dxe/AmdPlatformRasDxe.inf
+INF AmdCpmPkg/Features/PlatformRas/Smm/AmdPlatformRasSmm.inf
+INF AmdCpmPkg/Features/BoardId/Dxe/AmdBoardIdDxe.inf
+INF AmdCpmPkg/Features/xGbEI2cMaster/xGbEI2cMasterDxe.inf
+INF AmdCpmPkg/Devices/Pca9535a/Dxe/Pca9535aDxe.inf
+INF AmdCpmPkg/Devices/Pca9545a/Dxe/Pca9545aDxe.inf
+INF AmdCpmPkg/Devices/Sff8472/Dxe/Sff8472Dxe.inf
+

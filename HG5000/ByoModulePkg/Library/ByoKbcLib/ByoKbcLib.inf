@@ -1,0 +1,50 @@
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = ByoKbcLib
+  FILE_GUID                      = 1A049F52-2419-47f9-B1CD-875EEF8492DD
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = ByoKbcLib
+
+
+#
+# The following information is for reference only and not required by the build tools.
+#
+#  VALID_ARCHITECTURES           = IA32 X64 IPF EBC
+#
+
+[Sources]
+  ByoKbcLib.c
+
+
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  ByoModulePkg/ByoModulePkg.dec  
+
+
+
+[LibraryClasses]
+  PcdLib
+  IoLib
+  BaseLib
+  TimerLib
+
+
+
+[Guids]
+
+  
+  
+[Protocols]
+
+  
+[Pcd]
+
+
+
+  
+  
+  

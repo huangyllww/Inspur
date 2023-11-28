@@ -1,0 +1,6 @@
+#ifndef _AMD_CPM_PLATFORM_H_
+#define _AMD_CPM_PLATFORM_H_
+
+#define AMD_CPM_CPU_FAMILY_0x17_ZP_SUPPORT
+
+#endif
